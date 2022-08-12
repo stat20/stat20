@@ -1,0 +1,94 @@
+/*-- scss:defaults --*/
+
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+// Colors
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #f8f5f0 !default;
+$gray-300: #dfd7ca !default;
+$gray-400: #ced4da !default;
+$gray-500: #98978b !default;
+$gray-600: #8e8c84 !default;
+$gray-700: #495057 !default;
+$gray-800: #3e3f3a !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$blue:    #0e6876 !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #d9534f !default;
+$orange:  #f47c3c !default;
+$yellow:  #ffc107 !default;
+$green:   #93c54b !default;
+$teal:    #20c997 !default;
+$cyan:    #29abe0 !default;
+
+$primary:       $blue !default;
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $orange !default;
+$danger:        $red !default;
+$light:         $gray-200 !default;
+$dark:          $gray-800 !default;
+
+// Body
+
+$body-color:                $gray-800 !default;
+
+// Fonts
+
+$font-family-sans-serif: 'Avenir', sans-serif;
+$headings-font-weight:        400 !default;
+
+
+/* css styles */
+
+.content-block {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+
+@media(min-width: 900px) {
+.content-block {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+}
+
+@media (min-width: 1200px) {
+.content-block {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+}
+
+
+.banner-text {
+    color: $primary;
+    font-size: clamp(1.8em, 6vw, 4em);
+    line-height: .9;
+}
+
+h1 {
+    color: $primary;
+}
+
+h2 {
+    color: $primary;
+}
+
+.v-center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
