@@ -3,23 +3,24 @@ title: "Schedule"
 format: html
 ---
 
-## Quarto
+### Models and Data
+date: 8/24/22
+notes: models-and-data.qmd
+slides: models-and-data-slides.qmd
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+### Models and Data
+date: 8/26/22
+notes: models-and-data.qmd
+slides: models-and-data-slides.qmd
 
-## Running Code
+### Lab 1: Getting Started
+date: 8/24/22
+notes: models-and-data.qmd
+slides: models-and-data-slides.qmd
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+### PS 1: Getting Started
+date: 8/24/22
+welcome survey: https://docs.google.com/forms/d/1u6czoaz87wbA_LKSWnQmjHoxUrUDOHpJSHk6Fo-CUt0/edit
+data collection: https://docs.google.com/forms/d/1x0PTAGR8KmnAXcbnCQLhWh81oK3b7tS_LeU-aYNmH4M/edit
 
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this 
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
+  - 
