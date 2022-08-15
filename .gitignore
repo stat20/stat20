@@ -4,4 +4,7 @@
 .Ruserdata
 .DS_Store
 
+*_files
+.html
+
 /.quarto/
