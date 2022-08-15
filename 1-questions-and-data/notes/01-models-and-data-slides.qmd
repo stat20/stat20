@@ -1,25 +1,62 @@
 ---
-title: "Untitled"
+title: "Models and Data"
 format: revealjs
 ---
 
-## Quarto
+## {data-menu-title="What's going on here?"}
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+::: {.bigadage .v-center-container style="text-align: center"}
+What's going on here?
+:::
 
-## Bullets
 
-When you click the **Render** button a document will be generated that includes:
+## {data-menu-title="Shoebill Pic 1" background-image="images/shoebill-1.png" background-size="contain"}
 
--   Content authored with markdown
--   Output from executable code
 
-## Code
+## Group Discussion
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+In your groups, please...
 
-```{r}
-1 + 1
-```
+1. Take turns introducing yourselves with your
+   - name
+   - hometown
+   - year at Cal
+   - major
+   - number of siblings + pets
+   - farthest distance traveled from Cal this summer (in miles)
+   
+2. As a group, formulate at least **three** possible explanations for what's going on in the picture.  
+
+3. Enter them at [pollev.com/stat20](pollev.com/stat20) or upvote existing explanations if they are very similar to your own.
+
+
+## {data-menu-title="Poll Results 1"}
+
+<center>
+<iframe src="https://embed.polleverywhere.com/discourses/du3MbVG7RWdS5vXspW6hY?controls=none&short_poll=true" width="1300px" height="800px"></iframe>
+</center>
+
+
+## {data-menu-title="Shoebill Pic 2"}
+
+![](images/shoebill-2.png){fig-alt="Photo of shoebill with duck in it's mouth, at an angle." fig-align="Center"}
+
+:::{.poll}
+Does this image change which claims are more or less likely? Up and down vote explanations at `pollev.com/stat20`.
+:::
+
+## {data-menu-title="Poll Results 2"}
+
+<center>
+<iframe src="https://embed.polleverywhere.com/discourses/du3MbVG7RWdS5vXspW6hY?controls=none&short_poll=true" width="1300px" height="800px"></iframe>
+</center>
+
+## {data-menu-title="Shoebill Pic 3" background-image="images/shoebill-3.png" background-size="contain"}
+
+## {data-menu-title="Poll Results 3"}
+
+<center>
+<iframe src="https://embed.polleverywhere.com/discourses/du3MbVG7RWdS5vXspW6hY?controls=none&short_poll=true" width="1300px" height="800px"></iframe>
+</center>
 
 
