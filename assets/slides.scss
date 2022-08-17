@@ -136,15 +136,24 @@ div.meta-el {
   background-color: #f8f5f0;
 }
 
+/*
 #title-slide {
   text-align: left;
   font-family: 'Nanum Myeongjo', serif;
   margin: 5em 0em 0em 0em; // or margin-top: 1em;
 }
+*/
+
+#title-slide {
+  text-align: center;
+  font-family: 'Avenir', sans-serif;
+  margin: 5em 0em 0em 0em; // or margin-top: 1em;
+}
 
 #title-slide h1 {
-  text-align: left;
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Avenir', sans-serif;
+  color: $body-color;
+  font-weight: 400;
 }
 
 #title-slide .institute {

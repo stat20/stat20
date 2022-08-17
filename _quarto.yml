@@ -22,6 +22,6 @@ format:
     progress: false
     code-overflow: wrap
     title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
       data-background-size: contain
-      data-background-color: #f8f5f0
     
