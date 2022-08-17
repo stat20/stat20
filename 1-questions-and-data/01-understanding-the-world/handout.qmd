@@ -1,0 +1,28 @@
+---
+title: ""
+format: pdf
+---
+
+**Name**:\
+
+**Hometown**:\
+
+**# Siblings + Pets**\
+
+**# Semesters at Cal**:\
+
+**Farthest distance from Cal**:\
+
+\vspace{5cm}
+
+* * *
+
+**Name**:\
+
+**Hometown**:\
+
+**# Siblings + Pets**\
+
+**# Semesters at Cal**:\
+
+**Farthest distance from Cal**:\
