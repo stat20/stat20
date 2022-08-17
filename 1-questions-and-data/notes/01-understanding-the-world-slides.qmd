@@ -1,12 +1,34 @@
 ---
-title: "Models and Data"
-format: revealjs
+title: "Understanding the World with Data"
+format: 
+  revealjs:
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false 
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
 ---
+
+## Introductions
+
+:::{.card}
+In your groups of 3, please take turns introducing yourselves to one another by providing the data
+:::
 
 ## {data-menu-title="What's going on here?"}
 
 ::: {.bigadage .v-center-container style="text-align: center"}
-What's going on here?
+What's going on here? 
 :::
 
 
@@ -15,16 +37,6 @@ What's going on here?
 
 ## Group Discussion
 
-In your groups, please...
-
-1. Take turns introducing yourselves with your
-   - name
-   - hometown
-   - year at Cal
-   - major
-   - number of siblings + pets
-   - farthest distance traveled from Cal this summer (in miles)
-   
 2. As a group, formulate at least **three** possible explanations for what's going on in the picture.  
 
 3. Enter them at [pollev.com/stat20](pollev.com/stat20) or upvote existing explanations if they are very similar to your own.
