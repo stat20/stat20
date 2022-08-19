@@ -14,11 +14,6 @@ $presentation-font-size-root: 46px;
   --purple-100: #73245e;
 }
 
-/*
-stat20 blue: 4466B0
-stat20 teal: 
-*/
-
 $red: #bf2642;
 $orange: #f2a03d;
 $green: #02733e;
@@ -31,6 +26,7 @@ $light-orange: lighten($orange, 60%);
 
 // set your custom colors here
 $body-color: #5c5859 !default;
+$background-color: #fff !default;
 
 // headings
 $presentation-heading-color: $blue !default;
@@ -60,12 +56,39 @@ details>summary {
 }
 
 .reveal .slide .poll {
-  border-left: 6px solid $orange;
+  border-left: 10px solid $orange;
+  border-top: 3px solid $orange;
+  border-right: 3px solid $orange;
+  border-bottom: 3px solid $orange;
+  margin-left: 20px;
+  margin-top: 1em;
+  border-radius: 10px;
   padding-left: 0.7em;
+  padding-right: 0.3em;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
   background: $beige;
 }
+
+/*
+.reveal .slide .poll::before {
+      font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f681";
+      color: $orange;
+      display: inline-block;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+}
+*/
+
+.reveal .slide blockquote p {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 600;
+  font-size: .9em;
+  color: $body-color !important;
+}
+
 
 .reveal .slide .appex {
   border-left: 3px solid #003559;
@@ -121,9 +144,11 @@ div.meta-el {
   background-color: var(--orange-100);
 }
 
+/*
 .reveal .slide h1 {
   font-family: 'Nanum Myeongjo', serif;
 }
+*/
 
 .v-center-container {
   display: flex;
@@ -132,9 +157,11 @@ div.meta-el {
   height: 90%;
 }
 
+/*
 .slide-background.center.present {
   background-color: #f8f5f0;
 }
+*/
 
 /*
 #title-slide {
@@ -165,6 +192,7 @@ div.meta-el {
   color: $body-color;
 }
 
+/*
 #title-slide p.author::before {
   content: "";
   display: block;
@@ -174,6 +202,7 @@ div.meta-el {
   height: 3px;
   margin-bottom: 1em;
 }
+*/
 
 #title-slide p, #title-slide a {
   color: $body-color;
