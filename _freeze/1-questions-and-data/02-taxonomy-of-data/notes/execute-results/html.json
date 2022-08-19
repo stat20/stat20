@@ -1,0 +1,16 @@
+{
+  "hash": "eab8615c4211b416a337a7e76d704733",
+  "result": {
+    "markdown": "---\ntitle: \"The Taxonomy of Data\"\ndate: \"08/26/2022\"\n---\n\n\n[[Perusall]{.btn .btn-warning}](https://app.perusall.com) [[Reading Questions]{.btn .btn-success}](https://www.gradescope.com/courses/416233)\n\nLorem ipsum dolor sit amet. At praesentium iure qui quia quidem et dignissimos tempore et repudiandae nesciunt hic animi esse in quod reiciendis et reprehenderit officiis. Et deleniti quidem eos nihil tempore est omnis quia non illum magnam sit enim suscipit. Qui adipisci nihil quo vitae consequatur ut delectus consectetur eos voluptates ipsum.\n\nLorem ipsum dolor sit amet. At praesentium iure qui quia quidem et dignissimos tempore et repudiandae nesciunt hic animi esse in quod reiciendis et reprehenderit officiis. Et deleniti quidem eos nihil tempore est omnis quia non illum magnam sit enim suscipit. Qui adipisci nihil quo vitae consequatur ut delectus consectetur eos voluptates ipsum.\n\nLorem ipsum dolor sit amet. At praesentium iure qui quia quidem et dignissimos tempore et repudiandae nesciunt hic animi esse in quod reiciendis et reprehenderit officiis. Et deleniti quidem eos nihil tempore est omnis quia non illum magnam sit enim suscipit. Qui adipisci nihil quo vitae consequatur ut delectus consectetur eos voluptates ipsum.\n\nLorem ipsum dolor sit amet. At praesentium iure qui quia quidem et dignissimos tempore et repudiandae nesciunt hic animi esse in quod reiciendis et reprehenderit officiis. Et deleniti quidem eos nihil tempore est omnis quia non illum magnam sit enim suscipit. Qui adipisci nihil quo vitae consequatur ut delectus consectetur eos voluptates ipsum.\n\nLorem ipsum dolor sit amet. At praesentium iure qui quia quidem et dignissimos tempore et repudiandae nesciunt hic animi esse in quod reiciendis et reprehenderit officiis. Et deleniti quidem eos nihil tempore est omnis quia non illum magnam sit enim suscipit. Qui adipisci nihil quo vitae consequatur ut delectus consectetur eos voluptates ipsum.\n\nLorem ipsum dolor sit amet. At praesentium iure qui quia quidem et dignissimos tempore et repudiandae nesciunt hic animi esse in quod reiciendis et reprehenderit officiis. Et deleniti quidem eos nihil tempore est omnis quia non illum magnam sit enim suscipit. Qui adipisci nihil quo vitae consequatur ut delectus consectetur eos voluptates ipsum.\n\n\n## Materials from class\n\n#### Slides\n\n - [Slides](slides.html)\n\n",
+    "supporting": [
+      "notes_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
