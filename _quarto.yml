@@ -6,6 +6,8 @@ format:
     theme: 
       - sandstone
       - ../../assets/styles.scss
+    toc: true
+    published-title: "class date"
   
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
@@ -25,3 +27,5 @@ format:
       data-background-image: ../../assets/stat20-hex-bg.png
       data-background-size: contain
     
+execute: 
+  freeze: auto

@@ -3,26 +3,28 @@ title: ""
 format: pdf
 ---
 
-**Name**:\
+\thispagestyle{empty} 
 
-**Hometown**:\
+Name:\
 
-**# Siblings + Pets**\
+Hometown:\
 
-**# Semesters at Cal**:\
+\# Siblings + Pets\
 
-**Farthest distance from Cal**:\
+\# Semesters in college:\
+
+Farthest distance from campus:\
 
 \vspace{5cm}
 
 * * *
 
-**Name**:\
+Name:\
 
-**Hometown**:\
+Hometown:\
 
-**# Siblings + Pets**\
+\# Siblings + Pets\
 
-**# Semesters at Cal**:\
+\# Semesters in college:\
 
-**Farthest distance from Cal**:\
+Farthest distance from campus:\

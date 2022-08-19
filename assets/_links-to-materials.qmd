@@ -1,0 +1,44 @@
+
+## Materials from class
+
+```{r}
+#| label: slide-links
+#| echo: false
+#| output: asis
+#| message: false
+
+library(stringr)
+f <- list.files()
+
+# slides
+
+n_slides <- sum(str_detect(f, "slides-?[a-zA-Z]*.html"))
+
+if (n_slides > 0) {
+    cat("#### Slides\n\n ")
+}
+
+if (n_slides == 1) {
+    cat("- [Slides](slides.html)\n")
+}
+
+if (n_slides > 1) {
+    slide_files <- str_subset(f, "slides-[a-zA-Z]*.html")
+    slide_names <- slide_files %>%
+        str_replace("slides-", "") %>%
+        str_replace(".html", "") %>%
+        str_to_title()
+    for (i in seq_along(slide_names)) {
+        cat(paste0("- [", slide_names[i], "](", slide_files[i], ")\n"))
+    }
+}
+
+cat("\n")
+
+# handouts
+
+n_handouts <- sum(str_detect(f, "handout.pdf"))
+if (n_handouts > 0) {
+    cat("#### Handouts\n\n - [Handout](handout.pdf) \n")
+}
+```
