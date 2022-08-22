@@ -100,7 +100,7 @@ There will be a lab every week or two and they will be due at the standard assig
 
 #### Reading Questions
 
-Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a haveful of questions per “lecture” and can be a mix of multiple choice, short answer, and coding questions. You can answer them directly on gradescope.
+Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per “lecture” and can be a mix of multiple choice, short answer, and coding questions. You can answer them directly on gradescope.
 
 #### Problem Sets
 
