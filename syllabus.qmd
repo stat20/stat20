@@ -18,7 +18,7 @@ toc-depth: 4
 
 ### Course Culture
 
-Students taking Stat 20 come from a wide range of backgrounds. We hope to foster an inclusive and supportive learning environment based on curiosity rather than competition. All members of the course community—the instructor, students, tutors, and readers—are expected to treat each other with courtesy and respect.
+Students taking Stat 20 come from a wide range of backgrounds. We hope to foster an inclusive and supportive learning environment based on curiosity rather than competition. All members of the course community—the instructor, students, tutors, and readers—are expected to treat each other with courtesy and respect. 
 
 You will be interacting with course staff and fellow students in several different environments: in class, in plenary, over the discussion forum, and in office hours. Some of these will be in person, some of them will be online, but the same expectations hold: be kind, be respectful, be professional.
 
