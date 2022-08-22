@@ -1,0 +1,8 @@
+---
+title: "PS 1: Surveys"
+---
+
+Please fill out the following two surveys:
+
+1. [Welcome to Class]()
+1. [Data Collection]()
