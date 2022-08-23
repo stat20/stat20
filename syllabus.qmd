@@ -10,7 +10,7 @@ author:
     - Jeremy Sanchez
     - Shobhana Murali Stoyanov
 author-title: Instructors
-abstract: "Welcome to the Age of Data, where claims made using data are all around us: in the news, in the pages of scientific journals, in the policies of government, and in the board rooms of companies across the world. In this course you will explore the forms of claims that are made using data. Some of these are subtle claims about the structure of the data at hand. Others are grand claims about scientific truths or predictions of what will happen in the future. This course will train your ability to critique and construct such arguments made using data."
+abstract: "[Welcome to the Age of Data]{style=\"font-family: Cinzel, serif; font-size: 1.2em\"}, where claims made using data are all around us: in the news, in the pages of scientific journals, in the policies of government, and in the board rooms of companies across the world. In this course you will explore the forms of claims that are made using data. Some of these are subtle claims about the structure of the data at hand. Others are grand claims about scientific truths or predictions of what will happen in the future. This course will train your ability to critique and construct such arguments made using data."
 abstract-title: ""
 theme: [sandstone, assets/styles.scss]
 toc-depth: 4
@@ -124,7 +124,7 @@ Your final grade in the course will be computed based on:
 - Problem sets 5%
 - Final 20%
 
-The goal of your course staff is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determiner letter grades (> 90% is some kinda of A, etc.). Additionally, your weakest lab, problem set, and quiz will be dropped before calculating your grade for the course.
+The goal of your course staff is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determiner letter grades (> 90% is some kind of A, etc.). Additionally, your weakest lab, problem set, and quiz will be dropped before calculating your grade for the course.
 
 ### Policies
 
