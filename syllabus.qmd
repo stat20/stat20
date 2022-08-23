@@ -96,19 +96,19 @@ You will be turning in your assignments on a platform called  [Gradescope](https
 
 Labs are long-form assignments designed to apply the concepts from the lecture notes in the cause of doing an analysis of real data. This will involve both writing code and communicating your thoughts and findings in English. We'll be working through the most challenging problems from the labs in class, but you may have to complete them on your own outside of class time. Most will be written-up and submitted individually but some will be group submissions.
 
-There will be a lab every week or two and they will be due at the standard assignment deadline of 11 pm on Monday night.
+There will be a lab every week or two and they will be due at the standard assignment deadline of **11 pm on Monday night**.
 
 #### Reading Questions
 
-Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per “lecture” and can be a mix of multiple choice, short answer, and coding questions. You can answer them directly on gradescope.
+Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per “lecture” and can be a mix of multiple choice, short answer, and coding questions. You can answer them directly on gradescope. Note that the reading questions will be **due 11 pm the night before class**, that is, on 11 pm Tuesdays for the Wednesday lecture, and 11 pm Thursdays for the Friday lecture.
 
 #### Problem Sets
 
-The problem set is meant as practice: practice with the concepts and methods from the lecture notes that you'll need to hone in order to do the labs well and succeed on the quizzes. Since the goal of these is just practice, they will be graded credit / no credit, where credit is an earnest attempt (evidence that you worked on most of the problems).
+The problem set is meant as practice: practice with the concepts and methods from the lecture notes that you'll need to hone in order to do the labs well and succeed on the quizzes. Since the goal of these is just practice, they will be graded credit / no credit, where credit is an earnest attempt (evidence that you worked on most of the problems). They will also be due at the standard assignment deadline of **11 pm on Monday night**.
 
 #### Quizzes
 
-Quizzes reinforce the most important concepts from the lecture notes and provide your the opportunity to work through misunderstandings with peers and the instructor. Quizzes will take place roughly every other week at the beginning of class for ~20 minutes. After submission of quizzes, you'll have ~10 minutes to discuss your answers with your group and prepare a single group submission. Your quiz score will be an average of the two.
+Quizzes reinforce the most important concepts from the lecture notes and provide your the opportunity to work through misunderstandings with peers and the instructor. Quizzes will take place **roughly every other week at the beginning of class for ~20 minutes**. After submission of quizzes, you'll have ~10 minutes to discuss your answers with your group and prepare a single group submission. Your quiz score will be an average of the two.
 
 #### Exam
 
@@ -177,15 +177,17 @@ And again, if you have questions about the boundaries of the collaboration polic
 
 1. What should I do if I'm on the waitlist?
 
-1. Are class sessions recorded?
+  Attend lecture and section (remember, we are teaching it as *one* two hour class), and submit all assignments on time. After 3 class meetings, we will take a look at the waitlist.
+
+2. Are class sessions recorded?
 
    No. Class sessions feature a mix of group problem solving, activities, and discussion and don't lend themselves to recording. The course notes are the main reference source for the course. Any materials used during the class session will be posted to the course website.
 
-1. Is attendance required?
+3. Is attendance required?
    
    No, but it is difficult to succeed in this course if you are not regularly attending class. Class sessions are designed to be an effective and efficient format to make progress on important assignments. Plus, it's a great way to meet your fellow students and learn from one another!
    
-1. What if I join the class late?
+4. What if I join the class late?
 
    If you join the class within the first two weeks, read this course syllabus very carefully, read the lecture notes, take a look at gradescope to get a sense of any assignments that may have already passed, and visit office hours to check that you're up to date with things. The first two weeks of material are very important so you will be able to make up assignments.
    
