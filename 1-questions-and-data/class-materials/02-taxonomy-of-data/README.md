@@ -1,14 +1,18 @@
-# Understanding the World with Data
+# Taxonomy of Data
 
 #### Concept Acquisition
 
-1. The Data Science lifecycle represents the iterative process by which models questions, claims, data, and understanding inform one other.
-1. The success
+1. Data is a collection of measurements of variables made on observation units. They can be organized in a data frame.
+1. Variables can be classified as Numerical or Categorical. Within categorical, ordinal or nominal.
+
 
 #### Tool Acquisition
 
-1. Practice using the polling platform
-1. Practice using the discussion platform
+1. Create a pdf document from a .qmd file using RStudio.
 
 #### Concept Application
-1. Classify a scenario as originating with a model / question / understanding or originating with observations of the world.
+
+1. Identify the unit of observation in a written description of a study or in a given data frame.
+1. Identify the variables recorded on the observations based on a written description of a study or in a given data frame. Classify each one according to the taxonomy of data.
+1. Distinguish between a (tidy) data frame and other tabular displays.
+
