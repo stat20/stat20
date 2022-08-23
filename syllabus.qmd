@@ -68,7 +68,7 @@ The primary materials for the course are the lecture notes, which will be posted
 
 - [Introduction to Modern Statistics](https://openintro-ims.netlify.app/) by &#199;etinkaya-Rundel and Hardin (freely available online)
 - [Statistics](https://wwnorton.com/books/9780393929720), Freedman, Pisani, and Purves
-- [Data Visualization: A Practical Introduction](https://socviz.co/), Healy
+- [Data Visualization: A Practical Introduction](https://socviz.co/), Healy (freely available online)
 - [Hands-on Programming with R](https://rstudio-education.github.io/hopr/), Grolemund (freely available online)
 - [R for Data Science](https://r4ds.had.co.nz/), Wickham and Grolemund (freely available online)
 
