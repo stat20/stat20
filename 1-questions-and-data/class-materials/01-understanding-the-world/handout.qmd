@@ -7,13 +7,15 @@ format: pdf
 
 Name:\
 
+Contact info:\
+
 Hometown:\
 
 \# Siblings + Pets\
 
 \# Semesters in college:\
 
-Farthest distance from campus:\
+Farthest distance from campus this summer:\
 
 \vspace{5cm}
 
@@ -21,10 +23,12 @@ Farthest distance from campus:\
 
 Name:\
 
+Contact info:\
+
 Hometown:\
 
 \# Siblings + Pets\
 
 \# Semesters in college:\
 
-Farthest distance from campus:\
+Farthest distance from campus this summer:\
