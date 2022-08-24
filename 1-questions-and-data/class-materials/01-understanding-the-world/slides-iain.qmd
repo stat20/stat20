@@ -27,7 +27,7 @@ format:
 -   Each person should finish with a handout filled-in with info on their groupmates.
 
 ```{r}
-countdown::countdown(5, top = 0)
+countdown::countdown(4, top = 0)
 ```
 
 # The Data Science Lifecycle
