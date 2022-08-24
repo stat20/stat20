@@ -3,18 +3,18 @@ title: "The Taxonomy of Data"
 date: "08/26/2022"
 ---
 
-[[Perusall]{.btn .btn-warning}](https://app.perusall.com) [[Reading Questions]{.btn .btn-success}](https://www.gradescope.com/courses/416233)
+[[Discuss]{.btn .btn-warning}](https://app.perusall.com) [[Reading Questions]{.btn .btn-success}](https://www.gradescope.com/courses/416233)
 
-Lorem ipsum dolor sit amet. At praesentium iure qui quia quidem et dignissimos tempore et repudiandae nesciunt hic animi esse in quod reiciendis et reprehenderit officiis. Et deleniti quidem eos nihil tempore est omnis quia non illum magnam sit enim suscipit. Qui adipisci nihil quo vitae consequatur ut delectus consectetur eos voluptates ipsum.
+1. defs of data, variable, observation
 
-Lorem ipsum dolor sit amet. At praesentium iure qui quia quidem et dignissimos tempore et repudiandae nesciunt hic animi esse in quod reiciendis et reprehenderit officiis. Et deleniti quidem eos nihil tempore est omnis quia non illum magnam sit enim suscipit. Qui adipisci nihil quo vitae consequatur ut delectus consectetur eos voluptates ipsum.
+2. What is a taxonomy of data
 
-Lorem ipsum dolor sit amet. At praesentium iure qui quia quidem et dignissimos tempore et repudiandae nesciunt hic animi esse in quod reiciendis et reprehenderit officiis. Et deleniti quidem eos nihil tempore est omnis quia non illum magnam sit enim suscipit. Qui adipisci nihil quo vitae consequatur ut delectus consectetur eos voluptates ipsum.
+3. The Taxonomy of data
 
-Lorem ipsum dolor sit amet. At praesentium iure qui quia quidem et dignissimos tempore et repudiandae nesciunt hic animi esse in quod reiciendis et reprehenderit officiis. Et deleniti quidem eos nihil tempore est omnis quia non illum magnam sit enim suscipit. Qui adipisci nihil quo vitae consequatur ut delectus consectetur eos voluptates ipsum.
+4. Study: Palmers penguins
 
-Lorem ipsum dolor sit amet. At praesentium iure qui quia quidem et dignissimos tempore et repudiandae nesciunt hic animi esse in quod reiciendis et reprehenderit officiis. Et deleniti quidem eos nihil tempore est omnis quia non illum magnam sit enim suscipit. Qui adipisci nihil quo vitae consequatur ut delectus consectetur eos voluptates ipsum.
+Def of data frame
 
-Lorem ipsum dolor sit amet. At praesentium iure qui quia quidem et dignissimos tempore et repudiandae nesciunt hic animi esse in quod reiciendis et reprehenderit officiis. Et deleniti quidem eos nihil tempore est omnis quia non illum magnam sit enim suscipit. Qui adipisci nihil quo vitae consequatur ut delectus consectetur eos voluptates ipsum.
+Examples of not data frames
 
 {{< include ../../assets/_links-to-materials.qmd >}}
