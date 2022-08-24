@@ -3,20 +3,16 @@ title: Schedule
 toc: false
 ---
 
-:::{.callout-caution}
-## 
-This page will be under construction until the start of the semester. 
-:::
-
 **Class Sessions**: 2 hr blocks on Wednesday and Friday\
 **Workshop**: 1 hr Monday\
 **Reading Questions due**: 11 pm Tuesday and Thursday\
 **Labs and PS due**: Monday night 11 pm on Gradescope\
+**Final Exam**: Wednesday 12/14/22 in person from 3-6pm
 
 ```{r}
 #| echo: false
 #| message: false
-#| eval: false
+#| eval: true
 
 # 1. Reads in the course schedule from csv downloaded from 
 # an associated google sheet: https://docs.google.com/spreadsheets/d/1PWuMkcQX2PUd84zDUmBe2tRI2Lfsam1-435JQ1A2GAE/edit#gid=0
@@ -35,6 +31,8 @@ gs4_deauth()
 a <- read_sheet("https://docs.google.com/spreadsheets/d/1PXyG38cf3ARqvcEgZRhRIIWDRPCmDIvk6jPQnB1Nvaw/edit#gid=1914576809")
 
 a %>%
+  filter(date <= "2022-10-10",
+         day != "Tues") %>%
   kbl(escape = FALSE) %>%
   kable_styling(bootstrap_options = c("hover", "striped"))
 
@@ -80,3 +78,4 @@ a %>%
 
 ```
 
+More to follow!
