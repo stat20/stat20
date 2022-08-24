@@ -22,9 +22,16 @@ format:
 
 # {{< fa pen-to-square >}} Introductions {background-color="#00403d"}
 
-- In groups of 3,  take turns introducing yourselves to one another by providing the info listed on the handout (your name, hometown, etc).
+- In groups of 3, take turns introducing yourselves to one another by providing the info listed on the handout.
 
 - Each person should finish with a handout filled-in with info on their groupmates.
+
+  - Name
+  - Contact Info
+  - Hometown
+  - \# Siblings + \# Pets
+  - \# Semesters at Cal
+  - Farthest distance from Cal this summer
 
 ```{r}
 countdown::countdown(5, top = 0)
@@ -53,41 +60,39 @@ What's going on here?
 ::: {.column width="35%"}
 :::{.poll style="font-size: .9em"}
 - As a group, formulate at least **three** possible explanations for what's going on in the picture.  
-- Enter them at pollev.com or upvote existing explanations if they are very similar to your own.
+- Enter them at `pollev.com/andrew` or upvote existing explanations if they are very similar to your own.
 :::
 :::
 
 ::::
 
 
-<!-- ## {data-menu-title="Poll Results 1"} -->
+## {data-menu-title="Poll Results 1"}
 
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/discourses/XUV5iZxGmNKYFwGh1LxPy?controls=none&short_poll=true" width="1300" height="800px"></iframe> -->
-<!-- </center> -->
+<center>
+<iframe src="https://embed.polleverywhere.com/discourses/XUV5iZxGmNKYFwGh1LxPy?controls=none&short_poll=true" width="1300" height="800px"></iframe>
+</center>
 
 
 ## {data-menu-title="Shoebill Pic 2"}
 
-![](images/shoebill-2.png){fig-alt="Photo of shoebill with duck in its mouth, at an angle." fig-align="Center"}
+![](images/shoebill-2.png){fig-alt="Photo of shoebill with duck in its mouth, at an angle." fig-align="center"}
 
 :::{.poll}
-Does this image change which claims are more or less likely? Up and down vote explanations at `pollev.com`.
+Does this image change which claims are more or less likely? Up and down vote explanations at `pollev.com/andrew`.
 :::
 
-<!-- ## {data-menu-title="Poll Results 2"} -->
+## {data-menu-title="Poll Results 2"}
 
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/discourses/XUV5iZxGmNKYFwGh1LxPy?controls=none&short_poll=true" width="1300px" height="800px"></iframe> -->
-<!-- </center> -->
+<center>
+<iframe src="https://embed.polleverywhere.com/discourses/XUV5iZxGmNKYFwGh1LxPy?controls=none&short_poll=true" width="1300" height="800px"></iframe>
+</center>
 
 ## {data-menu-title="Shoebill Pic 3" background-image="images/shoebill-3.png" background-size="contain"}
 
-<!-- ## {data-menu-title="Poll Results 3"} -->
-
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/discourses/XUV5iZxGmNKYFwGh1LxPy?controls=none&short_poll=true" width="1300px" height="800px"></iframe> -->
-<!-- </center> -->
+<center>
+<iframe src="https://embed.polleverywhere.com/discourses/XUV5iZxGmNKYFwGh1LxPy?controls=none&short_poll=true" width="1300" height="800px"></iframe>
+</center>
 
 :::{.notes}
 These three photos were taken in quick succession by a physician and amateur photographer who was vising the San Diego Zoo Safari Park. He was watching the shoebill as it was walking down a path in the reeds. As the shoebill was ambling along, it encountered a duck in the middle of the path. It leaned down, picked up the duck in its beak, turned to the side, dropped the duck in the reeds, then proceeded to amble down the path.
@@ -119,6 +124,36 @@ the World
 ::: {.bigadage .absolute top=300 left=1210}
 Data
 :::
+
+
+## From Questions to Data
+
+> Is the incidence of COVID on campus going up or down?
+
+. . .
+
+:::poll
+What type of *data* can help answer this question?
+
+Consider:
+
+- Which different people / institutions collect relevant data
+- Is certain data not available? Why not?
+
+Enter your group's answer at `pollev.com/stat20`. *Be precise*.
+:::
+
+
+```{r}
+countdown::countdown(6, top = 0)
+```
+
+## {data-menu-title="Poll Results"}
+
+<center>
+<iframe src="https://embed.polleverywhere.com/free_text_polls/CW1Rk0bjcNGSMs17dFAj6?controls=none&short_poll=true" width="1300" height="800px"></iframe>
+</center>
+
 
 # Why we're here
 
@@ -172,36 +207,6 @@ claims made using data.
 :::
 
 
-## From Questions to Data
-
-> Is the incidence of COVID on campus going up or down?
-
-. . .
-
-:::poll
-Will this question be answered by a summary, a prediction, a generalization, or a causal claim? What type of *data* can help answer this question?
-:::
-
-. . . 
-
-\
-
-Consider:
-
-- Which different people / institutions collect relevant data
-- Is certain data not available? Why not?
-
-```{r}
-countdown::countdown(6, top = 0)
-```
-
-<!-- ## {data-menu-title="Poll Results"} -->
-
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/free_text_polls/5zVkyMHMMH6tyc5g1mgtp?controls=none&short_poll=true" width="1300" height="800px"></iframe> -->
-<!-- </center> -->
-
-
 ## From Data to Claims
 
 One source of data:
@@ -229,11 +234,11 @@ countdown::countdown(3, top = 0)
 
 [^1]: The positivity rate is the number of positive tests over the total number of tests.
 
-<!-- ## {data-menu-title="Poll Results"} -->
+## {data-menu-title="Poll Results"}
 
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/discourses/1gFyj0PK3VA2QHNYf1GPn?controls=none&short_poll=true" width="1300px" height="800px"></iframe> -->
-<!-- </center> -->
+<center>
+<iframe src="https://embed.polleverywhere.com/discourses/1gFyj0PK3VA2QHNYf1GPn?controls=none&short_poll=true" width="1300" height="800"></iframe>
+</center>
 
 
 # Course Structure
@@ -328,17 +333,17 @@ countdown::countdown(4, top = 0)
 :::: {.columns}
 
 ::: {.column width="50%"}
-- Read the lecture notes for "Taxonomy of Data"
+- Read the lecture notes for "Taxonomy of Data" (to be posted this afternoon)
 - Leave a comment or ask a question on Perusall
 - Answer the reading questions on Gradescope by 11 pm Thursday
-- Complete Problem Set 1 by Monday 11 am (two surveys)
+- Complete Problem Set 1 by Monday 11 pm
 :::
 
 ::: {.column width=20%}
 :::
 
 ::: {.column width="30%" .fragment}
-![](https://media.giphy.com/media/XVuBomL9gXMTC/giphy.gif){fig-alt="Animated gif of a shoebill bird."}
+![](https://media.giphy.com/media/XVuBomL9gXMTC/giphy.gif){fig-alt="Animated gif of a shoebill bird." width=800}
 :::
 
 ::::
