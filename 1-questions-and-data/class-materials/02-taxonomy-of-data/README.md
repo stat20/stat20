@@ -3,8 +3,7 @@
 #### Concept Acquisition
 
 1. Data is a collection of measurements of variables made on observation units. They can be organized in a data frame.
-1. Variables can be classified as Numerical or Categorical. Within categorical, ordinal or nominal.
-
+1. Variables can be classified as Numerical or Categorical. Types of numerical variables include continuous, discrete, and count variables. Types of categorical variables include ordinal and nominal.
 
 #### Tool Acquisition
 
