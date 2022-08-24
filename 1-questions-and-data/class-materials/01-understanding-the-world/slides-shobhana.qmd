@@ -51,19 +51,23 @@ What's going on here?
 :::
 
 ::: {.column width="35%"}
-:::{.poll style="font-size: .9em"}
+:::{.poll style="font-size: .8em"}
 - As a group, formulate at least **three** possible explanations for what's going on in the picture.  
-- Enter them at pollev.com or upvote existing explanations if they are very similar to your own.
+- Enter them at `pollev.com/shobhana` or upvote existing explanations if they are very similar to your own.
 :::
 :::
 
 ::::
 
 
-<!-- ## {data-menu-title="Poll Results 1"} -->
+## {data-menu-title="Poll Results 1"}
 
 <!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/discourses/XUV5iZxGmNKYFwGh1LxPy?controls=none&short_poll=true" width="1300" height="800px"></iframe> -->
+
+<!-- <iframe src="https://embed.polleverywhere.com/discourses/zB8Ez5K5LX1Hh5CriSFWj?controls=none&short_poll=true" width="800px" height="600px"></iframe> -->
+
+
+<!-- <iframe src="https://embed.polleverywhere.com/discourses/AYUPwcUZMOXrasZDClOza?controls=none&short_poll=true" width="1300" height="800px"></iframe> -->
 <!-- </center> -->
 
 
@@ -72,7 +76,7 @@ What's going on here?
 ![](images/shoebill-2.png){fig-alt="Photo of shoebill with duck in its mouth, at an angle." fig-align="Center"}
 
 :::{.poll}
-Does this image change which claims are more or less likely? Up and down vote explanations at `pollev.com`.
+Does this image change which claims are more or less likely? Up and down vote explanations at `pollev.com/shobhana`.
 :::
 
 <!-- ## {data-menu-title="Poll Results 2"} -->
@@ -179,7 +183,7 @@ claims made using data.
 . . .
 
 :::poll
-Will this question be answered by a summary, a prediction, a generalization, or a causal claim? What type of *data* can help answer this question?
+Will this question be answered by a summary, a prediction, a generalization, or a causal claim? What type of *data* can help answer this question? (Go to `pollev.com/shobhana` to put your answers in, or up/down vote answers.)
 :::
 
 . . . 
@@ -220,7 +224,7 @@ One source of data:
 ![](images/ucb-covid.png){width=1000 fig-align=center}
 
 :::{.poll}
-Formulate one claim that is supported by this data[^1].
+Formulate one claim that is supported by this data[^1].(At `pollev.com/shobhana`.)
 :::
 
 ```{r}
@@ -328,7 +332,7 @@ countdown::countdown(4, top = 0)
 :::: {.columns}
 
 ::: {.column width="50%"}
-- Read the lecture notes for "Taxonomy of Data"
+- Read the lecture notes for "Taxonomy of Data", which will be posted by tonight.
 - Leave a comment or ask a question on Perusall
 - Answer the reading questions on Gradescope by 11 pm Thursday
 - Complete Problem Set 1 by Monday 11 am (two surveys)
