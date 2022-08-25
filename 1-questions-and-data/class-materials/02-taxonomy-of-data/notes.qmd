@@ -1,7 +1,7 @@
 ---
 title: "The Taxonomy of Data"
 date: "08/26/2022"
-theme: [sandstone, ../../../assets/styles.scss]
+image: images/taxonomy-of-data.png
 ---
 
 [[Discuss]{.btn .btn-primary}](https://app.perusall.com) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
