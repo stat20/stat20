@@ -2,16 +2,22 @@
 title: "Lab 1: Getting Started with RStudio and Markdown"
 ---
 
-[[Discuss]{.btn .btn-primary}](https://app.perusall.com)
+[[Discuss](https://app.perusall.com)]{.btn .btn-primary}
 
 This first lab has only one question:
 
 > Where are you from *or* where would you like to visit?
 
-Please submit a one page pdf that answers that question. Your answer should contain three components:
+Please submit a one page pdf, generated from a .qmd file in RStudio, that answers that question. Your answer should contain 5 components:
 
-1. The county and state that you are from. If you are from abroad, provide the name of a county and state that you would like to visit. This should show up as a heading (larger, heavier font).
+1.  The county and state that you are from. If you are from abroad, provide the name of a county and state that you would like to visit. This should show up as a *header* (larger, heavier font).
 
-2. 1-3 paragraphs about this county in text, as described by Wikipedia.
+2.  1-3 paragraphs about this county in text, as described by Wikipedia.
 
-3. An enumerated list of your top three favorite things about this county.
+3.  Include a hand drawn sketch of your favorite place. Tinker with the image options to size and align it to your liking[^1].
+
+4.  An enumerated list of your top three favorite things about this county.
+
+5.  A sentence at the bottom with an acknowledgement that text came from Wikipedia. Also include a link to the Wikipedia page.
+
+[^1]: To upload your sketch, a photo of it, transfer the photo to your laptop, upload it to RStudio, then navigate to it after clicking "Browse" in the "Insert image" screen.
