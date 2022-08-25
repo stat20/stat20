@@ -1,11 +1,11 @@
 ---
 title: "The Taxonomy of Data"
 date: "08/26/2022"
-theme: [sandstone, ../../../assets/styles.scss]
+image: images/taxonomy-of-data.png
 ---
 
 [[Discuss]{.btn .btn-primary}](https://app.perusall.com) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
-
+[[PDF]{.btn .btn-primary}](notes.pdf)
 
 [In the beginning was data]{style="font-family: Cinzel, serif; font-size: 1.2em"}, and from that data was built an understanding of the world.
 
@@ -31,7 +31,8 @@ The defining element of data science is the centrality of data as the means of a
 
 This broad definition permits a staggering diversity in the forms that data can take. When you conducted a chemistry experiment in high school and recorded your measurements in a table in a lab notebook, that was data. When you registered for this class and your name showed on CalCentral, that was data. When the James Webb Space Telescope took a photo of the distant reaches of our solar system, recording levels of light pixel-by-pixel, that was data.
 
-The word *data* is often used interchangeably with *observation*, *information*, or *measurement*.
+<!-- - be clearer about what the registrars data is -->
+<!-- - choose non-image data set in place of JWST -->
 
 Such diversity in data is more precisely described as diversity in the types of *variables* that are being measured in a data set.
 
@@ -112,7 +113,9 @@ In order to build her understanding of this community of penguins, she and fello
 ![](images/culmen-depth.png){fig-alt="Sketch showing the beak of a penguin."}
 :::
 
-Two of the variables that were recorded were *bill length* and *bill depth*. Each of these capture a dimension of the bill of a penguin recorded in millimeters These are identifiable as *continuous numerical variables*. They're numerical because the values have quantitative meaning and they're continuous because bill sizes don't come in fixed, standard increments. They vary continuously.
+Two of the variables that were recorded were *bill length* and *bill depth*[^horst-art]. Each of these capture a dimension of the bill of a penguin recorded in millimeters These are identifiable as *continuous numerical variables*. They're numerical because the values have quantitative meaning and they're continuous because bill sizes don't come in fixed, standard increments. They vary continuously.
+
+[^horst-art]: Penguin artwork by \@allison_horst.
 
 Another variable that was recorded was the *species* of the penguin, either "Adelie", "Gentoo", or "Chinstrap". Because these values are categories, this is a *categorical* variable. More specifically, it's a *nominal categorical* because there is no obvious natural ordering between these three species.
 
@@ -141,7 +144,7 @@ To keep all of this data organized, we need a structure. While there are several
 
 :   An array that associates the observations (downs the rows) with the variables measured on each observation (across the columns). Each cell stores a value observed for a variable on an observation.
 
-While this definition might seem opaque, you are already familiar with a data frame. You are you just more accustomed so seeing it laid out this like this:
+While this definition might seem opaque, you are already familiar with a data frame. You are you just more accustomed to seeing it laid out this like this:
 
 ```{r}
 #| echo: false
@@ -154,14 +157,34 @@ library(kableExtra)
 options(kableExtra.html.bsTable = TRUE)
 data(penguins)
 set.seed(30)
-penguins %>%
+tab <- penguins %>%
     select(bill_length_mm, bill_depth_mm, species) %>%
-    sample_n(8) %>%
+    sample_n(8)
+```
+
+::: {.content-hidden unless-format="html"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
     kbl(escape = FALSE) %>%
     kable_styling(bootstrap_options = c("hover", "striped"))
 ```
+:::
 
-You might be accustomed to calling this a "spreadsheet" or a "table", but the organization norm of putting the variables down the columns and the observations across the rows make this a more specific structure.
+::: {.content-hidden unless-format="pdf"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kable(format = "latex")
+```
+:::
+
+
+You might be accustomed to calling this a "spreadsheet" or a "table", but the organizational norm of putting the variables down the columns and the observations across the rows make this a more specific structure.
 
 One of the first questions that you should address when you first come across a data frame is to determine what the unit of observation is.
 

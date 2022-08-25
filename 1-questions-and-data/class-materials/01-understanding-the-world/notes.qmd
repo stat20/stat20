@@ -1,7 +1,10 @@
 ---
 title: "Understanding the World through Data"
 date: "08/24/2022"
+image: images/taxonomy-of-data.png
 ---
+
+Welcome to Stat 20!
 
 There is no reading in advance of the first day of class. To view the materials used during the class session, see the links below.
 
