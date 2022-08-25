@@ -1,20 +1,190 @@
 ---
 title: "The Taxonomy of Data"
 date: "08/26/2022"
+theme: [sandstone, ../../../assets/styles.scss]
 ---
 
-[[Discuss]{.btn .btn-warning}](https://app.perusall.com) [[Reading Questions]{.btn .btn-success}](https://www.gradescope.com/courses/416233)
+[[Discuss]{.btn .btn-primary}](https://app.perusall.com) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
 
-1. defs of data, variable, observation
 
-2. What is a taxonomy of data
+[In the beginning was data]{style="font-family: Cinzel, serif; font-size: 1.2em"}, and from that data was built an understanding of the world.
 
-3. The Taxonomy of data
+:::{style="text-align: center"}
+...or...
+:::
 
-4. Study: Palmers penguins
+[In the beginning was understanding]{style="font-family: Cinzel, serif; font-size: 1.2em"}, and from that understanding sprung questions that sought to be answered with data.
 
-Def of data frame
+So, which is it?
 
-Examples of not data frames
+This is a philosophical question and it is up for debate. What is clearer is that in the process of engaging in data science, you will inevitably find yourself at one of these beginnings, puzzling over how to make your way to the other one.
 
-{{< include ../../assets/_links-to-materials.qmd >}}
+![A big-picture view of what the Data Science Lifecycle.](images/stat20-sketch-18.png){#fig-ds-lifecycle fig-alt="diagram showing the data science lifestyle moving between understanding the world and data."}
+
+<!-- - Add Shoebill tryptich -->
+<!-- - Add COVID example -->
+
+The defining element of data science is the centrality of data as the means of advancing our understanding of the world. The word "data" is used in many different ways, so let's write down a definition to get everyone on the same page.
+
+**Data**
+  ~ An item of (chiefly numerical) information, especially one obtained by scientific work, a number of which are typically collected together for reference, analysis, or calculation. From Latin *datum*: that which is given. Facts.
+
+This broad definition permits a staggering diversity in the forms that data can take. When you conducted a chemistry experiment in high school and recorded your measurements in a table in a lab notebook, that was data. When you registered for this class and your name showed on CalCentral, that was data. When the James Webb Space Telescope took a photo of the distant reaches of our solar system, recording levels of light pixel-by-pixel, that was data.
+
+The word *data* is often used interchangeably with *observation*, *information*, or *measurement*.
+
+Such diversity in data is more precisely described as diversity in the types of *variables* that are being measured in a data set.
+
+**Variable**
+  ~ A characteristic of an object or observational unit that can be measured and recorded.
+  
+In your chemistry notebook you may have recorded the *temperature* and *pressure* of a unit of gas, two variables that are of scientific interest. In the CalCentral data set, *name* is the variable that was recorded (on you!) but you can imagine other variables that the registrars office might have recorded: your year at Cal, your major, etc. Each of these are called *variables* because the value that is measured generally varies as you move from one object to the next. While your value of the *name* variable might be Penelope, if we record the same variable on another student we'll likely come up with different value.
+
+<!-- - the importance of units -->
+<!-- - think about the type of values that it can take (range or set of levels) -->
+
+## A Taxonomy of Data
+
+While the range of variables that we can conceive of is innumerable, there are recurring patterns in those variables that allow us to group them into persist types that have shared properties. Such a practice of classification results in a taxonomy, which has been applied most notably in evolutionary biology to classify [all forms of life](https://tree.opentreeoflife.org/opentree/argus/opentree13.4@ott93302).
+
+Within the realm of data, an analogous taxonomy has emerged.
+
+![the Taxonomy of Data.](images/taxonomy-of-data.png){#fig-taxonomy fig-alt="The Taxonomy of Data, showing the two main branches of numerical categorical variables. Numerical varibles can be split into continuous and discrete variables. Categorical variables can be split into ordinal and nominal variables."}
+
+### Types of Variables
+
+The principle quality of a variable is whether it is *numerical* or *categorical*.
+
+**Numerical Variable**
+  ~ A variable that take numbers as values and where the magnitude of the number has a quantitative meaning.
+  
+**Categorical Variable**
+  ~ A variable that take categories as values. Each unique category is called a *level*.
+
+When most people think "data" they tend to think about numerical variables (like the *temperature* and *pressure* recorded in your lab notebook) but categorical variables (like the *name* recorded on CalCentral) are very common.
+
+All numerical variables can be classified as either *continuous* or *discrete*.
+
+**Continuous Numerical Variable**
+  ~ A numerical variable that takes values on an interval of the real number line.
+  
+**Discrete Numerical Variable**
+  ~ A numerical variable that takes values that have jumps between them.
+  
+A good example of a continuous numerical variable is *temperature*. If we are measuring outside air temperature on Earth in Fahrenheit, it is possible that we would record values anywhere from around [-125 degrees F](https://en.wikipedia.org/wiki/Lowest_temperature_recorded_on_Earth) and [+135 degrees F](https://en.wikipedia.org/wiki/Highest_temperature_recorded_on_Earth). While we might end up rounding our measurement to the nearest integer degree, we can imagine that the phenomenon of temperature itself varies smoothly and continuously across this range.
+
+A good example of a discrete numerical variable is *household size*. When the US Census goes door-to-door every year collecting data on every household, they record the number of people living in that household. A household can have 1 person, or 2 people, or 3 people, or 4 people, and so on, but it can not have 2.83944 people. This makes it discrete.
+
+What unites both types of numerical variables is that the magnitude of the numbers have meaning and you can perform mathematical operations on them and the result also has meaning. It is possible and meaningful to talk about the average air temperature across three locations. It is also possible and meaningful to talk about the sum total number of people across ten households.
+  
+The ability to perform mathematical operations drops away when we move to ordinal variables. All categorical variables can be classified as either *ordinal* or *nominal*.
+  
+**Ordinal Categorical Variable**
+  ~ A categorical variable with levels that have a natural ordering.
+
+**Nominal Categorical Variable**
+  ~ A categorical variable with levels with no ordering.
+  
+You have likely come across ordinal categorical variables if you have taken an opinion survey. Consider the question:"Do you strongly agree, agree, feel neutral about, disagree, or strongly disagree with the following statement: Dogs are better than cats?" When you record answers to this question, you're recording measurements on a categorical variable that takes values "strongly agree", "agree", "neutral", "disagree", "strongly disagree". Those are the *levels* of the categorical variable and they have a natural ordering: "strongly agree" is closer to "agree" than it is to "strongly disagree".
+
+You can contrast this with a nominal categorical variable. Consider a second question that asks (as the registrar does): "What is your name?" There are many more possible levels in this case - "Penelope", "David", "Shobhana", etc. - but those levels have no natural ordering. In fact this is very appropriate example of a nominal variable because the word itself derives from the Latin *nomen*, or "name".
+
+Let's take a look at a real data set to see if we can identify the variables and their types.
+  
+### Example: Palmer Penguins
+
+Dr. Kristen Gorman is a fisheries and wildlife ecologist at the University of Alaska, Fairbanks whose work brought her to Palmer Station, a scientific research station run by the National Science Foundation in Antarctica. At Palmer Station, she took part in a long-term study to build an understanding of the breeding ecology and population structure of penguins.
+
+<!-- - add framing in terms of questions and data -->
+
+:::{#fig-palmer layout-ncol=2}
+
+![](images/kristen-gorman.png){fig-alt="Dr. Gorman recording data in notebook surrounded by penguins."}
+
+![](images/palmer-station.jpeg){fig-alt="An aerial view of Palmer Station in Antarctica."}
+
+Dr. Gorman recording measurements on penguins and Palmer Station, a research station in Antarctica.
+:::
+
+In order to build her understanding of this community of penguins, she and fellow scientists spent time in the field recording measurements on a range of variables that capture important physical characteristics.
+
+:::{.column-margin}
+![](images/culmen-depth.png){fig-alt="Sketch showing the beak of a penguin."}
+:::
+
+Two of the variables that were recorded were *bill length* and *bill depth*. Each of these capture a dimension of the bill of a penguin recorded in millimeters These are identifiable as *continuous numerical variables*. They're numerical because the values have quantitative meaning and they're continuous because bill sizes don't come in fixed, standard increments. They vary continuously.
+
+Another variable that was recorded was the *species* of the penguin, either "Adelie", "Gentoo", or "Chinstrap". Because these values are categories, this is a *categorical* variable. More specifically, it's a *nominal categorical* because there is no obvious natural ordering between these three species.
+
+:::{.column-margin}
+![](images/lter_penguins.png){fig-alt="Sketch showing the three species of penguins."}
+:::
+
+These are just three of many variables that recorded in the penguins data set and published along their scientific findings in the paper, *Ecological sexual dimorphism and environmental variability within a community of Antarctic penguins (genus Pygoscelis)*[^Gorman]. We will return throughout this course to this data set and this study. It is a prime example of how careful data collection and careful scientific reasoning can expand our understanding of a corner of our world about which we know very little.
+
+[^Gorman]: Gorman KB, Williams TD, Fraser WR (2014). *Ecological sexual dimorphism and environmental variability within a community of Antarctic penguins (genus Pygoscelis)*. PLoS ONE 9(3):e90081. <https://doi.org/10.1371/journal.pone.0090081>
+
+
+### Why Types Matter
+
+The Taxonomy of Data is a useful tool of statistics and data science because it helps guide the manner in which data is recorded, visualized, and analyzed. Many confusing plots have been made by not thinking carefully about whether a categorical variable is ordinal or not or by mistaking a continuous numerical variable for a categorical variable. You will get plenty of practice using this taxonomy to guide your data visualization in the next unit.
+
+Like many tools built by scientists, though, this taxonomy isn't perfect. There are many variables that don't quite seem to fit into the taxonomy or that you can argue should fit into multiple types. That's usually a sign that something interesting is afoot and is all the more reason to think carefully about the nature of the variables and the values it might take before diving into your analysis.
+
+## A Structure for Data: The Data Frame
+
+When we seek to grow our understanding of a phenomenon, sometimes we select a single variable that we go out and collect data on. More often, we're dealing with more complex phenomenon that are characterized by a few, or a few dozen, or hundreds (or even millions!) of variables. CalCentral has far more than just your name on file. To capture all of the complexity of class registration at Cal, it is necessary to record dozens of variables.
+
+To keep all of this data organized, we need a structure. While there are several different ways to structure a given data set, the format that has become most central to data science is the data frame.
+
+**Data Frame**
+
+:   An array that associates the observations (downs the rows) with the variables measured on each observation (across the columns). Each cell stores a value observed for a variable on an observation.
+
+While this definition might seem opaque, you are already familiar with a data frame. You are you just more accustomed so seeing it laid out this like this:
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(palmerpenguins)
+library(dplyr)
+library(kableExtra)
+options(kableExtra.html.bsTable = TRUE)
+data(penguins)
+set.seed(30)
+penguins %>%
+    select(bill_length_mm, bill_depth_mm, species) %>%
+    sample_n(8) %>%
+    kbl(escape = FALSE) %>%
+    kable_styling(bootstrap_options = c("hover", "striped"))
+```
+
+You might be accustomed to calling this a "spreadsheet" or a "table", but the organization norm of putting the variables down the columns and the observations across the rows make this a more specific structure.
+
+One of the first questions that you should address when you first come across a data frame is to determine what the unit of observation is.
+
+**Unit of Observation**
+
+:  The class of object on which the variables are observed.
+
+In the case of data frame above, the unit of observation is a single penguin near Palmer Station. The first row captures the measurements on the first penguin, the second row captures the measurements of the second penguin, and so on. If I log into CalCentral to see the data frame that records information on the students enrolled in this class, the unit of observation is a single student enrolled in this class.
+
+### Not a Data Frame
+
+Before you leave thinking that "data frame" = "spreadsheet", consider this data set[^cont-table]:
+
+![](images/non-tidy-contingency-table.png){fig-alt="Contingency table showing the counts of handedness by sex at birth." width="400" fig-align="center"}
+
+For it to be a data frame, we would have to read across the columns and see the names of the variables. You can imagine recording whether or not someone is right-handed or left-handed, but those variables would take the values "yes" and "no", not the counts that we see here. Furthermore, total is not a variable that we've recorded a single unit; this column captures aggregate properties of the whole data set.
+
+While this structure might well be called a "table" or possibly a "spreadsheet", it doesn't meet our definition for a data frame. 
+
+[^cont-table]: An image from the Wikipedia article on contingency tables, <https://en.wikipedia.org/wiki/Contingency_table>.
+
+## Summary
+
+In this lecture note we have focused on the nature of the data that will serve as the currency from which we'll construct an improved understanding of the world. A first step is to identify the characteristics of the *variables* that are being measured and determine their *type* within the *Taxonomy of Data*. A second step is to organize them into a *data frame* to clearly associate the value that is measured for a variable with a particular observational unit. With these ideas in hand, we are prepared to bring data onto our computer and begin the process of identifying its structure and communicating that structure numerically and visually.
+
+<!-- {{< include ../../assets/_links-to-materials.qmd >}} -->
