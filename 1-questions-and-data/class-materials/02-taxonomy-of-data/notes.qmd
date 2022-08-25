@@ -2,10 +2,11 @@
 title: "The Taxonomy of Data"
 date: "08/26/2022"
 theme: [sandstone, ../../../assets/styles.scss]
+format: html
 ---
 
 [[Discuss]{.btn .btn-primary}](https://app.perusall.com) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
-
+[[PDF]{.btn .btn-primary}](notes.pdf)
 
 [In the beginning was data]{style="font-family: Cinzel, serif; font-size: 1.2em"}, and from that data was built an understanding of the world.
 
@@ -30,8 +31,6 @@ The defining element of data science is the centrality of data as the means of a
   ~ An item of (chiefly numerical) information, especially one obtained by scientific work, a number of which are typically collected together for reference, analysis, or calculation. From Latin *datum*: that which is given. Facts.
 
 This broad definition permits a staggering diversity in the forms that data can take. When you conducted a chemistry experiment in high school and recorded your measurements in a table in a lab notebook, that was data. When you registered for this class and your name showed on CalCentral, that was data. When the James Webb Space Telescope took a photo of the distant reaches of our solar system, recording levels of light pixel-by-pixel, that was data.
-
-The word *data* is often used interchangeably with *observation*, *information*, or *measurement*.
 
 Such diversity in data is more precisely described as diversity in the types of *variables* that are being measured in a data set.
 
@@ -154,14 +153,34 @@ library(kableExtra)
 options(kableExtra.html.bsTable = TRUE)
 data(penguins)
 set.seed(30)
-penguins %>%
+tab <- penguins %>%
     select(bill_length_mm, bill_depth_mm, species) %>%
-    sample_n(8) %>%
+    sample_n(8)
+```
+
+::: {.content-hidden unless-format="html"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
     kbl(escape = FALSE) %>%
     kable_styling(bootstrap_options = c("hover", "striped"))
 ```
+:::
 
-You might be accustomed to calling this a "spreadsheet" or a "table", but the organization norm of putting the variables down the columns and the observations across the rows make this a more specific structure.
+::: {.content-hidden unless-format="pdf"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kable(format = "latex")
+```
+:::
+
+
+You might be accustomed to calling this a "spreadsheet" or a "table", but the organizational norm of putting the variables down the columns and the observations across the rows make this a more specific structure.
 
 One of the first questions that you should address when you first come across a data frame is to determine what the unit of observation is.
 
