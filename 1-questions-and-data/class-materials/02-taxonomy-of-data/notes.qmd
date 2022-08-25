@@ -45,7 +45,7 @@ In your chemistry notebook you may have recorded the *temperature* and *pressure
 
 ## A Taxonomy of Data
 
-While the range of variables that we can conceive of is innumerable, there are recurring patterns in those variables that allow us to group them into persist types that have shared properties. Such a practice of classification results in a taxonomy, which has been applied most notably in evolutionary biology to classify [all forms of life](https://tree.opentreeoflife.org/opentree/argus/opentree13.4@ott93302).
+While the range of variables that we can conceive of is innumerable, there are recurring patterns in those variables that allow us to group them into persistent types that have shared properties. Such a practice of classification results in a taxonomy, which has been applied most notably in evolutionary biology to classify [all forms of life](https://tree.opentreeoflife.org/opentree/argus/opentree13.4@ott93302).
 
 Within the realm of data, an analogous taxonomy has emerged.
 
@@ -73,7 +73,7 @@ All numerical variables can be classified as either *continuous* or *discrete*.
   
 A good example of a continuous numerical variable is *temperature*. If we are measuring outside air temperature on Earth in Fahrenheit, it is possible that we would record values anywhere from around [-125 degrees F](https://en.wikipedia.org/wiki/Lowest_temperature_recorded_on_Earth) and [+135 degrees F](https://en.wikipedia.org/wiki/Highest_temperature_recorded_on_Earth). While we might end up rounding our measurement to the nearest integer degree, we can imagine that the phenomenon of temperature itself varies smoothly and continuously across this range.
 
-A good example of a discrete numerical variable is *household size*. When the US Census goes door-to-door every year collecting data on every household, they record the number of people living in that household. A household can have 1 person, or 2 people, or 3 people, or 4 people, and so on, but it can not have 2.83944 people. This makes it discrete.
+A good example of a discrete numerical variable is *household size*. When the US Census goes door-to-door every year collecting data on every household, they record the number of people living in that household. A household can have 1 person, or 2 people, or 3 people, or 4 people, and so on, but it cannot have 2.83944 people. This makes it discrete.
 
 What unites both types of numerical variables is that the magnitude of the numbers have meaning and you can perform mathematical operations on them and the result also has meaning. It is possible and meaningful to talk about the average air temperature across three locations. It is also possible and meaningful to talk about the sum total number of people across ten households.
   
