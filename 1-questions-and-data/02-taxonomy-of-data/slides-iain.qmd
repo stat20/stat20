@@ -1,0 +1,165 @@
+---
+title: "Taxonomy of Data"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+:::notes
+1. Review discussion of reading and address common questions
+2. Concept questions
+   - easy one
+   - hard one (shoebill)
+3. Practice handout
+break
+4. Lab
+   - instructor demo then walk around and troubleshoot
+:::
+
+## Agenda
+
+- Concept Questions: Taxonomy of Data
+- Reading Questions
+- Practice Problems
+- *Break*
+- Lab 1: Getting Started
+
+# Concept Questions
+
+## 
+\
+\
+
+:::{.poll}
+What type of variable is *age*?
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+## {data-menu-title="Shoebill Pic 1" background-image="images/shoebill-1.png" background-size="contain"}
+
+## Images as data
+
+:::: {.columns}
+
+::: {.column width="55%" .incremental}
+- Images are composed of pixels (this image is 1012 by 1520)
+- The color in each pixel is in RGB
+  
+  ![](images/rgb.png){width="460"}
+
+- Each band takes a value from 0-255
+- This image is data with 1020 x 1520 x 3 values.
+:::
+
+::: {.column width="45%"}
+![](images/shoebill-1.png){fig-alt="A shoebill with a duck in its mouth." width="800"}
+:::
+
+::::
+
+
+## Grayscale
+
+:::: {.columns}
+
+::: {.column width="55%" .incremental}
+- Grayscale images have only one band
+- 0 is black, 255 is white
+- This image is data with 1020 x 1520 x 1 values.
+
+:::{.fragment}
+> To simplify, assume our photos are 8 x 8 grayscale images.
+
+:::
+:::
+
+::: {.column width="45%"}
+![](images/shoebill-1-grayscale.png){fig-alt="A shoebill with a duck in its mouth in grayscale." width="800"}
+:::
+
+::::
+
+
+## Images in a Data Frame
+
+:::: {.columns}
+
+::: {.column width="33%"}
+![](images/shoebill-1.png)
+:::
+
+::: {.column width="33%"}
+![](images/shoebill-2.png)
+:::
+
+::: {.column width="34%"}
+![](images/shoebill-3.png)
+:::
+
+::::
+
+:::{.poll}
+If you were to put the data from these (8 x 8 grayscale) images into a data frame, what would the dimensions of that data frame be in rows x columns?
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+## Images in a Data Frame
+
+:::: {.columns}
+
+::: {.column width="33%"}
+![](images/shoebill-1.png)
+:::
+
+::: {.column width="33%"}
+![](images/shoebill-2.png)
+:::
+
+::: {.column width="34%"}
+![](images/shoebill-3.png)
+:::
+
+::::
+
+:::{.poll}
+If you were to put the data from these (8 x 8 grayscale) images into a data frame, what would the dimensions of that data frame be in rows x columns?
+:::
+
+```{r}
+countdown::countdown(4, top = 0)
+```
+
+# Reading Questions
+
+# Practice Handout
+
+```{r}
+countdown::countdown(20, top = 0)
+```
+
+# Lab 1: Getting Started
+
+:::{.v-center-align}
+demo
+:::
