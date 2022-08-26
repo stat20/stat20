@@ -41,8 +41,14 @@ Such diversity in data is more precisely described as diversity in the types of 
   
 In your chemistry notebook you may have recorded the *temperature* and *pressure* of a unit of gas, two variables that are of scientific interest. In the CalCentral data set, *name* is the variable that was recorded (on you!) but you can imagine other variables that the registrars office might have recorded: your year at Cal, your major, etc. Each of these are called *variables* because the value that is measured generally varies as you move from one object to the next. While your value of the *name* variable might be Penelope, if we record the same variable on another student we'll likely come up with different value.
 
-<!-- - the importance of units -->
-<!-- - think about the type of values that it can take (range or set of levels) -->
+<!-- There are three things a variable could be referring to -->
+<!-- 1. a phenomenon -->
+<!-- 2. how the phenomenon is being recorded or measured into data -->
+<!--    - what values can it take? (this is often an intent- or value-laden exercise!) -->
+<!--    - for numerical units, what unit should we express it in? -->
+<!-- 3. How the recorded data is being analyzed -->
+<!--    - binning/discretizing income data -->
+<!--    - if a barchart has too many bars, using a histogram. -->
 
 ## A Taxonomy of Data
 
@@ -197,6 +203,8 @@ In the case of data frame above, the unit of observation is a single penguin nea
 ### Not a Data Frame
 
 Before you leave thinking that "data frame" = "spreadsheet", consider this data set[^cont-table]:
+
+<!-- Swap out with a table that uses something other than sex since it comes up in lab 2. -->
 
 ![](images/non-tidy-contingency-table.png){fig-alt="Contingency table showing the counts of handedness by sex at birth." width="400" fig-align="center"}
 
