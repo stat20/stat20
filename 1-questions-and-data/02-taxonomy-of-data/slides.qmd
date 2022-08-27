@@ -20,17 +20,6 @@ format:
       data-background-size: contain
 ---
 
-:::notes
-1. Review discussion of reading and address common questions
-2. Concept questions
-   - easy one
-   - hard one (shoebill)
-3. Practice handout
-break
-4. Lab
-   - instructor demo then walk around and troubleshoot
-:::
-
 ## Agenda
 
 - Concept Questions: Taxonomy of Data
@@ -99,6 +88,8 @@ countdown::countdown(1, top = 0)
 :::{.fragment}
 > To simplify, assume our photos are 8 x 8 grayscale images.
 
+![](images/grayscale-8x8.png){fig-alt="8 by 8 grayscale image taken from the shoebill pixture." width="250" fig-align=center}
+
 :::
 :::
 
@@ -114,15 +105,15 @@ countdown::countdown(1, top = 0)
 :::: {.columns}
 
 ::: {.column width="33%"}
-![](images/shoebill-1.png)
+![](images/shoebill-1-grayscale.png)
 :::
 
 ::: {.column width="33%"}
-![](images/shoebill-2.png)
+![](images/shoebill-2-grayscale.png)
 :::
 
 ::: {.column width="34%"}
-![](images/shoebill-3.png)
+![](images/shoebill-3-grayscale.png)
 :::
 
 ::::
@@ -135,26 +126,20 @@ If you were to put the data from these (8 x 8 grayscale) images into a data fram
 countdown::countdown(1, top = 0)
 ```
 
-<!-- ## {data-menu-title="CQ first vote"} -->
-
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/multiple_choice_polls/T6moPB1TluRvRBqEOEePF?controls=none&short_poll=true" width="1300px" height="800px"></iframe> -->
-<!-- </center> -->
-
 ## Images in a Data Frame
 
 :::: {.columns}
 
 ::: {.column width="33%"}
-![](images/shoebill-1.png)
+![](images/shoebill-1-grayscale.png)
 :::
 
 ::: {.column width="33%"}
-![](images/shoebill-2.png)
+![](images/shoebill-2-grayscale.png)
 :::
 
 ::: {.column width="34%"}
-![](images/shoebill-3.png)
+![](images/shoebill-3-grayscale.png)
 :::
 
 ::::
@@ -182,7 +167,3 @@ countdown::countdown(20, top = 0)
 ```
 
 # Lab 1: Getting Started
-
-:::{.v-center-align}
-demo
-:::
