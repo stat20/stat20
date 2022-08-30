@@ -1,0 +1,43 @@
+---
+title: "A Tool for Computing with Data"
+subtitle: "An introduction to the R language for statistical computing"
+date: "08/31/2022"
+image: images/taxonomy-of-data.png
+---
+
+[[Discuss]{.btn .btn-primary}](https://app.perusall.com) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
+[[PDF]{.btn .btn-primary}](notes.pdf)
+
+
+Variable and Data frame. Storage and Computation.
+
+The Ti-83 is to R what a tricycle is to the space shuttle. One of these tools can bring you to the end of the block, the other to the moon.
+
+
+# RStudio and R
+
+pic
+
+encourage reader to "play along"
+
+
+# R as a Calculator
+
+
+# Saving Objects
+
+# Creating vectors
+
+# Functions
+
+# The Taxonomy of Data in R
+
+
+
+## Summary
+
+<details><summary>Who's there?</summary><p>Boo!</p></details>
+
+
+
+<!-- {{< include ../../assets/_links-to-materials.qmd >}} -->
