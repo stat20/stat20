@@ -345,18 +345,19 @@ R has a vast ecosystem of packages that extend the language. Any installed packa
 :::: {.columns}
 
 ::: {.column width="50%"}
-images/hexes.png
+![](images/hexes.png)
 :::
 
-::: {.column width="50%"}
-images/tidyverse-hex.png
-:::
+::: {.column width="50%" .fragment}
+![](images/tidyverse-hex.png){width="350px" fig-align=center}
 
 We will use the package *tidyverse*, which contains a set of powerful science packages.
 
 ```{r}
 library(tidyverse)
 ```
+
+:::
 
 ::::
 
