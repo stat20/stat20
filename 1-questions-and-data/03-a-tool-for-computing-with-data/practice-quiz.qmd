@@ -1,0 +1,33 @@
+---
+title: "Practice Quiz"
+---
+
+Here is the background information about the questions that you're about to answer... yada yada yada...
+
+### Question A
+
+What is your favorite color?
+
+1.  red
+2.  green
+3.  blue
+
+Assign the *number* of your answer to the object `q1` in the code cell below.
+
+```{r}
+q1 <- 
+```
+
+### Question B
+
+What is your favorite pet?
+
+1.  dog
+2.  cat
+3.  hyena
+
+Assign the *number* of your answer to the object `q2` in the code cell below.
+
+```{r q2}
+q2 <- 
+```
