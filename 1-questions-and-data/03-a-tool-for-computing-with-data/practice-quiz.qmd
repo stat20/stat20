@@ -5,7 +5,7 @@ editor: visual
 
 This is just a practice quiz. Please enter your answers into the code cells below. The most important thing is to *read the directions very carefully*.
 
-### Question A
+### Question 1
 
 What is your favorite color?
 
@@ -19,7 +19,7 @@ Assign the *number* of your answer to the object `q1` in the code cell below.
 q1 <- 
 ```
 
-### Question B
+### Question 2
 
 What is your favorite pet?
 
