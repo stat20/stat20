@@ -30,8 +30,32 @@ format:
 
 # Concept Questions
 
-
 ## Educated Guess 1
+
+:::{.poll}
+What will happen here?
+
+\
+
+Answer at `pollev.com/<name>`
+:::
+
+\
+
+```{r eval = FALSE, echo = TRUE, error = TRUE}
+1 + "one"
+```
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.notes}
+- "one" is a string with no link at all to the number 1
+- without that link, without two objects that are recognized for their numerical value, `+` doesn't work.
+:::
+
+## Educated Guess 2
 
 :::{.poll}
 What will happen here?
@@ -63,7 +87,7 @@ Talking points
 :::
 
 
-## Educated Guess 2
+## Educated Guess 3
 
 :::{.poll}
 What will happen here?
@@ -91,31 +115,6 @@ countdown::countdown(1, top = 0)
 - a is a not a string, it's the name of an object that's a number
 - to overwrite a with `a + 1` requires re-assigning it to a: `a <- a + 1` (in some languages, `a + 1` would change the value of a)
 - `a <- a + 1` is a good time to mention that while `a = a + 1` works in R and they might see it online, its convention to use <- for many reasons including that mathematically the statement with = is confusing.
-:::
-
-## Educated Guess 3
-
-:::{.poll}
-What will happen here?
-
-\
-
-Answer at `pollev.com/<name>`
-:::
-
-\
-
-```{r eval = FALSE, echo = TRUE, error = TRUE}
-1 + "one"
-```
-
-```{r}
-countdown::countdown(1, top = 0)
-```
-
-:::{.notes}
-- "one" is a string with no link at all to the number 1
-- without that link, without two objects that are recognized for their numerical value, `+` doesn't work.
 :::
 
 ## Educated Guess 4
