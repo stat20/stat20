@@ -31,3 +31,11 @@ Assign the *number* of your answer to the object `q2` in the code cell below.
 ```{r q2}
 q2 <- 
 ```
+
+### Question 3
+
+In the code cell below, create a numeric vector with three elements (it doesn't matter what they are) and save it to an object called `num_vec`.
+
+```{r q3}
+
+```
