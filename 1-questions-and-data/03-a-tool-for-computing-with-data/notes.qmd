@@ -213,7 +213,7 @@ Note that with these two functions, the input was a vector of length four and th
 
 ## The Taxonomy of Data in R
 
-In the last lecture notes, we introduced the Taxonomy of Data as a broad system to classify the different types of variables on which we can collect data. If you recall, a *variable* is a characteristic of an object that you can measure and record. When Dr. Gorman walked up to her first penguin (the unit of observation) and measured its bill length, she collected a single single observation of the variable `bill_length_mm`. You could record that in R using,
+In the last lecture notes, we introduced the Taxonomy of Data as a broad system to classify the different types of variables on which we can collect data. If you recall, a *variable* is a characteristic of an object that you can measure and record. When Dr. Gorman walked up to her first penguin (the unit of observation) and measured its bill length, she collected a single observation of the variable `bill_length_mm`. You could record that in R using,
 
 ```{r}
 bill_length_mm <- 50.7
