@@ -249,7 +249,7 @@ What is three times one point two raised to the quantity thirteen divided six?
 :::
 
 ```{r}
-countdown::countdown(minutes = 1, font_size = "1.5em")
+countdown::countdown(minutes = 1, top = 0)
 ```
 
 
@@ -311,7 +311,7 @@ sum(my_vector)
 These should all be solved with R code. If you don't know the name of a function to use, with hazard a guess by looking for a help file (e.g. `?sum`) or google it.
 
 ```{r}
-countdown::countdown(3, font_size = "1.5em")
+countdown::countdown(5, top = 0)
 ```
 
 
@@ -364,7 +364,7 @@ library(tidyverse)
 
 ## Building a data frame
 
-You can combine vectors into a data frame using the `tibble()` function from the `tidyverse` package.
+You can combine vectors into a data frame using either `data.frame()` or the `tibble()` function from the `tidyverse` package.
 
 ```{r echo = TRUE}
 bill_depth_mm <- c(15.0, 17.1, 18.7, 18.9)
@@ -392,7 +392,7 @@ penguins_df
 :::
 
 ```{r}
-countdown::countdown(6, font_size = "1.5em")
+countdown::countdown(6, top = 0)
 ```
 
 
@@ -431,8 +431,6 @@ library(palmerpenguins)
 data(penguins)
 ```
 
-Don't use the pipe syntax.
-
 
 ## Your turn
 
@@ -448,4 +446,19 @@ There is a built-in data set to R called `mtcars` that has information on cars t
 
 Hint: look up help files!
 
+```{r}
+countdown::countdown(8, top = 0)
+```
 
+## {background-color="#00403d"}
+
+:::{.v-center-container style="text-align: center; font-size: 3em"}
+{{< fa pause >}}\
+Break
+:::
+
+```{r}
+countdown::countdown(5, font_size = "2em")
+```
+
+# Practice Quiz
