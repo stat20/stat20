@@ -1,10 +1,11 @@
 ---
 title: "Practice Quiz"
+editor: visual
 ---
 
-Here is the background information about the questions that you're about to answer... yada yada yada...
+This is just a practice quiz. Please enter your answers into the code cells below. The most important thing is to *read the directions very carefully*.
 
-### Question A
+### Question 1
 
 What is your favorite color?
 
@@ -18,7 +19,7 @@ Assign the *number* of your answer to the object `q1` in the code cell below.
 q1 <- 
 ```
 
-### Question B
+### Question 2
 
 What is your favorite pet?
 
@@ -31,3 +32,15 @@ Assign the *number* of your answer to the object `q2` in the code cell below.
 ```{r q2}
 q2 <- 
 ```
+
+### Question 3
+
+In the code cell below, create a numeric vector with three elements (it doesn't matter what they are) and save it to an object called `num_vec`.
+
+```{r q3}
+
+```
+
+### Submitting this Quiz
+
+When you are done, save this file, then "Export" it from RStudio to your laptop, then upload it to Gradescope under the assignment corresponding to your lecture #.
