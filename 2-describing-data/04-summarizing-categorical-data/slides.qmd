@@ -2,7 +2,7 @@
 title: "Summarizing Categorical Data"
 format:
   revealjs:
-    author: "STAT 20: Introduction to Probability and Statistics"
+    author: "STAT 20A: Introduction to Probability and Statistics"
     height: 900
     width: 1600
     theme: ../../assets/slides.scss
