@@ -8,7 +8,7 @@ image: images/r-logo.png
 [[Discuss]{.btn .btn-primary}](https://app.perusall.com) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
 [[PDF]{.btn .btn-primary}](notes.pdf)
 
-[T]{.firstletter}he concepts of a *variable*, its *type*, and the structure of a *data frame* are useful because they help guide our thinking about the nature of a data. But we need more than definitions. If our goal is to construct a claim with data, we need to a tool to aid in the construction. Our tool must be able to do two things: it must be able to **store** the data and it must be able to perform **computations** on the data.
+[T]{.dropcap}he concepts of a *variable*, its *type*, and the structure of a *data frame* are useful because they help guide our thinking about the nature of a data. But we need more than definitions. If our goal is to construct a claim with data, we need to a tool to aid in the construction. Our tool must be able to do two things: it must be able to **store** the data and it must be able to perform **computations** on the data.
 
 <!-- - look into quipu as an early way to do this -->
 
