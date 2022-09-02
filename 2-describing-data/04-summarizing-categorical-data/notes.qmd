@@ -4,8 +4,8 @@ subtitle: "From data frames to tables. From tables to bar charts."
 date: "08/31/2022"
 image: images/two-vars.png
 format:
-    html: 
-     df-print: paged
+    html:
+        df-print: paged
 ---
 
 [[Discuss]{.btn .btn-primary}](https://app.perusall.com) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
