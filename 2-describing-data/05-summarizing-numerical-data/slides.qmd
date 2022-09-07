@@ -55,7 +55,7 @@ countdown::countdown(1, top = 0)
 <!-- <iframe src="https://embed.polleverywhere.com/multiple_choice_polls/TRiILsvQV3qxeV1F8qoAq?controls=none&short_poll=true" width="800px" height="600px"></iframe> -->
 <!-- </center> -->
 
-## {data-menu-title: "Bill Length Distribution"}
+## {data-menu-title="Bill Length Distribution"}
 
 ```{r}
 #| fig-width: 10
