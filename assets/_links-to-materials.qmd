@@ -7,44 +7,41 @@
 #| output: asis
 #| message: false
 
-library(stringr)
-f <- list.files()
+##== Slides ==##
 
-# slides
 
-n_slides <- sum(str_detect(f, "slides-?[a-zA-Z]*.html"))
+"https://jeremysanchez.github.io/course-materials/2-describing-data/04-summarizing-categorical-data/slides.html#/title-slide"
 
-if (n_slides > 0) {
-    cat("#### Slides\n\n ")
-}
+# Build paths to github slides
+instr_names <- c("Andrew", "Iain", "Shobhana", "Jeremy")
+instr_github <- c("andrewpbray", "idc9", "shomurali", "jeremy-sanchez")
 
-if (n_slides == 1) {
-    cat("- [Slides](slides.html)\n")
-}
+topic_dir <- getwd() %>%
+    stringr::str_split("website") %>%
+    unlist() %>%
+    tail(n = 1)
 
-if (n_slides > 1) {
-    slide_files <- str_subset(f, "slides-[a-zA-Z]*.html")
-    slide_names <- slide_files %>%
-        str_replace("slides-", "") %>%
-        str_replace(".html", "") %>%
-        str_to_title()
-    for (i in seq_along(slide_names)) {
-        cat(paste0("- [", slide_names[i], "](", slide_files[i], ")\n"))
-    }
+# Link to branch slides if they exist, otherwise to shared slides
+for (i in seq_along(instr_names)) {
+    branch_url <- paste0("https://", 
+                         instr_github[i],
+                         ".github.io/course-materials", 
+                         topic_dir, 
+                         "/slides.html")
+    response <- curl::curl_fetch_memory(branch_url)
+    slide_url <- ifelse(response$status_code != 404,
+                        branch_url,
+                        "slides.qmd")
+    cat(paste0("- [", instr_names[i], "](", slide_url, ")\n"))
 }
 
 cat("\n")
 
 # handouts
 
+f <- list.files()
 n_handouts <- sum(str_detect(f, "handout.pdf"))
 if (n_handouts > 0) {
     cat("#### Handouts\n\n - [Handout](handout.pdf) \n")
-}
-
-# none
-
-if (n_slides == 0 & n_handouts == 0) {
-    cat("None.")
 }
 ```
