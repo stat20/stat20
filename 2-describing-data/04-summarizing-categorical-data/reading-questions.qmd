@@ -5,6 +5,22 @@ date: "08/24/2022"
 
 [PDF]{.btn .btn-primary} [Perusall]{.btn .btn-warning} [Reading Questions]{.btn .btn-success}
 
+```{r}
+library(tidyverse)
+library(infer)
+data(gss)
+
+ggplot(gss, aes(x = partyid, 
+                fill = college)) +
+    geom_bar(position = "dodge")
+
+ggplot(gss, aes(x = partyid, 
+                fill = college)) +
+    geom_bar(position = "fill") +
+    labs(y = "proportion")
+```
+
+
 # Question 1
 
 The following questions are based on the following data frame.
