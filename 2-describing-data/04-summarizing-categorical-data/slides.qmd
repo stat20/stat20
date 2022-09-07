@@ -327,7 +327,7 @@ select(mutate(penguins, bill_index = bill_depth_mm + bill_length_mm), bill_index
 ```{r}
 #| echo: false
 
-# remotes::install_github("stat20/stat20data")
+remotes::install_github("stat20/stat20data")
 ```
 
 
