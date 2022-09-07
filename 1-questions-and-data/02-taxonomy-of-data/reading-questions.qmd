@@ -3,8 +3,6 @@ title: "Understanding the World through Data"
 date: "08/24/2022"
 ---
 
-[PDF]{.btn .btn-primary} [Perusall]{.btn .btn-warning} [Reading Questions]{.btn .btn-success}
-
 # Question 1
 
 The following questions are based on the following data frame.
@@ -57,8 +55,3 @@ What is the statistics term used for a property of an object that can be measure
 ( ) Constant
 ( ) Observational Unit
 ( ) Numerical
-
-
-There is no reading in advance of the first day of class. To view the materials used during the class session, see the links below.
-
-{{< include ../../assets/_links-to-materials.qmd >}}
