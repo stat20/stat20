@@ -5,7 +5,9 @@
 .DS_Store
 
 *_files
+!slides_files
 *.html
+!slides.html
 *.pdf
 
 /.quarto/
