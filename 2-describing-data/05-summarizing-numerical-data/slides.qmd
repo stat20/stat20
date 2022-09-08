@@ -31,6 +31,47 @@ format:
 
 # Concept Question
 
+## Describing Shape
+
+:::{.poll}
+Which of these variables do you expect to be uniformly distributed?
+
+1. bill length of Gentoo penguins
+2. salaries of a random sample of people from California
+3. house sale prices in San Francisco
+4. birthdays of classmates (day of the month)
+
+Please vote at `pollev.com`.
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+
+<!-- ## -->
+
+<!-- <center> -->
+<!-- <iframe src="https://embed.polleverywhere.com/multiple_choice_polls/TRiILsvQV3qxeV1F8qoAq?controls=none&short_poll=true" width="800px" height="600px"></iframe> -->
+<!-- </center> -->
+
+## {data-menu-title="Bill Length Distribution"}
+
+```{r}
+#| fig-width: 10
+#| echo: false
+
+library(tidyverse)
+library(palmerpenguins)
+penguins %>%
+  filter(species == "Gentoo") %>%
+  ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(color = "white") +
+  theme_gray(base_size = 20) +
+  labs(title = "Bill Lengths of Gentoo Penguins")
+```
+
+
 # Measures of Center
 
 ## Mean, median, mode: which is best?
@@ -90,8 +131,9 @@ There are two new food delivery services that open in Berkeley: Oski Eats and Ca
 ```{r}
 #| fig-height: 7.5
 #| fig-width: 12
+#| fig-align: center
 #| message: false
-library(tidyverse)
+
 set.seed(513)
 oski <- rnorm(23, 0, 2)
 oski <- oski + (29 - mean(oski))
@@ -110,6 +152,7 @@ p1
 
 ```{r}
 #| fig-height: 7.5
+#| fig-align: center
 #| fig-width: 12
 p1 + 
   geom_vline(xintercept = 27, color = "blue", lty = 1, lwd = 2) +
@@ -369,6 +412,41 @@ df %>%
 ::::
 
 # Summarize
+
+## Functions for Data Wrangling
+
+The most powerful package in R for data wrangling is `dplyr`, and it is loaded when you include `library(tidyverse)`.
+
+1. **`arrange()`**: sorts a data frame according to the values of one (or many) columns.
+
+. . .
+
+2. **`select()`**: selects from a data frame only the columns of interest.
+
+. . .
+
+3. **`mutate()`**: creates a new column in a data frame that can be a function of existing columns.
+
+. . .
+
+> All of the `dplyr` functions take a data frame as their first argument and return a data frame.
+
+## Summarize
+
+. . .
+
+Calculates summary statistics on the columns of a data frame.
+
+```{r}
+#| eval: false
+#| echo: true
+#| error: true
+summarize(DATAFRAME, NAME = FUN1(COL1))
+```
+
+- `FUN1` can be any function that can operate on a vector (like `mean()`).
+- `COL1` is the name of a column found in `DATAFRAME`.
+- You can optionally call the resulting statistic a `NAME` of your choice.
 
 # Break
 

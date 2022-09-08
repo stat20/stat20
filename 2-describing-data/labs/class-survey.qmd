@@ -10,9 +10,9 @@ date: "9/9/22"
 2. Where in the Taxonomy of Data are the variables that correspond to each of the following survey questions (i.e., what is their type)?
    - Question 6: What is your favorite thing about Cal?
    - Question 13: Where would you rather be?
-   - Question 20: What is the chance that we remain in remote learning for the entire semester?
+   - Question 22: What is the chance that a fire alarm goes off in one of the dorms this week? 
 
-3. What values would you expect `major` to take? Do you anticipate any challenges when analyzing this data?
+3. What values would you expect `Major` to take? Do you anticipate any challenges when analyzing this data?
 
 -----------
 
@@ -28,7 +28,7 @@ Questions 4 - 7 can be answered using data visualization. To lay the groundwork 
 
 5. How much coding experience do students have?
 
-6. What are students' perceptions of the chance that we remain in remote learning for the entire semester?
+6. What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022?
 
 7. What is the relationship between students' optimism for cryptocurrency and their skepticism of the effect of technology on interpersonal relationships?
 
@@ -41,20 +41,20 @@ Using the real survey data, construct the plots that you proposed in Part I and 
 
 9. How much coding experience do students have?
 
-10. What are students' perceptions of the chance that we remain in remote learning for the entire semester?
+10. What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022?
 
 11. What is the relationship between students' optimism for cryptocurrency and their skepticism of the effect of technology on interpersonal relationships?
 
 
 ## Part III: Extensions
 
-Three variables appear in the survey data frame that were derived from the original `major` question: `health`, `tech`, and `business`. These variables indicate whether or not a student is in a health-related, technology-related, or business-related field, respectively.
+Six variables appear in the survey data frame that were derived from the original `Title` question: `Artist`, `Humanist`, `Natural_Scientist`, `Social_Scientist`, `Comp_Scientist` and `Entrepreneur`. These variables indicate whether or not a student most identifies with the professional/academic label that they are named after.
 
 For the following questions, please answer with a plot and a sentence or two written response given the structure in the plot.
 
-12. Is there an association between students majoring in a technology field and their optimism for cryptocurrency?
+12. Is there an association between students most identifying as an entrepreneur and their optimism for cryptocurrency?
 
-13. Is there an association between students majoring in a business field and their optimism for cryptocurrency?
+13. Is there an association between students most identifying as a humanist and their optimism for cryptocurrency?
 
 14. Propose your own question involving one or two variables and answer it using a plot with a written interpretation.
 

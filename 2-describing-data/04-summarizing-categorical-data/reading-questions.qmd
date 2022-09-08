@@ -3,7 +3,20 @@ title: "Summarizing Categorical Data"
 date: "09/02/2022"
 ---
 
-[PDF]{.btn .btn-primary} [Perusall]{.btn .btn-warning} [Reading Questions]{.btn .btn-success}
+```{r}
+library(tidyverse)
+library(infer)
+data(gss)
+
+ggplot(gss, aes(x = partyid, 
+                fill = college)) +
+    geom_bar(position = "dodge")
+
+ggplot(gss, aes(x = partyid, 
+                fill = college)) +
+    geom_bar(position = "fill") +
+    labs(y = "proportion")
+```
 
 # Question 1
 
@@ -49,6 +62,3 @@ Which of the following statements is True?
 ( ) This plot shows absolutely no association between party id and whether or not someone has a college degree.
 ( ) This plot shows a very strong association between party id and whether or not someone has a college degree.
 
-
-
-{{< include ../../assets/_links-to-materials.qmd >}}
