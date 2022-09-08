@@ -54,7 +54,7 @@ For the following questions, please answer with a plot and a sentence or two wri
 
 12. Is there an association between students most identifying as an entrepreneur and their optimism for cryptocurrency?
 
-13. Is there an association between students most identifying as a huamnist and their optimism for cryptocurrency?
+13. Is there an association between students most identifying as a humanist and their optimism for cryptocurrency?
 
 14. Propose your own question involving one or two variables and answer it using a plot with a written interpretation.
 
