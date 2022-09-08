@@ -3,8 +3,6 @@ title: "Summarizing Numerical Data"
 date: "09/07/2022"
 ---
 
-[PDF]{.btn .btn-primary} [Perusall]{.btn .btn-warning} [Reading Questions]{.btn .btn-success}
-
 # Question 1
 
 Which of the following plot types maintain all of the information found in the original data set?
@@ -41,7 +39,3 @@ In which situation does the median do a better job than the mean at capturing th
 ( ) when the median is greater than the mean
 (X) when the variable under study is known to have a strongly skewed distribution
 ( ) when the mode doesn't exist
-
-
-
-{{< include ../../assets/_links-to-materials.qmd >}}
