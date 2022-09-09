@@ -1,0 +1,139 @@
+---
+title: "A Grammar of Graphics"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+
+- Concept Question
+- Lab 3: Class Survey
+  - Part I
+- *Break*
+- Lab 3: Class Survey
+  - Part II
+
+# Concept Question
+
+## 
+
+You will be watching a 2.5 minute video of a presentation by a scientist, Hans Roslings, who studied global public health. He presents data visualizations depicting the change in life expectancy and family size over several decades in the 20th century.
+
+:::{.poll}
+On a piece of note paper, jot down each of the "dimensions" in his data visualization, i.e. the number of separate variables that are depicted graphically. You will be be sharing these after the video.
+:::
+
+## {data-menu-title="Hans Rosling's Gapminder"}
+
+<center>
+<iframe src="https://embed.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe>
+</center>
+
+##
+
+Please turn to a neighbors and...
+
+:::{.poll}
+Discuss which dimensions you were able to identify. That includes:
+
+- the variables present in the data frame
+- the visual cues that encode that data in the plot]
+:::
+
+```{r}
+countdown::countdown(4, top = 0)
+```
+
+
+## What dimensions could you identify?
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+#### Visual Cues / Aesthetics
+
+- Location along the x-axis
+- Location along the y-axis
+- Size of point
+- Color of point
+- Animation
+:::
+
+::: {.column width="50%"}
+#### Variables
+
+- Fertility rate
+- Life expectancy
+- Population
+- Region
+- Year
+:::
+
+::::
+
+
+## What did the data frame look like?
+
+
+What was the unit of observation? What were the variables? What were their type?
+
+. . . 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### Unit of observation
+
+- A country in a given year
+:::
+
+::: {.column width="50%"}
+#### Variables
+
+- Fertility rate (continuous)
+- Life expectancy (continuous)
+- Population (continuous)
+- Region (nominal)
+- Year (discrete)
+:::
+
+::::
+
+```{r echo = FALSE, eval = FALSE}
+## don't use the gapminder package data. Remake to have the original vars: life expectancy and fertility rate
+library(gapminder)
+gapminder %>%
+  slice(1, 10) %>%
+  kable() %>%
+  kable_styling(latex_options = "striped")
+```
+
+
+## What geometry is used to represent the observations?
+
+. . .
+
+- Points
+
+# Break
+
+# Lab 3: Class Survey
