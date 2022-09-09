@@ -49,11 +49,16 @@ countdown::countdown(1, top = 0)
 ```
 
 
-<!-- ## -->
+##
 
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/multiple_choice_polls/TRiILsvQV3qxeV1F8qoAq?controls=none&short_poll=true" width="800px" height="600px"></iframe> -->
-<!-- </center> -->
+<center>
+<!-- <iframe src="https://embed.polleverywhere.com/multiple_choice_polls/VuDFg0bdr6QKhCwLIu2gt?controls=none&short_poll=true" width="800px" height="600px"></iframe> -->
+<iframe src="https://pollev-embeds.com/multiple_choice_polls/VuDFg0bdr6QKhCwLIu2gt/respond" width="800px" height="600px"></iframe>
+</center>
+
+
+
+
 
 ## {data-menu-title="Bill Length Distribution"}
 
