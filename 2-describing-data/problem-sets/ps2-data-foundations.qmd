@@ -1,0 +1,115 @@
+---
+title: "All about Data"
+execute:
+  echo: false
+  message: false
+format: pdf
+---
+
+### Question 1: Marvel Cinematic Universe films
+
+The data frame below contains information on Marvel Cinematic Universe films through the Infinity saga (a movie storyline spanning from Ironman in 2008 to Endgame in 2019). 
+Box office totals are given in millions of US Dollars.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(openintro)
+    library(tidyverse)
+    library(knitr)
+    library(kableExtra)
+    
+    mcu_films_scaled <- mcu_films %>%
+      mutate(
+        opening_weekend_us = round(opening_weekend_us / 1000000, 2),
+        gross_us = round(gross_us / 1000000, 2),
+        gross_world = round(gross_world / 1000000, 2),
+      ) %>%
+      rownames_to_column() %>%
+      rename(
+        ` ` = rowname,
+        Title = movie,
+        Hrs = length_hrs,
+        Mins = length_min,
+        `Release Date` = release_date,
+        `Opening Wknd US` = opening_weekend_us,
+        US = gross_us,
+        World = gross_world
+      )
+    
+    mcu_films_1_to_5 <- mcu_films_scaled %>%
+      slice(n = 1:10) %>%
+      mutate(across(everything(), as.character))
+    
+    mcu_films_n <- mcu_films_scaled %>%
+      slice(n = (nrow(mcu_films)-1):nrow(mcu_films)) %>%
+      mutate(across(everything(), as.character))
+    
+    mcu_films_filler <- mcu_films_scaled %>%
+      slice(n = 1) %>%
+      mutate(across(everything(), str_replace, ".*", "..."))
+    
+    mcu_films_1_to_5 %>%
+      bind_rows(mcu_films_filler) %>%
+      bind_rows(mcu_films_n) %>%
+      kbl(linesep = "", booktabs = TRUE, align = "clcccccc") %>%
+      kable_styling(bootstrap_options = c("striped", "condensed"), 
+                    latex_options = "HOLD_position") %>%
+      add_header_above(c(" " = 2, "Length" = 2, " " = 2, "Gross" = 2)) %>%
+      column_spec(2, width = "10em")
+
+```
+
+a. How many observations and how many variables does this data frame have? What is the observational unit (what each row corresponds to)?
+
+b. (Required for Marvel fans) Which movie on the part of the list shown above made the most money during the opening week? Which made the least? Does this outcome surprise you? What could be the possible reasons?
+
+### Question 2: Smoking habits of UK residents
+A survey was conducted to study the smoking habits of 1,691 UK residents. Below is a data frame displaying a portion of the data collected in this survey. 
+A cell with $NA$ indicates that data for that variable was not available for a given respondent.^[The [`smoking`](http://openintrostat.github.io/openintro/reference/smoking.html) data used in this exercise can be found in the [**openintro**](http://openintrostat.github.io/openintro) R package.] 
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+set.seed(456)
+    smoking_to_print <- smoking %>%
+      rename(sex = gender) %>%
+      select(sex, age, marital_status, gross_income, smoke, amt_weekends, amt_weekdays) %>%
+      slice_sample(n = nrow(smoking)) %>%
+      rownames_to_column() %>%
+      rename(
+        weekend = amt_weekends,
+        weekday = amt_weekdays,
+        ` ` = rowname
+        )
+    
+    smoking_1_to_5 <- smoking_to_print %>%
+      slice(n = 1:5) %>%
+      mutate(across(everything(), as.character))
+    
+    smoking_n <- smoking_to_print %>%
+      slice(n = nrow(smoking)) %>%
+      mutate(across(everything(), as.character))
+    
+    smoking_filler <- smoking_to_print %>%
+      slice(n = 1) %>%
+      mutate(across(everything(), str_replace, ".*", "..."))
+    
+    smoking_1_to_5 %>%
+      bind_rows(smoking_filler) %>%
+      bind_rows(smoking_n) %>%
+      kbl(linesep = "", booktabs = TRUE, align = "llllclcccl") %>%
+      kable_styling(bootstrap_options = c("striped", "condensed"), 
+                    latex_options = "HOLD_position",
+                    full_width = FALSE) %>%
+      add_header_above(c(" " = 6, "amount" = 2))
+```
+a. What does each row of the data frame represent?
+
+b.  How many participants were included in the survey?
+
+c.  Identify the type of each variable (i.e. continuous, discrete, ordinal, nominal) in the Taxonomy of Data.
+    
