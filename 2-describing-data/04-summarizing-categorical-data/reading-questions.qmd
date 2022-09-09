@@ -1,6 +1,6 @@
 ---
-title: "Summarizing Numerical Data"
-date: "08/24/2022"
+title: "Summarizing Categorical Data"
+date: "09/02/2022"
 ---
 
 ```{r}
@@ -18,57 +18,47 @@ ggplot(gss, aes(x = partyid,
     labs(y = "proportion")
 ```
 
-
 # Question 1
 
-The following questions are based on the following data frame.
+Which of the following is FALSE regarding a contingency table?
 
-![](images/reading-question-1.png)
-
-## Question 1.1
-
-Not counting the course numbers, how many variables are recorded in this data frame?
-
-( ) 0
-( ) 1
-( ) 2
-( ) 3
-( ) 4
-(X) 5
-( ) 6
-( ) 7
-
-
-## Question 1.2
-
-What type of variable is the number of students?
-
-( ) Integer
-( ) Continuous Numerical
-(X) Discrete Numerical
-( ) Logical
-( ) Ordinal Categorical
-( ) Nominal Categorical
-
-
-## Question 1.3
-
-What is the *most specific* term that can be given to this data structure?
-
-( ) Spreadsheet
-( ) Table
-( ) Contingency Table
-(X) Data Frame
-( ) Data Table
-
+( ) It has the levels of one variable along the top of the columns and the levels of a second variable down the left side of the rows.
+( ) It displays the counts that occur in every combination of levels of two categorical variables.
+( ) They are used to summarize the information found in a data frame.
+(X) They are interchangable with a data frame.
 
 # Question 2
 
-What is the statistics term used for a property of an object that can be measured and recorded?
+The following questions deal with data from the General Social Survey that takes a representative sample of Americans and asks them a range of questions about their opinions and lifestyle. One of the questions asked about whether they had a college degree or not. The other asked the political party that they identify with: dem (democrat), ind (independent), rep (republican), or other.
 
-( ) Data
-(X) Variable
-( ) Constant
-( ) Observational Unit
-( ) Numerical
+## Question 2.1
+
+
+What was the most frequently cited party that respondents identified with?
+
+( ) dem
+(X) ind
+( ) rep
+( ) other
+( ) no degree
+( ) degree
+
+## Question 2.2
+
+True or False: most of the survey respondents had a college degree.
+
+( ) True
+(X) False
+
+
+# Question 3
+
+The same data can be re-expressed as a normalized stacked bar chart.
+
+
+Which of the following statements is True?
+
+(X) This plot shows a weak association between party id and whether or not someone has a college degree.
+( ) This plot shows absolutely no association between party id and whether or not someone has a college degree.
+( ) This plot shows a very strong association between party id and whether or not someone has a college degree.
 
