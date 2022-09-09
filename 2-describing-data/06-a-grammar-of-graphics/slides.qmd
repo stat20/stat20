@@ -33,10 +33,14 @@ format:
 
 ## 
 
-You will be watching a 2.5 minute video of a presentation by a scientist, Hans Roslings, who studied global public health. He presents data visualizations depicting the change in life expectancy and family size over several decades in the 20th century.
+You will be watching a 2.5 minute video of a presentation by a scientist, Hans Rosling, who studied global public health. He presents data visualizations depicting the change in life expectancy and family size over several decades in the 20th century.
 
 :::{.poll}
-On a piece of note paper, jot down each of the "dimensions" in his data visualization, i.e. the number of separate variables that are depicted graphically. You will be be sharing these after the video.
+On a piece of note paper:
+
+- Sketch out the data frame used to create the graphic and add the names of the variables.
+- List the aesthetic attributes used to encode the data in the graphic.
+- Identify the geometry used in the plot.
 :::
 
 ## {data-menu-title="Hans Rosling's Gapminder"}
@@ -47,13 +51,14 @@ On a piece of note paper, jot down each of the "dimensions" in his data visualiz
 
 ##
 
-Please turn to a neighbors and...
+Please turn to your neighbors and...
 
 :::{.poll}
-Discuss which dimensions you were able to identify. That includes:
+Discuss what you came up with in terms of . . .
 
 - the variables present in the data frame
-- the visual cues that encode that data in the plot]
+- the aesthetic attributes used to encode that data in the plot
+- the geometry
 :::
 
 ```{r}
@@ -61,7 +66,7 @@ countdown::countdown(4, top = 0)
 ```
 
 
-## What dimensions could you identify?
+## What were the variables and aesthetic attributes?
 
 . . .
 
