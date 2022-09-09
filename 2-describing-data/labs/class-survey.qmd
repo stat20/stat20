@@ -1,6 +1,6 @@
 ---
 title: "Lab 3: Class Survey"
-date: "9/9/22"
+date: "09/09/22"
 ---
 
 ## Part I: Understanding the Context of the Data

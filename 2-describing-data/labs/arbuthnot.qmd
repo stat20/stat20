@@ -1,9 +1,6 @@
 ---
 title: "Lab 2: Arbuthnot"
-date: "9/2/22"
-format: 
-  pdf:
-      fontfamily: libertinus
+date: "09/02/22"
 ---
 
 <!-- [[Discuss]{.btn .btn-primary}](https://app.perusall.com) -->
