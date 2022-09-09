@@ -77,20 +77,52 @@ countdown::countdown(4, top = 0)
 #### Visual Cues / Aesthetics
 
 - Location along the x-axis
+
+. . .
+
 - Location along the y-axis
+
+. . .
+
 - Size of point
+
+. . .
+
 - Color of point
+
+. . .
+
 - Animation
+
 :::
 
 ::: {.column width="50%"}
+
+
 #### Variables
 
+. . .
+
 - Fertility rate
+
+. . .
+
 - Life expectancy
+
+. . .
+
 - Population
+
+. . .
+
 - Region
+
+. . .
+
 - Year
+
+. . .
+
 :::
 
 ::::
@@ -108,16 +140,32 @@ What was the unit of observation? What were the variables? What were their type?
 ::: {.column width="50%"}
 #### Unit of observation
 
+. . . 
+
 - A country in a given year
 :::
 
 ::: {.column width="50%"}
 #### Variables
 
-- Fertility rate (continuous)
+. . . 
+
+- Fertility rate  (continuous)
+ 
+. . . 
+
 - Life expectancy (continuous)
-- Population (continuous)
+
+. . . 
+
+- Population (discrete)
+
+. . . 
+
 - Region (nominal)
+
+. . . 
+
 - Year (discrete)
 :::
 
