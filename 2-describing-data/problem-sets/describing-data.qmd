@@ -6,72 +6,8 @@ execute:
 format: pdf
 ---
 
-### Question 1: Views on immigration
 
-Nine-hundred and ten (910) randomly sampled registered voters from Tampa, FL were asked if they thought workers who have illegally entered the US should be (i) allowed to keep their jobs and apply for US citizenship, (ii) allowed to keep their jobs as temporary guest workers but not allowed to apply for US citizenship, or (iii) lose their jobs and have to leave the country. 
-The results of the survey by political ideology are shown below.
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-
-library(tools)
-library(openintro)
-library(tidyverse)
-#library(janitor)
-library(knitr)
-library(kableExtra)
-library(scales)
-library(patchwork)
-library(palmerpenguins)
-```
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false  
-    immigration %>%
-      count(political, response) %>%
-      mutate(political = toTitleCase(as.character(political))) %>%
-      pivot_wider(names_from = political, values_from = n) %>%
-      rename(Response = response) %>%
-      #adorn_totals(where = c("row", "col")) %>%
-      kbl(linesep = "", booktabs = TRUE) %>%
-      kable_styling(bootstrap_options = c("striped", "condensed"), 
-                    latex_options = "HOLD_position",
-                    full_width = FALSE)
-```
-
-a.  What percent of these Tampa, FL voters identify themselves as conservatives?
-
-b.  What percent of these Tampa, FL voters are in favor of the citizenship option?
-
-c.  What percent of these Tampa, FL voters identify themselves as conservatives and are in favor of the citizenship option?
-
-d.  What percent of these Tampa, FL voters who identify themselves as conservatives are also in favor of the citizenship option? What percent of moderates share this view? What percent of liberals share this view?
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false 
-#| fig-width: 4.2
-#| fig-asp: 0.6
-#| fig-align: center
-#| fig-cap-location: top
-##| fig-cap: "Plot for Question 1"
- 
-
-ggplot(immigration, aes(x=political, fill=response))+geom_bar()+xlab("Political Ideology")
-```
-
-
-e.  Based on the stacked bar chart shown below, do political ideology and views on immigration appear to be associated? Explain your reasoning.
-    
-f.  Conjecture other possible variables that might explain the potential relationship between these two variables.
-
-
-### Question 2: Measures of center and spread
+### Question 1: Measures of center and spread
 
 The *infant mortality rate* is defined as the number of infant deaths per 1,000 live births. This rate is often used as an indicator of the level of health in a country. 
 The relative frequency histogram below (which displays _proportions_ instead of counts) shows the distribution of estimated infant death rates for 224 countries for which such data were available in 2014.
@@ -102,7 +38,7 @@ b.  Would you expect the mean of this dataset to be smaller or larger than the m
     
 c. Would the sample standard deviation or the IQR do a better job of measuring the spread of this distribution? Why?
 
-### Question 3: Associations in scatterplots
+### Question 2: Associations in scatterplots
 
 Indicate which of the plots show (a) a positive association, (b) a negative association, or (c) no association. Also determine if the positive and negative associations are linear or nonlinear. Each part may refer to more than one plot.
 
@@ -162,7 +98,7 @@ set.seed(2306)
       labs(x = NULL, y = NULL)
 ```
 
-### Question 4: Practice with ggplot I
+### Question 3: Practice with ggplot I
 
 The following three plots come from a data set called `mcu_films` inside the `openintro` package. Please write out the `ggplot2` code that will produce each one. 
 
@@ -187,7 +123,7 @@ p1 + p2 + p3
 ```
 
 
-### Question 5: Practice with ggplot II
+### Question 4: Practice with ggplot II
 .The following three plots come from the data set `penguins` (from the `palmerpenguins` package, that you have used in class). Please write out the `ggplot2` code that will produce each one.
 
 ```{r}
@@ -214,7 +150,7 @@ p3 <- ggplot(penguins,
 p1 + p2 + p3
 ```
 
-### Question 6: Numerical summaries with an interactive tutorial
+### Question 5: Numerical summaries with an interactive tutorial
 
 This last problem is rather fun, and comes in the form of an interactive tutorial:
 
@@ -226,6 +162,70 @@ There is nothing to submit for this problem set but please attest that you have 
 - "Yes, I have completed the tutorial"
 - "I am working through the tutorial, and will complete it this week."
 - "I have not been able to work on the tutorial."
+
+### Question 6: Views on immigration
+
+Nine-hundred and ten (910) randomly sampled registered voters from Tampa, FL were asked if they thought workers who have illegally entered the US should be (i) allowed to keep their jobs and apply for US citizenship, (ii) allowed to keep their jobs as temporary guest workers but not allowed to apply for US citizenship, or (iii) lose their jobs and have to leave the country. 
+The results of the survey by political ideology are shown below.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tools)
+library(openintro)
+library(tidyverse)
+#library(janitor)
+library(knitr)
+library(kableExtra)
+library(scales)
+library(patchwork)
+library(palmerpenguins)
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false  
+    immigration %>%
+      count(political, response) %>%
+      mutate(political = toTitleCase(as.character(political))) %>%
+      pivot_wider(names_from = political, values_from = n) %>%
+      rename(Response = response) %>%
+      #adorn_totals(where = c("row", "col")) %>%
+      kbl(linesep = "", booktabs = TRUE) %>%
+      kable_styling(bootstrap_options = c("striped", "condensed"), 
+                    latex_options = "HOLD_position",
+                    full_width = FALSE)
+```
+
+a.  What percent of these Tampa, FL voters identify themselves as conservatives? Is this a joint, marginal, or conditional proportion?
+
+b.  What percent of these Tampa, FL voters are in favor of the citizenship option? Is this a joint, marginal, or conditional proportion?
+
+c.  What percent of these Tampa, FL voters identify themselves as conservatives and are in favor of the citizenship option? Is this a joint, marginal, or conditional proportion?
+
+d.  What percent of these Tampa, FL voters who identify themselves as conservatives are also in favor of the citizenship option? What percent of moderates share this view? What percent of liberals share this view? Are these joint, marginal, or conditional proportions?
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false 
+#| fig-width: 4.2
+#| fig-asp: 0.6
+#| fig-align: center
+#| fig-cap-location: top
+##| fig-cap: "Plot for Question 1"
+ 
+
+ggplot(immigration, aes(x=political, fill=response))+geom_bar()+xlab("Political Ideology")
+```
+
+
+e.  Based on the stacked bar chart shown below, do political ideology and views on immigration appear to be associated? Explain your reasoning.
+    
+f.  Conjecture other possible variables that might explain the potential relationship between these two variables.
 
 
 
