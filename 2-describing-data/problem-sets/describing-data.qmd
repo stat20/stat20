@@ -1,0 +1,231 @@
+---
+title: "Describing Data"
+execute:
+  echo: false
+  message: false
+format: pdf
+---
+
+
+### Question 1: Measures of center and spread
+
+The *infant mortality rate* is defined as the number of infant deaths per 1,000 live births. This rate is often used as an indicator of the level of health in a country. 
+The relative frequency histogram below (which displays _proportions_ instead of counts) shows the distribution of estimated infant death rates for 224 countries for which such data were available in 2014.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-width: 3
+#| fig-asp: 0.8
+#| fig-align: center
+
+
+ggplot(subset(cia_factbook, !is.na(cia_factbook$infant_mortality_rate)), aes(x = infant_mortality_rate)) +
+      geom_histogram(aes(y = stat(count) / sum(count)), fill="grey75", color="black",
+        binwidth = 10
+      ) +
+      labs(
+        x = "Infant mortality (per 1,000 live births)", 
+        y = "Proportion") +
+      theme_gray(base_size = 8) +
+  theme(plot.margin = margin(b = 1, unit = "cm"))
+```
+
+a.  Estimate Q1 (the median of the first half of the data), the median, and Q3 (the median of the second half of the data) from the histogram.
+
+b.  Would you expect the mean of this dataset to be smaller or larger than the median? Explain your reasoning.
+    
+c. Would the sample standard deviation or the IQR do a better job of measuring the spread of this distribution? Why?
+
+### Question 2: Associations in scatterplots
+
+Indicate which of the plots show (a) a positive association, (b) a negative association, or (c) no association. Also determine if the positive and negative associations are linear or nonlinear. Each part may refer to more than one plot.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-asp: 0.3
+#| fig-align: center
+
+set.seed(2306)
+
+  # create x
+    x <- seq(0, 10, 0.1)
+    
+    # create y_poslin: positive linear with x
+    y_poslin <- x * runif(1, min = 0, max = 10) + 
+      rnorm(length(x), mean = 0, sd = runif(1, min = 3, max = 10)) - 
+      runif(1, min = 0, max = 3)
+    
+    # create y_neglin: negative linear with x
+    y_neglin <- x * -runif(1, min = 0, max = 5) + 
+      rnorm(length(x), mean = 0, sd = runif(1, min = 3, max = 10)) - 
+      runif(1, min = 0, max = 5)
+    
+    # create y_poscur: curved positive with x
+    y_poscur <- x^2 + rnorm(length(x), mean = -3, sd = runif(1, min = 3, max = 4))
+    
+    # create y_none: no association with x
+    y_none <- x + rnorm(length(x), mean = 0, sd = runif(1, min = 30, max = 40))
+    
+    # data frame
+    tibble(
+      x = x,
+      poslin = y_poslin,
+      neglin = y_neglin,
+      poscur = y_poscur,
+      none   = y_none
+    ) %>%
+      pivot_longer(cols = -x, names_to = "type", values_to = "y") %>%
+      arrange(type) %>%
+      mutate(
+        type_num = case_when(
+          type == "poslin" ~ "(1)",
+          type == "neglin" ~ "(4)",
+          type == "poscur" ~ "(3)",
+          type == "none"   ~ "(2)"
+        ),
+        type_num = as.factor(type_num)
+        ) %>%
+      ggplot(aes(x = x, y = y)) +
+      geom_point(alpha = 0.5) +
+      facet_grid(~type_num) +
+      theme(
+        axis.text = element_blank()
+      ) +
+      labs(x = NULL, y = NULL)
+```
+
+### Question 3: Practice with ggplot I
+
+The following three plots come from a data set called `mcu_films` inside the `openintro` package. Please write out the `ggplot2` code that will produce each one. 
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-height: 2
+#| fig-align: center
+
+p1 <- ggplot(mcu_films, aes(x = gross_us)) +
+    geom_histogram() +
+      theme_gray(base_size = 8)
+p2 <- ggplot(mcu_films, aes(y = gross_world)) +
+    geom_boxplot() +
+      theme_gray(base_size = 8)
+p3 <- ggplot(mcu_films, aes(x = gross_us,
+                            gross_world)) +
+    geom_point() +
+      theme_gray(base_size = 8)
+p1 + p2 + p3
+```
+
+
+### Question 4: Practice with ggplot II
+.The following three plots come from the data set `penguins` (from the `palmerpenguins` package, that you have used in class). Please write out the `ggplot2` code that will produce each one.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-height: 2
+##| fig-align: center
+
+p1 <- ggplot(penguins, 
+             aes(x = bill_length_mm)) +
+  geom_density() +
+      theme_gray(base_size = 8)
+p2 <- ggplot(penguins, 
+             aes(x = species)) +
+  geom_bar() +
+      theme_gray(base_size = 8)
+p3 <- ggplot(penguins,
+             aes(x = flipper_length_mm,
+                 y = body_mass_g,
+                 color = island)) +
+  geom_point() +
+      theme_gray(base_size = 8)
+p1 + p2 + p3
+```
+
+### Question 5: Numerical summaries with an interactive tutorial
+
+This last problem is rather fun, and comes in the form of an interactive tutorial:
+
+[**Describing Data with Numerical Summaries and Graphics**](https://openintro.shinyapps.io/ims-02-explore-03/)  
+[https://openintro.shinyapps.io/ims-02-explore-03/](https://openintro.shinyapps.io/ims-02-explore-03/)
+
+There is nothing to submit for this problem set but please attest that you have worked through the tutorial by writing out one of the statements below in your submission:
+
+- "Yes, I have completed the tutorial"
+- "I am working through the tutorial, and will complete it this week."
+- "I have not been able to work on the tutorial."
+
+### Question 6: Review
+
+Nine-hundred and ten (910) randomly sampled registered voters from Tampa, FL were asked if they thought workers who have illegally entered the US should be (i) allowed to keep their jobs and apply for US citizenship, (ii) allowed to keep their jobs as temporary guest workers but not allowed to apply for US citizenship, or (iii) lose their jobs and have to leave the country. 
+The results of the survey by political ideology are shown below.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tools)
+library(openintro)
+library(tidyverse)
+#library(janitor)
+library(knitr)
+library(kableExtra)
+library(scales)
+library(patchwork)
+library(palmerpenguins)
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false  
+    immigration %>%
+      count(political, response) %>%
+      mutate(political = toTitleCase(as.character(political))) %>%
+      pivot_wider(names_from = political, values_from = n) %>%
+      rename(Response = response) %>%
+      #adorn_totals(where = c("row", "col")) %>%
+      kbl(linesep = "", booktabs = TRUE) %>%
+      kable_styling(bootstrap_options = c("striped", "condensed"), 
+                    latex_options = "HOLD_position",
+                    full_width = FALSE)
+```
+
+a.  What percent of these Tampa, FL voters identify themselves as conservatives? Is this a joint, marginal, or conditional proportion?
+
+b.  What percent of these Tampa, FL voters are in favor of the citizenship option? Is this a joint, marginal, or conditional proportion?
+
+c.  What percent of these Tampa, FL voters identify themselves as conservatives and are in favor of the citizenship option? Is this a joint, marginal, or conditional proportion?
+
+d.  What percent of these Tampa, FL voters who identify themselves as conservatives are also in favor of the citizenship option? What percent of moderates share this view? What percent of liberals share this view? Are these joint, marginal, or conditional proportions?
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false 
+#| fig-width: 4.2
+#| fig-asp: 0.6
+#| fig-align: center
+#| fig-cap-location: top
+##| fig-cap: "Plot for Question 1"
+ 
+
+ggplot(immigration, aes(x=political, fill=response))+geom_bar()+xlab("Political Ideology")
+```
+
+
+e.  Based on the stacked bar chart shown below, do political ideology and views on immigration appear to be associated? Explain your reasoning.
+    
+f.  Conjecture other possible variables that might explain the potential relationship between these two variables.
+
+
+
