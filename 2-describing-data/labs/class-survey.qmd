@@ -8,8 +8,8 @@ date: "09/09/22"
 1. What is the unit of observation in the survey of students in Stat 20?
 
 2. Where in the Taxonomy of Data are the variables that correspond to each of the following survey questions (i.e., what is their type)?
-   - Question 6: What is your favorite thing about Cal?
-   - Question 13: Where would you rather be?
+   - Question 7: What is your favorite thing about Cal?
+   - Question 15: Where would you rather be?
    - Question 22: What is the chance that a fire alarm goes off in one of the dorms this week? 
 
 3. What values would you expect `Major` to take? Do you anticipate any challenges when analyzing this data?
@@ -35,7 +35,9 @@ Questions 4 - 7 can be answered using data visualization. To lay the groundwork 
 
 ## Part II: Computing on the Data
 
-Using the real survey data, construct the plots that you proposed in Part I and calculate for the first three a measure of a typical observation (mean, median, mode). Use these summaries to answer the original question in a sentence or two, noting, where appropriate, the shape of the distribution and what a "typical" observation is.
+The real survey data is accessible on [stat20.datahub.berkeley.edu](stat20.datahub.berkeley.edu) as `class_survey`! It belongs to the `stat20data` library.
+
+Using this data, construct the plots that you proposed in Part I and calculate for the first three a measure of a typical observation (mean, median, mode). Use these summaries to answer the original question in a sentence or two, noting, where appropriate, the shape of the distribution and what a "typical" observation is.
 
 8. Do students prefer to spend time at the beach or in the mountains?
 
@@ -48,7 +50,7 @@ Using the real survey data, construct the plots that you proposed in Part I and 
 
 ## Part III: Extensions
 
-Six variables appear in the survey data frame that were derived from the original `Title` question: `Artist`, `Humanist`, `Natural_Scientist`, `Social_Scientist`, `Comp_Scientist` and `Entrepreneur`. These variables indicate whether or not a student most identifies with the professional/academic label that they are named after.
+Six variables appear in the survey data frame that were derived from the original `Title` question: `Artist`, `Humanist`, `Natural_Scientist`, `Social_Scientist`, `Comp_Scientist` and `Entrepreneur`. The `Artist` variable is `TRUE` for those students who most identified as an artist and `FALSE` otherwise. The other five variables are defined similarly.
 
 For the following questions, please answer with a plot and a sentence or two written response given the structure in the plot.
 
