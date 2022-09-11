@@ -1,15 +1,18 @@
 ---
 title: "Lab 3: Class Survey"
 date: "09/09/22"
+image: images/dog-pants.png
 ---
+
+*Note: Ensure that your submission to Gradescope is a pdf built from a qmd that has the pages assigned to the questions. The sketches from Part I should be included in your pdf using the approach from Lab 1.*
 
 ## Part I: Understanding the Context of the Data
 
 1. What is the unit of observation in the survey of students in Stat 20?
 
 2. Where in the Taxonomy of Data are the variables that correspond to each of the following survey questions (i.e., what is their type)?
-   - Question 6: What is your favorite thing about Cal?
-   - Question 13: Where would you rather be?
+   - Question 7: What is your favorite thing about Cal?
+   - Question 15: Where would you rather be?
    - Question 22: What is the chance that a fire alarm goes off in one of the dorms this week? 
 
 3. What values would you expect `Major` to take? Do you anticipate any challenges when analyzing this data?
