@@ -1,7 +1,10 @@
 ---
 title: "Lab 3: Class Survey"
 date: "09/09/22"
+image: images/dog-pants.png
 ---
+
+*Note: Ensure that your submission to Gradescope is a pdf built from a qmd that has the pages assigned to the questions. The sketches from Part I should be included in your pdf using the approach from Lab 1.*
 
 ## Part I: Understanding the Context of the Data
 
