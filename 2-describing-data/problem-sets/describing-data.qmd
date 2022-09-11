@@ -32,7 +32,7 @@ ggplot(subset(cia_factbook, !is.na(cia_factbook$infant_mortality_rate)), aes(x =
   theme(plot.margin = margin(b = 1, unit = "cm"))
 ```
 
-a.  Estimate Q1, the median, and Q3 from the histogram.
+a.  Estimate Q1 (the median of the first half of the data), the median, and Q3 (the median of the second half of the data) from the histogram.
 
 b.  Would you expect the mean of this dataset to be smaller or larger than the median? Explain your reasoning.
     
@@ -163,7 +163,7 @@ There is nothing to submit for this problem set but please attest that you have 
 - "I am working through the tutorial, and will complete it this week."
 - "I have not been able to work on the tutorial."
 
-### Question 6: Views on immigration
+### Question 6: Review
 
 Nine-hundred and ten (910) randomly sampled registered voters from Tampa, FL were asked if they thought workers who have illegally entered the US should be (i) allowed to keep their jobs and apply for US citizenship, (ii) allowed to keep their jobs as temporary guest workers but not allowed to apply for US citizenship, or (iii) lose their jobs and have to leave the country. 
 The results of the survey by political ideology are shown below.
