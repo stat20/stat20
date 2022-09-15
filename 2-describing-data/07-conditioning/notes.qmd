@@ -338,7 +338,7 @@ arbuthnot %>%
 
 arbuthnot %>%
     mutate(total = boys + girls) %>%
-    ggplot(aes(x = total, y = year)) +
+    ggplot(aes(x = year, y = total)) +
     geom_line()
 ```
 
