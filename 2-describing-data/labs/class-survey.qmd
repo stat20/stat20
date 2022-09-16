@@ -40,7 +40,7 @@ Questions 4 - 7 can be answered using data visualization. To lay the groundwork 
 
 The real survey data is accessible on [stat20.datahub.berkeley.edu](stat20.datahub.berkeley.edu) as `class_survey`! It belongs to the `stat20data` library.
 
-Using this data, construct the plots that you proposed in Part I and calculate for the first three a measure of a typical observation (mean, median, mode). Use these summaries to answer the original question in a sentence or two, noting, where appropriate, the shape of the distribution and what a "typical" observation is.
+Using this data, construct the plots that you proposed in Part I and calculate for the first three a measure of a typical observation (mean, median, or mode, as appropriate). Use these summaries to answer the original question in a sentence or two, noting, where appropriate, the shape of the distribution and what a "typical" observation is.
 
 8. Do students prefer to spend time at the beach or in the mountains?
 
