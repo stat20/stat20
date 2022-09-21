@@ -1,0 +1,102 @@
+---
+title: "Communicating with Graphics"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+execute: 
+  echo: true
+---
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(stat20data)
+data(arbuthnot)
+```
+
+
+## Agenda
+
+- Quiz
+- Concept Question
+- *Break*
+- Lab 4: Part I
+
+# Concept Questions
+
+
+## Question 1
+
+:::{.poll}
+Which elements have been applied to the following plot?
+:::
+
+\
+
+```{r}
+#| echo: false
+#| fig-align: center
+
+arbuthnot %>%
+    mutate(p_girls = girls / (girls + boys)) %>%
+    ggplot(aes(x = year,
+               y = p_girls)) +
+    geom_line(color = "steelblue") +
+    labs(x = "Year",
+         y = "Proportion girls") +
+    ylim(0, 1) +
+    theme_bw(base_size = 24) +
+    annotate("segment", 
+             x = 1629, xend = 1710,
+             y = .5, yend = .5,
+             color = "dark green", lty = 2)
+```
+
+```{r}
+#| echo: false
+countdown::countdown(1, top = 0)
+```
+
+# Lab 4: Flights
+
+## {background-image="images/sf-chronicle.png" background-size="contain"}
+
+## {background-image="images/bts.png" background-size=contain}
+
+# Part I: Understanding the Context and Structure of the Data
+
+## Lab Part I
+
+1. What is the unit of observation in the data frame on the handout?
+
+2. Which variables are categorical? Which variables are numerical? Do any of the variable have ambiguous data types to you?
+
+3. Is there any discernible pattern to the manner in which the rows are ordered?
+
+4. What is your guess for the units/format used to record the departure time?
+
+5. What filter would you use to extract the flights that left in the springtime?
+
+
+:::{poll}
+In groups, please discuss the questions above.
+:::
+
+```{r}
+countdown::countdown(6, top = 0)
+```

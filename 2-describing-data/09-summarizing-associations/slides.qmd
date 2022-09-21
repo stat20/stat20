@@ -1,0 +1,316 @@
+---
+title: "Quantifying numerical associations"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+- Types of associations
+
+- Correlation and causation
+
+- Rank based measures of association
+
+- Correlations in the class survey
+
+
+## What is the Pearson correlation?
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.poll}
+What is the Pearson correlation between these two variables.
+:::
+
+```{r}
+library(tidyverse)
+n_samples <- 100
+set.seed(1)
+x <- runif(n=n_samples, min=-1, max=1) 
+y <- - x + rnorm(n=n_samples, mean=0, sd=.1)
+
+data.frame(x=x, y=y) %>% ggplot(aes(x=x, y=y)) +  geom_point()
+```
+
+
+## What is the pearson correlation?
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.poll}
+What is the Pearson correlation between these two variables.
+:::
+
+
+```{r}
+library(tidyverse)
+n_samples <- 100
+set.seed(1)
+x <- runif(n=n_samples, min=-1, max=1) 
+y <- x^2 + rnorm(n=n_samples, mean=0, sd=.1)
+
+data.frame(x=x, y=y) %>% ggplot(aes(x=x, y=y)) +  geom_point()
+```
+
+
+## Is there an association between these variables?
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.poll}
+Based on this plot, do you see evidence of an association between these two variables?
+:::
+
+
+```{r}
+library(tidyverse)
+n_samples <- 100
+set.seed(1)
+x <- runif(n=n_samples, min=-1, max=1) 
+y <- x^2 + rnorm(n=n_samples, mean=0, sd=.1)
+
+data.frame(x=x, y=y) %>% ggplot(aes(x=x, y=y)) +  geom_point()
+```
+
+
+
+
+## Where might you see a U-shaped association?
+
+```{r}
+countdown::countdown(4, top = 0)
+```
+
+```{r}
+library(tidyverse)
+n_samples <- 100
+set.seed(1)
+x <- runif(n=n_samples, min=-1, max=1) 
+y <- x^2 + rnorm(n=n_samples, mean=0, sd=.1)
+
+data.frame(x=x, y=y) %>% ggplot(aes(x=x, y=y)) +  geom_point()
+```
+
+
+:::{.poll}
+Group discussion: Give examples in real life where you might expect to see this kind of U-shaped association? What about an inverted U shaped association?
+:::
+
+
+
+# Causation and correlation
+
+
+## Does correlation imply causation?
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.poll}
+Does a strong measure of association imply that one variable causes another?
+:::
+
+
+
+
+## Does causation imply correlation?
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.poll}
+Does a casual relationship between two variables imply there is a correlation?
+:::
+
+
+:::{.notes}
+Some "counter-examples" could include
+
+- the causal variable has a small effect compared to other variables (e.g. a drug might have a small effect on a disease, but the patient's co-morbidities might have a much larger effect). 
+
+- the relationship is non-linear e.g. U shaped so Pearson correlation would not really pick it up
+:::
+
+## Correlation and causation IRL
+
+```{r}
+countdown::countdown(5, top = 0)
+```
+
+
+:::{.poll}
+In groups come up with examples of two variables that
+
+1. One causes the other and they are strongly correlated
+
+2. One causes the other and they are weakly correlated
+
+3. No direct causal relationship and they are strongly correlated
+
+4. No direct causal relationship and they are weakly correlated
+:::
+
+
+
+
+# Rank based methods of association
+
+## Pearson correlation
+
+```{r}
+library(palmerpenguins)
+library(tidyverse)
+data(penguins)
+
+penguins %>% 
+    ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
+    geom_point()
+```
+
+
+## Pearson correlation
+
+```{r}
+#| echo: true
+penguins %>%  
+    summarise(pearson=cor(flipper_length_mm, body_mass_g,
+                          use='complete.obs'))
+```
+
+
+:::{.notes}
+Emphasize the use='complete.obs' handles the NaNs, which is different than na.rm in mean().
+:::
+
+
+## Spearman correlation
+
+```{r}
+#| echo: true
+penguins %>%  
+    summarise(spearman=cor(flipper_length_mm, body_mass_g,
+                           method='spearman', use='complete.obs'))
+```
+
+
+## Rank transformation
+
+```{r}
+#| echo: true
+values <- c(2.6, 1.2, 3.9)
+rank(values)
+```
+
+
+## Rank transformation
+
+```{r}
+penguins %>% 
+    mutate(flipper_length_rank = rank(flipper_length_mm)) %>% 
+    ggplot(aes(x=flipper_length_mm, y=flipper_length_rank)) +
+    geom_point()
+```
+
+
+## Rank transformation
+
+```{r}
+penguins %>% 
+    ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
+    geom_point()
+```
+
+
+## Rank transformation
+```{r}
+penguins %>% 
+    mutate(flipper_rank=rank(flipper_length_mm),
+           body_mass_rank=rank(body_mass_g)) %>% 
+    ggplot(aes(x=flipper_rank, y=body_mass_rank)) +
+    geom_point()
+```
+
+
+## Spearman correlation by dplyr
+
+
+```{r}
+countdown::countdown(4, top = 0)
+```
+
+
+:::{.poll}
+Calculate the spearman correlation between `flipper_length_mm` and `body_mass_g` without the `cor` function.
+:::
+
+
+## Spearman and robustness
+```{r}
+penguins %>% 
+    ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
+    geom_point()
+
+```
+
+```{r}
+penguins%>%  
+    summarise(pearson=cor(flipper_length_mm, body_mass_g,
+                          method='pearson', use='complete.obs'),
+              spearman=cor(flipper_length_mm, body_mass_g,
+                           method='spearman', use='complete.obs'))
+```
+
+
+
+## Spearman and robustness
+```{r}
+penguins_outlier <- penguins %>% 
+    add_row(flipper_length_mm=0, body_mass_g=7000) 
+
+
+penguins_outlier %>% 
+    ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
+        geom_point()
+```
+
+
+```{r}
+penguins_outlier %>%  
+    summarise(pearson=cor(flipper_length_mm, body_mass_g,
+                          method='pearson', use='complete.obs'),
+              spearman=cor(flipper_length_mm, body_mass_g,
+                          method='spearman', use='complete.obs'))
+```
+
+## Finding correlations in the class survey data
+```{r}
+countdown::countdown(10, top = 0)
+```
+
+:::{.poll}
+In groups, answer the questions in the handout about the class survey data.
+:::

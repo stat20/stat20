@@ -9,5 +9,6 @@
 *.html
 !slides.html
 *.pdf
+!handout*.pdf
 
 /.quarto/
