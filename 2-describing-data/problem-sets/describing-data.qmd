@@ -20,6 +20,11 @@ The relative frequency histogram below (which displays _proportions_ instead of 
 #| fig-asp: 0.8
 #| fig-align: center
 
+library(tidyverse)
+library(openintro)
+library(patchwork)
+library(palmerpenguins)
+data("penguins")
 
 ggplot(subset(cia_factbook, !is.na(cia_factbook$infant_mortality_rate)), aes(x = infant_mortality_rate)) +
       geom_histogram(aes(y = stat(count) / sum(count)), fill="grey75", color="black",
