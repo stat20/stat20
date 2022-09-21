@@ -6,6 +6,20 @@ execute:
 format: pdf
 ---
 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tools)
+library(openintro)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(scales)
+library(patchwork)
+library(palmerpenguins)
+```
 
 ### Question 1: Measures of center and spread
 
@@ -20,12 +34,15 @@ The relative frequency histogram below (which displays _proportions_ instead of 
 #| fig-asp: 0.8
 #| fig-align: center
 
+<<<<<<< HEAD
 library(tidyverse)
 library(openintro)
 library(patchwork)
 library(palmerpenguins)
 data("penguins")
 
+=======
+>>>>>>> 581f3676c97bc9dbc2d10bbd30b676cc1566cf49
 ggplot(subset(cia_factbook, !is.na(cia_factbook$infant_mortality_rate)), aes(x = infant_mortality_rate)) +
       geom_histogram(aes(y = stat(count) / sum(count)), fill="grey75", color="black",
         binwidth = 10
@@ -136,7 +153,7 @@ p1 + p2 + p3
 #| message: false
 #| warning: false
 #| fig-height: 2
-##| fig-align: center
+#| fig-align: center
 
 p1 <- ggplot(penguins, 
              aes(x = bill_length_mm)) +
@@ -176,22 +193,6 @@ The results of the survey by political ideology are shown below.
 ```{r}
 #| echo: false
 #| message: false
-#| warning: false
-
-library(tools)
-library(openintro)
-library(tidyverse)
-#library(janitor)
-library(knitr)
-library(kableExtra)
-library(scales)
-library(patchwork)
-library(palmerpenguins)
-```
-
-```{r}
-#| echo: false
-#| message: false
 #| warning: false  
     immigration %>%
       count(political, response) %>%
@@ -220,11 +221,11 @@ d.  What percent of these Tampa, FL voters who identify themselves as conservati
 #| fig-width: 4.2
 #| fig-asp: 0.6
 #| fig-align: center
-#| fig-cap-location: top
-##| fig-cap: "Plot for Question 1"
- 
 
-ggplot(immigration, aes(x=political, fill=response))+geom_bar()+xlab("Political Ideology")
+ggplot(immigration, aes(x = political, 
+                        fill = response)) + 
+    geom_bar(position = "fill") + 
+    labs(x = "Political Ideology")
 ```
 
 
