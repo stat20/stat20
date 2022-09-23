@@ -42,9 +42,63 @@ Tell them to rsvp honestly, if they don't think they will show up, rsvp NO. need
 
 library(tidyverse)
 library(UsingR)
+library(patchwork)
+library(ggrepel)
 data(father.son)
 pearson <- father.son
 dugong <- read.csv("~/Documents/BerkeleyTeaching/DataForTeaching/dugong.csv")
+poverty <- read_csv("https://tinyurl.com/stat20poverty")
+```
+
+## Poverty and Education
+
+```{r}
+library(ggrepel)
+poverty <- poverty %>%
+  mutate(hi_grad = case_when(
+    State %in% c("New Hampshire", "Minnesota") ~ State, 
+    TRUE ~ ""),
+    hi_pov = case_when(
+      State %in% c("New Mexico", "Arkansas", "Mississippi") ~ State,
+      TRUE ~ ""),
+    hi_res = case_when(
+      State %in% c("Montana", "District of Columbia") ~ State,
+      TRUE ~ ""))
+pov_hi_grad <- poverty %>%
+  filter(hi_grad == TRUE)
+p_hi_grad <- poverty %>%
+  ggplot(aes(x = Poverty, 
+             y = Graduates)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = hi_grad),
+                  seed = 29) +
+  theme_bw(base_size = 18)
+p_hi_grad_pov <- p_hi_grad +
+  geom_text_repel(aes(label = hi_pov),
+                  seed = 29)
+p_hi_grad_pov_res <- p_hi_grad_pov +
+  geom_text_repel(aes(label = hi_res),
+                  seed = 29)
+p_all <- poverty %>%
+  ggplot(aes(x = Poverty, 
+             y = Graduates)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = State),
+                  seed = 29) +
+  theme_bw(base_size = 18)
+
+```
+
+```{r}
+#| message: false
+#| warning: false
+
+ggplot(poverty, aes(x = Poverty, 
+                    y = Graduates)) +
+  geom_point(alpha = 0.6, size = 2, color="darkred") +
+    geom_text_repel(aes(label = State),
+                  seed = 29, size =3) +
+    geom_smooth(method = "lm", se=FALSE)
 ```
 
 
@@ -202,9 +256,52 @@ cor_sf <- cor(pearson$fheight,pearson$sheight)
 ggplot(pearson, aes(x=fheight,y=sheight)) + 
     geom_point(color ="grey45",cex=2, alpha = 0.4) +
     xlab("heights of fathers") + ylab("heights of sons") + 
-    ggtitle("Which line is best?") +
+    ggtitle("Which line is best? (pollev.com") +
     geom_abline(slope = sd_s/sd_f, intercept = mean_s - (sd_s/sd_f)*mean_f, color = "darkred", lwd=1.1) + geom_vline(xintercept = c(64.5,65.6,69.5,70.5), lty=2) +
     geom_abline(slope = cor_sf*sd_s/sd_f, intercept =  mean_s - cor_sf*(sd_s/sd_f)*mean_f, color = "chartreuse4", lwd=1.1) +
-    geom_hline(yintercept = mean_s, color = "grey20", lwd=1.1)
+    geom_hline(yintercept = mean_s, color = "grey20", lwd=1.1)+
+    annotate("text", x = 75, y = 77, color = "darkred", label = "A") +
+    annotate("text", x = 75, y = 73, color = "chartreuse4", label = "B") + 
+    annotate("text", x = 75, y = 69.5, color = "grey20", label = "C")
 
 ```
+
+---
+
+```{r}
+pearson %>%
+    mutate("roundf" = round(fheight)) %>%
+    group_by(roundf) %>%
+    summarise("mean_s" = mean(sheight)) %>%
+    ggplot(aes(x=roundf, y=mean_s)) + geom_point(size = 3, alpha=0.6) + 
+    geom_smooth(method = "lm", se = FALSE, color = "darkred") +
+    xlab("heights of fathers") + ylab("average heights of sons") +
+    ggtitle("Regression line")
+```
+
+## Flight data and lm
+
+Recall the flight data. Let's plot the distance against average speed.
+
+```{r}
+library(stat20data) 
+data(flights)
+flights1 <- flights %>% 
+    mutate(avg_speed = distance/(air_time/60)) 
+
+ggplot(flights1, aes(x = distance, y = avg_speed,color = dest)) + geom_point() 
+
+```
+
+---
+
+```{r}
+flights_lm <- lm(avg_speed ~ distance, data = flights1)
+summary(flights_lm)
+
+flights1 %>%
+    summarise("r" = cor(distance, avg_speed, use = "complete.obs"), "r-sq" = cor(distance, avg_speed, use = "complete.obs")^2)
+
+flights_lm$coef
+```
+
