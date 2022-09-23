@@ -19,3 +19,192 @@ format:
       data-background-image: ../../assets/stat20-hex-bg.png
       data-background-size: contain
 ---
+
+## Agenda
+
+- Plenary RSVP!
+
+- Concept Questions
+
+- Discussion
+
+- Break
+
+- Lab 4 Part III
+
+:::{.notes}
+Tell them to rsvp honestly, if they don't think they will show up, rsvp NO. need to order pizza. Show Cheryl's bio. remind them about data viz on home page.
+:::
+
+```{r}
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(UsingR)
+data(father.son)
+pearson <- father.son
+dugong <- read.csv("~/Documents/BerkeleyTeaching/DataForTeaching/dugong.csv")
+```
+
+
+
+## Consider dugongs
+
+![Vardhanjp, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons](Dugong.jpg)
+
+## Squared errors vs Absolute errors
+
+```{r}
+#| message: false
+#| warning: false
+
+dugong20 <- filter(dugong, Age <= 20)
+dugong25 <- filter(dugong, Age <= 25)
+
+ggplot(dugong20, aes(x = Age, y = Length)) + 
+    geom_point() + 
+    geom_smooth(aes(color = "Squared Error"), method = "lm", 
+                se=FALSE, lwd = 1.1) +
+    geom_quantile(aes(color = "Absolute Error"), quantiles=0.5, lwd=1.1) +
+    ggtitle("Two types of errors give us two different lines") +
+    theme(legend.position = "None")
+```
+
+
+# Concept question
+
+---
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.poll}
+Which line is the least squares line? (pollev.com)
+:::
+
+```{r}
+#| message: false
+#| warning: false
+
+ggplot(dugong, aes(x = Age, y = Length)) + 
+    geom_point() + 
+    geom_smooth( aes(color = "Squared Error"), method = "lm", se=FALSE, lwd = 1.1) +
+    geom_quantile(aes(color = "Absolute Error"), quantiles=0.5, lwd=1.1) +
+    ggtitle("Older dugongs are longer")  +
+   theme(legend.position = "None")
+```
+
+# Concept question
+
+---
+
+```{r}
+countdown::countdown(2, top = 1)
+```
+
+<!-- :::: {.columns} -->
+
+<!-- ::: {.column width="35%"} -->
+<!-- There are three types of residuals (errors) shown here, from the observed data point to the least squares regression line: parallel to the $x$-axis (a), perpendicular from the point to the line (b),  and parallel to the $y$-axis (c), -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="65%"} -->
+
+```{r}
+#| message: false
+#| warning: false
+
+dugong20 %>% 
+    filter(Age >= 4, Age <= 15) %>%
+    ggplot(aes(x = Age, y = Length)) + 
+    geom_point() + 
+    geom_smooth( method = "lm", se=FALSE, lwd = 1.1, color = "darkmagenta") +
+    annotate("segment", x = 12, xend = 12, y = 2.325, yend = 2.435, color = "red", lwd = 1.1) +
+    annotate("text", x = 12.17, y  = 2.375, label = "c", color = "red", size = 5) + 
+    annotate("segment", x = 7.9, xend = 11.95, y = 2.32, yend = 2.32, color = "chartreuse3", lwd = 1.1) +
+    annotate("text", x = 10.7, y  = 2.335, label = "a", color = "chartreuse3", size = 5) +
+    annotate("segment", x = 11.22, xend = 11.95, y = 2.415, yend = 2.322, color = "deepskyblue1", lwd = 1.1) + 
+    annotate("text", x = 11.4, y  = 2.37, label = "b", color = "deepskyblue1", size = 5) 
+
+```
+<!-- ::: -->
+
+<!-- :::: -->
+
+:::{.poll}
+We minimize the sum of squares of *which* of these three types of residuals to find the slope and intercept of the least squares regression line? (pollev.com)
+:::
+## How would you predict the height of a son? {auto-animate=true}
+
+
+```{r}
+#| warning: false
+#| message: false
+
+ggplot(pearson, aes(x=fheight,y=sheight)) + 
+    geom_point(color ="grey45", cex = 2, alpha = 0.5) +
+    xlab("heights of fathers") + ylab("heights of sons") + 
+    ggtitle("Pearson and Galton: On average, taller fathers have taller sons")
+```
+
+
+
+## {auto-animate=true}
+
+
+```{r}
+sd_f <- sd(pearson$fheight)
+sd_s <- sd(pearson$sheight)
+mean_f <- mean(pearson$fheight)
+mean_s <- mean(pearson$sheight)
+ggplot(pearson, aes(x=fheight,y=sheight)) + 
+    geom_point(color ="grey45",cex=2, alpha = 0.5) +
+    xlab("heights of fathers") + ylab("heights of sons") + 
+    ggtitle("Can we use this line to predict a son's height?") +
+    geom_hline(yintercept = mean_s, color = "grey30", lwd=1.1)
+```
+
+
+
+## {auto-animate=true}
+
+
+```{r}
+ggplot(pearson, aes(x=fheight,y=sheight)) + 
+    geom_point(color ="grey45",cex=2, alpha = 0.5) +
+    xlab("heights of fathers") + ylab("heights of sons") + 
+    ggtitle("What about this line?") +
+    geom_abline(slope = sd_s/sd_f, intercept = mean_s - (sd_s/sd_f)*mean_f, color = "darkred", lwd=1.1)
+```
+
+
+
+## {auto-animate=true}
+
+
+```{r}
+ggplot(pearson, aes(x=fheight,y=sheight)) + 
+    geom_point(color ="grey45",cex=2, alpha = 0.5) +
+    xlab("heights of fathers") + ylab("heights of sons") + 
+    ggtitle("Look at the vertical slices") +
+    geom_abline(slope = sd_s/sd_f, intercept = mean_s - (sd_s/sd_f)*mean_f, color = "darkred", lwd=1.1) + geom_vline(xintercept = c(64.5,65.6,69.5,70.5), lty=2)
+```
+
+
+## {auto-animate=true}
+
+
+```{r}
+cor_sf <- cor(pearson$fheight,pearson$sheight)
+ggplot(pearson, aes(x=fheight,y=sheight)) + 
+    geom_point(color ="grey45",cex=2, alpha = 0.4) +
+    xlab("heights of fathers") + ylab("heights of sons") + 
+    ggtitle("Which line is best?") +
+    geom_abline(slope = sd_s/sd_f, intercept = mean_s - (sd_s/sd_f)*mean_f, color = "darkred", lwd=1.1) + geom_vline(xintercept = c(64.5,65.6,69.5,70.5), lty=2) +
+    geom_abline(slope = cor_sf*sd_s/sd_f, intercept =  mean_s - cor_sf*(sd_s/sd_f)*mean_f, color = "chartreuse4", lwd=1.1) +
+    geom_hline(yintercept = mean_s, color = "grey20", lwd=1.1)
+
+```
