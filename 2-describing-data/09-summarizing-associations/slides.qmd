@@ -54,7 +54,7 @@ data.frame(x=x, y=y) %>% ggplot(aes(x=x, y=y)) +  geom_point()
 ```
 
 
-## What is the pearson correlation?
+## What is the Pearson correlation?
 
 ```{r}
 countdown::countdown(1, top = 0)
