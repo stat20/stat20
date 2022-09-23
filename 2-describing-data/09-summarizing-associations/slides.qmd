@@ -21,6 +21,9 @@ format:
 ---
 
 ## Agenda
+
+- New forum: Ed 
+
 - Types of associations
 
 - Correlation and causation
