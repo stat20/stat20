@@ -30,11 +30,10 @@ format:
 
 - Break
 
+- Practice problems
+
 - Lab 4 Part III
 
-:::{.notes}
-Tell them to rsvp honestly, if they don't think they will show up, rsvp NO. need to order pizza. Show Cheryl's bio. remind them about data viz on home page.
-:::
 
 ```{r}
 #| warning: false
@@ -101,6 +100,58 @@ ggplot(poverty, aes(x = Poverty,
     geom_smooth(method = "lm", se=FALSE)
 ```
 
+## Poverty and Education
+
+```{r}
+#| fig-align: center
+#| 
+m1 <- lm(Graduates ~ Poverty, data = poverty)
+p1 <- ggplot(poverty, aes(x = Poverty, 
+                    y = Graduates)) +
+    geom_point(alpha = 0.6, size = 2) +
+    geom_abline(slope = m1$coefficients[2], intercept = m1$coefficients[1], lwd = 1.5, col = "blue") +
+    geom_abline(slope = m1$coefficients[2], intercept = m1$coefficients[1] - 4, lwd = 1.5, col = "green") +
+    geom_abline(slope = 1, intercept = 70, lwd = 1.5, col = "orange") +
+    geom_abline(slope = 0, intercept = 84.5, lwd = 1.5, col = "red") +
+    theme_bw()
+
+df <- data.frame(b0 = 70, b1 = 1)
+
+p2 <- ggplot(df, aes(x = b0, y = b1)) +
+    geom_point(size = 3) +
+    xlim(50, 110) +
+    ylim(-5, 3) +
+    theme_bw() +
+    labs(x = "b0 (intercept)",
+         y = "b1 (slope)")
+
+p1 + p2
+```
+
+:::{.poll}
+Which line on the left is being represented by the point on the plot on the right? (note the axes).
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+## Poverty and Education
+
+```{r}
+p3 <- ggplot(df, aes(x = b0, y = b1)) +
+    geom_point(size = 3, col = "orange") +
+    annotate("point", x = m1$coefficients[1] - 4, y = m1$coefficients[2], size = 3, col = "green") +
+    annotate("point", x = m1$coefficients[1], y = m1$coefficients[2], size = 3, col = "blue") +
+    annotate("point", x = 84.5, y = 0, size = 3, col = "red") +
+    xlim(50, 110) +
+    ylim(-5, 3) +
+    theme_bw() +
+    labs(x = "b0 (intercept)",
+         y = "b1 (slope)")
+
+p1 + p3
+```
 
 
 ## Consider dugongs
