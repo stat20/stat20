@@ -1,0 +1,236 @@
+---
+title: "Evaluating and Improving Predictions"
+subtitle: "$R^2$, residual analysis, and dummy variables."
+date: "09/28/2022"
+format:
+  html:
+    code-fold: true
+    code-link: true
+    code-summary: "."
+execute: 
+  warning: false
+  message: false
+---
+
+[[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
+
+\
+
+[I]{.dropcap}n the last lecture we built our first prediction machine: an equation of a line drawn through the scatter plot.
+
+$$ \hat{y} = 96.2 + -0.89 x $$
+
+While the idea is simple enough, there is a sea of terminology that floats around this method. A *linear model* is any model that predicts the $y$, often called the *response variable* or *dependent variable*, as a linear function of the $x$, often called the *predictor* or *independent variable* or *explanatory variable*. There are many different methods that can be used to decide which line to draw through a scatter plot. The most commonly-used approach is called the *method of least squares* which selects the line that minimizes the residual sum of squares (RSS). If we zoom out, a linear model fit by least squares is an example of a *regression model*, which refers to any model used to predict a numerical response variable.
+
+The reason for all of this jargon isn't purely to infuriate students of statistics. Regression models for prediction are used in biology, finance, Each field that uses them tends to adapt particular falvors
+
+In these lecture notes we focus on two questions: How can we evaluate the quality of our predictions? and How can we improve them?
+
+## Evaluating the fit to your data
+
+Once you have fit a linear model to a scatter plot, you are able to answer questions such as:
+
+> What graduation rate would you expect for a state with a poverty rate of 15%?
+
+Graphically, this can be done by drawing a vertical line from where the poverty rate is 15% and finding where that line intersects your linear model. If you trace from that intersection point horizontally to the y-axis, you'll find the predicted graduation rate.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+library(tidyverse)
+poverty <- read_csv("https://tinyurl.com/stat20poverty")
+
+p1 <- ggplot(poverty, aes(Poverty, Graduates)) + 
+    xlim(0, 20) +
+    ylim(75, 96) +
+    geom_point() +
+    theme_bw()
+
+m1 <- lm(Graduates ~ Poverty, data = poverty)
+
+povnew <- data.frame(Poverty = 15)
+yhat <- predict(m1, povnew)
+
+p1 + 
+  geom_abline(intercept = m1$coef[1], slope = m1$coef[2], 
+              col = "goldenrod") +
+  geom_vline(xintercept = 15, color = "steelblue", lty = 2) +
+  geom_hline(yintercept = yhat, color = "steelblue", lty = 2)
+```
+
+From the plot above, we can tell that the model yields a prediction around roughly 82.5%. To be more precise, we could plug the x-value into our equation for the line and solve.
+
+$$ \hat{y} = 96.2 + -0.89 \cdot 15 = 82.85 $$
+
+So how good of a prediction is 82.85%? Until we observe a state with a poverty rate of 15%, we'll never know! What we *can* know, however, is how well our model explains the structure found in the data that we *have* observed. For those observations, we have both the predicted (or fitted) values $\hat{y}_i$ as well as their actual y-values $y_i$. These can be used to calculate a statistic that measures the explanatory power of our model.
+
+### Measuring explanatory power: $r^2$
+
+$r^2$ is a statistic that captures how good the predictions from your linear model are ($\hat{y}$) by comparing them another even simpler model: $\bar{y}$. To understand how this statistic is constructed please watch this short video found in the Media Gallery on bCourses.
+
+- [R^2](https://bcourses.berkeley.edu/courses/1517492/external_tools/78985) (14 minutes)
+
+![](images/r-squared.png){fig-align=center width=400}
+
+*R-squared ($r^2$)*
+
+:    A statistic that measures the proportion of the total variability in the y-variable (total sum of squares, TSS) that is explained away using our model involving x (sum of squares due to regression, SSR).
+
+     $$ R^2 = \frac{SSR}{TSS} = \frac{\sum_{i=1}^n (\hat{y}_i - \bar{y})^2}{\sum_{i=1}^n (y_i - \bar{y_i})^2}$$
+
+     $r^2$ has the following properties:
+
+     1. Always takes values between 0 and 1.
+     2. $r^2$ near 1 means predictions were more accurate.
+     3. $r^2$ near 0 means predictions were less accurate.
+
+
+#### Example: Poverty and Graduation
+
+Last lecture we showed how to use the `lm()` function to fit a linear model to predict the graduation rate in a US state using the poverty rate.
+
+```{r}
+#| code-fold: false
+
+library(tidyverse)
+poverty <- read_csv("https://tinyurl.com/stat20poverty")
+
+m1 <- lm(Graduates ~ Poverty, data = poverty)
+```
+
+When you run this code, you'll see a new object appear in your environment: `m1`. This new object, though, is not a vector or a data frame. It's a much richer object called a *list* that stores all sorts of information about your linear model. You can click through the different part of `m1` in your environment pane, or your can use functions from the `broom` package to extract the important components using code.
+
+```{r}
+#| code-fold: false
+
+library(broom)
+
+glance(m1)
+```
+
+The `glance()` function returns a series of different metrics used to evaluate the quality of your model. First among those is r-squared. Because the output of `glance()` is just another data frame, we can extract just the r-squared column using `select()`.
+
+```{r}
+#| code-fold: false
+
+glance(m1) %>%
+    select(r.squared)
+```
+
+We learn that the linear model using the poverty rate is able to explain about 56% of the variability found in graduation rates. That's a good start!
+
+### Residual analysis
+
+A statistic like $r^2$ summarizes the explanatory power of our model in a single number. It's also important to understand *where* our model is performing well and where it is performing poorly. This is the the goal of residual analysis.
+
+Recall that a residual is defined as the difference between an observed y-value, $y_i$, and the expected y-value under the model, $\hat{y_i}$. A data set that has $n$ observations will have $n$ values of $y_i$, $n$ values of $\hat{y}_i$, and therefore $n$ residuals.
+
+We can add the vector of residuals to our original data frame by using the `augment()` function inside `broom`.
+
+```{r}
+#| code-fold: false
+
+augment(m1, poverty)
+```
+
+We see that augment has added several columns to our data frame, each one prefixed with a `.`. We can again used `select()` to retain just the columns that we're interested in, $\hat{y}_i$ and $y_i$, and save it back into our original data frame so that we can those columns for later.
+
+```{r}
+#| code-fold: false
+poverty <- augment(m1, poverty) %>%
+    select(State, Poverty, Graduates, .fitted, .resid)
+```
+
+The residuals capture where our model came up short: how far off the predictions were from reality. We can get an overall sense of their distribution by using a technique familiar from the last unit: a histogram.
+
+```{r}
+#| code-fold: false
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 3
+
+ggplot(poverty, aes(x = .resid)) +
+    geom_histogram()
+```
+
+We see a distribution that is reasonably symmetric. There are a few states, however, where our prediction was off by nearly 5 percentage points. Let's identify those states by creating a filter to extract all states with predictions that were off by at least 5.
+
+```{r}
+#| code-fold: false
+
+poverty %>%
+    filter(.resid > 5 | .resid < -5)
+```
+
+Why do you think our model did poorly with these states in particular? Are they distinctive in some way in terms of their system of education or economic structure? I don't have answers to those questions, but they highlight an important role of residual analysis. The process of building a predictive model doesn't stop once you have the equation for your line. Residual analysis helps highlight where your model is missing the mark, generating questions that can help you improve and better understand your model.
+
+Beyond looking at the residuals in isolation, we can investigate whether there is a systematic trend in where those residuals are occurring. We can explore the relationship between the residuals of each observation and their poverty rate by plotting the two columns against one another in a scatter plot.
+
+```{r}
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 3
+
+ggplot(poverty, aes(x = Poverty,
+                    y = .resid)) +
+    geom_point()
+```
+
+From this we learn that, in general, our residuals were smaller (and thus our predictions more accurate) for states that had lower poverty levels. At higher poverty levels (around 15%) the residuals were becoming larger in magnitude, both positive and negative.
+
+To recap, residual analysis is like conducting a post-mortem on your model. It helps you understand where the model failed and often helps generates ideas to make your next model better. Here we discussed three techniques for residual analysis:
+
+1. Plot the distribution of the residuals to understand their shape.
+2. Investigate observations with very high and very low residuals.
+3. Plot the residuals against other variables in the data set to understand systematic successes and failures of your model.
+
+## Improving predictions
+
+So far our predictive model has been very simple: it has used just one explanatory variable to make predictions, and we've made those predictions using one of the simplest geometric forms: a line. In the real world, though, we often have more than just one explanatory variable at our disposal.
+
+In the video below we build a simple model to predict the weight of a book based on just one other variable.
+
+- [Improving Predictions I](https://bcourses.berkeley.edu/courses/1517492/external_tools/78985) (6 minutes)
+
+As the video shows, we can fit the model using `lm()` and then use `summary()` to get an overview of our several aspects of our model.
+
+```{r}
+#| code-fold: false
+books <- read_csv("https://tinyurl.com/stat20books")
+
+m1 <- lm(weight ~ volume, data = books)
+```
+
+To extract just the r-squared value, we can use glance.
+
+```{r}
+#| code-fold: false
+glance(m1) %>%
+    select(r.squared)
+```
+
+That's a good start, but we can do better. Pick up the lecture in part II to build our first example of a predictive model that uses more than one variable.
+
+- [Improving Predictions II](https://bcourses.berkeley.edu/courses/1517492/external_tools/78985) (13 minutes)
+
+We learn we can improve predictions by adding in additional variables, including categorical variables like `cover`.
+
+```{r}
+#| code-fold: false
+m2 <- lm(weight ~ volume + cover, data = books)
+summary(m2)
+```
+
+This changes the geometry of the model - we're now predicting from two parallel lines, not one single line - and it also changes the value of $r^2$.
+
+```{r}
+#| code-fold: false
+glance(m2) %>%
+    select(r.squared)
+```
+
+By adding in the information on whether the book was hardback or paperback we were, able to improve the explanatory power of our model from 80% to 93%. That's a good progress!
+
+This is just the tip of the iceberg for how powerful these models can grow at making predictions. In the next lecture we'll beyond one and two predictor variables to many predictor variables.
