@@ -163,6 +163,51 @@ countdown::countdown(1, top = 0)
 This is a repeat of a CQ from last week, but now with a linear model and a different characteristic of interest: r^2. The two highest r^2 values should be clearly B and E. The second two are very difficult to discern based on these plots.
 :::
 
+##
+
+```{r}
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 5
+library(broom)
+
+car_type <- c("midsize", "suv")
+q2 <- mpg %>% filter(class %in% car_type) %>%
+    mutate(class = factor(class, levels = c("midsize", "suv")))
+
+# Obtain fit
+fit <- lm(hwy ~ cty + class, data = q2)
+
+# Augment dataset with fitted values
+q2 <- augment(fit, q2)
+
+
+
+# Generate the plot.
+ggplot(q2) + 
+    geom_line(mapping = aes(x = cty, y = .fitted, color = class)) +
+    ylim(c(20,28)) + xlim(16,19) + 
+    labs(color = "Class",
+         x = "City MPG",
+         y = "Highway MPG",
+         title = "City MPG exhibits a positive relationship with Highway MPG") + 
+    theme_bw(base_size = 15)
+
+```
+
+:::{.poll}
+What is the predicted number of highway miles per gallon of gas for a `midsize` car that goes 17.5 miles per gallon in the city?
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.notes}
+The idea of this question is to make sure that students first know to find the x value (city miles per gallon) that we give them on the horizontal axis. Then we test their ability to find the correct prediction line by moving their finger upward (for either `midsize` or `suv` cars), and finally we expect them to be able to move their finger to the left and find the predicted y value.
+:::
+
+
 ## {.smaller}
 
 :::: {.columns}
@@ -195,6 +240,7 @@ countdown::countdown(1)
 :::{.notes}
 This is a challenging question that requires students to make the leap from how a dummy variable is constructed for a two-level variable to how it would be constructed for a three-level variable (species), and then requires that they translate that into the formula for a linear function that they're able to count the coefficients in. You probably only want to use this one if students seem comfortable with two-level dummy variables.
 :::
+
 
 
 # Break
