@@ -167,8 +167,8 @@ This is a repeat of a CQ from last week, but now with a linear model and a diffe
 
 ```{r}
 #| fig-align: center
-#| fig-width: 11
-#| fig-height: 5
+#| fig-width: 5
+#| fig-height: 3
 library(broom)
 
 car_type <- c("midsize", "suv")
@@ -181,17 +181,15 @@ fit <- lm(hwy ~ cty + class, data = q2)
 # Augment dataset with fitted values
 q2 <- augment(fit, q2)
 
-
-
 # Generate the plot.
 ggplot(q2) + 
-    geom_line(mapping = aes(x = cty, y = .fitted, color = class)) +
+    geom_line(mapping = aes(x = cty, y = .fitted, color = class), lwd = 2) +
     ylim(c(20,28)) + xlim(16,19) + 
     labs(color = "Class",
          x = "City MPG",
          y = "Highway MPG",
-         title = "City MPG exhibits a positive relationship with Highway MPG") + 
-    theme_bw(base_size = 15)
+         title = "City MPG exhibits a positive relationship\n with Highway MPG") + 
+    theme_bw()
 
 ```
 
