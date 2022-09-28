@@ -1,0 +1,202 @@
+---
+title: "Evaluating and Improving Predictions"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+
+- Concept Questions
+- Break
+- Practice: Cities
+
+# Concept Questions
+
+## 
+
+```{r}
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 5
+
+# simulate data -----------------------------------------------------
+set.seed(9274)
+
+x1 <- seq(0, 6, by = 0.05)
+
+y_u <- (x1-3)^2 - 4 + rnorm(length(x1), mean = 0, sd = 1)
+y_lin_pos_strong <- 3*x1 + 10 + rnorm(length(x1), mean = 0, sd = 2)
+y_lin_pos_weak <- 3*x1 + 10 + rnorm(length(x1), mean = 0, sd = 20)
+
+x2 <- seq(-8, -2, by = 0.05)
+
+y_n <- -1 * (x2 + 5)^2 + 1 + rnorm(length(x2), mean = 0, sd = 2)
+y_lin_neg_strong <- -5 * x2 + 3 + rnorm(length(x2), mean = 0, sd = 2)
+y_none <- rnorm(length(x2), mean = 0, sd = 1)
+
+df <- data.frame(x = c(rep(x1, 3), rep(x2, 3)),
+                 y = c(y_u, y_lin_pos_strong, y_lin_pos_weak,
+                       y_n, y_lin_neg_strong, y_none),
+                 plot_num = rep(LETTERS[1:6], each = length(x1)))
+
+library(tidyverse)
+pa <- df %>%
+    filter(plot_num == "A") %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE, color = "green") +
+    facet_wrap(vars(plot_num), scales = "free") +
+    theme_bw(base_size = 14) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(x = "",
+         y = "")
+
+pb <- df %>%
+    filter(plot_num == "B") %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE, color = "green") +
+    facet_wrap(vars(plot_num), scales = "free") +
+    theme_bw(base_size = 14) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(x = "",
+         y = "")
+
+pc <- df %>%
+    filter(plot_num == "C") %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE, color = "green") +
+    facet_wrap(vars(plot_num), scales = "free") +
+    theme_bw(base_size = 14) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(x = "",
+         y = "")
+
+pd <- df %>%
+    filter(plot_num == "D") %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE, color = "green") +
+    facet_wrap(vars(plot_num), scales = "free") +
+    theme_bw(base_size = 14) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(x = "",
+         y = "")
+
+pe <- df %>%
+    filter(plot_num == "E") %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE, color = "green") +
+    facet_wrap(vars(plot_num), scales = "free") +
+    theme_bw(base_size = 14) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(x = "",
+         y = "")
+
+pf <- df %>%
+    filter(plot_num == "F") %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE, color = "green") +
+    facet_wrap(vars(plot_num), scales = "free") +
+    theme_bw(base_size = 14) +
+    ylim(-9, 9) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(x = "",
+         y = "")
+
+library(patchwork)
+(pa + pb + pc) / (pd + pe + pf)
+```
+
+:::{.poll}
+Which **four** models will exhibit the highest $r^2$?
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.notes}
+This is a repeat of a CQ from last week, but now with a linear model and a different characteristic of interest: r^2. The two highest r^2 values should be clearly B and E. The second two are very difficult to discern based on these plots.
+:::
+
+## {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+set.seed(42)
+penguins %>%
+    sample_n(12) %>%
+    select(body_mass_g, flipper_length_mm, species) %>%
+    knitr::kable()
+```
+:::
+
+::: {.column width="50%"}
+
+:::{.poll}
+How many coefficients will be estimated if you fit a linear model that predicts the body mass of a penguin based on the length of its flipper and its species?
+:::
+:::
+
+::::
+
+```{r}
+countdown::countdown(1)
+```
+
+:::{.notes}
+This is a challenging question that requires students to make the leap from how a dummy variable is constructed for a two-level variable to how it would be constructed for a three-level variable (species), and then requires that they translate that into the formula for a linear function that they're able to count the coefficients in. You probably only want to use this one if students seem comfortable with two-level dummy variables.
+:::
+
+
+# Break
+
+## Practice: Cities
