@@ -1,6 +1,6 @@
 ---
 title: "Adding complexity"
-subtitle: "Multiple linear regression and polynomial terms."
+subtitle: "Multiple linear regression, non-linear transformations, and polynomials."
 date: "09/29/2022"
 format:
   html:
