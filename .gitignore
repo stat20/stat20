@@ -4,9 +4,9 @@
 .Ruserdata
 .DS_Store
 
-*_files
+#*_files
 !slides_files
-*.html
+#*.html
 !slides.html
 *.pdf
 !handout*.pdf
