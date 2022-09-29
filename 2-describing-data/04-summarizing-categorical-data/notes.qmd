@@ -1,7 +1,7 @@
 ---
 title: "Summarizing Categorical Data"
 subtitle: "From data frames to tables. From tables to bar charts."
-date: "9/2/2022"
+date: "09/02/2022"
 image: images/two-var.png
 format:
     html:
