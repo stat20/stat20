@@ -46,7 +46,7 @@ library(ggrepel)
 data(father.son)
 pearson <- father.son
 dugong <- read.csv("~/Documents/BerkeleyTeaching/DataForTeaching/dugong.csv")
-poverty <- read_csv("https://tinyurl.com/stat20poverty")
+poverty <- read.csv("https://tinyurl.com/stat20poverty")
 ```
 
 ## Poverty and Education
