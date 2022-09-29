@@ -167,8 +167,9 @@ This is a repeat of a CQ from last week, but now with a linear model and a diffe
 
 ```{r}
 #| fig-align: center
-#| fig-width: 10
-#| fig-height: 6
+#| fig-width: 5
+#| fig-height: 3
+
 library(broom)
 
 car_type <- c("midsize", "suv")
@@ -178,7 +179,6 @@ q2 <- mpg %>%
 
 # Obtain fit
 m1 <- lm(hwy ~ cty + class, data = q2)
-
 
 # Augment dataset with fitted values
 q2 <- augment(m1, q2)
