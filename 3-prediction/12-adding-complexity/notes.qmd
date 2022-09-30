@@ -58,7 +58,8 @@ ratings_with_1d_pred <- ratings %>%
 ratings_with_1d_pred %>% 
     ggplot(aes(x=Food, y=Price)) + 
     geom_point() +
-    geom_line(aes(x=Food, y=food_pred), color='blue')
+    geom_line(aes(x=Food, y=food_pred), color='blue') +
+    theme_bw()
 
 lm_price_form_food
 ```
@@ -126,7 +127,8 @@ ratings_with_1d_pred %>%
     ggplot(aes(x=Food, y=Price)) + 
     geom_point() +
     geom_line(aes(x=Food, y=food_pred), color='blue') + 
-    geom_segment(aes(xend = Food, yend = food_pred), color='red', alpha=.2)
+    geom_segment(aes(xend = Food, yend = food_pred), color='red', alpha=.2) +
+    theme_bw()
 
 ```
 
@@ -193,7 +195,8 @@ flights %>%
     ggplot(aes(x=distance, y=avg_speed)) +
     geom_point() + 
     geom_line(aes(x=distance, y=speed_pred), color='blue') + 
-    ggtitle(paste0("R squared = ", round(rsq, 3)))
+    ggtitle(paste0("R squared = ", round(rsq, 3))) +
+    theme_bw()
 ```
 
 A linear model does not seem appropriate to model average speed from distance.
@@ -220,7 +223,8 @@ flights %>%
     ggplot(aes(x=log_dist, y=avg_speed)) +
     geom_point() + 
     geom_line(aes(x=log_dist, y=speed_pred), color='blue') + 
-    ggtitle(paste0("R squared = ", round(rsq, 3)))
+    ggtitle(paste0("R squared = ", round(rsq, 3))) +
+    theme_bw()
 ```
 The linear model with `log_dist` ($R^2=0.843$) predicts `avg_speed` better than the linear model with `distance ($R^2=0.72$)
 
@@ -235,7 +239,8 @@ flights %>%
     mutate(speed_pred = predict(lm_speed_from_log_dist, data=flights)) %>% 
     ggplot(aes(x=distance, y=avg_speed)) +
     geom_point() + 
-    geom_line(aes(x=distance, y=speed_pred), color='blue')
+    geom_line(aes(x=distance, y=speed_pred), color='blue') +
+    theme_bw()
 ```
 
 So is this a linear model or a non-linear model?
@@ -266,7 +271,8 @@ df <- tibble(x=runif(n=n_samples, min=-.5, max=5.5)) %>%
 
 df %>% 
     ggplot(aes(x=x, y=y)) + 
-    geom_point()
+    geom_point() +
+    theme_bw()
 ```
 
 
@@ -311,7 +317,8 @@ df_with_poly %>%
     mutate(y_pred = predict(lm_poly, data=df_with_poly)) %>% 
     ggplot(aes(x=x, y=y)) +
     geom_point() + 
-    geom_line(aes(x=x, y=y_pred), color='red')
+    geom_line(aes(x=x, y=y_pred), color='red') +
+    theme_bw()
 ```
 The prediction function here is a polynomial given by
 $$
@@ -353,4 +360,7 @@ The first step is multiple linear regression -- fitting a linear model with mult
 This is easy to do in R with the `lm()` function and the formula is a generalization of the $\widehat{y} = m * x + b$ formula where each predictor gets its own slope term.
 A second step is to build non-linear prediction functions.
 There are only two ingredients for non-linear prediction functions in this lecture: 1) creating new variables with a non-linear transformation and 2) fitting a linear model with the new variables as predictors.
+
+
+<!-- {{< include ../../assets/_links-to-materials.qmd >}} -->
 
