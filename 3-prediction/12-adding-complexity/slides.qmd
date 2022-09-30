@@ -120,7 +120,7 @@ $$
 
 
 :::{.poll}
-Do following formulas tell me the linear regression coefficients.
+Do following formulas tell me the linear regression coefficients?
 :::
 
 $$
@@ -145,7 +145,7 @@ $$
 \widehat{y} = b_0 + b_1 \cdot x_1 + \dots + b_d \cdot x_d
 $$
 :::{.poll}
-Do following formulas tell me the linear regression coefficients.
+Do following formulas tell me the linear regression coefficients?
 :::
 
 $$
