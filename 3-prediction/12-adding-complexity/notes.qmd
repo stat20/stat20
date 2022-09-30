@@ -1,0 +1,356 @@
+---
+title: "Adding complexity"
+subtitle: "Multiple linear regression, non-linear transformations, and polynomials."
+date: "09/29/2022"
+format:
+  html:
+    code-fold: true
+    code-link: true
+    code-summary: "."
+execute: 
+  warning: false
+  message: false
+---
+
+<!-- [[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/XXXXXXX) -->
+
+
+In previous lectures we learned how to make linear predictions with one (or two) variables.
+This lecture is about chasing $R^2$; finding ways of creating more accurate prediction functions. 
+
+
+
+# Linear regression with multiple predictors
+
+![](zagat.png){.absolute top="0" left="0" width="1000"}
+
+
+We often have multiple variables available from which to make predictions.
+Take restaurant pricing as an example.
+
+Zagat[^zagat] is a company started in the 70s that rates restaurants  -- kind of like Yelp but the ratings are standardized and made by professionals. 
+Here we are going to work a dataset of Zagat ratings for 168 restaurants from around NYC.
+Price is the typical price of a meal. 
+Food, Decor, and Service are all ratings for the restaurant (out of 30) and East indicates if the restaurant is on the East side of Manhattan.
+
+[^zagat]: [https://stories.zagat.com/](https://stories.zagat.com/)
+
+```{r warning=F, message=F}
+library(tidyverse)
+ratings <- read_csv('nyc.csv')
+ratings
+```
+
+
+Suppose our task is to build a model to predict the price rating.
+Maybe we want a model that will tell us how much we will have to spend at a new restaurant that is not upfront about its pricing; or maybe we just opened a new restaurant and want to know how much customers expect to spend.
+
+
+
+A natural first attempt is to build a model to predict price from the quality of the food.
+```{r}
+lm_price_form_food <- lm(Price~Food, data=ratings)
+
+ratings_with_1d_pred <- ratings %>% 
+    mutate(food_pred=predict(lm_price_form_food, ratings)) 
+
+
+ratings_with_1d_pred %>% 
+    ggplot(aes(x=Food, y=Price)) + 
+    geom_point() +
+    geom_line(aes(x=Food, y=food_pred), color='blue')
+
+lm_price_form_food
+```
+
+We can evaluate how good our model is by checking the $R^2$ value.
+```{r}
+library(broom)
+glance(lm_price_form_food) %>% select(r.squared)
+```
+
+
+
+## Fitting lm()
+
+Can we build a better model? 
+Well we have more variables available than just the Food rating so lets use them.
+In other words, lets build a linear model to predict Price from the Food, Decor, Service, and East variables.
+
+
+Fitting a linear model with multiple predictors[^syn] is straightforward with the `lm()` function.
+
+[^syn]: The following words are often used to mean the same thing: predictors, features, covariates, independent variables,  x variables, explanatory variables, exogenous variables.
+```{r}
+#| code-fold: false
+lm_all <- lm(Price ~ Food + Decor + Service + East, data=ratings)
+lm_all
+```
+
+This linear model now has 5 coefficients; the intercept and one slope parameter for each of Food, Decor, Service, and East.
+
+As before we evaluate our model with $R^2$.
+Adding additional variables to the model will always increase the $R^2$ since we are using more information.
+<!-- Adding additional variables to the model should[^overfit] make it more accurate since we are using more information. -->
+```{r}
+library(broom)
+glance(lm_all) %>% select(r.squared)
+```
+
+<!-- [^overfit]: The word *should* is key here; we will soon learn about (seemingly) counter-intuitive behavior where adding more information to the model actually can hurt its predictive power! -->
+<!-- This actually should not be too surprising.  -->
+<!-- Most people would do worse on the reading quiz if we give 1,000 pages of detailed notes! -->
+
+Voila! The $R^2$ for the model with 4 predictors (0.628) is better than the model with 1 predictor (0.393).
+
+## Formula
+
+The prediction formula for a linear model with a single predictor has two *parameters* as is
+$$
+\widehat{y} = b_0 + b_1 \cdot x
+$$
+Now suppose we have $d$ predictors $x_1, \dots, x_d$. 
+The linear model formula has $d+1$ coefficients and is given by
+$$
+\widehat{y} = b_0 + b_1 \cdot x_1 + b_2 \cdot x_2 +  \dots + b_d \cdot x_d % = b_0 + \sum_{j=1}^d b_j \cdot x_j
+$$
+
+
+## Geometry
+
+The geometry of a simple linear model with one predictor was a line (blue) and the residuals (red) are measured by the vertical distance from each point to the line.
+This line is called the “prediction function” because this is what we use to predict y.
+```{r}
+
+ratings_with_1d_pred %>% 
+    ggplot(aes(x=Food, y=Price)) + 
+    geom_point() +
+    geom_line(aes(x=Food, y=food_pred), color='blue') + 
+    geom_segment(aes(xend = Food, yend = food_pred), color='red', alpha=.2)
+
+```
+
+Now suppose we used two predictors (e.g. Food + Decor).
+In this case we can still visualize the geometry.
+The prediction function is a two dimensional plane (blue) living in 3 dimensions; residuals (red) are measured as the vertical distance from each point to the plane.
+
+
+```{r}
+
+
+# borrowing code from:
+# http://www.sthda.com/english/wiki/impressive-package-for-3d-and-4d-graph-r-software-and-data-visualization
+# https://github.com/idc9/stor390/blob/master/notes/linear_regression/linear_regression.Rmd
+library(plot3D)
+x <- ratings$Decor
+y <- ratings$Food
+z <- ratings$Price
+
+fit <- lm(z ~ x + y)
+# predict values on regular xy grid
+grid.lines = 26
+x.pred <- seq(min(x), max(x), length.out = grid.lines)
+y.pred <- seq(min(y), max(y), length.out = grid.lines)
+xy <- expand.grid( x = x.pred, y = y.pred)
+z.pred <- matrix(predict(fit, newdata = xy), 
+                 nrow = grid.lines, ncol = grid.lines)
+fitpoints <- predict(fit)
+
+# scatter plot with regression plane
+scatter3D(x, y, z, pch = 19, cex = .5, alpha=.4, col='red', 
+          theta = 200, phi =25, ticktype = "detailed",
+          xlab = "Decor", ylab = "Food", zlab = "Price",  
+          surf = list(x = x.pred, y = y.pred, z = z.pred, facets = NA, alpha=1, col='blue', fit=fitpoints), 
+          main = ""
+          )
+
+```
+
+If we use 3 or more predictors this geometry becomes *much* harder to visualize.[^hyperplane]
+
+[^hyperplane]: If we fit a linear model with $d$ predictors the prediction function will be a $d$ dimensional [hyperplane](https://en.wikipedia.org/wiki/Hyperplane) living in $d+1$ dimensions -- but we won't have to worry about high-dimensional geometry in this class!
+
+# Non-linear transformation
+
+The world is not always linear.
+We can create *non-linear* prediction models by building off the above above *linear model* machinery. 
+
+## A single non-linear term
+
+Take a question from flights lab as an example where we plot the average airspeed vs. flight distance.
+First lets try fitting a linear model.
+```{r}
+load('flights.rda')
+
+flights <- flights %>% mutate(avg_speed = 60 * distance / air_time) %>% drop_na(distance, air_time)
+
+lm_speed_from_dist <- lm(avg_speed ~ distance, data=flights)
+
+rsq <- glance(lm_speed_from_dist)$r.squared
+
+flights %>%
+    mutate(speed_pred = predict(lm_speed_from_dist, data=flights)) %>% 
+    ggplot(aes(x=distance, y=avg_speed)) +
+    geom_point() + 
+    geom_line(aes(x=distance, y=speed_pred), color='blue') + 
+    ggtitle(paste0("R squared = ", round(rsq, 3)))
+```
+
+A linear model does not seem appropriate to model average speed from distance.
+There does appear to be a *monotonically increasing* trend, but it starts out steeper then flattens out[^concave].
+This trend is reminiscent of functions like *log* or *square root*. 
+
+Lets try transforming our predictor (distance) with the log function to create a new variable called `log_dist`.
+We can then fit a linear model using this new `log_dist` variable as the predictor.
+
+```{r}
+#| code-fold: false
+flights <- flights %>% mutate(log_dist = log(distance))
+lm_speed_from_log_dist <- lm(avg_speed ~ log_dist, data=flights)
+```
+
+Looking at the data below, we see there does seem to be a linear relationship between `avg_speed` and our new variable `log_dist`!
+Notice the x-axis in the below plot is `log_dist` whereas it was `distance` in the above plot.
+```{r}
+
+rsq <- glance(lm_speed_from_log_dist)$r.squared
+
+flights %>%
+    mutate(speed_pred = predict(lm_speed_from_log_dist, data=flights)) %>% 
+    ggplot(aes(x=log_dist, y=avg_speed)) +
+    geom_point() + 
+    geom_line(aes(x=log_dist, y=speed_pred), color='blue') + 
+    ggtitle(paste0("R squared = ", round(rsq, 3)))
+```
+The linear model with `log_dist` ($R^2=0.843$) predicts `avg_speed` better than the linear model with `distance ($R^2=0.72$)
+
+We can now think of our predictive model as
+$$
+\widehat{y} = b_0 + b_1 \cdot \log(x)
+$$
+In other words, our model is *non-linear* since $x$ appears inside of a logarithm.
+We can plot the non-linear prediction function in the original predictor distance and we see the prediction function is curved!
+```{r}
+flights %>%
+    mutate(speed_pred = predict(lm_speed_from_log_dist, data=flights)) %>% 
+    ggplot(aes(x=distance, y=avg_speed)) +
+    geom_point() + 
+    geom_line(aes(x=distance, y=speed_pred), color='blue')
+```
+
+So is this a linear model or a non-linear model?
+It's both.
+We created a new variable `log_dist` by transforming the original variable; the prediction function is a **linear** function of this new variable.
+But we can also think of this as a function of the original variable `distance`; the prediction function is a **non-linear** function of this original variable.
+
+[^concave]: We call this concave or sometimes *diminishing marginal returns*.
+
+
+## Polynomials
+
+Sometimes we need an more complex transformation than just a simple function (e.g. $\sqrt{x}, \log(x),  x^2,...$).
+Take the following example where there is a strong association between x and y, but it's not linear.
+
+
+```{r}
+
+# fix random state so the random numbers we generate are always the same
+set.seed(14)
+
+n_samples = 100
+
+# 2 * (x-1)*(x-2)*(x-5) = -20 + 34 x - 16 x^2 + 2 x^3
+df <- tibble(x=runif(n=n_samples, min=-.5, max=5.5)) %>% 
+    mutate(y=-20 + 34 * x - 16 * x^2 + 2 * x^3) %>% 
+    mutate(y=y + rnorm(n=n_samples, mean = 0, sd=1.5))
+
+df %>% 
+    ggplot(aes(x=x, y=y)) + 
+    geom_point()
+```
+
+
+So how should we model this?
+Polynomials to the rescue!
+
+A polynomial is a function like
+$$
+f(x) = -20 + 34 x - 16 x^2 + 2 x^3
+$$
+More generally a polynomial is a function like
+$$
+f(x) = c_0 + c_1 \cdot x + c_2 \cdot x^2 + \dots + c_d \cdot x^d
+$$
+where the $d+1$ parameters $c_0, c_1, \dots, c_d$ are numbers.
+The number $d$ is called the *degree* of the polynomial -- this is the largest exponent that appears.
+
+Polynomials are flexible functions that can be quite useful for modeling.
+We can fit a polynomial model by adding new transformed variables to the data frame then fitting a linear model with these new transformed variables.
+This is just like how we fit a logarithmic function before by adding a new log transformed variable to the data frame then fit a linear model.
+```{r}
+#| code-fold: false
+df
+```
+
+
+```{r}
+#| code-fold: false
+
+df_with_poly <- df %>%  mutate(x_sq = x^2, x_cube = x^3)
+
+lm_poly <- lm(y~ x + x_sq + x_cube, data=df_with_poly)
+```
+
+```{r}
+lm_poly
+```
+
+Now we can plot the predictions as a function of the original x variable.
+```{r}
+df_with_poly %>% 
+    mutate(y_pred = predict(lm_poly, data=df_with_poly)) %>% 
+    ggplot(aes(x=x, y=y)) +
+    geom_point() + 
+    geom_line(aes(x=x, y=y_pred), color='red')
+```
+The prediction function here is a polynomial given by
+$$
+\widehat{y} = -20.086 + 34.669 \cdot x -16.352 \cdot x^2 + 2.042 \cdot x^3 
+$$
+
+## Shortcut to fitting polynomials
+
+What if we wanted to fit a degree 100 polynomial? 
+We could modify the code above with a really long mutate/lm function, but that is tedious. 
+Fortunately `R` has a nice shortcut with the `poly` function.
+```{r}
+#| code-fold: false
+lm_poly_shortcut <- lm(y~ poly(x=x, degree=3, raw=TRUE), data=df)
+```
+This gives us the same 3rd degree polynomial model as above, but with much less code.
+
+```{r}
+lm_poly_shortcut
+```
+
+<!-- RAAWRRRR I cannot get interpolation to work  -->
+<!-- Ok now what does a 50 degree polynomial fit look like? -->
+<!-- ```{r} -->
+<!-- lm_poly_big <-  lm(y~ poly(x, 101, raw=T), data=df) -->
+
+<!-- df %>% -->
+<!--      mutate(y_pred = predict(lm_poly_big, data=df)) %>% -->
+<!--      ggplot(aes(x=x, y=y)) + -->
+<!--      geom_point() + -->
+<!--      geom_line(aes(x=x, y=y_pred), color='red') -->
+<!-- ``` -->
+
+
+# Summary
+
+In this lecture we learned a couple of strategies to build more accurate models by adding complexity.
+The first step is multiple linear regression -- fitting a linear model with multiple predictor variables.
+This is easy to do in R with the `lm()` function and the formula is a generalization of the $\widehat{y} = m * x + b$ formula where each predictor gets its own slope term.
+A second step is to build non-linear prediction functions.
+There are only two ingredients for non-linear prediction functions in this lecture: 1) creating new variables with a non-linear transformation and 2) fitting a linear model with the new variables as predictors.
+
