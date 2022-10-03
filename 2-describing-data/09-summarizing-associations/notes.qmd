@@ -256,7 +256,7 @@ There is something unsatisfactory about covariance; it depends on the scale of t
 #| code-fold: false
 # 2.54 cm/in, 10^13 femtometers/cm
 family_heights <- family_heights %>% 
-        mutate(mother_femtometers=13 * mother * 2.54 * 10^13)
+        mutate(mother_femtometers = mother * 2.54 * 10^13)
 
 
 family_heights %>% 
