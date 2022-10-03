@@ -169,6 +169,7 @@ This is a repeat of a CQ from last week, but now with a linear model and a diffe
 #| fig-align: center
 #| fig-width: 5
 #| fig-height: 3
+
 library(broom)
 
 car_type <- c("midsize", "suv")
