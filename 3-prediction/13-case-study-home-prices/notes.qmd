@@ -1,0 +1,368 @@
+---
+title: "Case Study: Pricing Homes"
+subtitle: "Data wrangling, recoding, and transformations."
+date: "10/05/2022"
+image: images/la-houses.jpg
+format:
+  html:
+    code-fold: true
+    code-link: true
+    code-summary: "."
+execute: 
+  warning: false
+  message: false
+  fig-width: 5
+  fig-height: 3
+  fig-align: "center"
+---
+
+[[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
+[[PDF]{.btn .btn-primary}](notes.pdf)
+
+\
+
+[T]{.dropcap}he linear model toolkit that we have put together has grown. From a simple beginning with one predictor, we can now include many predictors, numerical and categorical alike. We can also add polynomials and transformations in order to capture non-linear relationships in the data. In these lecture notes, we'll put this tool kit into practice to work through a case study to predict the price of a house. Along the way, we'll review important concepts and introduce a few new wrinkles.
+
+For many Americans, buying a house is one of the most important decisions that they will make. It determines who their neighbors will be and where children will likely go to school. It is also often the largest financial decision they will ever make, so it is essential that the price of a house be carefully considered. One of the ways to put the price of a house into context is to consider the difference between the price that is listed and the price predicted by a statistical model fitted to data on similar houses.
+
+Here we will build such a model for a specific purpose: predicting the price of a house in Los Angeles. We have access to data on all of the houses that sold in four cities around west LA in the course of a single month. The model that we fit will be of the form
+
+$$ \widehat{price} = b_0 + b_1 x_1 + \ldots + b_p x_p $$
+
+Where the $y$ variable will be the selling price and the predictors, $x_1$ to $x_p$ will be $p$ characteristics of the houses, such as their size and location.
+
+![](images/la-houses.jpg){fig-align=center width="500"}
+
+## Data Wrangling
+
+:::{.callout-tip}
+
+## Code along
+
+As you read through these notes, keep RStudio open in another window to code along at the console.
+:::
+
+Let's begin by loading in the data set.
+
+```{r}
+#| code-fold: false
+library(tidyverse)
+LA <- read_csv("https://www.dropbox.com/s/nzhmtmmnz4ix4rd/LA.csv?dl=1")
+```
+
+Before jumping into fitting a model to a data set, it is important to verify that that it contains the information you expect in a format you can work with. With real-world data, this is often not the case. It may have been collected for a different purpose, be stored as a different type of data that what you need, or be poorly documented. The collection of tasks involved in getting a raw data set into the shape where you can being an analysis is often called *data wrangling* and encompasses many computational steps you have seen such as filtering rows, changing data types, and mutating new columns.
+
+Let's have a look at the top 10 rows of the data frame:
+
+```{r}
+#| code-fold: false
+
+LA
+```
+
+This data set comes with no data dictionary or help file, so we'll have to do some detective work to understand what is contained in each of the columns. Let's go through them one by one.
+
+### `city`
+
+We can see above that the first 10 rows record home sales in the city of Long Beach. What other cities are recorded in this data set? A quick way to get a sense of the distribution of the `city` variable is to count it up.
+
+```{r}
+#| code-fold: false
+
+LA %>%
+    count(city)
+```
+
+We see that there are four cities in this data set: Beverly Hills, Long Beach, Santa Monica, and Westwood. We also can see from this that the vast majority of home sales were in Long Beach.
+
+This variable turned out to be as we might expect it. Let's move on to the next variable to see what more work there is to be done.
+
+### `type`
+
+What do you think `type` refers to? We can see that it is stored as a character vector, so we can try the same thing that we did for `city` and count it up.
+
+```{r}
+#| code-fold: false
+
+LA %>%
+    count(type)
+```
+
+We can infer from this that `type` refers to the type of residential structure: either a condo / townhouse or a single-family residence (SFR). We also learn that there are 39 rows that are NA. NA stands for "not applicable" or "no answer" and indicates that nothing was recorded for this variable. Missing data is a perennial challenge in data analysis. In general, it is best to avoid removing rows with missing values it is necessary (say, for calculating a summary statistic). Missing values often indicate important characteristics about the data collection process and good cues that you should learn more about how the data was recorded and why those values are missing.
+
+### `bed` and `bath`
+
+Bed and bath appear to count up the number of bedrooms and bathrooms in each house. That seems straightforward enough. Still, let's follow the practice of counting up the number in each value to see if anything jumps out.
+
+```{r}
+#| code-fold: false
+LA %>%
+    count(bed)
+```
+
+It is the extremes that are surprising here. There were 12 houses that sold with zero bedrooms - what were those? Most likely those were studios, dwellings where the bedroom is co-located with the main living area.
+
+At the other extreme, we see houses with up to 17 bedrooms? Could this be correct? This data set captures home sales in some very wealthy parts of Los Angeles, so amazingly yes, it is possible that this is an accurate value. Nonetheless, we should keep this in mind as we proceed with our analysis: this data set appears to have data on some *very* large houses.
+
+We might expect that the number of bathrooms covers a similarly extreme range of values.
+
+```{r}
+#| code-fold: false
+LA %>%
+    count(bath)
+```
+
+This is unexpected: there was one house recorded with 1.25 bathrooms and two more with 2.75 bathrooms. A half-bathroom normally refers to a bathroom with a toilet and sink but no shower or bath. It is unclear what a quarter bathroom refers to. There do not appear to be many quarter and three-quarter bath houses in this data set, so their impact won't be dramatic, but it is a question worth researching and putting to a real estate agent with more knowledge of this sort of data.
+
+### `garage`
+
+Let's move on to the `garage` variable.
+
+```{r}
+#| code-fold: false
+LA %>%
+    count(garage)
+```
+
+This appears to be the size of the garage: 1 car, 2 car, etc. But there is something  strange here: below the word `garage` in the output above, it shows the type as character, not numeric (or double or integer).
+
+The key to this oddity is in the fourth level shown: `4+`. While that level is easy enough for a human to understand - houses with four or more car garages - the computer does not have that context. Instead, the computer runs into the `+` character and, not knowing how to turn this into a number, turns the whole variable into a character vector instead.
+
+There are a few ways that we could think about integrating this information into our model.
+
+#### Collapsing into a simpler factor
+
+One approach is to collapse several of these levels into a single factor. That can be accomplished using the `fct_collapse()` function to mutate a new variable called `garage_cat`, providing each new level on the left side of `=` and the original level(s) on the right side.
+
+```{r}
+#| code-fold: false
+
+LA <- LA %>%
+  mutate(garage_cat = fct_collapse(garage,
+                                   "none" = "0",
+                                   "small" = "1",
+                                   "large" = c("2", "3", "4+")))
+LA %>%
+    count(garage_cat)
+```
+
+As we saw in previous notes, a categorical variable can be used as a predictor in a linear model by converting it into a dummy variable that takes a value of 0 for the reference level and a value of 1 for the level corresponding to the name of the dummy variable. A two-level categorical variable requires 1 dummy variable. A three-level categorical variable like this one will require two dummy variables: one for `none` and one for `small`. The third level, `large` will become the reference level because it is first alphabetically and will still be present in the model through the intercept term.
+
+The recoding of a factor into dummy variables is a mutate step, but there is no need to do it manually. R does it automatically when you provide a categorical variable within the formula of the `lm()` function.
+
+#### Converting to a numeric vector
+
+The other option with `garage` is to leverage the fact that for most of the observations, we do have numerical values recorded. The only issue are those six observations listed as `"4+"`. Since there are very few of them, one option is to replace them with missing values using `na_if()` then immediately convert the character vector into a numerical vector using `as.numeric()`.
+
+```{r}
+#| code-fold: false
+
+LA <- LA %>%
+    mutate(garage_num = na_if(garage, "4+"),
+           garage_num = as.numeric(garage_num))
+LA %>%
+    count(garage_num)
+```
+
+`garage_num` is now a numerical variable (called "dbl") that can be incorporated into our model like any other numerical variable. It will result in one just coefficient: the slope in front of the `garage_num` variable.
+
+To recap how we've treated `garage`, let's glance at the original column next to its categorical and numerical derivatives.
+
+```{r}
+#| code-fold: false
+
+LA %>%
+    select(garage, garage_cat, garage_num)
+```
+
+
+### `sqft`
+
+From the original glance at the `sqft` column, it appeared that it contains the square footage of the house. We can do a sanity check by summarizing this numerical variable with its median, min, and max values.
+
+```{r}
+LA %>%
+    summarize(med_sqft = median(sqft),
+              min_sqft = min(sqft),
+              max_sqft = max(sqft))
+```
+
+This looks reasonable at first glance. There is a very small house (~400 sqft) a massive house (28,000 sqft) but a typical value of 1,380. This variable seems to be as we expected and in good shape.
+
+Now that we have a better understanding of most of our variables and have some some work to wrangle them into a mode more amendable to visualization and modeling, let's proceed to the next step of the analysis: exploratory data analysis.
+
+## Exploratory Data Analysis
+
+Exploratory data analysis (or EDA) is an interative process that uses the tools of summary statistics and visualization to build an understanding of the structure of a data set to help inform your analysis. It often interleaves with data wrangling as you back and forth between uncovering structure and then addressing them.
+
+In a predictive model, the most important variable is the one that you aim to predict, the response. In this setting, that is the `price` variable. It is a numerical variable, so we can visualize its distribution using a histogram.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+LA %>%
+    ggplot(aes(x = price)) +
+    geom_histogram(color = "white") +
+    theme_bw()
+```
+
+The most notable feature of this distribution is the strong right skew. Although it is difficult to tell, there are few homes with very very high prices that have resulted in the x-axis having a very large range. The result is that most home prices are stacked up along the left side and are difficult to distinguish. This will be something we will want to pay close attention to.
+
+How does the distribution of price change from city to city? A good visualization option here is the violin plot (a boxplot would work well too).
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+LA %>%
+    ggplot(aes(x = city, y = price)) +
+    geom_violin() +
+    theme_bw()
+```
+
+These are some strange looking violins! The reason is one more those very expensive homes that are extending the y-axis this time. One thing this graphic reveals: all of those most expensive homes appear to be located in Beverly Hills.
+
+We can also look at the relationship between price and another predictor: the square footage of the house. Since this variable is numeric, the natural choice is a scatter plot.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+LA %>%
+    ggplot(aes(x = sqft, y = price)) +
+    geom_point(alpha = .4) +
+    theme_bw()
+```
+
+This graphic reveals that there are three home in particular that stand out for their very high price and very high square footage[^bighouse].
+
+There are two routes we could take here. One would be to consider these three points to be **outliers**, observations that don't fit the trend of the rest of the data, and filter them out. In doing so, we'd be making the decision to build a model that explicitly does not predict the price of mega-mansions.
+
+The other route is to retain those points under the rationale that they are not outliers because they fit the trend of the data if we allow that trend to be non-linear. Let's use a technique from the previous lecture notes and transform these original variables using the natural logarithm.
+
+```{r}
+#| code-fold: false
+#| 
+LA <- LA %>%
+    mutate(log_price = log(price),
+           log_sqft = log(sqft))
+```
+
+The natural logarithm is a transformation that has the effect of stretching out very small values and compressing larger values, essentially reeling in the right tale of each of these distributions. We can see the effect by re-plotting the histogram of log price.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+LA %>%
+    ggplot(aes(x = log_price)) +
+    geom_histogram(color = "white") +
+    theme_bw()
+```
+
+There is still some right skew, but it is much smaller and we're able to visualize all of our data. The same goes for the violin plots.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+LA %>%
+    ggplot(aes(x = city, y = log_price)) +
+    geom_violin() +
+    theme_bw()
+```
+
+Now we learn much more. Homes in Beverly Hills are still on average more expensive, but we see now that homes in Long Beach are also markedly less expensive. The homes in Westwood also appear to have less variability that the other cities.
+
+When we re-plot the scatter plot using the transformed variables, the result is a scatter plot much more amendable to prediction with a linear model.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+LA %>%
+    ggplot(aes(x = log_sqft, y = log_price)) +
+    geom_point(alpha = .4) +
+    theme_bw()
+```
+
+In this transformed space, those mega-mansions suddenly don't look like such outliers afterwards; they're just the most extreme values of a trend that's fairly linear between the log square footage of a home and its log price.
+
+With these transformed variables on hand, lets build some models.
+
+[^bighouse]: To put this largest house in context, the palatial University House, the home of the Chancellor, is 20,000 sqft.
+
+
+## Model Fitting and Evaluation
+
+We will construct three models: a simple linear regression that utilizes only the size of the house, a multiple regression model that involves the categorical version of garage, and a variant of this model than involves the numerical version of garage. All models will use the log-transformed version of `price` and `sqft`.
+
+```{r}
+#| code-fold: false
+m1 <- lm(log_price ~ log_sqft, 
+         data = LA)
+m2 <- lm(log_price ~ log_sqft + city + bed + bath + garage_cat,
+         data = LA)
+m3 <- lm(log_price ~ log_sqft + city + bed + bath + garage_num,
+         data = LA)
+```
+
+Each of these models can be used to make a prediction for a house for sale in LA. Say I'm considering purchasing a 1,500 sqft house in Long Beach with a 3 bedrooms, 2 bathrooms, and 1 car garage. 
+
+```{r}
+#| code-fold: false
+
+new_data <- data.frame(log_sqft = log(1500),
+                       city = "Long Beach",
+                       bed = 3, bath = 2,
+                       garage_cat = "small",
+                       garage_num = 1)
+
+y_hat_1 <- predict(m1, new_data)
+y_hat_2 <- predict(m2, new_data)
+y_hat_3 <- predict(m3, new_data)
+c(y_hat_1, y_hat_2, y_hat_3)
+```
+
+12 or 13 dollars!? These predictions are unfortunately not quite right.
+
+Recall that these model are predicting the log of the price of the house. To convert from log dollars back to normal dollars, it is necessary to take the inverse of the natural log, $e^x$, by using the `exp()` function in R.
+
+```{r}
+#| code-fold: false
+
+c(exp(y_hat_1), exp(y_hat_2), exp(y_hat_3))
+```
+
+These predictions look more reasonable: around \$500,000 dollars.
+
+But which of these predictions is best? One way to make this decision is to calculate $R^2$ for each of the models to capture how well they explain the variability in the $y$ found in this data set.
+
+```{r}
+library(broom)
+r2_1 <- glance(m1) %>%
+    select(r.squared)
+r2_2 <- glance(m2) %>%
+    select(r.squared)
+r2_3 <- glance(m3) %>%
+    select(r.squared)
+
+c(r2_1, r2_2, r2_3)
+```
+
+The $R^2$ values show that including the extra information on the city, bed, bath, and garage improves the model's explanatory power by about 10 percentage points. That is helpful! The difference between the two larger models - one with garage turned into dummy variables and the other with garage as numerical variable - is very small. This suggests that our decision during data wrangling was not terribly consequential and that both forms of the variable work similarly well.
+
+At this point, our best models suggest that this home in Long Beach can fetch between roughly \$422,000 and \$430,000 on the market. If you are very committed to buying this particular house, you might want to offer a price greater than \$430,000. If you are less committed, you might try making a lower offer, say around \$410,000. There is a greater risk that someone else will offer a higher price and get the house, but if you do end up with the house, you will have done so knowing that you may well have gotten a bargain.
+
+## Summary
+
+In this case study we walked through a practical exercise in building a predictive model: predicting the sale price of a house. Through the process of data wrangling we learned to be aware of missing values, how to collapse levels of a categorical variable, and how to convert a variable from categorical to numeric. During exploratory data analysis we learned how to identify extreme values in our data and deal with them either as outliers or as indicators of the need for transformations. We fit several models and confirmed what we learned previously: that adding additional variables will improve the $R^2$ of your model.
+
+In class we will continue with this example to deepen out understanding of how to apply linear models for prediction.
