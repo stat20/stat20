@@ -1,0 +1,273 @@
+---
+title: "Case Study: Pricing Homes"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+
+- Concept Questions
+- Break
+- Lab: Baseball
+
+1. Simpsons paradox with bedrooms and square feet
+2. Look at dummy variables - which city is which?
+1. Which cities have the mansions?
+2. make predictions for the presidents house
+
+# Concept Questions
+
+##
+
+:::{.poll}
+Consider two houses for sale, both 1,100 sqft, 2 bedroom, 1 bathroom, with a small garage, but one is in Santa Monica and the other is in Westwood. Which is true of the predicted sale prices of these two homes?
+:::
+
+```{r}
+#| echo: false
+#| code-overflow: wrap
+library(tidyverse)
+LA <- read_csv("https://www.dropbox.com/s/nzhmtmmnz4ix4rd/LA.csv?dl=1") %>%
+    mutate(log_price = log(price),
+           log_sqft = log(sqft),
+           garage_num = na_if(garage, "4+"),
+           garage_num = as.numeric(garage_num))
+m3 <- lm(log_price ~ log_sqft + city + bed + bath + garage_num,
+         data = LA)
+m3
+```
+
+```{r}
+countdown::countdown(1)
+```
+
+
+:::{.notes}
+This is a review question to assess if students can use model output to understand predictions. One way studnets may solve this is by plugging the x variables in to the corresponding formula and comparing the two predicted values. A student with stronger understanding will just compare the coefficients in front of cityWestwood and citySantaMonica. They both modify the reference level, which is Beverly Hills: SM is .1 log dollars less than the prediction for Beverly Hills and WW is .47 log dollars less than the prediction for Berkeley hills.
+
+This is a good place to remind students that if they have transformed the respond variable prior to fitting their model, they will need to back-transform the predictions.
+:::
+
+## A simple model for price  
+
+```{r}
+#| echo: true
+
+m4 <- lm(log_price ~ bed, data = LA)
+```
+
+. . .
+
+<br>
+
+::: poll
+What do you expect the *sign* of the coefficient for `bed` to be?
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.notes}
+There is no trick question here. It's asking students to rely on their common sense to know that houses with more bedrooms tend to be more expensive, therefore the sign of the coefficient should be positive.
+:::
+
+
+## A simple model for price  
+
+```{r}
+#| echo: true
+#| eval: false
+
+m4 <- lm(log_price ~ bed, data = LA)
+```
+
+
+<br>
+
+::: poll
+What do you expect the *sign* of the coefficient for `bed` to be?
+:::
+
+
+```{r}
+library(broom)
+tidy(m4)
+```
+
+
+## A less simple model for price  
+
+. . .
+
+```{r}
+#| echo: true
+m5 <- lm(log(price) ~ bed + log_sqft, data = LA)
+```
+
+. . .
+
+<br>
+
+::: poll
+What do you expect the *sign* of the coefficient for `bed` and `log_sqft` to be?
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.notes}
+This is a tricky question for most students because they expect that since bed and logsqft both have positive relationships with the response in a simple linear regression model, that they should still have a postive relationship in the multivariate setting. That's not the case.
+
+The best explanation involves asking the students a concrete question: "Imagine two houses in Long Beach next door to one another. Both are 1,500 sqrt, have two bathrooms, and a single garage. One of them, however, has three bedrooms and the other has four bedrooms. Which home would you expect to be more expensive and why?".
+
+Students will generally realize that if you fix the square footage, the house with 4 bedrooms will have to divide the 1500 sqft into 4 very tiny bedrooms. The 3 bedroom house, by contrast, will have larger rooms and more generous living area, characteristics that tend to be prized more than an additional bedroom.
+
+The plots that follow this question illustrate the effect by conditioning on one of the variables by faceting and looking at the association between the other variable and the response. The final plot does the operative comparison: if we discretize the logsqft, we can see that the association in the facets looks either flat or negative.
+:::
+
+## A less simple model for price  
+
+
+```{r}
+#| echo: true
+m5 <- lm(log(price) ~ bed + log_sqft, data = LA)
+```
+
+<br>
+
+::: poll
+What do you expect the *sign* of the coefficient for `bed` and `log_sqft` to be?
+:::
+
+```{r}
+tidy(m5)
+```
+
+
+## {}
+What is the relationship between `bed` and `log_price`?
+
+. . .
+
+```{r echo = FALSE, fig.width=10, fig.height=7}
+LA %>%
+  filter(bed > 0, bed < 7) %>%
+  ggplot(aes(x = bed, y = log_price)) +
+  geom_jitter(alpha = .5) +
+  theme_bw(base_size = 18)
+```
+
+
+## {}
+
+What is the relationship between `log_sqft` and `log_price`?
+
+. . .
+
+```{r echo = FALSE, fig.width=10, fig.height=7}
+LA %>%
+  filter(bed > 0, bed < 7) %>%
+  ggplot(aes(x = log_sqft, y = log_price)) +
+  geom_point(alpha = .5) +
+  theme_bw(base_size = 18)
+```
+
+
+## {}
+
+What is the relationship between `log_sqft` and `log_price`, controlling for `bed`?
+
+. . .
+
+```{r echo = FALSE, fig.width=10, fig.height=6}
+LA %>%
+  filter(bed < 7, bed > 0) %>%
+  ggplot(aes(x = log_sqft, y = log_price)) +
+  geom_point(alpha = .3) +
+  facet_wrap(vars(bed)) +
+  theme_bw(base_size = 18)
+```
+
+
+## {}
+
+What is the relationship between `bed` and `log_price`, controlling for `log_sqft`?
+
+. . .
+
+```{r echo = FALSE, fig.width=10, fig.height=6}
+LA %>%
+  filter(bed < 7, bed > 0) %>%
+  mutate(log_sqft_cat = cut(log_sqft, breaks = 6)) %>%
+  ggplot(aes(x = bed, y = log_price)) +
+  geom_jitter(alpha = .3) +
+  facet_wrap(vars(log_sqft_cat)) +
+  theme_bw(base_size = 18)
+```
+
+
+## Simpson's Paradox
+
+Simpson's paradox, which also goes by several other names, is a phenomenon in probability and statistics in which a trend appears in several groups of data but disappears or reverses when the groups are combined.
+
+```{r echo = FALSE, fig.align='center'}
+knitr::include_graphics("images/simpsons.png")
+```
+
+[Source: Wikipedia]{.footer}
+
+
+# What is a *model*?
+
+. . .
+
+[A useful simplification of reality.]{.bigadage}
+
+[A specific answer to a specific question.]{.bigadage}
+
+[A prediction machine.]{.bigadage}
+
+
+## Model Interpretation
+
+**Question 1**
+What is the relationship between the number of bedrooms in a house and its price?
+
+. . .
+
+$$ \widehat{\textrm{log(price)}} = 11.8 + .53 \textrm{bed}$$
+
+. . .
+
+**Question 2**
+After controlling for the size of a house, what is the relationship between the number of bedrooms in a house and its price?
+
+$$ \widehat{\textrm{log(price)}} = 11.8 + -0.12 \textrm{bed} + 1.66 \textrm{log(sqft)}$$
+
+1. Simpsons paradox with bedrooms and square feet
+2. Look at dummy variables - which city is which?
+3. causal interpretation of a coefficient
+
+# practice computing
+
+1. Which cities have the mansions?
+2. make predictions for the presidents house
+3. make a prediction for a small house with 10 bathrooms

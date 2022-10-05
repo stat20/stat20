@@ -1,0 +1,42 @@
+---
+title: "Practice Problems"
+subtitle: "Conditioning"
+---
+
+The following practice problems all deal with a data set that's near and dear to our hearts, the Palmer penguins. Like always, let's start our analysis by loading in the necessary packages and data sets.
+
+```{r}
+#| message: false
+library(tidyverse)
+library(palmerpenguins)
+data(penguins)
+```
+
+For the questions below that ask you to extract a subset of the data, check your answer by using the new data frame to modify the penguins plot.
+
+```{r}
+ggplot(penguins, aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     color = species)) +
+    geom_point()
+```
+
+
+#### Question 1
+
+Extract a data frame that excludes the Adelie penguins.
+
+
+#### Question 2
+
+Extract a data frame that excludes the Adelie penguins and retains those with bill lengths between 40 and 50 mm. Sort it in decreasing order by bill length.
+
+
+#### Question 3
+
+Calculate the mean bill length and bill depth for each of the three species of penguins. Does those statistics line up with what you see in the penguins plot above?
+
+
+#### Question 4
+
+Consider a new metric called `bill_size` that's the sum of the length and depth. What is the average bill size and it's standard deviation among each species, broken out among each of the islands? (that is, nine pairs of statistics) Sort your resulting data frame in decreasing order by average bill size.
