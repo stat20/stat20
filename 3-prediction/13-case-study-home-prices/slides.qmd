@@ -305,5 +305,17 @@ Focus on questions 3 - 5.
 countdown::countdown(10)
 ```
 
+## {background-image="images/zestimate1.png"}
+
+:::{.notes}
+As a follow up to Question 5 on the handout, zillow offers the zestimate prediction service to determine the value of a home based.
+
+The final slide is the information that they provide about how their predictions work. They use a deep learning model framework, a more flexible extension of a linear model.
+:::
+
+## {background-image="images/zestimate2.png"}
+
+## {background-image="images/zestimate3.png" background-size=contain}
+
 # Lab 5: Baseball
 

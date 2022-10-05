@@ -76,6 +76,8 @@ newdata <- data.frame(log_sqft = log(6640),
 y_hat <- predict(m3, newdata)
 exp(y_hat)
 
+# https://www.berkeleyside.org/2022/04/12/uc-buys-6-5-million-berkeley-mansion-president
+# https://www.redfin.com/CA/Berkeley/2821-Claremont-Blvd-94705/home/1871142
 # the prediction is a big underestimate. the main reason is the the LA 
 # data was collected in 2013, when home prices were far lower. there may
 # also be a geography effect where homes in the bay area cost more than homes
