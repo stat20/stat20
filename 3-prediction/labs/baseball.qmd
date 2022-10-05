@@ -1,0 +1,77 @@
+---
+title: "Lab 5: Baseball"
+date: "10/05/22"
+image: images/baseball.jpg
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(Lahman)
+data(Teams)
+data(Batting)
+```
+
+## Multiple Regression
+
+"Baseball is ninety percent mental. The other half is physical." - Yogi Berra
+
+### Part 1
+
+1. What are some questions we can answer about baseball (or other sports) using statistics?
+
+2. How do you think publicly available baseball data is collected? What sources of error could be associated with different collection methods?
+
+There are a number of [publicly available baseball datasets](https://sabr.org/sabermetrics/data). One main source of data that we will use in this lab is the Lahman database which contains a number of data sets with different units of observation. Below are the first few rows and some of the columns for two of these data sets: Teams and Batting.
+
+```{r, echo = FALSE}
+knitr::kable(head(Teams %>% 
+                    select(yearID, teamID, franchID, G, W, L, R, RA, name) %>%
+                    arrange(desc(yearID))
+                  ))
+knitr::kable(head(Batting %>% 
+                    select(playerID, yearID, teamID, G, AB, R, H, BB, SO) %>%
+                    arrange(desc(yearID))
+                  ))
+```
+
+3. What is the unit of observation for the Teams data set? What about for the Batting data set?
+
+4. What is a question you could answer using the Teams dataset but not the Batting data set, and vice versa?
+
+5. What is a question that we would need more granular (measured on a finer/more specific part of the game) data than the Teams and Batting dataset provide to answer?
+
+6. Roughly since 1962 MLB teams have played 162 games in a season. What do you think the distribution of wins looks like? Sketch a plot and describe.
+
+7. What do you think the relationship between wins and runs looks like? Sketch a plot and describe.
+
+8. Some people believe analytics is ruining baseball because teams are more cautious which makes the games less entertaining. Do you agree or disagree? Why?
+
+### Part 2
+
+Use the following code to load in the Teams dataset from the Lahman database.
+
+```{r, echo = T}
+library(Lahman)
+data(Teams)
+```
+
+9. Subset the Teams dataset to only include years from 2000 to present day. What are the dimensions of this filtered dataset?
+
+10. Plot the distribution of wins. Describe the relationship.
+
+11. Plot the relationship between runs and wins. Describe the relationship (form, direction, strength of association, presence of outliers).
+
+12. Plot the relationship between runs allowed and wins. Describe the relationship. How does it compare to the relationship between runs and wins?
+
+13. Fit a simple linear model to predict wins by runs. Write out the equation for the linear model report the $R^2$.
+
+14. What is the average number of season runs and wins? Based on the previous model, how many games would you predict a team that scored the average number of runs would win? What about a team that scored 600 runs? What about 850 runs?
+
+15. Fit a simple linear regression model to predict wins by runs and runs allowed. Write out the equation for the linear model and interpret the slopes. What are the $R^2$ and adjusted-$R^2$ values? Compare to the simple linear regression from the previous question.
+
+16. Fit a multiple regression model to predict wins using at least two other variables in this data set. How does the $R^2$ and adjusted-$R^2$ values change? Do you think the new model you created predicts wins better?
+
+17. Does this seem like a reasonable setting to conduct statistical inference / make generalizations? To which population might a sabermetrician wish to generalize?
+
+18. Is it reasonable to draw a causal conclusion from these models? Why or why not or under which circumstances?
