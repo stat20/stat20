@@ -71,16 +71,14 @@ data(flights)
 24. What is the tailnumber of the fastest plane in the data set? What type of plane is it (google it!)? Be sure to be clear how you're defining fastest.
 
 25.  Using the airport nearest your hometown, which day of the week and which airline seems best for 
-flying there from San Francisco (if you're from near SFO or OAK or from abroad, use Chicago as your hometown)? Be clear on how you're defining *best*. (note that there is no explicit weekday 
-column in this data set, but there is sufficient information to piece it together. The following line of code 
-can be added to your pipeline to create that new column. It uses functions in the `lubridate` package, so be 
-sure to load it in at the start of this exercise).
+flying there from San Francisco?  If you're from near SFO or OAK or from abroad, use Chicago as your hometown. Be clear on how you're defining *best*.
 
-```{r echo = TRUE}
-  mutate(day_of_week = wday(ymd(paste(year, month, day, set = "-")), label = T))
-```
+     Note that there is no explicit weekday column in this data set, but there is sufficient information to piece it together. The following line of code can be added to your pipeline to create that new column. It uses functions in the `lubridate` package, so be sure to load it in at the start of this exercise.
 
-26. The plot below shows a relationship between the number of flights going out of SFO and the average departure delay. It illustrates the hypothesis that more flights on a given day would lead to a more congested airport which would lead to greater delays on average (mean is used here specifically to capture the impact of the outliers - very long delays). Each point represents single day in 2020; there are 366 of them on the plot. Please form a single chain that will create this plot, starting with the raw data set.
+     ```{r}
+     mutate(day_of_week = wday(ymd(paste(year, month, day, set = "-")), label = T))
+     ```
+
+26. The plot below shows a relationship between the number of flights going out of SFO and the average departure delay. It illustrates the hypothesis that more flights on a given day would lead to a more congested airport which would lead to greater delays on average. Each point represents single day in 2020; there are 366 of them on the plot. Please form a single chain that will create this plot, starting with the raw data set.
 
 ![](images/complex-ggplot.png){fig-align=center}
-
