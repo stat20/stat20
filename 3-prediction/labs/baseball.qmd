@@ -12,13 +12,15 @@ data(Teams)
 data(Batting)
 ```
 
+[[Slides]{.btn .btn-primary}](slides.qmd)
+
 *"Baseball is ninety percent mental. The other half is physical."* - Yogi Berra
 
 ## Part I: Understanding the Context of the Data
 
 1. Write out two descriptive and two predictive questions that we could answer about baseball (or other sports) using statistics.
 
-There are a number of [publicly available baseball datasets](https://sabr.org/sabermetrics/data). One main source of data that we will use in this lab is the Lahman database which contains a number of data sets with different units of observation. Below are the first few rows and some of the columns for two of these data sets: Teams and Batting.
+   There are a number of [publicly available baseball datasets](https://sabr.org/sabermetrics/data). One main source of data that we will use in this lab is the Lahman database which contains a number of data sets with different units of observation. Below are the first few rows and some of the columns for two of these data sets: Teams and Batting.
 
 ```{r, echo = FALSE}
 knitr::kable(head(Teams %>% 
@@ -31,17 +33,17 @@ knitr::kable(head(Batting %>%
                   ))
 ```
 
-3. What is the unit of observation for the Teams data set? What about for the Batting data set?
+2. What is the unit of observation for the Teams data set? What about for the Batting data set?
 
-4. What is a question you could answer using the Teams data set but not the Batting data set, and vice versa?
+3. What is a question you could answer using the Teams data set but not the Batting data set, and vice versa?
 
-5. What is a question that we would need more granular (measured on a finer/more specific part of the game) data than the Teams and Batting data set provide to answer?
+4. What is a question that we would need more granular (measured on a finer/more specific part of the game) data than the Teams and Batting data set provide to answer?
 
-6. Roughly since 1962 MLB teams have played 162 games in a season. What do you think the distribution of wins looks like? Sketch a plot and describe.
+5. Roughly since 1962 MLB teams have played 162 games in a season. What do you think the distribution of wins looks like? Sketch a plot and describe.
 
-7. What do you think the relationship between wins and runs looks like? Sketch a plot and describe.
+6. What do you think the relationship between wins and runs looks like? Sketch a plot and describe.
 
-8. Some people believe analytics is ruining baseball because teams are more cautious which makes the games less entertaining. Do you agree or disagree? Why?
+7. Some people believe analytics is ruining baseball because teams are more cautious which makes the games less entertaining. Do you agree or disagree? Why?
 
 ## Part II: Computing on the Data
 
@@ -52,21 +54,21 @@ library(Lahman)
 data(Teams)
 ```
 
-9. Subset the Teams dataset to only include years from 2000 to present day. What are the dimensions of this filtered dataset?
+8. Subset the Teams dataset to only include years from 2000 to present day. What are the dimensions of this filtered dataset?
 
-10. Plot the distribution of wins. Describe the relationship.
+9. Plot the distribution of wins. Describe the relationship.
 
-11. Plot the relationship between runs and wins. Describe the relationship (form, direction, strength of association, presence of outliers).
+10. Plot the relationship between runs and wins. Describe the relationship (form, direction, strength of association, presence of outliers).
 
-12. Plot the relationship between runs allowed and wins. Describe the relationship. How does it compare to the relationship between runs and wins?
+11. Plot the relationship between runs allowed and wins. Describe the relationship. How does it compare to the relationship between runs and wins?
 
-13. Fit a simple linear model to predict wins by runs. Write out the equation for the linear model report the $R^2$.
+12. Fit a simple linear model to predict wins by runs. Write out the equation for the linear model report the $R^2$.
 
-14. What is the average number of season runs and wins? Based on the previous model, how many games would you predict a team that scored the average number of runs would win? What about a team that scored 600 runs? What about 850 runs?
+13. What is the average number of season runs and wins? Based on the previous model, how many games would you predict a team that scored the average number of runs would win? What about a team that scored 600 runs? What about 850 runs?
 
-15. Fit a multiple linear regression model to predict wins by runs and runs allowed. Write out the equation for the linear model and report the $R^2$. How does this model compare to the simple linear regression from the previous question?
+14. Fit a multiple linear regression model to predict wins by runs and runs allowed. Write out the equation for the linear model and report the $R^2$. How does this model compare to the simple linear regression from the previous question?
 
-16. Fit a multiple regression model to predict wins using at least two other variables in this data set. How does the $R^2$ value change? Do you think the new model you created predicts wins better?
+15. Fit a multiple regression model to predict wins using at least two other variables in this data set. How does the $R^2$ value change? Do you think the new model you created predicts wins better?
 
 ### Part III: Extensions
 
