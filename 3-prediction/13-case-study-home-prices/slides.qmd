@@ -23,13 +23,9 @@ format:
 ## Agenda
 
 - Concept Questions
+- Practice: Pricing Houses
 - Break
 - Lab: Baseball
-
-1. Simpsons paradox with bedrooms and square feet
-2. Look at dummy variables - which city is which?
-1. Which cities have the mansions?
-2. make predictions for the presidents house
 
 # Concept Questions
 
@@ -48,7 +44,7 @@ LA <- read_csv("https://www.dropbox.com/s/nzhmtmmnz4ix4rd/LA.csv?dl=1") %>%
            log_sqft = log(sqft),
            garage_num = na_if(garage, "4+"),
            garage_num = as.numeric(garage_num))
-m3 <- lm(log_price ~ log_sqft + city + bed + bath + garage_num,
+m3 <- lm(log_price ~ log_sqft + city,
          data = LA)
 m3
 ```
@@ -66,15 +62,15 @@ This is a good place to remind students that if they have transformed the respon
 
 ## A simple model for price  
 
+\
+
 ```{r}
 #| echo: true
 
 m4 <- lm(log_price ~ bed, data = LA)
 ```
 
-. . .
-
-<br>
+\
 
 ::: poll
 What do you expect the *sign* of the coefficient for `bed` to be?
@@ -91,6 +87,8 @@ There is no trick question here. It's asking students to rely on their common se
 
 ## A simple model for price  
 
+\
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -98,8 +96,7 @@ There is no trick question here. It's asking students to rely on their common se
 m4 <- lm(log_price ~ bed, data = LA)
 ```
 
-
-<br>
+\
 
 ::: poll
 What do you expect the *sign* of the coefficient for `bed` to be?
@@ -114,16 +111,14 @@ tidy(m4)
 
 ## A less simple model for price  
 
-. . .
+\
 
 ```{r}
 #| echo: true
-m5 <- lm(log(price) ~ bed + log_sqft, data = LA)
+m5 <- lm(log_price ~ bed + log_sqft, data = LA)
 ```
 
-. . .
-
-<br>
+\
 
 ::: poll
 What do you expect the *sign* of the coefficient for `bed` and `log_sqft` to be?
@@ -134,7 +129,7 @@ countdown::countdown(1, top = 0)
 ```
 
 :::{.notes}
-This is a tricky question for most students because they expect that since bed and logsqft both have positive relationships with the response in a simple linear regression model, that they should still have a postive relationship in the multivariate setting. That's not the case.
+This is a tricky question for most students because they expect that since bed and logsqft both have positive relationships with the response in a simple linear regression model, that they should still have a positive relationship in the multivariate setting. That's not the case.
 
 The best explanation involves asking the students a concrete question: "Imagine two houses in Long Beach next door to one another. Both are 1,500 sqrt, have two bathrooms, and a single garage. One of them, however, has three bedrooms and the other has four bedrooms. Which home would you expect to be more expensive and why?".
 
@@ -167,12 +162,15 @@ What is the relationship between `bed` and `log_price`?
 
 . . .
 
-```{r echo = FALSE, fig.width=10, fig.height=7}
+```{r}
+#| fig-height: 7
+#| fig-width: 12
+#| fig-align: center
 LA %>%
   filter(bed > 0, bed < 7) %>%
   ggplot(aes(x = bed, y = log_price)) +
   geom_jitter(alpha = .5) +
-  theme_bw(base_size = 18)
+  theme_bw(base_size = 22)
 ```
 
 
@@ -182,12 +180,15 @@ What is the relationship between `log_sqft` and `log_price`?
 
 . . .
 
-```{r echo = FALSE, fig.width=10, fig.height=7}
+```{r}
+#| fig-height: 7
+#| fig-width: 12
+#| fig-align: center
 LA %>%
   filter(bed > 0, bed < 7) %>%
   ggplot(aes(x = log_sqft, y = log_price)) +
   geom_point(alpha = .5) +
-  theme_bw(base_size = 18)
+  theme_gray(base_size = 22)
 ```
 
 
@@ -197,13 +198,17 @@ What is the relationship between `log_sqft` and `log_price`, controlling for `be
 
 . . .
 
-```{r echo = FALSE, fig.width=10, fig.height=6}
+```{r}
+#| fig-height: 7
+#| fig-width: 12
+#| fig-align: center
+#| 
 LA %>%
   filter(bed < 7, bed > 0) %>%
   ggplot(aes(x = log_sqft, y = log_price)) +
   geom_point(alpha = .3) +
   facet_wrap(vars(bed)) +
-  theme_bw(base_size = 18)
+  theme_gray(base_size = 22)
 ```
 
 
@@ -213,14 +218,18 @@ What is the relationship between `bed` and `log_price`, controlling for `log_sqf
 
 . . .
 
-```{r echo = FALSE, fig.width=10, fig.height=6}
+```{r}
+#| fig-height: 7
+#| fig-width: 12
+#| fig-align: center
+
 LA %>%
   filter(bed < 7, bed > 0) %>%
   mutate(log_sqft_cat = cut(log_sqft, breaks = 6)) %>%
   ggplot(aes(x = bed, y = log_price)) +
   geom_jitter(alpha = .3) +
   facet_wrap(vars(log_sqft_cat)) +
-  theme_bw(base_size = 18)
+  theme_gray(base_size = 22)
 ```
 
 
@@ -228,9 +237,7 @@ LA %>%
 
 Simpson's paradox, which also goes by several other names, is a phenomenon in probability and statistics in which a trend appears in several groups of data but disappears or reverses when the groups are combined.
 
-```{r echo = FALSE, fig.align='center'}
-knitr::include_graphics("images/simpsons.png")
-```
+![](images/simpsons.png){fig-align=center}
 
 [Source: Wikipedia]{.footer}
 
@@ -241,9 +248,13 @@ knitr::include_graphics("images/simpsons.png")
 
 [A useful simplification of reality.]{.bigadage}
 
-[A specific answer to a specific question.]{.bigadage}
+. . .
 
 [A prediction machine.]{.bigadage}
+
+. . .
+
+[A specific answer to a specific question.]{.bigadage}
 
 
 ## Model Interpretation
@@ -262,12 +273,49 @@ After controlling for the size of a house, what is the relationship between the 
 
 $$ \widehat{\textrm{log(price)}} = 11.8 + -0.12 \textrm{bed} + 1.66 \textrm{log(sqft)}$$
 
-1. Simpsons paradox with bedrooms and square feet
-2. Look at dummy variables - which city is which?
-3. causal interpretation of a coefficient
+# Practice: Pricing Houses
 
-# practice computing
+## Practice: Pricing Houses
 
-1. Which cities have the mansions?
-2. make predictions for the presidents house
-3. make a prediction for a small house with 10 bathrooms
+\
+\
+\
+\
+
+:::{style="font-size: 1.3em; text-align: center"}
+Focus on questions 1 and 2.
+:::
+
+```{r}
+countdown::countdown(8)
+```
+
+## Practice: Pricing Houses
+
+\
+\
+\
+\
+
+:::{style="font-size: 1.3em; text-align: center"}
+Focus on questions 3 - 5.
+:::
+
+```{r}
+countdown::countdown(10)
+```
+
+## {background-image="images/zestimate1.png"}
+
+:::{.notes}
+As a follow up to Question 5 on the handout, zillow offers the zestimate prediction service to determine the value of a home based.
+
+The final slide is the information that they provide about how their predictions work. They use a deep learning model framework, a more flexible extension of a linear model.
+:::
+
+## {background-image="images/zestimate2.png"}
+
+## {background-image="images/zestimate3.png" background-size=contain}
+
+# Lab 5: Baseball
+
