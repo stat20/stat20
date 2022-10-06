@@ -1,0 +1,168 @@
+---
+title: "Adding complexity"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+
+- Quiz
+- Concept Questions
+- Break
+- Practice: Cities
+
+# Concept Questions
+
+## Into the mind of the cat 
+
+
+![](frank.png){fig-align="center" height="700"}
+
+This is Frank
+
+## Feline sleeping patterns
+```{r}
+countdown::countdown(3, top = 0)
+```
+
+
+:::{.poll}
+How many hours does the model predict Frank will sleep each day?
+:::
+
+
+lm(formula = hours ~ cuteness + food_eaten + is_indoor_cat, data = cats)
+
+```{r}
+coef = c(8, .1, -.01, 2)
+names(coef) <- c('(Intercept)', 'cuteness', 'food_eaten', 'is_indoor_catTRUE')
+coef
+```
+
+
+
+
+```{r}
+library(tidyverse)
+cats <- data.frame(name=c('castiel', 'frank', 'luna', 'luca'),
+                   hours=c(12, 18, 19, 10),
+                   cuteness=c(9, 10, 9.5, 8),
+                   food_eaten=c(175, 200, 215, 218),
+                   is_indoor_cat=c(TRUE, TRUE, FALSE, FALSE)) %>% as_tibble
+cats
+```
+
+
+## Which is the most appropirate transformation?
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+
+:::{.poll}
+Which is the most appropriate non-linear transformation to apply to `Time being pet`?
+:::
+
+
+```{r}
+set.seed(1)
+n_samples = 100
+tibble(pet=runif(n=n_samples, min=0, max=100),
+       hunger= pet ** 4 * (100/ (100^4))
+       ) %>% 
+    mutate(hunger = hunger + rnorm(n=n_samples, mean=0, sd=2))%>%
+    ggplot(aes(x=pet, y=hunger)) +
+    geom_point() +
+    theme_bw() + 
+    lims(x=c(0, 100)) + 
+    labs(x="Time being pet",
+         y="Hunger")
+```
+
+## Is this a linear model?
+
+```{r}
+countdown::countdown(2, top = 0)
+```
+
+:::{.poll}
+Suppose I fit a 3rd degree polynomial model to predict the number of hairs on a cat from the length of the cat.
+Is this a linear model?
+:::
+
+## Is this the correct formula?
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+Suppose I fit a linear regression model 
+$$
+\widehat{y} = b_0 + b_1 \cdot x
+$$
+
+
+:::{.poll}
+Do following formulas tell me the linear regression coefficients?
+:::
+
+$$
+b_1 = \frac{s_y}{s_x} \text{cor}(x, y)
+$$
+
+$$
+b_0 = \overline{y} - b_1 \cdot \overline{x}
+$$
+
+
+
+
+## Is this the correct formula?
+
+```{r}
+countdown::countdown(2, top = 0)
+```
+
+Suppose I fit a linear regression model 
+$$
+\widehat{y} = b_0 + b_1 \cdot x_1 + \dots + b_d \cdot x_d
+$$
+:::{.poll}
+Do following formulas tell me the linear regression coefficients?
+:::
+
+$$
+b_1 = \frac{s_y}{s_{x_1}} \text{cor}(x_1, y)
+$$
+$$
+\vdots
+$$
+
+$$
+b_d = \frac{s_y}{s_{x_d}} \text{cor}(x_d, y)
+$$
+
+
+$$
+b_0 = \overline{y} -  \sum_{j=1}^d b_j \cdot \overline{x}_j
+$$
+
+
+# Handout
