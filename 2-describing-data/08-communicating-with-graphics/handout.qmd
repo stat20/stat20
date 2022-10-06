@@ -1,0 +1,40 @@
+---
+title: "More Practice"
+subtitle: "Data Pipelines with `dplyr` and `ggplot2`"
+format: pdf
+---
+
+The following questions pertain to the `mpg` data set found in the 
+
+```{r}
+library(tidverse)
+data(mpg)
+```
+
+Call `?mpg` to understand the data that is recorded in each variable.
+
+
+#### Question 1
+
+Plot the distribution of city miles per gallon using an appropriate graphic.
+
+#### Question 2
+
+Calculate appropriate summary statistics of center and spread for this distribution. Use these and the plot to describe the distribution in words.
+
+#### Question 3
+
+Compare the distribution of city miles per gallon of cars in two groups: 4 cylinder cars and cars with more than four cylinders. Do this graphically and also by calculating the summary statistics of each subgroup.
+
+#### Question 4
+
+Plot the relationship between city miles per gallon,  highway miles per gallon, and a third variable of your choice that is categorical. Describe in words the relationship that you see.
+
+
+#### Challenges
+
+- Redo the plot from question 1 but annotate the plot to include vertical lines that indicate the mean and median mpg.
+
+- Plot the change in average mileage from 1999 to 2008.
+
+- Plot the change in average mileage from 1999 to 2008 comparing cars with 4 cylinders to cars with more than 4 cylinders.
