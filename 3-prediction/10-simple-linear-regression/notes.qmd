@@ -1,8 +1,8 @@
 ---
-title: "Prediction"
-subtitle: "Functions, goodness of fit metrics, linear model"
+title: "A Simple Linear Model"
+subtitle: "Fitting a line by minimizing the squared residuals."
 date: "09/22/2022"
-image: images/penguin-plot.png
+image: images/poverty.png
 format:
   html:
     code-fold: true
@@ -13,306 +13,67 @@ execute:
   message: false
 ---
 
--   Disease diagnosis
+[[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
 
--   Stock trading
+\
 
--   Taking the stat 20 final
-
-These are all examples of *prediction* problems. Here we are given some *input* (e.g. patient information, historical stock price, or the text of an exam question) and we want to guess the best answer for some output (e.g. what's wrong with the patient, the price of a stock tomorrow, or the answer to a question). In *predictive inference* we are given some data -- a number of example input/output pairs-- and we want to build a model that guesses the output from the input.
-
-# Predictive inference
-
-A predictive algorithm is a function that maps some input to some output. Take a look at the figure below. What might our predictive function look like that would guess body mass from flipper_length_mm?
-
-```{r}
-library(tidyverse)
-library(palmerpenguins)
-data("penguins")
-
-# set the random seed so the plot always look the same
-
-penguins %>% 
-    ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
-    geom_point() 
-```
-
-## Some function of the input to guess the output
-
-A predictive algorithm is just a mathematical function so let's make some guesses.
-
--   $f(x) = .3$ (constant function)
--   $f(x) = 1.2 \cdot x + 2.1$ (linear function)
--   $f(x) = \sin(x)$ (sinusoidal function)
--   $f(x) =$ the number of likes the $x$th most popular ticktok today had (not shown)
-
-```{r}
-library(cowplot)
-
-example_pred_const <- function(x){
-    value = 3000
-    rep(value, length(x))
-}
-
-example_pred_linear <- function(x){
-    50 * x - 5000
-}
-
-example_pred_sin <- function(x){
-    3000 * sin((2 * pi / 50) * x) + 4000
-}
-
-
-# setup data frame with silly predictions
-penguins_with_silly_pred <- penguins %>% 
-    mutate(y_lin=example_pred_linear(flipper_length_mm),
-           y_const=example_pred_const(flipper_length_mm),
-           y_sin = example_pred_sin(flipper_length_mm))
-
-
-
-plot_with_const_pred <- penguins_with_silly_pred %>%
-        ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
-        geom_point() +
-        geom_line(aes(x=flipper_length_mm, y=y_const), color='red') +
-        ggtitle("Constant prediction function")
-
-plot_with_lin_pred <- penguins_with_silly_pred %>%
-        ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
-        geom_point() +
-        # lims(x=c(-4, 4), y=c(-4, 4)) +
-        geom_line(aes(x=flipper_length_mm, y=y_lin), color='red') + 
-        ggtitle("Linear prediction function")
-
-plot_with_sin_pred <- penguins_with_silly_pred %>%
-        ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
-        geom_point() +
-        geom_line(aes(x=flipper_length_mm, y=y_sin), color='red') +
-        ggtitle("Sinusoidal prediction function")
-
-
-
-plot_grid(plot_with_const_pred, plot_with_lin_pred, plot_with_sin_pred,
-          ncol=3, nrow=1)
-
-```
-
-### Digression: functions in R
-
-You can write your own function in R as follows
-
-```{r}
-#| code-fold: false
-name_of_my_function <- function(input1, intput2){
-    # Do stuff
-    
-    # last line gets returned
-}
-```
-
-For example
-
-```{r}
-#| code-fold: false
-add_two_numbers <- function(input1, input2){
-    input1 + input2
-}
-
-# lets try the function! Here we use the argument names explicily, but we dont have to 
-add_two_numbers(input1=1, input2=1) # add_two_numbers(1, 1)
-```
-
-```{r}
-#| code-fold: false
-linear_predictor <- function(x){
-    1.2 * x + 2.1
-}
-
-# notice this function takes a vector and spits out a vector
-x_values <- c(1, 2, 3, 5)
-linear_predictor(x_values)
-```
-
-# Learning predictive algorithms from data
-
-Ok clearly we can do better than the functions we showed above. From visual inspection of the scatter plot we can probably guess a linear function would be best. Recall a linear function is *parameratized* by its *slope* and *intercept,*
-
-$$
-f(x) = \text{slope} * x + \text{intercept}
-$$
-
-What should the slope and intercept be for the figure above? We need to look at the data to figure out the best values for these *model parameters*.
-
-To determine what the best model parameters are we need a way to evaluate how well a given model fits our data. The plot below shows two potential lines to fit the data. We can all agree the red line is a better fit, but how would we quantify that?
-
-```{r}
-get_linear_model_pred <- function(x_vals, slope, intercept){
-    slope * x_vals + intercept
-}
-
-
-
-penguins_with_2_lines <- penguins %>% 
-    mutate(y_pred_bad=get_linear_model_pred(x_vals=flipper_length_mm,
-                                            slope=40,
-                                            intercept = -5000),
-           y_pred_better=get_linear_model_pred(x_vals=flipper_length_mm,
-                                               slope=50,
-                                               intercept = -5700))
-    
-
-
-penguins_with_2_lines %>% 
-    ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
-    geom_point() +
-    geom_line(aes(x=flipper_length_mm, y=y_pred_bad), color='blue') + 
-    geom_line(aes(x=flipper_length_mm, y=y_pred_better), color='red')
-
-```
-
-## Quantifying goodness of fit with predicted residuals
-
-For a given $(x, y)$ data point and a prediction function $f(x)$ a natural measure of fit comes from the residuals (recall the residuals in a previous lecture \[TODO: link\]). In particular, either the *absolute residual* $|y - f(x)|$ or *squared residual* $(y - f(x))^2$.
-
-Lets see what this looks like visually
-
-```{r}
-penguins_with_2_lines %>% 
-    ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
-    geom_point() +
-    geom_line(aes(x=flipper_length_mm, y=y_pred_bad), color='blue') + 
-    geom_segment(aes(xend = flipper_length_mm, yend = y_pred_bad), color='blue', alpha=.1)
-
-
-penguins_with_2_lines %>% 
-    ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
-    geom_point() +
-    geom_line(aes(x=flipper_length_mm, y=y_pred_better), color='red') + 
-    geom_segment(aes(xend = flipper_length_mm, yend = y_pred_better), color='red', alpha=.1)
-```
-
-We can the measure the overall fit of a function through the typical residual value
-
-$$
-\text{Godness-of-fit}(f, \{x_i\}_{i=1}^n, \{y_i\}_{i=1}^n) = \text{typical}\Big(\text{residual}(y_1, f(x_1), \dots, \text{residual}(y_n, f(x_n) \Big) 
-$$
-
-
-::: column-margin
-The notation $\{x_i\}_{i=1}^n$ is just short hand for the collection of observations $x_1, x_2, \dots, x_n$.
+:::{style="text-align: center"}
+## Welcome to Unit II: Prediction
 :::
 
-For example the *median absolute residual*
+In the last unit we considered four different claims that might be made based on the line plot found in the news story below[^nyt]. 
 
-$$
-\text{median}\left( |y_1 - f(x_1)|, \dots, |y_n - f(x_n)| \right) 
-$$
+1. The Consumer Price Index rose 8.3% in April.
+2. The Consumer Price Index will likely rise throughout the summer.
+3. The global consumer price index rose in April.
+4. The Consumer Price Index rose 8.3% because of the war in Ukraine.
 
-or the *mean residuals sum of squares*
+![](images/nyt-inflation.png){#fig-inflation fig-align=center width="600px"}
 
-$$
-\frac{(y_1 - f(x_1))^2 + \dots + (y_n - f(x_n))^2}{n}
-$$
+The last unit dealt with claims like the first one, claims made about the nature of the data that is on hand. In this unit use, we aim to make claims like the second one, "The Consumer Price Index will likely rise throughout the summer". This is a *prediction*, a claim that uses the structure of the data at hand to predict the value of observations about which we have only partial information. In midsummer, we know the date will be July 15th, that's the x-coordinate. But what will the y-coordinate be, the Consumer Price Index?
 
-While the former seems appealing (e.g. for robustness), we almost always use the latter for pragmatic computational reasons. We can calculate our goodness of fit measures for the two lines.
+The realm of prediction is the subject of intense research activity and commercial investment at the moment. Falling under the terms "machine learning" and "AI", models for prediction have become very powerful in recent years; they can diagnose diseases, help drive autonomous vehicles, and compose text with eerily human sensibilities. At the core of these complicated models, thought, are a few simple ideas that make it all possible.
 
-```{r}
-#| code-fold: false
+![Four types of claims made with data covered in this class.](images/claims-only.png){#fig-claims width="500px"}
 
-# this data frame was created in the code that's hidden by default above
-penguins_with_2_lines %>% 
-    mutate(residual_bad = y_pred_bad - body_mass_g,
-           residual_better = y_pred_better - body_mass_g) %>% 
-    summarise(avg_rss_bad=mean(residual_bad^2, na.rm=T),
-              avg_rss_better=mean(residual_better^2, na.rm=T))
 
-```
+[^nyt]: Smialek, Jeanna (2022, May 11). Consumer Prices are Still Climbing Rapidly. *The New York Times*. <https://www.nytimes.com/2022/05/11/business/economy/april-2022-cpi.html>
 
-Lo and behold the red line has a smaller mean residual sum of squares!
+## A Simple Linear Model
 
-## Learning the best fit line with `lm()`
+Our introduction to building a model for prediction begins with a simple question:
 
-We're now armed with everything we need to find the line of best fit. Here the line of best fit is the line (slope+intercept) that has the smallest residual sum of squares for our dataset. It's just a calculus exercise to derive what the best slope/intercept would be. Fortunately R has a built in function to do this for us (and much more).
+> What is the relationship between educational attainment and poverty?
 
-We can fit a *linear model* in R with the `lm()` function.
+As framed, this question is so general as to be challenging to answer convincingly. To make the question more tractable, let's start from the other end: what data could be brought to bear on this question?
 
-```{r}
-#| code-fold: false
-linear_model <- lm(body_mass_g ~ flipper_length_mm, data=penguins)
-```
-
-The coefficient and intercept can be found as
-
-```{r}
-#| code-fold: false
-linear_model$coefficients
-```
-
-We can use the `linear_model` object to obtain predictions (it would not have been too painful to do this ourselves).
-
-```{r}
-#| code-fold: false
-y_pred <- predict(linear_model, penguins)
-y_pred[1:10] # just print first 10 values!
-```
-
-## Interpreting the linear regression coefficient
-
-The `slope` of means for every one unit change in x we expect to see y change by `slope` units. The `intercept` means that if x is 0 then we expect y to be around the `intercept`.
-
-# Multiple predictors
-
-Most of the time we have more than one x variable (*predictor* or *covariate* or *feature)*. Suppose we arrange our variables in a vector $x = (x^{(1)}, \dots, x^{(d)})$, then our linear prediction would look like
-
-$$
-f(x) = a_{\text{intercept}} + c^{(1)} x^{(1)}+ \dots + c^{(d)} x^{(d)}
-$$
-
-where $c=(c^{(1)}, \dots, c^{(d)})$ is the vector of *coefficients* (one for each variable) and $a_{\text{intercept}}$ is of course the intercept. The coefficients play the same role as the slope when there was one variable.
-
-We fit a linear model as
+The `poverty` data frame contains data from the 50 US states (plus the District of Columbia) with two variables observed on each: the percentage of the population living below the poverty line and the percentage of current residents who have graduated from high school.
 
 ```{r}
 #| code-fold: false
 
-linear_model <- lm(body_mass_g ~ flipper_length_mm + bill_length_mm, 
-                   data=penguins)
-
-linear_model
+library(tidyverse)
+poverty <- read_csv("https://tinyurl.com/stat20poverty")
+poverty
 ```
 
-If we have two variables we can still visualize the linear function; it is a plane living in 3 dimensions (the first two dimensions are the 2 variables, the 3rd is the y variable).
+With this data set, we can start by addressing the more specific question:
+
+> What is the relationship between the poverty rate and the high school graduation rate among the 50 US states plus DC?
+
+A good first start to answering this question is to perform some exploratory data analysis and visualize the relationship using a natural choice for two numerical variables: a scatter plot.
 
 ```{r}
-penguins_no_nan <- penguins %>% 
-        select(flipper_length_mm, bill_length_mm, body_mass_g) %>% 
-        drop_na()
-
-# borrowing code from:
-# http://www.sthda.com/english/wiki/impressive-package-for-3d-and-4d-graph-r-software-and-data-visualization
-# https://github.com/idc9/stor390/blob/master/notes/linear_regression/linear_regression.Rmd
-library(plot3D)
-x <- penguins_no_nan$flipper_length_mm
-y <- penguins_no_nan$bill_length_mm
-z <- penguins_no_nan$body_mass_g
-
-fit <- lm(z ~ x + y)
-# predict values on regular xy grid
-grid.lines = 26
-x.pred <- seq(min(x), max(x), length.out = grid.lines)
-y.pred <- seq(min(y), max(y), length.out = grid.lines)
-xy <- expand.grid( x = x.pred, y = y.pred)
-z.pred <- matrix(predict(fit, newdata = xy), 
-                 nrow = grid.lines, ncol = grid.lines)
-fitpoints <- predict(fit)
-
-# scatter plot with regression plane
-scatter3D(x, y, z, pch = 19, cex = .5, alpha=.4, col='red', 
-          theta = 200, phi =25, ticktype = "detailed",
-          xlab = "flipper_length_mm", ylab = "bill_length_mm", zlab = "body_mass_g",  
-          surf = list(x = x.pred, y = y.pred, z = z.pred, facets = NA, alpha=1, col='black', fit=fitpoints), 
-          main = "linear regression with 2 predictors")
-
+poverty %>%
+    ggplot(aes(x = Poverty,
+               y = Graduates)) +
+    geom_point() +
+    theme_bw()
 ```
 
-If we have $d >= 3$ two variables our prediction function would be a [hyperplane](https://en.wikipedia.org/wiki/Hyperplane) living in $d + 1$ dimensional space. It's a bit harder to visualize things in 4 or more dimensions, but it's analogous to a 2d plane living in 3 dimensions.
+A good second step might be to summarizing the strength of this relationship with a statistic: the Pearson correlation coefficient.
+
+For the remainder of these notes, we'll turn you over to two lectures that can now be found under "Media Gallery" in Stat 20 - Main on bCourses. You're encouraged to copy the code from these notes into RStudio and code along as you watch the videos. Any questions that come up, please ask them on Ed.
+
+1. [Simple Linear Regression 1](https://bcourses.berkeley.edu/courses/1517492/external_tools/78985): 8 minutes
+2. [Simple Linear Regression 2](https://bcourses.berkeley.edu/courses/1517492/external_tools/78985): 32 minutes
