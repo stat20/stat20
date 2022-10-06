@@ -11,4 +11,4 @@ format:
     reference-location: document
     
 execute: 
-  freeze: auto
+  freeze: false

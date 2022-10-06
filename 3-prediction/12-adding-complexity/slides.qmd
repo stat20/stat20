@@ -31,8 +31,7 @@ format:
 
 ## Into the mind of the cat 
 
-
-![](frank.png){fig-align="center" height="700"}
+![](images/frank.png){fig-align="center" height="700"}
 
 This is Frank
 
@@ -68,8 +67,7 @@ cats <- data.frame(name=c('castiel', 'frank', 'luna', 'luca'),
 cats
 ```
 
-
-## Which is the most appropirate transformation?
+## Which is the most appropriate transformation?
 
 ```{r}
 countdown::countdown(1, top = 0)
@@ -77,11 +75,15 @@ countdown::countdown(1, top = 0)
 
 
 :::{.poll}
-Which is the most appropriate non-linear transformation to apply to `Time being pet`?
+Which is the most appropriate non-linear transformation to apply to `time_being_pet`?
 :::
 
 
 ```{r}
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 3
+
 set.seed(1)
 n_samples = 100
 tibble(pet=runif(n=n_samples, min=0, max=100),
@@ -131,9 +133,6 @@ $$
 b_0 = \overline{y} - b_1 \cdot \overline{x}
 $$
 
-
-
-
 ## Is this the correct formula?
 
 ```{r}
@@ -163,6 +162,7 @@ $$
 $$
 b_0 = \overline{y} -  \sum_{j=1}^d b_j \cdot \overline{x}_j
 $$
+
 
 
 # Handout
