@@ -357,3 +357,6 @@ This is easy to do in R with the `lm()` function and the formula is a generaliza
 A second step is to build non-linear prediction functions.
 There are only two ingredients for non-linear prediction functions in this lecture: 1) creating new variables with a non-linear transformation and 2) fitting a linear model with the new variables as predictors.
 
+
+<!-- {{< include ../../assets/_links-to-materials.qmd >}} -->
+

@@ -31,7 +31,6 @@ format:
 
 ## Into the mind of the cat 
 
-
 ![](images/frank.png){fig-align="center" height="700"}
 
 This is Frank
@@ -68,7 +67,6 @@ cats <- data.frame(name=c('castiel', 'frank', 'luna', 'luca'),
 cats
 ```
 
-
 ## Which is the most appropriate transformation?
 
 ```{r}
@@ -85,6 +83,7 @@ Which is the most appropriate non-linear transformation to apply to `time_being_
 #| fig-align: center
 #| fig-width: 5
 #| fig-height: 3
+
 set.seed(1)
 n_samples = 100
 tibble(pet=runif(n=n_samples, min=0, max=100),
@@ -134,39 +133,36 @@ $$
 b_0 = \overline{y} - b_1 \cdot \overline{x}
 $$
 
+## Is this the correct formula?
+
+```{r}
+countdown::countdown(2, top = 0)
+```
+
+Suppose I fit a linear regression model 
+$$
+\widehat{y} = b_0 + b_1 \cdot x_1 + \dots + b_d \cdot x_d
+$$
+:::{.poll}
+Do following formulas tell me the linear regression coefficients?
+:::
+
+$$
+b_1 = \frac{s_y}{s_{x_1}} \text{cor}(x_1, y)
+$$
+$$
+\vdots
+$$
+
+$$
+b_d = \frac{s_y}{s_{x_d}} \text{cor}(x_d, y)
+$$
 
 
+$$
+b_0 = \overline{y} -  \sum_{j=1}^d b_j \cdot \overline{x}_j
+$$
 
-<!-- ## Is this the correct formula? -->
-
-<!-- ```{r} -->
-<!-- countdown::countdown(2, top = 0) -->
-<!-- ``` -->
-
-<!-- Suppose I fit a linear regression model  -->
-<!-- $$ -->
-<!-- \widehat{y} = b_0 + b_1 \cdot x_1 + \dots + b_d \cdot x_d -->
-<!-- $$ -->
-
-<!-- :::{.poll} -->
-<!-- Do following formulas tell me the linear regression coefficients? -->
-<!-- ::: -->
-
-<!-- $$ -->
-<!-- b_1 = \frac{s_y}{s_{x_1}} \text{cor}(x_1, y) -->
-<!-- $$ -->
-<!-- $$ -->
-<!-- \vdots -->
-<!-- $$ -->
-
-<!-- $$ -->
-<!-- b_d = \frac{s_y}{s_{x_d}} \text{cor}(x_d, y) -->
-<!-- $$ -->
-
-
-<!-- $$ -->
-<!-- b_0 = \overline{y} -  \sum_{j=1}^d b_j \cdot \overline{x}_j -->
-<!-- $$ -->
 
 
 # Handout
