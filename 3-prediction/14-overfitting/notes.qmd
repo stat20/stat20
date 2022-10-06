@@ -1,0 +1,537 @@
+---
+title: "Overfitting"
+subtitle: "Overfitting with scissors, train/test split, hyperparameter tuning."
+date: "10/07/2022"
+image: images/poly.png
+format:
+  html:
+    code-fold: true
+    code-link: true
+    code-summary: "."
+execute: 
+  warning: false
+  message: false
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+[[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
+[[PDF]{.btn .btn-primary}](notes.pdf)
+
+Learning through examples is one of the most important ways we acquire knowledge.
+Have you ever given someone an example to illustrate a concept, but that person gets too caught up in the details of the example and learns the wrong lesson?
+There is an expression for this "missing the forest for the trees"[^1].
+Before reading these notes please listen to Act 3 of [this podcast](https://www.thisamericanlife.org/584/for-your-reconsideration) (Kids Look Back -- 10 minutes).
+
+[^1]: Definition (Merriam-Webster): to not understand or appreciate a larger situation, problem, etc., because one is considering only a few parts of it.
+
+<!-- https://www.merriam-webster.com/dictionary/miss%20the%20forest%20for%20the%20trees#:~:text=Definition%20of%20miss%20the%20forest,a%20few%20parts%20of%20it -->
+
+Almost all predictive modeling -- from linear regression to artificial intelligence based on deep learning -- is accomplished though learning by example.
+In simple linear regression we show our algorithm a bunch of pairs of examples $(x_1, y_1), \dots, (x_n, y_n)$ and ask the linear model to best approximate $y$ through the linear function[^2] $\widehat{y} = b_0 + b_1 \cdot x$.
+
+[^2]: In other words, the linear function coefficients $(b_0, b_1)$ come from these examples (remember the formulas from previous lectures).
+
+Missing the forest for the trees turns out to be one of the most important concepts predictive modeling.
+In statistics we call it *overfitting*.
+
+## Overfitting
+
+Let's illustrate overfitting with an example 😉.
+
+Here we collected data about the association between number of hours studied and students' test scores in a math class.
+Our goal is to predict the exam score from number of hours studied.
+Both plots below show the same data, but show the predictions from two different predictive models.
+
+```{r}
+#| fig-width: 7
+#| fig-height: 4
+#| fig-align: center
+library(tidyverse)
+library(patchwork)
+library(broom)
+
+set.seed(1)
+n_samples <- 10
+
+min_n_hours <- 5
+max_n_hours <- 10
+
+exam_avg <- 75
+point_per_hour <- 5
+
+intercept <- exam_avg - point_per_hour * (min_n_hours + max_n_hours) / 2
+noise <-  rnorm(n=n_samples, mean=0, sd=5)
+
+# Setup data
+math <- tibble(hours=runif(n=n_samples, min=min_n_hours, max=max_n_hours),
+             score=point_per_hour * hours + intercept + noise)
+
+# same x data, but much finer grid. useful for plotting lines
+math_filled_in_range <- tibble(hours=seq(from=min_n_hours, to=max_n_hours, by=.01))
+
+# fit models
+lm_lin <- lm(score ~ hours, data=math)
+lm_poly <- lm(score ~ poly(hours, degree=20, raw=T), data=math)
+
+# add predictions into model
+math <- math %>% 
+    mutate(y_pred_linear = predict(lm_lin, newdata=math),
+           y_pred_poly = predict(lm_poly, newdata=math))
+
+math_filled_in_range_filled_in_range <- math_filled_in_range %>% 
+    mutate(y_pred_linear = predict(lm_lin, newdata=math_filled_in_range),
+           y_pred_poly = predict(lm_poly, newdata=math_filled_in_range))
+
+plot_linear <- math %>% 
+    ggplot(aes(x=hours, y=score)) +
+    geom_point() +
+    geom_line(aes(x=hours, y=y_pred_linear), color='blue') +
+    lims(x=c(5, 10), y=c(65, 90)) +
+    ggtitle("Math class data") +
+    theme_bw()
+
+plot_poly <- math %>% 
+    ggplot(aes(x=hours, y=score)) +
+    geom_point() +
+    geom_line(data=math, aes(x=hours, y=y_pred_poly), color='red')+
+    lims(x=c(5, 10), y=c(65, 90)) +
+    theme_bw()
+
+plot_linear + plot_poly
+```
+
+Which model looks more appropriate?
+For example,
+
+-   Does it make sense that there should be a big difference between studying 6.7 hours vs studying 6.8 hours?
+
+-   Should studying a little more make your score go down?
+
+The predictive model on the left seems more reasonable: studying more should steadily increase your score.
+The predictive model on the right seems like it took the particular data points too seriously!
+We call this phenomenon *overfitting*.
+
+## Overfitting with polynomials
+
+> With great modeling power comes great responsibility to not overfit.
+
+The blue model on the left above is fairly simple (just a line!) while the red overfit model on the right looks much more complex (it is fairly irregular and goes up and down).
+We created the overfitted predictive model on the right by fitting a polynomial with a high degree.
+
+Polynomials are quite powerful models and are capable of creating very complex predictive functions.
+The higher the polynomial degree, the more complex function it can create.
+
+Let's illustrate by fitting polynomial models with progressively larger degrees to the data set above.
+
+```{r}
+#| fig-height: 4
+#| fig-width: 8
+#| fig-align: center
+plot_deg_1 <- math_filled_in_range %>% 
+    mutate(y_pred = predict(lm(score ~ poly(hours, degree=1, raw=T), data=math), newdata=math_filled_in_range)) %>% 
+    ggplot( aes(x=hours, y=score)) +
+    geom_line(aes(x=hours, y=y_pred), color='red')+
+    geom_point(data=math, aes(x=hours, y=score)) +
+    lims(x=c(5, 10), y=c(65, 90)) +
+    ggtitle("Degree 1 polynomial") +
+    theme_bw()
+
+plot_deg_3 <- math_filled_in_range %>%
+    mutate(y_pred = predict(lm(score ~ poly(hours, degree=3, raw=T), data=math), newdata=math_filled_in_range)) %>%
+    ggplot(aes(x=hours, y=score)) +
+    geom_line(aes(x=hours, y=y_pred), color='red')+
+    geom_point(data=math, aes(x=hours, y=score)) +
+    lims(x=c(5, 10), y=c(65, 90)) +
+    ggtitle("Degree 3 polynomial") +
+    theme_bw()
+
+plot_deg_5 <- math_filled_in_range %>%
+    mutate(y_pred = predict(lm(score ~ poly(hours, degree=5, raw=T), data=math), newdata=math_filled_in_range)) %>%
+    ggplot(aes(x=hours, y=score)) +
+    geom_line(aes(x=hours, y=y_pred), color='red') +
+    geom_point(data=math, aes(x=hours, y=score)) +
+    lims(x=c(5, 10), y=c(65, 90)) +
+    ggtitle("Degree 5 polynomial") +
+    theme_bw()
+
+plot_deg_1 + plot_deg_3 + plot_deg_5
+```
+
+The higher the polynomial degree, the closer the prediction function comes to perfectly fitting the data[^3].
+We can quantitatively evaluate this by looking at the $r^2$ value.
+The plot below shows the $r^2$ value for models fit with different polynomial degrees.
+
+[^3]: We say a function that perfectly predicts each data point *interpolates* the data.
+    See the first red curve for the math class exams.
+
+```{r}
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 2.5
+#########################
+# Digression: for loops #
+#########################
+
+# We have not learned for loops. Here is a simple example where we calculate the squares of the
+# first 10 integers
+# squares <- c()
+# for (i in 1:10){
+#     squares <- c(squares, i^2)
+# }
+# squares
+
+#####################
+# Evaluate Rsquared #
+#####################
+degrees2evaluate <- 1:10
+
+Rsq_values <- c()
+# each iteration of this for loop evaluates the model for a different polynomial degree 
+for (degree in degrees2evaluate){
+    
+    # fit the model on the training data with the specified degree
+    model <- lm(score~poly(hours, degree=degree, raw=T), data=math)
+    rsq <- glance(model)$r.squared
+    
+    # track the Rsquared values
+    # vector <- c(vector, value) will add the value to the end of the vector
+    # i.e. c does concatenation
+    Rsq_values <- c(Rsq_values, rsq)
+}
+
+tibble(degree=degrees2evaluate,
+       Rsq=Rsq_values) %>% 
+    ggplot(aes(x=degree, y=Rsq)) + 
+    geom_point() + 
+    scale_x_continuous(breaks=degrees2evaluate)+
+    # ggtitle("r^2 gets better with degree!") +
+    theme_bw()
+```
+
+The $r^2$ value goes straight up as the polynomial degree goes up.
+In fact this is mathematically guaranteed to happen: for a fixed dataset the $r^2$ value for a polynomial model with higher degree will always be better than a polynomial model with lower degree.
+This should be disconcerting.
+From visually inspecting the above plots we can see that higher degree polynomials seem to be worse models.
+Does that mean $r^2$ is not a good measure of fit?
+
+## Train vs. test set evaluation
+
+We can rescue $r^2$ by changing our workflow.
+Previously we both *fit* the model (set the $b_0, b_1$ coefficeints) and *evaluated* the model (calculated $r^2$) with the same dataset.
+Now we are going to fit the model and evaluate the model with different datasets.
+
+In brief we will 1) split the observations into two parts 2) fit the model on the first part of the data and 3) evaluate the model using the second part of the data.
+The first set of observations is called the *training data* or *training set* and the second set of observations is called the *test data* or *test set*.
+
+Train/test set splitting is a natural idea.
+If the Stat 20 final exam were made up of just homework questions, then it will be difficult to tell if students learned the concepts or just memorized the homework questions.
+
+Let's illustrate train/test evaluation with the exam scores from a biology class with 200 students.
+Here we are going to compare two models; a linear fit vs. a 5th degree polynomial fit.
+
+We are going to randomly select 80% of the observations for the training set then put the remaining 20% of observations into the test set.
+We call this an 80/20 train/test set split.
+It's important the training and test set do not overlap; an observation is only in one or the other!
+It's also important the data are divided up randomly.
+
+```{r}
+n_samples_big <- 200
+set.seed(1233)
+noise <-  rnorm(n = n_samples_big, mean = 0, sd = 5)
+
+# Setup data
+biology <- tibble(hours = runif(n = n_samples_big,
+                                min = min_n_hours,
+                                max=max_n_hours),
+                  score = point_per_hour * hours + intercept + noise)
+```
+
+First we randomly assign observations to train/test set.
+
+```{r}
+#| code-fold: false
+
+# fix the random seed so we get the same train/test split everytime
+set.seed(13)
+
+# randomly sample train/test set split
+set_type <- sample(x = c('train', 'test'), 
+                   size = 200, 
+                   replace = TRUE, 
+                   prob = c(0.8, 0.2))
+
+biology <- biology %>% 
+    mutate(set_type = set_type)
+biology
+```
+
+<!-- ```{r} -->
+
+<!-- biology %>%  -->
+
+<!--     count(set_type) -->
+
+<!-- ``` -->
+
+Let's visualize these data.
+
+```{r}
+#| fig-align: center
+#| fig-height: 4
+#| fig-width: 6
+biology %>% 
+    ggplot(aes(x=hours, y=score, color=set_type)) +
+    geom_point() + 
+    ggtitle("Biology class") +
+    theme_bw()
+```
+
+Next let's split the original data frame into a training data frame and test data frame.
+
+```{r}
+#| code-fold: false
+biology_train <- biology %>% 
+    filter(set_type == 'train')
+
+biology_test <- biology %>% 
+    filter(set_type == 'test')
+```
+
+Now fit two models on the training data.
+
+```{r}
+#| code-fold: false
+
+# notice we using the training data to fit the model!
+lm_linear <- lm(score~hours, data=biology_train)
+lm_poly <- lm(score~poly(hours, degree=20, raw=T), data=biology_train)
+```
+
+Next we visually inspect the predictions.
+
+```{r}
+#| fig-align: center
+#| fig-height: 4
+#| fig-width: 6
+# same x data, but much finer grid. useful for plotting lines
+biology_filled_in_range <- tibble(hours = seq(from = min_n_hours, to = max_n_hours, by = .01))
+
+# this is useful for plotting
+biology_filled_in_range <- biology_filled_in_range %>% 
+    mutate(y_pred_linear = predict(lm_linear,
+                                   newdata = biology_filled_in_range),
+           y_pred_poly = predict(lm_poly, 
+                                 newdata = biology_filled_in_range)) 
+
+biology %>% 
+    ggplot(aes(x=hours, y=score, color=set_type)) +
+    geom_point() +
+    geom_line(data=biology_filled_in_range, aes(x=hours, y=y_pred_linear), color='red') +
+    geom_line(data=biology_filled_in_range, aes(x=hours, y=y_pred_poly), color='blue') +
+    lims(x=c(5, 10), y=c(65, 90)) +
+    theme_bw()
+```
+
+First let's evaluate the $r^2$ for the training data.
+We can do this just like before with `glance`.
+Which model do you expect to have a better *training* set $r^2$ value?
+
+```{r}
+#| code-fold: false
+
+# this calculates the training r^2
+glance(lm_linear) %>%
+    select(r.squared)
+
+glance(lm_poly) %>%
+    select(r.squared)
+```
+
+Just as we might have guessed from looking at the model fits, the polynomial model has a better $r^2$ value when evaluated on the training set.
+Next let's evaluate these models on the *test* set.
+
+```{r}
+#| code-fold: false
+
+# get predictions on test set
+score_pred_linear <- predict(lm_linear, newdata=biology_test)
+score_pred_poly <- predict(lm_poly, newdata=biology_test)
+```
+
+```{r}
+# calculate R squared for test set
+biology_test %>%
+    mutate(score_pred_linear = score_pred_linear,
+           score_pred_poly = score_pred_poly,
+           resid_sq_linear = (score - score_pred_linear)^2,
+           resid_sq_poly = (score - score_pred_poly)^2) %>%
+    summarize(TSS = sum((score - mean(score))^2),
+              RSS_linear = sum(resid_sq_linear),
+              RSS_poly = sum(resid_sq_poly)) %>%
+    mutate(Rsq_linear = 1 - RSS_linear/TSS,
+           Rsq_poly = 1 - RSS_poly/TSS) %>%
+    select(Rsq_linear, Rsq_poly)
+```
+
+Voila the linear model's test set $r^2$ is better than the polynomial model's test $r^2$!
+
+## Hyperparameter tuning
+
+Suppose we want to fit a polynomial model for a dataset; how do we pick the degree?
+Selecting the degree of a polynomial model is an example of *hyperparameter tuning*.
+It's tempted to fit polynomials for a bunch of degrees -- say every degree between 1 and 10 -- then pick the polynomial with the best $r^2$.
+The above sections about overfitting should make us suspicious of this idea; larger degree polynomials will always give better $r^2$ values!
+
+We can use what we learned in the previous train/test set section to select the degree.
+In detail, we
+
+1. split our dataset into a training and test set 
+2. fit each polynomial model on the training set and then 
+3. evaluate each polynomial model on the test set.
+
+This procedure is called *tuning with a validation set*; we conventionally call this test set that gets queried a number of times a *validation set*.
+
+#### Example: Physics Exam Scores
+
+Consider the following physics exam scores dataset where the relationship is no longer linear.
+
+```{r}
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 3
+# Setup data
+n_samples_physics <- 20
+
+set.seed(23)
+
+noise <-  rnorm(n=n_samples_physics, mean=0, sd=2)
+
+physics <- tibble(hours=runif(n=n_samples_physics, 
+                              min=min_n_hours,
+                              max=max_n_hours),
+                  score= (hours - 7.5)^3 + 75 + noise)
+
+physics %>% 
+    ggplot(aes(x=hours, y=score)) +
+    geom_point() +
+    ggtitle("Physics class") +
+    theme_bw()
+```
+
+We can select the degree using a train/validation set by fitting 10 different models - each using a different degree - and calculating their $r^2$ for the train and test sets separately.
+
+```{r}
+# In this class the focus is not on the code used in this section, but rather
+# how the procedure works. If you are curious about the code, read on...
+# Two new programming concepts are used: functions and for loops
+
+#########################
+# Digression: functions #
+#########################
+
+# we have not covered functions yet, but they are pretty straightforward
+# the name of the function is the first thing, the word function is special,
+# all of the arguments go in the parentheses, and the last line of the function is returned
+# Here is a simple example of a function that adds two numbers
+add_two_nums <- function(a, b){
+    a + b
+}
+
+
+# create a function to return the Rsquared value
+get_R_sq <- function(model, test_data, test_y){
+    y_pred <- predict(model, newdata=test_data)
+    
+    TSS = sum((test_y - mean(test_y, na.rm=T))^2, na.rm=T)
+    RSS = sum((test_y - y_pred)^2, na.rm=T)
+    
+    1 - RSS / TSS
+}
+
+
+########################
+# train test set split #
+########################
+
+# Randomly assign observations to either train or test set
+physics <- physics %>% 
+    mutate(set_type=sample(x=c('train', 'test'),
+                           size=n_samples_physics, replace=TRUE, prob=c(0.8, 0.2)))
+
+physics_train <- physics %>% 
+    filter(set_type=='train')
+
+physics_test <- physics %>% 
+    filter(set_type=='test')
+
+########################
+# Hyperparemter tuning #
+########################
+
+degrees2evaluate <- 1:10
+
+
+models <- c()
+Rsq_values_train <- c()
+Rsq_values_test <- c()
+# each iteration of this for loop evaluates the model for a different polynomial degree 
+for (degree in degrees2evaluate){
+    
+    # fit the model on the training data with the specified degree
+    model <- lm(score~poly(hours, degree=degree, raw=T), data=physics_train)
+    
+    # compute the R squared value with the train and test data
+    train_rsq <- get_R_sq(model=model, test_data=physics_train, test_y=physics_train$score)
+    test_rsq <- get_R_sq(model=model, test_data=physics_test, test_y=physics_test$score)
+
+    # save everything
+    # vector <- c(vector, value) will add the value to the end of the vector
+    # i.e. c does concatenation
+    models <- c(models, model)
+    Rsq_values_train <- c(Rsq_values_train, train_rsq)
+    Rsq_values_test <- c(Rsq_values_test, test_rsq)
+
+}
+
+# we have not yet learned the gather function
+# but you can probably figure out what it does by starting at this code
+tuning_results = tibble(degree=degrees2evaluate,
+                        train = Rsq_values_train,
+                        test = Rsq_values_test) %>%
+    gather('type', 'Rsq', -degree)
+
+tuning_results
+```
+
+Finally let's visualize the results.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 4
+#| fig-align: center
+tuning_results %>% 
+    ggplot(aes(x=degree, y=Rsq, color=type)) + 
+    geom_point() +
+    geom_line() + 
+    scale_x_continuous(breaks=degrees2evaluate) +
+    theme_bw()
+```
+
+Taking a look at the numerical results we see degree 3 is the best model, though degrees 4 and 5 seem to work pretty well too.
+
+```{r}
+tuning_results %>% 
+    filter(type=='test') %>% 
+    arrange(desc(Rsq))
+```
+
+## Summary
+
+This lecture is about overfitting; what happens when your model takes the particular dataset it was built on too seriously.
+The more complex a model is, the more prone to overfitting it is.
+Polynomial models are able to create very complex functions thus high-degree polynomial models can easily overfit.
+Fitting a model and evaluating it on the same dataset can be problematic; if the model is overfitted the evaluation metric (e.g. $r^2$) might be very good, but the model itself might not be.
+A better way to approach modeling is to fit the model to a training set then evaluate it with a separate test set.
+This approach can be used to select the polynomial degree -- or other *model hyperparameters--* though a process called hyperparameter tuning.
