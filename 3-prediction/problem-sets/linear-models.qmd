@@ -1,0 +1,154 @@
+---
+title: "Linear Models"
+format: pdf
+---
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+library(tidyverse)
+library(stat20data)
+library(openintro)
+library(patchwork)
+library(broom)
+```
+
+#### Question 1
+
+The two scatterplots below show the relationship between the overall course average and two midterm exams (Exam 1 and Exam 2) recorded for 233 students during several years for a statistics course at a university.
+
+```{r}
+#| message: false
+#| warning: false
+#| fig-width: 8
+#| fig-height: 3
+#| echo: false
+
+  p_1 <- ggplot(exam_grades, aes(x = exam1, y = course_grade)) +
+      geom_point(size = 2, alpha = 0.6) +
+      labs(x = "Exam 1 grade", y = "Course grade") + xlim(35, 105)
+    
+    p_2 <- ggplot(exam_grades, aes(x = exam2, y = course_grade)) +
+      geom_point(size = 2, alpha = 0.6) +
+      labs(x = "Exam 2 grade", y = "Course grade") + xlim(35, 105)
+    
+    p_1 + p_2
+```
+
+a.  Based on these graphs, which of the two exams has the strongest correlation with the course grade? Explain.
+
+b.  Can you think of a reason why the correlation between the exam you chose in part (a) and the course grade is higher?
+
+{{< pagebreak >}}
+
+#### Question 2
+
+Researchers studying anthropometry collected body and skeletal diameter measurements, as well as age, weight, height and sex for 507 physically active individuals. The scatterplot below shows the relationship between height and shoulder girth (circumference of shoulders measured over deltoid muscles), both measured in centimeters.
+
+```{r}
+#| message: false
+#| warning: false
+#| fig-width: 2.5
+#| fig-height: 2.5 
+#| fig-align: center
+#| echo: false
+
+ ggplot(bdims, aes(x = sho_gi, y = hgt)) +
+      geom_point(size = 1.3, alpha = 0.6) +
+      labs(x = "Shoulder girth (cm)", y = "Height (cm)")
+```
+
+a.  Describe the relationship between shoulder girth and height.
+
+b.  How would the relationship change if shoulder girth was measured in inches while the units of height remained in centimeters?
+
+#### Question 3
+
+The following scatterplot shows the relationship between percent of population below the poverty level (`poverty`) from unemployment rate among those ages 20-64 (`unemployment_rate`) in counties in the US, as provided by data from the 2019 American Community Survey. The regression output for the model for predicting `poverty` from `unemployment_rate` is also provided.
+
+```{r}
+#| message: false
+#| warning: false
+#| fig-width: 3.5
+#| fig-height: 3
+#| fig-align: center
+#| echo: false
+
+library(kableExtra)
+library(scales)
+
+
+ggplot(county_2019, aes(x = unemployment_rate, y = poverty)) +
+  geom_point(alpha = 0.5) +
+  labs(
+    y = "Percent below the poverty level",
+    x = "Unemployment rate"
+  ) +
+  scale_x_continuous(labels = label_percent(scale = 1, accuracy = 1)) +
+  scale_y_continuous(labels = label_percent(scale = 1, accuracy = 1))
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| fig-width: 3.5
+#| fig-height: 3
+#| fig-align: center
+#| echo: false
+
+
+m <- lm(poverty ~ unemployment_rate, data = county_2019)
+m_rsq <- format(round(glance(m)$r.squared, 2)*100, digits = 2)
+m_tidy <- tidy(m)
+m_tidy %>%
+  mutate(p.value = ifelse(p.value < 0.001, "<0.0001", round(p.value, 4))) %>%
+  kbl(linesep = "", booktabs = TRUE, digits = 3, align = "lrrrr",
+      format = "latex") %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"),
+                latex_options = "HOLD_position") %>%
+  column_spec(1, width = "8em", monospace = TRUE) %>%
+  column_spec(2:5, width = "5em")
+
+```
+
+a.  Write out the linear model.
+
+b.  Interpret the intercept.
+
+c.  Interpret the slope.
+
+d.  For this model $R^2$ is `r m_rsq`%. Interpret this value.
+
+e.  Calculate the correlation coefficient for poverty and unemployment rate.
+
+#### Question 4
+
+Alberto Cairo is a journalist and designer and is on the faculty in the School of Communication at the University of Miami. He has written a book called *The functional art* on information graphics. The following is taken from his book: "Not long ago I read a news story about the connection between education and obesity. It highlighted several studies that found, on average, that better educated people, are less likely to be obese.....First I gathered numbers: the percentage of people holding BA degrees (or higher) per state, and the percentage of people who are obese...I calculated the correlation coefficient between the two data series: -0.67...Based on this, a result of -0.67 indicates a solid negative correlation...". Comment on his statement that "several studies that found, on average, that better educated people, are less likely to be obese".
+
+#### Question 5
+
+True or false, and please explain: If we have data $(x,y)$, such that $x$ is always less than $y$, then the correlation will be negative.
+
+#### Question 6
+
+In the cities handout that you covered in lecture last week, you saw that $R^2$ could be computed in two ways: either by using the regressions sum of squares ($SSR$) or the residual sum of squares ($RSS$). Note also that $TSS$, which is the sum of squared errors using the mean of $y$ to predict the value of $y$ is equal to the square of the SD of $y$. If $R^2$ is close to 0, what does this say about $RSS$ and $TSS$? What does this say about $r$?
+
+#### Question 7
+
+Consider the cities data, which appeared in the practice problems from class (find the problems and data at <https://tinyurl.com/stat20handout-cities>).
+
+a.  Create a linear model regressing the municipal expenditures (`mun_exp`) of a city against its population (`pop`). Call this model `lm1`.
+
+b.  Calculate the predictions and residuals manually with `tidyverse` as in question 5 on the handout.
+
+c.  What is the $R^2$ for this model?
+
+d.  Now create a new variable in the cities dataframe, called `many_for`, as described in the handout, which will be `TRUE` if there are at least 10 foreigners in the city, and `FALSE` otherwise.
+
+e.  Create a linear model that uses both `pop` and `many_for` to predict `mun_exp`. Call this model `lm2`.
+
+f.  What is the $R^2$ for this model? Interpret the summary of this model. How many coefficients were computed (including the intercept)? What would be the slope and intercept of the regression line(s)? Do you have any comment on this model? Is there an improvement over `lm1`?
+
+g.  (**Optional**) Create a scatterplot with `mun_exp` on the $y$ axis, and `pop` on the $x$ axis. Use `geom_abline()` to plot the regression line from the model `lm1`, that uses `pop` to predict `mun_exp`. Color it green. For fun, see if you can plot the lines from `lm2`. Color them red and blue. What do you see?
