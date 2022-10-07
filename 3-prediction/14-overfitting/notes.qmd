@@ -11,9 +11,6 @@ format:
 execute: 
   warning: false
   message: false
-editor: 
-  markdown: 
-    wrap: sentence
 ---
 
 [[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
