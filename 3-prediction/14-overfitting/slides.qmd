@@ -28,4 +28,69 @@ format:
 
 # Concept Questions
 
+## RQ 1
+
+```{r}
+countdown::countdown(3, top = 0)
+```
+
+:::{.poll}
+Which one of these is not an example of overfitting (either in real life or in statistics)?
+:::
+
+
+
+## Are RSS and R square necessarily related?
+
+```{r}
+countdown::countdown(2, top = 0)
+```
+
+:::{.poll}
+If I decrease the RSS (e.g. by fitting a more accurate model) then the $R^2$ value necessarily has to go up?
+:::
+
+
+## Over fit models
+```{r}
+countdown::countdown(2, top = 0)
+```
+
+:::{.poll}
+Ovefit models tend to...
+:::
+
+
+## Where is overfitting worse?
+```{r}
+countdown::countdown(5, top = 0)
+```
+
+:::{.poll}
+Suppose I overfit my model to the training data. In which scenario would I expect the test set performance to be significantly worse?
+:::
+
+
+```{r}
+library(tidyverse)
+library(patchwork)
+set.seed(1)
+n=200
+plot_A <- tibble(x=runif(n=n, min=0, max=1)) %>% 
+    mutate(y = x + rnorm(n=n, sd=.25))  %>% 
+    ggplot(aes(x=x, y=y)) +
+    geom_point() + 
+    ggtitle("Training data A")
+
+
+plot_B <- tibble(x=runif(n=n, min=0, max=1)) %>% 
+    mutate(y = x + rnorm(n=n, sd=.01))  %>% 
+    ggplot(aes(x=x, y=y)) +
+    geom_point() + 
+    ggtitle("Training data B")
+
+plot_A + plot_B
+```
+
+
 # Handout
