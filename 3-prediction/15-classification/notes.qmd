@@ -70,8 +70,11 @@ penguins
 
 :::
 
-Let see if we can determine the penguin species from the bill length and flipper length.
+Let see if we can determine the penguin species from the *bill length* and *flipper length*[^horst-art].
 First things first, let's take a look at the historical data where we know the true values of all three variables of interest (flipper length, bill length, and species).
+
+[^horst-art]: Penguin artwork by \@allison_horst.
+
 ```{r}
 #| fig-align: center
 #| fig-width: 5
