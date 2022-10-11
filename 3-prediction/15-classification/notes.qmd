@@ -13,7 +13,7 @@ execute:
   message: false
 ---
 
-[[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
+[[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233) [[PDF]{.btn .btn-primary}](notes.pdf)
 
 \
 
@@ -293,6 +293,3 @@ To get the prediction for a new test point $x_{\text{test}}$:
 2. Find the nearest $K$ training points.
 
 3. Have these $K$ nearest training points vote using their labels to obtain the predicted class.
-
-
-
