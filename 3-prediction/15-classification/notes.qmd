@@ -2,6 +2,7 @@
 title: "Classification"
 subtitle: "Penguin census and the K-nearest-neighbors algorithm"
 date: "10/12/2022"
+image: images/3-species.png
 format:
   html:
     code-fold: true
@@ -12,31 +13,31 @@ execute:
   message: false
 ---
 
+[[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
 
+\
 
 -  A doctor diagnosing a disease
-
--  Gmail's spam detector deciding whether or not a stat20 announcement is spam
-
+-  Gmail's spam detector deciding whether or not a Stat 20 announcement is spam
 -  An Ecologist determining which species of penguin they are looking at
 
 <!--# A self-driving car deciding what to do at a stop light -->
 
-These are all examples of predictive modeling.
+[T]{.dropcap}hese are all examples of predictive modeling.
 We are given some input variables -- e.g. a patient's symptoms -- and want to predict some output variable -- e.g. a disease. 
 In these examples, however, the variable we are trying to predict is a nominal categorical variable (recall the taxonomy of data[^tree]) instead of a numerical variable.
 The linear and polynomial models from the last few lectures only work for predicting  numerical variables so we need a new modeling framework.
 
-> Classification is predictive modeling when the response variable is categorical.
+**Classification**
+
+:    The task of predicting a response variable that is categorical.
 
 [^tree]: https://www.stat20.org/1-questions-and-data/02-taxonomy-of-data/notes.html#a-taxonomy-of-data
 
 
-# Penguin census
+## Penguin census
 
-![](images/lter_penguins.png){fig-align=center width="400"}
-
-
+![](images/3-species.png){fig-align=center width="400"}
 
 You are new Ecology researcher studying penguins in Dr. Gorman's lab at Palmer Station.
 Your project is to conduct a penguin census; Dr. Gorman has asked you to count how many penguins of each species are in the region (Adelie, Chinstrap, and Gentoo).
@@ -59,30 +60,28 @@ penguins
 ```
 
 
-## Historical species data
+### Historical species data
 
-::: {layout-ncol=2}
+::: {layout="[-15, 20, 20, -15]"}
 
-![](images/bill_length.png){height="200"}
+![](images/bill_length.png)
 
-![](images/flipper_length.png){height="200"}
+![](images/flipper_length.png)
 
 :::
-
-
-
-
-<!-- ![](images/culmen-depth.png){fig-align=center width="400"} -->
 
 Let see if we can determine the penguin species from the bill length and flipper length.
 First things first, let's take a look at the historical data where we know the true values of all three variables of interest (flipper length, bill length, and species).
 ```{r}
-
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 3.5
 penguins %>% 
     ggplot(aes(x=flipper_length_mm, y=bill_length_mm, color=species)) + 
     geom_point() +
-    xlab('Flipper Length (mm)') +
-    ylab("Bill Length (mm)") +
+    labs(x = 'Flipper Length (mm)',
+         y = "Bill Length (mm)",
+         color = "Species") +
     ggtitle("Palmer Penguin historical data") + 
     theme_bw()
 ```
@@ -96,92 +95,107 @@ If the historical data had looked like the following plot then our task would pr
 Any classifier built on this (hypothetical) dataset would probably have a very low accuracy rate.
 
 ```{r}
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 3.5
 set.seed(123) # seed for random permutation
 penguins %>% 
     mutate(species=sample(species, size=nrow(penguins))) %>% # shuffle the species columns
     ggplot(aes(x=flipper_length_mm, y=bill_length_mm, color=species)) + 
     geom_point() +
-    xlab('Flipper Length (mm)') +
-    ylab("Bill Length (mm)") +
+    labs(x = 'Flipper Length (mm)',
+         y = "Bill Length (mm)",
+         color = "Species") +
     ggtitle("Hypothetical historical data for undifferentiated species") + 
     theme_bw()
 ```
 
 <!-- If the historical data for species flipper/bill length looked like this second (hypothetical) plot, you would have to turn to other variables to build the species classifier. -->
 
-## Most similar penguin classifier
+## Most Similar Penguin Classifier
 
-Lets try a simple data driven classification rule; classify a penguin's species based on the species of the most similar penguin in the historical (training) dataset. 
-In other words, the use following algorithm to guess the species a new penguin:
+Let's try a simple data driven classification rule: classify a penguin's species based on the species of the most similar penguin in the historical (training) data set. 
+In other words, use following algorithm to guess the species a new penguin:
 
-1. Search through the historical data to find the most similar penguin based on bill length and bill depth
-2. Return the species of that penguin
+1. Search through the historical data to find the most similar penguin based on bill length and bill depth.
+2. Return the species of that penguin.
 
 To implement this algorithm we need to specify what we mean by "similar". 
-
-
 If there were just one variable -- say bill length -- it would be easy to define what we mean by "most similar".
 In words, we would find the nearest bill length value in the historical database.
-In math, we would find the smallest value of 
+In mathematical notation, we would find the smallest value of 
+
 $$
 |x_{\text{test}} - x_1|, |x_{\text{test}} - x_2|, \dots, |x_{\text{test}} - x_n|
 $$
+
 where $x_1, \dots, x_n$ are the bill length values of the historical penguins and $x_{\text{test}}$ is the bill length value of the new "test penguin".
 
-
-## Multiple variables
+### Multiple variables
 
 For two or more variables we have to do something a little different. 
 For multiple variables we use *Euclidean distance* to measure similarity.
 
-
-Suppose $a$ and $b$ are two vectors of $d$ numbers.
+Suppose $a$ and $b$ are two observations of $d$ variables.
 The Euclidean distance between $a$ and $b$ is
+
 $$
-d(a, b) = \sqrt{(a_1 - b_1)^2 + (a_2 - b_2)^2 + \dots (a_d - b_d)^2 }
+dist(a, b) = \sqrt{(a_1 - b_1)^2 + (a_2 - b_2)^2 + \dots (a_d - b_d)^2 }
 $$
 
-If $d=1$ this reduces to the absolute difference i.e. $d(a, b) = |a - b|$. 
-If the vectors represent spatial coordinates then Euclidean distance is the normal spatial distance we are familiar with i.e. what you would get if you use a ruler to measure distance between two points on a piece of paper.
+If $d=1$ this reduces to the absolute difference i.e. $dist(a, b) = |a - b|$. 
+If $d=2$, then Euclidean distance is the normal two-dimensional distance we are familiar with i.e. what you would get if you use a ruler to measure distance between two points on a piece of paper.
 
-Returning to our most similar penguin classifier with multiple variables, we now measure similarity with Euclidean distance.
-In other words, we find the penguin in the historical dataset whose Euclidean distance of bill/flipper length is nearest the test penguin.
+Returning to our Most Similar Penguin Classifier with multiple variables, we now measure similarity with Euclidean distance.
+In other words, we find the penguin in the historical dataset whose Euclidean distance of bill and flipper length is nearest the test penguin.
 
-## In code
+### Classifying a test penguin
 
 <!-- Let's walk though this in code. -->
 <!-- We'll eventually use software packages that do all the heavy lifting for us, but implementing an algorithm is an excellent way to understand it. -->
 
-Let say our test penguin has a bill length of 50 mm and flipper length of 200 mm.
+Let's say our test penguin has a bill length of 50 mm and flipper length of 200 mm.
 From the plot below it looks like this test penguin should be a Chinstrap.
 
 ```{r}
-test_bill_length = 50
-test_flipper_length = 200
-
+#| fig-align: center
+#| fig-width: 5.5
+#| fig-height: 4
+test_bill_length <- 50
+test_flipper_length <- 200
 
 penguins %>% 
     ggplot(aes(x=flipper_length_mm, y=bill_length_mm, color=species)) + 
     geom_point() +
-    xlab('Flipper Length (mm)') +
-    ylab("Bill Length (mm)") +
+    labs(x = 'Flipper Length (mm)',
+         y = "Bill Length (mm)",
+         color = "Species") +
     geom_point(x=test_flipper_length, y=test_bill_length,
                shape='X', size=10, color='black') + 
     theme_bw()
 ```
 
 Let's check if the algorithm agrees.
-We compute the Euclidean distance between the test penguin and each penguin in the dataset (plot below), then find the nearest penguin.
+We compute the Euclidean distance between the test penguin and each penguin in the data set (plot below), then find the nearest penguin.
 
 ```{r}
+#| fig-align: center
+#| fig-width: 5.5
+#| fig-height: 4
 penguins %>% 
-    ggplot(aes(x=flipper_length_mm, y=bill_length_mm, color=species)) + 
+    ggplot(aes(x=flipper_length_mm, 
+               y=bill_length_mm, 
+               color=species)) + 
     geom_point() +
-    xlab('Flipper Length (mm)') +
-    ylab("Bill Length (mm)") +
+    labs(x = 'Flipper Length (mm)',
+         y = "Bill Length (mm)",
+         color = "Species") +
     geom_point(x=test_flipper_length, y=test_bill_length,
                shape='X', size=10, color='black') + 
-    geom_segment(aes(xend = flipper_length_mm, yend = bill_length_mm), x=test_flipper_length, y=test_bill_length, color='red', alpha=.1)+
+    geom_segment(aes(xend = flipper_length_mm, 
+                     yend = bill_length_mm),
+                 x=test_flipper_length,
+                 y=test_bill_length, color='red', alpha=.1)+
     theme_bw() + 
     ggtitle("Euclidean distance between test and each training point")
 ```
@@ -189,12 +203,12 @@ penguins %>%
 
 ```{r}
 #| code-fold: false
-
-test_bill_length = 50
-test_flipper_length = 200
+test_bill_length <- 50
+test_flipper_length <- 200
 
 penguins %>%
-    mutate(euclid_dist=sqrt((bill_length_mm - test_bill_length)^2 + (flipper_length_mm - test_flipper_length)^2)) %>% 
+    mutate(euclid_dist=sqrt((bill_length_mm - test_bill_length)^2 +
+                                (flipper_length_mm - test_flipper_length)^2)) %>% 
     arrange(euclid_dist)
 ```
 
@@ -202,9 +216,8 @@ And voila, our nearest penguin algorithm guessed Chinstrap!
 
 ### Aside: broadcasting
 
-One thing should seem weird about this code; `test_bill_length` and `test_flipper_length` are numbers but `bill_length_mm` and `flipper_length_mm` are vectors (columns of the penguins dataframe). 
-Why can you use numbers and vectors in the same arithmetic expression?
-For example `bill_length_mm - test_bill_length`.
+One thing should seem weird about this code; `test_bill_length` and `test_flipper_length` are numbers but `bill_length_mm` and `flipper_length_mm` are vectors (columns of the penguins data frame). 
+Why can you use numbers and vectors in the same arithmetic expression, for example `bill_length_mm - test_bill_length`?
 This is one place R will try to help you out by *broadcasting* the number to each entry of the vector.
 In other words, R knows you wanted to subtract `test_bill_length` from each entry of `bill_length_mm`.
 
@@ -225,15 +238,19 @@ We might be able to improve our penguin classifier though a bit of democracy.
 Instead of finding the most similar penguin, why don't we find the most similar 3 penguins and have them vote to determine the predicted class?
 
 As a motivating example, suppose our test penguin has a bill length of 48 mm and flipper length of 203 mm.
-Looking carefully at the below plot we see the nearest penguin is a Gentoo, but the other nearby penguins are all Chinstraps.
+Looking carefully at the plot below we see the nearest penguin is a Gentoo, but the other nearby penguins are all Chinstraps.
 
 ```{r}
-
-test_bill_length_2 = 48
-test_flipper_length_2 = 203
+#| fig-align: center
+#| fig-width: 5.5
+#| fig-height: 4
+test_bill_length_2 <- 48
+test_flipper_length_2 <- 203
 
 penguins %>% 
-    ggplot(aes(x=flipper_length_mm, y=bill_length_mm, color=species)) + 
+    ggplot(aes(x = flipper_length_mm, 
+               y = bill_length_mm,
+               color = species)) + 
     geom_point() +
     xlab('Flipper Length (mm)') +
     ylab("Bill Length (mm)") +
@@ -243,13 +260,12 @@ penguins %>%
 ```
 
 ```{r}
-
-test_bill_length_2 = 48
-test_flipper_length_2 = 203
-
+test_bill_length_2 <- 48
+test_flipper_length_2 <- 203
 
 penguins %>%
-    mutate(euclid_dist=sqrt((bill_length_mm - test_bill_length_2)^2 + (flipper_length_mm - test_flipper_length_2)^2)) %>% 
+    mutate(euclid_dist=sqrt((bill_length_mm - test_bill_length_2)^2 +
+                                (flipper_length_mm - test_flipper_length_2)^2)) %>% 
     arrange(euclid_dist)
 ```
 
@@ -258,20 +274,20 @@ This seems like a better prediction from looking at the plot.
 
 There was nothing special about 3, we could ask any number, K, of the most similar penguins to vote and long as K is less than or equal to the number of penguins in the historical dataset.
 
-# Summary
+## Summary
 
-These notes presented classification; predictive modeling when the outcome variable is categorical instead of continuous.
-We walked through a simple classification algorithm; the K-closest-penguin classifier.
+These notes presented classification: predictive modeling when the outcome variable is categorical instead of numerical.
+We walked through a simple classification algorithm: the K-closest-penguin classifier.
 This is conventionally named the *k-nearest neighbors* (KNN) algorithm and can be summarized as follows.
 
-Start with training dataset $x_{1}, \dots, x_n$ with labels $y_1, \dots, y_n$ and pick a value of $K$ less than or equal to $n$.
+Start with training data set $x_{1}, \dots, x_n$ with labels $y_1, \dots, y_n$ and pick a value of $K$ less than or equal to $n$.
 To get the prediction for a new test point $x_{\text{test}}$:
 
 1. Compute the Euclidean distance between each training point and the test point $d(x_1, x_{\text{test}}), \dots, d(x_n, x_{\text{test}})$.
 
 2. Find the nearest $K$ training points.
 
-3. Have these $K$ nearest training points vote using their labels to obtain the predicted class
+3. Have these $K$ nearest training points vote using their labels to obtain the predicted class.
 
 
 
