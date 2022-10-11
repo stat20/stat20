@@ -136,7 +136,9 @@ where $x_1, \dots, x_n$ are the bill length values of the historical penguins an
 For two or more variables we have to do something a little different. 
 For multiple variables we use *Euclidean distance* to measure similarity.
 
-Suppose $a$ and $b$ are two observations of $d$ variables.
+Suppose $a$ and $b$ are two *vectors* of $d$ numbers.
+A vector is a list of numbers.
+For example in a (n x d) data frame each row (observation) is a vector of d numbers and each column (variable) is a vector of n numbers.
 The Euclidean distance between $a$ and $b$ is
 
 $$
