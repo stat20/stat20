@@ -46,7 +46,7 @@ data("penguins")
 
 # we only need this 3 columns for this exercise
 penguins <- penguins %>% 
-    select(flipper_length_mm, body_mass_g, species)
+    select(bill_length_mm, body_mass_g, species)
 ```
 
 
