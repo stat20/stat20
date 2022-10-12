@@ -1,0 +1,83 @@
+---
+title: "Classification"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+
+## Image classification
+
+:::{.poll}
+What object is is pictured here?
+:::
+
+
+
+![This is luna](images/luna.jpeg){fig-align="center" height="700"}
+
+
+
+## Agenda
+
+- IRL K-nearest-neighbors
+- Concept Questions
+- Handout
+
+# Concept Questions
+
+## Which of these are classification
+
+```{r}
+countdown::countdown(3, top = 0)
+```
+
+:::{.poll}
+Which of these are classification?
+:::
+
+
+## Bigger is always better?
+
+
+:::{.poll}
+The larger K, the more accurate KNN is since more samples get to vote?
+:::
+
+
+## Perfect predictions
+
+:::{.poll}
+Will KNN with K=1 always give perfect predictions on the training data? What about K=3?
+:::
+
+
+## Better predictions
+
+:::{.poll}
+KNN with K=3 will always give better test set predictions that K=1
+:::
+
+## Overfitting
+
+:::{.poll}
+KNN with K=1 is more likely to overfit than K=3.
+:::
+
+## Handout
+
