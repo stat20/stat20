@@ -35,9 +35,25 @@ What object is is pictured here?
 
 ## Agenda
 
+- Next Penary Speaker
 - IRL K-nearest-neighbors
 - Concept Questions
 - Handout
+
+## Penary talk: Precision Medicine
+
+- Dr. Atul Butte
+
+- Distinguished Professor of Pediatrics at UCSF
+
+- Chief Data Scientist for the entire University of California Health System,
+
+- Monday Oct 24th at 7pm in VLSB 2050
+
+- **Sign up on google form**
+
+![](images/atul.jpg){fig-align="center" height="400"}
+
 
 # Concept Questions
 
