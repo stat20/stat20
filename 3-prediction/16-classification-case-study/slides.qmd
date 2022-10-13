@@ -30,16 +30,6 @@ format:
 
 # Concept Questions
 
-<!-- ## Which of these are classification -->
-
-<!-- ```{r} -->
-<!-- countdown::countdown(3, top = 0) -->
-<!-- ``` -->
-
-<!-- :::{.poll} -->
-<!-- Which of these are classification? -->
-<!-- ::: -->
-
 
 ## Non-numeric data
 
@@ -119,7 +109,7 @@ What is the memory overhead for KNN with a training data frame that has n sample
 
 
 :::{.notes}
-For KNN you have to save every traning data point so its n * d.
+For KNN you have to save every training data point so its n * d.
 :::
 
 
@@ -136,6 +126,11 @@ $$
 
 
 ## KNN prediction runtime
+
+```{r}
+countdown::countdown(8, top = 0)
+```
+
 
 :::{.poll}
 How many arithmetic operations does it take to calculate the Euclidean distance between a test point and each training point in the KNN algorithm?
@@ -173,6 +168,11 @@ How many arithmetic operations does it take to calculate the Euclidean distance 
 <!-- ::: -->
 
 ## Standardization
+
+```{r}
+countdown::countdown(3, top = 0)
+```
+
 
 :::{.poll}
 For KNN, is standardization more important when the variables have very different means or very different standard deviations?
