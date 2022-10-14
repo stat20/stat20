@@ -30,7 +30,8 @@ library(tidyverse)
 library(caret)
 
 # load data, do some pre-processing
-cells <- read_csv('brca_fna_data.csv')
+cells <- read_csv('https://raw.githubusercontent.com/idc9/course-materials/main/3-prediction/labs/brca_fna_data.csv')
+
 
 # make diagnosis a factor -- this is required to make the code below work!
 cells <- cells %>% 

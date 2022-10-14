@@ -47,7 +47,8 @@ Examples of *string* data (sequence of characters)
 
 
 :::{.notes}
-Ok people familiar with word-embeddings and related ideas in modern machine learning might disagree with the statement "note all date can be turned into numbers".
+There are  ways of turning these into numeric data, for example, we could encode each word with a separate dummy variable.
+People familiar with word-embeddings in machine learning might have a fairly effective way of obtaining a very useful numerical vector representation of these kinds of data, but that's beyond this class.
 :::
 
 
@@ -123,7 +124,7 @@ KNN prediction
 
 1. Compute distance between test point and each training point
 2. Find smallest K distances
-3. Closest K samples take a vot
+3. Closest K samples take a vote
 
 . . .
 
