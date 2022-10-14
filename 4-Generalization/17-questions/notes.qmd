@@ -134,7 +134,7 @@ Variation that results from a chance mechanism has the advantage of being quanti
 
 + Measurement error for instruments result from the measurement process; if the instrument has no drift and a reliable distribution of errors, then when we take multiple measurements on the same object, we get variations in measurements that are centered on the truth.
 
-The Box Model is a simple abstraction that can be helpful for understanding variation. This model examines a container (a box) full of identical tickets that have been labeled, and we use the simple action of drawing tickets from the box to reason about sampling schemes, randomized controlled experiments, and measurement error. For each of these types of variation, the urn model helps us estimate the size of the variation using either probability or simulation. The example of selecting Wikipedia contributors to receive an informal award provides two examples of the urn model.
+The Box Model is a simple abstraction that can be helpful for understanding variation. This model examines a container (a box) full of identical tickets that have been labeled, and we use the simple action of drawing tickets from the box to reason about sampling schemes, randomized controlled experiments, and measurement error. For each of these types of variation, the box model helps us estimate the size of the variation using either probability or simulation. The example of selecting Wikipedia contributors to receive an informal award provides two examples of the box model.
 
 ## Summary
 
