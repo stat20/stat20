@@ -222,6 +222,10 @@ m1
 What is the (approximate) predicted number of highway miles per gallon of gas for an SUV that get 10 mpg in the city?
 :::
 
+```{r}
+countdown::countdown(1, top = 0)
+```
+
 :::{.notes}
 The same model from the previous problem but here assessing whether students know how to convert to dummy variables, but these coefficients into the correct formula, then do the arithmetic.
 :::
