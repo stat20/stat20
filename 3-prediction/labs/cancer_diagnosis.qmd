@@ -54,7 +54,7 @@ The diagnosis is in the column named `diagnosis`; each other column should be us
 
 3.  *Repeat the previous question for another variable of your choosing. What is the interpretation?*
 
-4.  *Make a plot that examines the association between `radius_mean` and `perimeter_mean`. Calculate the correlation between these two variables. Is there a strong association between these two variables? Does this make sense?*
+4.  *Make a plot that examines the association between `radius_mean` and `area_mean`. Calculate the correlation between these two variables. Is there a strong association between these two variables? Does this make sense?*
 
 
 5.  *Make a single plot that examines the association between `radius_mean` and `radius_se` separately for each diagnosis. Hint: `aes()` should have three arguments. Calculate the correlation between these two variables for each diagnosis.*
