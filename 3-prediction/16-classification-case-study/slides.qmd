@@ -134,6 +134,17 @@ How many arithmetic operations does it take to calculate the Euclidean distance 
 :::
 
 
+:::{.notes}
+
+Euclidean distance
+- d subtractions
+- d squares 
+- d - 1 additions
+- 1 square root
+:::
+
+
+
 # Cancer diagnosis lab
 
 
