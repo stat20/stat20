@@ -8,8 +8,9 @@ In this lab you will train and evaluate a classification algorithm to determine 
 Each biopsy has 30 features summarizing the nuclear morphology of the cells in the biopsy.
 See the lecture slides for some additional explanation.
 
-The purpose of this lab is to practice using the code from the [classification case study notes](https://www.stat20.org/3-prediction/16-classification-case-study/notes.html). **Much of parts 2 and 3 can be answered by copying/pasting/tweaking the code from these notes.**
+The purpose of this lab is to practice using the code from the [classification case study notes](https://www.stat20.org/3-prediction/16-classification-case-study/notes.html). **Much of part 2 can be answered by copying/pasting/tweaking the code from these notes.**
 
+The variables that end in `_se` are cell standard deviations (they are using the term *standard error*).
 
 ## Setup
 
@@ -49,22 +50,22 @@ The diagnosis is in the column named `diagnosis`; each other column should be us
 
 3.  Repeat the previous question for another variable of your choosing. What is the interpretation?
 
-4.  Make a plot that examines the association between `radius_mean` and `perimeter_mean`. Calculate the correlation between these two variables. Is there a strong association between these two variables? Does this make sense?
+4.  Make a plot that examines the association between `radius_mean` and `area_mean`. Calculate the correlation between these two variables. Is there a strong association between these two variables? Does this make sense?
 
 5.  Make a single plot that examines the association between `radius_mean` and `radius_se` separately for each diagnosis. Hint: `aes()` should have three arguments. Calculate the correlation between these two variables for each diagnosis.
 
     Give an interpretation of these results. In particular comment on
 
-    - *Is the relationship between `radius_mean` and `radius_se` different for benign biopsies vs. malignant biopsies?*
+    - Is the relationship between `radius_mean` and `radius_se` different for benign biopsies vs. malignant biopsies?
 
-    - *If so, can you give an explanation for this difference?*
+    - If so, can you give an explanation for this difference?
 
 
 # Part 2: Classification with K-nearest-neighbors
 
 6.  Split the full cells data set into an 80/20 train/test set split. Name the training data frame `train_df` and the test data frame `test_df`.
 
-    Make sure you use the seed in the code chunk shown below.*
+    Make sure you use the seed in the code chunk shown below.
 
     ```{r message=FALSE}
     set.seed(1234)
