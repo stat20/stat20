@@ -1,7 +1,7 @@
 ---
-title: "Classification case study"
+title: "Classification Case Study"
 subtitle: "Using KNN in R with the caret package"
-date: "10/13/2022"
+date: "10/14/2022"
 image: images/cv_curve.png
 format:
   html:
@@ -22,7 +22,14 @@ editor:
 
 In the previous lecture we started building a k-nearest-neighbor (KNN) classifier to classify penguin species based on bill length and flipper length.
 These notes focus on the same problem, but go through the entire classification analysis.
-We will put together several concepts we've already touched on:train/test set split, hyperparameter tuning, issues of scale, and the KNN algorithm.
+We will put together several concepts we've already touched on: train/test set split, hyperparameter tuning, issues of scale, and the KNN algorithm.
+
+:::{.callout-tip}
+
+## Code along
+
+As you read through these notes, keep RStudio open in another window to code along at the console.
+:::
 
 In these notes we'll build the species classifier using all of the physical measurements we have about the penguins including: bill length, bill depth, flipper length, and body mass.
 To simplify things we will drop any observation that has a missing value.
@@ -42,25 +49,31 @@ penguins
 We will use several new functions below that come from a package called `caret`, which is a powerful modeling package in R.
 These are `createDataPartition`, `preProcess`, `knn3`, `trainControl`, and `train`.
 
-```{r message=F}
+```{r}
 #| code-fold: false
+#| message: false
+#| eval: false
+install.packages("caret")
 library(caret)
-
-penguins <- penguins %>% 
-    mutate(species=as.factor(species))
 ```
 
-# Classification analysis
+```{r}
+#| message: false
+#| echo: false
+library(caret)
+```
+
+## Classification Analysis
 
 For predictive modeling we want to construct a model *and* evaluate how accurate we think that model will be on new, unseen data.
 The outline of a predictive analysis is:
 
-1.  Train/test set split
-2.  Feature transformation of training data
+1.  Split the data into train and test sets
+2.  Transform features in training data
 3.  Fit model to training data
 4.  Evaluate model on test data
 
-## Train/test set split
+### Train/test set split
 
 The very first step of predictive modeling is to do a train/test set split.
 After doing the train/test split we do not want to touch the test data until we are ready to evaluate the model.
@@ -70,7 +83,9 @@ The `caret` library provides a helpful function called `createDataPartition` tha
 ```{r}
 #| code-fold: false
 set.seed(83234)
-train_indices <- createDataPartition(y = penguins$species, p = 0.7, list = FALSE)
+train_indices <- createDataPartition(y = penguins$species, 
+                                     p = 0.7, 
+                                     list = FALSE)
 
 train_df <- penguins %>% 
     slice(train_indices)
@@ -81,7 +96,7 @@ test_df <-  penguins %>%
 
 A couple of notes are in order.
 
-- `createDataPartition` randomly samples the indices of the observations that should go in the training set. Run the code and see what `train_indices` look like.
+- `createDataPartition` randomly samples the indices of the observations that should go in the training set. Here we've specified that 70% of the data go into the training set, leaving 30% for the test set. Run the code and see what `train_indices` looks like.
 
 -   `set.seed` makes sure this random split will be the same everytime we run the code.
     If we did not set the *random seed* the code above would give a slightly different slit everytime we run it.
@@ -89,22 +104,21 @@ A couple of notes are in order.
 
 -  `createDataPartition` uses *stratified sampling* on the species variable.
     This means it ensures the proportions of each class are the same in the train and test sets.
-    Stratified sampling is important when there are classes with few observations (why?)
+    Stratified sampling is important when there are classes with few observations.
 
--  The code `penguins$species` pulls out the species column as a vector
+-  The code `penguins$species` pulls out the species column as a vector.
 
-- We used a tidyverse function called `slice`. Slice selects rows (like `filter`), but by indexing. `slice(penguins, 1)` returns the first row of the penguins dataframe; `slice(penguins, c(1, 3))` returns the first and third rows; `slice(penguins, -c(1, 3))` returns every row *except* the first and 3rd rows.
+- We used a tidyverse function called `slice`. Slice selects rows (like `filter`), but by their index instead of a condition on the values of their variables. `slice(penguins, 1)` returns the first row of the penguins data frame; `slice(penguins, c(1, 3))` returns the first and third rows; `slice(penguins, -c(1, 3))` returns every row *except* the first and 3rd rows.
 
 
-## Feature standardization
+### Feature standardization
 
-For most data analyses we *transform* the original variables we were given to create new variables that are (hopefully) better for the task we are interested in.
-This is often called *feature engineering* or *feature transformation* (recall feature is a synonym for variable or column of a dataframe)
+For most data analyses we transform the original variables we were given to create new variables that are (hopefully) better for the task we are interested in.
+This is often called *feature engineering* or *feature transformation* -- recall feature is a synonym for variable or column of a data frame.
 
-One of the most common feature transformations is called *standardization*.[^stand]
-Standardizing features (usually) means subtract off the mean then divide by the standard deviation.
-Typically this is described as ``mean centering and standard deviation scaling".[^centering]
-In other words, we create a new version of each variable with the following formula
+One of the most common feature transformations is called *standardization*.
+Standardizing features (usually) means subtract off the mean then divide by the standard deviation[^centering].
+In other words, we create a new version of each variable, `x`, with the following formula
 
 [^centering]: It's called *centering* because the mean of the resulting variable is zero i.e. the new variable is "centered" at 0.
 
@@ -130,18 +144,19 @@ Any reasonable measure of center (e.g. median) and scale (e.g. MAD or IQR) can b
 Feature standardization is important for KNN because different variables can be measured on different scales, which can artificially over or under weight a feature when we compute Euclidean distances.
 For example, imagine if bill length were measured in mm but bill depth were measured in kilometres -- bill depth would basically be ignored in the Euclidean distance calculation!
 
-## Feature standardization code
+### Feature standardization code
 
 At this stage we only want to use the training data.
 When we eventually evaluate the model on the test dataset we will need to apply the same feature transformation to the test data that we applied to the training data.
 This means we want to: 1) compute and save the mean/standard deviation of each variable from the training data, 2) transform the training data,  then 3) eventually transform the test data using the same mean/std.
-The `caret` package has a nice function does all of this for us!
+The `caret` package has a nice function that does all of this for us!
 
 ```{r}
 #| code-fold: false
 
 # compute the mean/standard deviation of each variable in the training data frame
-standardize_params <- preProcess(train_df, method = c("center", "scale"))
+standardize_params <- preProcess(train_df,
+                                 method = c("center", "scale"))
 
 # transform each variable in the training data frame
 train_stand <- predict(standardize_params, train_df)
@@ -149,8 +164,7 @@ train_stand <- predict(standardize_params, train_df)
 train_stand
 ```
 
-Note the `predict` function is being used in a different way than it was used for linear regression.
-R has some spectial functions like `predict` and `plot` that can be used in different ways like this!
+Note the `predict` function is being used in a similar manner to how it was used for a linear model, but here the first argument is the standardization operation instead of the linear model.
 
 We saved the transformed features in a new data frame called `train_stand`.
 We can verify each column of `train_stand` has mean zero. Verify yourself they have standard deviation 1.
@@ -159,11 +173,11 @@ We can verify each column of `train_stand` has mean zero. Verify yourself they h
 #| code-fold: false
 train_stand %>% 
     select(-species) %>% 
-    summarise_all(mean)
+    summarize_all(mean)
 ```
 
-Notice the use of `summarise_all()`.
-This is a tidyverse function like `summarise`, but applies a function to every variable.
+Notice the use of `summarize_all()`.
+This is a tidyverse function like `summarize`, but applies a function to every variable.
 
 We might have expected the numbers to be 0, but they instead they are values like `1.004929e-16` (meaning $1.004929 \times 10^{-16}$).
 This is basically zero: 1 with 16 zeros in front of it!
@@ -171,10 +185,7 @@ We say this is zero *up to numerical precision*.
 Computers cannot do many calculations perfectly, only to very high accuracy.
 
 
-
-
-
-## Fitting KNN
+### Fitting KNN
 
 We are now ready to fit the KNN model.
 For now we will just fix K=1.
@@ -186,14 +197,14 @@ The `caret` package has a nice function called `knn3` that sets up the KNN algor
 #| code-fold: false
 
 # notice we use the standardized data!
-knn_fit <- knn3(species ~ ., k=1, data=train_stand)
+knn_fit <- knn3(species ~ ., k = 1, data = train_stand)
 ```
 
 `knn3` uses the same formula notation as the `lm` function.
-The notation `species ~.` means predict species from all the remaining variables.
-If we wanted to predict species from just the first two variables we could have written `species ~bill_length_mm + bill_depth_mm`.
+The notation `species ~ .` means predict species from all of the remaining variables.
+If we wanted to predict species from just the first two variables we could have instead written `species ~ bill_length_mm + bill_depth_mm`.
 
-## Evaluating test set error
+### Evaluating test set error
 
 We are now ready to evaluate our KNN model on the test data.
 This will give us an estimate of how accurate it will be when we use it on future penguins counted in our penguin census!
@@ -213,7 +224,9 @@ Notice the `type` argument -- this is important.
 ```{r}
 #| code-fold: false
 # get test predictions
-species_pred_test = predict(knn_fit, newdata = test_stand, type='class')
+species_pred_test = predict(knn_fit, 
+                            newdata = test_stand, 
+                            type = 'class')
 ```
 
 And finally we can compute the test accuracy.
@@ -221,21 +234,21 @@ And finally we can compute the test accuracy.
 ```{r}
 # compute test set accuracy
 test_stand %>% 
-    mutate(species_pred=species_pred_test) %>% 
-    mutate(correct_prediction=species_pred == species) %>% 
-    summarise(accuracy=mean(correct_prediction))
+    mutate(species_pred = species_pred_test,
+           correct_prediction = species_pred == species) %>% 
+    summarize(accuracy = mean(correct_prediction))
 ```
 
-# Putting the K in K-nearest-neighbors
+## Putting the K in K-nearest-neighbors
 
 We are missing one key detail; how do we select K for K-nearest-neighbors?
 This is known as *hyperparameter tuning*.
-The value K for KNN (similarly degree for polynomial regression) are called hyperparameters[^hyperparam] and the procedure of selecting the best *hyperparameter* is called *tuning*.
+The value K for KNN, just like the degree of a polynomial in regression, are called hyperparameters[^hyperparam] and the procedure of selecting the best *hyperparameter* is called *tuning*.
 
-[^hyperparam]: We also sometimes these *tuning parameters* instead of hyperparameteres.
+[^hyperparam]: We also sometimes these *tuning parameters* instead of hyperparameters.
 
-Sometimes we can pick a "sensible default" value for hyperparameters and avoid tuning them.
-For exapmle, K=1, 3, or 5 can be a decent default (these would actually work well for the penguins dataset).
+Sometimes we can pick a sensible default value for hyperparameters and avoid tuning them.
+For exapmle, K = 1, 3, or 5 can be a decent default (these would actually work well for the penguins data set).
 Most of the time in practice, however, hyperparameter tuning is important to obtain good classification performance.
 
 Now the outline of our classification analysis looks like
@@ -246,18 +259,18 @@ Now the outline of our classification analysis looks like
 4.  Fit model to training data with best hyperparameters
 5.  Evaluate model on test data
 
-We already did 1/2 above so lets go straight to 3.
+We already did 1 and 2 above so lets go straight to 3.
 
-## Cross-validation
+### Cross-validation
 
 We could select K using the validation set procedure we discussed in a previous lecture.
 In other words
 
-1) Split the training data into a smaller training set and validation set
+1) Split the training data into a smaller training set and validation set.
 
-2) For each value of K we want to try fit KNN on the new training set and evaluate the resulting model on the validation set
+2) For each value of K, fit KNN on the new training set, and evaluate the resulting model on the validation set.
 
-3) Select the best K based on the validation set performance
+3) Select the best K based on the validation set performance.
 
 4) Refit KNN on the full training set.
 
@@ -268,9 +281,9 @@ Since we often have a limited amount of data, the validation set evaluations can
 Repeating them a number of times and taking an average can give use more accurate estimates.
 
 
-Cross-validation quite general and is one of the most widely used procedures in statistics and artificial intelligence!
+Cross-validation quite general and is one of the most widely used procedures in statistics and artificial intelligence.
 
-## Implementing cross-validation
+### Implementing cross-validation
 
 The `caret` package implements cross-validation and many other tuning procedures.
 
@@ -278,23 +291,22 @@ The `caret` package implements cross-validation and many other tuning procedures
 #| code-fold: false
 set.seed(9832)
 
-k_values_to_try <- 1:60
-
+# create a numeric vector with values from 1 to 60
+k_values_to_try <- seq(from = 1, to = 60)
 
 # setup the tuning parameter selection procedure
 training_control <- trainControl(method = "repeatedcv", repeats = 5)
 
-# train = tuning parameter evaluation then fit the best tuning parameter to the full training data set
+# try all values of k then fit the best to the full training data set
 knn_cv <- train(species ~ ., 
                 data = train_stand,
                 method = "knn",
                 trControl = training_control,
                 metric = "Accuracy",
-                tuneGrid = data.frame(k=k_values_to_try)
-                )
+                tuneGrid = data.frame(k = k_values_to_try))
 ```
 
-A couple of notes
+A couple of notes:
 
 - We specify the details of the tuning parameter selection procedure using `trainControl`.
 The code above does 5-fold cross-validation.
@@ -310,36 +322,35 @@ Here we are trying every value between 1 and 60.
     - Decide the best value of K (the K that gives the highest accuracy on the validation set)
     - Refit KNN to the full training data set
 
-And voila we have a tuned KNN model!
+And voila we have a tuned KNN model, that is, a KNN classifier that uses a value of $K$ that is tuned to the particular structure of the training data.
 
 We can plot the validation accuracy as a function of K using the `plot` function.
+
 ```{r}
 #| code-fold: false
 plot(knn_cv)
 ```
 
+This shows that the most accurate predictions came from using $K = 11$, but that values of $K$ between 5 and 18 all did quite well. We can get a final sense of the predictive accuracy of our best model by taking a look at the proportion of predicted species in the test data set were correct.
 
-Finally we evaulate our tuned KNN model on the test set.
 ```{r}
 #| code-fold: false
 
 # get test predictions
-# unlike knn3 we dont need type="class" again
 species_pred_test_cv = predict(knn_cv, newdata = test_stand)
-```
 
-```{r}
-# compute the accuracy of the training predictions and the test predictions
+# compute the accuracy
 test_stand %>% 
-    mutate(species_pred=species_pred_test_cv) %>% 
-    mutate(correct_prediction=species_pred == species) %>% 
-    summarise(accuracy=mean(correct_prediction))
+    mutate(species_pred = species_pred_test_cv) %>% 
+    mutate(correct_prediction = species_pred == species) %>% 
+    summarize(accuracy = mean(correct_prediction))
 ```
 
 
-# Summary
+## Summary
 
-This lecture walked through an entire classification analysis with the K-nearest-neighbors algorithm.
+This lecture walked through an entire classification analysis with the K-Nearest Neighbors algorithm.
 When we fixed the value of K this included: train/test split, standardizing the training data, fitting the KNN model on the training data, and finally evaluating the model on the test data.
-When we tuned K we added an additional hyperparameter tuning step.
-While there is a lot involved in each of the above steps (we could have asked you to write all of this code yourself!), the `caret` package has a lot of functionality that makes this entire process happen in a few lines of code.
+When we tuned K, we added an additional hyperparameter tuning step.
+While there are many operations involved in each of the above steps, the `caret` package makes this entire process happen in a few lines of code.
+You'll have a chance to apply this code to your own analysis when you build a biomedical classifier for your next lab.
