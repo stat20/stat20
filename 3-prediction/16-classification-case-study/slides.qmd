@@ -160,7 +160,7 @@ Often when someone is suspected to have cancer (e.g. a bump is found) a fine nee
 <!-- https://www.medicinenet.com/fine-needle_aspiration_biopsy_of_the_thyroid/article.htm -->
 
 
-## Opportunties for artificial intelligence in medicine
+## Artificial intelligence in medicine
 
 - Automating certain diagnostic tasks can increase access to healthcare
 
@@ -190,6 +190,8 @@ https://www.linkedin.com/pulse/how-ai-can-help-address-global-shortage-pathologi
 
 
 :::{.notes}
+The tissue is purple because it is stained with Hematoxylin and Eosin. These are purple and pink stains that make the tissue structure easier to see under a microscope.
+
 Most of the visible objects in these images are cell nuclei, not the full cell; the cytoplasm is mostly invisible on these images.
 
 (From https://stanfordhealthcare.org/medical-conditions/cancer/cancer.html): Tumors can be benign (noncancerous) or malignant (cancerous). Benign tumors tend to grow slowly and do not spread. Malignant tumors can grow rapidly, invade and destroy nearby normal tissues, and spread throughout the body.
