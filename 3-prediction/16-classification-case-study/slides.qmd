@@ -33,17 +33,19 @@ format:
 
 ## Non-numeric data
 
-Not all data can be easily turned into numbers in an effective way
+Not all data can be easily turned into predictors in an effective way.
+
+**Examples**:
 
 . . . 
 
-- Each observation is a word
+- When each observation is a word
     - python, cython, julia, C, R, ...
     
-- Each observation is a snipet of DNA
+- When each observation is a snippet of DNA
     - TTAA, TATA, TACGG, GGCC, TTTTAAAAGGGG, ...
 
-Examples of *string* data (sequence of characters)
+These are examples of *string* data (sequence of characters)
 
 
 :::{.notes}
@@ -59,11 +61,10 @@ countdown::countdown(3, top = 0)
 ```
 
 
-Suppose each observation comes with an additional categorical
+Suppose each observation comes with an additional categorical variable.
 
-    - whether or not I used the word in the last week
-    
-    - whether or not the DNA was found in a patient with cancer
+- whether or not I used the word in the last week
+- whether or not the DNA was found in a patient with cancer
 
 . . . 
 
