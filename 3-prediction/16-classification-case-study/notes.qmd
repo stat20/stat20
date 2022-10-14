@@ -317,15 +317,19 @@ We can plot the validation accuracy as a function of K using the `plot` function
 #| code-fold: false
 plot(knn_cv)
 ```
+The *inverted-U* shape of this plot is characteristic of hyperpameter tuning.
+One normally expects to see a  Golidlocks phenomenon[^gold] where too small or too large a value for the hyperparameter is suboptimal, but some intermediate value is optimal.
+
+[^gold]: https://en.wikipedia.org/wiki/Goldilocks_principle
 
 
-Finally we evaulate our tuned KNN model on the test set.
+Finally we evaluate our tuned KNN model on the test set.
 ```{r}
 #| code-fold: false
 
 # get test predictions
 # unlike knn3 we dont need type="class" again
-species_pred_test_cv = predict(knn_cv, newdata = test_stand)
+species_pred_test_cv <- predict(knn_cv, newdata = test_stand)
 ```
 
 ```{r}
