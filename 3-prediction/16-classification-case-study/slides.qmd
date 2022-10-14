@@ -33,12 +33,14 @@ format:
 
 ## Non-numeric data
 
-Not all data can be turned into numbers
+Not all data can be easily turned into numbers in an effective way
 
-- each observation is a word
+. . . 
+
+- Each observation is a word
     - python, cython, julia, C, R, ...
     
-- each observation is a snipet of DNA
+- Each observation is a snipet of DNA
     - TTAA, TATA, TACGG, GGCC, TTTTAAAAGGGG, ...
 
 Examples of *string* data (sequence of characters)
@@ -57,12 +59,15 @@ countdown::countdown(3, top = 0)
 
 
 Suppose each observation comes with an additional categorical
+
     - whether or not I used the word in the last week
+    
     - whether or not the DNA was found in a patient with cancer
 
+. . . 
 
 :::{.poll}
-Can I fit a classification algorithm to string data?
+Can I fit KNN to a classification dataset where the predictors are strings?
 :::
 
 
@@ -70,15 +75,17 @@ Can I fit a classification algorithm to string data?
 
 - To use KNN we only need to be able to quantify similarity
 
+. . .
+
 - We can quantify how similar two strings are with *edit distance*
 
-    - edit-distance(python, cython) = 1
+    - edit-distance(**python**, **cython**) = 1
     
-    - edit-distance(python, julia) = 6
+    - edit-distance(**python**, **julia**) = 6
     
-    - edit-distance(TTAA, TATA) = 2
+    - edit-distance(**TTAA**, **TATA**) = 2
     
-    - edit-distance(TTAA, TTTTAAAAGGGG) = 8
+    - edit-distance(**TTAA**, **TTTTAAAAGGGG**) = 8
 
 
 :::{.notes}
@@ -86,234 +93,129 @@ Edit distance -- also known as *Levenshtein distance* -- is based on how may ope
 :::
 
 
-## Linear regression memory overhead
-
-- Fit linear regression model to data frame with n samples and d numbers
-
-- I need to save d + 1 numbers to be able to use the linear regression algorithm in the future
-
-
-
-
-## KNN memory overhead
-
-```{r}
-countdown::countdown(3, top = 0)
-```
-
-
-
-:::{.poll}
-What is the memory overhead for KNN with a training data frame that has n samples and d features?
-:::
-
-
-:::{.notes}
-For KNN you have to save every training data point so its n * d.
-:::
-
-
 ## Linear regression prediction runtime
 
-The formula for obtaining linear regression predictions is 
+
+**How many arithmetic operations does it take to compute a prediction for linear regression?**
+
+. . .
+
 $$
 \widehat{y} = b_0 + b_1 \cdot x_1 + \dots + b_d \cdot x_d
 $$
 
-- It takes $2d + 1$ arithmetic operations to calculate the prediction for linear regression
-    - One multiple for each of the d variables (d total multiples)
-    - Add the d variable-coefficient products together with the intercept (d + 1 additions)
+. . .
+
+**2d** arithmetic operations
+
+    - One multiple per variable (d multiples)
+    - Add the d variable-coefficient products together with the intercept (d additions)
 
 
 ## KNN prediction runtime
 
 ```{r}
-countdown::countdown(8, top = 0)
+countdown::countdown(4, top = 0)
 ```
+
+
+KNN prediction
+
+1. Compute distance between test point and each training point
+2. Find smallest K distances
+3. Closest K samples take a vot
+
+. . .
 
 
 :::{.poll}
-How many arithmetic operations does it take to calculate the Euclidean distance between a test point and each training point in the KNN algorithm?
+How many arithmetic operations does it take to calculate the Euclidean distance between a test point and every training point?
 :::
 
 
-<!-- ## KNN prediction runtime -->
-
-<!-- :::{.poll} -->
-<!-- How many arithmetic operations does it take to calculate one prediction for KNN with K=1? Assume the training data set has n samples, d variables. -->
-<!-- ::: -->
-
-
-<!-- :::{.notes} -->
-<!-- KNN works as follows -->
-
-<!-- Step 1: compute euclidean distance between each training observation and the test observation -->
-
-<!-- Step 2: find the smallest of these n distances -->
-
-
-<!-- Euclidean distance for a d vector -->
-
-<!-- - d subtractions -->
-<!-- - d squares -->
-<!-- - d additions -->
-<!-- - one square root -->
-
-<!-- So calculating euclidean distance takes 3d + 1 operations -->
-
-<!-- So step 1 took n * (3d + 1) operations -->
-
-<!-- Step 2 can be done with between n-1 and 2*(n-1) operations (give or take) via a linear scan. This assumes comparing two numbers counts as one operation.  -->
-
-<!-- ::: -->
-
-## Standardization
-
-```{r}
-countdown::countdown(3, top = 0)
-```
-
-
-:::{.poll}
-For KNN, is standardization more important when the variables have very different means or very different standard deviations?
-:::
-
-
-:::{.notes}
-The answer is standard deviation.
-Differences in means does not affect KNN; adding a constant to a variable will not change any of the distance calculations.
-Scaling a variable, however, does change distance calculations.
-
-Another way to see this is the following plots.
-:::
-
-
-## Standardization visualization
-
-```{r}
-
-library(tidyverse)
-library(patchwork)
-
-set.seed(1)
-
-df_A <- tibble(x=rnorm(n=100, mean=0, sd=1),
-               y=rnorm(n=100, mean=100, sd=1))
-
-
-df_B <- tibble(x=rnorm(n=100, mean=0, sd=1),
-               y=rnorm(n=100, mean=0, sd=100))
-
-
-plot_A <- df_A %>% 
-    ggplot(aes(x=x, y=y)) + 
-    geom_point() + 
-    ggtitle("Different means")
-
-plot_B <- df_B %>% 
-    ggplot(aes(x=x, y=y)) + 
-    geom_point() + 
-    ggtitle("Different standard deviations")
-
-
-plot_A + plot_B
-```
-
-
-:::{.notes}
-This first plot is misleading; ggplot scales the axes to make the data fill the entire plot. In particular, in the second plot the dynamic range for the x-axis (~6) is very different from the dynamic range for the y-axis (~450).
-:::
-
-
-
-
-## Standardization visualization
-
-```{r}
-plot_A <- df_A %>% 
-    ggplot(aes(x=x, y=y)) + 
-    geom_point() + 
-    lims(x=c(-3, 3), y=c(97, 103)) + 
-    ggtitle("Different means, equal axis scales")
-
-plot_B <- df_B %>% 
-    ggplot(aes(x=x, y=y)) + 
-    geom_point()+ 
-    lims(x=c(-250, 250), y=c(-250, 250)) + 
-    ggtitle("Different standard deviations, equal axis scales")
-
-
-plot_A + plot_B
-```
-
-:::{.notes}
-These plots show what the data actually look like. 
-Now in the second plot the dynamic range for both axes are the same.
-Here we see there is basic no variability in the x axis, but there is a lot of variability in the y-axis.
-The 2d Euclidean distance in the second figure is pretty much just based on the y-variable -- the x-variable contributes negligibly.
-:::
-
-# Cancer diagnosis with cytopathology
+# Cancer diagnosis lab
 
 
 ## Fine needle aspiration biopsy
 
-![](images/fine-needle-aspiration-biopsy.png){fig-align=center width=600}
+![](images/fine-needle-aspiration-biopsy.png){fig-align=center heigh=1000}
 
+:::{.notes}
+Often when someone is suspected to have cancer (e.g. a bump is found) a fine needle aspiration biopsy is taken to determine whether or not the growth is cancerous (malignant -- may grow dangerously out of control) or not (benign).
+:::
 
 
 <!-- https://www.medicinenet.com/fine-needle_aspiration_biopsy_of_the_thyroid/article.htm -->
 
-## Cancer diagnosis from biopsy images  {.scrollable}
 
-![](images/benign_malignant.png){fig-align=center width=600}
+## Opportunties for artificial intelligence in medicine
 
+- Automating certain diagnostic tasks can increase access to healthcare
 
-:::{.notes}
-(From https://stanfordhealthcare.org/medical-conditions/cancer/cancer.html): Tumors can be benign (noncancerous) or malignant (cancerous). Benign tumors tend to grow slowly and do not spread. Malignant tumors can grow rapidly, invade and destroy nearby normal tissues, and spread throughout the body.
-:::
+- Global shortage of pathologists, especially outside of wealthy healthcare systems
+    - Expert pathologists take years to be fully trained (4 year medical school + 4 year residency)
 
-
-
-## Need for AI in medicine
-
-- Diagnoses are made by expert pathologists who are trained for years (4 year medical school + 4 year residency)
-
-- There is a shortage of pathologists -- especially outside of wealthy healthcare systems
-
-- Artificial intelligence approaches that automate certain diagnostic tasks can increase access to healthcare
 
 :::{.notes}
 https://www.linkedin.com/pulse/how-ai-can-help-address-global-shortage-pathologists-colangelo/
 :::
 
-## Lab 6: cancer diagnosis
 
 
-- Each observation is one biopsy image
-- Goal: classify biopsy as Benign or Malignant from cellular morphology
+## Lab 6: breast cancer diagnosis  {.scrollable}
+
+- Samples are 568 biopsies
+    - Each biopsy has 30 features 
+- Goal: classify biopsy as **benign** or **malignant**
 
 
+::: {layout-ncol=2}
 
-:::{.notes}
-Data are from the UCI repository
-https://archive.ics.uci.edu/ml/datasets/breast+cancer+wisconsin+(diagnostic)
+![](images/benign_fna.png){}
+
+![](images/malignant_fna.png){}
 :::
 
 
-## Biopsy features {.scrollable}
+:::{.notes}
+Most of the visible objects in these images are cell nuclei, not the full cell; the cytoplasm is mostly invisible on these images.
 
-- Measure 10 morphological features of each cell's nucleus
-    - Size features: radius, perimeter, area
-    - Texture (how variable are the pixels across the cell)
-    - Shape-related features e.g. how smooth is the boundary?
-    
-- Each biopsy has several cells; calculate the average, maximum, and standard deviation for each feature resulting in 30 (=10x3) features
-
-    - `radius_mean` is the average  radius of the cells nuclei in the biopsy
-    - `radius_worst` is the largest radius
-    - `radius_se` is the standard deviation of the cell radii
+(From https://stanfordhealthcare.org/medical-conditions/cancer/cancer.html): Tumors can be benign (noncancerous) or malignant (cancerous). Benign tumors tend to grow slowly and do not spread. Malignant tumors can grow rapidly, invade and destroy nearby normal tissues, and spread throughout the body.
+:::
 
 
 
-<!-- https://stanfordhealthcare.org/medical-conditions/cancer/cancer.html#:~:text=Tumors%20can%20be%20benign%20(noncancerous,and%20spread%20throughout%20the%20body. -->
+## Nuclear morphology
+
+
+- Morphology = what the cell looks like under a microscope
+    - size, shape, texture
+
+- Cells in malignant biopsies tend to
+    - be larger
+    - irregularly shaped
+    - highly variable
+
+- Only measure morphology of cell nucleus
+
+## 10 nuclear morphology features
+
+
+![](images/cell_features.png){fig-align=center height=800}
+
+:::{.notes}
+We compute 10 morphological features for each cell nucleus in the biopsy image.
+:::
+
+
+
+
+
+## 30 biopsy features
+
+![](images/biopsy_features.png){fig-align=center height=800}
+
+
+:::{.notes}
+Each biopsy has 30 features; these come from computing 3 summary statistics (mean, max, standard deviation) of each of the 10 cell features to summarize the population of cells in the biopsy.
+:::
