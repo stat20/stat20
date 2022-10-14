@@ -1,0 +1,47 @@
+---
+title: K-nearest-neighbor activity
+---
+
+## Basic version
+
+#### Setup
+- Pick a question like 
+  - “Do you like spicy food?”
+  - "Do you prefer the mountains or the beach?"
+  - "Do you favor the Golden State Warriors or the LA Lakers?"
+- Ask everyone to write down the city they are from and their answer to the question.
+- Break students into 3 groups: K=1, K=3, and K=everyone group
+- Have each group move into separate parts of the classroom.
+
+#### Activity
+Ask each group to do the following:
+
+- Assign students into a 66/33 train/test set split. E.g. have students count off “train, train, test, train, train, test, …”
+
+- Have the training and test sets physically move apart.
+
+- Ask a test student to present themselves and say what city they are from. The training students then need to figure out who is from the nearest city or K cities (they might have to do some googling — that’s ok). Once they’ve figured out the nearest neighbor(s) in the training set, get the prediction and check if it’s correct.
+- Repeat several times (e.g. min(10, size of test set)) and compute a test set error rate estimate.
+
+#### Notes
+
+- Have the K=3 group illustrate this for everyone in front of the class with a couple of examples.
+- If there are ties then they have to randomly pick a subset of the ties to vote.
+
+## Bonus exercise to illustrate overfitting
+
+Have each group repeat the activity, except only with a training set (i.e. the students from the training set present themselves to evaluation and get to vote as well). Of course the K=1 group should get perfect classification error. The K=3 I guess will still have overly optimistic classification error, but not quite as bad as K=1.
+
+#### Examples
+
+k = 1
+
+We will have students find the distance from their home address to the student’s city. Then we will do “raise your hand if….” until we narrow it down to the number one neighbor.
+
+k = 7
+
+This will be a class activity. The students will have to work together to find the 7 nearest people.
+
+k = The entire classroom!
+
+Votes will be recorded on PollEverywhere.
