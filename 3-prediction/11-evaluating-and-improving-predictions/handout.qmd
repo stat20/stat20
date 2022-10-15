@@ -54,7 +54,7 @@ cities_df <- read_csv("https://www.dropbox.com/s/vx3tmh3ybwtbqk7/cities.csv?dl=1
 
 8.  Compare the $R^2$ value you calculated to the $R^2$ that comes from the broom package.
 
-# Linear regression with intercept
+# Linear regression with a continuous and categorical variable
 
 9.  Create a new boolean column in `cities_df` called `many_for` that is TRUE for the cities that have at least 10 foreigners.
 
@@ -76,4 +76,12 @@ Verify `second_pred` is equal to the output of the `predict` function.
 
 14. Make the plot described in the previous question. Hint: `linetype` argument in `geom_line`.
 
-From examinig this plot, what is your takeaway about the `many_for` variable?
+From examining this plot, what is your takeaway about the `many_for` variable?
+
+# Multiple linear regression
+
+15. Which has the largest correlation with `mun_exp`: pop, \$\\sqrt{pop}\$, or $\log(pop)$.
+16. Fit a linear model to predict `gdp` from `pop`, `area`, `comp`, and `cars`
+17. Manually compute the residual sum of squares using the tidyverse/plugging in the formula as in questions 6/7.
+18. Fit a linear model to predict `gdp` from the third degree polynomial in `pop` and a second degree polynomial in `area` **without** using the `poly()` function.
+19. Fit a linear model to predict `gdp` from the third degree polynomial in `pop` and a second degree polynomial in `area` **using** the `poly()` function. Verify the coefficeints you got in 18 are the same as in 19.

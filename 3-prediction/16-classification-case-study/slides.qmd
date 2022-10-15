@@ -1,0 +1,236 @@
+---
+title: "Classification case study"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+
+## Agenda
+
+- Concept Questions
+- Cancer diagnosis lab
+
+
+
+# Concept Questions
+
+
+## Non-numeric data
+
+Not all data can be easily turned into predictors in an effective way.
+
+**Examples**:
+
+. . . 
+
+- When each observation is a word
+    - python, cython, julia, C, R, ...
+    
+- When each observation is a snippet of DNA
+    - TTAA, TATA, TACGG, GGCC, TTTTAAAAGGGG, ...
+
+These are examples of *string* data (sequence of characters)
+
+
+:::{.notes}
+There are  ways of turning these into numeric data, for example, we could encode each word with a separate dummy variable.
+People familiar with word-embeddings in machine learning might have a fairly effective way of obtaining a very useful numerical vector representation of these kinds of data, but that's beyond this class.
+:::
+
+
+## Classification with non-numeric data
+
+```{r}
+countdown::countdown(3, top = 0)
+```
+
+
+Suppose each observation comes with an additional categorical variable.
+
+- whether or not I used the word in the last week
+- whether or not the DNA was found in a patient with cancer
+
+. . . 
+
+:::{.poll}
+Can I fit KNN to a classification dataset where the predictors are strings?
+:::
+
+
+## KNN with string kernels
+
+- To use KNN we only need to be able to quantify similarity
+
+. . .
+
+- We can quantify how similar two strings are with *edit distance*
+
+    - edit-distance(**python**, **cython**) = 1
+    
+    - edit-distance(**python**, **julia**) = 6
+    
+    - edit-distance(**TTAA**, **TATA**) = 2
+    
+    - edit-distance(**TTAA**, **TTTTAAAAGGGG**) = 8
+
+
+:::{.notes}
+Edit distance -- also known as *Levenshtein distance* -- is based on how may operations of insert/delete/substitute it takes to go from one string to another.
+:::
+
+
+## Linear regression prediction runtime
+
+
+**How many arithmetic operations does it take to compute a prediction for linear regression?**
+
+. . .
+
+$$
+\widehat{y} = b_0 + b_1 \cdot x_1 + \dots + b_d \cdot x_d
+$$
+
+. . .
+
+**2d** arithmetic operations
+
+    - One multiple per variable (d multiples)
+    - Add the d variable-coefficient products together with the intercept (d additions)
+
+
+## KNN prediction runtime
+
+```{r}
+countdown::countdown(4, top = 0)
+```
+
+
+KNN prediction
+
+1. Compute distance between test point and each training point
+2. Find smallest K distances
+3. Closest K samples take a vote
+
+. . .
+
+
+:::{.poll}
+How many arithmetic operations does it take to calculate the Euclidean distance between a test point and every training point?
+:::
+
+
+:::{.notes}
+
+Euclidean distance
+- d subtractions
+- d squares 
+- d - 1 additions
+- 1 square root
+:::
+
+
+
+# Cancer diagnosis lab
+
+
+## Fine needle aspiration biopsy
+
+![](images/fine-needle-aspiration-biopsy.png){fig-align=center heigh=1000}
+
+:::{.notes}
+Often when someone is suspected to have cancer (e.g. a bump is found) a fine needle aspiration biopsy is taken to determine whether or not the growth is cancerous (malignant -- may grow dangerously out of control) or not (benign).
+:::
+
+
+<!-- https://www.medicinenet.com/fine-needle_aspiration_biopsy_of_the_thyroid/article.htm -->
+
+
+## Artificial intelligence in medicine
+
+- Automating certain diagnostic tasks can increase access to healthcare
+
+- Global shortage of pathologists, especially outside of wealthy healthcare systems
+    - Expert pathologists take years to be fully trained (4 year medical school + 4 year residency)
+
+
+:::{.notes}
+https://www.linkedin.com/pulse/how-ai-can-help-address-global-shortage-pathologists-colangelo/
+:::
+
+
+
+## Lab 6: breast cancer diagnosis  {.scrollable}
+
+- Samples are 568 biopsies
+    - Each biopsy has 30 features 
+- Goal: classify biopsy as **benign** or **malignant**
+
+
+::: {layout-ncol=2}
+
+![](images/benign_fna.png){}
+
+![](images/malignant_fna.png){}
+:::
+
+
+:::{.notes}
+The tissue is purple because it is stained with Hematoxylin and Eosin. These are purple and pink stains that make the tissue structure easier to see under a microscope.
+
+Most of the visible objects in these images are cell nuclei, not the full cell; the cytoplasm is mostly invisible on these images.
+
+(From https://stanfordhealthcare.org/medical-conditions/cancer/cancer.html): Tumors can be benign (noncancerous) or malignant (cancerous). Benign tumors tend to grow slowly and do not spread. Malignant tumors can grow rapidly, invade and destroy nearby normal tissues, and spread throughout the body.
+:::
+
+
+
+## Nuclear morphology
+
+
+- Morphology = what the cell looks like under a microscope
+    - size, shape, texture
+
+- Cells in malignant biopsies tend to
+    - be larger
+    - irregularly shaped
+    - highly variable
+
+- Only measure morphology of cell nucleus
+
+## 10 nuclear morphology features
+
+
+![](images/cell_features.png){fig-align=center height=800}
+
+:::{.notes}
+We compute 10 morphological features for each cell nucleus in the biopsy image.
+:::
+
+
+
+
+
+## 30 biopsy features
+
+![](images/biopsy_features.png){fig-align=center height=800}
+
+
+:::{.notes}
+Each biopsy has 30 features; these come from computing 3 summary statistics (mean, max, standard deviation) of each of the 10 cell features to summarize the population of cells in the biopsy.
+:::
