@@ -3,7 +3,7 @@ title: "Questions and Data Scope"
 date: "10/11/2022"
 ---
 
-Let's pause and return to the data science lifecycle that was introduced in the beginning of this course. 
+Let's pause and return to the data science lifecycle that was introduced in XXX the beginning of this course. 
 
 ![](images/lifecycle-diagram.png){fig-align=center width="400"}
 
