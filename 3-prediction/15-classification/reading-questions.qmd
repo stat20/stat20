@@ -39,4 +39,4 @@ Suppose I have a new penguin dataset that has 40 Adelie penguins and 60 Gentoo p
 ( ) 10
 ( ) 40
 ( ) 60
-( ) 100
+(X) 100

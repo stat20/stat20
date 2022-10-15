@@ -60,16 +60,19 @@ What object is is pictured here?
 ## Which of these are classification
 
 ```{r}
-countdown::countdown(3, top = 0)
+countdown::countdown(1, top = 0)
 ```
 
 :::{.poll}
-Which of these are classification?
+Which of these are classification tasks?
 :::
 
 
 ## Bigger is always better?
 
+```{r}
+countdown::countdown(1, top = 0)
+```
 
 :::{.poll}
 The larger K, the more accurate KNN is since more samples get to vote?
@@ -78,6 +81,10 @@ The larger K, the more accurate KNN is since more samples get to vote?
 
 ## Perfect predictions
 
+```{r}
+countdown::countdown(1, top = 0)
+```
+
 :::{.poll}
 Will KNN with K=1 always give perfect predictions on the training data? What about K=3?
 :::
@@ -85,15 +92,23 @@ Will KNN with K=1 always give perfect predictions on the training data? What abo
 
 ## Better predictions
 
+```{r}
+countdown::countdown(1, top = 0)
+```
+
 :::{.poll}
 KNN with K=3 will always give better test set predictions that K=1
 :::
 
 ## Overfitting
 
+```{r}
+countdown::countdown(1, top = 0)
+```
+
 :::{.poll}
 KNN with K=1 is more likely to overfit than K=3.
 :::
 
-## Handout
+# Handout
 
