@@ -24,14 +24,15 @@ format:
 
 - Concept Questions
 - Handout
-- Lab
+- Finish baseball slides + clip
+- Lab 5
 
 # Concept Questions
 
 ## RQ 1
 
 ```{r}
-countdown::countdown(3, top = 0)
+countdown::countdown(2, top = 0)
 ```
 
 :::{.poll}
@@ -57,40 +58,10 @@ countdown::countdown(2, top = 0)
 ```
 
 :::{.poll}
-Ovefit models tend to...
+Overfit models tend to...
 :::
 
 
-## Where is overfitting worse?
-```{r}
-countdown::countdown(5, top = 0)
-```
-
-:::{.poll}
-Suppose I overfit my model to the training data. In which scenario would I expect the test set performance to be significantly worse?
-:::
-
-```{r}
-#| fig-align: center
-
-library(tidyverse)
-library(patchwork)
-set.seed(1)
-n=200
-plot_A <- tibble(x=runif(n=n, min=0, max=1)) %>% 
-    mutate(y = x + rnorm(n=n, sd=.25))  %>% 
-    ggplot(aes(x=x, y=y)) +
-    geom_point() + 
-    ggtitle("Training data A")
-
-plot_B <- tibble(x=runif(n=n, min=0, max=1)) %>% 
-    mutate(y = x + rnorm(n=n, sd=.01))  %>% 
-    ggplot(aes(x=x, y=y)) +
-    geom_point() + 
-    ggtitle("Training data B")
-
-plot_A + plot_B
-```
 
 
 # Handout

@@ -2,6 +2,7 @@
 title: "Simple Linear Regression"
 format:
   revealjs:
+    self-contained: true
     author: "STAT 20: Introduction to Probability and Statistics"
     height: 900
     width: 1600
@@ -42,7 +43,7 @@ library(patchwork)
 library(ggrepel)
 data(father.son)
 pearson <- father.son
-dugong <- read_csv("https://raw.githubusercontent.com/shomurali/course-materials/shobhana/3-prediction/10-simple-linear-regression/dugong.csv")
+dugong <- read_csv("~/Documents/BerkeleyTeaching/DataForTeaching/dugong.csv")
 poverty <- read_csv("https://tinyurl.com/stat20poverty")
 ```
 

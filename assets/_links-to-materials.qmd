@@ -9,9 +9,6 @@
 
 ##== Slides ==##
 
-
-"https://jeremysanchez.github.io/course-materials/2-describing-data/04-summarizing-categorical-data/slides.html#/title-slide"
-
 # Build paths to github slides
 instr_names <- c("Andrew", "Iain", "Shobhana", "Jeremy")
 instr_github <- c("andrewpbray", "idc9", "shomurali", "jeremy-sanchez")

@@ -71,6 +71,16 @@ details>summary {
   background: $beige;
 }
 
+.reveal pre.sourceCode code {
+  @if variable-exists(code-block-color) {
+    color: $code-block-color;
+  }
+  background-color: $code-block-bg;
+  padding: 6px 9px;
+  max-height: 600px;
+  white-space: pre;
+}
+
 /*
 .reveal .slide .poll::before {
       font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f681";
