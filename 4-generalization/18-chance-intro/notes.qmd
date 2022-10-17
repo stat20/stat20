@@ -26,7 +26,7 @@ population in the box?
 ![](images/two-samples.jpeg){fig-align=center width="400"}
 
 The mechanisms and methods we use for obtaining
-data are absolutely crucial in determining whether the data will be
+data are crucial in determining whether the data will be
 useful in answering our question about the target population. They are
 the *protocols* for our experimental design, or measurements,
 or survey design and sampling. For example, if the data are from a
@@ -36,15 +36,13 @@ want to poll voters to see if there is support for decriminalizing
 marijuana possession federally (President Biden took a first step
 towards this goal by pardoning all Americans  convicted of simple
 marijuana possession under federal law). Who is selected for such an 
-opinion poll is crucial in estimating the proportion of voters that support
-this decriminalization. You may have observed that some
+opinion poll can make a big difference in the estimate of the proportion of voters that support decriminalization of marijuana. You may have observed that some
 polling companies are more successful than others in their estimates
 and predictions, and consequently they are taken more seriously.
-Below is a snapshot of some pollster rankings from the well-known
-website FiveThirtyEight.[^538] The rankings are based on the polling
-organization's ``historical accuracy and methodology''
+Below is a snapshot of rankings of polling organizations from the well-known
+website FiveThirtyEight[^538]. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''
 
-[^538]: This website was begun as poll aggregation site, by the well known statistician Nate Silver.]
+[^538]: This website was begun as poll aggregation site, by the statistician Nate Silver.]
 
 ![](images/538-pollster-ranking-snippet.png){fig-align=center width="500"}
 
