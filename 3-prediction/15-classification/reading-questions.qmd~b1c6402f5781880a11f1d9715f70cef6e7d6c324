@@ -1,0 +1,42 @@
+---
+title: "Classification"
+date: "10/11/2022"
+---
+
+# Question 1
+
+Classification is predictive modeling when the response is what type of variable?
+
+( ) Numerical discrete
+( ) Numerical continuous
+(X) Nominal categorical
+( ) Ordinal categorical
+
+# Question 2
+
+What is the Euclidean distance between the vectors
+[60, 200] and [70, 220]?
+
+( ) 21.59
+(X) 22.36
+( ) 30
+( ) 500
+
+# Question 3
+
+What is the Euclidean distance between the vectors
+[1, 2, 3, 4] and [2, 3, 4, 5]?
+
+( ) 1.41
+(X) 2
+( ) 3
+( ) 4
+
+# Question 4
+
+Suppose I have a new penguin dataset that has 40 Adelie penguins and 60 Gentoo penguins. I want to use the K-nearest-neighbor (K-closest-penguin) algorithm to classify penguins as either Adelie or Gentoo. What is the largest value of K I can use?
+
+( ) 10
+( ) 40
+( ) 60
+(X) 100

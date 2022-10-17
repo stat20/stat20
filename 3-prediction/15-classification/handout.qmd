@@ -1,0 +1,71 @@
+---
+title: "K-Nearest Neighbors"
+subtitle: "Practice"
+format: pdf
+---
+
+
+\vspace{-2cm}
+
+The data frame below provides a training data set containing five observations, two numerical predictors, and one categorical response variable.
+Use this dataset for the first two questions.
+For the second questions use the palmerpenguins dataset.
+
+\begin{center}
+\begin{tabular}{ c | c | c | c }
+  \hline
+  Obs. & $X_1$ & $X_2$ & $Y$ \\
+  \hline
+  1 & 2 & 210 & Orange \\
+  2 & 0 & 90 & Blue \\
+  3 & 1 & -23 & Orange \\
+  4 & 0 & 180 & Blue \\
+  5 & 1.2 & 312 & Orange \\
+  \hline
+\end{tabular}
+\end{center}
+
+# Question 1
+
+Using K Nearest Neighbors with $K = 2$, based on Euclidean distance, predict the class of a new test observation with $x_1 = -1; \quad x_2 = 255$. It may be helpful to sketch a scatterplot of this data.
+
+\vspace{5cm}
+
+# Question 2
+
+Does this method incorporate the information of each predictor equally? If so, how? If not, how would you tweak the method so that it does?
+
+
+# Question 3
+
+We want to fit a KNN model to predict the penguin species from `bill_length_mm` and `body_mass_g`. First make a plot showing bill length, body mass and species. What is the K=3 prediction for a penguin with a 60 mm bill length and 4000 g mass?
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+data("penguins")
+
+# we only need this 3 columns for this exercise
+penguins <- penguins %>% 
+    select(bill_length_mm, body_mass_g, species)
+```
+
+
+
+# Question 4
+Does this method incorporate the information in each predictor equally? Is so, how? If not, how would you tweak the method so that it does?
+
+Before answering the first part of this, question look at the following two plots. What's going on here?
+
+```{r}
+penguins %>% 
+    ggplot(aes(x=bill_length_mm, y=body_mass_g, color=species)) + 
+    geom_point()
+```
+
+
+```{r}
+penguins %>% 
+    ggplot(aes(x=bill_length_mm, y=body_mass_g, color=species)) + 
+    geom_point() + 
+    lims(x=c(0, 6500), y=c(0, 6500))
+```

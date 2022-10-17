@@ -1,0 +1,4 @@
+- source: slides.qmd
+  quarto-pub:
+    - id: 9fad7453-e7f9-4eeb-84a6-5facd2c825be
+      url: 'https://quartopub.com/sites/shobhana/case-study-pricing-homes'
