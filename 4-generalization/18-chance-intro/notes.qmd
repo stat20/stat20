@@ -1,1 +1,138 @@
+---
+title: "Chance and the Box Model"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+format:
+  html:
+    code-fold: true
+    code-link: true
+    code-summary: "."
+execute: 
+  warning: false
+  message: false
+---
+
+[[Discuss]{.btn .btn-primary}](https://app.perusall.com) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
+[[PDF]{.btn .btn-primary}](notes.pdf)
+
+\
+
+[I]{.dropcap}n the last set of notes, we revisited the data cycle, and saw that, in order to use the obtained data to answer a question about our
+*target population*, we have to make sure that our data is
+representative of the population. Most people have  some
+understanding of what it means for a sample to be representative. In
+the picture below, which sample would you say better represents the
+population in the box?
+
+![](images/two-samples.jpeg){fig-align=center width="400"}
+
+The mechanisms and methods we use for obtaining
+data are absolutely crucial in determining whether the data will be
+useful in answering our question about the target population. They are
+the *protocols* for our experimental design, or measurements,
+or survey design and sampling. For example, if the data are from a
+clinical trial for a new Covid-19 treatment, the design of the trial
+will decide who gets the treatment, and who doesn't. Or perhaps we
+want to poll voters to see if there is support for decriminalizing
+marijuana possession federally (President Biden took a first step
+towards this goal by pardoning all Americans  convicted of simple
+marijuana possession under federal law). Who is selected for such an 
+opinion poll is crucial in estimating the proportion of voters that support
+this decriminalization. You may have observed that some
+polling companies are more successful than others in their estimates
+and predictions, and consequently they are taken more seriously.
+Below is a snapshot of some pollster rankings from the well-known
+website FiveThirtyEight.[^538] The rankings are based on the polling
+organization's ``historical accuracy and methodology''
+
+[^538]: This website was begun as poll aggregation site, by the well known statistician Nate Silver.]
+
+![](images/538-pollster-ranking-snippet.png){fig-align=center width="500"}
+
+
+In these notes, we are going to describe a mechanism by which we can
+obtain representative samples from the target population - or rather,
+from our access frame. In practice, it is rare for the access frame
+and target population to exactly coincide. We need to design our
+data collection methods (our *protocols* so that our target
+population and our access frame overlap as much as we can manage. This
+is achieved using chance, or probability, methods.
+
+## Introducing the Box Model
+
+One of the simplest ways of understanding chance is by considering a
+*box model*. [^fppbox]. A box model consists of a box with
+numbered tickets, and we draw tickets from this box at random [^uar].
+To specify a box model, we have to say what tickets go in the box, and
+whether they will be drawn *with* or without replacement}. That
+is, after drawing a ticket from the box, do we put it back in the box
+or not, before we draw another ticket.
+
+![](images/box-1.jpeg){fig-align=center width="400"}
+
+Consider the box above. The chance of drawing a ticket labeled "4" is one
+in five, as there are five tickets to choose from and only one is
+labeled "4". The chance of drawing a ticket marked "2" is two in five,
+since there are two tickets labeled "2" out of the five tickets in
+the box.
+
+Let's practice creating boxes to model common scenarios. For each of the cases below, specify:
+1. The box and tickets (how many tickets, and what are the values on the tickets)
+2. The number of draws
+3. Whether we replace tickets between draws
+Remember, the tickets in the box have to be *equally likely* to be drawn.
+
+* coin tosses: what box and which tickets would you use to simulate one coin toss? 
+<details><summary>Check your answer</summary>
+We could use the box:
+![](images/coin_ht.jpeg){fig-align=center width="100"}
+
+You could also use the following box, with the ticket $\fbox{1}$ representing the coin landing heads, and $\fbox{0}$ representing the coin landing tails.
+![](images/coin.jpeg){width="100"}
+Can you think of advantages of using the second box?
+</details>
+
+## The `sample()` function in R
+
+:::{.callout-tip}
+
+## Code along
+
+As you read through these notes, keep RStudio open in another window to code along at the console.
+:::
+
+The box model is easily simulated in R, since there is a convenient function to do exactly what we need: draw tickets from a "box" (a vector). We will use the function `sample(x, size = n, replace = FALSE)`, where `x` is the vector you want to sample from, `size` is the number of draws (with the default value being the length of `x`), and you specify with `replace` whether you want to draw the tickets with or without replacement. The default is to draw them without replacement. 
+
+```{r}
+#| code-fold: false
+box <- c(1, 2, 2, 3, 4)
+sample(box,1)
+```
+
+
+
+
+
+
+
+We can use this simple box to model many \textit{chance processes}
+that we can observe around us, for example:
+ - tossing a coin 10 times, and counting the number of heads in these
+ 10 tosses
+ - rolling a pair of dice and adding the spots
+ - spinning a roulette wheel 
+ - selecting voters for an opinion poll
+ - deciding which participants in a clinical trial get the treatment,
+ and which don't.
+
+ ### Rolling dice
+
+
+
+ 
+
+[^fppbox]: The box model was introduced by Freedman, Pisani, and
+Purves in their textbook
+[*Statistics*](https://wwnorton.com/books/9780393929720)
+[^uar]: Drawing a ticket at random means each ticket in
+the box is equally likely to be drawn. 
 
