@@ -1,0 +1,4 @@
+- source: slides.qmd
+  quarto-pub:
+    - id: e335d940-e1c6-4510-a459-e2bef61b5d28
+      url: 'https://quartopub.com/sites/shobhana/simple-linear-regression'
