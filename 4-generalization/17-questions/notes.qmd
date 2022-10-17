@@ -61,17 +61,60 @@ If you didn’t collect the data yourself, you will want to consider who did and
 
 For each of the following examples, we begin with a general question, narrow it to one that can be answered with data, and in doing so, we identify the target population, access frame, sample, and the units within them. These concepts are represented by circles in a diagram of data scope, and the configuration of their overlap helps reveal key aspects the scope. Also in each example, we describe relevant temporal and spatial features to the data scope.
 
-### Example A
+### Example: Kids watching TV
 
-TBD
+The Early Childhood Longitudinal Study (ECLS) followed children who were in kindergarten in 1998 through to eighth grade. Data were collected from principals, teachers, parents, and children. 
+When the children were in the eighth-grade, the data collected included a paper-and-pencil questionnaire that the children answered that asked questions about how they spent their time after school, among many other things.
 
-### Example B
+The ECLS-K was developed under the sponsorship of the U.S. Department of Education, and carried out by Westat and the Educational Testing Service (ETS).
+ 
+Children were selected for the ECLS through a multistage process, where geographic areas were selected; then, within these selected regions, elementary schools (both public and private) were chosen; and at each school a sample of kindergarteners were invited to participate (actually, their parents were asked permission for their children to participate). All together over 21,00 kindergartners across the US participated.
 
-TBD
+The target population in this example is all kindergarteners in the US in 1998.
+The access frame includes all of these children, except those who are home schooled, didn't attend kindergarten, or emigrated to the US after kindergarten. While the method for choosing children to be in the sample, we can identify the sample as a subset of those children in the access frame. We will soon cover different methods for choosing a sample, but fo now, we simply say that the sample is representative of the children in the access frame. 
 
-### Example C
+As for the question, we are interested in uncovering any connections between the amount a child watches TV after school and other factors, particularly those related to parental demographics. This study is an example of a large survey that aims to provide both  descriptive data on children's status as they begin school and 
+their progress into middle school, and to provide a rich dataset that enables researchers to analyze a wide range of family, school, community, and individual variables that may be related to children's early success in school.
 
-TBD
+### Example: Environmental Hazards and Health
+
+How do environmental hazards impact an individual's health in California? To address this question, the California Environmental Protection Agency developed the CalEnviroScreen project. This project studies connections between population health and environmental pollution in California communities. It uses data collected from several sources that includes demographic summaries from the U.S. Census, health statistics from the California Office of Statewide Health Planning and Development, and pollution measurements from air monitoring stations around the state maintained by the California Air.
+
+Ideally, we want to study the individuals living in California and assess the impact of these environmental hazards on an individual's health. Our target population is all people in the state of California, and the unit is one person. However, the granularity of the available data prohibit access to individual measurements because the data are reported for census tracts. 
+
+The access frame consists of groups of residents living in the same census tract. This means that a unit in the access frame is a census tract.
+
+Since measurements for all of the census tracts are available, the sample is a census. That is, all census tracts in California are in the sample.
+
+Unfortunately, we cannot dis-aggregate the information in a tract to examine what happens to an individual person. This aggregation impacts the question we can address and the conclusions that we can draw. We need to refine our question to ask, instead, about the environmental factors in a census tract that are related to health indicators for that region.
+
+
+### Example: Flights in and out of San Francisco
+
+We are interested in discovering factors that are related to flight delays. The data that we have available are all flights in to and out of San Francisco in 2020.  
+
+One approach is to describe our population of interest all flights landing or taking off around the world. However, if we think that flights in and out of San Francisco might be different in important ways from those in other locations (which makes sense, right?), then we will want to narrow focus of the question to focus on San Francisco flights.
+
+The unit of observation is a flight that lands or takes off from SFO in 2020, and the population are all of these flights. This is a situation where administrative data have been collected by a federal agency and made available to the public. In this case, the access frame aligns with the population, and the sample consists of the entire accesss frame. 
+
+If the flight data consists of commercial passenger, private, and cargo flights, then the access frame would include flights that are outside of our population, and we would want to trim those units from our sample. 
+
+
+### Example: Covid Vaccine Trials
+
+In 2020, Johnson & Johnson carried out a clinical trial for their new vaccine. They wanted to determine the efficacy of their vaccine, i.e., how much better were people with the vaccine able to  resist infection from COVID-19 compared to those who did not recieve any vaccine. 
+
+To answer this question, they enrolled 43,738 people in the trial. These volunteers were:  
+
++ adults 18 and over;
++ participated in the study from October to November, 2020;
++ from 8 countries across 3 continents, including the US and South Africa.
+
+The participants were split into two groups at random. Half received the new vaccine, and the other half received a placebo, such as a saline solution. Then, everyone was followed for 28 days to see whether they contracted COVID-19.
+
+The target population consists of all adults in the world at the time of the trial, but the access frame consists of individuals willing to volunteer for the trial living in the 8 countries where the trial took place.  We don't know exactly how the sample of volunteers was taken, but an effort was made to include many people (40%) who have conditions that might cause serious complications from COVID infection. 
+
+This is an example where the time and location of the study are important to include in the scope. The disease went in waves across the world with people in some countries being his hardest at different times.
 
 
 ## Instruments and Protocols
@@ -95,14 +138,14 @@ The scope-diagram introduced for observing a target population can be extended t
 
 ### Example - DART spacecraft
 
-Recently, a NASA spacecraft, part of the DART project, traveled for more than two years to purposefully hit an asteroid, Dimorphos, which orbits around a larger asteroid, Didymos. The goal of this mission was study the possibility of ....  Astronomers used telescopes to measure how much the orbit changed. And, they found that the spacecraft altered Dimorphos’ orbit by 32 minutes, shortening the 11 hour and 55-minute orbit to 11 hours and 23 minutes. 
+Recently, a NASA spacecraft, part of the DART project, traveled for ten months to purposefully hit an asteroid, Dimorphos, which orbits around a larger asteroid, Didymos. The goal of this mission was to study the possibility of using a spacecraft to impact the path of an asteroid. After the collision, astronomers used telescopes to measure how much the orbit changed. They found that the spacecraft altered Dimorphos' orbit by 32 minutes, shortening the 11 hour and 55-minute orbit to 11 hours and 23 minutes.
 
+Following the impact event, telescopes measured the brightness of the Didymos system over time to plot a light curve. When selecting an asteroid for DART’s mission, scientists selected Didymos and Dimorphos because the asteroids are binaries, and cause dips in the brightness of the system as Dimorphos crosses in front of and behind Didymos during its orbit.
 
-This measurement has a margin of uncertainty of approximately plus or minus 2 minutes.
-
-[Prior to DART’s impact, it took Dimorphos 11 hours and 55 minutes to orbit its larger parent asteroid, Didymos. Since DART’s intentional collision with Dimorphos on Sept. 26,]
-
-
+Astronomers measured the brightness of the smaller asteroid as it rotates, and these measurements produce a light curve that show the periodic changes in  brightness over time. By comparing the light curves from before and after the impact of the spacecraft,
+the astronomers have estimated the change in length of the asteroid's orbit. Crucial to this process is the accuracy of the telescope measurements of the light reflected by the asteroid. 
+The telescopes are finely tuned instruments that make
+precise measurements. The accuracy of these instruments have allowed scientists to attach a margin of uncertainty of 2 minutes to the estimate of the orbit length. In the diagram below, the true length of the orbit is denoted by the star, a small bias in the telescope's measurement is captured by the gap from the star to the bullseye, and the measurements from the telescope are marked as dots around the bullseye. 
 
 
 ## Accuracy
