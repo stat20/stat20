@@ -98,4 +98,4 @@ The diagnosis is in the column named `diagnosis`; each other column should be us
     # knn_cv <- train
     ```
 
-13. Pick any 3 variables and build a classification model that you train with cross-validation based on only these three variables from `train_stand`. What is the test set error?
+13. Pick any 3 variables and build a classification model that you train with cross-validation based on only these three variables from `train_stand`. What is the test set accuracy?
