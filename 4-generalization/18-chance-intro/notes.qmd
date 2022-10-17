@@ -83,7 +83,6 @@ Remember, the tickets in the box have to be *equally likely* to be drawn.
 <details><summary>Check your answer</summary>
 We could use the box:
 ![](images/coin_ht.jpeg){fig-align=center width="100"}
-
 You could also use the following box, with the ticket $\fbox{1}$ representing the coin landing heads, and $\fbox{0}$ representing the coin landing tails.
 ![](images/coin.jpeg){width="100"}
 Can you think of advantages of using the second box?
