@@ -51,7 +51,7 @@ In these notes, we are going to describe a mechanism by which we can
 obtain representative samples from the target population - or rather,
 from our access frame. In practice, it is rare for the access frame
 and target population to exactly coincide. We need to design our
-data collection methods (our *protocols* so that our target
+data collection methods (our *protocols*) so that our target
 population and our access frame overlap as much as we can manage. This
 is achieved using chance, or probability, methods.
 
