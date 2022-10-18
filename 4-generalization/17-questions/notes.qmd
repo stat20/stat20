@@ -3,6 +3,8 @@ title: "Questions and Data Scope"
 date: "10/19/2022"
 ---
 
+[[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233) [[PDF]{.btn .btn-primary}](notes.pdf)
+
 Let's pause and return to the data science lifecycle that was introduced at the beginning of this course. 
 
 ![](images/DataScienceLifecycle.jpg){fig-align=center width="400"}
@@ -20,8 +22,8 @@ We have made these stages very broad on purpose. In our experience, the mechanic
 
 ### Ask a Question. 
 
-Asking good questions lies at the heart of statistics and data science, and recognizing different kinds of questions guides us in our analyses. For example, "How have house prices changed over time?" is very different from the question "How will this new policy affect house prices?" There are five broad categories of questions: descriptive, exploratory, inferential, predictive, and causal. These labels refer to the kind of data analysis needed to answer the question. You have seen three of these approaches to data analysis so far, and we will soon address inferential and causal questions. 
-After we introduce inference, we will revisit the ask-a-question stage and demonstrate how to match the question with the type of data analysis to be carried out. 
+Asking good questions lies at the heart of statistics and data science, and recognizing different kinds of questions guides us in our analyses. For example, "How have house prices changed over time?" is very different from the question "How will this new policy affect house prices?" There are four broad categories of questions: descriptive, predictive, generalization, and causal. These labels refer to the kind of data analysis needed to answer the question. You have seen two of these approaches to data analysis so far, and we will soon address generalizations and causal questions. 
+After we introduce generalization (also known as statistical inference), we will revisit the ask-a-question stage and demonstrate how to match the question with the type of data analysis to be carried out. 
 
 Narrowing down a broad question into one that can be answered with data is a key element of the first stage in the lifecycle. It can involve consulting the people participating in a study, figuring out how to measure something, designing data collection protocols, and more. A clear and focused research question helps us determine the data we need, the patterns to look for, and how to interpret results. These considerations help us plan the data collection phase of the lifecycle.
 
