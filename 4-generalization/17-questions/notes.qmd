@@ -1,5 +1,6 @@
 ---
 title: "Questions and Data Scope"
+subtitle: A framework for making generalizations with data.
 date: "10/19/2022"
 ---
 
