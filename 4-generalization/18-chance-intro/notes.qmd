@@ -58,12 +58,9 @@ is achieved using chance, or probability, methods.
 ## Introducing the Box Model
 
 One of the simplest ways of understanding chance is by considering a
-*box model*. [^fppbox]. A box model consists of a box with
-numbered tickets, and we draw tickets from this box at random [^uar].
-To specify a box model, we have to say what tickets go in the box, and
-whether they will be drawn *with* or without replacement}. That
-is, after drawing a ticket from the box, do we put it back in the box
-or not, before we draw another ticket.
+*box model*. [^fppbox]. A box model consists of a box of tickets, and we draw tickets from this box at random [^uar].
+To specify a box model, we have to say what tickets go in the box (that is, what are the values on the tickets, and how many of each value) , and
+whether they will be drawn *with* or without replacement (after drawing a ticket from the box, do we put it back in the box or not, before we draw another ticket).
 
 ![](images/box-1.jpeg){fig-align=center width="400"}
 
@@ -74,19 +71,102 @@ since there are two tickets labeled "2" out of the five tickets in
 the box.
 
 Let's practice creating boxes to model common scenarios. For each of the cases below, specify:
-1. The box and tickets (how many tickets, and what are the values on the tickets)
+
+1. The box and tickets (what tickets go in the box, and their values)
 2. The number of draws
-3. Whether we replace tickets between draws
+3. Whether or not we replace tickets between draws
+
 Remember, the tickets in the box have to be *equally likely* to be drawn.
 
-* coin tosses: what box and which tickets would you use to simulate one coin toss? 
+#### Tossing a fair coin once: 
+what box and which tickets would you use to simulate one coin toss?
+
 <details><summary>Check your answer</summary>
-We could use the box:
+We could use the box below, and draw once:
 ![](images/coin_ht.jpeg){fig-align=center width="100"}
-You could also use the following box, with the ticket $\fbox{1}$ representing the coin landing heads, and $\fbox{0}$ representing the coin landing tails.
+You could also use the following box (and draw one ticket): 
 ![](images/coin.jpeg){width="100"}
+with the ticket $\fbox{1}$ representing the coin landing heads, and $\fbox{0}$ representing the coin landing tails.
 Can you think of advantages of using the second box?
 </details>
+
+#### Tossing a coin twice and counting the number of heads
+
+If we toss a coin twice, we could list the possible *outcomes* as two heads, two tails, or one head and one tail. So you might think of the following box, from which we would draw once:
+![](images/bad-box.jpeg){width="150"}.
+
+This box describes all the possible things that can happen when you toss a coin twice, but it doesn't fit the specifications of a box model that we listed above. What's the problem?
+
+<details><summary>Check your answer</summary>
+If you thought to yourself: this doesn't satisfy the second requirement - of all the tickets being equally likely, that's right! The third ticket in that box is twice as likely as the other two, since you can the get the outcome of  one head and one tail in two ways: the first toss landing heads and the second one tails, or the other way around. 
+A better box would be the one below. The tickets are equally likely, and we would draw once (and then count the number of "H"'s on the ticket). 
+
+![](images/better-box.jpeg){width="150"}
+
+The best box would be the one we introduced in the first example:
+
+![](images/coin.jpeg){width="100"}
+Remember that the ticket $\fbox{1}$ represents the outcome of a toss landing heads and  $\fbox{0}$ represents a toss landing tails (because we are counting the number of heads. If we were counting the number of tails, we would have  $\fbox{1}$ representing the outcome of a toss landing tails. We let the box be as above, and draw two tickets *with replacement* from this box. To count the number of heads in two tosses, we add the drawn tickets.
+</details>
+
+#### Rolling a fair die
+<details><summary>Check your answer</summary>
+The box will have six tickets as shown below, and we would draw once at random from this box.
+
+![](images/die.jpeg){width="200"}
+</details>
+
+
+
+#### Rolling a pair of fair dice and summing the spots
+
+<details><summary>Check your answer</summary>
+We would the same box, with six tickets as shown below, and we would draw *twice* at random with replacement from this box, then add the draws.
+
+![](images/two-dice.jpeg){width="450"}
+
+</details>
+
+
+
+#### Spinning a roulette wheel
+
+![](images/roulette.jpeg){fig-align="center" width="200"}[^roulette_image]
+
+An roulette wheel has 37 (in Europe) or 38 (in the US) pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is spun in the opposite direction. Players bet on which pocket which players bet on which colored or numbered pocket the ball will come to rest in. How would you represent the box if you wanted to bet on a number? What about if you wanted to bet on a color? 
+
+<details><summary>Check your answer</summary>
+We would use the following boxes. In the top box, there are 38 tickets, each representing a numbered pocket on the wheel. Draw one ticket to represent the ball landing in a particular pocket. In the second row each ticket represents a colored pocket, and we see that there are (in American roulette) 18 red pockets, 18 black, and 2 green. If we are only interested in the outcome *ball lands in red pocket*, then the box with 18 tickets marked 1 and 20 marked 0 will work. We would draw once from it, with the ticket marked $\fbox{1}$ representing the ball landing in a red pocket, and the ticket $\fbox{0}$ representing the ball *not* landing in a red pocket, but in a green or black pocket.
+</details>
+
+The scenario where we bet on red, and so the box tickets can be re-labeled as 0 or 1, is called *classifying and counting*. In this we draw tickets from the box, where there may be many outcomes, but we only label a ticket with 1 if we want to count that outcome. Otherwise, we label the ticket with 0.
+
+#### Selecting fruit from a bag
+ Suppose I have three apples and two mangoes in a bag. I pick out a fruit at random. How would you represent this as a box? What about if I only want an apple?
+
+![](images/fruit.jpeg){width="200"}
+
+<details><summary>Check your answer</summary>
+If I only care about the apples, then the box can be written as a 0-1 box as shown below. I would draw once from this box.
+
+![](images/fruit-01.jpeg){width="450"}
+
+</details> 
+
+#### Selecting 2 people out of a group of 5 for a committee
+We have a group of 5 people: Alex, Emi, Fred, Max, and Nan. Two of the five are to be selected at random to form a two person committee.Draw the box model for this situation.
+<details><summary>Check your answer</summary>
+
+![](images/committee.jpeg){fig-align=center width="600"}
+
+All the ten pairs are equally likely. On the first draw, there are 5 tickets to choose from, and on the second there are 4, making $5 \times 4 = 20$ possible draws of two tickets, drawn from this box, one at a time, without replacement. We have only 10 pairs here because of those 20 pairs, there are only 10 distinct ones. When we count 20 pairs, we are counting Alex $+$ Emi as one pair, and Emi $+$ Alex as another pair.  
+</details> 
+
+What is the chance that Alex and Max will be selected? Guess at the chance. (Hint: you have seen all the possible committees above, and they are equally likely. What will be the chance of any one of them?)
+
+
+
+[^roulette_image]: European roulette wheel: photo by Ralf Roletschek, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons.
 
 ## The `sample()` function in R
 
@@ -97,7 +177,7 @@ Can you think of advantages of using the second box?
 As you read through these notes, keep RStudio open in another window to code along at the console.
 :::
 
-The box model is easily simulated in R, since there is a convenient function to do exactly what we need: draw tickets from a "box" (a vector). We will use the function `sample(x, size = n, replace = FALSE)`, where `x` is the vector you want to sample from, `size` is the number of draws (with the default value being the length of `x`), and you specify with `replace` whether you want to draw the tickets with or without replacement. The default is to draw them without replacement. 
+The box model is easily simulated in R, since there is a convenient function that does exactly what we need: draw tickets from a "box" (a vector). We will use the function `sample(x, size = n, replace = FALSE)`, where `x` is the vector you want to sample from, `size` is the number of draws (with the default value being the length of `x`), and you specify with `replace` whether you want to draw the tickets with or without replacement. The default in `sample()` is to draw them without replacement. 
 
 ```{r}
 #| code-fold: false
@@ -105,25 +185,14 @@ box <- c(1, 2, 2, 3, 4)
 sample(box,1)
 ```
 
+We can use `sample()` to estimate the chance of a ticket when we aren't sure of what the chance might be.
 
 
 
 
 
 
-We can use this simple box to model many \textit{chance processes}
-that we can observe around us, for example:
- - tossing a coin 10 times, and counting the number of heads in these
- 10 tosses
- - rolling a pair of dice and adding the spots
- - spinning a roulette wheel 
- - selecting voters for an opinion poll
- - deciding which participants in a clinical trial get the treatment,
- and which don't.
-
- ### Rolling dice
-
-
+ 
 
  
 
