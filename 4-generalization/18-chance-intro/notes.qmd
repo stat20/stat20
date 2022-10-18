@@ -1,8 +1,9 @@
 ---
-title: "Chance and the Box Model"
+title: "Introducing Probability" 
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 format:
   html:
+    toc-depth: 4
     code-fold: true
     code-link: true
     code-summary: "."
@@ -51,14 +52,14 @@ In these notes, we are going to describe a mechanism by which we can
 obtain representative samples from the target population - or rather,
 from our access frame. In practice, it is rare for the access frame
 and target population to exactly coincide. We need to design our
-data collection methods (our *protocols*) so that our target
+data collection methods (our protocols) so that our target
 population and our access frame overlap as much as we can manage. This
 is achieved using chance, or probability, methods.
 
 ## Introducing the Box Model
 
 One of the simplest ways of understanding chance is by considering a
-*box model*. [^fppbox]. A box model consists of a box of tickets, and we draw tickets from this box at random [^uar].
+*box model*. [^fppbox]. A box model consists of a box of tickets, and we draw tickets from this box.
 To specify a box model, we have to say what tickets go in the box (that is, what are the values on the tickets, and how many of each value) , and
 whether they will be drawn *with* or without replacement (after drawing a ticket from the box, do we put it back in the box or not, before we draw another ticket).
 
@@ -76,9 +77,9 @@ Let's practice creating boxes to model common scenarios. For each of the cases b
 2. The number of draws
 3. Whether or not we replace tickets between draws
 
-Remember, the tickets in the box have to be *equally likely* to be drawn.
+We assume that the tickets in the box are *equally likely* to be drawn[^uar].
 
-#### Tossing a fair coin once: 
+#### Example 1: Tossing a fair coin once 
 what box and which tickets would you use to simulate one coin toss?
 
 <details><summary>Check your answer</summary>
@@ -90,7 +91,7 @@ with the ticket $\fbox{1}$ representing the coin landing heads, and $\fbox{0}$ r
 Can you think of advantages of using the second box?
 </details>
 
-#### Tossing a coin twice and counting the number of heads
+#### Example 2: Tossing a coin twice and counting the number of heads
 
 If we toss a coin twice, we could list the possible *outcomes* as two heads, two tails, or one head and one tail. So you might think of the following box, from which we would draw once:
 ![](images/bad-box.jpeg){width="200"}.
@@ -109,7 +110,7 @@ The best box would be the one we introduced in the first example:
 Remember that the ticket $\fbox{1}$ represents the outcome of a toss landing heads and  $\fbox{0}$ represents a toss landing tails (because we are counting the number of heads. If we were counting the number of tails, we would have  $\fbox{1}$ representing the outcome of a toss landing tails. We let the box be as above, and draw two tickets *with replacement* from this box. To count the number of heads in two tosses, we add the drawn tickets.
 </details>
 
-#### Rolling a fair die
+#### Example 3: Rolling a fair die
 <details><summary>Check your answer</summary>
 The box will have six tickets as shown below, and we would draw once at random from this box.
 
@@ -118,7 +119,7 @@ The box will have six tickets as shown below, and we would draw once at random f
 
 
 
-#### Rolling a pair of fair dice and summing the spots
+#### Example 4: Rolling a pair of fair dice and summing the spots
 
 <details><summary>Check your answer</summary>
 We would the same box, with six tickets as shown below, and we would draw *twice* at random with replacement from this box, then add the draws.
@@ -129,7 +130,7 @@ We would the same box, with six tickets as shown below, and we would draw *twice
 
 
 
-#### Spinning a roulette wheel
+#### Example 5: Spinning a roulette wheel
 
 ![](images/roulette.jpeg){fig-align="center" width="200"}[^roulette_image]
 
@@ -141,7 +142,7 @@ We would use the following boxes. In the top box, there are 38 tickets, each rep
 
 The scenario where we bet on red, and so the box tickets can be re-labeled as 0 or 1, is called *classifying and counting*. In this we draw tickets from the box, where there may be many outcomes, but we only label a ticket with 1 if we want to count that outcome. Otherwise, we label the ticket with 0.
 
-#### Selecting fruit from a bag
+#### Example 6: Selecting an apple from a bag of fruit
  Suppose I have three apples and two mangoes in a bag. I pick out a fruit at random. How would you represent this as a box? What about if I only want an apple?
 
 ![](images/fruit.jpeg){width="200"}
@@ -153,7 +154,8 @@ If I only care about the apples, then the box can be written as a 0-1 box as sho
 
 </details> 
 
-#### Selecting 2 people out of a group of 5 for a committee
+#### Example 7: Selecting 2 people out of a group of 5 
+##### (drawing *without* replacement)
 We have a group of 5 people: Alex, Emi, Fred, Max, and Nan. Two of the five are to be selected at random to form a two person committee.Draw the box model for this situation.
 <details><summary>Check your answer</summary>
 
@@ -162,7 +164,7 @@ We have a group of 5 people: Alex, Emi, Fred, Max, and Nan. Two of the five are 
 All the ten pairs are equally likely. On the first draw, there are 5 tickets to choose from, and on the second there are 4, making $5 \times 4 = 20$ possible draws of two tickets, drawn from this box, one at a time, without replacement. We have only 10 pairs here because of those 20 pairs, there are only 10 distinct ones. When we count 20 pairs, we are counting Alex $+$ Emi as one pair, and Emi $+$ Alex as another pair.  
 </details> 
 
-What is the chance that Alex and Max will be selected? Guess at the chance. (Hint: you have seen all the possible committees above, and they are equally likely. What will be the chance of any one of them?)
+What is the probability that Alex and Max will be selected? Guess! (Hint: you have seen all the possible pairs above, and they are equally likely. What will be the chance of any one of them?)
 
 
 
@@ -186,6 +188,8 @@ The box model is easily simulated in R, since there is a convenient function tha
 
 library(tidyverse)
 library(stat20data)
+library(infer)
+library(palmerpenguins)
 ```
 
 
@@ -234,7 +238,7 @@ cat("The proportion of times we see 2 heads out of 4 tosses is", mean(two_heads)
 
 This is something that we could use if we wanted to play Monopoly and couldn't find the dice. Recall the box we used to simulate a die roll. Now we are going to define a vector in R to represent a die, and sample twice with replacement, from this vector.
 
-:::{.callout-tip}
+:::{.callout-note}
 
 ## Ask yourself
 
@@ -244,17 +248,21 @@ We know all the possible outcomes of summing a pair of dice (between $2$ and $12
 
 ## Rules of chance
 
-What we have done here is estimate probabilities using the idea that the *chance* or *probability* of something is the proportion of times it occurs when we simulate over and over again the basic process that results in the thing we are counting. This comes from the idea that the chance of an outcome is the proportion of times we expect it to occur when the process that generates the event is  *independently* repeated many times [^freq].
+What we have done here is estimate probabilities using the idea that the *chance* or *probability* of something is the proportion of times it occurs when we simulate over and over again the basic process that results in the thing we are counting. This is using the definition of the chance of an outcome to be the proportion of times we expect it to occur when the process that generates the event is  *independently* repeated many times [^freq].
 
-The chance of an event (where an *event* might be one outcome, such as "rolling a die and seeing 2", or a collection of outcomes, such as "rolling an even number") needs to satisfy some basic rules (which are intuitively clear if you think of the chance of an event as its relative frequency or the proportion of times it happens):
+The chance of an event (where an *event* might be one outcome, such as "rolling a die and seeing 2", or a collection of outcomes, such as "rolling an even number") needs to satisfy some basic mathematical rules (which are intuitively clear if you think of the chance of an event as its relative frequency):
 
 1. The chance of any event is at least $0$ and not more than $1$.
 
-2. The chance of all possible things that might happen as a result of some action will add up to 1. 
+2. The chances of all possible things that might happen as a result of some action will add up to 1. 
 
 3. If two events do not overlap, that is they have no outcomes in common, then the chance that *either* of the two events might occur is the *sum* of their chances.
 For example, consider rolling a fair six-sided die, and the two events of rolling a multiple of 5 or a multiple of 2. In the first event (which we can call $A$), the possible outcomes are $\{5\}$. For the second event (call it $B$), the possible outcomes are $\{2, 4, 6\}$. Since all the sides of a fair die are equally likely, the chance of $A$ is the chance of rolling a $5$ which is $1/6$. The chance of rolling an even number is $1/6 + 1/6 +1/6 = 3/6$ (applying the same idea of adding up the chances, since we can't have the die show two sides at the same time). 
 This implies that the chance of *either* $A$ *or* $B$ happening is $1/6 + 3/6 = 4/6$.
+
+Note that *both* events cannot happen - using a six-sided die, you cannot roll a multiple of 5 that is also an even number. We say then that the event that both $A$ and $B$ happen is impossible, and impossible events have no chance of occurring. That is the chance of $A$ *and* $B$ is 0.
+
+
 
 
  [^freq]: This is known as the *frequentist* theory of probability: the chance of something is the relative frequency with which it occurs in repeated trials (that are assumed to be independent).
@@ -271,6 +279,4 @@ This implies that the chance of *either* $A$ *or* $B$ happening is $1/6 + 3/6 = 
 [^fppbox]: The box model was introduced by Freedman, Pisani, and
 Purves in their textbook
 [*Statistics*](https://wwnorton.com/books/9780393929720)
-[^uar]: Drawing a ticket at random means each ticket in
-the box is equally likely to be drawn, so if there are $n$ tickets in the box, each has a chance of $1/n$ to be drawn.
-
+[^uar]: We call the tickets equally likely when each ticket has the same chance of being drawn. That is, if there are $n$ tickets in the box, each has a chance of $1/n$ to be drawn. We also refer to this as drawing a ticket *uniformly at random*, because the probabilities of drawing the tickets are the same, or *uniform*.
