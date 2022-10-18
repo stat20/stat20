@@ -1,6 +1,6 @@
 ---
 title: "Questions and Data Scope"
-date: "10/11/2022"
+date: "10/19/2022"
 ---
 
 Let's pause and return to the data science lifecycle that was introduced at the beginning of this course. 
@@ -10,7 +10,7 @@ Let's pause and return to the data science lifecycle that was introduced at the 
 (Note that we have modified the earlier diagram a bit to highlight the main actions in the data science lifecycle.)
 
 We are at the point in the course where we want to begin to draw conclusions about the world in answer to our questions. It might sound surprising, but in order to make generalizations, we must carefully consider the connection between the question and the data. The *scope* of the data help us determine whether we can extend our
-findings beyond the data we have analyzed. But, first we revisit the stage sof the data lifecycle in more detail. 
+findings beyond the data we have analyzed. But, first we revisit the stages of the data lifecycle in more detail. 
 
 ## The Stages of the Data Science Lifecycle
 
@@ -21,68 +21,67 @@ We have made these stages very broad on purpose. In our experience, the mechanic
 ### Ask a Question. 
 
 Asking good questions lies at the heart of statistics and data science, and recognizing different kinds of questions guides us in our analyses. For example, "How have house prices changed over time?" is very different from the question "How will this new policy affect house prices?" There are five broad categories of questions: descriptive, exploratory, inferential, predictive, and causal. These labels refer to the kind of data analysis needed to answer the question. You have seen three of these approaches to data analysis so far, and we will soon address inferential and causal questions. 
-After we introduce inference, we will again revisit the concept of the question to be answered and demonstrate how to match the question with the type of data analysis. 
+After we introduce inference, we will revisit the ask-a-question stage and demonstrate how to match the question with the type of data analysis to be carried out. 
 
 Narrowing down a broad question into one that can be answered with data is a key element of the first stage in the lifecycle. It can involve consulting the people participating in a study, figuring out how to measure something, designing data collection protocols, and more. A clear and focused research question helps us determine the data we need, the patterns to look for, and how to interpret results. These considerations help us plan the data collection phase of the lifecycle.
 
 ### Obtain Data. 
 
-When data are expensive and hard to gather and when our aim is to generalize from the data to the world, we define precise protocols for collecting the data. Other times, data are cheap and easily accessed. This is especially true for online data sources. For example, Twitter lets people quickly download millions of data points.  In fact, when data are plentiful, we sometimes start an analysis by obtaining data, exploring it, and then developing a  research question. In both situations, most data have missing, unusual, or improperly coded values, and we need to check data quality. Typically, we also must manipulate measurements and create new variables before we can analyze the data more formally. That is, we may need to modify the structure of a data frame, and clean and transform data values to prepare for analysis. The descriptive analysis that we carry out in this stage may adequately answer our question, or, we may need to go on to the next stage to better understand and explore the data.
+When data are expensive and hard to gather and when our aim is to generalize from the data to the world, we define precise protocols for collecting the data. Other times, data are cheap and easily accessed. This is especially true for online data sources. For example, Twitter lets people quickly download millions of data points.  In fact, when data are plentiful, we sometimes start an analysis by obtaining data, exploring it, and then developing a  research question. In both situations, most data have missing, unusual, or improperly coded values, and we need to check data quality. Typically, we also must manipulate measurements and create new variables before we can analyze the data more formally. That is, we may need to modify the structure of a data frame, and clean and transform data values to prepare for analysis. 
 
 ### Understand the Data. 
 
-This stage might be the end of the lifecycle, if our goal is simple to report descriptive statistics from the data or to explore the data to inform future data collection and modeling. When our goal is  to explore the data, after we obtain and prepare data, we look for interesting patterns, relationships, and distributions in the data. We also continue to look for problems with the data.  In our experience, this stage of the lifecycle is highly iterative. Understanding the data can lead us back to the earlier stages where we, say, find that we need to modify or redo our data cleaning, acquire more data to supplement our analysis, or refine our research question given the limitations of the data. The descriptive and exploratory analyses that we carry out in this stage may adequately answer our question, or, we may need to go on to the next stage in order to make generalizations beyond our data.
+This stage might be the end of the lifecycle, if our goal is simply to report descriptive statistics or to explore the data. When our goal is  to explore the data, we look for interesting patterns, relationships, and distributions in the data. We also continue to look for problems with the data.  In our experience, this stage can be highly iterative. Understanding the data can lead us back to the earlier stages where we, say, find that we need to modify or redo our data cleaning, acquire more data to supplement our analysis, or refine our research question given the limitations of the data. The descriptive and exploratory analyses that we carry out in this stage may adequately answer our question, or, we may need to go on to the next stage in order to make generalizations beyond our data.
 
 ### Understand the World. 
 
-Often our goals are purely exploratory, and the analysis ends at the `Understand the Data' stage of the lifecycle. At other times, we aim to quantify how well the trends we find generalize beyond our data. We may want to use a model that we have fitted to our data to make inferences about the world or give predictions for future observations. To draw inferences from a sample to a population, we use statistical techniques like A/B testing and confidence intervals. And to make predictions for future observations, we create other kinds of interval estimates and use test/train splits of the data.
+Often our goals are purely descriptive or exploratory, and the analysis ends at the `Understand the Data' stage of the lifecycle. At other times, we aim to quantify how well the trends we find generalize beyond our data. We may want to use a model that we have fitted to our data to make inferences about the world or give predictions for future observations. To draw inferences from a sample to a population, we use statistical techniques like A/B testing and confidence intervals. And to make predictions for future observations, we create other kinds of interval estimates and use test/train splits of the data.
 
 
 Data are at the heart of the lifecycle, and the quality of the data collection process can significantly impact the validity and accuracy of the data, the strength of the conclusions we can draw from an analysis, and the decisions we make. Here, we describe a general approach to understand data collection, and use it to evaluate the usefulness of the data in addressing the question of interest. Ideally, we aim for data to be representative of the phenomenon that we are studying, whether that phenomenon is a population characteristic, a physical model, or some type of social behavior. Typically, our data do not contain complete information, yet we want to use the data to accurately describe a population, estimate a scientific quantity, infer the form of a relationship between variables, or predict future outcomes. In all of these situations, if our data are not representative of the object of study, then our conclusions can be limited, possibly misleading, or even wrong.
 
+
 ## Target Population, Access Frame, Sample
 
-The initial step in the data lifecycle is to express the question of interest in the context of the subject area and consider the connection between the question and the data collected to answer that question. It's good practice to do this before even thinking about the analysis or modeling steps because it may uncover a disconnect where the question of interest cannot be directly addressed with these data. As part of making the connection between the data collection process and the topic of investigation, we identify the population, the means of accessing the population, instruments of measurement, and additional protocols used in the collection process. These concepts help us understand the scope of the data, whether we aim to gain knowledge about a population, scientific quantity, physical model, social behavior, etc.
+The initial step in the data lifecycle is to express the question of interest in the context of the subject area and consider the connection between the question and the data collected to answer that question. It's good practice to do this before even thinking about the analysis or modeling steps because it may uncover a disconnect where the question of interest cannot be directly addressed with the available data. As part of making the connection between the data and the topic of investigation, we identify the target population, the means of accessing the population, instruments of measurement, and additional protocols used in the collection process. These concepts help us understand the scope of the data, and are useful whether we aim to gain knowledge about a population, scientific quantity, physical model, of social behavior.
 
 
-*Target.* The target population consists of the collection of elements that you ultimately intend to describe and draw conclusions about. An element may be a person in a group of people, a voter in an election, a tweet from a collection of tweets, or a county in a state. We sometimes call an element a unit or an atom. You have seen with the penguin study that the unit does not need to be a person. But, it can also be something quite abstract. We will get to that notion in a moment.
+*Target.* The target population consists of the collection of elements that you ultimately intend to describe and draw conclusions about. An element may be a person in a group of people, a voter in an election, a tweet from a collection of tweets, or a county in a state. We sometimes call an element a unit or an atom. You have seen with the penguin study that the unit does not need to be a person. But, it can also be something quite abstract. (We will get to that notion in a moment.)
 
-*Access Frame.* The access frame is the collection of elements that are accessible to you for measurement. These are the units by which you can access the target population. Ideally, the access frame and population are perfectly aligned; meaning they consist of the exact same elements. However, the units in an access frame may be only a subset of the target population; additionally, the frame may include units that don’t belong to the population. For example, to find out how a voter intends to vote in an election, you might call people on the phone. Someone you call may not be a voter so they are in your frame but not in the population. On the other hand, a voter who never answers a call from an unknown number can't be reached so they are in the population but not in your frame.
+*Access Frame.* The access frame is the collection of elements that are accessible to you for measurement. These are the units by which you can access the target. Ideally, the access frame and population are perfectly aligned; meaning they consist of the exact same elements. However, the units in an access frame may be only a subset of the target population; additionally, the frame may include units that don’t belong to the population. For example, to find out how a voter intends to vote in an election, you might call people on the phone. Someone you call may not be a voter; they are in your frame but not in the population. On the other hand, a voter who never answers a call from an unknown number can't be reached; they are in the population but not in your frame.
 
 *Sample.* The sample is the subset of units taken from the access frame to measure, observe, and analyze. The sample gives you the data to analyze to make predictions or generalizations about the population of interest.
 
-The contents of the access frame, as compared to the target, and the method used to select units from the frame to be in the sample are important factors in determining whether or not the data can be considered representative of the target population. If the access frame is not representative of the target population, then the data from the sample is most likely not representative either. And, if the units are sampled in a biased manner, problems with being representative also arise.
+The contents of the access frame, as compared to the target, and the method used to select units from the frame to be in the sample are important considerations in determining whether or not the data are representative of the target population. If the access frame is not representative of the target population, then the data from the sample is most likely not representative either. And, if the units are sampled in a biased manner, problems with being representative also arise.
 
-Importantly, if the *granularity* of the target or access frame do not match that needed to answer the question, then we must realign our question and data scope. For example, when the question refers to measurements on individuals but the access frame provides averages of these measurements across groups of people, then we must either redefine our question or collect different data.  
+Importantly, when the *granularity* of the target or access frame do not match that needed to answer the question, then we must realign our question and data scope. For example, when the question refers to measurements on individuals but the access frame provides averages of these measurements across groups of people, then we must either redefine our question or collect different data.  
 
-You will also want to consider time and place in the data scope. For example, the effectiveness of a drug trial tested in one part of the world where a disease is raging might not compare as favorably with a trial in a different part of the world where background infection rates are lower. Additionally, data collected for the purpose of studying changes over time, like with the monthly measurements of CO2 in the atmosphere change in time so we need to be mindful of this limitation as we examine the data. At other times, there might be spatial patterns in the data. For example, environmental health data that are reported for each census tract in the State of California can be examined with maps to look for spatial correlations.
+You will also want to consider time and place in the data scope. For example, the effectiveness of a drug trial tested in one part of the world where a disease is raging might not compare as favorably with a trial in a different part of the world where background infection rates are lower. Additionally, data collected for the purpose of studying changes over time, like the average daily CO2 in the atmosphere change with weather patterns so we need to be mindful of this as we examine the data. At other times, there might be spatial patterns in the data. For example, environmental health data that are reported for each census tract in the State of California can be examined with maps to look for spatial correlations in cities and rural areas.
 
 If you didn’t collect the data yourself, you will want to consider who did and for what purpose. This is especially relevant today since more data is collected by others, often for administrative purposes, with a different goal in mind. Taking a hard look at *found data* and asking yourself whether and how these data might be used to address your question can save you from making a fruitless analysis or drawing inappropriate conclusions.
 
-For each of the following examples, we begin with a general question, narrow it to one that can be answered with data, and in doing so, we identify the target population, access frame, sample, and the units within them. These concepts are represented by circles in a diagram of data scope, and the configuration of their overlap helps reveal key aspects the scope. Also in each example, we describe relevant temporal and spatial features to the data scope.
+For each of the following examples, we begin with a general question, narrow it to one that can be answered with data, and in doing so, we identify the target population, access frame, sample, and the units within them. These concepts are represented by circles in a diagram for data scope, where the configuration of their overlap helps reveal key aspects the scope. Also in each example, we describe relevant temporal and spatial features.
 
 ### Example: Kids watching TV
 
-The Early Childhood Longitudinal Study (ECLS) followed children who were in kindergarten in 1998 through to eighth grade. Data were collected from principals, teachers, parents, and children. 
-When the children were in the eighth-grade, the data collected included a paper-and-pencil questionnaire that the children answered that asked questions about how they spent their time after school, among many other things.
+The Early Childhood Longitudinal Study (ECLS) followed children who were in kindergarten in 1998 through to eighth grade. Data were collected from principals, teachers, parents, and children, and included student test scores, family demographics, school demographics, etc. 
+When the children were in the eighth-grade in 2006, they were given a paper-and-pencil questionnaire that asked questions how they spent their time after school, among other things.
 
-The ECLS-K was developed under the sponsorship of the U.S. Department of Education, and carried out by Westat and the Educational Testing Service (ETS).
- 
-Children were selected for the ECLS through a multistage process, where geographic areas were selected; then, within these selected regions, elementary schools (both public and private) were chosen; and at each school a sample of kindergarteners were invited to participate (actually, their parents were asked permission for their children to participate). All together over 21,00 kindergartners across the US participated.
+The ECLS was developed under the sponsorship of the U.S. Department of Education, and carried out by Westat and the Educational Testing Service (ETS).
+Children were selected through a multistage process, where geographic areas were chosen; then, within the selected regions, elementary schools (both public and private) were chosen; and at each school a sample of kindergarteners were invited to participate (actually, their parents were asked permission for their children to participate). All together 21,00 kindergartners across the US participated.
 
 ![](images/ECLS-scope.jpg){fig-align=center width="400"}
 
-The target population in this example is all kindergarteners in the US in 1998.
-The access frame includes all of these children, except those who are home schooled, didn't attend kindergarten, or emigrated to the US after kindergarten. While the method for choosing children to be in the sample, we can identify the sample as a subset of those children in the access frame. We will soon cover different methods for choosing a sample, but fo now, we simply say that the sample is representative of the children in the access frame. 
+The target population in this example is all eighth graders in the US in 2006. The access frame includes all of these children, except those who are home schooled, didn't attend kindergarten, or emigrated to the US after kindergarten. (The students had to have been available for selection as kindergartners.) While the method for choosing children for the sample is complex, we can identify the sample as a subset of those children in the access frame. We will soon cover different methods for choosing a sample. 
 
 As for the question, we are interested in uncovering any connections between the amount a child watches TV after school and other factors, particularly those related to parental demographics. This study is an example of a large survey that aims to provide both  descriptive data on children's status as they begin school and 
 their progress into middle school, and to provide a rich dataset that enables researchers to analyze a wide range of family, school, community, and individual variables that may be related to children's early success in school.
 
 ### Example: Environmental Hazards and Health
 
-How do environmental hazards impact an individual's health in California? To address this question, the California Environmental Protection Agency developed the CalEnviroScreen project. This project studies connections between population health and environmental pollution in California communities. It uses data collected from several sources that includes demographic summaries from the U.S. Census, health statistics from the California Office of Statewide Health Planning and Development, and pollution measurements from air monitoring stations around the state maintained by the California Air.
+How do environmental hazards impact an individual's health in California? To address this question, the California Environmental Protection Agency developed the CalEnviroScreen project. This project studies connections between population health and environmental pollution in California communities. It uses data collected from several sources that includes demographic summaries from the U.S. Census, health statistics from the California Office of Statewide Health Planning and Development, and pollution measurements from air monitoring stations around the state.
 
-Ideally, we want to study the individuals living in California and assess the impact of these environmental hazards on an individual's health. Our target population is all people in the state of California, and the unit is one person. However, the granularity of the available data prohibit access to individual measurements because the data are reported for census tracts. 
+Ideally, we want to study the individuals living in California and assess the impact of these environmental hazards on their health. That is, our target population is all people in the state of California, and the unit is one person. However, the granularity of the available data prohibit access to individual measurements because the data are reported for census tracts. 
 
 ![](images/CA-enviro-scope.jpg){fig-align=center width="400"}
 
@@ -91,39 +90,38 @@ The access frame consists of groups of residents living in the same census tract
 
 Since measurements for all of the census tracts are available, the sample is a census. That is, all census tracts in California are in the sample.
 
-Unfortunately, we cannot dis-aggregate the information in a tract to examine what happens to an individual person. This aggregation impacts the question we can address and the conclusions that we can draw. We need to refine our question to ask, instead, about the environmental factors in a census tract that are related to health indicators for that region.
+Unfortunately, we cannot dis-aggregate the information in a tract to examine what happens to an individual person. This aggregation impacts the question we can address and the conclusions that we can draw. We need to refine our question to ask, instead, about the environmental factors in a census tract that are related to health indicators for the region.
 
 
 ### Example: Flights in and out of San Francisco
 
-We are interested in discovering factors that are related to flight delays. The data that we have available are all flights in to and out of San Francisco in 2020.  
+We are interested in discovering factors that are related to flight delays.  
+One approach is to describe our population of interest as all flights landing or taking off around the world. However, the data that we have available are all flights in to and out of San Francisco in 2020. If we think that flights in and out of San Francisco might be different in important ways from those in other locations (which makes sense, right?), then we must narrow the focus of the question to San Francisco flights.
 
-One approach is to describe our population of interest all flights landing or taking off around the world. However, if we think that flights in and out of San Francisco might be different in important ways from those in other locations (which makes sense, right?), then we will want to narrow focus of the question to focus on San Francisco flights.
+So, the unit of observation is a flight that lands or takes off from SFO in 2020, and the population are all of these flights. This is a situation where administrative data have been collected by a federal agency and made available to the public. In this case, the access frame aligns with the population, and the sample consists of the entire access frame. 
+
+If the flight data consisted of commercial passenger, private, and cargo flights, then the access frame would include flights that are outside of our population, and we would want to trim those units from our sample. Below is a diagram for this scenario.
 
 ![](images/Flights-scope.jpg){fig-align=center width="400"}
 
-The unit of observation is a flight that lands or takes off from SFO in 2020, and the population are all of these flights. This is a situation where administrative data have been collected by a federal agency and made available to the public. In this case, the access frame aligns with the population, and the sample consists of the entire access frame. 
 
-If the flight data consists of commercial passenger, private, and cargo flights, then the access frame would include flights that are outside of our population, and we would want to trim those units from our sample. 
+### Example: COVID Vaccine Trials
 
-
-### Example: Covid Vaccine Trials
-
-In 2020, Johnson & Johnson carried out a clinical trial for their new vaccine. They wanted to determine the efficacy of their vaccine, i.e., how much better were people with the vaccine able to  resist infection from COVID-19 compared to those who did not recieve any vaccine. 
+In 2020, Johnson & Johnson carried out a clinical trial for their new COVID vaccine. They wanted to determine the efficacy of their vaccine, i.e., how much more were people with the vaccine able to  resist infection from COVID-19 compared to those who did not recieve any vaccine. 
 
 To answer this question, they enrolled 43,738 people in the trial. These volunteers were:  
 
 + adults 18 and over;
-+ participated in the study from October to November, 2020;
++ participants in the study from October to November, 2020;
 + from 8 countries across 3 continents, including the US and South Africa.
 
-The participants were split into two groups at random. Half received the new vaccine, and the other half received a placebo, such as a saline solution. Then, everyone was followed for 28 days to see whether they contracted COVID-19.
+The participants were split into two groups at random. Half received the new vaccine, and the other half received a placebo, a fake vaccine such as a saline solution. Then, everyone was followed for 28 days to see whether they contracted COVID-19.
 
 ![](images/COVID-scope.jpg){fig-align=center width="400"}
 
 The target population consists of all adults in the world at the time of the trial, but the access frame consists of individuals willing to volunteer for the trial living in the 8 countries where the trial took place.  We don't know exactly how the sample of volunteers was taken, but an effort was made to include many people (40%) who have conditions that might cause serious complications from COVID infection. 
 
-This is an example where the time and location of the study are important to include in the scope. The disease went in waves across the world with people in some countries being his hardest at different times.
+This is an example where the time and location of the study are important to include in the scope. The disease went in waves across the world with people in some countries being hardest at different times.
 
 
 ## Instruments and Protocols
@@ -136,25 +134,19 @@ The protocol for calibrating the instrument and taking measurements is vital to 
 
 Protocols are also critical in experiments. Ideally, any factor that can influence the outcome of the experiment is controlled. For example, temperature, time of day, confidentiality of a medical record, and even the order of taking measurements need to be consistent to rule out potential effects from these factors getting in the way.
 
-With digital traces, such as your tweets or the history of your Internet searches, the algorithms used to support online activity are dynamic and continually re-engineered. For example, Google’s search algorithms are continually tweaked to improve user service and advertising revenue. Changes to the search algorithms can impact the data generated from the searches, which in turn impact systems built from these data, such as the Google Flu Trend tracking system. This changing environment can make it untenable to maintain data collection protocols and difficult to replicate findings.
-
 Many data analysis projects involve linking data together from multiple sources. Each source needs to be examined through this data-scope construct and any difference across sources considered. Additionally, matching algorithms used to combine data from multiple sources need to be clearly understood so that populations and frames from the sources can be compared.
 
-Measurements from an instrument taken to study a natural phenomenon can also be cast in the scope-diagram of a target, access frame, and sample. This approach is helpful in understanding their accuracy.
-
-
-The scope-diagram introduced for observing a target population can be extended to the situation where we want to measure a fixed quantity such as the age of a fossil, the length of an asteroid's orbit, etc. In these cases we consider the quantity we want to measure as an unknown value. (This unknown value referred is often referred to as a parameter.) In our diagram, we shrink the target to a point that represents this unknown. The instrument’s accuracy acts as the frame, and the sample con‐ sists of the measurements taken by the instrument within the frame. You might think of the frame as a dart board, where the instrument is the person throwing the darts. If they are reasonably good, the darts land within the circle, scattered around the bulls‐ eye. The scatter of darts correspond to the measurements taken by the instrument. The target point is not seen by the dart thrower, but ideally it coincides with the bulls‐eye.
+The scope-diagram introduced for observing a target population can be extended to the situation where we want to measure a fixed quantity such as the age of a fossil, the length of an asteroid's orbit, etc. In these cases we consider the quantity we want to measure as an unknown value. (This unknown value referred is often referred to as a parameter.) In our diagram, we shrink the target to a point that represents this unknown. The instrument’s accuracy acts as the frame, and the sample consists of the measurements taken by the instrument within the frame. You might think of the frame as a dart board, where the instrument is the person throwing the darts. If they are reasonably good, the darts land within the circle, scattered around the bulls‐ eye. The scatter of darts correspond to the measurements taken by the instrument. The target is not seen by the dart thrower, but ideally it coincides with the bulls‐eye.
 
 ### Example - DART spacecraft
 
-Recently, a NASA spacecraft, part of the DART project, traveled for ten months to purposefully hit an asteroid, Dimorphos, which orbits around a larger asteroid, Didymos. The goal of this mission was to study the possibility of using a spacecraft to impact the path of an asteroid. After the collision, astronomers used telescopes to measure how much the orbit changed. They found that the spacecraft altered Dimorphos' orbit by 32 minutes, shortening the 11 hour and 55-minute orbit to 11 hours and 23 minutes.
+Recently, a NASA spacecraft, part of the DART project, traveled for ten months to purposefully hit an asteroid, Dimorphos, which orbits around a larger asteroid, Didymos. The goal of this mission was to study the possibility of using a spacecraft to impact the path of an asteroid. After the collision, astronomers used telescopes to measure how much the orbit changed. They found that the spacecraft altered Dimorphos' orbit by 32 minutes, shortening the orbit to 11 hours and 23 minutes.
 
-Following the impact event, telescopes measured the brightness of the Didymos system over time to plot a light curve. When selecting an asteroid for DART’s mission, scientists selected Didymos and Dimorphos because the asteroids are binaries, and cause dips in the brightness of the system as Dimorphos crosses in front of and behind Didymos during its orbit.
+Before and after the impact of the spacecraft, telescopes measured the brightness of Dimorphos as it crossed in front and behind Didymos during its orbit. The dips in these measurements produce light curves that show the periodic changes in brightness over time which gives the length of the orbit. By comparing the light curves from before and after the impact, astronomers estimated the change in length of the asteroid's orbit. 
 
-Astronomers measured the brightness of the smaller asteroid as it rotates, and these measurements produce a light curve that show the periodic changes in  brightness over time. By comparing the light curves from before and after the impact of the spacecraft,
-the astronomers have estimated the change in length of the asteroid's orbit. Crucial to this process is the accuracy of the telescope measurements of the light reflected by the asteroid. 
+Crucial to this process is the accuracy of the telescope measurements of the light reflected by the asteroid. 
 The telescopes are finely tuned instruments that make
-precise measurements. The accuracy of these instruments have allowed scientists to attach a margin of uncertainty of 2 minutes to the estimate of the orbit length. In the diagram below, the true length of the orbit is denoted by the star, a small bias in the telescope's measurement is captured by the gap from the star to the bullseye, and the measurements from the telescope are marked as dots around the bullseye. 
+precise measurements, which have allowed scientists to attach a margin of uncertainty of 2 minutes to the estimate of the orbit length. The top left portion of the diagram in the next section, represents the data scope. There, the true length of the orbit is represented by the star, which we call a parameter. The access frame can be equated to the telescope, or the circle that contains the star. And the sample is those measurements from the telescope that are marked as dots around the star. 
 
 
 ## Accuracy
@@ -175,15 +167,15 @@ Bias comes in many forms. We describe some classic types here and connect them t
 
 + Selection bias arises when the mechanism used to choose units for the sample tends to select certain units more often than they should. As an example, a convenience sample chooses the units most easily available. Problems can arise when those who are easy to reach differ in important ways from those harder to reach. Another example of selection bias can happen with observational studies and experiments. These studies often rely on volunteers (people who choose to participate), and this self-selection has the potential for bias, if the volunteers differ from the target population in important ways.
 
-+ Non-response bias comes in two forms: unit and item. Unit non-response happens when someone selected to be in the sample is unwilling to participate. Item non-response occurs when, say, someone in the sample refuses to answer a particular survey question. Non-response can lead to bias if those who choose not to participate or to not answer a particular question are systematically different from those who respond.
++ Non-response bias comes in two forms: unit and item. Unit non-response happens when someone selected to be in the sample is unwilling to participate. Item non-response occurs when, say, someone in the sample refuses to answer a particular survey question. Non-response can lead to bias if those who choose to not participate or to not answer a particular question are systematically different from those who respond.
 
 + Measurement bias happens when an instrument systematically misses the target in one direction. For example, low humidity can systematically give us incorrectly high measurements for air pollution. In addition, measurement devices can become unstable and drift over time and so produce systematic errors. In surveys, measurement bias can arise when questions are confusingly worded or leading, or when respondents may not be comfortable answering honestly.
 
-Each of these types of bias can lead to situations where the data are not centered on the unknown targeted value. Often we cannot assess the potential magnitude of the bias, since little to no information is available on those who are outside of the access frame, less likely to be selected for the sample, or disinclined to respond. Protocols are key to reducing these sources of bias. Chance mechanisms to select a sample from the frame or to assign units to experimental conditions can eliminate selection bias. A non-response follow-up protocol to encourage participation can reduce non- response bias. A pilot survey can improve question wording and so reduce measurement bias. Procedures to calibrate instruments and protocols to take measurements in, say, random order can reduce measurement bias.
+Each of these types of bias can lead to situations where the data are not centered on the unknown targeted value. Often we are n ot able to assess the potential magnitude of the bias, since little to no information is available on those who are outside of the access frame, less likely to be selected for the sample, or disinclined to respond. Protocols are key to reducing these sources of bias. Chance mechanisms to select a sample from the frame or to assign units to experimental conditions can eliminate selection bias. A non-response follow-up protocol to encourage participation can reduce non- response bias. A pilot survey can improve question wording and so reduce measurement bias. Procedures to calibrate instruments and protocols to take measurements in, say, random order can reduce measurement bias.
 
-Bias does not need to be avoided under all circumstances. If an instrument is highly precise (low variance) and has a small bias, then that instrument might be preferable to another that has high variance and little to no bias. As an example, biased studies are potentially useful to pilot a survey instrument or to capture useful information for the design of a larger study. Many times we can at best recruit volunteers for a study. Given this limitation, it can still be useful to enroll these volunteers in the study and use random assignment to split them into treatment groups. That’s the idea behind randomized controlled experiments.
+Bias does not need to be avoided under all circumstances. If an instrument is highly precise (low variance) and has a small bias, then that instrument might be preferable to another that has high variance and little to no bias. Biased studies can be useful to pilot a survey instrument or to capture useful information for the design of a larger study. Many times we can at best recruit volunteers for a study. Given this limitation, it can still be useful to enroll these volunteers in the study and use random assignment to split them into treatment groups. That’s the idea behind randomized controlled experiments.
 
-Whether or not bias is present, data typically also exhibit variation. Variation can be introduced purposely by using a chance mechanism to select a sample, and it can occur from an instrument’s precision or natural variation.
+Whether or not bias is present, data typically also exhibit variation. Variation can be introduced purposely by using chance to select a sample, and it can occur from an instrument’s precision or natural variation.
 
 
 ### Types of Variation
@@ -194,9 +186,9 @@ Variation that results from a chance mechanism has the advantage of being quanti
 
 + Assignment variation of units to treatment groups in a controlled experiment produces variation. If we split the units up differently, then we can get different results from the experiment. This randomness allows us to compute the chance of a particular group assignment.
 
-+ Measurement error for instruments result from the measurement process; if the instrument has no drift and a reliable distribution of errors, then when we take multiple measurements on the same object, we get variations in measurements that are centered on the truth.
++ Measurement error for instruments result from a measurement process. If the instrument has no drift and a reliable distribution of errors, then when we take multiple measurements on the same object, we get variations in measurements that are centered on the truth.
 
-The Box Model is a simple abstraction that can be helpful for understanding variation. Thi model helps us reason about sampling schemes, randomized controlled experiments, and measurement error. It is the topic of the next section.
+The Box Model is a simple abstraction that can be helpful for understanding variation. This model helps us reason about sampling schemes, randomized controlled experiments, and measurement error. It is the topic of the next section.
 
 ## Summary
 
@@ -212,7 +204,7 @@ Consider the scope of the data. Questions about the temporal and spatial aspects
 + When were the data collected?
 + Where were the data collected?
 
-Answers to these questions help you determine whether your findings are relevant to the situation that interests you, or whether your situation that may not be comparable to this other place and time.
+Answers to these questions help you determine whether your findings are relevant to the situation that interests you or are possibly not comparable to your place and time.
 
 Core to the notion of scope are answers to the following questions:
 
@@ -220,10 +212,10 @@ Core to the notion of scope are answers to the following questions:
 + How is the target accessed?
 + Are the units in the target the same as the units in the access frame, and are they at the level of granularity needed to address the question?
 + What methods are used to select samples/take measurements?
-+ What instruments are used and how were they calibrated?
++ What instruments are used and how are they calibrated?
 + Do the measurements made on the units provide the information needed to answer the question?
 
-Answering as many of these questions as possible can give you valuable insights as to how much trust you can place in your findings and how far you can generalize your findings.
+Answering as many of these questions as possible can give you valuable insights as to how much trust you can place in your findings and how far you can generalize them.
 
 These notes have provided you with a terminology and framework for thinking about and answering these questions. We have also outlined ways to identify possible sources of bias and variance that can impact the accuracy of your findings.  Next, we develop the Box model for situations when a chance mechanism can be used to select a sample from an access frame, divide volunteers into experimental treatment groups, or take measurements from a well-calibrated instrument.
 
