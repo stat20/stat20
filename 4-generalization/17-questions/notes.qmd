@@ -79,14 +79,14 @@ The Early Childhood Longitudinal Study (ECLS) followed children who were in kind
 When the children were in the eighth-grade in 2006, they were given a paper-and-pencil questionnaire that asked questions how they spent their time after school, among other things.
 
 The ECLS was developed under the sponsorship of the U.S. Department of Education, and carried out by Westat and the Educational Testing Service (ETS).
-Children were selected through a multistage process, where geographic areas were chosen; then, within the selected regions, elementary schools (both public and private) were chosen; and at each school a sample of kindergarteners were invited to participate (actually, their parents were asked permission for their children to participate). All together 21,00 kindergartners across the US participated.
+Children were selected through a multistage process, where geographic areas were chosen; then, within the selected regions, elementary schools (both public and private) were chosen; and at each school a sample of kindergartners were invited to participate (actually, their parents were asked permission for their children to participate). All together 21,00 kindergartners across the US participated.
 
 ![](images/ECLS-scope.jpg){fig-align=center width="400"}
 
-The target population in this example is all eighth graders in the US in 2006. The access frame includes all of these children, except those who are home schooled, didn't attend kindergarten, or emigrated to the US after kindergarten. (The students had to have been available for selection as kindergartners.) While the method for choosing children for the sample is complex, we can identify the sample as a subset of those children in the access frame. We will soon cover different methods for choosing a sample. 
+The target population in this example is all eighth graders in the US in 2006. The access frame includes all of these children, except those who are home schooled, didn't attend kindergarten, or immigrated to the US after kindergarten. (The students had to have been available for selection as kindergartners.) While the method for choosing children for the sample is complex, we can identify the sample as a subset of those children in the access frame. We will soon cover different methods for choosing a sample. 
 
-As for the question, we are interested in uncovering any connections between the amount a child watches TV after school and other factors, particularly those related to parental demographics. This study is an example of a large survey that aims to provide both  descriptive data on children's status as they begin school and 
-their progress into middle school, and to provide a rich dataset that enables researchers to analyze a wide range of family, school, community, and individual variables that may be related to children's early success in school.
+As for the question, we are interested in uncovering any connections between the amount a child watches TV after school and other factors, particularly those related to parental demographics. This study is an example of a large survey that aims to provide both descriptive data on childrens' status as they begin school and 
+their progress into middle school, and to provide a rich data set that enables researchers to analyze a wide range of family, school, community, and individual variables that may be related to children's early success in school.
 
 ### Example: Environmental Hazards and Health
 
@@ -96,20 +96,16 @@ Ideally, we want to study the individuals living in California and assess the im
 
 ![](images/CA-enviro-scope.jpg){fig-align=center width="400"}
 
-
-The access frame consists of groups of residents living in the same census tract. This means that a unit in the access frame is a census tract.
-
-Since measurements for all of the census tracts are available, the sample is a census. That is, all census tracts in California are in the sample.
+The access frame consists of groups of residents living in the same census tract. This means that a unit in the access frame is a census tract. Since measurements for all of the census tracts are available, the sample is a census. That is, all census tracts in California are in the sample.
 
 Unfortunately, we cannot dis-aggregate the information in a tract to examine what happens to an individual person. This aggregation impacts the question we can address and the conclusions that we can draw. We need to refine our question to ask, instead, about the environmental factors in a census tract that are related to health indicators for the region.
 
 
-### Example: Flights in and out of San Francisco
+### Example: Flights out of the Bay Area
 
-We are interested in discovering factors that are related to flight delays.  
-One approach is to describe our population of interest as all flights landing or taking off around the world. However, the data that we have available are all flights in to and out of San Francisco in 2020. If we think that flights in and out of San Francisco might be different in important ways from those in other locations (which makes sense, right?), then we must narrow the focus of the question to San Francisco flights.
+We are interested in discovering factors that are related to flight delays. One approach is to describe our population of interest as all flights landing or taking off around the world. However, the data that we have available are all flights out of San Francisco and Oakland in 2020. If we think that flights out of the Bay Area might be different in important ways from those in other locations (which makes sense, right?), then we must narrow the focus of the question to Bay Area flights.
 
-So, the unit of observation is a flight that lands or takes off from SFO in 2020, and the population are all of these flights. This is a situation where administrative data have been collected by a federal agency and made available to the public. In this case, the access frame aligns with the population, and the sample consists of the entire access frame. 
+So, the unit of observation is a flight that departs from SFO or OAK in 2020, and the population are all of these flights. This is a situation where administrative data have been collected by a federal agency and made available to the public. In this case, the access frame aligns with the population, and the sample consists of the entire access frame. 
 
 If the flight data consisted of commercial passenger, private, and cargo flights, then the access frame would include flights that are outside of our population, and we would want to trim those units from our sample. Below is a diagram for this scenario.
 
@@ -118,7 +114,7 @@ If the flight data consisted of commercial passenger, private, and cargo flights
 
 ### Example: COVID Vaccine Trials
 
-In 2020, Johnson & Johnson carried out a clinical trial for their new COVID vaccine. They wanted to determine the efficacy of their vaccine, i.e., how much more were people with the vaccine able to  resist infection from COVID-19 compared to those who did not recieve any vaccine. 
+In 2020, Johnson & Johnson carried out a clinical trial for their new COVID vaccine. They wanted to determine the efficacy of their vaccine, i.e., how much more were people with the vaccine able to  resist infection from COVID-19 compared to those who did not receive any vaccine. 
 
 To answer this question, they enrolled 43,738 people in the trial. These volunteers were:  
 
