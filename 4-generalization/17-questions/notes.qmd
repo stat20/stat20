@@ -46,7 +46,7 @@ Data are at the heart of the life cycle, and the quality of the data collection 
 
 ## Target Population, Access Frame, Sample
 
-<!-- This needs an immediate example after that first sentence, which is very dense. -->
+<!-- This could use an immediate example after that first sentence, which is very dense. -->
 
 The initial step in the data life cycle is to express the question of interest in the context of the subject area and consider the connection between the question and the data collected to answer that question. It's good practice to do this before even thinking about the analysis or modeling steps because it may uncover a disconnect where the question of interest cannot be directly addressed with the available data. As part of making the connection between the data and the topic of investigation, we identify the target population, the means of accessing the population, instruments of measurement, and additional protocols used in the collection process. These concepts help us understand the scope of the data, and are useful whether we aim to gain knowledge about a population, scientific quantity, physical model, or social behavior.
 
