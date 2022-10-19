@@ -1,6 +1,6 @@
 ---
-title: "Introducing Probability"
-subtitle: "We will introduce the ideas of probability via a mechanism called a box model "
+title: "An Introduction to Chance"
+subtitle: "We will introduce the ideas of chance, or probability, via a mechanism called a box model. "
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 format:
   html:
@@ -66,7 +66,7 @@ from our access frame. In practice, it is rare for the access frame
 and target population to exactly coincide. We need to design our
 data collection methods (our protocols) so that our target
 population and our access frame overlap as much as we can manage. This
-is achieved using chance, or probability, methods.
+is achieved using methods that incorporate chance.
 
 ## Introducing the Box Model
 
@@ -95,9 +95,10 @@ We assume that the tickets in the box are *equally likely* to be drawn[^uar].
 what box and which tickets would you use to simulate one coin toss?
 
 <details><summary>Check your answer</summary>
-We could use the box below, and draw once:
+We could draw one ticket from the box 
 ![](images/coin_ht.jpeg){fig-align=center width="100"}
-You could also use the following box (and draw one ticket): 
+
+Or we could draw one ticket from the box
 ![](images/coin.jpeg){width="100"}
 with the ticket $\fbox{1}$ representing the coin landing heads, and $\fbox{0}$ representing the coin landing tails.
 Can you think of advantages of using the second box?
@@ -114,7 +115,7 @@ This box describes all the possible things that can happen when you toss a coin 
 If you thought to yourself: this doesn't satisfy the second requirement - of all the tickets being equally likely, that's right! The third ticket in that box is twice as likely as the other two, since you can the get the outcome of  one head and one tail in two ways: the first toss landing heads and the second one tails, or the other way around. 
 A better box would be the one below. The tickets are equally likely, and we would draw once (and then count the number of "H"'s on the ticket). 
 
-![](images/better-box.jpeg){width="150"}
+![](images/better-box.jpeg){width="200"}
 
 The best box would be the one we introduced in the first example:
 
@@ -124,7 +125,7 @@ Remember that the ticket $\fbox{1}$ represents the outcome of a toss landing hea
 
 #### Example 3: Rolling a fair die
 <details><summary>Check your answer</summary>
-The box will have six tickets as shown below, and we would draw once at random from this box.
+The box will have six tickets as shown below, and we would draw one ticket from this box.
 
 ![](images/die.jpeg){width="200"}
 </details>
@@ -134,7 +135,7 @@ The box will have six tickets as shown below, and we would draw once at random f
 #### Example 4: Rolling a pair of fair dice and summing the spots
 
 <details><summary>Check your answer</summary>
-We would the same box, with six tickets as shown below, and we would draw *twice* at random with replacement from this box, then add the draws.
+We would the same box, with six tickets as shown below, and we would draw *twice* with replacement from this box, then add the draws.
 
 ![](images/two-dice.jpeg){width="450"}
 
@@ -151,14 +152,14 @@ An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 
 <details><summary>Check your answer</summary>
 We would use the boxes shown below. In the top box, there are 38 tickets, each representing a numbered pocket on the wheel. Draw one ticket to represent the ball landing in a particular pocket. In the second row each ticket represents a colored pocket, and we see that there are 18 red pockets, 18 black, and 2 green. If we are only interested in the outcome *ball lands in red pocket*, then the box with 18 tickets marked 1 and 20 marked 0 will work. We would draw once from it, with the ticket marked $\fbox{1}$ representing the ball landing in a red pocket, and the ticket $\fbox{0}$ representing the ball *not* landing in a red pocket, but in a green or black pocket.
 
-![](images/roulette-bet.jpeg){fig-align="center" width="300"}[^roulette_image]
+![](images/roulette-bet.jpeg){fig-align="center" width="300"}
 
 </details>
 
 The scenario where we bet on red, and so the box tickets can be re-labeled as 0 or 1, is called *classifying and counting*. In this we draw tickets from the box, where there may be many outcomes, but we only label a ticket with 1 if we want to count that outcome. Otherwise, we label the ticket with 0.
 
 #### Example 6: Selecting an apple from a bag of fruit
- Suppose I have three apples and two mangoes in a bag. I pick out a fruit at random. How would you represent this as a box? What about if I only want an apple?
+ Suppose I have three apples and two mangoes in a bag. I shuffle the fruit in the bag and then pick one out. How would you represent this as a box model? What about if I only want an apple?
 
 ![](images/fruit.jpeg){width="200"}
 
@@ -180,7 +181,7 @@ We have a group of 5 people: Alex, Emi, Fred, Max, and Nan. Two of the five are 
 All the ten pairs are equally likely. On the first draw, there are 5 tickets to choose from, and on the second there are 4, making $5 \times 4 = 20$ possible draws of two tickets, drawn from this box, one at a time, without replacement. We have only 10 pairs here because of those 20 pairs, there are only 10 distinct ones. When we count 20 pairs, we are counting Alex $+$ Emi as one pair, and Emi $+$ Alex as another pair.  
 </details> 
 
-What is the probability that Alex and Max will be selected? Guess! (Hint: you have seen all the possible pairs above, and they are equally likely. What will be the chance of any one of them?)
+What is the chance that Alex and Max will be selected? Guess! (Hint: you have seen all the possible pairs above, and they are equally likely. What will be the chance of any one of them?)
 
 #### Example 8: Selecting 5 penguins from the penguins dataset.
 ![](images/penguins.png){fig-align=center width="300"}
@@ -270,7 +271,7 @@ We know all the possible outcomes of summing a pair of dice (between $2$ and $12
 
 ## Rules of chance
 
-What we have done here is estimate probabilities using the idea that the *chance* or *probability* of something is the proportion of times it occurs when we simulate over and over again the basic process that results in the thing we are counting. This is using the definition of the chance of an outcome to be the proportion of times we expect it to occur when the process that generates the event is  *independently* repeated many times [^freq].
+What we have done here is estimate chances using the idea that the *chance* (or probability) of something is the proportion of times it occurs when we simulate over and over again the basic process that results in the thing we are counting. This is using the definition of the chance of an outcome to be the proportion of times we expect it to occur when the process that generates the event is  *independently* repeated many times [^freq].
 
 The chance of an event (where an *event* might be one outcome, such as "rolling a die and seeing 2", or a collection of outcomes, such as "rolling an even number") needs to satisfy some basic mathematical rules (which are intuitively clear if you think of the chance of an event as its relative frequency):
 
