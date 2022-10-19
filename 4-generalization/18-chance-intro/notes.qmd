@@ -1,5 +1,6 @@
 ---
-title: "Introducing Probability" 
+title: "Introducing Probability"
+subtitle: "We will introduce the ideas of probability via a mechanism called a box model "
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 format:
   html:
@@ -16,6 +17,17 @@ execute:
 [[PDF]{.btn .btn-primary}](notes.pdf)
 
 \
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(stat20data)
+library(infer)
+library(palmerpenguins)
+```
 
 [I]{.dropcap}n the last set of notes, we revisited the data cycle, and saw that, in order to use the obtained data to answer a question about our
 *target population*, we have to make sure that our data is
@@ -59,7 +71,7 @@ is achieved using chance, or probability, methods.
 ## Introducing the Box Model
 
 One of the simplest ways of understanding chance is by considering a
-*box model*. [^fppbox]. A box model consists of a box of tickets, and we draw tickets from this box.
+*box model*[^fppbox]. A box model consists of a box of tickets, from which tickets are drawn.
 To specify a box model, we have to say what tickets go in the box (that is, what are the values on the tickets, and how many of each value) , and
 whether they will be drawn *with* or without replacement (after drawing a ticket from the box, do we put it back in the box or not, before we draw another ticket).
 
@@ -154,7 +166,15 @@ If I only care about the apples, then the box can be written as a 0-1 box as sho
 
 </details> 
 
-#### Example 7: Selecting 2 people out of a group of 5 
+#### Example 7: Penguins
+![](images/committee.jpeg){fig-align=center width="300"}
+
+You have seen the penguins data, which measured `r ncol(penguins)` variables on a sample of `r nrow(penguins)`. Here the box represents the penguin population of  three species: Adelie, Chinstrap, and Gentoo. That is, each ticket in the box represents one penguin.There should be as many tickets in the box as there are Adelie, Chinstrap, and Gentoo penguins combined.[^npenguins]
+
+
+[^npenguins]: An article from February claims that there are 10 million Adelie penguins, 8 million Chinstrap, and 774,000 Gentoo penguins on the Antarctic continent.(https://polarguidebook.com/why-are-penguins-endangered/)
+
+#### Example 8: Selecting 2 people out of a group of 5 
 ##### (drawing *without* replacement)
 We have a group of 5 people: Alex, Emi, Fred, Max, and Nan. Two of the five are to be selected at random to form a two person committee.Draw the box model for this situation.
 <details><summary>Check your answer</summary>
@@ -168,7 +188,8 @@ What is the probability that Alex and Max will be selected? Guess! (Hint: you ha
 
 
 
-[^roulette_image]: European roulette wheel: photo by Ralf Roletschek, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons.
+[^roulette_image]: Photo by Derek Lynn via unsplash.com
+  
 
 ## The `sample()` function in R
 
@@ -180,17 +201,6 @@ As you read through these notes, keep RStudio open in another window to code alo
 :::
 
 The box model is easily simulated in R, since there is a convenient function that does exactly what we need: draw tickets from a "box" (a vector). We will use the function `sample(x, size = n, replace = FALSE)`, where `x` is the vector you want to sample from, `size` is the number of draws (with the default value being the length of `x`), and `replace` specifies whether the draws are with or without replacement. The default in `sample()` is to draw them without replacement. 
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-
-library(tidyverse)
-library(stat20data)
-library(infer)
-library(palmerpenguins)
-```
 
 
 ```{r}
