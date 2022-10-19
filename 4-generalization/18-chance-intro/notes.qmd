@@ -150,7 +150,7 @@ We would the same box, with six tickets as shown below, and we would draw *twice
 
 ![](images/roulette-us.jpg){fig-align="center" width="200"}[^roulette_image]
 
-An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is spun in the opposite direction. Players bet on which pocket which players bet on which colored or numbered pocket the ball will come to rest in. How would you represent the box if you wanted to bet on a number? What about if you wanted to bet on the ball landing in a red pocket? 
+An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is spun in the opposite direction. Players bet on which colored or numbered pocket the ball will come to rest in. How would you represent the box if you wanted to bet on a number? What about if you wanted to bet on the ball landing in a red pocket? 
 
 <details><summary>Check your answer</summary>
 We would use the boxes shown below. In the top box, there are 38 tickets, each representing a numbered pocket on the wheel. Draw one ticket to represent the ball landing in a particular pocket. In the second row each ticket represents a colored pocket, and we see that there are 18 red pockets, 18 black, and 2 green. If we are only interested in the outcome *ball lands in red pocket*, then the box with 18 tickets marked 1 and 20 marked 0 will work. We would draw once from it, with the ticket marked $\fbox{1}$ representing the ball landing in a red pocket, and the ticket $\fbox{0}$ representing the ball *not* landing in a red pocket, but in a green or black pocket. We can see that the chance of drawing a  $\fbox{1}$ isv 2 out of 38 or $1/19$.
@@ -174,10 +174,10 @@ All the ten pairs are equally likely. On the first draw, there are 5 tickets to 
 
 What is the chance that Alex and Emi will be selected? Guess! (Hint: you have seen all the possible pairs above, and they are equally likely. What will be the chance of any one of them?) What is the chance that Alex will be selected for the sample? 
 
-#### Example 7: Selecting 5 penguins from the penguins dataset.
+#### Example 7: Selecting 50 penguins from the penguins dataset.
 ![](images/penguins.png){fig-align=center width="300"}
 
-You have seen the penguins data, which measured `r ncol(penguins)` variables on a sample of `r nrow(penguins)`. Here the box will contain 344 tickets, and we will draw 5 tickets *without* replacement. Note that each ticket in the box represents one penguin in the sample has information for multiple variables measured on that penguin, and we would consider only the information we are interested in.
+You have seen the penguins data, which measured `r ncol(penguins)` variables on a sample of `r nrow(penguins)`. Here the box will contain 344 tickets, and we will draw 50 tickets *without* replacement. Note that each ticket in the box represents one penguin in the sample has information for multiple variables measured on that penguin, and we would consider only the information we are interested in.
 
 ![](images/penguin-ticket.jpeg){fig-align=center width="150"}
 
@@ -317,6 +317,27 @@ We know all the possible outcomes of summing a pair of dice (between $2$ and $12
 
 #### Sampling from penguins
 
+Note that in example 7, when the box has 344 tickets, with each ticket representing one of the observations that we have access to from the Palmer penguins data, each ticket contains the values of multiple variables. Suppose we want to sample the penguins, to estimate what is the chance of being a Gentoo penguin. Note that this is not real, since our "box" is itself a sample, and not the population. We are going to use the penguin data, to see how we might sample when the box is really a data frame, that is, it has multiple variables.
+
+First we will use `slice_sample`, which you have seen before, and compute the proportion of Gentoo penguins in this single sample. Then we will sample repeatedly from the box, each time drawing 50 tickets.For each sample, we will compute  the number of Gentoo penguins in the sample, and estimate the actual proportion of Gentoos in the box. (Note that we *know* the true value in the box, it is `r penguins %>% filter(species == "Gentoo") %>% count()/dim(penguins)[1]`)
+
+```{r}
+
+# one sample
+penguins %>%
+  slice_sample(n = 50) %>%
+  summarise(prop_gentoo = mean(species == "Gentoo"))
+
+# 1000 samples of size 50, and we take the proportion of gentoo for each
+# and then find the average of these 1000 proportions.
+  penguins %>%
+    rep_slice_sample(n=50, reps = 1000) %>%
+    summarise(prop_gentoo = mean(species == "Gentoo")) %>%
+    summarise(estimate_prop_gentoo = mean(prop_gentoo))
+  
+```
+
+
 
 ## Rules of chance
 
@@ -334,13 +355,13 @@ This implies that the chance of *either* $A$ *or* $B$ happening is $1/6 + 3/6 = 
 
 Note that *both* events cannot happen - using a six-sided die, you cannot roll a multiple of 5 that is also an even number. We say then that the event that both $A$ and $B$ happen is impossible, and impossible events have no chance of occurring. That is the chance of $A$ *and* $B$ is 0.
 
-## With or without replacement?
+### With or without replacement?
 
 When we draw with replacement, we draw one ticket, and put it back before drawing another ticket. In terms of the first box we looked at, if we draw twice, both times we will draw from the following box:
 
 ![](images/box.jpeg){fig-align=center width="200"}
 
-If we draw twice without replacement, then our second draw is from a *different* box, illustrated below:
+If we draw twice *without* replacement, then our second draw is from a *different* box, illustrated below:
 
 ![](images/no-replace-box.jpeg){fig-align=center width="300"}
 
