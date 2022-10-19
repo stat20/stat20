@@ -144,12 +144,15 @@ We would the same box, with six tickets as shown below, and we would draw *twice
 
 #### Example 5: Spinning a roulette wheel
 
-![](images/roulette.jpeg){fig-align="center" width="200"}[^roulette_image]
+![](images/roulette-us.jpg){fig-align="center" width="200"}[^roulette_image]
 
-An roulette wheel has 37 (in Europe) or 38 (in the US) pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is spun in the opposite direction. Players bet on which pocket which players bet on which colored or numbered pocket the ball will come to rest in. How would you represent the box if you wanted to bet on a number? What about if you wanted to bet on a color? 
+An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is spun in the opposite direction. Players bet on which pocket which players bet on which colored or numbered pocket the ball will come to rest in. How would you represent the box if you wanted to bet on a number? What about if you wanted to bet on a color? 
 
 <details><summary>Check your answer</summary>
-We would use the following boxes. In the top box, there are 38 tickets, each representing a numbered pocket on the wheel. Draw one ticket to represent the ball landing in a particular pocket. In the second row each ticket represents a colored pocket, and we see that there are (in American roulette) 18 red pockets, 18 black, and 2 green. If we are only interested in the outcome *ball lands in red pocket*, then the box with 18 tickets marked 1 and 20 marked 0 will work. We would draw once from it, with the ticket marked $\fbox{1}$ representing the ball landing in a red pocket, and the ticket $\fbox{0}$ representing the ball *not* landing in a red pocket, but in a green or black pocket.
+We would use the boxes shown below. In the top box, there are 38 tickets, each representing a numbered pocket on the wheel. Draw one ticket to represent the ball landing in a particular pocket. In the second row each ticket represents a colored pocket, and we see that there are 18 red pockets, 18 black, and 2 green. If we are only interested in the outcome *ball lands in red pocket*, then the box with 18 tickets marked 1 and 20 marked 0 will work. We would draw once from it, with the ticket marked $\fbox{1}$ representing the ball landing in a red pocket, and the ticket $\fbox{0}$ representing the ball *not* landing in a red pocket, but in a green or black pocket.
+
+![](images/roulette-bet.jpeg){fig-align="center" width="300"}[^roulette_image]
+
 </details>
 
 The scenario where we bet on red, and so the box tickets can be re-labeled as 0 or 1, is called *classifying and counting*. In this we draw tickets from the box, where there may be many outcomes, but we only label a ticket with 1 if we want to count that outcome. Otherwise, we label the ticket with 0.
@@ -166,15 +169,8 @@ If I only care about the apples, then the box can be written as a 0-1 box as sho
 
 </details> 
 
-#### Example 7: Penguins
-![](images/committee.jpeg){fig-align=center width="300"}
 
-You have seen the penguins data, which measured `r ncol(penguins)` variables on a sample of `r nrow(penguins)`. Here the box represents the penguin population of  three species: Adelie, Chinstrap, and Gentoo. That is, each ticket in the box represents one penguin.There should be as many tickets in the box as there are Adelie, Chinstrap, and Gentoo penguins combined.[^npenguins]
-
-
-[^npenguins]: An article from February claims that there are 10 million Adelie penguins, 8 million Chinstrap, and 774,000 Gentoo penguins on the Antarctic continent.(https://polarguidebook.com/why-are-penguins-endangered/)
-
-#### Example 8: Selecting 2 people out of a group of 5 
+#### Example 7: Selecting 2 people out of a group of 5 
 ##### (drawing *without* replacement)
 We have a group of 5 people: Alex, Emi, Fred, Max, and Nan. Two of the five are to be selected at random to form a two person committee.Draw the box model for this situation.
 <details><summary>Check your answer</summary>
@@ -186,10 +182,26 @@ All the ten pairs are equally likely. On the first draw, there are 5 tickets to 
 
 What is the probability that Alex and Max will be selected? Guess! (Hint: you have seen all the possible pairs above, and they are equally likely. What will be the chance of any one of them?)
 
+#### Example 8: Selecting 5 penguins from the penguins dataset.
+![](images/penguins.png){fig-align=center width="300"}
 
+You have seen the penguins data, which measured `r ncol(penguins)` variables on a sample of `r nrow(penguins)`. Here the box will contain 344 tickets, and we will draw 5 tickets *without* replacement. Note that each ticket in the box represents one penguin in the sample has information for multiple variables measured on that penguin, and we would consider only the information we are interested in.
 
-[^roulette_image]: Photo by Derek Lynn via unsplash.com
-  
+![](images/penguin-ticket.jpeg){fig-align=center width="150"}
+
+#### Example 9: Survey sampling
+
+![](images/pew-jewish.png){fig-align=center width="300"}
+
+From November 2019 to June 2020, the Pew Research Center conducted a survey of Jewish Americans to understand what it means to "Jewish in America"[^pew1]. Here is how they began the selection of their survey respondents: "Although the survey focuses on Jewish adults, we began by taking a large sample of the general public. We randomly selected residential addresses from a U.S. Postal Service computerized list and mailed letters to people across the country, asking them to take a short survey."[^pew2]. 
+
+How would you describe the box model for this stage of the survey? That is, what is the *access frame* for this stage of the survey?
+<details><summary>Check your answer</summary>
+The box would contain as many tickets as there are residential addresses in the USPS list. Each ticket has a name and address on it, and tickets are drawn without replacement, as many as are needed for the sample.
+
+[^pew1]: (https://www.pewresearch.org/religion/2021/05/11/jewish-americans-in-2020/)
+[^pew2]: (https://www.pewresearch.org/religion/2021/05/11/jewish-americans-in-2020-answers-to-frequently-asked-questions/)
+
 
 ## The `sample()` function in R
 
@@ -290,3 +302,4 @@ Note that *both* events cannot happen - using a six-sided die, you cannot roll a
 Purves in their textbook
 [*Statistics*](https://wwnorton.com/books/9780393929720)
 [^uar]: We call the tickets equally likely when each ticket has the same chance of being drawn. That is, if there are $n$ tickets in the box, each has a chance of $1/n$ to be drawn. We also refer to this as drawing a ticket *uniformly at random*, because the probabilities of drawing the tickets are the same, or *uniform*.
+[^roulette_image]: Photo by Derek Lynn via unsplash.com
