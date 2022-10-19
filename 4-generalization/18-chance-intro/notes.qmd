@@ -334,8 +334,22 @@ This implies that the chance of *either* $A$ *or* $B$ happening is $1/6 + 3/6 = 
 
 Note that *both* events cannot happen - using a six-sided die, you cannot roll a multiple of 5 that is also an even number. We say then that the event that both $A$ and $B$ happen is impossible, and impossible events have no chance of occurring. That is the chance of $A$ *and* $B$ is 0.
 
+## With or without replacement?
 
+When we draw with replacement, we draw one ticket, and put it back before drawing another ticket. In terms of the first box we looked at, if we draw twice, both times we will draw from the following box:
 
+![](images/box.jpeg){fig-align=center width="200"}
+
+If we draw twice without replacement, then our second draw is from a *different* box, illustrated below:
+
+![](images/no-replace-box.jpeg){fig-align=center width="300"}
+
+### Conditional probability
+
+In the second box above, notice that the chance of drawing a $\fbox{2}$ changed after the first draw. At first, the chance that a $\fbox{2}$ would be drawn is 2 in 5 or 0.4, but the chance increases in the second box to 0.5, which is called a *conditional chance*, since it depends on what happens in the first draw.
+
+#### more
+<more about conditional prob and box with  tickets with two parts.
 
  [^freq]: This is known as the *frequentist* theory of probability: the chance of something is the relative frequency with which it occurs in repeated trials (that are assumed to be independent).
 
