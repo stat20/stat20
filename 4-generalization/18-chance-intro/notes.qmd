@@ -319,7 +319,7 @@ We know all the possible outcomes of summing a pair of dice (between $2$ and $12
 
 Note that in example 7, when the box has 344 tickets, with each ticket representing one of the observations that we have access to from the Palmer penguins data, each ticket contains the values of multiple variables. Suppose we want to sample the penguins, to estimate what is the chance of being a Gentoo penguin. Note that this is not real, since our "box" is itself a sample, and not the population. We are going to use the penguin data, to see how we might sample when the box is really a data frame, that is, it has multiple variables.
 
-First we will use `slice_sample`, which you have seen before, and compute the proportion of Gentoo penguins in this single sample. Then we will sample repeatedly from the box, each time drawing 50 tickets.For each sample, we will compute  the number of Gentoo penguins in the sample, and estimate the actual proportion of Gentoos in the box. (Note that we *know* the true value in the box, it is `r penguins %>% filter(species == "Gentoo") %>% count()/dim(penguins)[1]`)
+First we will use `slice_sample`, which you have seen before, and compute the proportion of Gentoo penguins in this single sample. Then we will sample repeatedly from the box, each time drawing 50 tickets.For each sample, we will compute  the number of Gentoo penguins in the sample, and estimate the actual proportion of Gentoos in the box. (Note that we *know* the true value in the box, it is about `r penguins %>% filter(species == "Gentoo") %>% round(count()/dim(penguins)[1],2))`
 
 ```{r}
 
