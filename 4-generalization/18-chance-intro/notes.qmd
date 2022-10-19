@@ -233,7 +233,7 @@ In the code below, another new function is introduced: `replicate()`. The functi
 #| fig-width: 4
 #| fig-height: 3
 #| fig-align: center
-set.seed(12345)
+
 box <- c(1, 2, 2, 3, 4)
 draws <- replicate(2000, sample(box, 1, replace = TRUE))
 ggplot(as.data.frame(draws), aes(x=draws)) + 
@@ -251,7 +251,6 @@ What if we wanted to wanted to draw _five_ tickets with replacement from this bo
 #| fig-height: 3
 #| fig-align: center
 
-set.seed(12345)
 box <- c(1, 2, 2, 3, 4)
 draws <- replicate(5000, sum(sample(box, size = 5, replace = TRUE)))
 ggplot(as.data.frame(draws), aes(x=draws)) + 
@@ -270,7 +269,7 @@ We can estimate the chances of various outcomes related to coin tossing, using t
 Suppose, for example, that we would like to figure out the chance of exactly 2 heads if we toss a coin 4 times. Think about how you would use the functions `sample()` and `replicate()` to model this, using the 0-1 box we defined earlier, for tossing a coin.
 
 ```{r}
-set.seed(12345)
+
 coin <- c(0, 1) #1 represents the toss landing heads
 two_heads <-replicate(50000, sum(sample(coin, 4, replace = TRUE)) == 2)
 cat("The proportion of times we see 2 heads out of 4 tosses is", mean(two_heads))
@@ -285,7 +284,6 @@ This is something that we could use if we wanted to play Monopoly and couldn't f
 
 ```{r}
 die <- 1:6
-set.seed(12345)
 # to simulate rolling a die twice and summing the spots
 draws <- sample(die, size = 2, replace = TRUE)
 sum(draws)
@@ -295,12 +293,15 @@ sum(draws)
 We could also repeat it many times and estimate the chance of each of the possible outcomes.
 
 ```{r}
-set.seed(12345)
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: center
+
 many_draws <- replicate(5000, sum(sample(die, size = 2, replace = TRUE)))
 ggplot(as.data.frame(many_draws), aes(x=many_draws)) + 
   geom_bar(aes(y=..prop..), fill="gray50")+ 
   ylab("proportion") + 
-  xlab("sum of draws") + 
+  xlab("sum of two draws") + 
   scale_x_continuous(breaks = seq(min(many_draws), 
                                   max(many_draws), by = 1))
 
@@ -314,16 +315,18 @@ ggplot(as.data.frame(many_draws), aes(x=many_draws)) +
 We know all the possible outcomes of summing a pair of dice (between $2$ and $12$ spots). Why not make a box with tickets labeled $2, 3, 4, \ldots, 12$ and draw *once* from that box? If we did indeed want a box from which we would only draw once, what would the box be? (Hint: How many possible outcomes would there be if you rolled a pair of dice. )
 :::
 
+#### Sampling from penguins
+
 
 ## Rules of chance
 
-What we have done here is estimate chances using the idea that the *chance* (or probability) of something is the proportion of times it occurs when we simulate over and over again the basic process that results in the thing we are counting. This is using the definition of the chance of an outcome to be the proportion of times we expect it to occur when the process that generates the event is  *independently* repeated many times [^freq].
+What we have done here is estimate chances using the idea that the *chance* (or probability) of something is the proportion of times it occurs when we simulate over and over again the basic process that results in the thing we are counting. We have used the definition of the chance of an outcome to be the proportion of times we expect it to occur when the process that generates the event is  *independently* repeated many times [^freq].
 
 The chance of an event (where an *event* might be one outcome, such as "rolling a die and seeing 2", or a collection of outcomes, such as "rolling an even number") needs to satisfy some basic mathematical rules (which are intuitively clear if you think of the chance of an event as its relative frequency):
 
-1. The chance of any event is at least $0$ and not more than $1$.
+1. The chance of any event is at least 0 and not more than 1.
 
-2. The chances of all possible things that might happen as a result of some action will add up to 1. 
+2. We call the collection of all possible outcomes the *sample space*. The chance of the sample space is 1. 
 
 3. If two events do not overlap, that is they have no outcomes in common, then the chance that *either* of the two events might occur is the *sum* of their chances.
 For example, consider rolling a fair six-sided die, and the two events of rolling a multiple of 5 or a multiple of 2. In the first event (which we can call $A$), the possible outcomes are $\{5\}$. For the second event (call it $B$), the possible outcomes are $\{2, 4, 6\}$. Since all the sides of a fair die are equally likely, the chance of $A$ is the chance of rolling a $5$ which is $1/6$. The chance of rolling an even number is $1/6 + 1/6 +1/6 = 3/6$ (applying the same idea of adding up the chances, since we can't have the die show two sides at the same time). 
@@ -335,15 +338,6 @@ Note that *both* events cannot happen - using a six-sided die, you cannot roll a
 
 
  [^freq]: This is known as the *frequentist* theory of probability: the chance of something is the relative frequency with which it occurs in repeated trials (that are assumed to be independent).
-
-
-
-
-
-
- 
-
- 
 
 [^fppbox]: The box model was introduced by Freedman, Pisani, and
 Purves in their textbook
