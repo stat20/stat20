@@ -84,7 +84,7 @@ The diagnosis is in the column named `diagnosis`; each other column should be us
 
 11.  Compute the KNN train and test set accuracy with K=1 and K=20 for the standardized data.
 
-12. Using cross-validation, pick the best value of K for KNN. Evaluate every value of K between 1 and 30. Plot the curve showing validation accuracy vs. K.  For the selected value of K, what is the training and test set accuracy?
+12. Using cross-validation with 5 folds, pick the best value of K for KNN. Evaluate every value of K between 1 and 30. Plot the curve showing validation accuracy vs. K.  For the selected value of K, what is the training and test set accuracy?
 
     Make sure you use the seed in the code chunk shown below.
 
@@ -98,4 +98,4 @@ The diagnosis is in the column named `diagnosis`; each other column should be us
     # knn_cv <- train
     ```
 
-13. Pick any 3 variables and build a classification model based on only these three variables from `train_stand`. What is the test set error?
+13. Pick any 3 variables and build a classification model that you train with cross-validation based on only these three variables from `train_stand`. What is the test set accuracy?
