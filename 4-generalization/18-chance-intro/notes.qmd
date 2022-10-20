@@ -166,16 +166,6 @@ We can see that the *sample proportions* look similar to the *population (box) p
 
 What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*.
 
-**With or without replacement?**
-
-When we draw at random *with* replacement, we draw one ticket, and put it back before drawing another ticket. For the box in this section, if we draw twice, both times we will draw from the following box:
-
-![](images/box.jpeg){fig-align=center width="200"}
-
-If we draw twice at random *without* replacement, then our second draw is from a *different* box, illustrated below:
-
-![](images/no-replace-box.jpeg){fig-align=center width="300"}
-
 \
 
 **The Box Model**
@@ -268,9 +258,9 @@ We would use the same box as in the previous example, draw *twice* at random wit
 
 ![](images/roulette-us.jpg){fig-align="center" width="200"}[^unsplash]
 
-An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is thrown on the wheel so that it is equally likely to land in any of the 38 pockets. Players bet on which colored or numbered pocket the ball will come to rest in. If you bet one dollar that the ball will land on red, and it does, you get your dollar back, and you win one dollar, so your *gain* is \$1. If it doesn't, and lands on a black or green number, you lose your dollar, and your *gain* is -\$1. What would be the box model for your gain from a single spin? 
+An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is thrown on the wheel so that it is equally likely to land in any of the 38 pockets. Players bet on which colored or numbered pocket the ball will come to rest in. If you bet one dollar that the ball will land on red, and it does, you get your dollar back, and you win one more dollar, so your *net gain* is \$1. If it doesn't, and lands on a black or green number, you lose your dollar, and your *net "gain"* is -\$1. What would be the box model for your net gain from a single spin? 
 
-**Gain from a single spin**
+**Net gain from a single spin**
 
 <details><summary>Check your answer</summary>
 We would use the box shown below marked "Gain". In the top box, there are 38 tickets, each representing a numbered pocket on the wheel. Draw one ticket to represent the ball landing in a particular pocket. In the second row each ticket represents a colored pocket, and we see that there are 18 red pockets, 18 black, and 2 green. We only care about the outcome *ball lands in red pocket*, and our gain from this. We would draw once from it, with the ticket marked $\fbox{+1}$ representing our gain if the ball lands on a red pocket, and the ticket $\fbox{-1}$ representing our loss if the ball doesn't land on red. We can see that the chance of drawing a  $\fbox{+1}$ is 18 out of 38.
@@ -279,7 +269,7 @@ We would use the box shown below marked "Gain". In the top box, there are 38 tic
 
 </details>
 
-**Gain from 10 spins**
+**Net gain from 10 spins**
 
 How would we model our *net gain* or winnings from 10 spins (we bet \$1 on each spin, and either lose it or get it back plus \$1)?
 
@@ -317,6 +307,7 @@ Kenyan countryside*. Significance, 11(4), 40–43. 74, 115
 ![](images/penguins.png){fig-align=center width="300"}
 
 You have seen the penguins data, which measured `r ncol(penguins)` variables on a sample of `r nrow(penguins)`. Here the box will contain 344 tickets, and we will draw 50 tickets at random without replacement. Note that each ticket in the box represents one penguin in the sample has information for multiple variables measured on that penguin, and we would consider only the information we are interested in. Suppose we wanted sex, species, and flipper length, to compare the flipper lengths of males and females, grouped by species.
+Set up the box model.
 
 <details><summary>Check your answer</summary>
 
@@ -333,7 +324,7 @@ We would draw 50 tickets at random without replacement, and
 As you read through these notes, keep RStudio open in another window to code along at the console.
 :::
 
-The box model is easily simulated in R, since there is a convenient function that does exactly what we need: draw tickets from a "box" (a vector). We will use the function `sample(x, size = n, replace = FALSE)`, where `x` is the vector you want to sample from, `size` is the number of draws (with the default value being the length of `x`), and `replace` specifies whether the draws are with or without replacement. The default in `sample()` is to draw them without replacement. 
+The box model is easily simulated in R, since there is a convenient function that does exactly what we need: draw tickets from a "box" (a vector). We will use the function `sample(x, size = n, replace = FALSE)`, where `x` is the vector you want to sample from, `size` is the number of draws (with the default value being the length of `x`), and `replace` specifies whether the draws are with or without replacement. The default in `sample()` is to draw _without_ replacement. 
 
 
 ```{r}
@@ -343,7 +334,7 @@ box <- c(1, 2, 2, 3, 4)
 sample(box,1)
 ```
 
-We can use `sample()` to *estimate* the chance of a particular outcome  when we aren't sure of what that chance might be. We would do this by repeatedly sampling from the "box" with replacement (many times), then computing the proportion of times we drew each ticket. For example, say we consider the box from above, and want to estimate the chance of each ticket.
+We can use `sample()` to *estimate* the chance of a particular outcome  when we aren't sure of what that chance might be. We would do this by repeatedly sampling from the "box" with replacement (many times), then computing the proportion of times we drew each ticket. For example, say we consider our first example (the simple box), and want to estimate the chance of each ticket.
 
 In the code below, another new function is introduced: `replicate()`. The function `replicate(reps, expr)` is a very useful function that takes as input an expression `expr` and evaluates it `reps` times, returning a vector. 
 
@@ -360,7 +351,8 @@ ggplot(as.data.frame(draws), aes(x=draws)) +
   ylab("proportion of draws") + 
   xlab("ticket drawn")
 ```
-We see that the chance of drawing a $\fbox{2}$ is about 0.4, twice the chance of drawing any other ticket, which makes sense as there were two tickets marked 2. Of course, we could have written down the chance of drawing a 2 without needing to code it in R. But let's think of a more complicated situation: 
+
+We see that the *estimated* chance of drawing a $\fbox{2}$ is about 0.4, and this is about twice the estimated chance of drawing any other ticket. Of course, we knew this already, without needing to code it in R. Let's think of a more complicated situation: 
 
 What if we wanted to wanted to draw _five_ tickets with replacement from this box, and sum the draws? What would be the possible values that we would get? What could their chances be? We can visualize this in R:
 
@@ -380,6 +372,7 @@ ggplot(as.data.frame(draws), aes(x=draws)) +
 ```
 
 We can see that there is a lot more variation in the values taken by the sum of 5 draws.
+
 
 #### Tossing a fair coin
 
@@ -434,28 +427,61 @@ ggplot(as.data.frame(many_draws), aes(x=many_draws)) +
 We know all the possible outcomes of summing a pair of dice (between $2$ and $12$ spots). Why not make a box with tickets labeled $2, 3, 4, \ldots, 12$ and draw *once* from that box? If we did indeed want a box from which we would only draw once, what would the box be? (Hint: How many possible outcomes would there be if you rolled a pair of dice. )
 :::
 
-#### Sampling from penguins
 
-Note that in example 7, when the box has 344 tickets, with each ticket representing one of the observations that we have access to from the Palmer penguins data, each ticket contains the values of multiple variables. Suppose we want to sample the penguins, to estimate what is the chance of being a Gentoo penguin. Note that this is not real, since our "box" is itself a sample, and not the population. We are going to use the penguin data, to see how we might sample when the box is really a data frame, that is, it has multiple variables.
+#### Sampling donkeys
 
-First we will use `slice_sample`, which you have seen before, and compute the proportion of Gentoo penguins in this single sample. Then we will sample repeatedly from the box, each time drawing 50 tickets.For each sample, we will compute  the number of Gentoo penguins in the sample, and estimate the actual proportion of Gentoos in the box. (Note that we *know* the true value in the box, it is about `r round(124/344,2)`.
+In the donkeys dataset, the box has 544 tickets, with each ticket representing one of the donkeys that was measured at the mobile de-worming sites. Each ticket contains the values of 8 variables, of which we are interested in 2. We set up the box model for drawing 50 tickets at random without replacement, and we wanted to compute the average girth and the average weight.
+
+We will use `slice_sample`, which you have seen before, and compute the average girth and the average weight for the donkeys in this sample. 
 
 ```{r}
+#| code-fold: false
 
-# one sample
-penguins %>%
-  slice_sample(n = 50) %>%
-  summarise(prop_gentoo = mean(species == "Gentoo"))
+# read in the donkey data
+donkeys <- read.csv('https://raw.githubusercontent.com/shomurali/course-materials/sho2/4-generalization/18-chance-intro/donkeys.csv')
 
-# 1000 samples of size 50, and we take the proportion of gentoo for each
-# and then find the average of these 1000 proportions.
-  penguins %>%
-    rep_slice_sample(n=50, reps = 1000) %>%
-    summarise(prop_gentoo = mean(species == "Gentoo")) %>%
-    summarise(estimate_prop_gentoo = mean(prop_gentoo))
-  
+# take a quick look at the dataset
+glimpse(donkeys)
+
+# draw a sample of 50 donkeys and compute their mean girth and weight
+donkeys %>%
+  select(Girth, Weight) %>% #changing tickets to include variables of interest
+  slice_sample(n = 50) %>% #drawing 50 times without replacement
+  summarise(average_girth_cm = mean(Girth), average_weight_kg = mean(Weight))
 ```
 
+
+
+
+#### Sampling penguins
+
+Recall that in the penguins example, when the box has 344 tickets, with each ticket representing one of the observations that we have access to from the Palmer penguins data, each ticket contains the values of multiple variables. We set up the box model for sampling 50 penguins without replacement, and we wanted to compare flipper lengths.
+
+
+```{r}
+#| code-fold: false
+
+# one sample
+drop_na(penguins,sex) %>%
+  select(species, sex, flipper_length_mm) %>% #changing tickets
+  slice_sample(n = 50) %>% #drawing 50 times without replacement
+  group_by(species, sex) %>%
+  summarise(mean_flipper_length_mm = mean(flipper_length_mm))
+```
+
+### Drawing with replacement and without
+#### What's the difference? 
+
+Consider our first box again, the one with five tickets. 
+When we draw at random *with* replacement, we draw one ticket, and put it back before drawing another ticket. For the box in this section, if we draw twice, both times we will draw from the following box:
+
+![](images/box.jpeg){fig-align=center width="200"}
+
+If we draw twice at random *without* replacement, then our second draw is from a *different* box, with an example illustrated below:
+
+![](images/no-replace-box.jpeg){fig-align=center width="300"}
+
+In the next set of notes, we are going to use R to simulate what happens when we draw twice from this box, once with replacement, and once without. We are also going to talk about the vocabulary of sampling.
 
 
 ## Rules of chance
@@ -472,8 +498,23 @@ The chance of an event (where an *event* might be one outcome, such as "rolling 
 For example, consider rolling a fair six-sided die, and the two events of rolling a multiple of 5 or a multiple of 2. In the first event (which we can call $A$), the possible outcomes are $\{5\}$. For the second event (call it $B$), the possible outcomes are $\{2, 4, 6\}$. Since all the sides of a fair die are equally likely, the chance of $A$ is the chance of rolling a $5$ which is $1/6$. The chance of rolling an even number is $1/6 + 1/6 +1/6 = 3/6$ (applying the same idea of adding up the chances, since we can't have the die show two sides at the same time). 
 This implies that the chance of *either* $A$ *or* $B$ happening is $1/6 + 3/6 = 4/6$.
 
-Note that *both* events cannot happen - using a six-sided die, you cannot roll a multiple of 5 that is also an even number. We say then that the event that both $A$ and $B$ happen is impossible, and impossible events have no chance of occurring. That is the chance of $A$ *and* $B$ is 0.
+Note that *both* events cannot happen - using a six-sided die, you cannot roll a multiple of 5 that is also an even number. We say then that the event that both $A$ and $B$ happen is impossible, and impossible events have no chance of occurring. That is the chance of $A$ *and* $B$ is 0. We call $A$ and $B$ *mutually exclusive* events.
 
+**Addition rule**
+The third rule above, that says that the chance of either $A$ or $B$ for mutually exclusive events $A$ and $B$ is the sum of their chances, is called the *addition rule*. 
+
+
+## Summary
+
+In this lecture, we introduced the box model as a way to understand the variability of a chance process, as box of tickets, where each ticket represents a population element. The tickets are identical except for what is written on them. We can use the box model to understand chance processes, and to generalize from samples that have been collected using chance methods, to the target populations. We saw that the draws from a box give us a *representative* sample of the tickets in the box.
+
+We looked at how to set up the box model to represent various chance processes, and saw how to modify the tickets so that we could use the draws to estimate proportions, or chances.
+
+Once we had set up a box model, we simulated drawing from the box and computing summary statistics in R. 
+
+Finally, we wrote down the mathematical rules of chance, or probability.
+
+In the next section, we will learn about sampling distributions, how we can generalize from random samples to the populations that they were drawn from, and how we can model these using the box model. 
 
  [^freq]: This is known as the *frequentist* theory of probability: the chance of something is the relative frequency with which it occurs in repeated trials (that are assumed to be independent).
 
