@@ -64,25 +64,25 @@ data collection methods (our protocols) so that our target
 population and our access frame overlap as much as we can manage. This
 is achieved using methods that incorporate chance.
 
-## Introducing the Box Model
+## The Box Model
 
 One of the simplest ways of understanding chance, and later variation, is by considering a
-*box model*[^fppbox]. A box model consists of a box of tickets, from which tickets are drawn.
-To specify a box model, we have to say what tickets go in the box (that is, what are the values on the tickets, and how many of each value) , and
-whether they will be drawn *with* or without replacement (after drawing a ticket from the box, do we put it back in the box or not, before we draw another ticket).
+*box model*[^fppbox]. A box model consists of a box with numbered tickets, from which tickets are drawn.
+To specify a box model, we have to say what tickets go in the box (that is, what are the numbers on the tickets, and how many of each) , and
+whether they will be drawn *with or without replacement* (after drawing a ticket from the box, do we put it back in the box or not, before we draw another ticket).
 
-#### Example 1: Drawing a ticket from a box 
+### A box of tickets
 
 ![](images/box-1.jpeg){fig-align=center width="400"}
 
-Consider the box above which has five almost identical tickets. The only difference is the value written on them. Imagine that we shake the box to mix the tickets up, and then draw one ticket without looking. This is to ensure that all the tickets are equally likely to be drawn[^uar]. 
+Consider the box above which has five almost identical tickets. The only difference is the value written on them. Imagine that we shake the box to mix the tickets up, and then draw one ticket without looking. This is to ensure that all the tickets are *equally likely* to be drawn[^uar]. 
 For example, the chance of drawing a ticket labeled "4" is one in five, as there are five tickets to choose from and only one is labeled "4" etc.
 
 Here is a bar chart that shows how the box values are distributed, and you see that there are twice as many tickets marked 
 
 ```{r}
-#| fig.width: 4
-#| fig.height: 4
+#| fig.width: 3
+#| fig.height: 3
 #| fig.align: center
 
 box = c(1, 2, 2, 3, 4)
@@ -111,8 +111,8 @@ Let's make a table of all the tickets and their chances. This is called a *distr
 
 We could plot the chances using `geom_col()`:
 ```{r}
-#| fig.width: 4
-#| fig.height: 4
+#| fig.width: 3
+#| fig.height: 3
 #| fig.align: center
 
 tkt_value <- unique(box)
@@ -130,11 +130,9 @@ They look the same!! In fact, in the first figure, if we looked at proportion in
 
 This makes sense because the tickets are equally likely to be drawn, so their distribution in the box (the first figure) completely determines their chance of being drawn (the second figure).
 
-We could compute a weighted average of the possible draws, weighted by their chance. We would get: $1\times \frac{1}{5} + 2 \times \frac{2}{5} + 3 \times \frac{1}{5} + 4 \times \frac{1}{5} = 2.4$. Note that the average of the tickets in the box is the same.
+Since the tickets are drawn according to their chance, we could compute what a draw would be, on average, by computing a weighted (by their chance) average of the possible values. We would get, for a single draw: $1\times \frac{1}{5} + 2 \times \frac{2}{5} + 3 \times \frac{1}{5} + 4 \times \frac{1}{5} = 2.4$. Note that this happens to be the average of the tickets in the box.
 
-
-
-How about if we draw 100 times with replacement from this box and see what our sample looks like (we will explore the code later in the notes). That is, we will see what proportion of the draws are 1's, 2's etc.
+How about if we draw 30 times with replacement from this box and see what our sample looks like (we will explore the code later in the notes). That is, we will see what proportion of the draws are 1's, 2's etc.
 
 ```{r}
 #| fig.width: 3
@@ -142,7 +140,7 @@ How about if we draw 100 times with replacement from this box and see what our s
 #| fig.align: center
 
 set.seed(12345)
-sample_size =100
+sample_size =30
 sample_box = sample(box, size = sample_size, replace = TRUE)
 data.frame(sample_box) %>%
   ggplot(aes(sample_box)) + 
@@ -151,7 +149,7 @@ data.frame(sample_box) %>%
   ylab("proportion of draws")
 ```
 
-We can see that the *sample proportions* look similar to the *population (box) proportions*, but are somewhat different. In fact, it turns out that the counts of drawn ticket are:
+We can see that the *sample proportions* look similar to the *population (box) proportions*, but are somewhat different. It turns out that the counts of the drawn tickets are:
 
 <center>
 <div style="width:300px">
@@ -166,8 +164,9 @@ We can see that the *sample proportions* look similar to the *population (box) p
 </div>
 </center>
 
+What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*.
 
-
+MUST MOVE THIS PORTION >>>>>>>>>>>
 Let's repeat this process, but draw 1000 times instead, and do the same thing (count the number of each ticket, and compute the proportions).
 
 ```{r}
@@ -199,35 +198,42 @@ Now the sample proportions look almost identical to the population (box) proport
 
 </div>
 </center>
-
-What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*.
+>>>>>>>>>>>>
 
 \
 
 **The Box Model**
 
-The purpose of creating a box model is to understand the variability in a *chance process* such as tossing a coin over and over, and counting the number of heads, or sampling voters to ask them if they will vote for Prop 1 in November's elections. We do this by having the tickets represent the outcomes in the chance process, and using the variability of the tickets drawn to understand the variability in the outcomes of the chance process.
+The purpose of creating a box model is to understand the variability in a *chance process* such as tossing a coin over and over and counting the number of heads, or sampling voters to ask them if they will vote for Prop 1 in November's elections. We do this by having the tickets represent the possible outcomes associated with the chance process, and using the variability in the tickets that are drawn to understand the variability of the chance process.
 
-Let's practice creating boxes to model common scenarios. For each of the cases below, specify:
+In order to create a box model that will model a chance process, we must specify:
 
-1. The box and tickets (what tickets go in the box, and their values)
+1. The box and tickets (what tickets go in the box, and the numbers written on them)
 2. The number of draws
 3. Whether or not we replace tickets between draws
 4. How we will summarize the values on the drawn tickets (usually take the sum or of draws or the average of draws)
 
-We assume that the tickets in the box are *equally likely* to be drawn.
+Note that these tickets should be identical in every way, except the value written on them, and  assume that the tickets in the box are *equally likely* to be drawn (we draw without looking at the box).
 
-#### Example 2: Tossing a fair coin once 
-What box and which tickets would you use to simulate one coin toss?
+
+### Setting up a box model: examples
+Let's practice creating boxes to model common scenarios.For each of the cases below, specify the four items above.
+
+#### Example 1: Tossing a fair coin and counting the number of heads
+
+![](images/us-quarter.png){width="100"}
+
+**Tossing a fair coin once**
+
+What box and which tickets would you use to simulate one coin toss? 
 
 <details><summary>Check your answer</summary>
-We could draw one ticket from the box 
-![](images/coin_ht.jpeg){fig-align=center width="100"}
+We could draw one ticket from the box
+![](images/coin_ht.jpeg){fig-align=center width="100"} but these are not numbered!
 
 Or we could draw one ticket from the box
 ![](images/coin.jpeg){width="100"}
-with the ticket $\fbox{1}$ representing the coin landing heads, and $\fbox{0}$ representing the coin landing tails.
-Can you think of advantages of using the second box?
+with the ticket $\fbox{1}$ representing the coin landing heads, and $\fbox{0}$ representing the coin landing tails. This change of numbering the ticket representing the outcome we are counting with a 1 and all other tickets with a 0 is very important, since we are *classifying* the outcomes into two categories, and counting the instances of one of them (in this case, the coin landing heads).
 </details>
 
 :::{.callout-warning icon=false}
@@ -237,79 +243,59 @@ What box would we use if the coin is not a fair coin, but lands heads $5$ out of
 
 :::
 
-#### Example 2: Tossing a coin twice and counting the number of heads
-
-If we toss a coin twice, we could list the possible *outcomes* as two heads, two tails, or one head and one tail. So you might think of the following box, from which we would draw once:
-![](images/bad-box.jpeg){width="200"}.
-
-This box describes all the possible things that can happen when you toss a coin twice, but it doesn't fit the specifications of a box model that we listed above. What's the problem?
+**Tossing a fair coin twice**
 
 <details><summary>Check your answer</summary>
-If you thought to yourself: this doesn't satisfy the second requirement - of all the tickets being equally likely, that's right! The third ticket in that box is twice as likely as the other two, since you can the get the outcome of  one head and one tail in two ways: the first toss landing heads and the second one tails, or the other way around. 
-A better box would be the one below. The tickets are equally likely, and we would draw once (and then count the number of "H"'s on the ticket). 
-
-![](images/better-box.jpeg){width="200"}
-
-The best box would be the one we introduced in the first example:
+We could use the same box as above:
 
 ![](images/coin.jpeg){width="100"}
-Remember that the ticket $\fbox{1}$ represents the outcome of a toss landing heads and  $\fbox{0}$ represents a toss landing tails (because we are counting the number of heads. If we were counting the number of tails, we would have  $\fbox{1}$ representing the outcome of a toss landing tails. We let the box be as above, and draw two tickets *with replacement* from this box. To count the number of heads in two tosses, we add the drawn tickets.
+
+Remember that the ticket $\fbox{1}$ represents the outcome of a toss landing heads and  $\fbox{0}$ represents a toss landing tails (because we are counting the number of heads). We let the box be as above, and draw two tickets *with replacement* from this box. To count the number of heads in two tosses, we add the draws.
 </details>
 
-#### Example 3: Rolling a fair die
+#### Example 2: Rolling a fair die and summing the spots
+![](images/dice.png){width="100"}
+
+**Rolling a fair die once** 
+
 <details><summary>Check your answer</summary>
 The box will have six tickets as shown below, and we would draw one ticket from this box. The chance of any one of the tickets i $1/6$.
 
 ![](images/die.jpeg){width="200"}
 </details>
 
-
-
-#### Example 4: Rolling a pair of fair dice and summing the spots
+**Rolling a fair die twice**
 
 <details><summary>Check your answer</summary>
-We would the same box, with six tickets as shown below, and we would draw *twice* with replacement from this box, then add the draws.
+We would use the same box as in the previous example, draw *twice* with replacement from this box, then add the draws.
 
 ![](images/two-dice.jpeg){width="450"}
 
 </details>
 
 
-
-#### Example 5: Spinning a roulette wheel
+#### Example 3: Betting on red in roulette 
 
 ![](images/roulette-us.jpg){fig-align="center" width="200"}[^roulette_image]
 
-An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is spun in the opposite direction. Players bet on which colored or numbered pocket the ball will come to rest in. How would you represent the box if you wanted to bet on a number? What about if you wanted to bet on the ball landing in a red pocket? 
+An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is thrown on the wheel so that it is equally likely to land in any of the 38 pockets. Players bet on which colored or numbered pocket the ball will come to rest in. If you bet one dollar that the ball will land on red, and it does, you get your dollar back, and you win one dollar, so your *gain* is \$1. If it doesn't, and lands on a black or green number, you lose your dollar, and your *gain* is -\$1. What would be the box model for your gain from a single spin? 
+
+**Gain from a single spin**
 
 <details><summary>Check your answer</summary>
-We would use the boxes shown below. In the top box, there are 38 tickets, each representing a numbered pocket on the wheel. Draw one ticket to represent the ball landing in a particular pocket. In the second row each ticket represents a colored pocket, and we see that there are 18 red pockets, 18 black, and 2 green. If we are only interested in the outcome *ball lands in red pocket*, then the box with 18 tickets marked 1 and 20 marked 0 will work. We would draw once from it, with the ticket marked $\fbox{1}$ representing the ball landing in a red pocket, and the ticket $\fbox{0}$ representing the ball *not* landing in a red pocket, but in a green or black pocket. We can see that the chance of drawing a  $\fbox{1}$ isv 2 out of 38 or $1/19$.
+We would use the box shown below marked "Gain". In the top box, there are 38 tickets, each representing a numbered pocket on the wheel. Draw one ticket to represent the ball landing in a particular pocket. In the second row each ticket represents a colored pocket, and we see that there are 18 red pockets, 18 black, and 2 green. We only care about the outcome *ball lands in red pocket*, and our gain from this. We would draw once from it, with the ticket marked $\fbox{+1}$ representing our gain if the ball lands on a red pocket, and the ticket $\fbox{-1}$ representing our loss if the ball doesn't land on red. We can see that the chance of drawing a  $\fbox{+1}$ is 18 out of 38.
 
 ![](images/roulette-bet.jpeg){fig-align="center" width="300"}
 
 </details>
 
-The scenario where we bet on red, and so the box tickets can be re-labeled as 0 or 1, is called *classifying and counting*. In this we draw tickets from the box, where there may be many outcomes, but we only label a ticket with 1 if we want to count that outcome. Otherwise, we label the ticket with 0.
+**Gain from 10 spins**
 
+How would we model our *net gain* or winnings from 10 spins (we bet \$1 on each spin, and either lose it or get it back plus \$1)?
 
-#### Example 6: Selecting 2 people out of a group of 5 
-##### (drawing *without* replacement)
-We have a group of 5 people: Alex, Emi, Fred, Max, and Nan. Two of the five are to be selected at random to form a two person committee.Draw the box model for this situation.
 <details><summary>Check your answer</summary>
+Use the same box as above, with 18 tickets marked $\fbox{+1}$ and 20 marked $\fbox{-1}$, and draw 10 times with replacement, and sum the draws.  
 
-![](images/committee.jpeg){fig-align=center width="600"}
-
-All the ten pairs are equally likely. On the first draw, there are 5 tickets to choose from, and on the second there are 4, making $5 \times 4 = 20$ possible draws of two tickets, drawn from this box, one at a time, without replacement. We have only 10 pairs here because of those 20 pairs, there are only 10 distinct ones. When we count 20 pairs, we are counting Alex $+$ Emi as one pair, and Emi $+$ Alex as another pair.  
-</details> 
-
-What is the chance that Alex and Emi will be selected? Guess! (Hint: you have seen all the possible pairs above, and they are equally likely. What will be the chance of any one of them?) What is the chance that Alex will be selected for the sample? 
-
-#### Example 7: Selecting 50 penguins from the penguins dataset.
-![](images/penguins.png){fig-align=center width="300"}
-
-You have seen the penguins data, which measured `r ncol(penguins)` variables on a sample of `r nrow(penguins)`. Here the box will contain 344 tickets, and we will draw 50 tickets *without* replacement. Note that each ticket in the box represents one penguin in the sample has information for multiple variables measured on that penguin, and we would consider only the information we are interested in.
-
-![](images/penguin-ticket.jpeg){fig-align=center width="150"}
 
 #### Example 8: Survey sampling
 
