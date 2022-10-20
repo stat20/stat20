@@ -59,10 +59,7 @@ You learned about the variation in data that is induced by using *chance* to sel
 In these notes, we are going to describe methods by which we can
 obtain representative samples from the target population - or rather,
 from our access frame. In practice, it is rare for the access frame
-and target population to exactly coincide. We need to design our
-data collection methods (our protocols) so that our target
-population and our access frame overlap as much as we can manage. This
-is achieved using methods that incorporate chance.
+and target population to exactly coincide. We need to make sure our target population and our access frame align as much possible. Then we need to design our data collection methods so that our sample is representative of the population, in order to generalize from the sample to the population. This is achieved using methods that incorporate chance.
 
 ## The Box Model
 
