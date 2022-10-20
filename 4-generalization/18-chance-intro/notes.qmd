@@ -1,6 +1,6 @@
 ---
-title: "Introducing the Box Model"
-subtitle: "We will introduce the ideas of chance, or probability, via a mechanism called a box model. "
+title: "Chance and the Box Model"
+subtitle: "We will introduce the ideas of chance, or probability, via a simple mechanism called a box model. "
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 format:
   html:
@@ -71,23 +71,153 @@ One of the simplest ways of understanding chance, and later variation, is by con
 To specify a box model, we have to say what tickets go in the box (that is, what are the values on the tickets, and how many of each value) , and
 whether they will be drawn *with* or without replacement (after drawing a ticket from the box, do we put it back in the box or not, before we draw another ticket).
 
+#### Example 1: Drawing a ticket from a box 
+
 ![](images/box-1.jpeg){fig-align=center width="400"}
 
-Consider the box above. The chance of drawing a ticket labeled "4" is one
-in five, as there are five tickets to choose from and only one is
-labeled "4". The chance of drawing a ticket marked "2" is two in five,
-since there are two tickets labeled "2" out of the five tickets in
-the box.
+Consider the box above which has five almost identical tickets. The only difference is the value written on them. Imagine that we shake the box to mix the tickets up, and then draw one ticket without looking. This is to ensure that all the tickets are equally likely to be drawn[^uar]. 
+For example, the chance of drawing a ticket labeled "4" is one in five, as there are five tickets to choose from and only one is labeled "4" etc.
+
+Here is a bar chart that shows how the box values are distributed, and you see that there are twice as many tickets marked 
+
+```{r}
+#| fig.width: 4
+#| fig.height: 4
+#| fig.align: center
+
+box = c(1, 2, 2, 3, 4)
+
+data.frame(box) %>% 
+  ggplot(aes(x=box)) +
+  geom_bar(width = 0.98, fill = "gray55") +
+  xlab("ticket value")
+```
+
+
+Let's make a table of all the tickets and their chances. This is called a *distribution table*. 
+
+<center>
+<div style="width:300px">
+
+|    Ticket | Chance of being drawn |
+|:---------:|:---------------------:|
+| $\fbox{1}$| $\displaystyle \frac{1}{5}$ |
+| $\fbox{2}$| $\displaystyle \frac{2}{5}$ |
+| $\fbox{3}$| $\displaystyle \frac{1}{5}$ |
+| $\fbox{4}$| $\displaystyle \frac{1}{5}$ |
+
+</div>
+</center>
+
+We could plot the chances using `geom_col()`:
+```{r}
+#| fig.width: 4
+#| fig.height: 4
+#| fig.align: center
+
+tkt_value <- unique(box)
+tkt_prob <- c(1/5, 2/5, 1/5, 1/5)
+
+data.frame(cbind(tkt_value, tkt_prob)) %>%
+  ggplot(aes(x=tkt_value, y=tkt_prob)) + 
+  geom_col(width = 0.98, fill = "grey 55") + 
+  xlab("ticket value") +
+  ylab("chance of being drawn")
+```
+They look the same!! In fact, in the first figure, if we looked at proportion instead of count, the figures would be identical! 
+
+<iframe src="https://giphy.com/embed/7GcdjWkek7Apq" width="300" height="170" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/highquality-incredibles-coincidence-7GcdjWkek7Apq">via giphy</a></p>
+
+This makes sense because the tickets are equally likely to be drawn, so their distribution in the box (the first figure) completely determines their chance of being drawn (the second figure).
+
+We could compute a weighted average of the possible draws, weighted by their chance. We would get: $1\times \frac{1}{5} + 2 \times \frac{2}{5} + 3 \times \frac{1}{5} + 4 \times \frac{1}{5} = 2.4$. Note that the average of the tickets in the box is the same.
+
+
+
+How about if we draw 100 times with replacement from this box and see what our sample looks like (we will explore the code later in the notes). That is, we will see what proportion of the draws are 1's, 2's etc.
+
+```{r}
+#| fig.width: 3
+#| fig.height: 3
+#| fig.align: center
+
+set.seed(12345)
+sample_size =100
+sample_box = sample(box, size = sample_size, replace = TRUE)
+data.frame(sample_box) %>%
+  ggplot(aes(sample_box)) + 
+  geom_bar(aes(y = ..prop..), width = 0.98, fill = "grey55") +
+  xlab("values of draws") + 
+  ylab("proportion of draws")
+```
+
+We can see that the *sample proportions* look similar to the *population (box) proportions*, but are somewhat different. In fact, it turns out that the counts of drawn ticket are:
+
+<center>
+<div style="width:300px">
+
+|    Ticket | Number of times drawn | Proportion of times drawn |
+|:---------:|:---------------------:|:---------------------:|
+| $\fbox{1}$| `r table(sample_box)[[1]]` | `r table(sample_box)[[1]]/sample_size` |
+| $\fbox{2}$| `r table(sample_box)[[2]]` |`r table(sample_box)[[2]]/sample_size` |
+| $\fbox{3}$| `r table(sample_box)[[3]]` | `r table(sample_box)[[3]]/sample_size` |
+| $\fbox{4}$|  `r table(sample_box)[[4]]` | `r table(sample_box)[[4]]/sample_size` |
+
+</div>
+</center>
+
+
+
+Let's repeat this process, but draw 1000 times instead, and do the same thing (count the number of each ticket, and compute the proportions).
+
+```{r}
+#| fig.width: 3
+#| fig.height: 3
+#| fig.align: center
+
+set.seed(12345)
+sample_size =1000
+sample_box2 = sample(box, size = sample_size, replace = TRUE)
+data.frame(sample_box2) %>%
+  ggplot(aes(sample_box2)) + 
+  geom_bar(aes(y = ..prop..), width = 0.98, fill = "grey55") +
+  xlab("values of draws") + 
+  ylab("proportion of draws")
+```
+
+Now the sample proportions look almost identical to the population (box) proportions:
+
+<center>
+<div style="width:300px">
+
+|    Ticket | Number of times drawn | Proportion of times drawn |
+|:---------:|:---------------------:|:---------------------:|
+| $\fbox{1}$| `r table(sample_box2)[[1]]` | `r table(sample_box2)[[1]]/sample_size` |
+| $\fbox{2}$| `r table(sample_box2)[[2]]` |`r table(sample_box2)[[2]]/sample_size` |
+| $\fbox{3}$| `r table(sample_box2)[[3]]` | `r table(sample_box2)[[3]]/sample_size` |
+| $\fbox{4}$|  `r table(sample_box2)[[4]]` | `r table(sample_box2)[[4]]/sample_size` |
+
+</div>
+</center>
+
+What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*.
+
+\
+
+**The Box Model**
+
+The purpose of creating a box model is to understand the variability in a *chance process* such as tossing a coin over and over, and counting the number of heads, or sampling voters to ask them if they will vote for Prop 1 in November's elections. We do this by having the tickets represent the outcomes in the chance process, and using the variability of the tickets drawn to understand the variability in the outcomes of the chance process.
 
 Let's practice creating boxes to model common scenarios. For each of the cases below, specify:
 
 1. The box and tickets (what tickets go in the box, and their values)
 2. The number of draws
 3. Whether or not we replace tickets between draws
+4. How we will summarize the values on the drawn tickets (usually take the sum or of draws or the average of draws)
 
-We assume that the tickets in the box are *equally likely* to be drawn[^uar].
+We assume that the tickets in the box are *equally likely* to be drawn.
 
-#### Example 1: Tossing a fair coin once 
+#### Example 2: Tossing a fair coin once 
 What box and which tickets would you use to simulate one coin toss?
 
 <details><summary>Check your answer</summary>
@@ -319,7 +449,7 @@ We know all the possible outcomes of summing a pair of dice (between $2$ and $12
 
 Note that in example 7, when the box has 344 tickets, with each ticket representing one of the observations that we have access to from the Palmer penguins data, each ticket contains the values of multiple variables. Suppose we want to sample the penguins, to estimate what is the chance of being a Gentoo penguin. Note that this is not real, since our "box" is itself a sample, and not the population. We are going to use the penguin data, to see how we might sample when the box is really a data frame, that is, it has multiple variables.
 
-First we will use `slice_sample`, which you have seen before, and compute the proportion of Gentoo penguins in this single sample. Then we will sample repeatedly from the box, each time drawing 50 tickets.For each sample, we will compute  the number of Gentoo penguins in the sample, and estimate the actual proportion of Gentoos in the box. (Note that we *know* the true value in the box, it is about `r penguins %>% filter(species == "Gentoo") %>% round(count()/dim(penguins)[1],2))`
+First we will use `slice_sample`, which you have seen before, and compute the proportion of Gentoo penguins in this single sample. Then we will sample repeatedly from the box, each time drawing 50 tickets.For each sample, we will compute  the number of Gentoo penguins in the sample, and estimate the actual proportion of Gentoos in the box. (Note that we *know* the true value in the box, it is about `r round(124/344,2)`.
 
 ```{r}
 
