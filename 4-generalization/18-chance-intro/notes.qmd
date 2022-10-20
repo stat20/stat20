@@ -253,13 +253,27 @@ We could use the same box as above:
 Remember that the ticket $\fbox{1}$ represents the outcome of a toss landing heads and  $\fbox{0}$ represents a toss landing tails (because we are counting the number of heads). We let the box be as above, and draw two tickets *with replacement* from this box. To count the number of heads in two tosses, we add the draws.
 </details>
 
+**Tossing an unfair coin**
+
+Set up the box model for tossing a coin which has chance of 5/6 landing heads, and counting the number of heads.
+
+<details><summary>Check your answer</summary>
+
+We do the same trick, of representing the outcome of heads with $\fbox{1}$, and tails with $\fbox{0}$. Since the coin lands heads 5 times out of 6, the box is given by:
+
+![](images/unfair-coin.jpeg){fig-align=center width="500"}
+
+We draw as many times as the number of tosses, and sum up the values on the tickets drawn.
+</details>
+
+
 #### Example 2: Rolling a fair die and summing the spots
-![](images/dice.png){width="100"}
+![](images/dice.png){width="100"}[^unsplash]
 
 **Rolling a fair die once** 
 
 <details><summary>Check your answer</summary>
-The box will have six tickets as shown below, and we would draw one ticket from this box. The chance of any one of the tickets i $1/6$.
+The box will have six tickets as shown below, and we would draw one ticket from this box. The chance of any one of the tickets is $1/6$.
 
 ![](images/die.jpeg){width="200"}
 </details>
@@ -276,7 +290,7 @@ We would use the same box as in the previous example, draw *twice* with replacem
 
 #### Example 3: Betting on red in roulette 
 
-![](images/roulette-us.jpg){fig-align="center" width="200"}[^roulette_image]
+![](images/roulette-us.jpg){fig-align="center" width="200"}[^unsplash]
 
 An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is thrown on the wheel so that it is equally likely to land in any of the 38 pockets. Players bet on which colored or numbered pocket the ball will come to rest in. If you bet one dollar that the ball will land on red, and it does, you get your dollar back, and you win one dollar, so your *gain* is \$1. If it doesn't, and lands on a black or green number, you lose your dollar, and your *gain* is -\$1. What would be the box model for your gain from a single spin? 
 
@@ -294,34 +308,25 @@ We would use the box shown below marked "Gain". In the top box, there are 38 tic
 How would we model our *net gain* or winnings from 10 spins (we bet \$1 on each spin, and either lose it or get it back plus \$1)?
 
 <details><summary>Check your answer</summary>
-Use the same box as above, with 18 tickets marked $\fbox{+1}$ and 20 marked $\fbox{-1}$, and draw 10 times with replacement, and sum the draws.  
+Use the same box as above, with 18 tickets marked $\fbox{+1}$ and 20 marked $\fbox{-1}$, draw 10 times with replacement, and sum the draws.  
+
+#### Example 4: Donkeys in Kenya
+Recall the case study we saw about donkeys in Kenya. The question in the study was how to predict the weight of donkeys using measurements that were easier to obtain[^donkey].
 
 
-#### Example 8: Survey sampling
+[^donkey]: K. Milner and J.C. Rougier, 2014. *How to weigh a donkey in the
+Kenyan countryside*. Significance, 11(4), 40–43. 74, 115
+<https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2014.00768.x>
 
-![](images/pew-jewish.png){fig-align=center width="300"}
+#### Example 5: Penguins
+![](images/penguins.png){fig-align=center width="300"}
 
-From November 2019 to June 2020, the Pew Research Center conducted a survey of Jewish Americans to understand what it means to "Jewish in America"[^pew1]. Here is how they began the selection of their survey respondents: "Although the survey focuses on Jewish adults, we began by taking a large sample of the general public. We randomly selected residential addresses from a U.S. Postal Service computerized list and mailed letters to people across the country, asking them to take a short survey."[^pew2]. 
+Suppose we want to 
+You have seen the penguins data, which measured `r ncol(penguins)` variables on a sample of `r nrow(penguins)`. Here the box will contain 344 tickets, and we will draw 50 tickets *without* replacement. Note that each ticket in the box represents one penguin in the sample has information for multiple variables measured on that penguin, and we would consider only the information we are interested in.
 
-How would you describe the box model for this stage of the survey? That is, what is the *access frame* for this stage of the survey?
-<details><summary>Check your answer</summary>
-The box would contain as many tickets as there are residential addresses in the USPS list. Each ticket has a name and address on it, and tickets are drawn without replacement, as many as are needed for the sample.
+![](images/penguin-ticket.jpeg){fig-align=center width="150"}
 
-[^pew1]: <https://www.pewresearch.org/religion/2021/05/11/jewish-americans-in-2020/>
-[^pew2]: <https://www.pewresearch.org/religion/2021/05/11/jewish-americans-in-2020-answers-to-frequently-asked-questions/>
-
-#### Example 9: Tossing an unfair coin
-
-How would you use a box model to describe the chances in the scenario that was specified after Example 1, with an unfair coin which has a chance $5/6$ of landing heads when tossed. Specify the box and the tickets.
-
-<details><summary>Check your answer</summary>
-
-You can draw the box in two ways, but the second is more useful, in case we want to toss the coin more than once and count the number of heads.
-![](images/unfair-coin.jpeg){fig-align=center width="500"}
-The chance of coin landing heads is the same as the chance of drawing eithe $\fbox{H}$ from the first box or $\fbox{1}$ from the second. In both cases, the chance is $5/6$, since the tickets are equally likely to be drawn.
-</details>
-
-## The `sample()` function in R
+## Simulating the box model
 
 :::{.callout-tip}
 
@@ -494,4 +499,4 @@ In the second box above, notice that the chance of drawing a $\fbox{2}$ changed 
 Purves in their textbook
 [*Statistics*](https://wwnorton.com/books/9780393929720)
 [^uar]: We call the tickets equally likely when each ticket has the same chance of being drawn. That is, if there are $n$ tickets in the box, each has a chance of $1/n$ to be drawn. We also refer to this as drawing a ticket *uniformly at random*, because the chance of drawing the tickets are the same, or *uniform*.
-[^roulette_image]: Photo by Derek Lynn via unsplash.com
+[^unsplash]: Photo via unsplash.com
