@@ -278,15 +278,16 @@ Use the same box as above, with 18 tickets marked $\fbox{+1}$ and 20 marked $\fb
 #### Example 4: Donkeys in Kenya
 ![](images/kenyan-donkey.jpeg){fig-align=center width="200"}[^donkey-pic]
 
-Recall the case study we saw about donkeys in Kenya. The question in the study was how to predict the weight of donkeys using measurements that were easier to obtain. To build their model, the scientists obtained data by measuring a sample of 25 donkeys at each of 17 sites in 2010[^donkey].  Four body measurements were taken on each donkey: liveweight (kg), heart girth (cm), height (cm), and length (cm), and in addition, sex and body condition score were recorded (the bcs categorized the donkeys according to their condition, ranging from "emaciated" to "obese"). (Note that girth or heart girth  is the circumference of the body, measured just behind the front legs.)
+Recall the case study we saw about donkeys in Kenya. The question in the study was how to predict the weight of donkeys using measurements that were easier to obtain, and they obtained the data by measuring donkeys at 17 sites in 2010[^donkey].
 
-Set up a box model for this process (sampling donkeys), where you want to compute the average weight and average girth for all of the donkeys sampled from the 17 sites. You might not be able to completely specify all 4 parts of the process. 
+Four body measurements were made for each donkey: liveweight (kg), heart girth (cm), height (cm), and length (cm), and in addition, sex and body condition score were recorded (the bcs categorized the donkeys according to their condition, ranging from "emaciated" to "obese"). Suppose I want to sample 50 donkeys from this dataset, to compute their average weight and average girth (girth or heart girth  is the circumference of the body, measured just behind the front legs.)
+
+Set up the box model for this process (sampling donkeys).
 
 <details><summary>Check your answer</summary>
 
-We have 17 boxes, one for each site. In each box, there is one ticket for each donkey that visited the site. We were not given the information as to how many donkeys visited each site so we can't specify the number of tickets in the box. The ticket has information from all 8 variables recorded (3 categorical and 5 numerical). 
-We draw 25 tickets from each box at random *without* replacement.
-We compute compute two averages from the draws across all 17 boxes.
+The box has 544 tickets, one for each donkey. The ticket has information from all 8 variables recorded (3 categorical and 5 numerical). We only need 2 variables, so the tickets will have those two variables recorded.
+We draw 50 tickets from this box at random *without* replacement, and compute 2 averages from the draws.
 
 ![](images/donkey-tkt.jpeg){fig-align=center width="300"}
 
