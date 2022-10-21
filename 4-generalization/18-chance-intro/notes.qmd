@@ -311,7 +311,7 @@ Set up the box model.
 
 The box would have 344 tickets, one for each penguin. Each ticket would have 3 things written on it: the species, sex, and flipper length in mm of the penguin.
 We would draw 50 tickets at random without replacement, and 
-![](images/penguin-ticket.jpeg){fig-align=center width="200"}
+![](images/penguin-ticket.jpeg){fig-align=center width="300"}
 
 ## Simulating the box model
 
