@@ -1,0 +1,97 @@
+---
+title: " Data Scope and Box Models"
+format: pdf
+---
+
+#### Question 1 (from the slides)
+
+The National Assessment of Educational Progress (NAEP) is the largest nationally representative and continuing assessment of what America’s students know and can do in various subject areas. It assesses the academic performance of 4th, 8th, and 12th grade students in a range of subjects. The sample of schools surveyed is selected from a comprehensive list of operating public schools in each state that is compiled each school year by the National Center for Education Statistics (NCES) for public schools in the sample.  A national sample of private schools in all grades is then drawn from a list compiled through the Private School Universe Survey (PSS), which is a mail survey of all U.S. private schools carried out biennially by the U.S. Census Bureau.  On average, a sample of approximately 100 grade-eligible public schools is selected within each state; within each school, about 60 students are selected for assessment. About 700 private schools are chosen nationally. Students are sampled from a roster of individual names, not by whole classrooms.
+
+- Describe the target population, access frame, sampling unit, and observation unit.
+- Draw the data scope diagram.
+- Identify at least one possible source of bias.
+
+#### Question 2 (from the slides)
+
+Kripke et al. (2002) claim that persons who sleep 8 or more hours per night have a higher mortality risk than persons who sleep 6 or 7 hours. They analyzed data from the 1982 Cancer Prevention Study II of the American Cancer Society, a national survey taken by about 1.1 million people. The survival or date of death was determined for about 98% of the sample six years later. Most of the respondents were friends and relatives of American Cancer Society volunteers; the purpose of the original survey was to explore factors associated with the development of cancer, but the survey also contained a few questions about sleep and insomnia.
+
+- Describe the target population, access frame, sampling unit, and observation unit.
+- Draw the data scope diagram.
+- Identify at least one possible source of bias.
+
+#### Question 3 
+In the notes, one of the examples is about dice, and sets up a box model for the process of rolling a pair of fair six sided dice and summing the spots. In the notes we make 2 draws at random with replacement from the following box, and sum the draws:
+
+$$\fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}  \fbox{5}  \fbox{6}}$$
+
+Why not make one draw from the following box instead? (The tickets are the possible sums when we roll a pair of six sided dice.)
+
+$$\fbox{ \fbox{2} \fbox{3} \fbox{4}  \fbox{5}  \fbox{6}  \fbox{7}  \fbox{8}  \fbox{9}  \fbox{10}  \fbox{11}  \fbox{12}}$$
+
+If we did indeed want to model the result of two die rolls with a box from which we would only draw once, what would the box be? (List all the tickets in the box, which numbers, and how many of each.)
+
+#### Question 4
+In each of the following scenarios, identify the kind of bias that might arise (coverage, selection, non-response, measurement)
+
+ (a)  Estimating the number of crows in your town by counting the number of crows in your neighborhood.
+ 
+ (b) Estimating the number of Berkeley students who are going to vote by standing near the Golden Bear Cafe and asking students who are walking by if they are registered to vote, and if they are going to vote.
+ 
+ (c) Evaluating a teacher's performance using the end of semester evaluations.
+ 
+ (d) Evaluating students' opinions about a new course by distributing a questionnaire during class.
+ 
+ (e) A politician predicting the outcome of an election by inviting their twitter followers to post how they voted.
+ 
+ (f) Estimating the percentage of school aged children in California that are vaping regularly by going to a random selection of the schools in LA, SF, San Diego, Sacramento, and Fresno and asking a random sample of students there if they vape.
+ 
+ (g) Measuring the current incidence rate of Covid-19 in the Bay Area by using the proportion of positive PCR tests from local Kaiser locations.
+ 
+#### Question 5
+
+If we are setting up a box for modeling the number of heads in three tosses of a fair coin, would either of the boxes below work? If not, why not?
+
+(a) $\fbox{\fbox{0} \fbox{1}}$ - Draw three times at random with replacement, and sum the draws.
+(b) $\fbox{\fbox{0} \fbox{1} \fbox{2} \fbox{3}}$ -  Draw once, the result is the number of heads.
+
+#### Question 6
+
+A standard deck of cards has 52 cards, consisting of 4 "suits" (hearts  \textcolor{red}{$\heartsuit$}, diamonds \textcolor{red}{$\diamondsuit$}, spades $\spadesuit$, and clubs $\clubsuit$). Each suit has 13 cards (Ace, King, Queen, Jack, 2, 3, 4, 5, 6, 7, 8, 9, and 10). Half of the cards are red (hearts and diamonds) and half of the cards are black (spades and clubs). I would like to shuffle the cards, draw **five** cards with replacement, and count the number of **hearts** in these five cards. What would be the box model for this set up?
+
+#### Question 7
+
+One ticket will be drawn at random from each of the two boxes below:
+
+$A: \fbox{\fbox{1} \fbox{2} \fbox{3}}$ 
+
+$B: \fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}}$
+
+(a) What is the chance the number drawn from $A$ is greater than the one drawn from $B$?
+
+(b) What is the chance that the number drawn from $A$ is equal to the one drawn from $B$?
+
+(c) What is the chance the number drawn from $A$ is smaller than the one drawn from $B$?
+
+
+#### Question 8
+
+I want to estimate the proportion of people in Berkeley who speak at least two languages. I stand at the corner of University and Shattuck and ask each person who goes by how many languages they speak, and keep a count of how many speak at least two. Can I set this up as a box model? If so, how? If not, why not? 
+
+
+#### Question 9
+
+(a) Consider the box $\fbox{ \fbox{1} \fbox{2} \fbox{2} \fbox{3} \fbox{4}}$. I draw two tickets at random **with** replacement. If my first draw is a 2, what is the chance that my second draw is a 3?
+
+(b) Consider the box $\fbox{ \fbox{1} \fbox{2} \fbox{2} \fbox{3} \fbox{4}}$. I draw two tickets at random **without** replacement. If my first draw is a 2, what is the chance that my second draw is a 3?
+
+#### Question 10
+
+The company Chegg wants to justify its business model and decides to conduct an opinion poll. It sends out a survey to its 7.8 million subscribers (as of 2021) asking if they have ever cheated on an assignment using Chegg. It gets back 1.5 million responses of which 87% of the respondents say that they have never used Chegg to cheat on an assignment. 
+
+(a) Could this survey be set up as a box model? If so, what tickets would go in the box and how many would we draw? If not, why not?
+(b) Is this sample of 1.5 million a representative sample of high school and college students?
+
+
+
+
+ 
