@@ -1,11 +1,13 @@
 ---
 title: "Class Activity: Coin Flips"
 format: pdf
+execute: 
+  warning: false
+  message: false
+  echo: false
 ---
 
-### Introduction:
-
-This activity is taken from the book *Teaching Statistics - A Bag of Tricks* by Nolan and Speed ($\S$ 8.3.2). The goal is to point out to students the difficulties in trying to make up a random sequence. It highlights their "common misconceptions about randomness" and shows them that haphazard is not the same as random, while motivating the idea of sampling distributions.
+This activity is taken from the book *Teaching Statistics - A Bag of Tricks* by Nolan and Speed (Section 8.3.2). The goal is to point out to students the difficulties in trying to make up a random sequence. It highlights their "common misconceptions about randomness" and shows them that haphazard is not the same as random, while motivating the idea of sampling distributions.
 
 The demonstration to be done in class today is as follows: -
 
@@ -31,6 +33,8 @@ Good luck! I am worried that we will have too many groups and make mistakes, whi
 
 Code for plot(s):
 ```{r}
+library(tidyverse)
+coin = c(0,1)
 ### simulate sequences and compute (number of runs, length of longest run) for each.
 flips = replicate(1500,{
   x<-sample(coin, 100, replace = TRUE)
