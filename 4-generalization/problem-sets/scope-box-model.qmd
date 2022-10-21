@@ -1,0 +1,93 @@
+---
+title: "Scope & the Box Model"
+format: html
+---
+
+## Scope
+
+Shere Hite’s book ``Women and Love: A Cultural Revolution in Progress" (1987) had a number of widely quoted results:
+
++ 84\% of women are ``not satisfied emotionally with their relationships".
++ 70\% of all women ``married five or more years are having sex outside of their marriages".
++ 95\% of women ``report forms of emotional and psychological harassment from men with whom they are in love relationships".
++ 84\% of women report forms of condescension from the men in their love relationships.
+
+The book was widely criticized in newspaper and magazine articles throughout the United States. The Time magazine cover story, Back Off, Buddy (October 12, 1987), for example, called the conclusions of Hite’s study dubious and of limited value.
+
+Here's more information about the Hite survey that will help you understand what went wrong.
+
++ 100,000 questionnaires were mailed to organizations like professional women's groups, consulting centers, church societies and senior citizen centers. 
+
++ Of the 100,000 questionnaires that were mailed, 4.5\% were returned.
+
++ The survey has 127 essay questions, and most of the questions have several parts. 
+
++ Here are two of the questions asked:
+
+  + Does your husband/lover see you as an equal? Or are there times when he seems to treat you as an inferior? Leave you out of the decisions? Act superior?
+  + Are you in love with your husband/lover?
+
+### Question 1
+
+Identify the target population, access frame, sample, and unit of observation. Draw a data scope diagram that shows the relationship between the target, frame, and sample. 
+
+### Question 2
+
+Identify two different kinds of units that are in the target, but not the access frame. 
+
+Identify one kind of unit that is possibly in the frame but not the target.
+
+
+### Question 3
+
+Identify possible sources of bias. Label them according to whether they are:
+
++ coverage, 
++ selection, 
++ non-response, or
++ measurement 
+
+For each type of bias, conjecture how the bias might limit the conclusions and their generalizability.
+
+
+### Question 4
+
+Determine whether a chance mechanism was used in the data collection process. If so, identify the type of mechanism: 
+
++ sampling, 
++ assignment, 
++ measurement, or 
++ some combination of them.
+
+
+### Question 5
+
+The survey also asked about the respondents race, family income, and age.  Summary statistics of these variables matched those of the population of the U.S. quite well. This was one reason given for why the survey results were not biased. Can you explain how this might have happened? 
+
+
+## Box Model
+
+A town has 1,000 people in it. They live in 300 households. The number of people in a household ranges from 1 to 6, inclusive.
+About 400 of the 1,000 people in the town are children. 
+
+For each of the sampling schemes below, describe a box model that imitates the chance process. You may use multiple boxes, if needed.
+For each box, describe:
+
+1. The box and tickets (what tickets go in the box, and their values)
+2. The number of draws
+3. Whether or not the tickets are replaced between draws
+
+
+### Question 5
+
+Select 50 households at random and report the average number of people in the household.
+
+
+### Question 6
+
+Visit the elementary, middle, and high schools (there is one of each in the town) and take a sample of 25 from each school. Report the average household size across the 75 students sampled. 
+
+### Question 7 BONUS
+
+There are at least three problems regarding sampling bias with the scenario in question 6. Can you identify them?
+
