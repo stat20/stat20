@@ -1,0 +1,82 @@
+---
+title: "Data Scope and the Box Model"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+
+- Concept Questions (for discussion)
+- Activity: coin tosses
+- Practice: data scope, box models, and chance
+
+# Concept Question 1
+
+## NAEP {.scrollable}
+
+The National Assessment of Educational Progress (NAEP) is the largest nationally representative and continuing assessment of what America’s students know and can do in various subject areas. It assesses the academic performance of 4th, 8th, and 12th grade students in a range of subjects. The sample of schools surveyed is selected from a comprehensive list of operating public schools in each state that is compiled each school year by the National Center for Education Statistics (NCES) for public schools in the sample.  A national sample of private schools in all grades is then drawn from a list compiled through the Private School Universe Survey (PSS), which is a mail survey of all U.S. private schools carried out biennially by the U.S. Census Bureau.  On average, a sample of approximately 100 grade-eligible public schools is selected within each state; within each school, about 60 students are selected for assessment. About 700 private schools are chosen nationally. Students are sampled from a roster of individual names, not by whole classrooms.
+
+```{r}
+countdown::countdown(10, top = 0)
+```
+
+- Describe the target population, access frame, sampling unit, and observation unit.
+- Draw the data scope diagram.
+- Identify at least one possible source of bias.
+
+::: {.notes}
+Target population is "America's students", presumably all school age children. 
+Access frame is list of public schools in each state and some subset list of private schools, national only. 
+Sampling unit different at different levels -> schools first stage, and students within schools. 
+Observation unit is student from sampled school
+Sources of bias: Coverage bias:  homeschooled students not counted, not all private schools in frame.
+:::
+
+# Concept Question 2
+
+## Sleep {.scrollable}
+
+A 2002 study claims that persons who sleep 8 or more hours per night have a higher mortality risk than persons who sleep 6 or 7 hours. The authors analyzed data from the 1982 Cancer Prevention Study II of the American Cancer Society, a national survey taken by about 1.1 million people. The survival or date of death was determined for about 98% of the sample six years later. Most of the respondents were friends and relatives of American Cancer Society volunteers; the purpose of the original survey was to explore factors associated with the development of cancer, but the survey also contained a few questions about sleep and insomnia.
+
+
+- Describe the target population, access frame, sampling unit, and observation unit.
+- Draw the data scope diagram.
+- Identify at least one possible source of bias.
+
+```{r}
+countdown::countdown(5, top = 0)
+```
+
+
+::: {.notes}
+Target population: All adults
+Access Frame: Friends and relatives of American Cancer Society volunteers
+Sampling unit: One person
+Criticisms: "its validity for investigating the relationship between amount of sleep and mortality is questionable. The questions about amount of sleep and insomnia were not the focus of the original study, and the survey was not designed to obtain accurate responses to those questions. The design did not allow researchers to assess whether the sample was representative of the target population of all Americans. Because of the shortcomings in the survey design, it is impossible to know whether the conclusions in Kripke et al. (2002) about sleep and mortality are valid or not.” - Sharon Lohr 
+:::
+
+
+
+# Activity: Coin tossing 
+
+```{r}
+countdown::countdown(25, top = 0)
+```
+
+# Handout
