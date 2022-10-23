@@ -1,101 +1,215 @@
 ---
-title: "Breast cancer diagnosis"
-date: "10/14/22"
-image: images/benign_vs_malignant.png
+title: "Lab 7: Waiting for the Bus"
+subtitle: "A simulation study"
+date: "10/26/22"
+image: images/bus.jpeg
 ---
 
-In this lab you will train and evaluate a classification algorithm to determine whether or not a [fine needle aspiration biopsy](https://en.wikipedia.org/wiki/Fine-needle_aspiration) is cancerous (malignant) or non-cancerous (benign). The data were downloaded from the [UC Irvine Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29) and lightly processed. There are 568 observations in this data set and each sample is one biopsy.
-Each biopsy has 30 features summarizing the nuclear morphology of the cells in the biopsy.
-See the lecture slides for some additional explanation.
+In this lab you carry out a simulation study to gain insight into  models for waiting for a bus. The lab and data have been adapted from the blog post, Why is My Bus Always Late?[^bus-late-blog]. The author of the post noticed that his experience in waiting for a bus differed from what he thought it should be. You will carry out the following steps, following the bloggers investigations.
 
-The purpose of this lab is to practice using the code from the [classification case study notes](https://www.stat20.org/3-prediction/16-classification-case-study/notes.html). **Much of part 2 can be answered by copying/pasting/tweaking the code from these notes.**
+1. First you will run a simple simulation to check the bloggers understanding of what waiting for a bus should look like.
 
-The variables that end in `_se` are cell standard deviations (they are using the term *standard error*).
+2. Next, you will use data of the scheduled and actual bus arrival times to study the patterns in lateness of the bus.
 
-## Setup
+3. Finally, you will run a more complex simulation that uses the bus data to discover how buses being late creates quite a different experience of waiting for the bus than the one you first simulated. 
+
+These simulations will be designed using the box model, and carried out using the `sample()' function. 
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
 ```
 
 
+## A Simple Simulation of Waiting for a Bus.
 
-```{r, message=FALSE, warn=FALSE}
-library(tidyverse)
+The Seattle northbound C line stops at Third Avenue and Pike Street. Many of the buses are scheduled to run 12 minutes apart so for simplicity, we will assume that they are all scheduled to run exactly 12 minutes apart. 
 
-# you may need to install the caret package
-# which you can accomplish by uncommenting the following line
-# you only need to install a package ONCE i.e. you can run this line once then never again
-# install.packages('caret')
+How long would you expect to wait for the bus if you arrive at the stop at a random time in a 12-minute period? How might the actual wait times differ from the expected time?
 
-library(caret)
+You might be able to answer these questions analytically if you have studied advanced probability. But, you can quickly get approximate answers with a simple simulation. 
 
-# load data, do some pre-processing
-cells <- read_csv('https://raw.githubusercontent.com/idc9/course-materials/main/3-prediction/labs/brca_fna_data.csv')
+Suppose:
 
-# make diagnosis a factor -- this is required to make the code below work!
-cells <- cells %>% 
-    mutate(diagnosis=as.factor(diagnosis))
+- You arrive at random time in a 12-minute interval.
+- Suppose that times are measured to the nearest 1/100 of a minute.
 
-cells
+Build a box model that represents this process, and produce 100,000 draws from the box with replacement. You might find the `seq` function useful here to create the tickets that go in the box.
+
+```{r}
+# Set up your box
+#box = seq(from= , to= , by=)
+# HINT: there should be 1200 or 1201 tickets in the box.
+
+# set the seed of the random generator so that you get the same
+# sequence of "random" values each time you run this code.
+set.seed(11252022)
+
+# Make draws from your box
+#arrivals = sample(box, size=  , replace= )
 ```
 
-The diagnosis is in the column named `diagnosis`; each other column should be used to predict the diagnosis.
+Now analyze the values in `arrivals`:
 
-## Part 1: Understanding and Exploring the Data
-
-1. How many classes are in diagnosis?
-
-2. Use a box plot to compare the `radius_mean` for benign vs. malignant biopsies. What is the takeaway from this plot?
-
-3.  Repeat the previous question for another variable of your choosing. What is the interpretation?
-
-4.  Make a plot that examines the association between `radius_mean` and `area_mean`. Calculate the correlation between these two variables. Is there a strong association between these two variables? Does this make sense?
-
-5.  Make a single plot that examines the association between `radius_mean` and `radius_se` separately for each diagnosis. Hint: `aes()` should have three arguments. Calculate the correlation between these two variables for each diagnosis.
-
-    Give an interpretation of these results. In particular comment on
-
-    - Is the relationship between `radius_mean` and `radius_se` different for benign biopsies vs. malignant biopsies?
-
-    - If so, can you give an explanation for this difference?
+1. What is the average arrival time?
 
 
-# Part 2: Classification with K-nearest-neighbors
+```{r}
+#
+```
 
-6.  Split the full cells data set into an 80/20 train/test set split. Name the training data frame `train_df` and the test data frame `test_df`.
+2. What is the SD of arrival time?
 
-    Make sure you use the seed in the code chunk shown below.
 
-    ```{r message=FALSE}
-    set.seed(1234)
+```{r}
+#
+```
 
-    # start writing your code here
-    # train_indices <- createDataPartition
-    ```
+3. What is the approximate probability distribution of arrival time? (To answer this question, make a histogram and use proportions on the y-axis)
 
-7.  Fit a KNN model with K=1 to the training data. Evaluate the training accuracy and test accuracy of this model. Hint: using the `knn3` function from the `caret` package as in the notes.
+```{r}
+#ggplot( ) + 
+#  geom_histogram(bins = 48, fill="gray", color = "black")
+```
 
-8.  Repeat the previous question with K=20.
+Convert the simulated arrival times into wait times. Recall the bus comes every 12 minutes. Repeat the computations from above to find the average wait time, standard deviation of wait time, and approximate probability distribution of the wait time. 
 
-9.  Standardize the training and test data with mean centering and standard deviation scaling. Make sure column the mean/standard deviations are obtained from `train_df`. Create new data frames called `train_stand` and `test_stand`. Hint: use `preProcess()` from the `caret` package as in the notes.
+```{r}
+# wait = some function of arrivals
 
-10.  Verify the columns of `train_stand` have means of 0 and standard deviations of 1. What about `test_stand`?
+#mean(wait)
+```
 
-11.  Compute the KNN train and test set accuracy with K=1 and K=20 for the standardized data.
 
-12. Using cross-validation with 5 folds, pick the best value of K for KNN. Evaluate every value of K between 1 and 30. Plot the curve showing validation accuracy vs. K.  For the selected value of K, what is the training and test set accuracy?
+```{r}
+#sd(wait)
+```
 
-    Make sure you use the seed in the code chunk shown below.
+```{r}
+#ggplot( ) + geom_histogram()
+```
 
-    ```{r}
-    set.seed(393)
-      
-    # start writing your code here
-    
-    # k_values_to_try <-
-    # training_control <- trainControl
-    # knn_cv <- train
-    ```
+4. Are you surprised by the size of the standard deviation? Why do you think this probability distribution is called ``uniform''?
 
-13. Pick any 3 variables and build a classification model that you train with cross-validation based on only these three variables from `train_stand`. What is the test set accuracy?
+The blogger said that his experience did not match this simulation so he went and got some data about the arrival times of the bus.
+
+## Understanding the Data for Real Buses
+
+![](images/bus.jpeg){fig-align=center width="300"}[^seattle-bus-pic]
+
+The blogger acquired data from the Washington State Transportation Center for this bus line and two others. The data are for March 26 through May 27, 2016.
+
+We have simplified these data and provided you with only information about how late each bus was in this 2 month time period. 
+
+```{r}
+bus_late = read.csv("data/bus-CNorth-late.csv")
+```
+
+5. Describe the empirical distribution of the lateness of the northbound C buses stopping at Third and Pike in this two-month period? Is it unimodal? Is it skewed left, skewed right, or symmetric? Are there any surprising values? 
+
+```{r}
+#ggplot()
+
+```
+
+
+6. Summarize the typical amount of time the bus it late, and compute a measure of spread to accompany your typical time.
+
+```{r}
+
+#summarize()
+```
+
+
+7. How might the distribution of the actual arrival times at the bus stop impact the waiting time experience by the blogger?
+
+To answer this question, we will carry out one more simulation. But before you do, take a stab at what you think this distribution might look like. 
+
++ Will if be flat like the distribution from the first part? 
++ Will it be simiilar to the histogram of the lateness of the bus, but shifted? 
++ Do you think the SD will be close to the SD from first simulation, the observed SD of bus lateness, or some other larger/smaller value?
+
+
+
+## Incorporating Real Bus Arrival Times into the Simulation
+
+Now rather than assume that the buses are arriving exactly 12-minutes apart, we will use their actual arrival times instead.
+Then we generate passenger arrival times at random using a box model, and compute the wait times.
+
+The figure below gives the basic idea:
+
+![](images/BusDiagram.jpg){fig-align=center width="400"}
+
+
+
+8. First we will create a sequence of bus arrival times.
+We start with times that are exactly 12-minutes apart, and then adjust them by using the observed lateness of each bus.
+
+```{r}
+num_stops = nrow(bus_late)
+
+#sched_times = seq(from = , by = , length = )
+
+#act_times = 
+#act_times = sort(act_times)
+```
+
+You have now created the top line in the diagram. These are the times that the buses arrive. The buses are shown as dashed rectangles in the diagram.
+
+9. Next, you will generate 100,000 arrival times of passengers at the bus stop. They still arrive at times that are equally likely and to the nearest 1/100 of a minute. But now the passengers arrive at times along the timeline from 0 to the last bus.
+
+```{r}
+# Set up your box
+#box_big = seq(from=, to= , by=)
+# HINT: now your box will have over 1.7 million tickets in it!
+
+
+# set the seed of the random generator so that you get the same
+# sequence of "random" values each time you run this code.
+set.seed(11252022)
+sample_size = 100000
+
+# Make draws from your box
+#pass_arrivals = sample(box_big, size= , replace= )
+#pass_arrivals = sort(pass_arrivals)
+```
+
+The last step it to find the 100,000 passengers' waiting times. This is more complex than our earlier calculation. We have provided a set of nested for loops to carry out this calculation for you. Reemove the comments when you are ready to run this code.
+
+```{r}
+#k=1
+#pass_wait = vector(mode="numeric", length = sample_size)
+
+#for (i in (1:sample_size)) {
+#  for (j in k:length(act_times)) {
+#    if (act_times[j] >= pass_arrivals[i]) break   
+#  }
+#  k = j
+#  pass_wait[i] = act_times[j] - pass_arrivals[i]
+#} 
+```
+
+10. Return to the earlier question about the simulated wait times and use `pass_wait` to answer the questions posed there. These are:
+
++ What does the simulated distribution of wait times look like? Compare the distribution of `pass_wait` to the distribution of wait times from the first part of this lab, called `wait`. Also, compare the distribution to that of the observed lateness of the buses, called `bus_late$minutes_late` .
+
+```{r}
+# ggplot()
+```
+
+
++ Compute the means and SDs of these three distribution. Also, compute the lower quartile, median, and upper quartile of these three distributions.  Compare these statistics. Make a statement about the typical wait times, based on this final simulation. Include a statement about the deviations from this typical value.
+
+```{r}
+#summarize()
+
+```
+
+
+[^bus-late-blog]:<https://deepnote.com/@jirka/Why-Is-My-Bus-Always-Late-3eb8db19-9e19-411e-8a5a-de2a58089303>
+
+[^seattle-bus-pic]: <https://en.wikipedia.org/wiki/RapidRide#/media/File:King_County_Metro_Rapid_Ride_New_Flyer_DE60LFR_6060.JPG>
+
