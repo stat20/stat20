@@ -1,0 +1,36 @@
+---
+title: "How to Calculate Chances"
+subtitle: "Two important ideas: Conditional probabability and Independence"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+format:
+  html:
+    toc-depth: 4
+    code-fold: true
+    code-link: true
+    code-summary: "."
+execute: 
+  warning: false
+  message: false
+---
+
+[[Discuss]{.btn .btn-primary}](https://app.perusall.com) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
+[[PDF]{.btn .btn-primary}](notes.pdf)
+
+\
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(stat20data)
+library(infer)
+library(palmerpenguins)
+```
+
+
+## Sally Clark: a cruel murderess or a tragic victim of bad math?
+
+
+"
