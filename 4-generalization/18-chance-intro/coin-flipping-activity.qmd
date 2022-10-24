@@ -41,6 +41,7 @@ flips = replicate(1500,{
   result = c(longest_run = max(rle(x)$lengths),
              n_switches = sum(diff(x) != 0))
 })
+
 ```
 
 ```{r}
