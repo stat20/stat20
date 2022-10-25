@@ -224,4 +224,5 @@ We defined conditional probability and independence, and the multiplication rule
 In the next lecture, we will learn about sampling, and estimating *population parameters*.
 
 [^js]: <https://www.theguardian.com/uk-news/2021/nov/20/sally-clark-cot-death-mothers-wrongly-jailed>
+
 [^mh]: image from Wikipedia <https://en.wikipedia.org/wiki/Monty_Hall_problem>

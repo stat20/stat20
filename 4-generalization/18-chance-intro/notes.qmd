@@ -1,7 +1,7 @@
 ---
 title: "Chance and the Box Model"
-subtitle: "We will introduce the ideas of chance, or probability, via a simple mechanism called a box model. "
-date: '`r format(Sys.Date(), "%B %d, %Y")`'
+subtitle: "Ideas of chance via a simple mechanism called a box model."
+date: "10/21/2022"
 format:
   html:
     toc-depth: 4
@@ -48,28 +48,27 @@ will decide who gets the treatment, and who doesn't. Or perhaps we
 want to poll voters to see if there is support for decriminalizing
 marijuana possession federally (President Biden took a first step
 towards this goal by pardoning all Americans  convicted of simple
-marijuana possession under federal law). Who is selected for such an 
-opinion poll can make a big difference in the estimate of the proportion of voters that support decriminalization of marijuana. You may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently they are taken more seriously. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538]. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''
+marijuana possession under federal law).
+
+Who is selected for such an opinion poll can make a big difference in the estimate of the proportion of voters who support decriminalization of marijuana. You may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently they are taken more seriously. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538]. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''
 
 [^538]: This website was begun as poll aggregation site, by the statistician Nate Silver.]
 
 ![](images/538-pollster-ranking-snippet.png){fig-align=center width="500"}
 
-You learned about the variation in data that is induced by using *chance* to select the data - the variation could be caused by the sampling method, or the way units are assigned to groups, or from measurement error. In order to understand variation, we have to understand the chance mechanism which was used to collect the data. 
+We introduced the variation in data that is induced by using *chance* to collect the data - the variation could be caused by the sampling method, or the way units are assigned to groups, or from measurement error. In order to understand variation, we have to understand the chance mechanism which was used to collect the data. 
 In these notes, we are going to describe methods by which we can
 obtain representative samples from the target population - or rather,
 from our access frame. In practice, it is rare for the access frame
 and target population to exactly coincide. We need to design our
-data collection methods (our protocols) so that our target
-population and our access frame overlap as much as we can manage. This
-is achieved using methods that incorporate chance.
+data collection methods (our protocols) so that our target population and our access frame overlap as much as we can manage. 
 
 ## The Box Model
 
-One of the simplest ways of understanding chance, and later variation, is by considering a
+One of the simplest ways of understanding chance, and later variation, is through the 
 *box model*[^fppbox]. A box model consists of a box with numbered tickets, from which tickets are drawn.
 To specify a box model, we have to say what tickets go in the box (that is, what are the numbers on the tickets, and how many of each) , and
-whether they will be drawn *with or without replacement* (after drawing a ticket from the box, do we put it back in the box or not, before we draw another ticket).
+whether the tickets will be drawn *with or without replacement* (after drawing a ticket from the box, do we put it back in the box or not, before we draw another ticket).
 
 ### A box of tickets
 
@@ -78,14 +77,14 @@ whether they will be drawn *with or without replacement* (after drawing a ticket
 Consider the box above which has five almost identical tickets. The only difference is the value written on them. Imagine that we shake the box to mix the tickets up, and then draw one ticket without looking. This is to ensure that all the tickets are *equally likely* to be drawn[^uar]. 
 For example, the chance of drawing a ticket labeled "4" is one in five, as there are five tickets to choose from and only one is labeled "4" etc.
 
-Here is a bar chart that shows how the box values are distributed, and you see that there are twice as many tickets marked 
+Here is a bar chart that shows how the box values are distributed, and you see that there are twice as many tickets marked 2. The frequency of each type of tickets in the box is called the *population distribution*.
 
 ```{r}
 #| fig.width: 3
 #| fig.height: 3
 #| fig.align: center
 
-box = c(1, 2, 2, 3, 4)
+box <- c(1, 2, 2, 3, 4)
 
 data.frame(box) %>% 
   ggplot(aes(x=box)) +
@@ -94,7 +93,7 @@ data.frame(box) %>%
 ```
 
 
-Let's make a table of all the tickets and their chances. This is called a *distribution table*. 
+Let's make a table of all the tickets and their chances. This is called a *probability distribution table*. 
 
 <center>
 <div style="width:300px">
@@ -124,13 +123,13 @@ data.frame(cbind(tkt_value, tkt_prob)) %>%
   xlab("ticket value") +
   ylab("chance of being drawn")
 ```
-They look the same!! In fact, in the first figure, if we looked at proportion instead of count, the figures would be identical! 
+The two figures look the same!! In fact, in the first figure, if we looked at proportion instead of count, the figures would be identical! 
 
 <iframe src="https://giphy.com/embed/7GcdjWkek7Apq" width="300" height="170" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/highquality-incredibles-coincidence-7GcdjWkek7Apq">via giphy</a></p>
 
 This makes sense because the tickets are equally likely to be drawn, so their distribution in the box (the first figure) completely determines their chance of being drawn (the second figure).
 
-Since the tickets are drawn according to their chance, we could compute what a draw would be, on average, by computing a weighted (by their chance) average of the possible values. We would get, for a single draw: $1\times \frac{1}{5} + 2 \times \frac{2}{5} + 3 \times \frac{1}{5} + 4 \times \frac{1}{5} = 2.4$. Note that this happens to be the average of the tickets in the box.
+Since the tickets are drawn according to their chance, we could compute what a draw would be, on average, by computing a weighted (by their chance) average of the possible values. We would get, for a single draw: $1\times \frac{1}{5} + 2 \times \frac{2}{5} + 3 \times \frac{1}{5} + 4 \times \frac{1}{5} = 2.4$. Note that this exactly matches the average of the tickets in the box.
 
 How about if we draw 30 times at random with replacement from this box and see what our sample looks like (we will explore the code later in the notes). That is, we will see what proportion of the draws are 1's, 2's etc.
 
@@ -140,8 +139,8 @@ How about if we draw 30 times at random with replacement from this box and see w
 #| fig.align: center
 
 set.seed(12345)
-sample_size =30
-sample_box = sample(box, size = sample_size, replace = TRUE)
+sample_size <- 30
+sample_box <- sample(box, size = sample_size, replace = TRUE)
 data.frame(sample_box) %>%
   ggplot(aes(sample_box)) + 
   geom_bar(aes(y = ..prop..), width = 0.98, fill = "grey55") +
@@ -166,6 +165,8 @@ We can see that the *sample proportions* look similar to the *population (box) p
 
 What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*.
 
+<!-- Should this be switched to an example where we're sampling *without* replacement? Both of the examples discussed in the intro are of this form. -->
+
 \
 
 **The Box Model**
@@ -177,9 +178,9 @@ In order to create a box model that will model a chance process, we must specify
 1. The box and tickets (what tickets go in the box, and the numbers written on them)
 2. The number of draws
 3. Whether or not we replace tickets between draws
-4. How we will summarize the values on the drawn tickets (usually take the sum or of draws or the average of draws)
+4. How we will summarize the values on the drawn tickets (we will sum the draws or compute their average)
 
-Note that these tickets should be identical in every way, except the value written on them, and  assume that the tickets in the box are *equally likely* to be drawn (we draw without looking at the box).
+Note that these tickets should be identical in every way, except the value written on them, and  assume that the tickets in the box are *equally likely* to be drawn (we draw without looking into the box).
 
 
 ### Setting up a box model: examples
@@ -201,6 +202,8 @@ Or we could draw one ticket from the box
 ![](images/coin.jpeg){width="100"}
 with the ticket $\fbox{1}$ representing the coin landing heads, and $\fbox{0}$ representing the coin landing tails. This change of numbering the ticket representing the outcome we are counting with a 1 and all other tickets with a 0 is very important, since we are *classifying* the outcomes into two categories, and counting the instances of one of them (in this case, the coin landing heads).
 </details>
+
+<!-- Why is it very important? If we're simulating a coin toss, aren't the outcomes H and T? -->
 
 :::{.callout-warning icon=false}
 
@@ -313,7 +316,7 @@ Set up the box model.
 
 The box would have 344 tickets, one for each penguin. Each ticket would have 3 things written on it: the species, sex, and flipper length in mm of the penguin.
 We would draw 50 tickets at random without replacement, and 
-![](images/penguin-ticket.jpeg){fig-align=center width="2000"}
+![](images/penguin-ticket.jpeg){fig-align=center width="300"}
 
 ## Simulating the box model
 
@@ -469,11 +472,11 @@ drop_na(penguins,sex) %>%
   summarise(mean_flipper_length_mm = mean(flipper_length_mm))
 ```
 
-### Drawing with replacement and without
+### Drawing with replacement and without replacement
 #### What's the difference? 
 
 Consider our first box again, the one with five tickets. 
-When we draw at random *with* replacement, we draw one ticket, and put it back before drawing another ticket. For the box in this section, if we draw twice, both times we will draw from the following box:
+When we draw at random *with* replacement, we draw one ticket, and put it back before drawing another ticket. For the box in this section, if we draw twice with replacement, both times we will draw from the following box:
 
 ![](images/box.jpeg){fig-align=center width="200"}
 
@@ -492,7 +495,7 @@ The chance of an event (where an *event* might be one outcome, such as "rolling 
 
 1. The chance of any event is at least 0 and not more than 1.
 
-2. We call the collection of all possible outcomes the *sample space*. The chance of the sample space is 1. 
+2. We call the collection of all possible outcomes the *sample space*. The chance of an outcome being in the sample space is 1. 
 
 3. If two events do not overlap, that is they have no outcomes in common, then the chance that *either* of the two events might occur is the *sum* of their chances.
 For example, consider rolling a fair six-sided die, and the two events of rolling a multiple of 5 or a multiple of 2. In the first event (which we can call $A$), the possible outcomes are $\{5\}$. For the second event (call it $B$), the possible outcomes are $\{2, 4, 6\}$. Since all the sides of a fair die are equally likely, the chance of $A$ is the chance of rolling a $5$ which is $1/6$. The chance of rolling an even number is $1/6 + 1/6 +1/6 = 3/6$ (applying the same idea of adding up the chances, since we can't have the die show two sides at the same time). 
