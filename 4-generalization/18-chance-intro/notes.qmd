@@ -1,7 +1,7 @@
 ---
 title: "Chance and the Box Model"
-subtitle: "We will introduce the ideas of chance, or probability, via a simple mechanism called a box model. "
-date: '`r format(Sys.Date(), "%B %d, %Y")`'
+subtitle: "Ideas of chance via a simple mechanism called a box model."
+date: "10/21/2022"
 format:
   html:
     toc-depth: 4
@@ -48,8 +48,9 @@ will decide who gets the treatment, and who doesn't. Or perhaps we
 want to poll voters to see if there is support for decriminalizing
 marijuana possession federally (President Biden took a first step
 towards this goal by pardoning all Americans  convicted of simple
-marijuana possession under federal law). Who is selected for such an 
-opinion poll can make a big difference in the estimate of the proportion of voters that support decriminalization of marijuana. You may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently they are taken more seriously. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538]. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''
+marijuana possession under federal law).
+
+Who is selected for such an opinion poll can make a big difference in the estimate of the proportion of voters who support decriminalization of marijuana. You may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently they are taken more seriously. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538]. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''
 
 [^538]: This website was begun as poll aggregation site, by the statistician Nate Silver.]
 
@@ -83,7 +84,7 @@ Here is a bar chart that shows how the box values are distributed, and you see t
 #| fig.height: 3
 #| fig.align: center
 
-box = c(1, 2, 2, 3, 4)
+box <- c(1, 2, 2, 3, 4)
 
 data.frame(box) %>% 
   ggplot(aes(x=box)) +
@@ -138,8 +139,8 @@ How about if we draw 30 times at random with replacement from this box and see w
 #| fig.align: center
 
 set.seed(12345)
-sample_size =30
-sample_box = sample(box, size = sample_size, replace = TRUE)
+sample_size <- 30
+sample_box <- sample(box, size = sample_size, replace = TRUE)
 data.frame(sample_box) %>%
   ggplot(aes(sample_box)) + 
   geom_bar(aes(y = ..prop..), width = 0.98, fill = "grey55") +
@@ -163,6 +164,8 @@ We can see that the *sample proportions* look similar to the *population (box) p
 </center>
 
 What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*.
+
+<!-- Should this be switched to an example where we're sampling *without* replacement? Both of the examples discussed in the intro are of this form. -->
 
 \
 
@@ -199,6 +202,8 @@ Or we could draw one ticket from the box
 ![](images/coin.jpeg){width="100"}
 with the ticket $\fbox{1}$ representing the coin landing heads, and $\fbox{0}$ representing the coin landing tails. This change of numbering the ticket representing the outcome we are counting with a 1 and all other tickets with a 0 is very important, since we are *classifying* the outcomes into two categories, and counting the instances of one of them (in this case, the coin landing heads).
 </details>
+
+<!-- Why is it very important? If we're simulating a coin toss, aren't the outcomes H and T? -->
 
 :::{.callout-warning icon=false}
 
