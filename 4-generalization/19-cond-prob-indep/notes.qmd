@@ -1,7 +1,7 @@
 ---
 title: "How to Calculate Chances"
 subtitle: "Two important ideas: Conditional probabability and Independence"
-date: '`r format(Sys.Date(), "%B %d, %Y")`'
+date:  "10/26/2022"
 format:
   html:
     toc-depth: 4
@@ -34,7 +34,7 @@ library(palmerpenguins)
 
 [^1]: (https://www.theguardian.com/uk-news/2021/nov/20/sally-clark-cot-death-mothers-wrongly-jailed)
 
-[I]{.dropcap}n November 1999, Sally Clark, an English solicitor, was convicted of murdering her infant sons. The first, Christopher, had been 11 weeks old when he died, in 1996, and the second, Harry, 8 weeks old, in January 1998, when he was found dead. Christoper was believed to have been a victim of "cot death", called SIDS (Sudden Infant Death Syndrome) in the US. After her second baby, Harry also died in his crib, Sally Clark was arrested for murder. The star witness for the prosecution was a well known pediatrician and professor, Sir Roy Meadow, who authored the infamous Meadow's Law :"One sudden infant death is a tragedy, two is suspicious and three is murder until proved otherwise"[^2]. Unfortunately it was easier to comprehend this "crude aphorism" than make the effort to understand the subtleties of conditional probability. The Royal Statistical Society protested the misuse of statistics in courts, but not early enough to prevent Sally Clark's conviction. She was eventually acquitted and released, only to die at the age of 42 through alcohol poisoning[^3] The math presented by Meadow, in brief: Based on various studies, there is a chance of 1 in 8,543 of a baby dying of SIDS in a family such as the Clarks. As the Clarks suffered *two* deaths, Meadow multiplied 8,543 by 8,543 to arrive at 73 million. He told the jury that the chance that the event of two "cot deaths" was 1 in 73 million. The defense did not employ a statistician to refute her claim, a choice that may have been disastrous for Sally Clark.
+[I]{.dropcap}n November 1999, Sally Clark, an English solicitor, was convicted of murdering her infant sons. The first, Christopher, had been 11 weeks old when he died, in 1996, and the second, Harry, 8 weeks old, in January 1998, when he was found dead. Christopher was believed to have been a victim of "cot death", called SIDS (Sudden Infant Death Syndrome) in the US. After her second baby, Harry, also died in his crib, Sally Clark was arrested for murder. The star witness for the prosecution was a well known pediatrician and professor, Sir Roy Meadow, who authored the infamous Meadow's Law :"One sudden infant death is a tragedy, two is suspicious and three is murder until proved otherwise"[^2]. Unfortunately it was easier to comprehend this "crude aphorism" than make the effort to understand the subtleties of conditional probability. The Royal Statistical Society protested the misuse of statistics in courts, but not early enough to prevent Sally Clark's conviction. She was eventually acquitted and released, only to die at the age of 42 through alcohol poisoning[^3] The math presented by Meadow, in brief: Based on various studies, there is a chance of 1 in 8,543 of a baby dying of SIDS in a family such as the Clarks. As the Clarks suffered *two* deaths, Meadow multiplied 8,543 by 8,543 to arrive at 73 million. He told the jury that the chance that the event of two "cot deaths" was 1 in 73 million. The defense did not employ a statistician to refute her claim, a choice that may have been disastrous for Sally Clark.
 
 [^2]: From the archives of The Guardian newspaper <https://www.theguardian.com/uk/2001/jul/15/johnsweeney.theobserver>
 
@@ -199,7 +199,7 @@ Even though the chance for 1 or 2 given the ticket is red is the same as the cha
 
 </details>
 
-### Example 5: Tickets with more than one number on them
+#### Example 5: Tickets with more than one number on them
 
 Now I have two boxes that with numbered tickets, where each ticket has two numbers on them, as shown. For each box, are the two numbers independent or dependent. For example, if I know that the first number is 1 does it change the chance of the second number being 6 (or the other way around: if I know the second number is 6, does it change the chance of the first number being 1)?
 
@@ -213,7 +213,11 @@ For box 1, the first number and second number are independent, as shown below, u
 
 #### Example 6: Back to Sally Clark
 
-Professor Roy Meadow claimed that the chance of two of Sally Clark's sons dying of SIDS was 1 in 73 million. He obtained this number by multiplying 8543 by 8543, using the multiplication rule, treating the two events as *independent*. The question is, are they really independent? Was a crime really committed? Unfortunately for Sally Clark, two catastrophic errors were committed in her case by the prosecution, and not caught by the defense. (She appealed the decision, and was acquitted and released, but after spending 4 years in prison, accused of murdering her babies.) The first error was in treating the deaths as independent, and the second was in looking at the wrong probability. Let's look at the first mistake. It turns out that the chance of a second child dying of "cot death" or SIDS is 1/60 *given* that the first child died of SIDS. This was a massive error, and it turned out that the prosecution suppressed the pathology reports for the second baby, who had a very bad infection and might have died of that. It is also believed that male infants are more likely to suffer cot death. The second error is an example of what is called the Prosecutor's Fallacy. They looked the chance of the evidence if Sally Clark were innocent. They should have actually compared the chance of innocence given the evidence with the chance of murder given the evidence. These multiple errors ruined many lives. Though Sally Clark was eventually acquitted, helped by the Royal Statistical Society's evidence, her life was shattered, and she died soon after being released. The moral of this story is to be very careful while multiplying probabilities. You must check for independence. 
+Professor Roy Meadow claimed that the chance of two of Sally Clark's sons dying of SIDS was 1 in 73 million. He obtained this number by multiplying 8543 by 8543, using the multiplication rule, treating the two events as *independent*. The question is, are they really independent? Was a crime really committed? Unfortunately for Sally Clark, two catastrophic errors were committed in her case by the prosecution, and not caught by the defense. (She appealed the decision, and was acquitted and released, but after spending 4 years in prison, accused of murdering her babies.)
+
+The first error was in treating the deaths as independent, and the second was in looking at the wrong probability. Let's look at the first mistake. It turns out that the chance of a second child dying of "cot death" or SIDS is 1/60 *given* that the first child died of SIDS. This was a massive error, and it turned out that the prosecution suppressed the pathology reports for the second baby, who had a very bad infection and might have died of that. It is also believed that male infants are more likely to suffer cot death. 
+
+The second error is an example of what is called the Prosecutor's Fallacy. They looked the chance of the evidence if Sally Clark were innocent. They should have actually compared the chance of innocence given the evidence with the chance of murder given the evidence. These multiple errors ruined many lives. Though Sally Clark was eventually acquitted, helped by the Royal Statistical Society's evidence, her life was shattered, and she died soon after being released. The moral of this story is to be very careful while multiplying probabilities. You must check for independence. 
 
 ## Summary
 
