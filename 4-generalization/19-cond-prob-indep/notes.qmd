@@ -199,6 +199,19 @@ Even though the chance for 1 or 2 given the ticket is red is the same as the cha
 
 </details>
 
+### Example 5: Tickets with more than one number on them
+
+Now I have two boxes that with numbered tickets, where each ticket has two numbers on them, as shown. For each box, are the two numbers independent or dependent. For example, if I know that the first number is 1 does it change the chance of the second number being 6 (or the other way around: if I know the second number is 6, does it change the chance of the first number being 1)?
+
+![](images/box-2-number.jpeg){fig-align=center width=400}
+<details><summary>Check your answer</summary>
+
+For box 1, the first number and second number are independent, as shown below, using 1 and 6 as examples. If we know that the first number is 1, the box reduces as shown. The chance of the second number being 6 does not change for box 1. The chance *does* change for box 2, increasing from 1/2 to 2/3, since the second number is more likely to be 6 if the first number is 1.
+
+![](images/box-2-number-cond.jpeg){fig-align=center width=750}
+</details>
+
+#### Back to Sally Clark
 
 
 
