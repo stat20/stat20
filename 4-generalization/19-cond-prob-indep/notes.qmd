@@ -164,6 +164,20 @@ If we draw the tickets *without* replacement, we have seen that the chance chang
 
 The lesson here is that when we draw tickets *with* replacement, the draws are **independent** - the outcome of the first draw does not affect the second. If we draw tickets *without* replacement, the draws are **dependent**. The outcome of the first draw changes the chances of the tickets for the second draw.
 
+#### Example 3: Selecting 2 people out of a group of 5 
+##### (drawing *without* replacement)
+We have a group of 5 people: Alex, Emi, Fred, Max, and Nan. Two of the five are to be selected at random to form a two person committee. Draw the box model for this situation.
+
+<details><summary>Check your answer</summary>
+
+![](images/committee.jpeg){fig-align=center width="600"}
+
+All the ten pairs are equally likely. On the first draw, there are 5 tickets to choose from, and on the second there are 4, making $5 \times 4 = 20$ possible draws of two tickets, drawn from this box, one at a time, without replacement. We have only 10 pairs here because of those 20 pairs, there are only 10 distinct ones. When we count 20 pairs, we are counting Alex $+$ Emi as one pair, and Emi $+$ Alex as another pair.  
+</details> 
+
+What is the chance that Alex and Emi will be selected? Guess! (Hint: you have seen all the possible pairs above, and they are equally likely. What will be the chance of any one of them?) 
+
+We could use the multiplication rule to compute this chance, which is *much* simpler than writing out all the possible outcomes. The committee can consist of Alex and Emi either if Alex is drawn first **and** Emi second, **or** Emi is drawn first **and** Alex second. The chance that Alex will be drawn first is $1/5$. The conditional chance that Emi will be drawn second *given* that Alex was drawn is $1/4$ since there are only 4 tickets left in the box. Using the multiplication rule, the chance that Alex will be drawn first and Emi second is $(1/4) \times (1/5) = 1/20$. Similarly, the chance that Emi will be drawn first and Alex second is $1/20$. This means that the chance that Alex and Emi will be selected for the committee is $1/20 + 1/20 = 1/10$.
 
 
 
