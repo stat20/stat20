@@ -13,7 +13,7 @@ execute:
   message: false
 ---
 
-[[Discuss](https://app.perusall.com)]{.btn .btn-primary} [[Reading Questions](https://www.gradescope.com/courses/416233)]{.btn .btn-primary} [[PDF](notes.pdf)]{.btn .btn-primary}
+[[Discuss](https://edstem.org)]{.btn .btn-primary} [[Reading Questions](https://www.gradescope.com/courses/416233)]{.btn .btn-primary} [[PDF](notes.pdf)]{.btn .btn-primary}
 
 \
 
