@@ -211,8 +211,9 @@ For box 1, the first number and second number are independent, as shown below, u
 ![](images/box-2-number-cond.jpeg){fig-align=center width=750}
 </details>
 
-#### Back to Sally Clark
+#### Example 6: Back to Sally Clark
 
+Professor Roy Meadow claimed that the chance of two of Sally Clark's sons dying of SIDS was 1 in 73 million. He obtained this number by multiplying 8543 by 8543, using the multiplication rule, treating the two events as *independent*. The question is, are they really independent? Was a crime really committed? Unfortunately for Sally Clark, two catastrophic errors were committed in her case by the prosecution, and not caught by the defense. (She appealed the decision, and was acquitted and released, but after spending 4 years in prison, accused of murdering her babies.) The first error was in treating the deaths as independent, and the second was in looking at the wrong probability. Let's look at the first mistake. It turns out that the chance of a second child dying of "cot death" or SIDS is 1/60 *given* that the first child died of SIDS. This was a massive error, and it turned out that the prosecution suppressed the pathology reports for the second baby, who had a very bad infection and might have died of that. It is also believed that male infants are more likely to suffer cot death. The second error is an example of what is called the Prosecutor's Fallacy. They looked the chance of the evidence if Sally Clark were innocent. They should have actually compared the chance of innocence given the evidence with the chance of murder given the evidence. These multiple errors ruined many lives. Though Sally Clark was eventually acquitted, helped by the Royal Statistical Society's evidence, her life was shattered, and she died soon after being released. The moral of this story is to be very careful while multiplying probabilities. You must check for independence. 
 
 
 [^mh]: image from Wikipedia <https://en.wikipedia.org/wiki/Monty_Hall_problem>
