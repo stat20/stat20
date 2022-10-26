@@ -119,3 +119,65 @@ Play how many rounds  at least 25-30 rounds, and see what is the pattern
 Template: Names along columns, rounds on the rows, on top dealer and recorder names are written in, in each cell, recorder marks each player’s choice down “S” or “D”, do they think the other side will be the same or will it be different. 
 Once done, discuss the prob of same card on the other side being 2/3 (If you see a black side, then the red-red pair is impossible. There are three possible cards, and two of them are black.)
 :::
+
+
+# Lab 7: Bus Waiting Times
+
+## 
+![](../labs/images/bus.jpeg){fig-align=center}
+
+:::poll
+A bus is scheduled to arrive at your bus stop every 12 minutes. If you walk to the bus stop without checking the schedule, how long would you expect to have to wait for the next bus?
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+:::notes
+A common sensible guess is 6 minutes, but is is usually an underestimate in practice, as demonstrated by the lab.
+:::
+
+
+## Useful R function: `seq()`
+
+. . .
+
+Creates a sequence of numbers that can be defined by their first and last number and the space between each number (or the total numbers in the sequence).
+
+. . . 
+
+:::poll
+**Code Along**
+
+How can you use `seq()` to generate the following sequence: 1, 1.25, 1.5, 1.75, 2?
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+
+
+## Useful R function: `sample()`
+
+. . .
+
+Used to take a random sample of a vector with or without replacement. 
+
+
+:::poll
+**Code Along**
+
+How can you use `sample()` to create the following vector from `a`: 1.75, 1.75, 1.25.
+
+```{r}
+#| echo: true
+a <- seq(from = 1, to = 2, by = .25)
+```
+
+:::
+
+:::notes
+A good time to mention setting the seed again.
+:::

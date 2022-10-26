@@ -131,7 +131,7 @@ The last step is to find the 100,000 passengers' waiting times. This is more com
 
 Return to the earlier question about the simulated wait times and use `pass_wait` to answer the questions posed there. These are:
 
-10. What does the simulated distribution of wait times look like? Compare the distribution of `pass_wait` to the distribution of wait times from the first part of this lab, called `wait`. Also, compare the distribution to that of the observed lateness of the buses, called `bus_late$minutes_late` .
+10. What does the simulated distribution of wait times look like? Compare the distribution of `pass_wait` to the distribution of wait times from the first part of this lab. Also, compare the distribution to that of the observed lateness of the buses.
 
 11. Compute the means and SDs of these three distribution. Also, compute the lower quartile, median, and upper quartile of these three distributions.  Compare these statistics. Make a statement about the typical wait times, based on this final simulation. Include a statement about the deviations from this typical value.
 
