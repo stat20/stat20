@@ -3,17 +3,18 @@ title: "Lab 7: Waiting for the Bus"
 subtitle: "A simulation study"
 date: "10/26/22"
 image: images/bus.jpeg
+execute:
+  eval: false
 ---
 
 In this lab you carry out a simulation study to gain insight into  models for waiting for a bus. The lab and data have been adapted from the blog post, Why is My Bus Always Late?[^bus-late-blog]. The author of the post noticed that his experience in waiting for a bus differed from what he thought it should be. You will carry out the following steps, following the bloggers investigations.
 
-1. First you will run a simple simulation to check the bloggers understanding of what waiting for a bus should look like.
+i. First you will run a simple simulation to check the bloggers understanding of what waiting for a bus should look like.
 
-2. Next, you will use data of the scheduled and actual bus arrival times to study the patterns in lateness of the bus.
+ii. Next, you will study the patterns in the lateness of buses using real data from Seattle.
 
-3. Finally, you will run a more complex simulation that uses the bus data to discover how buses being late creates quite a different experience of waiting for the bus than the one you first simulated. 
-
-These simulations will be designed using the box model, and carried out using the `sample()' function. 
+iii. Finally, you will run a more complex simulation that uses the bus data to discover how buses being late creates quite a different experience of waiting for the bus than the one you first simulated. 
+These simulations will be designed using the box model, and carried out using the `sample()` function. 
 
 
 ```{r setup, include=FALSE}
@@ -24,7 +25,7 @@ library(dplyr)
 ```
 
 
-## A Simple Simulation of Waiting for a Bus.
+## A Simple Simulation of Waiting for a Bus
 
 The Seattle northbound C line stops at Third Avenue and Pike Street. Many of the buses are scheduled to run 12 minutes apart so for simplicity, we will assume that they are all scheduled to run exactly 12 minutes apart. 
 
@@ -37,101 +38,41 @@ Suppose:
 - You arrive at random time in a 12-minute interval.
 - Suppose that times are measured to the nearest 1/100 of a minute.
 
-Build a box model that represents this process, and produce 100,000 draws from the box with replacement. You might find the `seq` function useful here to create the tickets that go in the box.
+1. Build a box model that represents this process, and produce 100,000 draws from the box with replacement. The box and the draws from the box should both be saved as vectors. Set the seed before taking your draws using `set.seed(12345)`.
 
-```{r}
-# Set up your box
-#box = seq(from= , to= , by=)
-# HINT: there should be 1200 or 1201 tickets in the box.
+   Hints: a) You might find the `seq` function useful here to create the tickets that go in the box and b) there should be 1200 or 1201 tickets in the box.
 
-# set the seed of the random generator so that you get the same
-# sequence of "random" values each time you run this code.
-set.seed(11252022)
+2. Create a histogram of the approximate probability distribution of arrival time. What is the mean arrival time? The SD of arrival time?
 
-# Make draws from your box
-#arrivals = sample(box, size=  , replace= )
-```
+3. Convert the simulated arrival times into wait times (recall the bus comes every 12 minutes). Repeat the computations from above to find the average wait time, standard deviation of wait time, and approximate probability distribution of the wait time. 
 
-Now analyze the values in `arrivals`:
-
-1. What is the average arrival time?
-
-
-```{r}
-#
-```
-
-2. What is the SD of arrival time?
-
-
-```{r}
-#
-```
-
-3. What is the approximate probability distribution of arrival time? (To answer this question, make a histogram and use proportions on the y-axis)
-
-```{r}
-#ggplot( ) + 
-#  geom_histogram(bins = 48, fill="gray", color = "black")
-```
-
-Convert the simulated arrival times into wait times. Recall the bus comes every 12 minutes. Repeat the computations from above to find the average wait time, standard deviation of wait time, and approximate probability distribution of the wait time. 
-
-```{r}
-# wait = some function of arrivals
-
-#mean(wait)
-```
-
-
-```{r}
-#sd(wait)
-```
-
-```{r}
-#ggplot( ) + geom_histogram()
-```
-
-4. Are you surprised by the size of the standard deviation? Why do you think this probability distribution is called ``uniform''?
+4. Are you surprised by the size of the standard deviation? Why do you think this probability distribution is called "uniform"?
 
 The blogger said that his experience did not match this simulation so he went and got some data about the arrival times of the bus.
 
 ## Understanding the Data for Real Buses
 
-![](images/bus.jpeg){fig-align=center width="300"}[^seattle-bus-pic]
+![](images/bus.jpeg){fig-align=center width="300"}
 
-The blogger acquired data from the Washington State Transportation Center for this bus line and two others. The data are for March 26 through May 27, 2016.
+The blogger acquired data from the Washington State Transportation Center for this bus line[^seattle-bus-pic] and two others. The data are for March 26 through May 27, 2016.
 
 We have simplified these data and provided you with only information about how late each bus was in this 2 month time period. 
 
 ```{r}
-bus_late = read.csv("data/bus-CNorth-late.csv")
+bus <- read_csv("https://tinyurl.com/bus-late-data") 
 ```
 
-5. Describe the empirical distribution of the lateness of the northbound C buses stopping at Third and Pike in this two-month period? Is it unimodal? Is it skewed left, skewed right, or symmetric? Are there any surprising values? 
+5. Visualize and describe the empirical distribution of the lateness of the northbound C buses stopping at Third and Pike in this two-month period. Is it unimodal? Is it skewed left, skewed right, or symmetric? Are there any surprising values? 
 
-```{r}
-#ggplot()
-
-```
-
-
-6. Summarize the typical amount of time the bus it late, and compute a measure of spread to accompany your typical time.
-
-```{r}
-
-#summarize()
-```
-
+6. Summarize the typical amount of time the bus is late and compute a measure of spread to accompany your typical time.
 
 7. How might the distribution of the actual arrival times at the bus stop impact the waiting time experience by the blogger?
 
-To answer this question, we will carry out one more simulation. But before you do, take a stab at what you think this distribution might look like. 
+   To answer this question, we will carry out one more simulation. But before you do, take a stab at what you think this distribution might look like. 
 
-+ Will if be flat like the distribution from the first part? 
-+ Will it be simiilar to the histogram of the lateness of the bus, but shifted? 
-+ Do you think the SD will be close to the SD from first simulation, the observed SD of bus lateness, or some other larger/smaller value?
-
+   + Will if be flat like the distribution from the first part? 
+   + Will it be simiilar to the histogram of the lateness of the bus, but shifted? 
+   + Do you think the SD will be close to the SD from first simulation, the observed SD of bus lateness, or some other larger/smaller value?
 
 
 ## Incorporating Real Bus Arrival Times into the Simulation
@@ -141,20 +82,18 @@ Then we generate passenger arrival times at random using a box model, and comput
 
 The figure below gives the basic idea:
 
-![](images/BusDiagram.jpg){fig-align=center width="400"}
-
-
+![](images/BusDiagram.jpg){fig-align=center width="500"}
 
 8. First we will create a sequence of bus arrival times.
 We start with times that are exactly 12-minutes apart, and then adjust them by using the observed lateness of each bus.
 
 ```{r}
-num_stops = nrow(bus_late)
+num_stops <- nrow(bus_late)
 
-#sched_times = seq(from = , by = , length = )
+# sched_times <- seq(from = , by = , length = )
 
-#act_times = 
-#act_times = sort(act_times)
+# act_times <- 
+# act_times <- sort(act_times)
 ```
 
 You have now created the top line in the diagram. These are the times that the buses arrive. The buses are shown as dashed rectangles in the diagram.
@@ -163,53 +102,40 @@ You have now created the top line in the diagram. These are the times that the b
 
 ```{r}
 # Set up your box
-#box_big = seq(from=, to= , by=)
+# box_big <- seq(from = , to = , by = )
 # HINT: now your box will have over 1.7 million tickets in it!
-
 
 # set the seed of the random generator so that you get the same
 # sequence of "random" values each time you run this code.
 set.seed(11252022)
-sample_size = 100000
+sample_size <- 100000
 
 # Make draws from your box
-#pass_arrivals = sample(box_big, size= , replace= )
-#pass_arrivals = sort(pass_arrivals)
+# pass_arrivals <- sample(box_big, size = , replace = )
+# pass_arrivals <- sort(pass_arrivals)
 ```
 
-The last step it to find the 100,000 passengers' waiting times. This is more complex than our earlier calculation. We have provided a set of nested for loops to carry out this calculation for you. Reemove the comments when you are ready to run this code.
+The last step is to find the 100,000 passengers' waiting times. This is more complex than our earlier calculation. We have provided a set of nested for loops to carry out this calculation for you. Remove the comments when you are ready to run this code.
 
 ```{r}
-#k=1
-#pass_wait = vector(mode="numeric", length = sample_size)
-
-#for (i in (1:sample_size)) {
-#  for (j in k:length(act_times)) {
-#    if (act_times[j] >= pass_arrivals[i]) break   
-#  }
-#  k = j
-#  pass_wait[i] = act_times[j] - pass_arrivals[i]
-#} 
+# k <- 1
+# pass_wait <- vector(mode = "numeric", length = sample_size)
+# for (i in (1:sample_size)) {
+#   for (j in k:length(act_times)) {
+#     if (act_times[j] >= pass_arrivals[i]) break   
+#   }
+#   k <- j
+#   pass_wait[i] <- act_times[j] - pass_arrivals[i]
+# } 
 ```
 
-10. Return to the earlier question about the simulated wait times and use `pass_wait` to answer the questions posed there. These are:
+Return to the earlier question about the simulated wait times and use `pass_wait` to answer the questions posed there. These are:
 
-+ What does the simulated distribution of wait times look like? Compare the distribution of `pass_wait` to the distribution of wait times from the first part of this lab, called `wait`. Also, compare the distribution to that of the observed lateness of the buses, called `bus_late$minutes_late` .
+10. What does the simulated distribution of wait times look like? Compare the distribution of `pass_wait` to the distribution of wait times from the first part of this lab, called `wait`. Also, compare the distribution to that of the observed lateness of the buses, called `bus_late$minutes_late` .
 
-```{r}
-# ggplot()
-```
-
-
-+ Compute the means and SDs of these three distribution. Also, compute the lower quartile, median, and upper quartile of these three distributions.  Compare these statistics. Make a statement about the typical wait times, based on this final simulation. Include a statement about the deviations from this typical value.
-
-```{r}
-#summarize()
-
-```
+11. Compute the means and SDs of these three distribution. Also, compute the lower quartile, median, and upper quartile of these three distributions.  Compare these statistics. Make a statement about the typical wait times, based on this final simulation. Include a statement about the deviations from this typical value.
 
 
 [^bus-late-blog]:<https://deepnote.com/@jirka/Why-Is-My-Bus-Always-Late-3eb8db19-9e19-411e-8a5a-de2a58089303>
 
 [^seattle-bus-pic]: <https://en.wikipedia.org/wiki/RapidRide#/media/File:King_County_Metro_Rapid_Ride_New_Flyer_DE60LFR_6060.JPG>
-
