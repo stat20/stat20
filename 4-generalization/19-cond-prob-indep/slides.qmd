@@ -1,0 +1,121 @@
+---
+title: "Computing Chances"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+
+- Concept Questions (for discussion)
+- Activity: card game: betting on the other side
+- Practice: computing probabilities
+- Introduce Lab 7: Waiting for the bus
+
+# Concept Questions
+
+##
+
+```{r}
+countdown::countdown(2, bottom = 0)
+```
+
+
+
+:::{.poll}
+I have a box with 12 cards in it.  Four of the cards are [red]{style="color:#FF3342"}, four are [blue]{style="color:#3F33FF"}, and four are [green]{style="color:#0EB220"}. I shuffle the cards in the box, and draw one out at random. The outcome of the card being green and the outcome of the card being red are _____.
+:::
+
+:::{.notes}
+The outcomes are mutually exclusive and so can't be independent, since they are non-zero probability events.
+:::
+
+
+##
+
+
+```{r}
+countdown::countdown(3, top = 0)
+```
+
+![](images/phillies-astros.jpg){width=400}
+
+:::{.poll}
+The World Series begins on Friday in Houston, between the Houston Astros and the Philadelphia Phillies. The first team to win 4 games wins the series (best of 7). The Astros are heavily favored. Assume that the chance that the Astros will beat the Phillies in any single game is estimated at  60%, independently of all the other games.Should you bet on Astros winning in a clean sweep? (That is, they will win the first 4 games, and therefore the series.)
+:::
+
+:::{.notes}
+Straightforward application of multiplication rule for independent events. Chance is 0.6^4 = 0.1296. Follow up comment/question can be, if the teams were more evenly matched, say chance of either team winning is 50%, the chance of going to 7 games and chance of winning in 6 games is equal given 5 games are played. 
+:::
+
+## 
+
+```{r}
+countdown::countdown(3, bottom = 0)
+```
+
+:::{.poll}
+On each turn of a game, I toss a coin $k$ times based on the number of spots I get when I roll a die. (For example, if, on a turn, I roll a 2, then I toss the coin twice.) 
+Is it true that on a turn, the chance of the coin landing heads on all its tosses is $\left(\frac{1}{2}\right)^k$, where $k$ is the number of spots from the die I just rolled?
+:::
+
+:::{.notes}
+False, the chance of coin landing heads on all tosses is (1/2)*(1/6) + (1/4)*(1/6) + ...+ (1/64)*(1/6). The point is using the multiplication rule for dependent events.
+:::
+
+
+
+
+
+## 
+
+```{r}
+countdown::countdown(4, bottom = 0)
+```
+
+:::{.poll}
+A woman’s risk of developing breast and/or ovarian cancer is greatly increased if she inherits a harmful mutation in the BRCA2 gene. About **0.2%** of women have the harmful BRCA2 mutation. Suppose a test is developed that is 99% accurate in identifying whether a woman has the BRCA2 mutation: this means that the chance that a woman *with* the mutation tests positive is 99% and the chance that a woman *without* the mutation tests negative is 99%. What is the chance that a woman who tests positive has the mutation?
+:::
+
+:::{.notes}
+Here, though this is a common Bayes' theorem type problem, I want them to think heuristically. If the test returns a false positive 1% of the time, then 10 out of a 1000 cases will be false positives, and because the chance of the mutation is 0.2%, 2 out of a 1000 cases will be mutations. This means that about 2 in 12 cases or about between 16% and 17% of the positives are mutations. (if we use Bayes' rule, it works out to be 16.55%)
+:::
+
+
+# Activity
+
+## Bet on the other side
+
+- Divide the class into groups of 5-6 students each
+- Each group should designate a dealer and a recorder 
+- Write template on the board/hand out copies
+- Demo the game and then give each group a set of 3 cards
+- Have them play about 25 times
+
+```{r}
+countdown::countdown(20, bottom = 0)
+```
+
+
+:::{.notes}
+Groups of 5 or 6 with one recorder, one dealer, 3 or 4 players who bet
+Dealer pulls a card and shows them, after shuffling around (including flipping sides to shuffle well, and then dealer shows one side very carefully to the everyone, then the dealer asks them to bet on the flip side of the card being the same or different; the recorder marks their choices on the sheet; dealer reveals the back side of the card; recorder marks with check or X and hands out the chocolate to winners.  
+Play how many rounds  at least 25-30 rounds, and see what is the pattern
+Template: Names along columns, rounds on the rows, on top dealer and recorder names are written in, in each cell, recorder marks each player’s choice down “S” or “D”, do they think the other side will be the same or will it be different. 
+Once done, discuss the prob of same card on the other side being 2/3 (If you see a black side, then the red-red pair is impossible. There are three possible cards, and two of them are black.)
+:::
