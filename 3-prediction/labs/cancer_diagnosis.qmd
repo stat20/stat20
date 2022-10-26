@@ -1,5 +1,5 @@
 ---
-title: "Breast cancer diagnosis"
+title: "Lab 6: Breast cancer diagnosis"
 date: "10/14/22"
 image: images/benign_vs_malignant.png
 ---
