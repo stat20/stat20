@@ -145,13 +145,15 @@ Our objective is to estimate the value of a *population parameter* such as the p
 This example is based on a Pew Research study on mothers at the end of their child bearing years.[^pew] They found that the average family size in the US has reduced from being over 3 children in the late seventies, to over 2 children in the present time. Using their data, we can construct a box to represent the population of women who bore children, and are at the end of their child bearing years (aged 40-44). The study is based on data from the Current Population Survey.
 
 ```{r}
+#| fig-width: 4
+#| fig-height: 3
 set.seed(12345)
 family_pop <- rep(c(1,2,3,4), times = c(22,41,24,13))
 ggplot(data.frame(family_pop), aes(x=family_pop)) +
 geom_bar(fill = "gray45", aes(y=..prop..), width=0.98) + 
   xlab("Number of children borne by age 44") +
   ylab("Proportion") + 
-  ggtitle("Distribution of number of children borne by US mothers")
+  ggtitle("Population distribution of number \nof children borne by US mothers")
 
 ```
 
@@ -159,9 +161,88 @@ What's in the box?
 
 <details>
 <summary>Check your answer</summary>
- Each ticket represents a woman who has borne at least one child
+ Each ticket represents 1% of women between the ages of 40 and 44 who has borne at least one child ( since we have percentages). Written on the ticket is a number indicating how many children she has borne.
+ </details>
+ 
+How would you compute the average number of children borne by a woman?
+<details>
+<summary>Check your answer</summary>
 
-We can take a sample to look at the empirical distribution. Since the box represents the US population of women who have borne at least one child, we will draw 100 times with replacement.
+We would sum all the values of the tickets in the box, and divide by the number of tickets in the box (100). So the average number of tickets is given by $\displaystyle \frac{(22\times 1+41\times2+24\times3+13\times4}{100} = 2.28$
+
+</details>
+
+We can take a sample to look at the empirical distribution. Since the box represents the US population of women who have borne at least one child, we will draw 100 times with replacement, and draw the bar graph.
+
+```{r}
+#| fig-width: 4
+#| fig-height: 3
+set.seed(12345)
+family_sample <- sample(family_pop, 100, replace = TRUE)
+ggplot(data.frame(family_sample), aes(x=family_sample)) +
+geom_bar(fill = "gray45", aes(y=..prop..), width = 0.98) +
+  ggtitle("Empirical distribution of number \nof children borne by US mothers") + 
+  xlab("Number of children borne by age 44")
+```
+
+What is the average number of children in this sample?
+
+The average is `r mean(family_sample)` children.
+
+
+
+What about the sampling distribution of the average number of children? What would it look like? Where would it be centered?
+
+In order to do this, we first have to build the distribution. To do this we will sample from the population 100 times, compute the average, and repeat this 1000 times. 
+
+```{r}
+set.seed(12345)
+avg_children <- replicate(1000, mean(sample(family_pop, 100, replace = TRUE)) )
+
+ggplot(data.frame(avg_children), 
+       aes(x=avg_children)) +
+  geom_histogram(aes(y=..density..), 
+                 fill = "gray",
+                 color = "black",
+                 bins = 25) + 
+            xlab("Number of children borne by age 44") +
+            ggtitle("Sampling distribution for the \nAverage number of children")
+        
+```
+
+Where is this distribution centered (what is the average)?
+
+```{r}
+avg_children_center <- mean(avg_children)
+```
+
+The distribution is centered at `r round(avg_children_center,2)` children.
+
+What about if we pretend the empirical distribution is the actual distribution (because we don't have access to the population distribution). That is, we treat our one sample as the population, and build the sampling distribution from that. What will the sampling distribution look like and where will it be centered?
+
+```{r}
+set.seed(12345)
+avg_children_emp <- replicate(1000, mean(sample(family_sample, 100, replace = TRUE)) )
+
+ggplot(data.frame(avg_children_emp), 
+       aes(x=avg_children_emp)) +
+  geom_histogram(aes(y=..density..), 
+                 fill = "gray",
+                 color = "black",
+                 bins = 25) + 
+            xlab("Number of children borne by age 44") +
+            ggtitle("Distribution for the average number \nof children, sampling from the empirical distribution")
+```
+
+Where is this distribution centered?
+
+The distribution is centered at `r round(mean(avg_children_emp),2)` children.
+
+
+
+## Summary
+
+In these notes we saw three kinds of distributions: population, empirical, and sampling distributions. Typically we do *not* know what is the population distribution, and have access to one sample, which will be our stand in for the population. 
 
 
 
