@@ -145,10 +145,23 @@ Our objective is to estimate the value of a *population parameter* such as the p
 This example is based on a Pew Research study on mothers at the end of their child bearing years.[^pew] They found that the average family size in the US has reduced from being over 3 children in the late seventies, to over 2 children in the present time. Using their data, we can construct a box to represent the population of women who bore children, and are at the end of their child bearing years (aged 40-44). The study is based on data from the Current Population Survey.
 
 ```{r}
-pew <- rep(c(1,2,3,4), times = c(22,41,24,13))
+set.seed(12345)
+family_pop <- rep(c(1,2,3,4), times = c(22,41,24,13))
+ggplot(data.frame(family_pop), aes(x=family_pop)) +
+geom_bar(fill = "gray45", aes(y=..prop..), width=0.98) + 
+  xlab("Number of children borne by age 44") +
+  ylab("Proportion") + 
+  ggtitle("Distribution of number of children borne by US mothers")
+
 ```
 
-We can take a sample to look at the empirical distribution. Since the box represents the US population of women who have borne at least one child, we will sample with replacement.
+What's in the box? 
+
+<details>
+<summary>Check your answer</summary>
+ Each ticket represents a woman who has borne at least one child
+
+We can take a sample to look at the empirical distribution. Since the box represents the US population of women who have borne at least one child, we will draw 100 times with replacement.
 
 
 
