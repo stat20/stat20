@@ -70,8 +70,8 @@ countdown::countdown(3, bottom = 0)
 ```
 
 :::{.poll}
-On each turn of a game, I toss a coin $k$ times based on the number of spots I get when I roll a die. (For example, if, on a turn, I roll a 2, then I toss the coin twice.) 
-Is it true that on a turn, the chance of the coin landing heads on all its tosses is $\left(\frac{1}{2}\right)^k$, where $k$ is the number of spots from the die I just rolled?
+On each turn of a game, I toss a coin as many times as the number of spots I get when I roll a die.
+On a turn what is the chance that all my tosses land heads? Is it true that it is $\left(\frac{1}{2}\right)^k$, where $k$ is the number of spots from the die I just rolled? (Be careful! are you being asked for a conditional probability?)
 :::
 
 :::{.notes}
