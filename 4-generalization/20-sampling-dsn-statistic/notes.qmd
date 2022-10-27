@@ -243,6 +243,13 @@ The distribution is centered at `r round(mean(avg_children_emp),2)` children.
 ## Summary
 
 In these notes we saw three kinds of distributions: population, empirical, and sampling distributions. Typically we do *not* know what is the population distribution, and have access to one sample, which will be our stand in for the population. 
+There is a connection between these three distributions. The shape of the sampling distribution depends on the number of draws and the sampling protocol. 
+
+The goal is to estimate an unknown population parameter, using the sample statistic.
+
+We revisited the class survey data to look at the sampling distribution of coding experience, and looked at a new data set with data about how many children women in the US, who were between 40 and 44 years had.
+
+Next time, we will talk about accuracy of our estimates, and how it relates to the spread of the sampling distribution.
 
 
 
