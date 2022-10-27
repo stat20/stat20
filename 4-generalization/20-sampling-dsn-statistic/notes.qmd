@@ -1,0 +1,158 @@
+---
+title: "The Sampling Distribution of a Statistic"
+subtitle: "Population parameters and sample statistics"
+date: "10/28/2022"
+format:
+  html:
+    toc-depth: 4
+    code-fold: true
+    code-link: true
+    code-summary: "."
+execute: 
+  warning: false
+  message: false
+---
+
+[[Discuss](https://edstem.org)]{.btn .btn-primary} [[Reading Questions](https://www.gradescope.com/courses/416233)]{.btn .btn-primary} [[PDF](notes.pdf)]{.btn .btn-primary}
+
+\
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(stat20data)
+library(infer)
+library(palmerpenguins)
+library(stat20data)
+library(patchwork)
+```
+
+[S]{.dropcap}o far in this unit we have considered the scope of our data and questions that we might ask as we move towards the moment in the data science life cycle, in which we try to "understand the world". Our goal is to generalize about the population that our data are drawn from. Perhaps we should say that we make generalizations about the *access frame* that our data are drawn from, but in this lecture, for simplicity, we will assume that we can access *all* of our target population; that is, the access frame and target population coincide. We want to make claims about the population (or *box*). We begin by looking at **three** distributions: the population distribution, the empirical distribution, and the sampling distribution.
+
+## A Triptych of Distributions [^gn]
+
+![](images/triptych.jpeg){fig-align=center width=700}
+
+The box represents our population, and the distribution on the left shows the distribution of values in the entire population. We draw at random from the box according to our sampling design, and the *empirical* histogram on the right is the distribution of tickets in our sample. If the sample is representative, the empirical histogram should resemble the distribution of the tickets in the box.
+
+We are often interested in estimating some particular population summary statistic, such as the mean or median. This number is called the *population parameter*. We use the sample to estimate the value of the population parameter. For example, say we want to know what is the average household income in Berkeley, we might draw a sample of households and compute the average of the sample. The average household income in Berkeley will be our population parameter, and we call the corresponding sample mean a *sample statistic*. Sample statistics are used to estimate population parameters.
+
+This sample mean  will be be an *estimate* of the true household average. Since we use a chance mechanism to generate the sample, if we repeat the process, the next sample will likely give a different value for the estimate. For computing the chance variability of our estimate, we would use the probability distribution of the sample mean. In the picture above, this is the blue histogram in the middle. It shows the different values that the sample mean can take, along with their probabilities.
+
+For all three of the histograms, the area of the rectangles above a bin represents the proportion of observations that fall in that bin. For the population histogram, this is the fraction of *population* values that lie in that bin, and for the empirical histogram, it is the fraction of *sample* values that lie in that bin. Note that we don't usually know  what the probability histogram looks like, and hope that our sample is representative. For the sampling distribution, the area of the rectangles the chance of a value lying in that bin.[^gln] 
+To get a sampling distribution, of say, the sample mean, we would need to list *every* possible sample of the size we want, and compute the chance of each possible outcome. 
+
+
+### Example 1: Class Survey
+
+Recall the class survey that you filled out at the beginning of the term. One of the questions in the survey asked respondents to use a numerical value (from 1 to 10), to descibe their coding experience. We will consider all the Stat 20 students who responded to the survey to be the population. Each student is represented by one ticket in the box, and their responses are written on the ticket. To get an empirical histogram, we draw a sample of tickets from the box at random, and draw the corresponding histogram. 
+For the probability histogram of the sample mean, we build a distribution by taking many, many samples,and recording the mean for each sample. Let's see what the histograms look like. We do this because there are $\binom{699}{50}$ samples of size 50, and this number is of the order $10^{76}$, so it is not feasible to list every possible sample of size $50$. Instead, we build the distribution by taking many samples, computing the statistic for each sample, and drawing the histogram.
+
+:::{.callout-tip}
+
+## Code along
+
+As you read through these notes, keep RStudio open in another window to code along at the console.
+:::
+
+```{r}
+#| warning: false
+#| fig-width: 10
+#| fig-height: 6
+
+set.seed(123412)
+data("class_survey")
+
+hist_box <- class_survey %>%
+      select(Coding_Exp_Scale) %>%
+      drop_na() %>%
+      ggplot(aes(x=Coding_Exp_Scale)) + 
+      geom_histogram(aes(y=..density..), breaks=seq(0.5, 10.5, by = 1), 
+                 color="black", fill="gray") + 
+      xlab("Coding Experience") +
+      ylab("Proportion") +
+      scale_x_continuous(breaks = 1:10) +
+      ggtitle("Population Distribution") +
+      annotate("text", x = 6, y = 0.33, label = "Unit: student in Stat 20")
+
+#' Building a sampling distribution
+#' Take 5000 samples of size 50, w/o replacement
+#' and compute sample statistic for each
+#' and build the dsn
+
+
+sample_means <- class_survey %>%
+  select(Coding_Exp_Scale) %>%
+  drop_na() %>% 
+  rep_sample_n(size = 50, reps = 5000) %>%
+  summarise(mean_coding_exp = mean(Coding_Exp_Scale))
+
+hist_means <- ggplot(sample_means, aes(x=mean_coding_exp)) + 
+    geom_histogram(aes(y=..density..), bins = 15,
+                   fill = "gray", color = "black") + 
+    xlab("Coding Experience") +
+    ylab("Proportion") + 
+    scale_x_continuous(breaks = seq(2, 5, by=0.5)) +
+    ggtitle("Sampling distribution \nof the Sample Average")
+
+hist_emp <- class_survey %>%
+  select(Coding_Exp_Scale) %>%
+  slice_sample(n=50) %>%
+  ggplot(aes(x=Coding_Exp_Scale)) + 
+  geom_histogram(aes(y=..density..), bins = 10,
+                  fill = "gray", color = "black") +
+  xlab("Coding Experience") +
+  ylab("Proportion") + 
+  ggtitle("Empirical Distribution") +
+  scale_x_continuous(breaks =1:10)
+
+hist_box + hist_emp + hist_means
+```
+Notice that the empirical histogram looks like the population distribution, with both showing a right skew. The *sampling * distribution of the sample mean looks completely different. This is a visualization of a *probability* distribution, not an empirical one. It looks much less skewed than than the original distribution.
+
+What do you think is the relationship between the population mean and center of the sampling distribution? Note that the sampling distribution is centered at the average of the values.
+<details>
+<summary>Check your answer</summary>
+The center of this sampling distribution is at `r round(hist_means$data %>% summarise(mean(mean_coding_exp)),2)`. Compare this to the population average which is `r round(hist_box$data %>% summarise(mean(Coding_Exp_Scale)),2)`! 
+
+</details>
+What about the standard deviation of the sample average compared to the standard deviation of the tickets in the box?
+
+<details>
+<summary>Check your answer</summary>
+The population standard deviation is `r round(hist_box$data %>% summarise(sd(Coding_Exp_Scale)),2)`, while the sd of the means is `r round(hist_means$data %>% summarise((sd(mean_coding_exp))),2)`. This is quite different, was it what you expected?
+
+Lets divide the sd of the box by the square root of the sample size. This gives us `r round(hist_box$data %>% summarise(sd(Coding_Exp_Scale))/sqrt(50),2)`
+</details>
+
+We see that:
+
+1. The population mean and the mean of the sample averages are the same.
+
+2. There also seems to be a relationship between the sd of the box and the sd of the sample averages.
+
+3. The histogram of the sample averages is not skewed like the histogram of the box tickets , on the contrary, it is symmetric about the middle and bell-shaped.
+
+## Why Consider Sampling Distributions?
+
+Our objective is to estimate the value of a *population parameter* such as the proportion of voters in California who support the legalization of online sports betting (Prop 27). We might take a random sample of 1000 voters from the population and get the sample proportion of voters who would vote "Yes" on Prop 27, and use this as our estimate. But a different sample of voters would give us a different estimate. In order to understand the accuracy of our estimate, we need to understand the how the sample proportions will vary from sample to sample. If we know how the sample proportion varies, we can measure the accuracy of our original estimate. In Example 1 above, we looked at the sample mean. We could also have considered the median. In general, any numerical value computed from a sample is a *statistic*, and since it depends on the sample values, it will change from sample to sample. If we use a chance mechanism in our sampling, then the statistic has chance variability, and we can consider the probability distribution of this statistic (called its *sampling distribution*), which determines how well the statistic estimates the population parameter.
+
+### Example 2 Family Size among Mothers.
+
+This example is based on a Pew Research study on mothers at the end of their child bearing years.[^pew] They found that the average family size in the US has reduced from being over 3 children in the late seventies, to over 2 children in the present time. Using their data, we can construct a box to represent the population of women who bore children, and are at the end of their child bearing years (aged 40-44). The study is based on data from the Current Population Survey.
+
+```{r}
+pew <- rep(c(1,2,3,4), times = c(22,41,24,13))
+```
+
+We can take a sample to look at the empirical distribution. Since the box represents the US population of women who have borne at least one child, we will sample with replacement.
+
+
+
+[^pew]: https://www.pewresearch.org/social-trends/2015/05/07/family-size-among-mothers/
+[^gln]: Lau S., Gonzales, J., and Nolan, D. *Learning Data Science* <https://www.textbook.ds100.org/ch/16/inf_pred_gen_intro.html>
+
+[^gn]: Gelman, A. and Nolan, D. (2017), *Teaching Statistics: A Bag of Tricks*, 2nd ed., Oxford University Press.
