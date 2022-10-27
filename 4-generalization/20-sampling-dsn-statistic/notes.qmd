@@ -234,7 +234,7 @@ ggplot(data.frame(avg_children_emp),
             ggtitle("Distribution for the average number \nof children, sampling from the empirical distribution")
 ```
 
-Where is this distribution centered?
+Where is this distribution centered? Any comments?
 
 The distribution is centered at `r round(mean(avg_children_emp),2)` children.
 
