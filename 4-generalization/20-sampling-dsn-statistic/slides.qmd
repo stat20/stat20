@@ -78,7 +78,7 @@ countdown::countdown(3, bottom = 0)
 
 ##
 
-Say we want estimate the size of an average class at Berkeley. Should we ask the administration?  Or should we survey the students, ask them how large their classes are, and take the average of these values? Does it matter?[^ad]
+Say we want estimate the size of an average class at Berkeley. Should we ask the administration?  Or should we survey the students, ask them how large their classes are, and take the average of these values? Does it matter?
 
 :::{.poll}
 Should we survey students? Does it matter?
@@ -88,4 +88,3 @@ Should we survey students? Does it matter?
 countdown::countdown(3, bottom = 0)
 ```
 
-[^ad]: <https://towardsdatascience.com/the-inspection-paradox-is-everywhere-2ef1c2e9d709>
