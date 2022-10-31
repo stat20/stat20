@@ -27,7 +27,7 @@ library(stat20data)
 library(patchwork)
 ```
 
-[W]{.dropcap}hen we have a sample and want to use the data to estimate something about the population, we are making *inferences* about the population.
+When we have a sample and want to use the data to estimate something about the population, we are making *inferences* about the population.
 This might be as simple as using the mean of a sample to infer the mean of the population. 
 We have seen so far in this unit that it's important to use chance to select our sample so that it is representative of our population,
 and likewise a representative sample is important if we want to use it to make inferences about the population. 
@@ -43,7 +43,7 @@ Recall that there are three parts to the triptych:
 + The sample, the data that the chance process gave you 
 
 
-![](images/triptych.jpeg){fig-align=center width=700}
+![](images/triptych.jpeg){fig-align=center width=500}
 
 
 Let's build a triptych one panel at a time for an example. 
@@ -68,8 +68,8 @@ each ticket has the restaurant's score marked on it.
 
 ```{r}
 #| warning: false
-#| fig-width: 10
-#| fig-height: 6
+#| fig-width: 5
+#| fig-height: 3
 
 pop_dist <- ggplot(as.data.frame(fs_scores), aes(x=fs_scores, y=..density..)) + 
       geom_histogram(breaks=seq(47.5, 100.5, by = 1), 
@@ -107,6 +107,10 @@ samp_scores
 + The *sample distribution* is
 
 ```{r}
+#| warning: false
+#| fig-width: 5
+#| fig-height: 3
+
 samp_dist <- ggplot(as.data.frame(samp_scores), aes(x=samp_scores, y=..density..)) + 
       geom_histogram(breaks=seq(47.5, 100.5, by = 1), 
                  color="black", fill="gray") + 
@@ -141,6 +145,10 @@ Here are a few: `r head(samp_means, 6)`.
 + The *sampling distribution* looks like: 
 
 ```{r}
+#| warning: false
+#| fig-width: 5
+#| fig-height: 3
+
 sampling_dist <- ggplot(as.data.frame(samp_means), 
                         aes(x=samp_means, y=..density..)) + 
       geom_histogram(bins = 45, 
@@ -165,6 +173,10 @@ Again, the sampling distribution provides the probability distribution for the p
 Let's look at these three aspects of the sample design together.
 
 ```{r}
+#| warning: false
+#| fig-width: 9
+#| fig-height: 4
+
 pop_dist + sampling_dist + samp_dist
 ```
 
@@ -275,9 +287,12 @@ When the sampling distribution is roughly normal in shape, then we can use the p
 
 The *standard normal curve* looks like the following: 
 ```{r}
+#| warning: false
+#| fig-width: 4
+#| fig-height: 3
+
 curve(dnorm, -3.5, 3.5, lwd=2, xlab = "", ylab = "", axes=FALSE)
 axis(1)
-
 ```
 
 It's symmetric, unimodal, and has 'normal tails'.
@@ -332,6 +347,10 @@ CIs = data.frame(trial, lower, upper, cover)
 
 
 ```{r}
+#| warning: false
+#| fig-width: 5
+#| fig-height: 6
+
 ci100 <- ggplot(CIs, aes(y = trial)) +
   geom_segment(aes(x=lower, y=trial, xend=upper, yend=trial, color= cover), 
                show.legend=FALSE) +
@@ -361,6 +380,10 @@ hi_score_means = replicate(100000, mean(sample(hi_scores, 100)))
 
 The triptych appears as 
 ```{r}
+#| warning: false
+#| fig-width: 9
+#| fig-height: 4
+
 hi_score_dist <- ggplot(as.data.frame(hi_scores), 
                         aes(x=hi_scores, y=..density..)) + 
       geom_histogram(breaks=seq(-0.5, 1.5, by = 1), 
