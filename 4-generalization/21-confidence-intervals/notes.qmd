@@ -23,7 +23,6 @@ library(tidyverse)
 library(stat20data)
 library(infer)
 library(palmerpenguins)
-library(stat20data)
 library(patchwork)
 ```
 
@@ -43,22 +42,18 @@ Recall that there are three parts to the triptych:
 
 Let's build a triptych one panel at a time for an example. 
 
-## Set Up - Food Safety Scores
+## Example: Food Safety Scores
 
 Every year, the city of San Francisco's health department visits all the restaurants in the city and inspects them for food safety. Each restaurant is given an inspection score; these range from 100 (perfectly clean) to 48 (serious potential for contamination). 
-We have these scores from 2016. ADD REF
+We have these scores from 2016.
 
-### The Population
+ <!-- ADD REF -->
 
-Our population consists of the restaurants in San Francisco. Since the data are published online for all restaurants, we have a census of scores for every restaurant in the city. 
+### The Population Distribution
 
+Our population consists of the restaurants in San Francisco. Since the data are published online for all restaurants, we have a census of scores for every restaurant in the city. That is: the target population is the access frame is the sample.
 
-```{r,}
-load("fs_scores.rda")
-```
-
-
-*Population* = *BOX*: There are `r length(fs_scores)` tickets in the box, one for each restaurant. Since we are interested in the inspection score,
+*Population* = *BOX*: There are 5766 tickets in the box, one for each restaurant. Since we are interested in the inspection score,
 each ticket has the restaurant's score marked on it.
 
 + The histogram of the values written on the tickets is our *population histogram*. It shows the distribution of scores in the population. 
@@ -67,6 +62,8 @@ each ticket has the restaurant's score marked on it.
 #| warning: false
 #| fig-width: 5
 #| fig-height: 3
+
+load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
 
 pop_dist <- ggplot(as.data.frame(fs_scores), aes(x=fs_scores, y=..density..)) + 
       geom_histogram(breaks=seq(47.5, 100.5, by = 1), 
@@ -91,50 +88,50 @@ The population is skewed left with a long left tail. The highest possible score 
 
 
 
-### The Sample
+### The Empirical Distribution
 
-Suppose you take a simple random sample of 100 restaurants. That is, you draw 100 times without replacement from the population (box). Your sample is:
+Although we have data on all of the restaurants in the city, impagine that you're an inspector who has visited a simple random sample of 100 restaurants. That is, you draw 100 times without replacement from the population (box). Your sample is:
 
 ```{r}
 set.seed(103122)
-samp_scores = sample(fs_scores, 100)
+samp_scores <- sample(fs_scores, 100)
 
 samp_scores
 ```
-+ The *sample distribution* aka the empirical distribution appears below.
++ The *empirical distribution* aka the empirical distribution appears below.
 
 ```{r}
 #| warning: false
 #| fig-width: 5
 #| fig-height: 3
 
-samp_dist <- ggplot(as.data.frame(samp_scores), aes(x=samp_scores, y=..density..)) + 
+emp_dist <- ggplot(as.data.frame(samp_scores), aes(x=samp_scores, y=..density..)) + 
       geom_histogram(breaks=seq(47.5, 100.5, by = 1), 
                  color="black", fill="gray") + 
       xlab("Food Safety Scores") +
       ylab("Proportion") +
-      ggtitle("Sample Distribution")
+      ggtitle("Empirical Distribution")
 
-samp_dist
+emp_dist
 ```
 
 + The *sample mean* is `r round(mean(samp_scores), 2)`.
 
 + The *sample SD* is `r round(sd(samp_scores), 1)`.
 
-Notice: The sample distribution resembles the population distribution. It's not a perfect match but the shape is similar. The sample average and the sample SD are also close to but not the same as the population average and SD.
+Notice: The empirical distribution resembles the population distribution. It's not a perfect match but the shape is similar. The sample average and the sample SD are also close to but not the same as the population average and SD.
 
 ### The Sampling Distribution
 
-If someone else took a sample of of 100 restaurants, their sample would not be identical to yours, but it would still resemble the population distribution, and its mean and SD would be close to those of all the restaurants in the city. 
+If you compared your sample to that of another inspector who took visited 100 restaurants, their sample would not be identical to yours, but it would still resemble the population distribution, and its mean and SD would be close to those of all the restaurants in the city. 
 
-The distribution of the possible values the sample mean of a SRS of 100 restaurants is a probability distribution. It is called the *sampling distribution* of the mean (of the sample). We can use it to, for example, find the chance that the sample mean will be over 88, or the chance that the sample mean will be between 85 and 95. 
+The distribution of the possible values of the sample mean of a SRS of 100 restaurants is a probability distribution. It is called the *sampling distribution* of the mean (of the sample). We can use it to, for example, find the chance that the sample mean will be over 88, or the chance that the sample mean will be between 85 and 95. 
 
 We use simulation to approximate this probability distribution. We repeat 100,000 times the process of drawing a SRS of 100 tickets from the box and computing the mean.  The distribution of the 100,000 simulated sample means is close to the true sampling distribution. 
 
 ```{r}
 set.seed(10312022)
-samp_means = replicate(100000, mean(sample(fs_scores, 100)))
+samp_means <- replicate(100000, mean(sample(fs_scores, 100)))
 ```
 
 Here are a few of the 100,000 sample averages: `r head(samp_means, 6)`.
@@ -159,7 +156,7 @@ sampling_dist
 
 + The *sampling distribution mean* (aka the expected value) is `r round(mean(samp_means), 2)`.
 
-+ The sampling distribution SD, which is called the *Standard Error* is `r round(sd(samp_means), 1)`. This convention of calling the SD for a probability distribution of a statistic helps keep straight which kind of standard deviation we're talking about.   
++ The sampling distribution SD, which is called the *Standard Error*, is `r round(sd(samp_means), 1)`. This convention of using a different name for the SD for a probability distribution of a statistic helps keep straight which kind of standard deviation we're talking about.   
 
 Notice: The sampling distribution of the sample mean doesn't look anything like the population or sample. Instead, it's roughly symmetric in shape with a center that matches the population mean, and a small SE. The size of the SE reflects the fact that the sample mean tends to be quite close to the population mean. 
 
@@ -174,12 +171,12 @@ Let's look at these three aspects of the sample design side-by-side.
 #| fig-width: 9
 #| fig-height: 4
 
-pop_dist + sampling_dist + samp_dist
+pop_dist + sampling_dist + emp_dist
 ```
 
-|             | Population  | Probability | Empirical   |
+|             | Population  | Sampling | Empirical   |
 | ----------- | ----------- | ----------- | ----------- |
-| Distribution | left skew | normal | left skew |
+| Distribution | left skew | bell-shaped / normal | left skew |
 | Mean | `r round(mean(fs_scores), 2)`      | `r round(mean(samp_means), 2)`      | `r mean(samp_scores)`  |
 | SD | `r round(sd(fs_scores), 1)`      | `r round(sd(samp_means), 2)`      | `r round(sd(samp_scores), 1)`  |
 | Size| `r length(fs_scores)` | 1 (sample statistic)  | `r length(samp_scores)` |
@@ -238,7 +235,7 @@ Your triptych has holes in it!
 Well, you can use your sample average to infer the population average. This is called a *point estimate* for the population parameter. 
 
 But can you do better than that? Can you bring in more of the information that you have learned from the triptych?
-For example, can you accompany your point estimate with a sense of its accuracy? Ideally, this would be the SE of the sample mean. Unfortunately, you don't know the SE because it depends on the populatio SD. So now what do you do?
+For example, can you accompany your point estimate with a sense of its accuracy? Ideally, this would be the SE of the sample mean. Unfortunately, you don't know the SE because it depends on the population SD. So now what do you do?
 
 <details>
 The triptych tells you that the sample SD is close to the population SD (when you have a SRS). So we can substitute the sample SD into the formula for the SE.
@@ -254,7 +251,7 @@ When presenting your findings, you might say, that based on a SRS of 100 restaur
 
 Suppose someone took a sample of 25 restaurants and provided an estimate of the average food safety score. Is that only 1/4 as accurate because the sample is 1/4 the size of ours?
 
-Suppose someone took a sample of 100 restaurants in New York City where there are 50,000 restaurants (made up number) is their estimate only 1/10 a accurate because the number of tickets in the box is 10 times yours?
+Suppose someone took a sample of 100 restaurants in New York City where there are 50,000 restaurants (this is a made up number). Is their estimate only 1/10 a accurate because the number of tickets in the box is 10 times yours?
 
 We can use the formula for the SE to answer these questions. Or, if you like, you can carry out your own simulation study to discover them for yourself.  Recall the formula for the SE is 
 
@@ -297,14 +294,17 @@ The *standard normal curve* looks like the following:
 #| warning: false
 #| fig-width: 4
 #| fig-height: 3
+#| fig-align: center
 
-curve(dnorm, -3.5, 3.5, lwd=2, xlab = "", ylab = "", axes=FALSE)
-axis(1)
+ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1)) + ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal()
 ```
 
 It's symmetric, unimodal, and has 'normal tails'.
 The area under the curve corresponds to chance, 
-For example, the chance, a value chosen at random from a 
+For example, the chance a value chosen at random from a 
 probability distribution that follows the normal curve is less than 0 is 1/2.
 We can use `pnorm()` and symmetry to find other probabilities. 
 We put a few that are commonly used in a table.
@@ -347,13 +347,13 @@ Let's simulate it!
 
 ```{r}
 set.seed(10312022)
-samp25_means = replicate(100, mean(sample(fs_scores, 25)))
+samp25_means <- replicate(100, mean(sample(fs_scores, 25)))
 
-lower = samp25_means - 1.96 * sd(fs_scores)/5
-upper = samp25_means + 1.96 * sd(fs_scores)/5
-trial = 1:100
-cover = (mean(fs_scores) >= lower) & (mean(fs_scores) <= upper)
-CIs = data.frame(trial, lower, upper, cover)
+lower <- samp25_means - 1.96 * sd(fs_scores)/5
+upper <- samp25_means + 1.96 * sd(fs_scores)/5
+trial <- 1:100
+cover <- (mean(fs_scores) >= lower) & (mean(fs_scores) <= upper)
+CIs <- data.frame(trial, lower, upper, cover)
 ```
 
 
@@ -362,6 +362,7 @@ CIs = data.frame(trial, lower, upper, cover)
 #| warning: false
 #| fig-width: 5
 #| fig-height: 6
+#| fig-align: center
 
 ci100 <- ggplot(CIs, aes(y = trial)) +
   geom_segment(aes(x=lower, y=trial, xend=upper, yend=trial, color= cover), 
@@ -387,10 +388,10 @@ restaurants in San Francisco, `r sum(fs_scores >= 95)` have scores of 95 and abo
 
 
 ```{r}
-hi_scores = 0+ (fs_scores >= 95)
+hi_scores <- 0 + (fs_scores >= 95)
 set.seed(10312022)
-hi_score_samp = sample(hi_scores, 25)
-hi_score_means = replicate(100000, mean(sample(hi_scores, 25)))
+hi_score_samp <- sample(hi_scores, 25)
+hi_score_means <- replicate(100000, mean(sample(hi_scores, 25)))
 ```
 
 The triptych appears as 
@@ -412,7 +413,7 @@ hi_samp_dist <- ggplot(as.data.frame(hi_score_samp), aes(x=hi_score_samp, y=..de
                  color="black", fill="gray") + 
       xlab("Scores over 95") +
       ylab("Proportion") +
-      ggtitle("Sample")
+      ggtitle("Empirical Distribution")
 
 hi_sampling_dist <- ggplot(as.data.frame(hi_score_means), 
                         aes(x=hi_score_means, y=..density..)) + 
@@ -426,9 +427,9 @@ hi_score_dist + hi_sampling_dist + hi_samp_dist
 ```
 
 
-|             | Population  | Probability | Empirical   |
+|             | Population  | Sampling | Empirical   |
 | ----------- | ----------- | ----------- | ----------- |
-| Distribution | left skew | normal | left skew |
+| Distribution | left skew | bell-shaped / normal | left skew |
 | Mean | `r round(mean(hi_scores), 2)`      | `r round(mean(hi_score_means), 2)`      | `r mean(hi_score_samp)`  |
 | SD | `r round(sd(hi_scores), 1)`      | `r round(sd(hi_score_means), 2)`      | `r round(sd(hi_score_samp), 1)`  |
 | Size| `r length(hi_scores)` | 1  | `r length(hi_score_samp)` |
@@ -459,7 +460,4 @@ The confidence intervals that we have made are approximate in the following sens
 + The SD of the sample is used in place of the SD of the population in  calculating the SE of the statistic.
 
 There are times when we are unwilling to make the assumption of normality. This is the topic of the next set of notes. 
-
-
-
 
