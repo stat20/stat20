@@ -187,10 +187,10 @@ We note that:
 
 2. The SD of the population and the SE of the sample averages are related in the following:
 
-$$SE(sample~mean) = SD(pop)/\sqrt{100}$$
+$$SE(sample~mean) = SD(pop)/\sqrt{n}$$
 Actually, the above formula is true for a random sample with replacement. When we have a SRS, the exact formula is
 
-$$SE(sample~mean) = \sqrt{\frac{N-n}{N-1}} SD(pop)/\sqrt{100}$$
+$$SE(sample~mean) = \sqrt{\frac{N-n}{N-1}} SD(pop)/\sqrt{n}$$
 
 This additional term, called the *finite population correction factor*, adjusts for the fact that we are drawing without replacement. Here $N$ is the number of tickets in the box (the size of the population) and $n$ is the number of tickets drawn from the box (the size of the sample).
 
