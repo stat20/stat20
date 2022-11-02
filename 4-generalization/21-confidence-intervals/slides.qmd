@@ -1,0 +1,82 @@
+---
+title: "Confidence Intervals"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+
+- Concept Questions
+- Practice Problems
+
+# Concept Questions
+
+## 
+
+You embark on a mission to estimate a population mean used a simple random sample of $n$ observations.
+
+:::poll
+What sample size would you need to increase the precision of your estimate by 3x compared to the original sample?
+:::
+
+:::notes
+A. n + 3
+B. 3n
+D. n + 6
+C. 6n
+D. 9n
+
+This assesses the 1/sqrt(n) relationship between the SE and the SD. It appeared in the Reading Questions in a slightly different form, but is likely worth talking through together.
+:::
+
+## 
+
+An economist aims to estimate the average weekly cost of groceries per household in two cites: Grimes, CA (population ~400) and Tranquility, CA (population ~800). Both of these populations of households are presumed to have a similar standard deviation of weekly grocery costs. The demographer takes a simple random sample (without replacement) of 30 households from each city, records their costs, and computes a 95% confidence interval for the average weekly cost.
+
+:::poll
+Approximately how much wider would Tranquility's confidence interval be than Grimes's?
+:::
+
+:::
+Notes
+::
+
+## 
+
+An economist aims to estimate the average weekly cost of groceries per household in two cites: Oakland, CA (population ~400,000) and Fremont, CA (population ~200,000). Both of these populations of households are presumed to have a similar standard deviation of weekly grocery costs. The economist takes a simple random sample (without replacement) of 30 households from each city, records their costs, and computes a 95% confidence interval for the average weekly cost.
+
+:::poll
+Approximately how much wider would Oakland's confidence interval be than Fremont's?
+:::
+
+:::notes
+A. 1.5 times as wide
+B. 2 times as wide
+C. 3 times as wide
+D. 4 times as wide
+E. The same width
+:::
+
+
+
+# Practice Problems
+
+
+
+

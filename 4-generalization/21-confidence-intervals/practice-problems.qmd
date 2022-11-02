@@ -1,0 +1,23 @@
+---
+title: "Practice Problems"
+subtitle: "Confidence Intervals"
+format: pdf
+---
+
+
+## Part I: 
+
+The goal of these practice problems is to experiment with the notion of a sampling distribution and confidence intervals
+
+#### Task 1
+
+Load the `flights` data from the `stat20data` package that you used in Lab 4.
+
+```{r}
+library(tidyverse)
+library(stat20data)
+data(flights)
+```
+
+
+
