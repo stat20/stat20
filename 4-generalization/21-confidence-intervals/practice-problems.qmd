@@ -1,0 +1,123 @@
+---
+title: "Practice Problems"
+subtitle: "Confidence Intervals"
+format: pdf
+---
+
+:::notes
+Goal: Give students practice calculating confidence intervals and talking through their interpretation and what effects their width
+
+These practice problems can be done in class in pairs/trios or at home for students who aren't in class. They will become part of the next problem set. The slides introduce / practice several functions used here.
+
+Suggesting timeline:
+
+1. Review functions in slides
+2. Make students work in at least pairs for the handout. Ask that they draw their confidence intervals for the mean on the front board. You'll want to pre-populate the axes carefully and probably have them draw their intervals vertically so that they will all fit. Draw one on the board to demonstrate.
+3. At the end of the class period, review answers.
+:::
+
+## Part I: 
+
+The goal of these practice problems is to experiment with the notion of a sampling distribution and confidence intervals. In any applied setting, you only have access to a sample of the data, but for these practice problems we'll work with a data set where we have access to the full population: the flights data set.
+
+#### Question 1
+
+Load the `flights` data from the `stat20data` package that you used in Lab 4.
+
+```{r}
+#| echo: true
+library(tidyverse)
+library(stat20data)
+data(flights)
+```
+
+Then:
+
+- Set a seed of your choosing
+- Take a random sample of 100 flights from `flights`
+- Calculate the mean and SD of the departure delays
+- Assuming the the sampling distribution is roughly normal, what is your 68% confidence interval? Calculate it.
+
+*SOLUTION*
+
+```{r}
+library(tidyverse)
+library(stat20data)
+data(flights)
+
+set.seed(302)
+stats <- flights %>%
+  slice_sample(n = 100) %>%
+  summarize(avg_delay = mean(dep_delay, na.rm = TRUE),
+            sd_delay  = sd(dep_delay, na.rm = TRUE))
+
+c(stats$avg_delay - 1 * stats$sd_delay / sqrt(100), 
+  stats$avg_delay + 1 * stats$sd_delay / sqrt(100))
+```
+
+#### Question 2
+
+Did your interval contain the population mean? This is a rare case where you can check by calculating the average departure delay of the entire `flights` data set. If you repeated process 100 times - taking how many of the resulting intervals would you expect to contain the population mean?
+
+*SOLUTION*
+
+```{r}
+flights %>%
+  summarize(mean(dep_delay, na.rm = TRUE))
+```
+
+Yes, the interval contains the population parameter. You would expect around 68 of the intervals to contain the population mean.
+
+
+#### Question 3
+
+Select a second population parameter to estimate, but in this case choose a **proportion** instead of a mean. For example: the proportion of flights that departed ahead of schedule (don't use this example). Repeat the steps in question 1 to take a SRS of 100 flights and form a 68% confidence interval, adapting it for a proportion by using the appropriate modifications from the notes.
+
+*EXAMPLE SOLUTION*
+
+```{r}
+set.seed(302)
+stats <- flights %>%
+  slice_sample(n = 100) %>%
+  summarize(p_ahead = mean(dep_delay < 0, na.rm = TRUE),
+            sd = sqrt(p_ahead * (1 - p_ahead)))
+
+c(stats$p_ahead - 1.96 * stats$sd / sqrt(100), 
+  stats$p_ahead + 1.96 * stats$sd / sqrt(100))
+```
+
+
+#### Question 4
+
+Did your interval contain the population proportion? This is a rare case where you can check by calculating the actual proportion found in the entire `flights` data set. If you repeated process 100 times - taking how many of the resulting intervals would you expect to contain the population proportion?
+
+*SOLUTION*
+
+```{r}
+flights %>%
+  summarize(p_ahead = mean(dep_delay < 0, na.rm = TRUE))
+```
+
+Yes, the interval contained the true population parameter. You would expect 68 of the resulting intervals to contain the population proportion
+
+#### Question 5
+
+For both of the settings above - estimating a population mean and a population proportion - what are *two* things that can be changed to decrease the width of the confidence intervals?
+
+*SOLUTION*
+1. Decrease the confidence level
+2. Increase the sample size
+3. (Much harder to realize) Decrease the SD of the population
+
+#### Question 6
+
+In these practice problems we treated the `flights` data as the target population (and access frame) then took simple random samples of size 100. In reality, the entire `flights` data set was the sample of data that we investigated in Lab 4.
+
+Give an example of a larger target population to which you would be comfortable generalizing from the full `flights` data set. Provide another example of one to which you would *not* be comfortable generalizing. It may be helpful to sketch scope diagrams.
+
+*EXAMPLE SOLUTIONS*
+- Comfortable generalizing certain parameter estimates to San Jose Airport.
+- Comfortable generalizing from pre-pandemic to beforehand - late 2019.
+
+- Uncomfortable generalizing to Taipei International Airport or other Airport that are significantly different.
+- Uncomfortable generalizing to very different time spans.
