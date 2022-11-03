@@ -42,7 +42,7 @@ In the bootstrap triptych our goal is to approximate the sampling distribution a
 
 -   When the sample size is small relative to the size of the population, there is little difference between sampling with or without replacement. So, to find our bootstrap sampling distribution, we sample from the bootstrap population with replacement.
 
--   When the sample size is large relative to the size of the population, we "blow up" our sample to be the same size as the population. For example if we sample 100 tickets from a box of 200, then we create a bootstrap population by putting two tickets in the box for every ticket in our sample. Then we take a SRS from this bootstrap population. We won't be considering this approach further in these notes.
+-   When the sample size is large relative to the size of the population, we "blow up" our sample to be the same size as the population. For example if we sample 100 tickets from a box of 200, then we create a bootstrap population by putting two tickets in the box for every ticket in our sample. Then we take a SRS without replacement from this bootstrap population. We won't be considering this approach further in these notes.
 
 
 ### Example 1: Food Safety Scores
