@@ -88,7 +88,7 @@ The figure below gives the basic idea:
 We start with times that are exactly 12-minutes apart, and then adjust them by using the observed lateness of each bus.
 
 ```{r}
-num_stops <- nrow(bus_late)
+num_stops <- nrow(bus)
 
 # sched_times <- seq(from = , by = , length = )
 

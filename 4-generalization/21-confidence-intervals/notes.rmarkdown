@@ -1,0 +1,482 @@
+---
+title: "Confidence Interval for a Population Parameter"
+subtitle: "Point and Interval Estimates"
+date: "11/02/2022"
+format:
+  html:
+    toc-depth: 4
+    code-fold: true
+    code-link: true
+    code-summary: "."
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(stat20data)
+library(infer)
+library(palmerpenguins)
+library(patchwork)
+```
+
+
+When we have a sample and want to use the data to estimate something about the population, we are making an *inference*.
+This might be as simple as using the mean of a sample to infer the mean of the population. 
+We have seen so far in this unit that it's important to use chance to select our sample so that it is representative of our population,
+and likewise a representative sample is needed to make inferences about the population. 
+
+In these notes, we will delve a bit deeper into the triptych from the last set of notes to help you solidify the connections between the population, sample, and chance mechanism that produced the sample. After that, we will go on to use the triptych to make inferences about the population. 
+
+Recall that there are three parts to the triptych:
+
++ the population that we are interested in making generalizations about;
++ the chance process used to select a sample from the population (we have focused on the Simple Random Sample (SRS) where draws are made at random without replacement, and on Sampling with Replacement);
++ the sample, the data that the chance process gave you. 
+
+
+Let's build a triptych one panel at a time for an example. 
+
+## Example: Food Safety Scores
+
+Every year, the city of San Francisco's health department visits all the restaurants in the city and inspects them for food safety. Each restaurant is given an inspection score; these range from 100 (perfectly clean) to 48 (serious potential for contamination). 
+We have these scores from 2016.
+
+ <!-- ADD REF -->
+
+### The Population Distribution
+
+Our population consists of the restaurants in San Francisco. Since the data are published online for all restaurants, we have a census of scores for every restaurant in the city. That is: the target population is the access frame is the sample.
+
+*Population* = *BOX*: There are 5766 tickets in the box, one for each restaurant. Since we are interested in the inspection score,
+each ticket has the restaurant's score marked on it.
+
++ The histogram of the values written on the tickets is our *population histogram*. It shows the distribution of scores in the population. 
+
+
+```{r}
+#| warning: false
+#| fig-width: 5
+#| fig-height: 3
+
+load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
+
+pop_dist <- ggplot(as.data.frame(fs_scores), aes(x=fs_scores, y=..density..)) + 
+      geom_histogram(breaks=seq(47.5, 100.5, by = 1), 
+                 color="black", fill="gray") + 
+      xlab("Food Safety Scores") +
+      ylab("Proportion") +
+      ggtitle("Population Distribution")
+
+pop_dist
+```
+
+
+
+ The *population histogram* has several interesting features. How would you describe it?
+ 
+<details><summary>Check your answer</summary>
+The population is skewed left with a long left tail. The highest possible score is 100. It appears that even scores are more popular than odd scores for scores in the 90s; in fact there are no scores of 99, 97, and 95. 
+</details>
+
++ The *population mean* (aka the *population parameter* and for this class aka the *box average*) is `r round(mean(fs_scores), 2)`.
+
++ The *population SD* (aka the box SD) is `r round(sd(fs_scores), 1)`.
+
+
+
+### The Empirical Distribution
+
+Although we have data on all of the restaurants in the city, impagine that you're an inspector who has visited a simple random sample of 100 restaurants. That is, you draw 100 times without replacement from the population (box). Your sample is:
+
+
+```{r}
+set.seed(103122)
+samp_scores <- sample(fs_scores, 100)
+
+samp_scores
+```
+
++ The *empirical distribution* aka the empirical distribution appears below.
+
+
+```{r}
+#| warning: false
+#| fig-width: 5
+#| fig-height: 3
+
+emp_dist <- ggplot(as.data.frame(samp_scores), aes(x=samp_scores, y=..density..)) + 
+      geom_histogram(breaks=seq(47.5, 100.5, by = 1), 
+                 color="black", fill="gray") + 
+      xlab("Food Safety Scores") +
+      ylab("Proportion") +
+      ggtitle("Empirical Distribution")
+
+emp_dist
+```
+
+
++ The *sample mean* is `r round(mean(samp_scores), 2)`.
+
++ The *sample SD* is `r round(sd(samp_scores), 1)`.
+
+Notice: The empirical distribution resembles the population distribution. It's not a perfect match but the shape is similar. The sample average and the sample SD are also close to but not the same as the population average and SD.
+
+### The Sampling Distribution
+
+If you compared your sample to that of another inspector who took visited 100 restaurants, their sample would not be identical to yours, but it would still resemble the population distribution, and its mean and SD would be close to those of all the restaurants in the city. 
+
+The distribution of the possible values of the sample mean of a SRS of 100 restaurants is a probability distribution. It is called the *sampling distribution* of the mean (of the sample). We can use it to, for example, find the chance that the sample mean will be over 88, or the chance that the sample mean will be between 85 and 95. 
+
+We use simulation to approximate this probability distribution. We repeat 100,000 times the process of drawing a SRS of 100 tickets from the box and computing the mean.  The distribution of the 100,000 simulated sample means is close to the true sampling distribution. 
+
+
+```{r}
+set.seed(10312022)
+samp_means <- replicate(100000, mean(sample(fs_scores, 100)))
+```
+
+
+Here are a few of the 100,000 sample averages: `r head(samp_means, 6)`.
+
++ The *sampling distribution* looks like the following. 
+
+
+```{r}
+#| warning: false
+#| fig-width: 5
+#| fig-height: 3
+
+sampling_dist <- ggplot(as.data.frame(samp_means), 
+                        aes(x=samp_means, y=..density..)) + 
+      geom_histogram(bins = 45, 
+                 color="black", fill="gray") + 
+      xlab("Average Food Safety Scores for a SRS of 100") +
+      ylab("Proportion") +
+      ggtitle("Sampling Distribution")
+
+sampling_dist
+```
+
+
++ The *sampling distribution mean* (aka the expected value) is `r round(mean(samp_means), 2)`.
+
++ The sampling distribution SD, which is called the *Standard Error*, is `r round(sd(samp_means), 1)`. This convention of using a different name for the SD for a probability distribution of a statistic helps keep straight which kind of standard deviation we're talking about.   
+
+Notice: The sampling distribution of the sample mean doesn't look anything like the population or sample. Instead, it's roughly symmetric in shape with a center that matches the population mean, and a small SE. The size of the SE reflects the fact that the sample mean tends to be quite close to the population mean. 
+
+Again, the sampling distribution provides the probability distribution for the possible values of the sample mean. From this distribution, we find that the chance the sample mean is over 88 is about `r round(sum(samp_means > 88)/length(samp_means), 2)`, and the chance the sample mean is between 85 and 95 is roughly, `r round(sum(samp_means >= 85 & samp_means <=95)/length(samp_means), 2)`. 
+
+### Putting the Three Panels Together
+
+Let's look at these three aspects of the sample design side-by-side.
+
+
+```{r}
+#| warning: false
+#| fig-width: 9
+#| fig-height: 4
+
+pop_dist + sampling_dist + emp_dist
+```
+
+
+|             | Population  | Sampling | Empirical   |
+| ----------- | ----------- | ----------- | ----------- |
+| Distribution | left skew | bell-shaped / normal | left skew |
+| Mean | `r round(mean(fs_scores), 2)`      | `r round(mean(samp_means), 2)`      | `r mean(samp_scores)`  |
+| SD | `r round(sd(fs_scores), 1)`      | `r round(sd(samp_means), 2)`      | `r round(sd(samp_scores), 1)`  |
+| Size| `r length(fs_scores)` | 1 (sample statistic)  | `r length(samp_scores)` |
+
+We note that:
+
+1. The population mean and the expected sample average are the same.
+
+2. The SD of the population and the SE of the sample averages are related in the following:
+
+$$SE(sample~mean) = SD(pop)/\sqrt{100}$$
+Actually, the above formula is true for a random sample with replacement. When we have a SRS, the exact formula is
+
+$$SE(sample~mean) = \sqrt{\frac{N-n}{N-1}} SD(pop)/\sqrt{100}$$
+
+This additional term, called the *finite population correction factor*, adjusts for the fact that we are drawing without replacement. Here $N$ is the number of tickets in the box (the size of the population) and $n$ is the number of tickets drawn from the box (the size of the sample).
+
+To help make sense of this correction factor, think about the following two cases:
+
++ Draw $N$ tickets from the box (that is, $n = N$).
++ Draw only one ticket from the box.
+
+What happens to the SE in these two extreme cases?
+
+<details>
+In the first case, you will always see the enitre population if you are drawing without replacement. So, the sample mean will exactly match the population mean. The sampling distribution has no variation, so $SE = 0$.
+
+In the second case, since you take only one draw from the box, it doesn't matter if you replace it or not. So the SE for a SRS should match the SE when sampling with replacement in this special case. And it does!
+</details>
+
+3. The histogram of the sample averages is not skewed like the histogram of the box, on the contrary, it is symmetric about the middle and bell-shaped, like the normal curve.
+
+4. The histogram of our sample of 100 resembles the population histogram. 
+
+5. Since 100 is a pretty large sample,
+
+$$
+\begin{aligned}
+mean(pop) &\approx mean(sample) \\
+SD(pop) &\approx SD(sample) \\
+\end{aligned}
+$$
+
+Now we're ready to make inferences.
+
+## Inference for a Population Average
+
+Drawing on our understanding of the triptych, we ask: 
+
+*What happens when you don't see the population, you just have your sample, and you want to make an inference about the population?*
+
+Your triptych has holes in it!
+
+![](images/triptych-sample-only.jpg){fig-align=center width=400}
+
+Well, you can use your sample average to infer the population average. This is called a *point estimate* for the population parameter. 
+
+But can you do better than that? Can you bring in more of the information that you have learned from the triptych?
+For example, can you accompany your point estimate with a sense of its accuracy? Ideally, this would be the SE of the sample mean. Unfortunately, you don't know the SE because it depends on the population SD. So now what do you do?
+
+<details>
+The triptych tells you that the sample SD is close to the population SD (when you have a SRS). So we can substitute the sample SD into the formula for the SE.
+
+$$ SE(sample~mean) \approx \frac{SD(sample)}{\sqrt{n}}$$
+</details>
+
+
+When presenting your findings, you might say, that based on a SRS of 100 restaurants in San Francisco, the average food safety score is estimated to be `r round(mean(samp_scores), 0)` with a standard error of about
+`r round(sd(samp_scores)/sqrt(length(samp_scores)),1)`.
+
+### Accuracy, sample size, and population size
+
+Suppose someone took a sample of 25 restaurants and provided an estimate of the average food safety score. Is that only 1/4 as accurate because the sample is 1/4 the size of ours?
+
+Suppose someone took a sample of 100 restaurants in New York City where there are 50,000 restaurants (this is a made up number). Is their estimate only 1/10 a accurate because the number of tickets in the box is 10 times yours?
+
+We can use the formula for the SE to answer these questions. Or, if you like, you can carry out your own simulation study to discover them for yourself.  Recall the formula for the SE is 
+
+$$\sqrt{\frac{N-n}{N-1}} \frac{SD(pop)}{\sqrt{n}}$$ 
+
+In the table below, we have calculated these SEs for a generic value of $SD(pop)$.
+
+| Population |  | Sample |  |
+| --- | --- | --- | --- |
+|  | 25 | 100 | 400 |
+| 500        | $0.98 SD(pop)/5$ | $0.90SD(pop)/10$ | $0.45SD(pop)/20$ |
+| 5,000      | $SD(pop)/5$ | $0.99 SD(pop)/10$ | $0.96 SD(pop)/20$ | 
+| 50,000     | $SD(pop)/5$ | $SD(pop)/ 10$ | $SD(pop)/ 20$ | 
+
+
+What do you notice about the relationship between sample size and population size and SE?
+
+<details>
++ When the sample size is large relative to the population, then the correction factor needs to be taken into consideration. When, it's small relative to the population, you can ignore the correction factor.
++ The absolute size of the population doesn't enter into the accuracy of the estimate, as long as the sample size is small relative to the population.
++ A sample of 400 is twice as accurate as a sample of 100, which in turn is twice as accurate as a sample of 25 (assuming the population is relatively much larger than the sample). The accuracy improves according to the square root of the sample size. 
+</details>
+
+## Confidence Interval for a Population Average
+
+Confidence intervals bring in more information from the triptych.
+The confidence interval provides an interval estimate, instead a point estimate, that is based on the sampling distribution of the statistic.
+
+We have seen that the sampling distribution is roughly normal in shape. (Note that this is not always the case. We'll come back to this point later.) We can fill in some of the holes in the triptych with approximations.
+
+![](images/triptych-subs.jpg){fig-align=center width=400} 
+
+The sketch that we have added in the middle panel shows a sampling distribution that looks like the normal curve. Let's make a quick
+digression to talk about the normal curve.
+
+### Normal Curve
+
+The *standard normal curve* looks like the following: 
+
+```{r}
+#| warning: false
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: center
+
+ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1)) + ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal()
+```
+
+
+It's symmetric, unimodal, and has 'normal tails'.
+The area under the curve corresponds to chance, 
+For example, the chance a value chosen at random from a 
+probability distribution that follows the normal curve is less than 0 is 1/2.
+We can use `pnorm()` and symmetry to find other probabilities. 
+We put a few that are commonly used in a table.
+
+| Interval | Area under the normal curve |
+| ---- | ---- |
+| Between -1 and 1 | `r round(pnorm(1)-pnorm(-1), 2)` |
+| Between -1.96 and 1.96 | `r round(pnorm(1.96)-pnorm(-1.96), 2)` |
+| Between -2.58 and 2.58 | `r round(pnorm(2.58)-pnorm(-2.58), 2)` |
+
+If a distribution looks roughly normal in shape, then when we standardize the values (subtract the mean and divide by the SD) to get a standard normal curve. This is helpful when we want to calculate probabilities.
+
+Now back to the task of making an interval estimate.
+
+### Normal Confidence Intervals
+
+When the sampling distribution is roughly normal, 
+then 95% of the time, the process of taking a SRS will give us a sample mean in the interval, 
+
+$$[mean(pop) - 1.96 SE, mean(pop) + 1.96SE]$$
+After, we take our sample, and we observe the value of our sample mean, we can use this notion to construct a 95% confidence interval for the population parameter.
+The interval is as follows:
+
+$$[mean(sample) - 1.96 SE, mean(sample) + 1.96SE]$$
+For your sample, the 95% confidence interval is: 
+[`r round(mean(samp_scores) - 1.96*sd(samp_scores)/10, 1)`,
+`r round(mean(samp_scores) + 1.96*sd(samp_scores)/10, 1)` ]
+and you would say, 
+
+I am 95% confident that the population mean is between `r round(mean(samp_scores) - 1.96*sd(samp_scores)/10, 1)` and 
+`r round(mean(samp_scores) + 1.96*sd(samp_scores)/10, 1)`.
+
+We call this a confidence interval because 95% of the time, an interval constructed in this way will contain the population mean. 
+For the particular interval that you have created, you don't know if it contains the population mean or not. This is why we use the term *confidence* to describe it. We do not use terms such as chance or probability at this point. Chance comes into play when taking the sample, after that our confidence interval is an observed value, and we don't refer to it in probability terms.
+
+### Confidence not Chance
+
+To make this idea clearer. Let's take 100 samples of size 25 from the restaurant scores, and calculate a 95% confidence interval for the population mean for each of our 100 samples. How many of these 100 confidence intervals do you think will include the population mean? 
+Let's simulate it!
+
+
+```{r}
+set.seed(10312022)
+samp25_means <- replicate(100, mean(sample(fs_scores, 25)))
+
+lower <- samp25_means - 1.96 * sd(fs_scores)/5
+upper <- samp25_means + 1.96 * sd(fs_scores)/5
+trial <- 1:100
+cover <- (mean(fs_scores) >= lower) & (mean(fs_scores) <= upper)
+CIs <- data.frame(trial, lower, upper, cover)
+```
+
+```{r}
+#| warning: false
+#| fig-width: 5
+#| fig-height: 6
+#| fig-align: center
+
+ci100 <- ggplot(CIs, aes(y = trial)) +
+  geom_segment(aes(x=lower, y=trial, xend=upper, yend=trial, color= cover), 
+               show.legend=FALSE) +
+  annotate("segment", x=mean(fs_scores), xend=mean(fs_scores),
+                y=0, yend=101, color="black") +
+  labs(x="95% Confidence Interval", y = "Iteration") +
+  theme_minimal()
+
+ci100
+```
+
+
+We have found that `r sum(CIs$cover)` of the 100 confidence intervals cover the population parameter. This is expected. If we simulate another 100 times, we may get a different number, but it is likely to be close to 95. 
+
+## Confidence Interval for a Population Proportion
+
+To gain practice with making confidence intervals, we turn to another example. This time we sample from a 0-1 box. You will see that the process is very much the same, although there are a few simplifications that arise due to the nature of the box.
+
+Suppose we only want to eat at restaurants with food safety scores above 95. Let's make a confidence interval for the proportion of restaurants in San Francisco with scores over 95. 
+
+To tackle this problem, we can modify our box. Since we need only to keep track of whether a score is at least 95 or not, we can replace the scores on the tickets with 0s and 1s, where 1 indicates the score is 95 and above. Of the `r length(fs_scores)` 
+restaurants in San Francisco, `r sum(fs_scores >= 95)` have scores of 95 and above. So our box has `r length(fs_scores)` tickets in it, and `r sum(fs_scores >= 95)` are marked 1, and `r sum(fs_scores < 95)` are marked 0. This time let's take a SRS of 25.
+
+
+
+```{r}
+hi_scores <- 0 + (fs_scores >= 95)
+set.seed(10312022)
+hi_score_samp <- sample(hi_scores, 25)
+hi_score_means <- replicate(100000, mean(sample(hi_scores, 25)))
+```
+
+
+The triptych appears as 
+
+```{r}
+#| warning: false
+#| fig-width: 9
+#| fig-height: 4
+
+hi_score_dist <- ggplot(as.data.frame(hi_scores), 
+                        aes(x=hi_scores, y=..density..)) + 
+      geom_histogram(breaks=seq(-0.5, 1.5, by = 1), 
+                 color="black", fill="gray") + 
+      xlab("Scores over 95") +
+      ylab("Proportion") +
+      ggtitle("Population")
+
+hi_samp_dist <- ggplot(as.data.frame(hi_score_samp), aes(x=hi_score_samp, y=..density..)) + 
+      geom_histogram(breaks=seq(-0.5, 1.5, by = 1), 
+                 color="black", fill="gray") + 
+      xlab("Scores over 95") +
+      ylab("Proportion") +
+      ggtitle("Empirical Distribution")
+
+hi_sampling_dist <- ggplot(as.data.frame(hi_score_means), 
+                        aes(x=hi_score_means, y=..density..)) + 
+      geom_histogram(bins = 20, 
+                 color="black", fill="gray") + 
+      xlab("Proportion over 95") +
+      ylab("Proportion") +
+      ggtitle("Sampling Distribution")
+
+hi_score_dist + hi_sampling_dist + hi_samp_dist
+```
+
+
+
+|             | Population  | Sampling | Empirical   |
+| ----------- | ----------- | ----------- | ----------- |
+| Distribution | left skew | bell-shaped / normal | left skew |
+| Mean | `r round(mean(hi_scores), 2)`      | `r round(mean(hi_score_means), 2)`      | `r mean(hi_score_samp)`  |
+| SD | `r round(sd(hi_scores), 1)`      | `r round(sd(hi_score_means), 2)`      | `r round(sd(hi_score_samp), 1)`  |
+| Size| `r length(hi_scores)` | 1  | `r length(hi_score_samp)` |
+
+In the special case of a 0-1 box:
+
++ The population average is the proportion of 1s in the box, let's call this parameter $p$. 
++ The population SD is $\sqrt{p(1-p)}$.
++ The sampling distribution has mean $p$.
++ Ignoring the finite population correction factor, the SE of the sample proportion is $\frac{\sqrt{p(1-p)}}{\sqrt{n}} =$ `r round(sd(hi_score_means),2)`. 
++ The sample average is the proportion of 1s in the sample.
++ The sample SD follows the formula for the population SD, with the sample proportion taking the place of the population proportion.
+
+Let's make a 99% confidence interval for the proportion of restaurants with scores at least 95, 
+[`r round(mean(hi_score_samp) - 2.58*sd(hi_score_samp)/10, 2)`, `r round(mean(hi_score_samp) + 2.58*sd(hi_score_samp)/10, 2)` ].
+
+## Summary
+
+In summary, we have used the box model, and the accompanying triptych, to understand how a chance process can be used to make inferences from a sample to a population. We have restricted ourselves to the simple random sample and the case of sampling with replacement, but you can imagine how simulation can help us make estimates and compute standard errors under other sampling schemes.
+
+We saw how the size of the sample impacts the standard error of the estimate. The larger the sample, the more accurate our estimates are and in particular the accuracy improves according to $1/\sqrt{n}$. We also found that the size of the population doesn't impact the accuracy, as long as the sample is small compared to the population.   
+
+We made confidence intervals for population averages and proportions. But this approach can be extended to other properties of a population, such as the median of a population, or the coefficient in a regression equation. (We will consider the regression coefficient in the next section.) 
+
+The confidence intervals that we have made are approximate in the following sense:
+
++ The sampling distribution of the statistic is approximately normal.
++ The SD of the sample is used in place of the SD of the population in  calculating the SE of the statistic.
+
+There are times when we are unwilling to make the assumption of normality. This is the topic of the next set of notes. 
+
+

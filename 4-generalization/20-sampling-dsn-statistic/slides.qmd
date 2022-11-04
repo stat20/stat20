@@ -87,4 +87,3 @@ Should we survey students? Does it matter?
 ```{r}
 countdown::countdown(3, bottom = 0)
 ```
-
