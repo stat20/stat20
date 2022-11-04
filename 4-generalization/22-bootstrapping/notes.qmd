@@ -42,14 +42,17 @@ In the bootstrap triptych our goal is to approximate the sampling distribution a
 
 -   When the sample size is small relative to the size of the population, there is little difference between sampling with or without replacement. So, to find our bootstrap sampling distribution, we sample from the bootstrap population with replacement.
 
--   When the sample size is large relative to the size of the population, we "blow up" our sample to be the same size as the population. For example if we sample 100 tickets from a box of 200, then we create a bootstrap population by putting two tickets in the box for every ticket in our sample. Then we take a SRS from this bootstrap population. We won't be considering this approach further in these notes.
+-   When the sample size is large relative to the size of the population, we "blow up" our sample to be the same size as the population. For example if we sample 100 tickets from a box of 200, then we create a bootstrap population by putting two tickets in the box for every ticket in our sample. Then we take a SRS without replacement from this bootstrap population. We won't be considering this approach further in these notes.
 
+
+### Example 1: Food Safety Scores
 Let's create the bootstrap sampling distribution for the example of food safety scores from the earlier notes on confidence intervals. In this example, we have the population of food safety scores from all restaurants in San Francisco, and to demonstrate the ideas in the triptych, we took a simple random sample of 100 of these scores. Now, when bootstrapping, that sample becomes our bootstrap population.
 
 ```{r}
 #| warning: false
 #| fig-width: 5
 #| fig-height: 3
+#| fig-align: center
 
 load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
 
@@ -85,6 +88,7 @@ The *bootstrap sampling distribution* looks like the following.
 #| warning: false
 #| fig-width: 5
 #| fig-height: 3
+#| fig-align: center
 
 boot_sampling_dist <- ggplot(as.data.frame(boot_samp_means), 
                         aes(x=boot_samp_means, y=..density..)) + 
@@ -119,7 +123,7 @@ If we compare this confidence interval to the one we created using the normal cu
 
 Next we provide an example where we truly don't know the population and where we need a confidence interval for a statistic that's a bit more complex than the mean.
 
-## Example: Modeling Adelie Penguin's Body Mass
+### Example 2: Adelie Penguins' Body Mass
 
 We wish to develop a model for the body mass of a penguin as a function of its other body measurements. Since the three kinds of penguins have quite different body mass distributions, we restrict ourselves to the Adelie penguins.
 
@@ -134,6 +138,8 @@ The best one-variable linear model to fit body mass is the model that explains a
 This model has an $R^2$ of 0.54. But, when we add information about the penguin's flipper length, the model does improve somewhat.
 
 ```{r}
+#| code-fold: false
+#| 
 lm_mfs <- lm(body_mass_g ~ sex + flipper_length_mm, 
              data = penguins_A)
 ```
@@ -141,6 +147,8 @@ lm_mfs <- lm(body_mass_g ~ sex + flipper_length_mm,
 The coefficients of the model with sex and flipper length as explanatory variables for body mass is:
 
 ```{r}
+#| code-fold: false
+
 lm_mfs
 ```
 Recall that this model is equivalent to fitting two parallel lines, one for each sex. Below is a scatter plot of body mass and flipper length with the two fitted lines added.
@@ -149,10 +157,11 @@ Recall that this model is equivalent to fitting two parallel lines, one for each
 #| warning: false
 #| fig-width: 5
 #| fig-height: 3
+#| fig-align: center
 
-a_male = lm_mfs$coefficients[1] + lm_mfs$coefficients[2]
-a_female = lm_mfs$coefficients[1] 
-b = lm_mfs$coefficients[3]
+a_male <- lm_mfs$coefficients[1] + lm_mfs$coefficients[2]
+a_female <- lm_mfs$coefficients[1] 
+b <- lm_mfs$coefficients[3]
 
 ggplot(penguins_A, aes(x=flipper_length_mm, y = body_mass_g)) +
   geom_point(aes(color=sex)) +
@@ -163,7 +172,6 @@ ggplot(penguins_A, aes(x=flipper_length_mm, y = body_mass_g)) +
            y = a_female+b*170, yend = a_female+b*210,
            colour = "purple") +
   theme_bw()
-
 ```
 
 The lines aren't particularly steep in slope. If the researchers 
@@ -181,48 +189,52 @@ How can we find a confidence interval for the coefficient of flipper length?
 
 Let's return to the box model and the associated triptych. We would describe the box as:
 
-+ one ticket for every Adelie penguin in Antartica
++ one ticket for every Adelie penguin in Antarctica
 + each ticket has the penguin's body mass, flipper length, and sex written on it (we are ignoring the other measurements)
 + the number of tickets in the box is also unknown, but it is known to be a large number that is thought to be over 100,000.
 + the population distribution of each variable (body mass, flipper length, and sex) is unknown
 + the joint population distribution of how these three measurements vary together is also unknown
 
+Since we are missing all of this information about the population, we use the bootstrap. What does that mean in this situation?
 
-Since we are missing all of this information about the  population, we use the bootstrap. What does that mean in this situation?
-
-+ The data frame for the `r nrow(penguins_A)` Adelie penguins is our bootstrap population
++ The data frame for the `r nrow(penguins_A)` Adelie penguins is our bootstrap population.
 + To sample from the bootstrap population we choose rows from the data frame at random with replacement.
 + The bootstrap statistic is the coefficient for flipper length from fitting the linear model on a bootstrap sample.
 + The bootstrap sampling distribution is the probability distribution of the bootstrap statistic. 
 
-Let's simulate the bootstrap sampling distribution with 10,000 rounds of drawing 146 penguins with replacement from the data frame.
-For each bootstrap sample of 146 penguins, we fit the linear model and retrieve the coefficient for flipper length. 
-
+Let's simulate the bootstrap sampling distribution with 500 rounds of drawing 146 penguins with replacement from the data frame.
+For each bootstrap sample of 146 penguins, we fit the linear model and retrieve the coefficient for flipper length.
 
 ```{r}
-n <- nrow(penguins_A)
-set.seed(110522)
+#| code-fold: false
 
-boot_coef <- replicate(10000, 
-      lm(body_mass_g ~ sex + flipper_length_mm,
-         data = penguins_A[sample(n, replace = TRUE),]
-                 )$coefficients["flipper_length_mm"])
+set.seed(11522)
+
+boot_coef <- penguins_A %>%
+  specify(body_mass_g ~ sex + flipper_length_mm) %>%
+  generate(reps = 500, type = "bootstrap") %>%
+  fit()
 ```
 
-The bootstrap sampling distribution of the coefficient looks like the following.
+Because we're working now with a data frame, we chose to use functions from the `infer` package: `specify()`, `generate()`, and `fit()`. We'll discuss how each of these work in class tomorrow.
+
+The resulting bootstrap sampling distribution of the coefficient for flipper length looks like the following.
 
 ```{r}
 #| warning: false
 #| fig-width: 5
 #| fig-height: 3
+#| fig-align: center
 
-boot_sampling_penguin <- ggplot(as.data.frame(boot_coef), 
-                        aes(x=boot_coef, y=..density..)) + 
-      geom_histogram(bins = 45, 
+boot_sampling_penguin <- boot_coef %>%
+  filter(term == "flipper_length_mm") %>%
+  ggplot(aes(x = estimate,
+             y = ..density..)) +
+  geom_histogram(bins = 45, 
                  color="black", fill="gray") + 
-      xlab("Coefficient for Flipper Length") +
-      ylab("Density") +
-      ggtitle("Bootstrap Sampling Distribution")
+  xlab("Coefficient for Flipper Length") +
+  ylab("Density") +
+  ggtitle("Bootstrap Sampling Distribution")
 
 boot_sampling_penguin
 ```
@@ -234,10 +246,19 @@ We can make a 99% bootstrap confidence interval by finding the 0.5th percentile 
 
 
 ```{r}
-round(quantile(boot_coef, probs = c(0.005, 0.995)), 1)
+#| echo: false
+ci <- boot_coef %>%
+  filter(term == "flipper_length_mm") %>%
+  get_ci(level = .99)
 ```
 
-While the confidence interval is quite wide, running from 7 to 26, 
+```{r}
+boot_coef %>%
+  filter(term == "flipper_length_mm") %>%
+  get_ci(level = .99)
+```
+
+While the confidence interval is quite wide, running from `r round(ci$lower_ci, 2)` to `r round(ci$upper_ci, 2)`, 
 it does not contain 0. This implies that information about the flipper length is a reasonable addition to the model for body mass.
 
 
@@ -248,7 +269,7 @@ In these notes, we have introduced the bootstrap as a technique for approximatin
 
 + While a SRS (and other chance mechanisms for selecting data) typically give us representative data, that is not always the case. We may be unlucky and get an oddball sample. The bootstrap cannot recover from this problem. The bootstrap population will not look like the true population, and so the bootstrap sampling distribution will not be useful. Unfortunately, we don't know when this is happening. However, this is usually not a problem for large samples.
 
-+ The bootstrap works well when the statistic is a mean, or something like a mean, such as a regression coefficient or a standard deviation. The bootstrap tends to have difficulties when an estimator is influenced by outliers, the parameter is based on extreme values of a population distribution, or the sampling distribution of the statistic is far from bell-shaped.
++ The bootstrap works well when the statistic is a mean, or something like a mean, such as a regression coefficient or a standard deviation. The bootstrap tends to have difficulties when the statistic is influenced by outliers, the parameter is based on extreme values of a population distribution, or the sampling distribution of the statistic is far from bell-shaped.
 
 + The bootstrap cannot overcome a lack of randomness in the selection of the sample. The process of taking a bootstrap sample needs to mimic the selection process for taking the original sample. If a sample was not selected by a random process or the sample was chosen by a more complex process than the one used in bootstrapping, then the bootstrap can fail.
 

@@ -69,7 +69,7 @@ The `ppk` data set represents a subset of questions that were asked in the quest
 For each, add a title and axis labels to make it clear what they are showing, and describe the distribution in words. If your visualization is of ordinal data, the bars should be ordered accordingly.
 
     a. Question 10
-    b. Question 18 and 21 (showing the change from before and after the information)
+    b. Question 18 and 21, being sure to show the change of each individual respondent before and after the information.
 
 
 10. Create a new column called `support_before` that takes the response data from question 18 and returns `TRUE` for answers of "Very strongly support", "Strongly support", and "Somewhat support" and FALSE otherwise. What proportion of the survey participants in each class (freshman, sophomore, etc) supported the People's Park Project?
