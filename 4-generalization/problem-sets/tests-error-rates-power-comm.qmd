@@ -13,6 +13,8 @@ In order to study gender bias in promotion decisions, researchers took 48 resume
 
 The `promote` dataset can be found in the `stat20data` library.
 
+Let your significance level $\alpha = 0.01$.
+
 ### part a
 
 Write the null and alternative hypothesis.
@@ -43,7 +45,19 @@ Compute the p-value.
 
 ### part h
 
-Interpret the p-value. What does it say about the consistency between the null hypothesis and the observed data?
+Interpret your p-value based on the significance level we set at the beginning of the problem. \
+\
+What does it say about the consistency between the null hypothesis and the observed data?
+
+### part i 
+
+What is the probability that we conclude that there is a difference in promotion decisions by gender when in truth there is no difference?
+
+### part j
+
+There are 48 bank managers who participated in this experiment. Imagine we increase double the number of managers, so that there are 96 bank managers; 46 who receive resumes with names generally associated with women, 46 of them who receive resumes with had names generally associated with men.
+
+What would happen to the power of your hypothesis test?
 
 ## Question 2
 
@@ -51,10 +65,28 @@ Instead of conducting a hypothesis test concerning the difference in these propo
 
 ## Question 3
 
+For each of the following sets of hypotheses, determine whether committing a Type I error or a Type II error has greater real-world consequences. Explain your decision.
+
+### part a
+
+Imagine that the San Francisco Giants hold a book donation promotion for one of their games where every individual who brings a used book to the stadium is allowed free entry. 
+
+$H_0$: The number of individuals who wish attend the game will be no more than the capacity of the stadium.
+
+$H_A$: The number of individuals who wish to attend the game will exceed the capacity of the stadium.
+
+### part b
+
+$H_0$: A new operating system is **no more effective** for Carbon Health to use on the computers at its clinics than the old operating system.
+
+$H_A$: A new operating system is **more effective** for Carbon Health to use on the computers at its clinics than the old operating system.
+
+### part c
+
+$H_0$: The results of the 2020 United States presidential election were **legitimate** (the right candidate won).
+
+$H_A$: The results of the 2020 United States presidential election were **fraudulent** (the wrong candidate won).
 
 ## Question 4
 
 From the *Communication* lecture - to be released on Friday.
-
-
-
