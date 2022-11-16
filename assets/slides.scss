@@ -238,3 +238,13 @@ div.meta-el {
   left: 10px !important;
   bottom: 10px !important;
 }
+
+.reveal .slide .inversebox {
+  padding-left: .25em;
+  padding-top: .25em;
+  padding-bottom: .25em;
+  padding-right: .25em;
+  color: #FFFFFF;
+  font-weight: bold;
+  background: $presentation-heading-color;
+}
