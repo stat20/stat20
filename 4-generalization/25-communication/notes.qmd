@@ -289,7 +289,7 @@ Our notes have a floating table of contents at the top right. Textbooks provide 
 
 <!-- ## Communicate at different levels -->
 
-<!-- A technical document often communicates to different types of audiences; the same document might be read by both executives, scientists and statisticians. The same reader might shift categories; the first time I read a paper I'm looking for the upshot/core ideas while the second time I read the paper I try to understand the technical details. Therefore, a document (paper, PowerPoint, etc) should communicate its message at 
+<!-- A technical document often communicates to different types of audiences; the same document might be read by both executives, scientists and statisticians. The same reader might shift categories; the first time I read a paper I'm looking for the upshot/core ideas while the second time I read the paper I try to understand the technical details. Therefore, a document (paper, PowerPoint, etc) should communicate its message at multiple levels. -->
 
 <!-- Stating the message then the details is an example of communicating at different levels. Academic papers include details both in the body of the paper and the appendix.  -->
 
