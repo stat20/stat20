@@ -1,0 +1,23 @@
+---
+title: "Communication critique"
+format: html
+editor: visual
+---
+
+For each question below do the following:
+
+-   Discuss how the the principles and strategies for effective communication are or are not used.
+
+-   Are there ways to improve how the content was communicated?
+
+# Question 1: stat20 website
+
+Critique our course website, [www.stat20.org/](https://www.stat20.org/) (either the whole website or a specific part e.g. one set of notes/slides, etc).
+
+# Question 2: a data visualization
+
+Any data visualization. Could be something in our course or anywhere else.
+
+# Question 3: something else
+
+Choose a piece of public communication. This could be anything e.g. a news article, a website, a visualization, etc. Post a link to the piece so we can see what you are talking about. For example, you could pick [AirBnB's pitch deck to venture capitalists](https://www.slideshare.net/PitchDeckCoach/airbnb-first-pitch-deck-editable).
