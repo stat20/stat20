@@ -1,8 +1,8 @@
 ---
-title: "Effective communication"
+title: "Effective Communication"
 subtitle: "Principles and strategies to write, speak, make figures, and program better"
-date: "11/19/2022"
-image: images/3-species.png
+date: "11/20/2022"
+image: images/duck-small.png
 format:
   html:
     code-fold: true
@@ -16,13 +16,13 @@ editor:
     wrap: sentence
 ---
 
-<!-- [[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/2446905) [[PDF]{.btn .btn-primary}](notes.pdf) -->
+[[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/2446905) [[PDF]{.btn .btn-primary}](notes.pdf)
 
 \
 
 At this point in the course we've learned a few statistical analysis methods including descriptive statistics, predictive models, and hypothesis testing. 
 When we analyze data we (usually) analyze it for a purpose such as drawing a scientific conclusion or helping an organization make a decision.
-For the results our our data analysis to matter we have to communicate them to someone else.
+For the results of our data analysis to have an impact, we have to communicate them to someone else.
 
 Communicating well is difficult. 
 It's a skill that requires analytical reasoning, design, engineering, and empathy.
@@ -32,7 +32,7 @@ Simply asking the question "what can I do to communicate this better" goes a lon
 These notes provide principles and strategies to follow to help you communicate more effectively.
 These ideas are useful across the board from programming to writing publications to making presentations to asking a colleague for help.
 
-# Communication in context
+## Communication in context
 
 > Effective communication is optimization under constraints.[^tmt]
 
@@ -61,7 +61,7 @@ In data science we communicate through a variety of mediums:
 
 [^shiny]: [https://shiny.rstudio.com/](https://shiny.rstudio.com/)
 
-# Four priniciples for effective communication
+## Four priniciples for effective communication
 
 
 1. Adapt to your audience
@@ -102,7 +102,7 @@ Many audiences are heterogeneous, which presents an extra challenge.
 
 It's helpful to keep in mind  limitations of your audience.
 You are probably much more familiar with the background/context of your work than your audience is.
-Many people in your audience will only skim or pay half attention to what you are saying. Structuring your communication with these constraints in mind will go a long way (e.g. provide critical context, make the most important messages easy to see with little thought).
+Many people in your audience will only skim or pay half attention to what you are saying. Structuring your communication with these constraints in mind will go a long way.
 
 ### 2. Maximize the signal-to-noise ratio
 
@@ -134,9 +134,9 @@ For example, stop sign conveys its message in three ways: color, text and shape.
 
 <!-- ![http://www.huffingtonpost.com/mitch-ditkoff/the-curious-origins-of-th_b_9720358.html](http://images.huffingtonpost.com/2016-04-18-1460992862-2887201-iStock_000022162723_Small.jpg) -->
 
-![](images/stop_sign.jpg)
+![](images/stop_sign.jpg){fig-align="center" fig-width="250"}
 
-\n
+\
 
 Redundancy can also mean repetition.
 For example, for oral presentations:
@@ -167,7 +167,7 @@ Other trade-offs might include:
 - Targeting one audience vs. another audience
 
 
-# **Communication strategies**
+## Communication strategies
 
 This section discusses a number of strategies for effective communication.
 
@@ -181,7 +181,7 @@ You should constructively attack any work you are editing (both your own or some
 
 [^calum]: Professor Calum Carmichael
 
-When giving someone else feedback on their work it is important to be **constructive, respectful, and empathetic.** 
+When giving someone else feedback on their work it is important to be constructive, respectful, and empathetic. 
 
 If you are publishing something publicly you should want revise it several times. If it's something that really matters then you ideally want to outside feedback from several people.
 
@@ -210,9 +210,7 @@ When designing a graphic, presentation or document you should have a focus on co
 
 [^message]: [https://www.storytellingwithdata.com/blog/2017/3/22/so-what](https://www.storytellingwithdata.com/blog/2017/3/22/so-what). This post is worth reading in full.
 
-State the upshot of your presentation **explicitly** and **at the beginning**. It is tempting to save the conclusions until after presenting the details of the analysis or to assume the audience will just understand the point without you explicitly stating it. While these strategies may be be effective for writing a novel, they are not effective for technical communication.
-
-
+State the upshot of your presentation explicitly and at the beginning. It is tempting to save the conclusions until after presenting the details of the analysis or to assume the audience will just understand the point without you explicitly stating it. While these strategies may be be effective for writing a novel, they are not effective for technical communication.
 
 <!-- Mathematics is communicated this way. Mathematical results are typically presented *theorem-proof* style meaning they state the theorem first then prove the theorem (opposed to first prove the result then state the result that was just proved).  -->
 
@@ -220,7 +218,7 @@ The rule of message before details applies both at a macro-scale (e.g. executive
 
 - Include an executive summary/abstract at the beginning of the document.
 - State the upshot of the graphic in the title (e.g. see [this post](http://www.storytellingwithdata.com/blog/2017/3/22/so-what)).
-- Similarly for a PowerPoint state the upshot in the title of a slide.
+- Similarly for a PowerPoint, state the upshot in the title of a slide.
 - Functions should have informative names (e.g. `str_extract` (good) vs `grep` (bad)).
 - When communicating a complex concept (e.g. a theorem) state the intuition before formally defining the concept.
 
@@ -228,9 +226,9 @@ The rule of message before details applies both at a macro-scale (e.g. executive
 
 Focusing on the message first requires that you understand the message. 
 
-> How can I know what I think until I see what I say.[^anderson]
+> How can I know what I think till I see what I say?[^emforster]
 
-[^anderson]: High-school English teacher Richard Anderson.
+[^emforster]: E.M. Forster
 
 You sometimes have to write for a while until you understand what the thesis is. 
 
@@ -246,7 +244,7 @@ You sometimes have to write for a while until you understand what the thesis is.
 
 Humans tend to process hierarchical information better than sequential information. 
 
-::: {layout-nrow=2}
+::: {layout-nrow=2 fig-align="center" fig-width=500}
 ![Flat/sequential organization](images/flat.png)
 
 ![Hierarchical organization](images/Hierarchical.png)
@@ -286,7 +284,7 @@ Textbooks are organized into: chapters, sections, subsections, paragraphs, sente
 <!-- The audience should be able to navigate easily around a document. Furthermore, the audience should know where they are at all times.  -->
 
 It's helpful for the audience to know where they are (e.g. what lecture notes are you reading?) and ideally be able to navigate easily around a document.
-Our notes have a floating table of contents on the top right. Textbooks provide a table of contents, number section headings and provide page numbers at the bottom. Websites typically have a site map at the top. In oral presentations it can be helpful to show the outline at the beginning and periodically state where you are in the lecture.  
+Our notes have a floating table of contents at the top right. Textbooks provide a table of contents, number section headings, and provide page numbers at the bottom. Websites typically have a site map at the top. In oral presentations it can be helpful to show the outline at the beginning and periodically state where you are in the lecture.  
 
 
 <!-- ## Communicate at different levels -->
@@ -299,117 +297,110 @@ Our notes have a floating table of contents on the top right. Textbooks provide 
 ### Communicate at multiple levels
 
 The report you write about your data analysis might have different target audiences.
-If you analyze the efficacy of a medical device your report might target doctors, business executives, and statisticians Different members of the target audience will be interested in different parts of your report. The executives might just want to know the binary  yes/no the device works; the doctors might want to know which patients the device was most effective for; the statisticians might want to know the details of the analysis you performed. 
+If you analyze the efficacy of a medical device, your report might target doctors, business executives, and statisticians. Different members of the target audience will be interested in different parts of your report. The executives might just want to know the binary  yes/no the device works; the doctors might want to know which patients the device was most effective for; the statisticians might want to know the details of the analysis you performed. 
 
 To satisfy all of these people simultaneously you have to write at multiple levels. For example, most scientific papers have a title, abstract, introduction, methods section, results section, and appendix. The executives might only want to read the title/abstract; the doctors might also want to read the results; the statisticians might be interested in details in the methods section and appendix.
 
 
-# Visualizations
+## Visualizations
 
 Visualizations are some of the most powerful tools for communicating in data science.
 For a given analysis the best plot depends on the context. 
 We often make two versions of the same plot, a quick exploratory plot then a more careful communicatory plot.
 These two types of plots serve different purposes.
 
-To illustrate these two types of plots lets use a dataset from Capital Bikeshare.[^capital]
+To illustrate these two types of plots, let's use a dataset from Capital Bikeshare.[^capital]
 Capital Bikeshare is a bike sharing system for Washington DC that makes their hourly rental data publicly available.
 
 [^capital]: See [https://capitalbikeshare.com/how-it-works](https://capitalbikeshare.com/how-it-works). They make their data publicly available at [https://ride.capitalbikeshare.com/system-data](https://ride.capitalbikeshare.com/system-data).
 
 ```{r}
 library(tidyverse)
-bikes <- read_csv('https://raw.githubusercontent.com/idc9/stor390/master/data/bikes_2011.csv')
+bikes <- read_csv('https://www.dropbox.com/s/f7wj0oxxckhvrn8/bikes_2011.csv?dl=1')
 bikes %>% 
     select(hr, cnt, workingday)
 ```
-
-
 
 
 ### Exploratory plot: speed and details
 
 When we first analyze a data set we often rapidly make many exploratory plots. Exploratory plots emphasize details over message and quantity over quality.
 
-The target audience for an exploratory plot is the person making it and possibly close collaborators. It is created quickly (e.g. 2 lines of code) and contains lots of information (e.g. every data point).
-
+The target audience for an exploratory plot is the person making it and possibly close collaborators. It is created quickly (e.g. 2 lines of code) and contains lots of information.
 
 Let's take a look at the rental counts per hour over the course of the year for Capital Bikeshare (note working day = Mon-Fri vs. Weekend/Holiday).
 
 ```{r}
+#| fig-align: center
 ggplot(bikes) +
     geom_point(aes(x=hr, y=cnt, color=factor(workingday)))
 ```
 
-<!-- Points to notice about the exploratory plot: -->
+This quick-and-dirty plot might be informative to an analyst familiar with this kind of data, but would be puzzling to the average viewer. Consider how much detail is present in this plot. Every observation in the data set is present in this plot - over 8,000 of them. With a careful eye, you can use the white grid lines to get a good sense of the precise x- and y-values of each observation. This is aided by the axes, which have many tick marks displaying the different values they can take.
 
-<!-- - Grid is overlayed on the plot background. -->
-<!-- - Every data point is plotted. -->
-<!-- - Axes titles are not spelled out (e.g. hr vs. hour). -->
-<!-- - Many axis tick marks (e.g. hr = 0, 5, 10, 15, 20). -->
-<!-- - No title. -->
-
+This detail might be helpful to the seasoned analyst but could be confusing to the average viewer. Would they know what "factor(workingday)" means? Would they be able to come away with a single clear message of what the data show? Probably not. For that, we need a communicatory plot.
 
 ### Communicatory plot: message and quality
 
 After concluding an analysis, the final presentation will likely have several figures in them whose purpose is to effectively communicate the findings to the intended audience. The main purpose of a communicatory plot is message, not details. 
-
-Often creating a good communicatory visualization is about *decluttering*. Less is more! For example, watch [this blog post](http://www.storytellingwithdata.com/blog/2017/3/29/declutter-this-graph) step through decluttering a poor visualization.
+Often creating a good communicatory visualization is about decluttering. Less is more! For example, watch [this blog post](http://www.storytellingwithdata.com/blog/2017/3/29/declutter-this-graph) step through decluttering a poor visualization.
 
 The plot below is designed to communicate the findings to a general audience (e.g. business executives). This plot took longer to make (30 lines of code) and focuses on the message.
 
 ```{r}
+#| fig-align: center
 # reduce to hourly data
 by_hour <- bikes %>% 
     mutate(workingday = ifelse(workingday == 1, 'yes', 'no')) %>% 
     group_by(workingday, hr) %>% 
-    summarise(cnt=median(cnt))
+    summarise(cnt = median(cnt))
     
 morning_peak <- filter(by_hour, hr == 8, workingday=='yes')$cnt
 afternoon_peak <- filter(by_hour, hr == 17, workingday=='yes')$cnt
 
 ggplot(by_hour) +
-    geom_line(aes(x=hr, y=cnt, color=workingday, linetype=workingday), size=1) +
-    theme(panel.background = element_blank(), # backgound/axis
-          axis.line = element_line(colour = "black", size=.1),
-          legend.key = element_rect(fill = "white")) +
-    scale_x_continuous(breaks=c(6, 12, 18, 23), # axis
-                       limits=c(0,23),
-                       expand=c(0, 1)) +
-    scale_y_continuous(breaks=c(0, 200, 400),
-                       limits=c(0, 450),
-                       expand=c(0,0)) +
-    labs(x='Hour of the day',
-         y='Rider Count (median)',
-         title='Rental patterns differ between working vs. non-working days') +
-    guides(color=guide_legend(title="Working Day"),
-           shape=guide_legend(title="Working Day"),
-           linetype=guide_legend(title="Working Day")) +
-    geom_text(aes(x=12, y=430, label='rush hour')) +
-    geom_segment(aes(x=10.3, y=427, xend=8.5, yend=morning_peak), size=.1,
-                 arrow=arrow(length=unit(0.03, 'npc')))+
-     geom_segment(aes(x=13.5, y=427, xend=16.5, yend=afternoon_peak), size=.1,
-                  arrow=arrow(length=unit(0.03, 'npc')))
+  geom_line(aes(x = hr, y = cnt, 
+                color = workingday, linetype = workingday), linewidth = 1) +
+  theme(panel.background = element_blank(), # backgound/axis
+        axis.line = element_line(colour = "black", size = .1),
+        legend.key = element_rect(fill = "white")) +
+  scale_x_continuous(breaks=c(6, 12, 18, 23), # axis
+                     limits=c(0,23),
+                     expand=c(0, 1)) +
+  scale_y_continuous(breaks=c(0, 200, 400),
+                     limits=c(0, 450),
+                     expand=c(0,0)) +
+  labs(x = 'Hour of the day',
+       y = 'Rider Count (median)',
+       title = 'Rental patterns differ between working vs. non-working days') +
+  guides(color = guide_legend(title = "Working Day"),
+         shape = guide_legend(title = "Working Day"),
+         linetype = guide_legend(title = "Working Day")) +
+  geom_text(aes(x = 12, y = 430, label = 'rush hour')) +
+  geom_segment(aes(x = 10.3, y = 427, xend = 8.5, yend = morning_peak),
+               linewidth = .1,
+               arrow = arrow(length = unit(0.03, 'npc'))) +
+  geom_segment(aes(x = 13.5, y = 427, xend = 16.5, yend = afternoon_peak),
+               linewidth = .1, arrow = arrow(length=unit(0.03, 'npc')))
 ```
 
-
-Takeaways from the communicatory plot:
+Notice the design decisions that were made to hone the message:
 
 - Title states the message of the plot.
-- Use median count per hour as a summary (i.e. we don't show every data point).
-- Axes are labeled properly.
+- Use median count per hour as a summary instead of showing every data point.
+- Axes are labeled in clear english.
 - No background grid and fewer axis ticks.
     - The precise numbers are not important for the message.
-- Rush hour peaks are labeled for emphasis.
+- Rush hour peaks are annotated for emphasis.
 - Working data is coded in two ways:
     - Color
     - Line type
-    
     
 You can learn how to customize ggplot through some googling.[^ggplot]
 
 [^ggplot]: [These notes](https://idc9.github.io/stor390/notes/custom_viz/custom_viz.html) give some example code for customizing ggplot.
 
-# Programming
+## Programming
 
 Writing code is an act of communication with two audiences: the computer and other programmers.
 Other programmers include a future you. 
@@ -422,56 +413,54 @@ Readability in software is an engineering principle; the easier your code is to 
 There are a few techniques you can use to make your code more readable.
 
 
-- Use **informative names** that tell you what a variable/function/file is. For example, `avg_loudness=mean(cat_meow_volumes)` is better than `a=mean(cmv)`.
+- Use **informative names** that tell you what a variable/function/file is. For example, `avg_loudness = mean(cat_meow_volumes)` is better than `a = mean(cmv)`.
 
 - Follow a **consistent and standard naming format** -- typically either `snake_case` or `CammelCase`.
 
-- Use line **breaks an indentation**. For example, compare the following two snippets that do the same thing
+- Use **line breaks and indentation**. For example, compare the following two snippets that do the same thing:
 
 ```{r}
 #| eval: false
+#| code-fold: false
 
 library(stat20data)
 data(ppk)
     
-ppk %>%  drop_na(Q10) %>% mutate(Q10=factor(Q10, levels = c("Very important", "Somewhat important", "Neither important nor unimportant", "Somewhat unimportant",  "Very unimportant"))) %>%  ggplot(aes(y=Q10)) + geom_bar()+ ylab("Importance rating") +  ggtitle("Importance rating breakdown")
+ppk %>%  drop_na(Q10) %>% mutate(Q10 = factor(Q10, levels = c("Very important", "Somewhat important", "Neither important nor unimportant", "Somewhat unimportant",  "Very unimportant"))) %>%  ggplot(aes(y = Q10)) + geom_bar()+ ylab("Importance rating") +  ggtitle("Importance rating breakdown")
 ```
-
 
 ```{r}
 #| eval: false
+#| code-fold: false
 
 ppk %>% 
-    drop_na(Q10) %>%
-    mutate(Q10=factor(Q10, levels = c("Very important",
+  drop_na(Q10) %>%
+  mutate(Q10 = factor(Q10, levels = c("Very important",
                                       "Somewhat important",
                                       "Neither important nor unimportant",
                                       "Somewhat unimportant", 
                                       "Very unimportant"))) %>% 
-    ggplot(aes(y=Q10)) +
-    geom_bar()+
-    ylab("Importance rating") + 
-    ggtitle("Importance rating breakdown")
+  ggplot(aes(y = Q10)) +
+  geom_bar()+
+  ylab("Importance rating") + 
+  ggtitle("Importance rating breakdown")
 ```
 
-
-- **Comment your code**. You can add comments to your code -- lines of code that are read by humans but not the computer -- with the `#` symbol. )
+- **Comment your code**. You can add comments to your code -- lines of code that are read by humans but not the computer -- with the `#` symbol.
 
 ```{r}
 #| eval: false
+#| code-fold: false
 
 # Calculate the average support for the People's Park Project by year before taking the survey
 # notice we have introduced a new function-- rename!
 ppk %>% 
-    rename(year=Q1, support_before=Q18) %>% 
-    group_by(year) %>% 
-    summarise(avg_support=mean(support_before, na.rm=T))
+  rename(year = Q1, support_before = Q18) %>% 
+  group_by(year) %>% 
+  summarise(avg_support = mean(support_before, na.rm = T))
 ```
 
-
-
-- Follow a **consistent coding style**.
-Many people follow [Hadley's style guide](http://adv-r.had.co.nz/Style.html) for R code.
+- More generally, follow a **consistent coding style**. The norms you use for naming your variables, where you add white space and indentation, how to structure your comments - those are all wrapped up in what's called the "style" of your code. Most large organizations and companies that write and share code, will insist that their coders write code in the same style. Many of them follow what's called the [Tidyverse style guide](https://style.tidyverse.org/) for R code.
 
 
 ### Project organization
@@ -487,10 +476,10 @@ Files should be given descriptive names and ideally follow one of the standardiz
 ### Asking for help
 
 
-::: {layout-ncol=2 layout-valign="bottom"}
-![Bad question](images/bad_question.png)
+::: {layout=[10,20] layout-valign="bottom"}
+![Bad question](images/bad_question.png){ style="border:1px solid black"}
 
-![Good quesiton](images/good_question.png)
+![Good question](images/good_question.png){ style="border:1px solid black"}
 :::
 
 
@@ -506,19 +495,17 @@ Ideally you should some example code that your colleague can run to reproduce th
 [^questions]:  Here are three blog posts that go into more detail:
 [How do I ask a good question?](https://stackoverflow.com/help/how-to-ask), [How to write a reproducible example](http://adv-r.had.co.nz/Reproducibility.html), and [How to create a Minimal, Complete, and Verifiable example](https://stackoverflow.com/help/mcve). The [reprex](https://reprex.tidyverse.org/) package is very useful for writing good questions in R.
 
-![](images/duck.png){fig-align=center width="400"}
-<!-- Duck from https://www.nytimes.com/2011/11/13/magazine/the-rubber-duck-knows-no-frontiers.html -->
- 
+Often the act of asking a good question will cause you to figure out the problem. By simply trying to explain what's going on can cause you to see the issue. This called *rubber duck debugging*[^duck] and can be an effective strategy to debug your code. Before bugging someone else with your error, first try picking up a rubber duck and explaining to problem to it.[^email] 
 
-Often the act of simply asking a good question will cause you to figure out the problem. By simply trying to explain what's going on can cause you to see the issue. This called *rubber duck debugging*[^duck] and can be an effective strategy to debug your code; pick up a rubber duck and explain your problems.[^email] 
+![](images/duck.png){fig-align=center width="150"}
+
+<!-- Duck from https://www.nytimes.com/2011/11/13/magazine/the-rubber-duck-knows-no-frontiers.html -->
 
 [^duck]: [https://en.wikipedia.org/wiki/Rubber_duck_debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging)
 
 [^email]: I tend to draft an email asking my question to a busy colleague whose respect is important to me. This forces me to think though the issue as much as I can.
 
-
-
-# Summary
+## Summary
 
 These notes discussed four principles of communication (audience, signal-to-noise, redundancy, and trade offs) and a number of strategies (revision, message, hierarchy, structure, and multiple levels) to communicate more effectively. We then looked at how these strategies apply to making visualizations and programming. The content in these notes are guidelines, not laws. These are good things to default to, but there can be good reason to break from these guidelines. For example, suspense is a useful rhetorical device to keep an audience engaged, which may warrant not stating the message upfront. Furthermore, what "most effective" means can be subjective!
 
