@@ -16,6 +16,7 @@ editor:
     wrap: sentence
 ---
 
+
 <!-- [[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/2446905) [[PDF]{.btn .btn-primary}](notes.pdf) -->
 
 \
@@ -316,12 +317,14 @@ Capital Bikeshare is a bike sharing system for Washington DC that makes their ho
 
 [^capital]: See https://capitalbikeshare.com/how-it-works. They make their data publically available at https://ride.capitalbikeshare.com/system-data.
 
+
 ```{r}
 library(tidyverse)
 bikes <- read_csv('https://raw.githubusercontent.com/idc9/stor390/master/data/bikes_2011.csv')
 bikes %>% 
     select(hr, cnt, workingday)
 ```
+
 
 
 
@@ -335,10 +338,12 @@ The target audience for an exploratory plot is the person making it and possibly
 
 Let's take a look at the rental counts per hour over the course of the year for Captal Bikeshare (note working day = Mon-Fri vs. Weekend/Holiday).
 
+
 ```{r}
 ggplot(bikes) +
     geom_point(aes(x=hr, y=cnt, color=factor(workingday)))
 ```
+
 
 <!-- Points to notice about the exploratory plot: -->
 
@@ -356,6 +361,7 @@ After concluding an analysis, the final presentation will likely have several fi
 Often creating a good communicatory visualization is about *decluttering*. Less is more! For example, watch [this blog post](http://www.storytellingwithdata.com/blog/2017/3/29/declutter-this-graph) step through decluttering a poor visualization.
 
 The plot below is designed to communicate the findings to a general audience (e.g. business executives). This plot took longer to make (30 lines of code) and focuses on the message.
+
 
 ```{r}
 # reduce to hourly data
@@ -390,6 +396,7 @@ ggplot(by_hour) +
      geom_segment(aes(x=13.5, y=427, xend=16.5, yend=afternoon_peak), size=.1,
                   arrow=arrow(length=unit(0.03, 'npc')))
 ```
+
 
 
 Takeaways from the communicatory plot:
@@ -428,6 +435,7 @@ There are a few techniques you can use to make your code more readable.
 
 - Use line **breaks an indentation**. For example, compare the following two snippets that do the same thing
 
+
 ```{r}
 #| eval: false
 
@@ -436,7 +444,6 @@ data(ppk)
     
 ppk %>%  drop_na(Q10) %>% mutate(Q10=factor(Q10, levels = c("Very important", "Somewhat important", "Neither important nor unimportant", "Somewhat unimportant",  "Very unimportant"))) %>%  ggplot(aes(y=Q10)) + geom_bar()+ ylab("Importance rating") +  ggtitle("Importance rating breakdown")
 ```
-
 
 ```{r}
 #| eval: false
@@ -455,7 +462,9 @@ ppk %>%
 ```
 
 
+
 - **Comment your code**. You can add comments to your code -- lines of code that are read by humans but not the computer -- with the `#` symbol. )
+
 
 ```{r}
 #| eval: false
@@ -467,6 +476,7 @@ ppk %>%
     group_by(year) %>% 
     summarise(avg_support=mean(support_before, na.rm=T))
 ```
+
 
 
 
@@ -521,6 +531,7 @@ Often the act of simply asking a good question will cause you to figure out the 
 # Summary
 
 These notes discussed four principles of communication (audience, signal-to-noise, redundancy, and trade offs) and a number of strategies (revision, message, hierarchy, structure, and multiple levels) to communicate more effectively. We then looked at how these strategies apply to making visualizations and programming. The content in these notes are guidelines, not laws. These are good things to default to, but there can be good reason to break from these guidelines. For example, suspense is a useful rhetorical device to keep an audience engaged, which may warrant not stating the message upfront. Furthermore, what "most effective" means can be subjective!
+
 
 
 
