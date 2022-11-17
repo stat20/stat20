@@ -503,7 +503,7 @@ Often the act of asking a good question will cause you to figure out the problem
 
 [^duck]: [https://en.wikipedia.org/wiki/Rubber_duck_debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging)
 
-[^email]: I tend to draft an email asking my question to a busy colleague whose respect is important to me. This forces me to think though the issue as much as I can.
+[^email]: I tend to draft an email asking my question to a busy colleague whose respect is important to me, which forces me to really think through the issue.
 
 ## Summary
 
