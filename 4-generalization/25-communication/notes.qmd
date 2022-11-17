@@ -71,7 +71,7 @@ In data science we communicate through a variety of mediums:
 
 The first three of these principles come from *Trees, Maps and Theorems*[^tmt] and are inspired by information theory.[^info] 
 
-[^info]: https://en.wikipedia.org/wiki/Information_theory
+[^info]: [https://en.wikipedia.org/wiki/Information_theory](https://en.wikipedia.org/wiki/Information_theory)
 
 
 
@@ -512,7 +512,7 @@ Ideally you should some example code that your colleague can run to reproduce th
 
 Often the act of simply asking a good question will cause you to figure out the problem. By simply trying to explain what's going on can cause you to see the issue. This called *rubber duck debugging*[^duck] and can be an effective strategy to debug your code; pick up a rubber duck and explain your problems.[^email] 
 
-[^duck]: https://en.wikipedia.org/wiki/Rubber_duck_debugging
+[^duck]: [https://en.wikipedia.org/wiki/Rubber_duck_debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging)
 
 [^email]: I tend to draft an email asking my question to a busy colleague whose respect is important to me. This forces me to think though the issue as much as I can.
 
