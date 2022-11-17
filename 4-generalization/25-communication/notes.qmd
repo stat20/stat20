@@ -254,7 +254,7 @@ Humans tend to process hierarchical information better than sequential informati
 
 
 
-Textbooks are organized into: chapters, sections, subsections, paragraphs, sentences etc. Imagine if a textbook were just a straight wall of text! We categorize living creatures into a hierarchical taxonomy (kingdom, phylum, ...). Items in grocery stores are group together in aisles/sections and the aisles are roughly arranged to be similar (e.g. the fruit section is near the vegetable section). The [topics in stat20](https://www.stat20.org/schedule.html) are grouped together into units (e.g. questions, prediction, generalization). The [taxonomy of data](https://www.stat20.org/1-questions-and-data/02-taxonomy-of-data/notes.html#a-taxonomy-of-data) gives a hierachical organization of data types.
+Textbooks are organized into: chapters, sections, subsections, paragraphs, sentences etc. Imagine if a textbook were just a straight wall of text! We categorize living creatures into a hierarchical taxonomy (kingdom, phylum, ...). Items in grocery stores are group together in aisles/sections and the aisles are roughly arranged to be similar (e.g. the fruit section is near the vegetable section). The [topics in stat20](https://www.stat20.org/schedule.html) are grouped together into units (e.g. questions, prediction, generalization). The [taxonomy of data](https://www.stat20.org/1-questions-and-data/02-taxonomy-of-data/notes.html#a-taxonomy-of-data) gives a hierarchical organization of data types.
 <!-- A complex function is composed of many helper functions.  -->
 
 
@@ -311,10 +311,10 @@ For a given analysis the best plot depends on the context.
 We often make two versions of the same plot, a quick exploratory plot then a more careful communicatory plot.
 These two types of plots serve different purposes.
 
-To illustrate these two types of plots lets use a dataset from Capical Bikeshare.[^capital]
+To illustrate these two types of plots lets use a dataset from Capital Bikeshare.[^capital]
 Capital Bikeshare is a bike sharing system for Washington DC that makes their hourly rental data publicly available.
 
-[^capital]: See https://capitalbikeshare.com/how-it-works. They make their data publically available at https://ride.capitalbikeshare.com/system-data.
+[^capital]: See [https://capitalbikeshare.com/how-it-works](https://capitalbikeshare.com/how-it-works). They make their data publicly available at [https://ride.capitalbikeshare.com/system-data](https://ride.capitalbikeshare.com/system-data).
 
 ```{r}
 library(tidyverse)
@@ -333,7 +333,7 @@ When we first analyze a data set we often rapidly make many exploratory plots. E
 The target audience for an exploratory plot is the person making it and possibly close collaborators. It is created quickly (e.g. 2 lines of code) and contains lots of information (e.g. every data point).
 
 
-Let's take a look at the rental counts per hour over the course of the year for Captal Bikeshare (note working day = Mon-Fri vs. Weekend/Holiday).
+Let's take a look at the rental counts per hour over the course of the year for Capital Bikeshare (note working day = Mon-Fri vs. Weekend/Holiday).
 
 ```{r}
 ggplot(bikes) +
