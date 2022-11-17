@@ -59,7 +59,7 @@ In data science we communicate through a variety of mediums:
 - Speaking
 - Literate programming (e.g. Quarto document)
 
-[^shiny]: https://shiny.rstudio.com/
+[^shiny]: [https://shiny.rstudio.com/](https://shiny.rstudio.com/)
 
 # Four priniciples for effective communication
 
