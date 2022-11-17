@@ -193,15 +193,15 @@ If you are publishing something publicly you should want revise it several times
 
 
 
-### State the message first and explicitly then state the details
+### State the message first and explicitly, *then* state the details
 
-It's usually a good idea to state the message *before* the details of the argument in a presentation/written document. The message is often more important than the details. Therefore the structure of the document tends to reflect this imbalance. The audience may not appreciate the message without motivation so providing context should come before the message. 
+It's usually a good idea to state the message *before* the details of the argument in a presentation/written document. The message is often more important than the details, and the structure of the document tends to reflect this imbalance. The audience may not appreciate the message without motivation so providing context should come before the message. 
 
 Many professional communications are structured as:
 
 1. Motivation (what is the problem and why should the audience care?)
 2. The main message (how did you solve the problem?)
-3. The details supporting the main results.
+3. The details supporting the main results
 
 
 When designing a graphic, presentation or document you should have a focus on conveying the message -- the "so what?" 
@@ -210,11 +210,11 @@ When designing a graphic, presentation or document you should have a focus on co
 
 [^message]: [https://www.storytellingwithdata.com/blog/2017/3/22/so-what](https://www.storytellingwithdata.com/blog/2017/3/22/so-what). This post is worth reading in full.
 
-State the upshot of your presentation explicitly and at the beginning. It is tempting to save the conclusions until after presenting the details of the analysis or to assume the audience will just understand the point without you explicitly stating it. While these strategies may be be effective for writing a novel, they are not effective for technical communication.
+State the upshot of your presentation explicitly and at the beginning. It is tempting to save the conclusions until after presenting the details of the analysis or to assume the audience will just understand the point without you explicitly stating it. While these strategies may be effective for writing a novel, they are not effective for technical communication.
 
 <!-- Mathematics is communicated this way. Mathematical results are typically presented *theorem-proof* style meaning they state the theorem first then prove the theorem (opposed to first prove the result then state the result that was just proved).  -->
 
-The rule of message before details applies both at a macro-scale (e.g. executive summary) and at a micro-scale (e.g. plot titles). Some concrete recommendations include:
+The rule of *message before details* applies both at a macro-scale (e.g. executive summary) and at a micro-scale (e.g. plot titles). Some concrete recommendations include:
 
 - Include an executive summary/abstract at the beginning of the document.
 - State the upshot of the graphic in the title (e.g. see [this post](http://www.storytellingwithdata.com/blog/2017/3/22/so-what)).
@@ -289,7 +289,7 @@ Our notes have a floating table of contents at the top right. Textbooks provide 
 
 <!-- ## Communicate at different levels -->
 
-<!-- A technical document often communicates to different types of audiences; the same document might be read by both executives, scientists and statisticians. The same reader might shift categories; the first time I read a paper I'm looking for the upshot/core ideas while the second time I read the paper I try to understand the technical details. Therefore, a document (paper, PowerPoint, etc) should communicate its message at multiple levels. -->
+<!-- A technical document often communicates to different types of audiences; the same document might be read by both executives, scientists and statisticians. The same reader might shift categories; the first time I read a paper I'm looking for the upshot/core ideas while the second time I read the paper I try to understand the technical details. Therefore, a document (paper, PowerPoint, etc) should communicate its message at 
 
 <!-- Stating the message then the details is an example of communicating at different levels. Academic papers include details both in the body of the paper and the appendix.  -->
 
@@ -415,7 +415,7 @@ There are a few techniques you can use to make your code more readable.
 
 - Use **informative names** that tell you what a variable/function/file is. For example, `avg_loudness = mean(cat_meow_volumes)` is better than `a = mean(cmv)`.
 
-- Follow a **consistent and standard naming format** -- typically either `snake_case` or `CammelCase`.
+- Follow a **consistent and standard naming format** -- typically either `snake_case` or `CamelCase`.
 
 - Use **line breaks and indentation**. For example, compare the following two snippets that do the same thing:
 
@@ -465,9 +465,9 @@ ppk %>%
 
 ### Project organization
 
-Use hierarchy to organized complex projects. For example, organize your work into folders and sub-folders. Take a look at the [stat20 github repository](https://github.com/stat20/course-materials). The units are collected at the top of the directory (e.g. 3-prediction/), within a unit the lectures are collected together (e.g. 15-classification/), which then contain the notes, slides, etc.
+Use hierarchy to organize complex projects. For example, organize your work into folders and sub-folders. Take a look at the [stat20 github repository](https://github.com/stat20/course-materials). The units are collected at the top of the directory (e.g. 3-prediction/), within a unit the lectures are collected together (e.g. 15-classification/), which then contain the notes, slides, etc.
 
-Files should be given descriptive names and ideally follow one of the standardized naming formats (e.g. `snake_case` or `CammelCase`).[^no_space]
+Files should be given descriptive names and ideally follow one of the standardized naming formats (e.g. `snake_case` or `CamelCase`).[^no_space]
 
 [^no_space]: It's best to avoid putting spaces in file name because spaces in file names can mess up code that works with file names.
 
@@ -485,7 +485,7 @@ Files should be given descriptive names and ideally follow one of the standardiz
 
 We all get stuck coding and need to ask a friend/colleague/tutor for help.
 The way we ask for help matters.
-Asking questions in a more effective manner makes the question more likely to be answered and answered faster.
+Asking questions in a more effective manner makes the question more likely to be answered, and answered faster.
 A good question is 1) **complete**, 2) **minimal**, and 3) **reproducible.**[^questions]
 In other words, all of the relevant information needed to understand the issue is provided and all irrelevant information is stripped away.
 For example, you should send a snippet of R code instead of an entire qmd document with the little bit of relevant code buried in the middle.
