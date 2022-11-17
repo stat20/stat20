@@ -1,7 +1,7 @@
 ---
 title: "Effective Communication"
 subtitle: "Principles and strategies to write, speak, make figures, and program better"
-date: "11/20/2022"
+date: "11/18/2022"
 image: images/duck-small.png
 format:
   html:
