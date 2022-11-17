@@ -16,7 +16,7 @@ editor:
     wrap: sentence
 ---
 
-<!-- [[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233) [[PDF]{.btn .btn-primary}](notes.pdf) -->
+<!-- [[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/2446905) [[PDF]{.btn .btn-primary}](notes.pdf) -->
 
 \
 
