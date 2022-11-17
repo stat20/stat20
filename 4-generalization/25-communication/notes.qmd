@@ -208,7 +208,7 @@ When designing a graphic, presentation or document you should have a focus on co
 
 > Too often, when we communicate with data, we don't make our point clear. We leave our audience guessing. **Your audience should never have to guess what message you want them to know.** The onus is on the person communicating the information (you!) to make that clear.[^message]
 
-[^message]: https://www.storytellingwithdata.com/blog/2017/3/22/so-what This blog post is worth reading in full.
+[^message]: [https://www.storytellingwithdata.com/blog/2017/3/22/so-what](https://www.storytellingwithdata.com/blog/2017/3/22/so-what). This post is worth reading in full.
 
 State the upshot of your presentation **explicitly** and **at the beginning**. It is tempting to save the conclusions until after presenting the details of the analysis or to assume the audience will just understand the point without you explicitly stating it. While these strategies may be be effective for writing a novel, they are not effective for technical communication.
 
