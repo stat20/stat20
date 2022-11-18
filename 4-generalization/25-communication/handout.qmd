@@ -6,7 +6,9 @@ editor: visual
 
 For each question below do the following:
 
--   Discuss how the the principles and strategies for effective communication are or are not used.
+-   Discuss how each of the four principles for effective communication are or are not used.
+
+-   Discuss how each of the strategies for effective communication are or are not used.
 
 -   Are there ways to improve how the content was communicated?
 
@@ -16,7 +18,18 @@ Critique our course website, [www.stat20.org/](https://www.stat20.org/) (either 
 
 # Question 2: a data visualization
 
-Any data visualization. Could be something in our course or anywhere else.
+Any data visualization. Could be something in our course or anywhere else. Some suggestions\
+\
+
+-   Check out [Flowing data](https://flowingdata.com/made-by-flowingdata/), for example
+
+    -   [Where bars out number grocery stores](https://flowingdata.com/2014/05/29/bars-versus-grocery-stores-around-the-world/)
+
+    -   [Commonnness of Divorce in America](https://flowingdata.com/2022/06/07/commonness-of-divorce-in-america/)
+
+    -   [Life satisfaction and age](https://flowingdata.com/2022/11/10/life-satisfaction-and-age/)
+
+    -   [Rhythm of food](https://rhythm-of-food.net/)
 
 # Question 3: something else
 
