@@ -45,11 +45,11 @@ Compute the p-value.
 
 ### part h
 
-Interpret your p-value based on the significance level we set at the beginning of the problem. \
+Interpret your p-value based on the significance level we set at the beginning of the problem.\
 \
 What does it say about the consistency between the null hypothesis and the observed data?
 
-### part i 
+### part i
 
 What is the probability that we conclude that there is a difference in promotion decisions by gender when in truth there is no difference?
 
@@ -69,7 +69,7 @@ For each of the following sets of hypotheses, determine whether committing a Typ
 
 ### part a
 
-Imagine that the San Francisco Giants hold a book donation promotion for one of their games where every individual who brings a used book to the stadium is allowed free entry. 
+Imagine that the San Francisco Giants hold a book donation promotion for one of their games where every individual who brings a used book to the stadium is allowed free entry.
 
 $H_0$: The number of individuals who wish attend the game will be no more than the capacity of the stadium.
 
@@ -87,6 +87,32 @@ $H_0$: The results of the 2020 United States presidential election were **legiti
 
 $H_A$: The results of the 2020 United States presidential election were **fraudulent** (the wrong candidate won).
 
-## Question 4
+## Questions 4 and 5
 
-From the *Communication* lecture - to be released on Friday.
+For the following two questions below do the following:
+
+-   Discuss how each of the four principles for effective communication are or are not used.
+
+-   Discuss how each of the strategies for effective communication are or are not used.
+
+-   Are there ways to improve how the content was communicated?
+
+#### Question 4: stat20 website
+
+Critique our course website, [www.stat20.org/](https://www.stat20.org/) (either the whole website or a specific part e.g. one set of notes/slides, etc).
+
+### Question 5: a data visualization
+
+Any data visualization. Could be something in our course or anywhere else. Some suggestions\
+\
+
+-   Check out [Flowing data](https://flowingdata.com/made-by-flowingdata/), for example
+
+    -   [Where bars out number grocery stores](https://flowingdata.com/2014/05/29/bars-versus-grocery-stores-around-the-world/)
+
+    -   [Commonnness of Divorce in America](https://flowingdata.com/2022/06/07/commonness-of-divorce-in-america/)
+
+    -   [Life satisfaction and age](https://flowingdata.com/2022/11/10/life-satisfaction-and-age/)
+
+    -   [Rhythm of food](https://rhythm-of-food.net/)
+
