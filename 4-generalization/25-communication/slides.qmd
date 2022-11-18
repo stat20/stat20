@@ -24,25 +24,69 @@ execute:
 
 ## Agenda
 
-- Concept Questions
-- Practice Problems
-
+-  Concept Questions
+-  Communication Critique
+-  Handout
 
 # Concept Questions
 
-
-
 ## TikTok algorithm
 
-:::poll
-The TikTok recommendation algorithm is an example of which priciple of communication?
+::: poll
+The TikTok recommendation algorithm is an example of which principle of communication?
 :::
 
 ```{r}
 countdown::countdown(1)
 ```
 
+:::notes
+Adapt to your audience! The algorithm learns what you like and shows you more.
+:::
+
+## Which formatting is the most readable?
+
+```{r}
+countdown::countdown(1)
+```
+
+::: notes
+There is no right or wrong answer here. Personally I find snake case to be the most readable.
+
+In programming we often avoid the `-` and `.` in variable names because they take special names in certain languages. In R these are ok to use in variable names.
+:::
 
 
-<!-- :::notes -->
-<!-- ::: -->
+## Not an example of hierarchy
+
+::: poll
+Which of the following is NOT an example of hierarchal organization.
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+::: notes
+A: words in a sentence
+
+These must be read sequentially to make sense.
+:::
+
+
+
+# Communication Critique
+
+## Critique
+
+- Discuss how the the principles and strategies for effective communication are or are not used.
+
+- Are there ways to improve how the content was communicated?
+
+::: notes
+Pick your favoirite website, app, data visualization, etc.
+:::
+
+
+# Communication Handout
+
