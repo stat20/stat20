@@ -1,5 +1,5 @@
 ---
-title: "Who can make the best visualization?"
+title: "Problem set 7: Who can make the best visualization?"
 format: pdf
 editor: visual
 ---
