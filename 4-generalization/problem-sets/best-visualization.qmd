@@ -1,5 +1,5 @@
 ---
-title: "Communicatory plots"
+title: "Who can make the best visualization?"
 format: pdf
 editor: visual
 ---
