@@ -1,7 +1,7 @@
 ---
 title: 'PS 9: A Matter of Taste II'
 subtitle: "Data Analysis"
-output: pdf_document
+format: pdf
 ---
 
 ```{r setup, include = FALSE}
