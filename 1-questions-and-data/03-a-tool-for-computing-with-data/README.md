@@ -23,11 +23,10 @@
 1. `log()`
 1. `mean()`
 1. `tibble()`
+1. `factor()`
 
 
 #### Concept Application
 
-1. Identify the unit of observation in a written description of a study or in a given data frame.
-1. Identify the variables recorded on the observations based on a written description of a study or in a given data frame. Classify each one according to the taxonomy of data.
-1. Distinguish between a (tidy) data frame and other tabular displays.
+1. TBD
 
