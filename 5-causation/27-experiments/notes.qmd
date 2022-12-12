@@ -1,0 +1,38 @@
+---
+title: "Experiments"
+subtitle: "The principles of experimental design"
+date: "12/2/2022"
+format:
+  html:
+    code-fold: true
+    code-link: true
+    code-summary: "."
+execute: 
+  warning: false
+  message: false
+---
+
+<!-- [[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/2446905) [[PDF]{.btn .btn-primary}](notes.pdf) -->
+
+<!-- \ -->
+
+<!-- ## Average Treatment Effect -->
+
+<!-- ## Random Assignment -->
+
+<!-- ## Control -->
+
+<!-- ## Blinding -->
+
+<!-- ## Replication -->
+
+<!-- ## Correlation and Causation: the history of Smoking and Cancer -->
+
+<!-- ## Summary -->
+
+The notes for class tomorrow will be posted *after* all of the classes have concluded. Please check back later.
+
+## Materials from class
+
+- [Slides](slides.qmd)
+

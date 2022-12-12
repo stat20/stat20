@@ -26,7 +26,7 @@ execute:
 
 -  Concept Questions
 -  Communication Critique
--  Handout
+-  Practice Problems
 
 # Concept Questions
 
@@ -60,7 +60,7 @@ In programming we often avoid the `-` and `.` in variable names because they tak
 ## Not an example of hierarchy
 
 ::: poll
-Which of the following is NOT an example of hierarchal organization.
+Which of the following is NOT an example of hierarchical organization.
 :::
 
 ```{r}
@@ -84,9 +84,9 @@ These must be read sequentially to make sense.
 - Are there ways to improve how the content was communicated?
 
 ::: notes
-Pick your favoirite website, app, data visualization, etc.
+Pick your favorite website, app, data visualization, etc.
 :::
 
 
-# Communication Handout
+# Practice Problems
 
