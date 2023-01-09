@@ -37,7 +37,7 @@ cat("\n")
 # handouts
 
 f <- list.files()
-n_handouts <- sum(str_detect(f, "handout.pdf"))
+n_handouts <- sum(stringr::str_detect(f, "handout.pdf"))
 if (n_handouts > 0) {
     cat("#### Handouts\n\n - [Handout](handout.pdf) \n")
 }
