@@ -1,7 +1,6 @@
 ---
 title: "Simple Linear Regression + Cities Handout"
 format: pdf
-editor: visual
 ---
 
 We will use data about Brazilian cities. Our sample consists of a random sample of 60 cities from all 5573 cities in Brazil. It has been collected from various official websites and has been made available on kaggle.
