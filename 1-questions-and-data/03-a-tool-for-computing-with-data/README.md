@@ -28,5 +28,8 @@
 
 #### Concept Application
 
-1. TBD
+1. Carry out basic mathematical operations on vectors.
+1. Create vectors of various types and use them to construct data frames.
+1. Distinguish between different classes of vectors.
+1. Form a factor vector and specify the order of its levels.
 
