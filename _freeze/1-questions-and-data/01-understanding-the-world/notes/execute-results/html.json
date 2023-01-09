@@ -1,0 +1,16 @@
+{
+  "hash": "b45499ae65c877761294dab2382e6c6f",
+  "result": {
+    "markdown": "---\ntitle: \"Understanding the World through Data\"\ndate: \"08/24/2022\"\nimage: images/claims.png\n---\n\n\nWelcome to Stat 20!\n\nThere is no reading in advance of the first day of class. To view the materials used during the class session, see the links below.\n\n<!-- introduce the DS lifecycle and give example of question first study (palmer's penguins) and an example of data first (spotify? gov data?) -->\n\n\n## Materials from class\n\n\n```\n\nAttaching package: 'dplyr'\n```\n\n```\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n```\n\n```\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n```\n\n- [Andrew](slides.qmd)\n- [Iain](slides.qmd)\n- [Shobhana](slides.qmd)\n- [Jeremy](slides.qmd)\n\n#### Handouts\n\n - [Handout](handout.pdf) \n\n",
+    "supporting": [
+      "notes_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

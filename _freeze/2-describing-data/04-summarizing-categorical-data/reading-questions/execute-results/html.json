@@ -1,0 +1,16 @@
+{
+  "hash": "cf2eb57fe138f0bf880dc8d44ca88b45",
+  "result": {
+    "markdown": "---\ntitle: \"Summarizing Categorical Data\"\ndate: \"09/02/2022\"\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ ggplot2 3.4.0      ✔ purrr   0.3.5 \n✔ tibble  3.1.8      ✔ dplyr   1.0.10\n✔ tidyr   1.2.1      ✔ stringr 1.4.1 \n✔ readr   2.1.2      ✔ forcats 0.5.1 \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\n```\n:::\n\n```{.r .cell-code}\nlibrary(infer)\ndata(gss)\n\nggplot(gss, aes(x = partyid, \n                fill = college)) +\n    geom_bar(position = \"dodge\")\n```\n\n::: {.cell-output-display}\n![](reading-questions_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n\n```{.r .cell-code}\nggplot(gss, aes(x = partyid, \n                fill = college)) +\n    geom_bar(position = \"fill\") +\n    labs(y = \"proportion\")\n```\n\n::: {.cell-output-display}\n![](reading-questions_files/figure-html/unnamed-chunk-1-2.png){width=672}\n:::\n:::\n\n\n# Question 1\n\nWhich of the following is FALSE regarding a contingency table?\n\n( ) It has the levels of one variable along the top of the columns and the levels of a second variable down the left side of the rows.\n( ) It displays the counts that occur in every combination of levels of two categorical variables.\n( ) They are used to summarize the information found in a data frame.\n(X) They are interchangable with a data frame.\n\n# Question 2\n\nThe following questions deal with data from the General Social Survey that takes a representative sample of Americans and asks them a range of questions about their opinions and lifestyle. One of the questions asked about whether they had a college degree or not. The other asked the political party that they identify with: dem (democrat), ind (independent), rep (republican), or other.\n\n## Question 2.1\n\n\nWhat was the most frequently cited party that respondents identified with?\n\n( ) dem\n(X) ind\n( ) rep\n( ) other\n( ) no degree\n( ) degree\n\n## Question 2.2\n\nTrue or False: most of the survey respondents had a college degree.\n\n( ) True\n(X) False\n\n\n# Question 3\n\nThe same data can be re-expressed as a normalized stacked bar chart.\n\n\nWhich of the following statements is True?\n\n(X) This plot shows a weak association between party id and whether or not someone has a college degree.\n( ) This plot shows absolutely no association between party id and whether or not someone has a college degree.\n( ) This plot shows a very strong association between party id and whether or not someone has a college degree.\n\n",
+    "supporting": [
+      "reading-questions_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
