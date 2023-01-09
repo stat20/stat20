@@ -7,7 +7,7 @@ format: pdf
 The following questions pertain to the `mpg` data set found in the 
 
 ```{r}
-library(tidverse)
+library(tidyverse)
 data(mpg)
 ```
 
