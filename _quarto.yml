@@ -1,14 +1,74 @@
 project:
-  type: default
-  
+  type: website
+
+website:
+  title: "Stat 20"
+  description: "Introduction to Probability and Statistics at UC Berkeley"
+  search:
+    location: navbar
+    type: overlay
+  site-url: "https://www.stat20.org/"
+  repo-url: "https://github.com/stat20/course-materials"
+  favicon: assets/favicon.ico
+  image: assets/stat20-hex.png
+  open-graph:
+    site-name: "Stat 20"
+    image: assets/stat20-hex.png
+  twitter-card: true
+  page-navigation: true
+  navbar:
+    title: " "
+    logo: assets/stat20-hex-small.png
+    background: white
+    foreground: "gray-800"
+    collapse-below: sm
+    left:
+      - text: Syllabus
+        href: syllabus.qmd
+      - text: Schedule
+        href: schedule.qmd
+      - text: Notes
+        href: notes.qmd
+      - text: Labs
+        href: labs.qmd
+      - text: Problem Sets
+        href: problem-sets.qmd
+    right:
+      - text: "{{< fa comments >}}"
+        href: https://edstem.org/
+        aria-label: Ed Discussion Forum
+      - text: "{{< fa chart-column >}}"
+        href: https://www.gradescope.com/courses/416233
+        aria-label: Gradescope
+      - text: "{{< fa brands r-project >}}"
+        href: https://stat20.datahub.berkeley.edu/
+        aria-label: RStudio
+  page-footer: 
+    background: white
+    foreground: "gray-800"
+    border: false
+    center: 
+      - text: "{{< fa comments >}}"
+        href: https://edstem.org/
+        aria-label: Ed Discussion Forum
+      - text: "{{< fa chart-column >}}"
+        href: https://www.gradescope.com/courses/416233
+        aria-label: Gradescope
+      - text: "{{< fa brands r-project >}}"
+        href: https://stat20.datahub.berkeley.edu/
+        aria-label: RStudio
+    right:
+      - text: License
+        href: license.qmd
+
 format:
   html:
-    theme:
+    theme: 
       - sandstone
-      - ../../assets/styles.scss
+      - assets/styles.scss
     toc: true
     published-title: "class date"
     reference-location: document
     
-execute: 
-  freeze: false
+execute:
+  freeze: auto

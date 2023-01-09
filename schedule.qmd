@@ -9,10 +9,14 @@ toc: false
 **Labs and PS due**: Monday night 11 pm on Gradescope\
 **Final Exam**: Wednesday 12/14/22 in person from 3-6pm
 
+:::{.panel-tabset}
+
+## Schedule of Topics
+
 ```{r}
 #| echo: false
 #| message: false
-#| eval: true
+#| eval: false
 
 # 1. Reads in the course schedule from csv downloaded from 
 # an associated google sheet: https://docs.google.com/spreadsheets/d/1PWuMkcQX2PUd84zDUmBe2tRI2Lfsam1-435JQ1A2GAE/edit#gid=0
@@ -33,6 +37,7 @@ a <- read_sheet("https://docs.google.com/spreadsheets/d/1PXyG38cf3ARqvcEgZRhRIIW
 a %>%
   filter(date <= "2022-10-10",
          day != "Tues") %>%
+  select(date, day, unit, topic) %>%
   kbl(escape = FALSE) %>%
   kable_styling(bootstrap_options = c("hover", "striped"))
 
@@ -79,3 +84,32 @@ a %>%
 ```
 
 More to follow!
+
+## Office Hours
+
+Please stop by office hours and introduce yourself! Office hours are useful for one-on-one help on assignments, discussion of topics discussed in the reading, or broader questions about statistics and data science. You're welcome to visit the office hours of any of the tutors, not just those affiliated with your section.
+
+#### Instructors
+
+**Andrew Bray:** Weds 10-11 am outside Moffitt 145, Thurs 1-3 pm in Evans 415.\
+**Iain Carmichael:** Mon 2-4pm, Weds 10-11 am in Evans 339.\
+**Jeremy Sanchez:** Mon 10-11 am, Mon 3-4 pm, Fri 11 am-12 pm in Evans 323.\
+**Shobhana Murali Stoyanov:** Mon 12:15-2 pm, Thurs 1-3 pm in Evans 333.
+
+#### Tutors
+
+Note: all office hours are held on the 3rd and 4th floor of Evans Hall. If you don't see a room number next to a tutors' name, check back soon, we'll be updating those as rooms are assigned.
+
+<center>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTpOINUog0ojakKLENUfSGJs3vO6xZFBXCo7s5AHMK5KTT9zLxuh8jBqz1E6aB6nd5DYK-HXXfiAvZ1/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" width="750" height="720" ></iframe>
+</center>
+
+## RRR Week
+
+Before coming to a review session, we encourage you to work through the review materials sent out via email. 
+
+<center>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ14RFwfr9aQ2i8wP1VES46c1QyA8-pmupzsk1Vkap_JWJuTY6tA32qZjeOpKxHvYKsc4qvhkCnshyP/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" width="750" height="720" ></iframe>
+</center>
+
+:::

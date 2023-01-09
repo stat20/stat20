@@ -42,7 +42,7 @@ library(patchwork)
 library(ggrepel)
 data(father.son)
 pearson <- father.son
-dugong <- read_csv("https://raw.githubusercontent.com/shomurali/course-materials/shobhana/3-prediction/10-simple-linear-regression/dugong.csv")
+# dugong <- read_csv("https://raw.githubusercontent.com/shomurali/course-materials/shobhana/3-prediction/10-simple-linear-regression/dugong.csv")
 poverty <- read_csv("https://tinyurl.com/stat20poverty")
 ```
 
@@ -67,6 +67,7 @@ countdown::countdown(2, top = 1)
 ```{r}
 #| message: false
 #| warning: false
+#| eval: false
 dugong20 <- filter(dugong, Age <= 20)
 dugong20 %>% 
     filter(Age >= 4, Age <= 15) %>%
@@ -103,6 +104,7 @@ Which line is the least squares line? (pollev.com)
 ```{r}
 #| message: false
 #| warning: false
+#| eval: false
 
 ggplot(dugong, aes(x = Age, y = Length)) + 
     geom_point() + 

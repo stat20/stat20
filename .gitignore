@@ -1,11 +1,20 @@
+# R related
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+
+# Dropbox backup files
 .DS_Store
+
+# Latex by-products
+*.aux
+*.log
 
 *_files
 *.html
 *.pdf
 
+# Quarto specific
 /.quarto/
+_site

@@ -1,0 +1,16 @@
+---
+title: Lecture Notes
+listing:
+  contents:
+      - "*/*/notes.qmd"
+  sort: "date desc"
+  type: default
+  fields: 
+    - title
+    - subtitle
+    - image
+    - date
+  categories: false
+---
+
+\

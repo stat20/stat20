@@ -28,7 +28,7 @@ names(df) <- c("time_at_cal", "major", "coding_exp_words", "coding_exp_scale",
 #Create the Health variable with all No's
 df$health <- "No"
 #Find the row indices of health-related majors.
-ind_health <- which(str_detect(unlist(df$major), "[B|b]io|[H|h]ealth|[P|p]sycho|[C|c]og|[N|n]utrition|MEB|[M|m][C|c][B|b]"))
+ind_health <- which(stringr::str_detect(unlist(df$major), "[B|b]io|[H|h]ealth|[P|p]sycho|[C|c]og|[N|n]utrition|MEB|[M|m][C|c][B|b]"))
 #Update the Health variable to Yes for these rows.
 df$health[ind_health] <- "Yes"
 
