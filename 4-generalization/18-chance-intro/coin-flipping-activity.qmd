@@ -32,7 +32,9 @@ The demonstration to be done in class today is as follows: -
 Good luck! I am worried that we will have too many groups and make mistakes, which will reduce the dramatic impact.
 
 Code for plot(s):
+
 ```{r}
+#| eval: false
 library(tidyverse)
 coin = c(0,1)
 ### simulate sequences and compute (number of runs, length of longest run) for each.
@@ -45,6 +47,7 @@ flips = replicate(1500,{
 ```
 
 ```{r}
+#| eval: false
 ### plotting the simulated probability distribution
 ggplot(data.frame(t(flips)), aes(x=n_switches + 1, y = longest_run)) + 
   geom_jitter(alpha =0.3) + 
@@ -53,6 +56,7 @@ ggplot(data.frame(t(flips)), aes(x=n_switches + 1, y = longest_run)) +
 ```
 
 ```{r}
+#| eval: false
 ### adding points
 ### annotating with their values
 ggplot(data.frame(t(flips)), aes(x=n_switches + 1, y = longest_run)) + 
