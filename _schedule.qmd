@@ -7,7 +7,7 @@ toc: false
 **Workshop**: 1 hr Monday\
 **Reading Questions due**: 11 pm Tuesday and Thursday\
 **Labs and PS due**: Monday night 11 pm on Gradescope\
-**Final Exam**: Wednesday 12/14/22 in person from 3-6pm
+**Final Exam**: Wednesday 12/14/22 in person from 3-6 pm
 
 ```{r}
 #| echo: false
