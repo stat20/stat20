@@ -2,7 +2,7 @@
 title: Labs
 listing:
   contents: 
-    - "labs"
+    - "*/labs/*.qmd"
   sort: "date desc"
   type: grid
   fields: 
