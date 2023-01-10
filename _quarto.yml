@@ -24,7 +24,7 @@ website:
     collapse-below: sm
     left:
       - text: Syllabus
-        href: website/syllabus.qmd
+        href: syllabus.qmd
       - text: Schedule
         href: schedule.qmd
       - text: Notes
