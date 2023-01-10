@@ -1,6 +1,5 @@
 ---
 title: "Lab 7: Waiting for the Bus"
-subtitle: "A simulation study"
 date: "10/26/22"
 image: images/bus.jpeg
 execute:

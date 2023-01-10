@@ -1,7 +1,7 @@
 ---
 title: Problem Sets
 listing:
-  contents: problem-sets
+  contents: "*/problem-sets/*.qmd"
   sort: "date desc"
   type: default
   categories: false
