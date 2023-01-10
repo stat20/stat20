@@ -33,7 +33,7 @@ Introduction to Probability and Statistics
 
 [Stat 20 UC Berkeley]{.smallcaps}
 
-The Data Viz Puzzle is now complete. Congratulations to the winners! See the original source of the graphic: [Californians from Oregon to Mexico](https://observablehq.com/@jwb/californians-from-oregon-to-mexico) by Jeffrey Baker.
+The Data Viz Puzzle is now complete. Congratulations to the winners! Check out the original source of the graphic: [Californians from Oregon to Mexico](https://observablehq.com/@jwb/californians-from-oregon-to-mexico) by Jeffrey Baker.
 
 
 <!-- This page features a data visualization that is building itself piece by piece each day until the Plenary Lecture on Tuesday 9/27 at 7 pm. When you have a good guess of what the visualization is depicting, enter your guess [here](https://docs.google.com/forms/d/e/1FAIpQLSck6zeezgVXRjO1WpDaS0rQ5kOHKyfhiK5wiRNbEjqeSWnhHg/viewform?usp=sf_link). Each person may submit only one guess and the first to guess correctly wins the puzzle. The winner will be announced at the start of the Plenary Lecture. -->
