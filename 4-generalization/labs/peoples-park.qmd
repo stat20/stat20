@@ -1,7 +1,7 @@
 ---
 title: "Lab 8: People's Park Survey"
-subtitle: "A simulation study"
 date: "11/10/22"
+image: images/ppk-aerial.jpeg
 execute:
   eval: false
 ---

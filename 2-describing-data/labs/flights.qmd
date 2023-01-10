@@ -1,7 +1,7 @@
 ---
 title: "Lab 4: Flights"
 date: "09/16/22"
-image: images/airline
+image: images/airline.jpg
 ---
 
 ```{r global_options, include=FALSE}
