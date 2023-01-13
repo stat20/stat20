@@ -60,7 +60,7 @@ website:
     right:
       - text: License
         href: license.qmd
-
+        
 format:
   html:
     theme: 
