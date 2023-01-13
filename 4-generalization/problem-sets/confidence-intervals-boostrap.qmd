@@ -1,7 +1,5 @@
 ---
-title: "Practice Problems"
-subtitle: "Confidence Intervals and Boostrap"
-format: pdf
+title: "Confidence Intervals and Boostrap"
 ---
 
 ```{r setup, include = FALSE}
