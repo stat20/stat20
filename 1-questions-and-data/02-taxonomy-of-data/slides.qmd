@@ -152,12 +152,6 @@ If you were to put the data from these (8 x 8 grayscale) images into a *data fra
 countdown::countdown(4, top = 0)
 ```
 
-<!-- ## {data-menu-title="CQ second vote"} -->
-
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/multiple_choice_polls/T6moPB1TluRvRBqEOEePF?controls=none&short_poll=true" width="1300px" height="800px"></iframe> -->
-<!-- </center> -->
-
 # Reading Questions
 
 # Practice Handout
