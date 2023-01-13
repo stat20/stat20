@@ -53,41 +53,22 @@ What's going on here?
 ::: {.column width="35%"}
 :::{.poll style="font-size: .9em"}
 - As a group, formulate at least **three** possible explanations for what's going on in the picture.  
-- Enter them at pollev.com or upvote existing explanations if they are very similar to your own.
+- Enter them at [pollev.com](https://pollev.com) or upvote existing explanations if they are very similar to your own.
 :::
 :::
 
 ::::
-
-
-<!-- ## {data-menu-title="Poll Results 1"} -->
-
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/discourses/XUV5iZxGmNKYFwGh1LxPy?controls=none&short_poll=true" width="1300" height="800px"></iframe> -->
-<!-- </center> -->
-
 
 ## {data-menu-title="Shoebill Pic 2"}
 
 ![](images/shoebill-2.png){fig-alt="Photo of shoebill with duck in its mouth, at an angle." fig-align="Center"}
 
 :::{.poll}
-Does this image change which claims are more or less likely? Up and down vote explanations at `pollev.com`.
+Does this image change which claims are more or less likely? Up and down vote explanations at [pollev.com](https://pollev.com).
 :::
 
-<!-- ## {data-menu-title="Poll Results 2"} -->
-
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/discourses/XUV5iZxGmNKYFwGh1LxPy?controls=none&short_poll=true" width="1300px" height="800px"></iframe> -->
-<!-- </center> -->
 
 ## {data-menu-title="Shoebill Pic 3" background-image="images/shoebill-3.png" background-size="contain"}
-
-<!-- ## {data-menu-title="Poll Results 3"} -->
-
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/discourses/XUV5iZxGmNKYFwGh1LxPy?controls=none&short_poll=true" width="1300px" height="800px"></iframe> -->
-<!-- </center> -->
 
 :::{.notes}
 These three photos were taken in quick succession by a physician and amateur photographer who was vising the San Diego Zoo Safari Park. He was watching the shoebill as it was walking down a path in the reeds. As the shoebill was ambling along, it encountered a duck in the middle of the path. It leaned down, picked up the duck in its beak, turned to the side, dropped the duck in the reeds, then proceeded to amble down the path.
@@ -195,12 +176,6 @@ Consider:
 countdown::countdown(6, top = 0)
 ```
 
-<!-- ## {data-menu-title="Poll Results"} -->
-
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/free_text_polls/5zVkyMHMMH6tyc5g1mgtp?controls=none&short_poll=true" width="1300" height="800px"></iframe> -->
-<!-- </center> -->
-
 
 ## From Data to Claims
 
@@ -228,13 +203,6 @@ countdown::countdown(3, top = 0)
 ```
 
 [^1]: The positivity rate is the number of positive tests over the total number of tests.
-
-<!-- ## {data-menu-title="Poll Results"} -->
-
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/discourses/1gFyj0PK3VA2QHNYf1GPn?controls=none&short_poll=true" width="1300px" height="800px"></iframe> -->
-<!-- </center> -->
-
 
 # Course Structure
 
@@ -305,20 +273,19 @@ Take 4 minutes to read through the syllabus and jot down at least one question t
 countdown::countdown(4, top = 0)
 ```
 
-## Perusall
+## Ed
 
 :::: {.columns}
 
 ::: {.column width="50%"}
-![](images/perusall.png)
+![](images/ed.png)
 :::
 
 ::: {.column width="50%" .fragment}
-- Forum to ask questions, answer questions, and make comments directly on lecture notes (and assignments).
+- Forum to ask questions, answer questions, and coure announcements
 - Please answer each other's questions!
-- Also serves as a General Discussion Forum (like Ed)
 
-> Practice by asking/answering a question at `perusall.com`.
+> Practice by asking/answering a question on the "Syllabus Discussion" threaad on Ed via the link at the top right of <https://www.stat20.org>.
 :::
 
 ::::
@@ -329,7 +296,7 @@ countdown::countdown(4, top = 0)
 
 ::: {.column width="50%"}
 - Read the lecture notes for "Taxonomy of Data"
-- Leave a comment or ask a question on Perusall
+- Leave a comment or ask a question the "Taxonomy of Data" thread on Ed.
 - Answer the reading questions on Gradescope by 11 pm Thursday
 - Complete Problem Set 1 by Monday 11 am (two surveys)
 :::
