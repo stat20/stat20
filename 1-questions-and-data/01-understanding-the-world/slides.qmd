@@ -20,6 +20,13 @@ format:
       data-background-size: contain
 ---
 
+# Agenda
+
+1. Introductions
+2. Data Science Lifecycle
+3. Course Structure
+
+
 # {{< fa pen-to-square >}} Introductions {background-color="#00403d"}
 
 - In groups of 3,  take turns introducing yourselves to one another by providing the info listed on the handout (your name, hometown, etc).
@@ -73,6 +80,7 @@ Does this image change which claims are more or less likely? Up and down vote ex
 :::{.notes}
 These three photos were taken in quick succession by a physician and amateur photographer who was vising the San Diego Zoo Safari Park. He was watching the shoebill as it was walking down a path in the reeds. As the shoebill was ambling along, it encountered a duck in the middle of the path. It leaned down, picked up the duck in its beak, turned to the side, dropped the duck in the reeds, then proceeded to amble down the path.
 :::
+
 
 ## {data-menu-title="Asking a Question" background-image="images/stat20-sketch-17.jpg" background-size="contain" transition="none"}
 
