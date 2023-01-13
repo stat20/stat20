@@ -1,6 +1,5 @@
 ---
 title: "Linear Models"
-format: pdf
 ---
 
 ```{r}

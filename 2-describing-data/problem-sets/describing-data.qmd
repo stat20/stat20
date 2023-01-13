@@ -3,7 +3,6 @@ title: "Describing Data"
 execute:
   echo: false
   message: false
-format: pdf
 ---
 
 ```{r}
