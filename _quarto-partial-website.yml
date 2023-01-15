@@ -1,6 +1,6 @@
 project:
   output-dir: _site-ignore-future
-  # post-render: unignore_future_docs.R
+  # post-render: assets/unignore_future_docs.R
 
 website:
   title: "Stat 20 Draft"
