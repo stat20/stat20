@@ -13,13 +13,13 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
-      # - name: Install dependencies
-      #   run: |
-      #     install.packages('yaml')
-      #   shell: sudo Rscript {0}
-      # - name: Ignore future posts
-      #   run: |
-      #     Rscript ignore_future_docs.R
+      - name: Install dependencies
+        run: |
+          install.packages('yaml')
+        shell: sudo Rscript {0}
+      - name: Ignore future posts
+        run: |
+          Rscript scripts/ignore_future_docs.R
       - name: Render and Publish
         shell: bash
         env:
