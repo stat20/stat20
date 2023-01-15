@@ -31,8 +31,8 @@ website:
         href: notes.qmd
       - text: Labs
         href: labs.qmd
-      - text: Problem Sets
-        href: problem-sets.qmd
+      # - text: Problem Sets
+      #   href: problem-sets.qmd
     right:
       - text: "{{< fa comments >}}"
         href: https://edstem.org/
