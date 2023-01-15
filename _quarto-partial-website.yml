@@ -6,3 +6,4 @@ website:
   title: "Stat 20 Draft"
   navbar:
     title: "Draft"
+    background: warning
