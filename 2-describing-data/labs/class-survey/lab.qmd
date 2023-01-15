@@ -1,6 +1,5 @@
 ---
 title: "Lab 3: Class Survey"
-date: "09/09/22"
 image: images/dog-pants.png
 ---
 

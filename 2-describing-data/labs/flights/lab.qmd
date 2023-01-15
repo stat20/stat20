@@ -1,6 +1,5 @@
 ---
 title: "Lab 4: Flights"
-date: "09/16/22"
 image: images/airline.jpg
 ---
 

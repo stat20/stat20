@@ -1,36 +1,4 @@
----
-title: "Lab 2: Arbuthnot"
-subtitle: "Working with Christening Records. Working with Data Frames."
-summary: "Working with Christening Records. Working with Data Frames."
-publishdate: "2022-01-25"
-date: "2022-01-25"
-show_post_date: false
-featured: true
-links:
-- icon: file-pdf
-  icon_pack: fas
-  name: Lab
-  url: https://stat20.org/labs/02/arbuthnot.pdf
-- icon: images
-  icon_pack: fas
-  name: Slides I
-  url: https://stat20.org/labs/02/slides-2A.html
-- icon: images
-  icon_pack: fas
-  name: Slides II
-  url: https://stat20.org/labs/02/slides-2B.html
----
-
-**Due on Gradescope Monday 1/31 at 10 PM**
-
-Please answer the questions linked above in a Google Doc, with plots copied and pasted from RStudio where appropriate. Download that Google Doc as a pdf using File > Download > PDF Document and upload it to Gradescope.
-
-Tuesday's lab session is an R Workshop where you'll prepare your answer to the Preparation portion and practice the skills needed for the rest of the lab. In Thursdays lab session you'll work on the questions found in Part I and Part II. Materials used in the lab sessions will be linked above.
-
-Part III you will be doing outside of class. We encourage you to complete your lab at the evening study sessions held Monday and Thursday evening.
-
-The data for this lab can be found in the `arbuthnot` and `present` data frames stored in the `stat20data` package.
-
+Note: this is leftover verbiage from a previous iteration of this lab. It can be adapted form the learning objectives.
 
 ### The Stucture of Lab Assignments
 

@@ -1,6 +1,5 @@
 ---
 title: "Lab 2: Arbuthnot"
-date: "09/02/22"
 image: images/christenings.png
 ---
 
