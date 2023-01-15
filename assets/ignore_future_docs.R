@@ -1,5 +1,4 @@
 # Read in schedule data
-setwd("../")
 x <- yaml::read_yaml("_schedule.yml")
 
 # Change path of docs to be published in the future so that
