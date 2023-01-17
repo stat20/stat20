@@ -1,6 +1,7 @@
 ---
 title: "Understanding the World through Data"
 image: images/claims.png
+date: 01/18/23
 ---
 
 Welcome to Stat 20!

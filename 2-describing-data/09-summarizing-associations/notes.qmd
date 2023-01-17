@@ -1,19 +1,10 @@
 ---
 title: "Summarizing numerical associations"
 subtitle: "Covariance, Pearson correlation, and a taste of non-linear correlation measures"
-date: "09/20/2022"
-format:
-  html:
-    code-fold: true
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
+date: 02/15/23
 ---
 
-[[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
-[[PDF]{.btn .btn-primary}](notes.pdf)
+{{< include ../../assets/includes/_notes-header.qmd >}}
 
 \
 
@@ -459,6 +450,9 @@ plot_nonlin_det <- df %>%
 The first row shows a linear association. The second row shows a non-linear but *monotonic* association. A monotonic positive association just means that if x goes up then y has to go up -- but it does not need to go up proportionally to the increase in x. A monotonic negative association means the opposite (x goes up, y goes down). Monotonic is a generalization of linear (linear is monotonic, but monotonic is not necessarily linear).
 
 These scatter plots demonstrate that the (Pearson) correlation coefficient is designed to capture one particular form of association - linear association. It does a reasonably good job of detecting non-linear but monotonic associations. It utterly fails, however, at detecting the non-linear non-monotonic associations found in the lower right plot. What we need are slightly different statistics. We will discuss them in class.
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
+
 
 <!-- We can quantify a monotonic relationship with [Spearman's rank correlation](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient). -->
 

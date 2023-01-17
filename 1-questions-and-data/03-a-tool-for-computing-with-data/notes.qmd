@@ -1,12 +1,11 @@
 ---
 title: "A Tool for Computing with Data"
 subtitle: "An introduction to the R language for statistical computing"
-date: "08/31/2022"
 image: images/r-logo.png
+date: 01/25/23
 ---
 
-[[Discuss]{.btn .btn-primary}](https://app.perusall.com) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
-[[PDF]{.btn .btn-primary}](notes.pdf)
+{{< include ../../assets/includes/_notes-header.qmd >}}
 
 [T]{.dropcap}he concepts of a *variable*, its *type*, and the structure of a *data frame* are useful because they help guide our thinking about the nature of a data. But we need more than definitions. If our goal is to construct a claim with data, we need to a tool to aid in the construction. Our tool must be able to do two things: it must be able to **store** the data and it must be able to perform **computations** on the data.
 
@@ -366,4 +365,4 @@ This was our first introduction to R, a supercharged calculator for storing and 
 
 - [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund. A comprehensive but approachable guide to doing data science with R. A good reference once you're deeper into this course.
 
-{{< include ../../assets/_links-to-materials.qmd >}}
+{{< include ../../assets/includes/_links-to-materials.qmd >}}

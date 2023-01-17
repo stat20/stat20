@@ -1,18 +1,11 @@
 ---
 title: "Summarizing Numerical Data"
 subtitle: "Seeing the forest for the trees."
-date: "09/7/2022"
 image: images/violins.png
-format:
-  html:
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
+date: 02/01/23
 ---
 
-[[Discuss]{.btn .btn-primary}](https://app.perusall.com) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
-[[PDF]{.btn .btn-primary}](notes.pdf)
+{{< include ../../assets/includes/_notes-header.qmd >}}
 
 \
 
@@ -383,6 +376,6 @@ There are many different ways to capture spread or dispersion of data. So many, 
 
 A summary of a summaries...this better be brief! Summaries of numerical data - graphical and numerical - often involve choices of what information to include and what information to omit. These choices involve a degree of judgement and knowledge of the criteria that were used to construct the commonly used statistics and graphics.
 
-<!-- {{< include ../../assets/_links-to-materials.qmd >}} -->
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
 
 
