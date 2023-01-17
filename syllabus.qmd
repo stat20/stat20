@@ -106,31 +106,37 @@ We will be assessing most of the questions on the lab for correctness but for ot
 
 #### Problem Sets
 
-The problem set is meant as practice: practice with the concepts and methods from the lecture notes that you'll need to hone in order to do the labs well and succeed on the quizzes. Since the goal of these is just practice, they will be graded credit / no credit, where credit is an earnest attempt (evidence that you worked on most of the problems). They will also be due at the standard assignment deadline of 11 pm on Monday night.
+During class, we will give you a second engagement with the day's material in the form a worksheet. These worksheets will run like traditional homework problems and drill the concepts in the reading notes rather than asking you to apply the concepts with a data set, like the lab does.
+
+The problem sets will be procured completely from these in-class worksheets and released in one or two week intervals at the end of the week.
 
 #### Reading Questions
 
-Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per “lecture” and can be a mix of multiple choice, short answer, and coding questions. You can answer them directly on Gradescope. Note that the reading questions will be due 11 pm the night before class, that is, on 11 pm Tuesdays for the Wednesday lecture, and 11 pm Thursdays for the Friday lecture.
+Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per “lecture” and can be a mix of multiple choice, short answer, and coding questions. You can answer them directly on Gradescope. Note that the reading questions will be due 11:59 pm the night before class, that is, on 11:59 pm Tuesdays for the Wednesday lecture, and 11:59 pm Thursdays for the Friday lecture.
 
 #### Quizzes
 
-Quizzes reinforce the most important concepts from the lecture notes and provide your the opportunity to work through misunderstandings with peers and the instructor. Quizzes will take place roughly every other week at the beginning of class for ~20 minutes. After submission of quizzes, you'll have ~10 minutes to discuss your answers with your group and prepare a single group submission. Your quiz score will be an average of the two.
+Quizzes reinforce the most important concepts from the lecture notes and provide your the opportunity to work through misunderstandings with peers and the instructor. 
+
+There is both an *individual* and *group* component to the quiz.
+
+The *individual* component will last ~25 minutes. You are allowed one, A4, two-sided sheet of notes. The *group* component will take place immediately after the individual component has been completed and will last ~15 minutes. Your final (composite) quiz grade will be the average of your group and individual quiz scores.
 
 #### Exam
 
-The final exam will be held in person during finals week. The Stat 20 Final is scheduled to be held in Group 11: Wednesday 12/14/22 from 3-6pm.
+The final exam will be held in person during finals week. The Stat 20 Final is scheduled to be held in Exam Group 14: Thursday 05/11/23 from 11:30am-2:30pm.
 
 #### Grading
 
 Your final grade in the course will be computed based on:
 
-- Labs 60%
+- Labs 50%
 - Reading Questions: 5%
-- Quizzes 10%
-- Problem sets 5%
+- Quizzes 15%
+- Problem sets 10%
 - Final 20%
 
-The goal of your course staff is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determiner letter grades (> 90% is some kind of A, etc.). Additionally, your weakest problem set and quiz will be dropped before calculating your grade for the course.
+The goal of your course staff is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determine letter grades (> 90% is some kind of A, etc.). In order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone one emergency drop for quizzes and two emergency drops for reading questions. This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. We will drop your lowest two reading question scores.
 
 ### Policies
 
@@ -140,12 +146,12 @@ Stat 20 is a course that is designed to allow all students to succeed. If you ha
 
 #### Late Work
 
-Unfortunately, with a class of this size, we are unable to keep track of and grade submissions of labs, reading question, and problem sets that come in very late. If you narrowly miss the 11 pm deadline, you will still be able to submit until midnight with a small grade penalty (10% reduction in score). If you're still not done with your lab by midnight, you can submit until noon on Tuesday with a larger penalty (30% reduction).
+Unfortunately, with a class of this size, we are unable to keep track of and grade submissions of labs, reading question, and problem sets that come in very late. If you narrowly miss the standard deadline, you will still be able to submit within an hour for a small penalty (5% reduction in score). If you don't submit within an hour you can still submit within a day for larger penalty (30% reduction).
 
 
 ### Collaboration policy
 
-You are encouraged to collaborate with your fellow students on problem sets and labs, but the work you turn in should reflect your own understanding and all of your collaborators must be cited. Quizzes, exams must reflect only your work.
+You are encouraged to collaborate with your fellow students on problem sets and labs, but the work you turn in should reflect your own understanding and all of your collaborators must be cited. The individual component of quizzes, reading questions, and exams must reflect only your work.
 
 Researchers don't use one another's research without permission; scholars and students always use proper citations in papers; professors may not circulate or publish student papers without the writer's permission; and students may not circulate or post non-public materials (quizzes, exams, rubrics-any private class materials) from their class without the written permission of the instructor.
 
@@ -163,16 +169,16 @@ The following examples of collaboration **are** allowed and in fact encouraged!
 The following examples are **not** allowed:
 
 - Leaving a representation of your assignment (the text, a screenshot) where students (current and future) can access it. Examples of this include websites like course hero, on a group text chain, over discord/slack, or in a file passed on to future students.
-- Accessing and submitting solutions to assignments from other students distributed as above.
+- Accessing and submitting solutions to assignments from other students distributed as above. This includes copying written answers from other students and slightly modifying the language to differentiate it.
 - Googling for complete problem solutions.
 - Working on the reading questions or individual quizzes in collaboration with other people or resources. These assignments must reflect individual work.
 - Submitting work on an exam that reflects consultation with outside resources or other people. Exams must reflect individual work.
 
-If you have questions about the boundaries of the policy, please ask. There is never a penalty for asking! We’re always happy to clarify.
+If you have questions about the boundaries of the policy, please ask. We’re always happy to clarify.
 
-#### Please Don’t Cheat
+#### Violations of the collaboration policy
 
-We’re sorry this section of the syllabus is so sad. We don’t like it either. But it’s upsetting to students if other students are cheating, so we use TurnItIn to detect cheating on labs and have access to data through Gradescope to detect cheating on quizzes.
+The integrity of our course depends on our ability to ensure that students do not violate the collaboration policy. We take this responsibility seriously and forward cases of academic misconduct to the Center for Student Conduct.
 
 Students determined to have violated the academic misconduct policy by the Center for Student Conduct will receive a grade penalty in the course and a sanction from the university which is generally: (i) First violation: Non-Reportable Warning and educational intervention, (ii) Second violation: Suspension/Disciplinary Probation and educational interventions, (iii) Third violation: Dismissal.
 
