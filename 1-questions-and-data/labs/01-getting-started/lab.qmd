@@ -3,7 +3,7 @@ title: "Lab 1: Getting Started"
 image: images/old-sac.png
 ---
 
-{{< include ../../assets/includes/_labs-header.qmd >}}
+{{< include ../../../assets/includes/_labs-header.qmd >}}
 
 This first lab has only one question:
 
