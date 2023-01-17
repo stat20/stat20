@@ -9,7 +9,7 @@ library(dplyr)
 file_path <- knitr::current_input(dir = TRUE)
 
 # turn the schedule yml into a data frame of all scheduled files
-schedule_df <- yaml::read_yaml("../../_schedule.yml") %>%
+schedule_df <- yaml::read_yaml("../../../_schedule.yml") %>%
   purrr::list_flatten() %>%
   do.call(rbind.data.frame, .)
 
