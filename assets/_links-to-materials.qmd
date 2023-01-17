@@ -1,0 +1,46 @@
+
+## Materials from class
+
+```{r}
+#| label: slide-links
+#| echo: false
+#| output: asis
+#| message: false
+
+library(dplyr)
+
+##== Slides ==##
+
+# Build paths to github slides
+instr_names <- c("Andrew", "Iain", "Shobhana", "Jeremy")
+instr_github <- c("andrewpbray", "idc9", "shomurali", "jeremy-sanchez")
+
+topic_dir <- getwd() %>%
+    stringr::str_split("website") %>%
+    unlist() %>%
+    tail(n = 1)
+
+# Link to branch slides if they exist, otherwise to shared slides
+for (i in seq_along(instr_names)) {
+    branch_url <- paste0("https://", 
+                         instr_github[i],
+                         ".github.io/course-materials", 
+                         topic_dir, 
+                         "/slides.html")
+    response <- curl::curl_fetch_memory(branch_url)
+    slide_url <- ifelse(response$status_code != 404,
+                        branch_url,
+                        "slides.qmd")
+    cat(paste0("- [", instr_names[i], "](", slide_url, ")\n"))
+}
+
+cat("\n")
+
+# handouts
+
+f <- list.files()
+n_handouts <- sum(stringr::str_detect(f, "handout.pdf"))
+if (n_handouts > 0) {
+    cat("#### Handouts\n\n - [Handout](handout.pdf) \n")
+}
+```
