@@ -1,9 +1,10 @@
 ---
-title: "Lab 2: Arbuthnot"
+title: "Lab 1: Arbuthnot"
 image: images/christenings.png
+date: 01/25/23
 ---
 
-<!-- [[Discuss]{.btn .btn-primary}](https://app.perusall.com) -->
+{{< include ../../../assets/includes/_labs-header.qmd >}}
 
 To ensure your analysis is reproducible, please record your answers to these questions (both the text and code) in a .qmd file. Render your work to a pdf regularly as a check that your code is running. When you are pleased with the result, render to pdf one last time, export to your laptop, then upload to gradescope.
 

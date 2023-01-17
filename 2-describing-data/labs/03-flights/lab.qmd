@@ -1,7 +1,10 @@
 ---
-title: "Lab 4: Flights"
+title: "Lab 3: Flights"
 image: images/airline.jpg
+date: 02/08/23
 ---
+
+{{< include ../../../assets/includes/_labs-header.qmd >}}
 
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(eval = FALSE, echo = FALSE,
