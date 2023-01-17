@@ -1,7 +1,10 @@
 ---
-title: "Lab 3: Class Survey"
+title: "Lab 2: Class Survey"
 image: images/dog-pants.png
+date: 02/01/23
 ---
+
+{{< include ../../../assets/includes/_labs-header.qmd >}}
 
 *Note: Ensure that your submission to Gradescope is a pdf built from a qmd that has the pages assigned to the questions. The sketches from Part I should be included in your pdf using the approach from Lab 1.*
 

@@ -1,8 +1,9 @@
-<!-- Adds publish date to document metadata and button links at the top of the doc. -->
+<!-- The bit before that is commented out adds publish date to document metadata and button links at the top of the doc. This workflow can be revisited but currently doesn't work because listings aren't updated with these dates, only the renderd docs. -->
 
 ```{r}
 #| echo: false
 #| message: false
+#| eval: false
 library(dplyr)
 
 # find the path of this file
@@ -21,6 +22,7 @@ publish_date <- schedule_df$date[which_dir]
 ```{r}
 #| echo: false
 #| output: asis
+#| eval: false
 
 # print out the date into a yaml cell
 cat(paste0("---\ndate: ", publish_date, "\n---\n"))

@@ -69,6 +69,12 @@ format:
     toc: true
     published-title: "class date"
     reference-location: document
+    code-fold: true
+    code-link: true
+    code-summary: "."
     
 execute:
   freeze: auto
+  message: false
+  warning: false
+  fig-align: center

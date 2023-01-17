@@ -1,9 +1,6 @@
 ---
-title: "Lab 1: Getting Started"
-image: images/old-sac.png
+title: "Getting Started"
 ---
-
-{{< include ../../../assets/includes/_labs-header.qmd >}}
 
 This first lab has only one question:
 

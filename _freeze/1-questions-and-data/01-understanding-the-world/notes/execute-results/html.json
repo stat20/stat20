@@ -1,7 +1,7 @@
 {
-  "hash": "caf17a382c204085ef93b8c578d8c5d3",
+  "hash": "afb1a8fcd8e832e3d5dd6971113ca070",
   "result": {
-    "markdown": "---\ntitle: \"Understanding the World through Data\"\nimage: images/claims.png\n---\n\n\nWelcome to Stat 20!\n\nThere is no reading in advance of the first day of class. To view the materials used during the class session, see the links below.\n\n<!-- introduce the DS lifecycle and give example of question first study (palmer's penguins) and an example of data first (spotify? gov data?) -->\n\n\n## Materials from class\n\n\n```\n\nAttaching package: 'dplyr'\n```\n\n```\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n```\n\n```\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n```\n\n- [Andrew](slides.qmd)\n- [Iain](slides.qmd)\n- [Shobhana](slides.qmd)\n- [Jeremy](slides.qmd)\n\n",
+    "markdown": "---\ntitle: \"Understanding the World through Data\"\nimage: images/claims.png\ndate: 01/18/23\n---\n\n\nWelcome to Stat 20!\n\nThere is no reading in advance of the first day of class. To view the materials used during the class session, see the links below.\n\n<!-- introduce the DS lifecycle and give example of question first study (palmer's penguins) and an example of data first (spotify? gov data?) -->\n\n\n## Materials from class\n\n- [Andrew](slides.qmd)\n- [Iain](slides.qmd)\n- [Shobhana](slides.qmd)\n- [Jeremy](slides.qmd)\n\n",
     "supporting": [
       "notes_files"
     ],
