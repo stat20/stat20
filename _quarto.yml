@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "Stat 20"
+  title: "Stat 20 Draft"
   description: "Introduction to Probability and Statistics at UC Berkeley"
   search:
     location: navbar
@@ -17,9 +17,9 @@ website:
   twitter-card: true
   page-navigation: true
   navbar:
-    title: " "
+    title: "Draft"
     logo: assets/stat20-hex-small.png
-    background: white
+    background: warning
     foreground: "gray-800"
     collapse-below: sm
     left:

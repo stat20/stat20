@@ -4,7 +4,7 @@ project:
   post-render: assets/scripts/unignore_future_docs.R
 
 website:
-  title: "Stat 20 Draft"
+  title: "Stat 20"
   navbar:
-    title: "Draft"
-    background: warning
+    title: " "
+    background: white
