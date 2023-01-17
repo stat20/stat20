@@ -1,15 +1,14 @@
 ---
 title: "Summarizing Categorical Data"
 subtitle: "From data frames to tables. From tables to bar charts."
-date: "09/02/2022"
 image: images/two-var.png
 format:
     html:
         df-print: paged
+date: 01/27/23
 ---
 
-[[Discuss]{.btn .btn-primary}](https://app.perusall.com) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/416233)
-[[PDF]{.btn .btn-primary}](notes.pdf)
+{{< include ../../assets/includes/_notes-header.qmd >}}
 
 <!-- ![](images/claims.png){fig-alt="Diagram showing the four types of claims that are made using data: descriptive claim, predictions, generalizations, and causal claims." width="400px" fig-align=center} -->
 
@@ -314,6 +313,6 @@ This stands in stark contrast to the plot of the real data on the left. On Bisco
 
 A wise statistician once said, "In statistics, most of what we do is add things up. Sometimes we divide. The challenging part is deciding *what* to add and divide." This captures the deceptive simplicity of summarizing categorical data. Numerical summaries involve counts of categories or proportions. Those proportions can be joint proportions, marginal proportions, or conditional proportions. Those counts and proportions are commonly displayed in contingency tables or in bar charts. Subtle choices of which proportion to present results in the telling of dramatically different stories.
 
-{{< include ../../assets/_links-to-materials.qmd >}}
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
 
 
