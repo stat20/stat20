@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
   push:
     branches: main
-name: Publish Current Draft Site
+name: Publish Draft Website
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
