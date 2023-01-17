@@ -124,7 +124,7 @@ The *individual* component will last ~25 minutes. You are allowed one, A4, two-s
 
 #### Exam
 
-The final exam will be held in person during finals week. The Stat 20 Final is scheduled to be held in Exam Group 14: Thursday 05/11/23 from 11:30am-2:30pm.
+The final exam will be held in person during finals week. The Stat 20 Final is scheduled to be held in Exam Group 14: Thursday 05/11/23 in person from 11:30am-2:30pm.
 
 #### Grading
 
@@ -136,7 +136,8 @@ Your final grade in the course will be computed based on:
 - Problem sets 10%
 - Final 20%
 
-The goal of your course staff is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determine letter grades (> 90% is some kind of A, etc.). In order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone one emergency drop for quizzes and two emergency drops for reading questions. This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. We will drop your lowest two reading question scores.
+The goal of your course staff is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determine letter grades (> 90% is some kind of A, etc.). In order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone one emergency drop for quizzes and two emergency drops for reading questions. This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. For reading questions, we will drop your two lowest.
+
 
 ### Policies
 
