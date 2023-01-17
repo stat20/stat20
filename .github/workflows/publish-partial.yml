@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
   push:
     branches: main
-name: Publish Partial Site
+name: "Publish live stat20.org"
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
