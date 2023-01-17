@@ -1,5 +1,0 @@
----
-format: html
----
-
-[PDF]{.btn .btn-primary} [Perusall]{.btn .btn-primary} [Reading Questions]{.btn .btn-success}

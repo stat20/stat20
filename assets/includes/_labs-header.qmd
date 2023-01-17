@@ -1,0 +1,29 @@
+<!-- Adds publish date to document metadata and button links at the top of the doc. -->
+
+```{r}
+#| echo: false
+#| message: false
+library(dplyr)
+
+# find the path of this file
+file_path <- knitr::current_input(dir = TRUE)
+
+# turn the schedule yml into a data frame of all scheduled files
+schedule_df <- yaml::read_yaml("../../_schedule.yml") %>%
+  purrr::list_flatten() %>%
+  do.call(rbind.data.frame, .)
+
+# find the date associated with the current file
+which_dir <- sapply(schedule_df$filedir, grepl, x = file_path)
+publish_date <- schedule_df$date[which_dir]
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+# print out the date into a yaml cell
+cat(paste0("---\ndate: ", publish_date, "\npublished-title: \"release date\"\n---\n"))
+```
+
+[[Discuss]{.btn .btn-primary}](https://edstem.org/us/courses/31657)

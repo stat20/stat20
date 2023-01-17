@@ -3,7 +3,7 @@ title: "Lab 1: Getting Started"
 image: images/old-sac.png
 ---
 
-[[Discuss]{.btn .btn-primary}](https://app.perusall.com)
+{{< include ../../assets/includes/_labs-header.qmd >}}
 
 This first lab has only one question:
 
