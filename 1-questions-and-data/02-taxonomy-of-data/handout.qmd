@@ -16,7 +16,7 @@ format: pdf
    - Hometown:
    - \# Siblings + Pets:
    - \# Semesters in college:
-   - Farthest distance from campus this break:
+   - Farthest distance from campus during the break:
 
 1. On the back of this page, sketch out a data frame that contains the data from your group mates on the questions above. Introduce yourself to other nearby groups to extend your data frame until it has 6 rows.
 
