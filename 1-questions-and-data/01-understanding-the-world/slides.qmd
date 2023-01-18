@@ -20,14 +20,18 @@ format:
       data-background-size: contain
 ---
 
-# Agenda
+## Agenda
 
 1. Introductions
 2. Data Science Lifecycle
+   - What's going on here?
+3. Why we're here
+   - Types of Claims
    - Data First vs Question First
 3. Course Structure
    - Flipped Classroom
    - Ed Discussion Forum
+   - Syllabus
 
 # {{< fa pen-to-square >}} Introductions {background-color="#00403d"}
 
@@ -178,19 +182,21 @@ claims made using data.
 
 ## From Questions to Data
 
+. . .
+
 > Is the incidence of COVID on campus going up or down?
 
 . . .
 
 :::poll
-Will this question be answered by a summary, a prediction, a generalization, or a causal claim? What type of *data* can help answer this question?
+Will this question be answered by a summary, a prediction, a generalization, or a causal claim?
 :::
 
 . . . 
 
 \
 
-Consider:
+Also discuss: what type of *data* can help answer this question? Consider:
 
 - Which different people / institutions collect relevant data
 - Is certain data not available? Why not?
@@ -210,7 +216,7 @@ One source of data:
 
 . . .
 
-> "The COVID-19 testing dashboard reflects PCR tests performed by University Health Services only and includes both clinical (symptomatic or known exposure) and surveillance (asymptomatic) tests for UC Berkeley community members."
+> "The following dashboard provides information on COVID-19 testing performed at University Health Services or through the PCR Home Test Vending Machines on campus. It does not capture self-reported positive tests. It provides a look at new cases and trends, at a glance."
 
 
 ## {data-menu-title="Positivity Rates"}
