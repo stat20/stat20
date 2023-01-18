@@ -24,8 +24,10 @@ format:
 
 1. Introductions
 2. Data Science Lifecycle
+   - Data First vs Question First
 3. Course Structure
-
+   - Flipped Classroom
+   - Ed Discussion Forum
 
 # {{< fa pen-to-square >}} Introductions {background-color="#00403d"}
 
@@ -66,14 +68,27 @@ What's going on here?
 
 ::::
 
+```{r}
+countdown::countdown(5)
+```
+
 ## {data-menu-title="Shoebill Pic 2"}
 
-![](images/shoebill-2.png){fig-alt="Photo of shoebill with duck in its mouth, at an angle." fig-align="Center"}
+:::: {.columns}
 
-:::{.poll}
-Does this image change which claims are more or less likely? Up and down vote explanations at [pollev.com](https://pollev.com).
+::: {.column width="65%"}
+![](images/shoebill-2.png){fig-alt="Photo of shoebill with duck in its mouth, at an angle." fig-align="Center"}
 :::
 
+::: {.column width="35%"}
+:::{.poll style="font-size: .9em" .fragment}
+Does this image change which claims are more or less likely?
+
+Up and down vote explanations at [pollev.com](https://pollev.com). {{< fa thumbs-up >}} / {{< fa thumbs-down >}}
+:::
+:::
+
+::::
 
 ## {data-menu-title="Shoebill Pic 3" background-image="images/shoebill-3.png" background-size="contain"}
 
@@ -281,7 +296,7 @@ Take 4 minutes to read through the syllabus and jot down at least one question t
 countdown::countdown(4, top = 0)
 ```
 
-## Ed
+## Ed Discussion Forum
 
 :::: {.columns}
 
@@ -293,7 +308,9 @@ countdown::countdown(4, top = 0)
 - Forum to ask questions, answer questions, and coure announcements
 - Please answer each other's questions!
 
-> Practice by asking/answering a question on the "Syllabus Discussion" threaad on Ed via the link at the top right of <https://www.stat20.org>.
+:::{.poll .fragment}
+Practice by asking/answering a question on the "Syllabus Discussion" thread on Ed via the link at the top right of <https://www.stat20.org>.
+:::
 :::
 
 ::::
@@ -302,11 +319,12 @@ countdown::countdown(4, top = 0)
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="50%" .incremental}
 - Read the lecture notes for "Taxonomy of Data"
-- Leave a comment or ask a question the "Taxonomy of Data" thread on Ed.
-- Answer the reading questions on Gradescope by 11 pm Thursday
-- Complete Problem Set 1 by Monday 11 am (two surveys)
+- Leave a comment/question on "Taxonomy of Data" thread on Ed.
+- Answer the Reading Questions on Gradescope by 11:59 pm Thursday
+- Problem Set 1 due next Tuesday 10 am
+  - Stay tuned for Ed post with links to survey
 :::
 
 ::: {.column width=20%}
@@ -317,6 +335,11 @@ countdown::countdown(4, top = 0)
 :::
 
 ::::
+
+:::{.notes}
+- Readings will be posted Weds night
+- 
+:::
 
 
 
