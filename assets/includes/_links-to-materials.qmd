@@ -12,8 +12,8 @@ library(dplyr)
 ##== Slides ==##
 
 # Build paths to github slides
-instr_names <- c("Andrew", "Iain", "Shobhana", "Jeremy")
-instr_github <- c("andrewpbray", "idc9", "shomurali", "jeremy-sanchez")
+instr_names <- c("Andrew", "Silas", "Shobhana", "Jeremy")
+instr_github <- c("andrewpbray", "pancakereport", "shomurali", "jeremy-sanchez")
 
 topic_dir <- getwd() %>%
     stringr::str_split("website") %>%
