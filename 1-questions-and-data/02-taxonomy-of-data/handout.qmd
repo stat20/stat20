@@ -16,7 +16,7 @@ format: pdf
    - Hometown:
    - \# Siblings + Pets:
    - \# Semesters in college:
-   - Farthest distance:
+   - Farthest distance from campus this break:
 
 1. On the back of this page, sketch out a data frame that contains the data from your group mates on the questions above. Introduce yourself to other nearby groups to extend your data frame until it has 6 rows.
 
@@ -44,4 +44,4 @@ format: pdf
 
    ![](images/non-tidy-contingency-table.png){fig-alt="Contingency table showing the counts of handedness by sex at birth." width="260" fig-align="center"}
 
-   It does, however, depict a data set, just in a different format. Sketch the data that is shown here but structured as a data frame. Think through: what was the unit of observation? What were the variables? How many rows are there? How many columns? (you need not fill out the entire data frame; just a schematic)
+   It does, however, depict a data set, just in a different format. Sketch the data that is summarized here but structured as a data frame. Think through: what was the unit of observation? What were the variables? How many rows are there? How many columns? (you need not fill out the entire data frame; just a schematic)
