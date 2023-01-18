@@ -15,7 +15,7 @@ Hometown:\
 
 \# Semesters in college:\
 
-Farthest distance from campus this summer:\
+Farthest distance from campus over the break:\
 
 \vspace{5cm}
 
@@ -31,4 +31,4 @@ Hometown:\
 
 \# Semesters in college:\
 
-Farthest distance from campus this summer:\
+Farthest distance from campus over the break:\
