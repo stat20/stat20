@@ -18,7 +18,7 @@ format: pdf
    - \# Semesters in college:
    - Farthest distance:
 
-1. On the page of this page, sketch out a data frame that contains the data from your group mates on the questions above. Introduce yourself to other nearby groups to extend your data frame until it has 6 rows.
+1. On the back of this page, sketch out a data frame that contains the data from your group mates on the questions above. Introduce yourself to other nearby groups to extend your data frame until it has 6 rows.
 
    {{< pagebreak >}}
 
