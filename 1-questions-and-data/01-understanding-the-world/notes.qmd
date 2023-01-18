@@ -8,4 +8,6 @@ Welcome to Stat 20!
 
 There is no reading in advance of the first day of class. To view the materials used during the class session, see the links below.
 
-<!-- {{< include ../../assets/includes/_links-to-materials.qmd >}} -->
+## Materials from class
+
+- [Slides](slides.qmd)
