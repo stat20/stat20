@@ -106,7 +106,7 @@ We will be assessing most of the questions on the lab for correctness but for ot
 
 #### Problem Sets
 
-During class, we will give you a second engagement with the day's material in the form a worksheet. These worksheets will run like traditional homework problems and drill the concepts in the reading notes rather than asking you to apply the concepts with a data set, like the lab does.
+During class, we will give you a second engagement with the day's material in the form of a worksheet. These worksheets will run like traditional homework problems and drill the concepts in the reading notes rather than asking you to apply the concepts with a data set, like the lab does.
 
 The problem sets will be procured completely from these in-class worksheets and released in one or two week intervals at the end of the week.
 
@@ -116,7 +116,7 @@ Reading questions serve to check your understanding and engagement while going t
 
 #### Quizzes
 
-Quizzes reinforce the most important concepts from the lecture notes and provide your the opportunity to work through misunderstandings with peers and the instructor. 
+Quizzes reinforce the most important concepts from the lecture notes and provide you the opportunity to work through misunderstandings of concepts with peers and the instructor. 
 
 There is both an *individual* and *group* component to the quiz.
 
@@ -147,7 +147,7 @@ Stat 20 is a course that is designed to allow all students to succeed. If you ha
 
 #### Late Work
 
-Unfortunately, with a class of this size, we are unable to keep track of and grade submissions of labs, reading question, and problem sets that come in very late. If you narrowly miss the standard deadline, you will still be able to submit within an hour for a small penalty (5% reduction in score). If you don't submit within an hour you can still submit within a day for larger penalty (30% reduction).
+Unfortunately, with a class of this size, we are unable to keep track of and grade submissions of labs, reading question, and problem sets that come in very late. If you narrowly miss the standard deadline, you will still be able to submit within an hour for a small penalty (5% reduction in score). If you don't submit within an hour you can still submit within a day for a larger penalty (30% reduction).
 
 
 ### Collaboration policy
