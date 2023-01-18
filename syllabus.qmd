@@ -16,8 +16,6 @@ theme: [sandstone, assets/styles.scss]
 toc-depth: 4
 ---
 
-**Note: this syllabus is a work-in-progress until the first day of class.**
-
 ### Course Culture
 
 Students taking Stat 20 come from a wide range of backgrounds. We hope to foster an inclusive and supportive learning environment based on curiosity rather than competition. All members of the course community—the instructor, students, tutors, and readers—are expected to treat each other with courtesy and respect. 
