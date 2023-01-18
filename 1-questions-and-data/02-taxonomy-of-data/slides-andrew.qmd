@@ -20,24 +20,13 @@ format:
       data-background-size: contain
 ---
 
-:::notes
-1. Review discussion of reading and address common questions
-2. Concept questions
-   - easy one
-   - hard one (shoebill)
-3. Practice handout
-break
-4. Lab
-   - instructor demo then walk around and troubleshoot
-:::
-
 ## Agenda
 
 - Concept Questions: Taxonomy of Data
 - Reading Questions
-- Practice Problems
+- Worksheet on Paper
 - *Break*
-- Lab 1: Getting Started
+- Worksheet via RStudio
 
 # Concept Questions
 
@@ -57,12 +46,6 @@ Answer at `pollev.com/<name>`
 ```{r}
 countdown::countdown(1, top = 0)
 ```
-
-## {data-menu-title="Poll results"}
-
-<center>
-<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/YQl4ozAtVkszFoh6A19Gg?controls=none&short_poll=true" width="1300px" height="800px"></iframe>
-</center>
 
 ## {data-menu-title="Shoebill Pic 1" background-image="images/shoebill-1.png" background-size="contain"}
 
@@ -128,61 +111,30 @@ countdown::countdown(1, top = 0)
 ::::
 
 :::{.poll}
-If you were to put the data from these (8 x 8 grayscale) images into a data frame, what would the dimensions of that data frame be in rows x columns?
+If you were to put the data from these (8 x 8 grayscale) images into a *data frame*, what would the dimensions of that data frame be in rows x columns?
 :::
 
 ```{r}
 countdown::countdown(1, top = 0)
 ```
 
-## {data-menu-title="CQ first vote"}
-
-<center>
-<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/T6moPB1TluRvRBqEOEePF?controls=none&short_poll=true" width="1300px" height="800px"></iframe>
-</center>
-
-## Images in a Data Frame
-
-:::: {.columns}
-
-::: {.column width="33%"}
-![](images/shoebill-1.png)
-:::
-
-::: {.column width="33%"}
-![](images/shoebill-2.png)
-:::
-
-::: {.column width="34%"}
-![](images/shoebill-3.png)
-:::
-
-::::
-
-:::{.poll}
-If you were to put the data from these (8 x 8 grayscale) images into a *data frame*, what would the dimensions of that data frame be in rows x columns?
-:::
-
-```{r}
-countdown::countdown(4, top = 0)
-```
-
-## {data-menu-title="CQ second vote"}
-
-<center>
-<iframe src="https://embed.polleverywhere.com/multiple_choice_polls/T6moPB1TluRvRBqEOEePF?controls=none&short_poll=true" width="1300px" height="800px"></iframe>
-</center>
 
 # Reading Questions
 
-# Practice Handout
+# Worksheet on Paper
 
 ```{r}
 countdown::countdown(20, top = 0)
 ```
 
-# Lab 1: Getting Started
+# Worksheet via RStudio
 
-:::{.v-center-align}
-demo
-:::
+## 
+
+Demo
+
+## Your turn
+
+```{r}
+countdown::countdown(20, top = 0)
+```
