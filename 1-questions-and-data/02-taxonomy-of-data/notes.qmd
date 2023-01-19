@@ -3,6 +3,9 @@ title: "The Taxonomy of Data"
 subtitle: "Types of variables and the data frame"
 image: images/taxonomy-of-data.png
 date: 01/20/23
+format:
+  html: default 
+  pdf: default
 ---
 
 {{< include ../../assets/includes/_notes-header.qmd >}}
