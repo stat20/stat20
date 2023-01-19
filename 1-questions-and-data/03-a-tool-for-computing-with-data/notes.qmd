@@ -4,6 +4,9 @@ subtitle: "An introduction to the R language for statistical computing"
 image: images/r-logo.png
 date: 01/25/23
 code-fold: false
+format:
+  html: default
+  pdf: default
 ---
 
 {{< include ../../assets/includes/_notes-header.qmd >}}
