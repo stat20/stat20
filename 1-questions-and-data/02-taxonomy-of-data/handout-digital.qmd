@@ -18,8 +18,12 @@ Please submit a one page pdf, generated from a .qmd file in RStudio, that answer
 
 -  A sentence at the bottom with an acknowledgement that text came from Wikipedia. Also include a link to the Wikipedia page.
 
-The pdf that you submit to Gradescope should be titled `lab-1.pdf`[^2].
+
+#### Question 1
+
+
+
+#### Question 2
 
 [^1]: To upload your sketch, take a photo of it, transfer the photo to your laptop, upload it to RStudio, then navigate to it after clicking "Browse" in the "Insert image" screen.
 
-[^2]: The first time that you render a pdf file, RStudio will install a bunch of software. This could take 3 minutes or it could take 30 minutes. You're safe to continue working in your .qmd or to click away from RStudio while this is happening. Future renders will be much faster.
