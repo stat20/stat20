@@ -10,6 +10,7 @@
 # Latex by-products
 *.aux
 *.log
+*.tex
 
 *_files
 *.html
