@@ -118,7 +118,7 @@ Quizzes reinforce the most important concepts from the lecture notes and provide
 
 There is both an *individual* and *group* component to the quiz.
 
-The *individual* component will last ~25 minutes. You are allowed one, A4, two-sided sheet of notes. The *group* component will take place immediately after the individual component has been completed and will last ~15 minutes. Your final (composite) quiz grade will be the average of your group and individual quiz scores.
+The *individual* component will last ~25 minutes. You are allowed one, A4, ~~two-sided sheet~~ one-sided handwritten sheet of notes. The *group* component will take place immediately after the individual component has been completed and will last ~15 minutes. Your final (composite) quiz grade will be the average of your group and individual quiz scores.
 
 #### Exam
 
