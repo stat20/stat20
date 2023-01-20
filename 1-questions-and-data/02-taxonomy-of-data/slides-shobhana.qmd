@@ -5,6 +5,7 @@ format:
     author: "STAT 20: Introduction to Probability and Statistics"
     height: 900
     width: 1600
+    self-contained: true
     theme: ../../assets/slides.scss
     multiplex: false
     transition: fade
