@@ -1,5 +1,5 @@
 project:
-  type: website
+  type: default
 
 website:
   title: "Stat 20 Draft"
