@@ -20,7 +20,7 @@ Please submit a one page pdf, generated from a .qmd file in RStudio, that answer
 
 6. A sentence at the bottom with an acknowledgement that text came from Wikipedia. Also include a link to the Wikipedia page.
 
-Render your file early and often to make it look like a document you are proud of.
+Render your file early and often to make it look like a document you are proud of. 
 
 * * *
 
