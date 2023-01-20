@@ -83,7 +83,7 @@ a %>%
 
 ```
 
-Coming soon!
+![](assets/schedule-sketch.png)
 
 ## Office Hours
 
@@ -91,9 +91,9 @@ Please stop by office hours and introduce yourself! Office hours are useful for 
 
 #### Instructors
 
-**Andrew Bray:** TBA.\
-**Silas Gifford:** TBA.\
-**Jeremy Sanchez:** TBA.\
+**Andrew Bray:** Fri 10-12 in Evans 415, Tue 3-4pm on Zoom (see Ed for link) \
+**Silas Gifford:** Thu 11-12:30, Mon 2-3:30 in Evans 418 \
+**Jeremy Sanchez:** TBA \
 **Shobhana Murali Stoyanov:** TBA.
 
 #### Tutors
