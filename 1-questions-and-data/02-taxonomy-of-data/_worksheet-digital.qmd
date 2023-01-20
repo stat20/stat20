@@ -2,7 +2,7 @@
 title: "Getting Started with Markdown"
 ---
 
-This first lab has only one question:
+This first digital worksheet has only one question:
 
 > Where are you from *or* where would you like to visit?
 

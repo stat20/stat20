@@ -34,14 +34,16 @@ format:
 ## Types of Variables
 
 There are three things a variable could be referring to
-1. a phenomenon
-2. how the phenomenon is being recorded or measured into data
+
+:::incremental
+1. a *phenomenon*
+2. how the phenomenon is being *recorded or measured* into data
    - what values can it take? (this is often an intent- or value-laden exercise!)
    - for numerical units, what unit should we express it in?
-3. How the recorded data is being analyzed
+3. How the recorded data is being *analyzed*
    - binning/discretizing income data
    - if a barchart has too many bars, using a histogram.
-
+:::
 
 ##
 
