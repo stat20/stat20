@@ -34,8 +34,6 @@ for (i in seq_along(instr_names)) {
     cat(paste0("- [", instr_names[i], "](", slide_url, ")\n"))
 }
 
-cat(branch_url)
-
 cat("\n")
 
 # # handouts
