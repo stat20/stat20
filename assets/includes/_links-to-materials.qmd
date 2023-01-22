@@ -11,6 +11,8 @@ library(dplyr)
 
 ##== Slides ==##
 
+cat("#### Slides\n\n")
+
 # Build paths to github slides
 instr_names <- c("Andrew", "Silas", "Shobhana", "Jeremy")
 instr_quartopub <- c("andrew", "silas", "shobhana", "sanchez")
@@ -36,11 +38,21 @@ for (i in seq_along(instr_names)) {
 
 cat("\n")
 
-# # handouts
-# 
-# f <- list.files()
-# n_handouts <- sum(stringr::str_detect(f, "handout.pdf"))
-# if (n_handouts > 0) {
-#     cat("#### Handouts\n\n - [Handout](handout.pdf) \n")
-# }
+##== Worksheets ==##
+
+f <- list.files()
+is_worksheet <- stringr::str_detect(f, "worksheet.*.qmd$")
+worksheet_filenames <- f[is_worksheet]
+worksheet_titles <- worksheet_filenames %>%
+  stringr::str_replace("_", "") %>%
+  stringr::str_replace("-", " - ") %>%
+  stringr::str_replace(".qmd", "") %>%
+  stringr::str_to_title()
+  
+if (length(worksheet_filenames) > 0) {
+  cat("#### Worksheet\n\n")
+  for (i in seq_along(worksheet_filenames)) {
+    cat(paste0("- [", worksheet_titles[i], "](", worksheet_filenames[i], ")\n"))
+  }
+}
 ```
