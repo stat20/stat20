@@ -221,9 +221,4 @@ While this structure might well be called a "table" or possibly a "spreadsheet",
 
 In this lecture note we have focused on the nature of the data that will serve as the currency from which we'll construct an improved understanding of the world. A first step is to identify the characteristics of the *variables* that are being measured and determine their *type* within the *Taxonomy of Data*. A second step is to organize them into a *data frame* to clearly associate the value that is measured for a variable with a particular observational unit. With these ideas in hand, we are prepared to bring data onto our computer and begin the process of identifying its structure and communicating that structure numerically and visually.
 
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
-
-#### Worksheets
- 
-- [Worksheet - Analog](worksheet-analog.pdf) \
-- [Worksheet - Digital](_worksheet-digital.qmd)
+{{< include images/_links-to-materials.qmd >}}
