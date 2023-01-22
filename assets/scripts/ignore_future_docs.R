@@ -14,12 +14,9 @@ x <- yaml::read_yaml("_schedule.yml")
 
 ignore_future_notes <- function(x, notes_offset = 0, cm_offset = 0) {
   
-  current_datetime <- format(Sys.time(), 
-                             tz="America/Los_Angeles", 
-                             usetz=TRUE)
-  schedule_datetime <- format(strptime(x$date, "%m/%d/%y"), 
-                              tz="America/Los_Angeles", 
-                              usetz=TRUE)
+  current_datetime <- .POSIXct(Sys.time(), "America/Los_Angeles")
+  schedule_datetime <- strptime(x$date, format = "%m/%d/%y", 
+                              tz="America/Los_Angeles")
   
   filenames_before <- grep(pattern = paste0("^(?!(\\.quarto|_freeze|_site)).*", 
                                             x$filedir, 
@@ -43,7 +40,8 @@ ignore_future_notes <- function(x, notes_offset = 0, cm_offset = 0) {
     dest <- paste0(filenames_before[shortest_path],
                    "/images/_links-to-materials.qmd")
     
-    if ( schedule_datetime + cm_offset > current_datetime ) { # if it's not yet the day of class
+    if ( schedule_datetime + cm_offset > current_datetime ) {
+      # if it's not yet the day of class
       # blank out the _link-to-materials.qmd include file
       file.copy(from = "assets/includes/_links-to-materials-blank.qmd",
                 to = dest, overwrite = TRUE)
@@ -55,18 +53,17 @@ ignore_future_notes <- function(x, notes_offset = 0, cm_offset = 0) {
 
 ignore_future_labs <- function(x, labs_offset = 0) {
   
-  current_datetime <- format(Sys.time(), 
-                             tz="America/Los_Angeles", 
-                             usetz=TRUE)
-  schedule_datetime <- format(strptime(x$date, "%m/%d/%y"), 
-                              tz="America/Los_Angeles", 
-                              usetz=TRUE)
+  current_datetime <- .POSIXct(Sys.time(), "America/Los_Angeles")
+  schedule_datetime <- strptime(x$date, format = "%m/%d/%y", 
+                                tz="America/Los_Angeles")
   
   if ( schedule_datetime + labs_offset > current_datetime ) {
     
-    filenames_before <- grep(x$filedir, 
+    filenames_before <- grep(pattern = paste0("^(?!(\\.quarto|_freeze|_site)).*", 
+                                              x$filedir, 
+                                              ".*$"),
                              list.dirs(full.names = FALSE), 
-                             value = TRUE)
+                             value = TRUE, perl = TRUE)
     
     filenames_after <- gsub(x$filedir, 
                             paste0("_", x$filedir),
