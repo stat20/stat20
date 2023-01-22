@@ -2,7 +2,7 @@ notes:
   - filedir: "01-understanding-the-world"
     date: 01/18/23
   - filedir: "02-taxonomy-of-data"
-    date: 01/19/23
+    date: 01/20/23
   - filedir: "03-a-tool-for-computing-with-data"
     date: 01/25/23
   - filedir: "04-summarizing-categorical-data"
@@ -17,7 +17,6 @@ notes:
     date: 02/10/23
   - filedir: "09-summarizing-associations"
     date: 02/15/23
-
 labs:
   - filedir: "01-arbuthnot"
     date: 01/25/23
@@ -25,3 +24,11 @@ labs:
     date: 02/01/23
   - filedir: "03-flights"
     date: 02/08/23
+release-schedule:
+# how many seconds to add to 00:00 of each file's release `date`
+  notes-offset: -100800
+  # 8 pm on the day before the day before class
+  class-materials-offset: 21600
+  # 6 am on the day of class
+  labs-offset: 21600
+  # 6 am on the day of class
