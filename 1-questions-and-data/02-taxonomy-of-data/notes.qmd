@@ -160,11 +160,10 @@ While this definition might seem opaque, you are already familiar with a data fr
 #| message: false
 #| warning: false
 
-library(palmerpenguins)
 library(dplyr)
+library(stat20data)
 library(kableExtra)
 options(kableExtra.html.bsTable = TRUE)
-data(penguins)
 set.seed(30)
 tab <- penguins %>%
     select(bill_length_mm, bill_depth_mm, species) %>%
