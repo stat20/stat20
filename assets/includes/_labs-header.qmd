@@ -28,4 +28,4 @@ publish_date <- schedule_df$date[which_dir]
 cat(paste0("---\npublished-title: \"release date\"\n---\n"))
 ```
 
-[[Discuss]{.btn .btn-primary}](https://edstem.org/us/courses/31657)
+[[Discuss]{.btn .btn-primary}](https://edstem.org/us/courses/31657) [[Slides]{.btn .btn-primary}](slides.qmd)
