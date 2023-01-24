@@ -23,10 +23,11 @@ format:
 ## Agenda
 
 - Concept Questions: Intro to Computing with R
-- Reading Questions
 - R Workshop
-- *Break*
-- Practice Quiz
+  - Functions and Vectors
+  - Data Frames
+- Break
+- Lab 1: Arbuthnot
 
 # Concept Questions
 
@@ -336,35 +337,9 @@ round(mean(vec))
 :::
 
 
-## Loading Packages
-
-R has a vast ecosystem of packages that extend the language. Any installed package can be loaded with the `library()` function.
-
-. . .
-
-:::: {.columns}
-
-::: {.column width="50%"}
-![](images/hexes.png)
-:::
-
-::: {.column width="50%" .fragment}
-![](images/tidyverse-hex.png){width="350px" fig-align=center}
-
-We will use the package *tidyverse*, which contains a set of powerful science packages.
-
-```{r}
-library(tidyverse)
-```
-
-:::
-
-::::
-
-
 ## Building a data frame
 
-You can combine vectors into a data frame using either `data.frame()` or the `tibble()` function from the `tidyverse` package.
+You can combine vectors into a data frame using `data.frame()`[^1]
 
 ```{r echo = TRUE}
 bill_depth_mm <- c(15.0, 17.1, 18.7, 18.9)
@@ -372,13 +347,16 @@ bill_length_mm <- c(47.5, 40.2, 39.0, 35.3)
 species <- c("Gentoo", "Adelie", "Adelie", "Adelie")
 ```
 
+\
+
 . . .
 
 ```{r echo = TRUE}
-library(tidyverse)
-penguins_df <- tibble(bill_depth_mm, bill_length_mm, species)
+penguins_df <- data.frame(bill_depth_mm, bill_length_mm, species)
 penguins_df
 ```
+
+[^1]: You can also use the `tibble()` function from the `tidyverse` package.
 
 
 # Your Turn
@@ -395,6 +373,38 @@ penguins_df
 countdown::countdown(6, top = 0)
 ```
 
+## Loading Packages
+
+R has a vast ecosystem of packages that add new functions. Any installed package can be loaded with the `library()` function.
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](images/hexes.png)
+:::
+
+::: {.column width="50%" .fragment}
+<!-- ![](images/tidyverse-hex.png){width="350px" fig-align=center} -->
+
+Our two main packages:
+
+- `tidyverse`
+- `stat20data`
+
+Load them with:
+
+```{r}
+#| echo: TRUE
+
+library(tidyverse)
+library(stat20data)
+```
+
+:::
+
+::::
 
 ## Loading data from a package
 
@@ -402,33 +412,106 @@ Most data you will *not* be creating by hand. You will either be
 
 1. Loading it in from a separate file.
 
-2. Loading it from within an R package.
+2. Loading it from within an R package (most of our are in `stat20data`)
 
 . . .
 
 To load data from a package,
 
 1. load that package with `library()`
-2. load the data set with `data()`
+2. You can then print the data to the console by typing its name and pressing enter or see it in the viewer with `View(<df name>)`.
+
+. . .
+
+```{r}
+#| echo: TRUE
+library(stat20data)
+penguins
+```
 
 
-## Functions on data frames
+
+# Functions on data frames
+
+## 3 functions from the `tidyverse`
 
 The `tidyverse` package contains several functions used to manipulate data frames: 
 
+. . .
+
 - `select()` : subset columns 
+
+. . .
 
 - `arrange()` : sort rows 
 
+. . .
+
 - `mutate()` : create a new column from existing column(s)
 
-##
 
-Demo `select()`, `arrange()`, and `mutate()` on 
+## Selecting columns
 
-```{r echo = TRUE}
-library(palmerpenguins)
-data(penguins)
+. . .
+
+```{r select, echo = TRUE, eval = FALSE}
+select(penguins, species, island)
+```
+
+. . .
+
+```{r ref.label = "select", echo = FALSE}
+```
+
+
+## Arranging the rows of a data frame
+
+. . .
+
+```{r arrange, echo = TRUE, eval = FALSE}
+arrange(penguins, bill_length_mm)
+```
+
+. . .
+
+```{r ref.label = "arrange", echo = FALSE}
+```
+
+. . .
+
+> You can sort in descending order by wrapping the variable name in `desc()`.
+
+
+## Mutating a new column
+
+. . .
+
+```{r mutate, echo = TRUE, eval = FALSE}
+mutate(penguins, bill_index = bill_depth_mm + bill_length_mm)
+```
+
+. . .
+
+```{r ref.label = "mutate", echo = FALSE}
+```
+
+
+. . .
+
+> Remember that you can nest functions.
+
+
+## Nesting functions
+
+. . .
+
+```{r mutate2, echo = TRUE, eval = FALSE}
+select(mutate(penguins, bill_index = bill_depth_mm + bill_length_mm), bill_index)
+```
+
+. . .
+
+```{r ref.label = "mutate2", echo = FALSE}
 ```
 
 
@@ -461,4 +544,4 @@ Break
 countdown::countdown(5, font_size = "2em")
 ```
 
-# Practice Quiz
+# Lab 1: Arbuthnot

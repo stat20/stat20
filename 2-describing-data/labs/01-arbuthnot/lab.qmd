@@ -1,42 +1,43 @@
 ---
 title: "Lab 1: Arbuthnot"
-image: images/christenings.png
+image: images/christenings-sm.png
 date: 01/25/23
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}
 
-To ensure your analysis is reproducible, please record your answers to these questions (both the text and code) in a .qmd file. Render your work to a pdf regularly as a check that your code is running. When you are pleased with the result, render to pdf one last time, export to your laptop, then upload to gradescope.
+## Part 1: Understanding the Context of the Data
 
-## Part I: Understanding the Context of the Data
+![](images/christenings.png){width = 500}
 
-1. What question did John Arbuthnot set out to answer in collecting this data?
+Please record your answers on the worksheet below and upload it to Gradescope as Lab 1.1.
 
-2. What is the unit of observation in the original christening records? What are the possible variables that may have been recorded?
+- [Part 1: Understanding the Context of the Data](lab-context.qmd)
 
-3. What do you think the probability is that a newborn child is recorded as a girl? What form of evidence or reasoning did you use to come to that determination?
 
 ## Part II: Computing on the Data
 
-4. What does every row in the data frame published by John Arbuthnot correspond to? What are the names of the variables and what is the type of each one?
+To ensure your analysis is reproducible, please record your answers to these questions (both the text and code) in a .qmd file. Render your work to an HTML file regularly as a check that your code is running. When you are pleased with the result, print that HTML to a pdf, then upload to Gradescope as Lab 1.2.
 
-5. What is the time frame covered by Arbuthnot's data?
+The first several questions pertain to the `arbuthnot` data frame found in `library(stat20data)`.
 
-6. Which year saw the greatest number of children christened?
+1. What is the time frame covered by Arbuthnot's data?
 
-7. What is the proportion of girls christened in 1700?
+2. Which year saw the greatest number of children christened?
 
-8. What is the trend over time in the total number of children christened? Please answer with a plot and written interpretation.
+3. What is the proportion of girls christened in 1700?
 
-9. What is the trend over time in the proportion of girls christened? Please answer with a plot and written interpretation.
+4. What is the trend over time in the total number of children christened? Please answer with a plot and written interpretation.
 
-## Part III: Extensions
+5. What is the trend over time in the proportion of girls christened? Please answer with a plot and written interpretation.
 
-10. What is the time frame covered by the present-day data?
+The remaining questions pertain to the `present` data frame found in `library(stat20data)`.
 
-12. In terms of general magnitude (size), how do the counts in Arbuthnot's data compare to the counts in the present-day data?
+6. What is the time frame covered by the present-day data?
 
-13. What is the trend over time in the proportion of births that are girls? Please answer with a plot and written interpretation.
+7. In terms of general magnitude (size), how do the counts in Arbuthnot's data compare to the counts in the present-day data?
 
-14. Based on these two data sets, what claim are you prepared to make regarding John Arbuthnot's original question? What reservations, if any, do you have about using this data to make the claim?
+8. What is the trend over time in the proportion of births that are girls? Please answer with a plot and written interpretation.
+
+9. Based on these two data sets, what claim are you prepared to make regarding John Arbuthnot's original question? What reservations, if any, do you have about using this data to make the claim?
 

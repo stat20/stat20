@@ -1,0 +1,44 @@
+---
+title: "Lab 1: Arbuthnot"
+date: 01/25/23
+format: pdf
+---
+
+\thispagestyle{empty} 
+
+## Part 1: Understanding the Context of the Data
+
+1. What question did John Arbuthnot set out to answer in collecting this data?
+
+\
+\
+
+2. What do *you* think the probability is that a newborn child is recorded as a girl? What form of evidence or reasoning did you use to come to that determination?
+
+\
+\
+
+3. Sketch below a simplified version of the christening record shown on the lab webpage. What is the unit of observation?
+
+\
+\
+\
+
+{{< pagebreak >}}
+
+When Arbuthnot published his study of the christening records her presented his data like this (we show here just the first 10 rows).
+
+```{r}
+#| echo: false
+library(stat20data)
+arbuthnot
+```
+
+
+4. What does every row in this data frame published by John Arbuthnot correspond to? For each variable, state its type and the sort of values you would expect it to take (and also values it *should not* take).
+
+\
+\
+\
+
+5. What operations were necessary to get from the original christenings data frame to Arbuthnot's data frame?
