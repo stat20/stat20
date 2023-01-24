@@ -289,7 +289,7 @@ While vectors in R do a great job of capturing the notion of a variable, we will
 **Dataframe (R)**
 :    A two dimensional data structure used to store vectors of the same length. A direct analog of the data frame defined previously[^df].
 
-[^df]: R is a rare language in that the data frame has been for decades a core structure of the language. The analogous structure in Python is the data frame found in the Pandas library.
+[^df]: R is an unusual language in that the data frame has been for decades a core structure of the language. The analogous structure in Python is the data frame found in the Pandas library.
 
 Let's use R to recreate the penguins data frame collected by Dr. Gorman.
 
@@ -297,12 +297,11 @@ Let's use R to recreate the penguins data frame collected by Dr. Gorman.
 #| echo: false
 #| message: false
 #| warning: false
-#| 
-library(palmerpenguins)
+
+library(stat20data)
 library(dplyr)
 library(kableExtra)
 options(kableExtra.html.bsTable = TRUE)
-data(penguins)
 set.seed(30)
 tab <- penguins %>%
     select(bill_length_mm, bill_depth_mm, species) %>%
