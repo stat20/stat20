@@ -211,8 +211,7 @@ R packages offer a convenient way to store data.
 
 ```{r}
 #| echo: true
-library(palmerpenguins)
-data(penguins)
+library(stat20data)
 ```
 
 
@@ -226,7 +225,6 @@ data(penguins)
 . . .
 
 - Load packages with `library()`
-- Load data with `data()`
 - Some data comes pre-loaded and doesn't require `data()` (e.g. `mtcars`)
 
 
@@ -329,7 +327,7 @@ select(mutate(penguins, bill_index = bill_depth_mm + bill_length_mm), bill_index
 
 ```{r echo = TRUE}
 library(stat20data)
-data(arbuthnot)
+arbuthnot
 ```
 
 - Work on questions 4 - 7, editing your .qmd as you go.
@@ -361,7 +359,7 @@ Where:
 How do trends in a more modern data set compare to Arbuthnot's data? Find out in the `present` data frame found in the `stat20data` package.
 
 ```{r echo = TRUE, eval = FALSE}
-data(present)
+present
 ?present
 ```
 
