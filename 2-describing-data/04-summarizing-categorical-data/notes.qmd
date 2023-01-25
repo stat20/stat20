@@ -1,10 +1,7 @@
 ---
 title: "Summarizing Categorical Data"
 subtitle: "From data frames to tables. From tables to bar charts."
-image: images/two-var.png
-format:
-    html:
-        df-print: paged
+image: images/two-var-small.png
 date: 01/27/23
 ---
 

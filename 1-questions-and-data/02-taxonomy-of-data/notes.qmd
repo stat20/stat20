@@ -1,8 +1,11 @@
 ---
 title: "The Taxonomy of Data"
 subtitle: "Types of variables and the data frame"
-image: images/taxonomy-of-data.png
+image: images/taxonomy-small.png
 date: 01/20/23
+format:
+  html: default 
+  pdf: default
 ---
 
 {{< include ../../assets/includes/_notes-header.qmd >}}
@@ -157,11 +160,10 @@ While this definition might seem opaque, you are already familiar with a data fr
 #| message: false
 #| warning: false
 
-library(palmerpenguins)
 library(dplyr)
+library(stat20data)
 library(kableExtra)
 options(kableExtra.html.bsTable = TRUE)
-data(penguins)
 set.seed(30)
 tab <- penguins %>%
     select(bill_length_mm, bill_depth_mm, species) %>%
@@ -218,4 +220,4 @@ While this structure might well be called a "table" or possibly a "spreadsheet",
 
 In this lecture note we have focused on the nature of the data that will serve as the currency from which we'll construct an improved understanding of the world. A first step is to identify the characteristics of the *variables* that are being measured and determine their *type* within the *Taxonomy of Data*. A second step is to organize them into a *data frame* to clearly associate the value that is measured for a variable with a particular observational unit. With these ideas in hand, we are prepared to bring data onto our computer and begin the process of identifying its structure and communicating that structure numerically and visually.
 
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
+{{< include images/_links-to-materials.qmd >}}

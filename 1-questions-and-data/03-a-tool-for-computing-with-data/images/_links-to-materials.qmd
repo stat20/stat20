@@ -1,0 +1,58 @@
+
+## Materials from class
+
+```{r}
+#| label: slide-links
+#| echo: false
+#| output: asis
+#| message: false
+
+library(dplyr)
+
+##== Slides ==##
+
+cat("#### Slides\n\n")
+
+# Build paths to github slides
+instr_names <- c("Andrew", "Silas", "Shobhana", "Jeremy")
+instr_quartopub <- c("andrew", "silas", "shobhana", "sanchez")
+
+topic_dir <- getwd() %>%
+    stringr::str_split("/") %>%
+    unlist() %>%
+    tail(n = 1) %>%
+    stringr::str_sub(start = 4)
+
+# Link to branch slides if they exist, otherwise to shared slides
+for (i in seq_along(instr_names)) {
+    branch_url <- paste0("https://", 
+                         instr_quartopub[i],
+                         ".quarto.pub/", 
+                         topic_dir)
+    response <- curl::curl_fetch_memory(branch_url)
+    slide_url <- ifelse(response$status_code != 404,
+                        branch_url,
+                        "slides.qmd")
+    cat(paste0("- [", instr_names[i], "](", slide_url, ")\n"))
+}
+
+cat("\n")
+
+##== Worksheets ==##
+
+f <- list.files()
+is_worksheet <- stringr::str_detect(f, "worksheet.*.qmd$")
+worksheet_filenames <- f[is_worksheet]
+worksheet_titles <- worksheet_filenames %>%
+  stringr::str_replace("_", "") %>%
+  stringr::str_replace("-", " - ") %>%
+  stringr::str_replace(".qmd", "") %>%
+  stringr::str_to_title()
+  
+if (length(worksheet_filenames) > 0) {
+  cat("#### Worksheet\n\n")
+  for (i in seq_along(worksheet_filenames)) {
+    cat(paste0("- [", worksheet_titles[i], "](", worksheet_filenames[i], ")\n"))
+  }
+}
+```

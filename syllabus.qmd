@@ -16,8 +16,6 @@ theme: [sandstone, assets/styles.scss]
 toc-depth: 4
 ---
 
-**Note: this syllabus is a work-in-progress until the first day of class.**
-
 ### Course Culture
 
 Students taking Stat 20 come from a wide range of backgrounds. We hope to foster an inclusive and supportive learning environment based on curiosity rather than competition. All members of the course community—the instructor, students, tutors, and readers—are expected to treat each other with courtesy and respect. 
@@ -120,7 +118,7 @@ Quizzes reinforce the most important concepts from the lecture notes and provide
 
 There is both an *individual* and *group* component to the quiz.
 
-The *individual* component will last ~25 minutes. You are allowed one, A4, two-sided sheet of notes. The *group* component will take place immediately after the individual component has been completed and will last ~15 minutes. Your final (composite) quiz grade will be the average of your group and individual quiz scores.
+The *individual* component will last ~25 minutes. You are allowed one, A4, ~~two-sided sheet~~ one-sided handwritten sheet of notes. The *group* component will take place immediately after the individual component has been completed and will last ~15 minutes. Your final (composite) quiz grade will be the average of your group and individual quiz scores.
 
 #### Exam
 

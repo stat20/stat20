@@ -1,0 +1,35 @@
+---
+title: "Getting Started with Markdown"
+---
+
+This first digital worksheet has only one question:
+
+> Where are you from *or* where would you like to visit?
+
+Please submit a one page pdf, generated from a .qmd file in RStudio, that answers that question. Your answer should contain 6 components:
+
+1. A "title" and "author" field in the header[^1]. Set title to one of your choosing and put your first and last name as the author.
+
+2. The county and state that you are from. If you are from abroad, provide the name of a county and state that you would like to visit. This should show up as a *header* (larger, heavier font).
+
+3. 1-3 paragraphs about this county in text, as described by Wikipedia.
+
+4. An example of **bold** and *italics* text.
+
+5. A bulleted list of your top three favorite things about this county.
+
+6. A sentence at the bottom with an acknowledgement that text came from Wikipedia. Also include a link to the Wikipedia page.
+
+Render your file early and often to make it look like a document you are proud of. 
+
+* * *
+
+To submit your file:
+
+1. Click the "Render" button at the top of the file.
+2. Check your rendered file in the lower right to see that it looks the way you want it.
+3. Click the "Show in new window" button to the right of the red x in the lower right pane.
+4. In your browser, click File > Print (or the analogous commands on your browser) to save the html file as a pdf file on your computer.
+5. Upload your pdf file to Gradescope.
+
+[^1]: The header is the part at the top of your .qmd file that starts with three hyphens and ends with three hyphens, each on their own line. To add your name, add a line between the hyphens with `author: First Last`.

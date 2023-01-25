@@ -1,8 +1,12 @@
 ---
 title: "A Tool for Computing with Data"
 subtitle: "An introduction to the R language for statistical computing"
-image: images/r-logo.png
+image: images/happy-r.png
 date: 01/25/23
+code-fold: false
+format:
+  html: default
+  pdf: default
 ---
 
 {{< include ../../assets/includes/_notes-header.qmd >}}
@@ -285,7 +289,7 @@ While vectors in R do a great job of capturing the notion of a variable, we will
 **Dataframe (R)**
 :    A two dimensional data structure used to store vectors of the same length. A direct analog of the data frame defined previously[^df].
 
-[^df]: R is a rare language in that the data frame has been for decades a core structure of the language. The analogous structure in Python is the data frame found in the Pandas library.
+[^df]: R is an unusual language in that the data frame has been for decades a core structure of the language. The analogous structure in Python is the data frame found in the Pandas library.
 
 Let's use R to recreate the penguins data frame collected by Dr. Gorman.
 
@@ -293,12 +297,11 @@ Let's use R to recreate the penguins data frame collected by Dr. Gorman.
 #| echo: false
 #| message: false
 #| warning: false
-#| 
-library(palmerpenguins)
+
+library(stat20data)
 library(dplyr)
 library(kableExtra)
 options(kableExtra.html.bsTable = TRUE)
-data(penguins)
 set.seed(30)
 tab <- penguins %>%
     select(bill_length_mm, bill_depth_mm, species) %>%
@@ -365,4 +368,4 @@ This was our first introduction to R, a supercharged calculator for storing and 
 
 - [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund. A comprehensive but approachable guide to doing data science with R. A good reference once you're deeper into this course.
 
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
+<!-- {{< include images/_links-to-materials.qmd >}} -->

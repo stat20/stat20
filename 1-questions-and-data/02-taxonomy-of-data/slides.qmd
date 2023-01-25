@@ -24,11 +24,26 @@ format:
 
 - Concept Questions: Taxonomy of Data
 - Reading Questions
-- Practice Problems
+- Worksheet on Paper
 - *Break*
-- Lab 1: Getting Started
+- Worksheet via RStudio
 
 # Concept Questions
+
+
+## Types of Variables
+
+There are three things a variable could be referring to
+
+:::incremental
+1. a *phenomenon*
+2. how the phenomenon is being *recorded or measured* into data
+   - what values can it take? (this is often an intent- or value-laden exercise!)
+   - for numerical units, what unit should we express it in?
+3. How the recorded data is being *analyzed*
+   - binning/discretizing income data
+   - if a barchart has too many bars, using a histogram.
+:::
 
 ##
 
@@ -46,12 +61,6 @@ Answer at `pollev.com/<name>`
 ```{r}
 countdown::countdown(1, top = 0)
 ```
-
-<!-- ## {data-menu-title="Poll results"} -->
-
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/multiple_choice_polls/YQl4ozAtVkszFoh6A19Gg?controls=none&short_poll=true" width="1300px" height="800px"></iframe> -->
-<!-- </center> -->
 
 ## {data-menu-title="Shoebill Pic 1" background-image="images/shoebill-1.png" background-size="contain"}
 
@@ -88,8 +97,6 @@ countdown::countdown(1, top = 0)
 :::{.fragment}
 > To simplify, assume our photos are 8 x 8 grayscale images.
 
-![](images/grayscale-8x8.png){fig-alt="8 by 8 grayscale image taken from the shoebill pixture." width="250" fig-align=center}
-
 :::
 :::
 
@@ -105,41 +112,15 @@ countdown::countdown(1, top = 0)
 :::: {.columns}
 
 ::: {.column width="33%"}
-![](images/shoebill-1-grayscale.png)
+![](images/shoebill-1.png)
 :::
 
 ::: {.column width="33%"}
-![](images/shoebill-2-grayscale.png)
+![](images/shoebill-2.png)
 :::
 
 ::: {.column width="34%"}
-![](images/shoebill-3-grayscale.png)
-:::
-
-::::
-
-:::{.poll}
-If you were to put the data from these (8 x 8 grayscale) images into a data frame, what would the dimensions of that data frame be in rows x columns?
-:::
-
-```{r}
-countdown::countdown(1, top = 0)
-```
-
-## Images in a Data Frame
-
-:::: {.columns}
-
-::: {.column width="33%"}
-![](images/shoebill-1-grayscale.png)
-:::
-
-::: {.column width="33%"}
-![](images/shoebill-2-grayscale.png)
-:::
-
-::: {.column width="34%"}
-![](images/shoebill-3-grayscale.png)
+![](images/shoebill-3.png)
 :::
 
 ::::
@@ -149,15 +130,26 @@ If you were to put the data from these (8 x 8 grayscale) images into a *data fra
 :::
 
 ```{r}
-countdown::countdown(4, top = 0)
+countdown::countdown(1, top = 0)
 ```
+
 
 # Reading Questions
 
-# Practice Handout
+# Worksheet on Paper
 
 ```{r}
 countdown::countdown(20, top = 0)
 ```
 
-# Lab 1: Getting Started
+# Worksheet via RStudio
+
+## 
+
+Demo
+
+## Your turn
+
+```{r}
+countdown::countdown(20, top = 0)
+```

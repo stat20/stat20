@@ -7,7 +7,7 @@ toc: false
 **Workshop**: 1 hr Monday\
 **Reading Questions due**: 11:59 pm Tuesday and Thursday on Gradescope\
 **Labs and PS due**: Tuesday morning 10 am on Gradescope\
-**Final Exam**: Thursday 05/11/23 in person from 11:30am-2:30pm
+**Final Exam**: Thursday 5/11/23 in person from 11:30am-2:30pm
 
 :::{.panel-tabset}
 
@@ -83,7 +83,7 @@ a %>%
 
 ```
 
-Coming soon!
+![](assets/schedule-sketch.png)
 
 ## Office Hours
 
@@ -91,17 +91,19 @@ Please stop by office hours and introduce yourself! Office hours are useful for 
 
 #### Instructors
 
-**Andrew Bray:** TBA.\
-**Silas Gifford:** TBA.\
-**Jeremy Sanchez:** TBA.\
-**Shobhana Murali Stoyanov:** TBA.
+**Andrew Bray:** Fri 10-12 in Evans 415, Tue 3-4pm on Zoom (see Ed for link) \
+**Silas Gifford:** Thu 11-12:30, Mon 2-3:30 in Evans 418 \
+**Jeremy Sanchez:** Tue 12-2, Wed 11-12 in Evans 323 \
+**Shobhana Murali Stoyanov:** Wed 2:30-4:30, Thurs 2:30-3:30 Evans 333
 
 #### Tutors
+
+The schedule of the tutor Office Hours will be appearing soon.
 
 Note: all office hours are held on the 3rd and 4th floor of Evans Hall. If you don't see a room number next to a tutors' name, check back soon, we'll be updating those as rooms are assigned.
 
 <center>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTpOINUog0ojakKLENUfSGJs3vO6xZFBXCo7s5AHMK5KTT9zLxuh8jBqz1E6aB6nd5DYK-HXXfiAvZ1/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" width="750" height="720" ></iframe>
+
 </center>
 
 :::

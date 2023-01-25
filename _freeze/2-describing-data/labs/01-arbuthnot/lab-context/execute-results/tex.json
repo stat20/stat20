@@ -1,0 +1,16 @@
+{
+  "hash": "43a0d8bcd7502499e340db4b1eca3bb5",
+  "result": {
+    "markdown": "---\ntitle: \"Lab 1.1: Arbuthnot\"\nsubtitle: \"Understanding the Context of the Data\"\nformat: pdf\n---\n\n\n\\thispagestyle{empty} \n\n1. What question did John Arbuthnot set out to answer in collecting this data?\n\n\\\n\\\n\n2. What do *you* think the probability is that a newborn child is recorded as a girl? What form of evidence or reasoning did you use to come to that determination?\n\n\\\n\\\n\n3. Sketch below a simplified version of the christening records (see the lab slides) as a data frame. What is the unit of observation?\n\n\\\n\\\n\\\n\n\n{{< pagebreak >}}\n\n\n\nWhen Arbuthnot published his study of the christening records, he presented his data like this (we show here just the first 10 rows).\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stdout}\n```\n# A tibble: 82 x 3\n    year  boys girls\n   <int> <int> <int>\n 1  1629  5218  4683\n 2  1630  4858  4457\n 3  1631  4422  4102\n 4  1632  4994  4590\n 5  1633  5158  4839\n 6  1634  5035  4820\n 7  1635  5106  4928\n 8  1636  4917  4605\n 9  1637  4703  4457\n10  1638  5359  4952\n# ... with 72 more rows\n```\n:::\n:::\n\n\n\n4. What does every row in this data frame published by John Arbuthnot correspond to? For each variable, state its type and the sort of values you would expect it to take (and also values it *should not* take).\n\n\\\n\\\n\\\n\n5. What operations were necessary to get from the original christenings data frame to Arbuthnot's data frame?\n",
+    "supporting": [
+      "lab-context_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}

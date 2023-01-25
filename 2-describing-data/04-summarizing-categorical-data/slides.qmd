@@ -22,9 +22,21 @@ format:
 
 ## Agenda
 
-- Quiz
+- Concept Questions
+- Worksheet: Summarizing Categorical Data
 - *Break*
-- Lab 2: Arbuthnot
+- Lab 1.2: Arbuthnot
+
+# Concept Questions
+
+coming soon
+
+# Worksheet: Summarizing Categorical Data
+
+```{r}
+countdown::countdown(25, font_size = "1.5em", top = 0)
+```
+
 
 ## The Goal of Labs
 
@@ -36,9 +48,9 @@ format:
 
 - You likely will need to work outside of class to finish the assignment
 
-- Visit office hours for extra help or ask on Perusall
+- Visit office hours for extra help or ask on named thread on Ed
 
-# Lab 2: Arbuthnot
+# Lab 1.2: Arbuthnot
 
 ##
 
