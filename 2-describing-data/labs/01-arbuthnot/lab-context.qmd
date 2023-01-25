@@ -1,12 +1,10 @@
 ---
-title: "Lab 1: Arbuthnot"
-date: 01/25/23
+title: "Lab 1.1: Arbuthnot"
+subtitle: "Understanding the Context of the Data"
 format: pdf
 ---
 
 \thispagestyle{empty} 
-
-## Part 1: Understanding the Context of the Data
 
 1. What question did John Arbuthnot set out to answer in collecting this data?
 
@@ -18,7 +16,7 @@ format: pdf
 \
 \
 
-3. Sketch below a simplified version of the christening record shown on the lab webpage. What is the unit of observation?
+3. Sketch below a simplified version of the christening records (see the lab slides) as a data frame. What is the unit of observation?
 
 \
 \
@@ -26,7 +24,7 @@ format: pdf
 
 {{< pagebreak >}}
 
-When Arbuthnot published his study of the christening records her presented his data like this (we show here just the first 10 rows).
+When Arbuthnot published his study of the christening records, he presented his data like this (we show here just the first 10 rows).
 
 ```{r}
 #| echo: false

@@ -5,7 +5,7 @@ format:
     author: "STAT 20: Introduction to Probability and Statistics"
     height: 900
     width: 1600
-    theme: ../../assets/slides.scss
+    theme: ../../../assets/slides.scss
     multiplex: false
     transition: fade
     slide-number: c
@@ -16,7 +16,7 @@ format:
     progress: false
     code-overflow: wrap
     title-slide-attributes:
-      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-image: ../../../assets/stat20-hex-bg.png
       data-background-size: contain
 ---
 
@@ -84,11 +84,11 @@ Now consider the case of a scientist who tackled this question long before googl
 ::: {.column width="50%"}
 - 1667 - 1735
 - Scottish physician, mathematician, satirist
-- Interested in the question of the ratio of girls to boys at birth
+- Interested in the question of what the proportion of girls to boys was at birth
 :::
 
 ::: {.column width="50%"}
-![](images/arbuthnot-portrait.png)
+![A painted portrait of John Arbuthnot](images/arbuthnot-portrait.png)
 :::
 
 ::::
@@ -111,11 +111,8 @@ Read a bit about Arbuthnot on wikipedia to learn some of his backstory.
 :::
 
 ::: {.column width="50%"}
-![](images/thames.png)
+![A painting of London in 1710.](images/thames.png)
 
-:::{.fragment}
-What evidence would people rely on?
-:::
 :::
 
 ::::
@@ -149,7 +146,7 @@ Where could Arbuthnot find vast amounts on systematically collected data regardi
 
 ##
 
-![](images/christenings.png)
+![A photograph of a page of a book of handwritten christening records taken a church in England in the 18th century](images/christenings.png)
 
 :::{.notes}
 The church is the only organization that is collecting systematic demographic data in this era.
@@ -158,7 +155,7 @@ The church is the only organization that is collecting systematic demographic da
 
 ##
 
-![](images/christening-zoom.png)
+![A zoomed in version of the christening records, where you can identify that each record was a single christening.](images/christenings-zoom.png)
 
 
 :::{.notes}
@@ -185,182 +182,31 @@ A Christening is a ceremony/rite in the Church of England where:
 John Arbuthnot tabulated the total count of names in each year that were traditionally female and male names.
 
 
-## Preparing your assignment
+## Your Lab Assignment
 
-Demo qmd
+::::columns
+:::{.column width=50%}
+#### Lab 1.1: Understanding the Context of the Data
 
+- Learn context
+- Formulate questions
+- Set expectations
+- Submitted as pdf of worksheet
 
-## Part I: Understanding the Context of the Data
+:::
 
-1. What question did John Arbuthnot set out to answer in collecting this data?
+:::{.column width=50% .fragment}
+#### Lab 1.2: Computing with the Data
 
-2. What is the unit of observation in the original christening records? What are the possible variables that may have been recorded?
+- Dive into the data
+- Submitted as a pdf from a qmd.
+:::
+::::
 
-3. What do you think the probability is that a newborn child is recorded as a girl? What form of evidence or reasoning did you use to come to that determination?
-
-```{r}
-countdown::countdown(3, font_size = "1.5em", top = 0)
-```
-
-
-# Computational Tools for Part II and III
-
-## Loading Data from a Package
-
-R packages offer a convenient way to store data.
-
-```{r}
-#| echo: true
-library(stat20data)
-```
-
-
-```{r}
-#| classes: .fragment
-#| echo: true
-#| eval: false
-?penguins
-```
-
-. . .
-
-- Load packages with `library()`
-- Some data comes pre-loaded and doesn't require `data()` (e.g. `mtcars`)
-
-
-## Functions on data frames
-
-The `tidyverse` package contains several functions used to manipulate data frames: 
-
-- `select()` : subset columns 
-
-. . .
-
-- `arrange()` : sort rows 
-
-. . .
-
-- `mutate()` : create a new column from existing column(s)
-
-
-## Selecting columns
-
+# Lab 1.1: Understanding the Context of the Data
 
 ```{r}
 #| echo: false
-library(tidyverse)
+countdown::countdown(25)
 ```
-
-
-```{r select, echo = TRUE, eval = FALSE}
-select(penguins, species, island)
-```
-
-. . .
-
-```{r ref.label = "select", echo = FALSE}
-```
-
-
-## Arranging the data frame by a column
-
-
-```{r arrange, echo = TRUE, eval = FALSE}
-arrange(penguins, bill_length_mm)
-```
-
-. . .
-
-```{r ref.label = "arrange", echo = FALSE}
-```
-
-. . .
-
-> You can sort in descending order by wrapping the variable name in `desc()`.
-
-
-## Mutating a new column
-
-. . .
-
-```{r mutate, echo = TRUE, eval = FALSE}
-mutate(penguins, bill_index = bill_depth_mm + bill_length_mm)
-```
-
-. . .
-
-```{r ref.label = "mutate", echo = FALSE}
-```
-
-
-. . .
-
-> Remember that you can nest functions.
-
-
-## Mutating a new column
-
-. . .
-
-```{r mutate2, echo = TRUE, eval = FALSE}
-select(mutate(penguins, bill_index = bill_depth_mm + bill_length_mm), bill_index)
-```
-
-. . .
-
-```{r ref.label = "mutate2", echo = FALSE}
-```
-
-
-## Part II: Computing on the Data
-
-. . .
-
-- Load the `arbuthnot` data frame in the `stat20data` package.
-
-```{r}
-#| echo: false
-
-# remotes::install_github("stat20/stat20data")
-```
-
-
-```{r echo = TRUE}
-library(stat20data)
-arbuthnot
-```
-
-- Work on questions 4 - 7, editing your .qmd as you go.
-
-```{r}
-countdown::countdown(10, font_size = "1.5em")
-```
-
-
-## Your first plot
-
-. . .
-
-A template for a line plot:
-
-```{r eval = FALSE, echo = TRUE, error = TRUE}
-ggplot(DATAFRAME, aes(x = XVARIABLE, y = YVARIABLE)) +
-  geom_line()
-```
-
-Where:
-
-- `DATAFRAME` is the name of your data frame
-- `XVARIABLE` is the name of the variable of that data frame that you want on the x-axis
-- `YVARIABLE` is the name of the variable of that data frmae that you want on the y-axis
-
-## Part III: Extensions
-
-How do trends in a more modern data set compare to Arbuthnot's data? Find out in the `present` data frame found in the `stat20data` package.
-
-```{r echo = TRUE, eval = FALSE}
-present
-?present
-```
-
 
