@@ -22,12 +22,19 @@ format:
 
 ## Agenda
 
+- PollEv competition
 - Concept Questions: Intro to Computing with R
 - R Workshop
   - Functions and Vectors
   - Data Frames
 - Break
 - Lab 1: Arbuthnot
+
+# PollEv competition
+
+```{r}
+countdown::countdown(8, top = 0)
+```
 
 # Concept Questions
 
@@ -38,7 +45,7 @@ What will happen here?
 
 \
 
-Answer at `pollev.com/<name>`
+Answer at `pollev.com/shobhana`
 :::
 
 \
@@ -63,7 +70,7 @@ What will happen here?
 
 \
 
-Answer at `pollev.com/<name>`
+Answer at `pollev.com/shobhana`
 :::
 
 \
@@ -95,7 +102,7 @@ What will happen here?
 
 \
 
-Answer at `pollev.com/<name>`
+Answer at `pollev.com/shobhana`
 :::
 
 \
@@ -125,7 +132,7 @@ What will happen here?
 
 \
 
-Answer at `pollev.com/<name>`
+Answer at `pollev.com/shobhana`
 :::
 
 \
@@ -151,6 +158,46 @@ countdown::countdown(1, top = 0)
 :::
 
 # Reading Questions
+
+# Question 1
+
+Which of the following best describes the distinction between R and RStudio?
+
+- They're synonyms for the same thing.
+- R is the language; RStudio is the tool we'll use to write and run R code.
+- RStudio is the newer edition of the R language.
+- R is a language of statistical computing; RStudio runs Excel.
+
+# Question 2
+
+How do you save the output of an R command into your Environment?
+
+- Wrap the command in parentheses `()`.
+- Wrap the command in curly braces `{}`.
+- Use the assignment arrow and provide a name for the output.
+- Drag and drop the command into your environment.
+
+
+## Question 3
+
+The atomic building block of the R language is the ...
+
+- vector
+- variable
+- numeric
+- factor
+- data frame
+
+
+## Question 4
+
+What type of vector can be used to best represent ordinal and nominal categorical variables?
+
+- the variable
+- numeric
+- continuous
+- discrete
+- factor
 
 # R Workshop
 
@@ -250,14 +297,15 @@ What is three times one point two raised to the quantity thirteen divided six?
 :::
 
 ```{r}
-countdown::countdown(minutes = 1, top = 0)
+countdown::countdown(minutes = 2, top = 0)
 ```
 
 
-## Object assignment
+## Object assignment {.scrollable}
 
-You can create/save objects using the assignment operator `<-` . This is the equivalent of `=` in other programming languages. 
-. . .
+You can create/save objects using the assignment operator `<-` . This is the equivalent of `=` in other programming languages. Note: be careful about spacing. `<-` is quite different from `< -`. One is an arrow, the other is a "greater than" followed by a "minus".
+
+Shortcut to write `<-` in RStudio: if you are on a mac type `option` and `-` simultaneously. On a PC type `alt` and `-` at the same time.
 
 ```{r}
 #| echo: true
@@ -309,7 +357,7 @@ sum(my_vector)
 4. Take the mean of that vector and round it to the nearest integer.
 :::
 
-These should all be solved with R code. If you don't know the name of a function to use, with hazard a guess by looking for a help file (e.g. `?sum`) or google it.
+These should all be solved with R code. If you don't know the name of a function to use, hazard a guess by looking for a help file (e.g. `?sum`) or google it.
 
 ```{r}
 countdown::countdown(5, top = 0)
@@ -541,7 +589,7 @@ Break
 :::
 
 ```{r}
-countdown::countdown(5, font_size = "2em")
+countdown::countdown(3, font_size = "2em")
 ```
 
 # Lab 1: Arbuthnot
