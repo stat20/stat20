@@ -3,9 +3,6 @@ title: "Summarizing Categorical Data"
 subtitle: "From data frames to tables. From tables to bar charts."
 image: images/two-var-small.png
 date: 01/27/23
-format:
-  html: default
-  pdf: default
 ---
 
 {{< include ../../assets/includes/_notes-header.qmd >}}
