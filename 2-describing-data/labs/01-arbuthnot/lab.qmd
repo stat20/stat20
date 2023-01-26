@@ -8,7 +8,7 @@ date: 01/25/23
 
 ## Part 1: Understanding the Context of the Data
 
-The first part of each of our labs will be a worksheet where you'll think more about the context of the data, help formulate your questions, and set expectactions for what the data will look like. Please record your answers on the worksheet below and upload it to Gradescope as Lab 1.1.
+The first part of each of our labs will be a worksheet where you'll think more about the context of the data, help formulate your questions, and set expectations for what the data will look like. Please record your answers on the worksheet below and upload it to Gradescope as Lab 1.1.
 
 - [Part 1: Understanding the Context of the Data](lab-context.qmd)
 
