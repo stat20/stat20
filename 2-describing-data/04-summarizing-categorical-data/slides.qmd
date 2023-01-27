@@ -67,7 +67,7 @@ An example of a conditional proportion.
 ![](images/2x2-table.png)
 
 :::poll
-What proportion where sophomores not in the marching band?
+What proportion were sophomores not in the marching band?
 :::
 
 ```{r}
