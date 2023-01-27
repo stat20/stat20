@@ -1,0 +1,4 @@
+- source: slides.qmd
+  quarto-pub:
+    - id: 74ccffc1-c20f-4b11-9b91-a95b91289409
+      url: 'https://quartopub.com/sites/shobhana/a-tool-for-computing-with-data'

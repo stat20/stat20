@@ -3,6 +3,7 @@ title: "A Tool for Computing with Data"
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
+    self-contained: true
     height: 900
     width: 1600
     theme: ../../assets/slides.scss
