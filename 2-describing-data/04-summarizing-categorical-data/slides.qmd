@@ -158,6 +158,8 @@ What does this plot show?
 :::
 
 :::notes
+Important note: it looks like a leading "1" was cropped from the numbers along the y axis.
+
 This is a confusing stacked bar chart! (unfortunately I wasn't able to track down the source.)
 
 The height of each total bar appears to be the energy supply from renewables worldwide in each of these years. The proportion on top, however, appears to be that number divided by the global *total* energy supply, which changes every year. The fact that those proportions are decreasing left to right as the bar heights are increasing suggests that renewables are increasing every year (the numerator) but the total energy supply (the denominator) is increasing at a faster rate.
