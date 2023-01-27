@@ -368,4 +368,4 @@ This was our first introduction to R, a supercharged calculator for storing and 
 
 - [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund. A comprehensive but approachable guide to doing data science with R. A good reference once you're deeper into this course.
 
-<!-- {{< include images/_links-to-materials.qmd >}} -->
+{{< include images/_links-to-materials.qmd >}}

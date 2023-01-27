@@ -8,16 +8,29 @@ date: 01/25/23
 
 ## Part 1: Understanding the Context of the Data
 
-![](images/christenings.png){width = 500}
-
-Please record your answers on the worksheet below and upload it to Gradescope as Lab 1.1.
+The first part of each of our labs will be a worksheet where you'll think more about the context of the data, help formulate your questions, and set expectations for what the data will look like. Please record your answers on the worksheet below and upload it to Gradescope as Lab 1.1.
 
 - [Part 1: Understanding the Context of the Data](lab-context.qmd)
 
 
 ## Part II: Computing on the Data
 
-To ensure your analysis is reproducible, please record your answers to these questions (both the text and code) in a .qmd file. Render your work to an HTML file regularly as a check that your code is running. When you are pleased with the result, print that HTML to a pdf, then upload to Gradescope as Lab 1.2.
+#### Quarto Lab Format
+
+The second part of each lab is your chance to dive into a real data set to answer the questions that you posed in Part 1. To ensure your analysis is reproducible, please record your answers to these questions (both the text and code) in a .qmd file. Render your work to an HTML file regularly as a check that your code is running. When you are pleased with the result, print that HTML to a pdf, then upload to Gradescope as Lab 1.2.
+
+The easiest way to create your qmd will be to run the following line of code at the console in RStudio. It will download the questions found below into a new qmd and put it into an RStudio project to help keep your code organized.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: false
+usethis::use_course("https://tinyurl.com/lab-1-arbuthnot")
+```
+
+And answer yes to both questions that appear in the console.
+
+#### Lab Questions
 
 The first several questions pertain to the `arbuthnot` data frame found in `library(stat20data)`.
 

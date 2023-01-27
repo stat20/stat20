@@ -12,12 +12,12 @@ date: 01/27/23
 \
 
 :::{style="text-align: center"}
-## Welcome to Unit I: Describing Data
+## Welcome to Unit I: Summarizing Data
 :::
 
 In spring of 2022, the New York Times ran the following story[^nyt].
 
-![](images/nyt-inflation.png){#fig-inflation fig-align=center width="600px"}
+![An article from the New York times entitled consumer prices are still climbing rapidly with an associated line graph showing the inflation rate (as measured by the change in the consumer price index) over the last 40 years with a spike upwards in spring of 2022.](images/nyt-inflation.png){#fig-inflation fig-align=center width="600px"}
 
 "Consumer Prices" refers to the Consumer Price Index[^cpi], a weighted average of the prices of thousands of everyday consumer goods: sports equipment, soft drinks, sneakers, internet service, etc. An increase in that index is thought to correspond to rising inflation.
 
@@ -28,7 +28,7 @@ Look carefully at the line plot. Which of the following four claims does it supp
 3. The global consumer price index rose in April.
 4. The CPI rose 8.3% because of the war in Ukraine.
 
-In truth, this plot could be consistent with all these claims. They are, in turn, a descriptive claim, a prediction, a generalization, and a causal claim. This newspaper headline falls squarely in the first category, a **descriptive claim**, which seeks only to describe the data set that is on hand.
+In truth, this plot could be consistent with all these claims. They are, in turn, a summary, a prediction, a generalization, and a causal claim. This newspaper headline falls squarely in the first category, a **summary**, which seeks only to describe the data set that is on hand.
 
 Although 8.3% seems like a simple enough number, is it actually *summarizing* a vast data set of thousands of prices. The process of describing a data set invariably involves summarizing it, either with **numerical summaries** like 8.3% or with **graphical summaries** like the line plot show above. 
 
@@ -45,7 +45,7 @@ In this unit, we will learn to critique and construct descriptive claims made wi
 
 [T]{.dropcap}he tools for calculating numerical summaries and graphical summaries can be cleanly divided between tools developed for categorical data and tools for numerical data. We'll discuss each in turn, starting with categorical data.
 
-When Dr. Gorman collected data near Palmer Station, Antarctica, she recorded a total of eight variables on 344 penguins, presented here in a data frame.
+When Dr. Gorman collected data near Palmer Station, Antarctica, she recorded a total of eight variables on 333 penguins, presented here in a data frame.
 
 ```{r}
 #| echo: false
@@ -53,7 +53,7 @@ When Dr. Gorman collected data near Palmer Station, Antarctica, she recorded a t
 #| message: false
 
 library(tidyverse)
-library(palmerpenguins)
+library(stat20data)
 penguins
 ```
 
@@ -72,7 +72,6 @@ If I asked you to look at this data frame and describe what these two variables 
 #| message: false
 
 library(tidyverse)
-library(palmerpenguins)
 library(knitr)
 library(kableExtra)
 
@@ -91,7 +90,7 @@ table(penguins$species, penguins$island) %>%
 #| message: false
 
 library(tidyverse)
-library(palmerpenguins)
+library(stat20data)
 library(knitr)
 library(kableExtra)
 
@@ -134,9 +133,9 @@ ggplot(penguins, aes(x = species,
 
 The stacked bar chart puts one of the variables along the x-axis (the species) and fills up the y-axis according to the counts in each level of the other variable (the island). The side-by-side bar chart is similar, but unstacks the "Adelie" bar to put the three islands besides one another.
 
-So with two similar to charts to choose from, which one should you pick? The stacked bar chart succeeds in highlighting the total number of Adelie penguins: 152 (also the sum of the top row of the contingency table). The side-by-side version makes that total harder to see, but it is easier to see at a glance the relative sizes of which islands each of those Adelie penguins came from.
+So with two similar to charts to choose from, which one should you pick? The stacked bar chart succeeds in highlighting the total number of Adelie penguins: 146 (also the sum of the top row of the contingency table). The side-by-side version makes that total harder to see, but it is easier to see at a glance the relative sizes of which islands each of those Adelie penguins came from.
 
-![A schematic showing the link between a data frame, a contingency table of counts, and a stacked bar chart for a subset of 16 of the 344 penguins.](images/two-var.png){#fig-two-var fig-alt="Sketch showing the flow for two variables from raw data to contingency table to barchart." fig-align=center width="550px"}
+![A schematic showing the link between a data frame, a contingency table of counts, and a stacked bar chart for a subset of 16 of the 333 penguins.](images/two-var.png){#fig-two-var fig-alt="Sketch showing the flow for two variables from raw data to contingency table to barchart." fig-align=center width="550px"}
 
 
 ### From Counts to Proportions
@@ -151,7 +150,7 @@ When you count the number of observations in each level of a categorical variabl
 #| layout-ncol: 2
 
 library(tidyverse)
-library(palmerpenguins)
+library(stat20data)
 library(knitr)
 library(kableExtra)
 
@@ -161,9 +160,9 @@ table(penguins$species, penguins$island) %>%
     column_spec(1, bold = T, border_right = T) %>%
     row_spec(0, bold = T)
 
-df <- data.frame(Biscoe = c(0.128, 0, 0.360, .488),
-           Dream = c(0.163, 0.198, 0.000, 0.361),
-           Torgersen = c(0.151, 0.000, 0.000, 0.151)) %>%
+df <- data.frame(Biscoe = c(0.132, 0, 0.357, 0.489),
+           Dream = c(0.165, 0.204, 0.000, 0.369),
+           Torgersen = c(0.142, 0.000, 0.000, 0.142)) %>%
     mutate(rowsum = Biscoe + Dream + Torgersen)
 species = c("Adelie", "Chinstrap", "Gentoo", "")
 df <- data.frame(species, df)
@@ -186,7 +185,7 @@ df %>%
 #| message: false
 
 library(tidyverse)
-library(palmerpenguins)
+library(stat20data)
 library(knitr)
 library(kableExtra)
 
@@ -203,15 +202,15 @@ df %>%
 The table on the right contains two different types of proportions that can be found in the middle and margins of the table, respectively.
 
 **Joint Proportion**
-:    The proportion of observations of multiple variables that appear in a combination of levels of those variables. E.g. 44 / 344 = .128, the proportion of all 344 penguins that were Adelie and from Biscoe.
+:    The proportion of observations of multiple variables that appear in a combination of levels of those variables. E.g. 44 / 333 = .132, the proportion of all 333 penguins that were Adelie and from Biscoe.
 
 **Marginal Proportion**
-:    The proportion of observations in one variable that appear in a single level of that variable. E.g. (44 + 124) / 344 = .488, the proportion of all penguins that were from Biscoe.
+:    The proportion of observations in one variable that appear in a single level of that variable. E.g. (44 + 119) / 333 = .489, the proportion of all penguins that were from Biscoe.
 
 From these proportions we can derive a third type of proportion.
 
 **Conditional Proportion**
-:    The proportion of observations in one level of one variable that appear in a level of a second variable. E.g. .128 / .488 = .262, the proportion of penguins from Biscoe that were Adelie.
+:    The proportion of observations in one level of one variable that appear in a level of a second variable. E.g. .132 / .489 = .269, the proportion of penguins from Biscoe that were Adelie.
 
 These distinctions are important because often a subtle change in language can result in a dramatically different number. Revisit the observations made about the original table of counts:
 
@@ -219,7 +218,7 @@ These distinctions are important because often a subtle change in language can r
 2. Adelie penguins were the most common.
 3. The most prevalent penguin type in this data set was a Gentoo from Biscoe Island.
 
-The first observation refers to a conditional proportion: of the 68 total Chinstrap penguins, 68 of them were on Dream (a proportion of 1). The second refers to a marginal proportion: .422 of the penguins were Adelie versus .198 Chinstrap and .360 Gentoo. The third is a joint proportion: .360, or 124 out of all 344 penguins were Gentoos living on Biscoe.
+The first observation refers to a conditional proportion: of the 68 total Chinstrap penguins, 68 of them were on Dream (a proportion of 1). The second refers to a marginal proportion: .439 of the penguins were Adelie versus .204 Chinstrap and .357 Gentoo. The third is a joint proportion: .357, or 124 out of all 333 penguins were Gentoos living on Biscoe.
 
 With these distinctions in hand, we can construct a useful variant of the bar chart: the normalized stacked bar chart.
 
@@ -236,7 +235,7 @@ ggplot(penguins, aes(x = species,
 
 Instead of plotting raw counts, a normalized bar chart plots proportions. But which proportions? 
 
-If you look back and forth between this bar chart and the table of proportions, you'll eventually decide that this bar chart is showing conditional proportions. The height of the blue bar in the lower left corner indicates the proportion of all Adelie penguins that were from Torgersen: 52 / 152 = .342. Since `species` is in the denominator of this proportion, we say that we've "conditioned on" species.
+If you look back and forth between this bar chart and the table of proportions, you'll eventually decide that this bar chart is showing conditional proportions. The height of the blue bar in the lower left corner indicates the proportion of all Adelie penguins that were from Torgersen: 47 / 146 = .322. Since `species` is in the denominator of this proportion, we say that we've "conditioned on" species.
 
 We can take the same data and get a very different story if instead we condition on `island`.
 
@@ -251,7 +250,7 @@ ggplot(penguins, aes(x = island,
     labs(y = "proportion")
 ```
 
-Now, the height of the blue bar in the lower left of the plot shows the proportion of penguins from Biscoe that were Gentoo: 124 / 168 = .738.
+Now, the height of the blue bar in the lower left of the plot shows the proportion of penguins from Biscoe that were Gentoo: 119 / 163 = .730.
 
 One last question before we move on: of these two charts, which one more clearly shows the species distribution on Dream Island? Dream shows up in both charts, but only one gives you a good answer to this question.
 
