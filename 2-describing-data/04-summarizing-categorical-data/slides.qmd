@@ -23,335 +23,156 @@ format:
 ## Agenda
 
 - Concept Questions
-- Worksheet: Summarizing Categorical Data
-- *Break*
 - Lab 1.2: Arbuthnot
 
 # Concept Questions
 
-coming soon
+## 
 
-# Worksheet: Summarizing Categorical Data
+The table below displays data from a survey on a class of students.
+
+![](images/2x2-table.png)
+
+:::poll
+What proportion of the class was in the marching band?
+:::
 
 ```{r}
-countdown::countdown(25, font_size = "1.5em", top = 0)
+countdown::countdown(.5, top = 0)
 ```
 
 
-## The Goal of Labs
-
-- Put concepts into practice with real data
-
-- Follow best practices in reproducible analyses (.qmd)
-
-- In class we'll work on the most challenging problems
-
-- You likely will need to work outside of class to finish the assignment
-
-- Visit office hours for extra help or ask on named thread on Ed
-
-# Lab 1.2: Arbuthnot
-
-##
-
-:::{.bigadage style="text-align: center"}
-What is the chance that a child born tomorrow is a girl?
+:::notes
+An example of a marginal proportion.
 :::
 
-:::{.notes}
-Most students will volunteer 50\%. Follow up with:
+## 
 
-> Why do you think it's 50\%? How did you come to that number?
-- Did you read it somewhere? 
-- Did you hear it from someone? 
+![](images/2x2-table.png)
 
-> If you wanted to confirm it was 50% what would you do?
-- [likely answer: google it]
-
-> What source for that number would you likely come across if you kept digging?
-- ultimately, maybe some scientific article.
-
-> What would their evidence for that claim of 50\%?
-- likely vast amounts of demographic / census data
+:::poll
+What proportion of those in the marching band where juniors?
 :::
-
-. . .
-
-> 50%?
-
-. . .
-
-### What evidence do we ultimately rely upon?
-
-. . .
-
-> Vast amounts of data
-
-:::{.notes}
-Now consider the case of a scientist who tackled this question long before google was around.
-:::
-
-
-
-## Dr. John Arbuthnot
-
-:::: {.columns}
-
-::: {.column width="50%"}
-- 1667 - 1735
-- Scottish physician, mathematician, satirist
-- Interested in the question of the ratio of girls to boys at birth
-:::
-
-::: {.column width="50%"}
-![](images/arbuthnot-portrait.png)
-:::
-
-::::
-
-<!-- Credit: Godfrey Kneller, Public domain, via Wikimedia Commons -->
-
-:::{.notes}
-Read a bit about Arbuthnot on wikipedia to learn some of his backstory.
-:::
-
-
-## Arbuthnot's London
-
-:::: {.columns}
-
-::: {.column width="50%"}
-- 1710, St. Paul's Cathedral completed
-- Very few paved streets
-- Definitely no google
-:::
-
-::: {.column width="50%"}
-![](images/thames.png)
-
-:::{.fragment}
-What evidence would people rely on?
-:::
-:::
-
-::::
-
-<!-- credit: Giovanni Antonio Canal, il Canaletto - The River Thames with St. Paul's Cathedral on Lord Mayor's Day, detail, 1746-47 -->
-
-:::{.notes}
-Arbuthnot was living in London while thinking about this problem. It was a period of rapid growth and modernization for the city but it still had no google.
-
-Main point to get across here: what we take for granted in terms of how we reason from data was nearly absent from life in 18th century UK. Most people would reason from direct experience, anecdote, appeals to tradition or religion, etc.
-
-If you were Dr. Arbuthnot and you tell the person on the street: "My wife will soon be giving birth. What are the chances it's a girl?", what sort of answer do you think he might get? What type of information might that person be relying upon?
-- their own experience (the ratio of girls born in their family)
-- anecdotes that they've heard from others
-
-You may want to note that even our notion of "chance" and probability was not wide spread at the time.
-
-Arbuthnot's work is notable because he takes the big step of realizing that an individual can learn a lot by pooling the experiences / anecdotes of others in a systematic way.
-:::
-
-
-##
-
-:::{.bigadage style="text-align: center"}
-Where could Arbuthnot find vast amounts on systematically collected data regarding births?
-:::
-
-. . .
-
-> The church.
-
-##
-
-![](images/christening-records.png)
-
-:::{.notes}
-The church is the only organization that is collecting systematic demographic data in this era.
-:::
-
-
-##
-
-![](images/christening-records-zoom.png)
-
-
-:::{.notes}
-Most children, shortly after they're born, are taken to the nearby parish church and "christened" - given a name in the church. The parish churches record the name and date of each of these christenings.
-
-Arbuthnot went from parish church to parish church in London, pored over these records and tallied the number of boys and girls. He then combined these counts across all of the parishes and created a data set that we can read into R today.
-:::
-
-
-## What is a christening record?
-
-. . .
-
-A Christening is a ceremony/rite in the Church of England where:
-
-1. The parents bring their new born child to a priest at the church.
-
-2. As part of the ceremony, the parents give a first name to the child before the child is baptized (inducted into the church).
-
-3. The name of the child and their parents are recorded in a ledger.
-
-. . .
-
-John Arbuthnot tabulated the total count of names in each year that were traditionally female and male names.
-
-
-## Preparing your assignment
-
-Demo qmd
-
-
-## Part I: Understanding the Context of the Data
-
-1. What question did John Arbuthnot set out to answer in collecting this data?
-
-2. What is the unit of observation in the original christening records? What are the possible variables that may have been recorded?
-
-3. What do you think the probability is that a newborn child is recorded as a girl? What form of evidence or reasoning did you use to come to that determination?
 
 ```{r}
-countdown::countdown(3, font_size = "1.5em", top = 0)
+countdown::countdown(.5, top = 0)
+```
+
+:::notes
+An example of a conditional proportion.
+:::
+
+## 
+
+![](images/2x2-table.png)
+
+:::poll
+What proportion where sophomores not in the marching band?
+:::
+
+```{r}
+countdown::countdown(.5, top = 0)
+```
+
+:::notes
+An example of a join proportion.
+:::
+
+## 
+
+![](images/2x2-table.png)
+
+:::poll
+What were the dimensions of the raw data from which this table was constructed?
+:::
+
+```{r}
+countdown::countdown(.5, top = 0)
 ```
 
 
-# Computational Tools for Part II and III
+## 
 
-## Loading Data from a Package
+![](images/2x2-table.png)
 
-R packages offer a convenient way to store data.
+:::poll
+How would you characterize the association between these two variables?
+:::
 
 ```{r}
-#| echo: true
-library(palmerpenguins)
-data(penguins)
+countdown::countdown(.5, top = 0)
 ```
 
 
-```{r}
-#| classes: .fragment
-#| echo: true
-#| eval: false
-?penguins
-```
+## 
 
-. . .
-
-- Load packages with `library()`
-- Load data with `data()`
-- Some data comes pre-loaded and doesn't require `data()` (e.g. `mtcars`)
-
-
-## Functions on data frames
-
-The `tidyverse` package contains several functions used to manipulate data frames: 
-
-- `select()` : subset columns 
-
-. . .
-
-- `arrange()` : sort rows 
-
-. . .
-
-- `mutate()` : create a new column from existing column(s)
-
-
-## Selecting columns
-
+Political affiliation and college degree status of 500 survey participants.
 
 ```{r}
-#| echo: false
 library(tidyverse)
-```
-
-
-```{r select, echo = TRUE, eval = FALSE}
-select(penguins, species, island)
-```
-
-. . .
-
-```{r ref.label = "select", echo = FALSE}
-```
-
-
-## Arranging the data frame by a column
-
-
-```{r arrange, echo = TRUE, eval = FALSE}
-arrange(penguins, bill_length_mm)
-```
-
-. . .
-
-```{r ref.label = "arrange", echo = FALSE}
-```
-
-. . .
-
-> You can sort in descending order by wrapping the variable name in `desc()`.
-
-
-## Mutating a new column
-
-. . .
-
-```{r mutate, echo = TRUE, eval = FALSE}
-mutate(penguins, bill_index = bill_depth_mm + bill_length_mm)
-```
-
-. . .
-
-```{r ref.label = "mutate", echo = FALSE}
-```
-
-
-. . .
-
-> Remember that you can nest functions.
-
-
-## Mutating a new column
-
-. . .
-
-```{r mutate2, echo = TRUE, eval = FALSE}
-select(mutate(penguins, bill_index = bill_depth_mm + bill_length_mm), bill_index)
-```
-
-. . .
-
-```{r ref.label = "mutate2", echo = FALSE}
-```
-
-
-## Part II: Computing on the Data
-
-. . .
-
-- Load the `arbuthnot` data frame in the `stat20data` package.
-
-```{r}
-#| echo: false
-
-# remotes::install_github("stat20/stat20data")
-```
-
-
-```{r echo = TRUE}
 library(stat20data)
-data(arbuthnot)
+library(infer)
+ggplot(gss, aes(x = partyid, fill = college)) +
+  geom_bar(position = "fill") +
+  labs(x = "Party", fill = "College", y = "proportion") +
+  theme_gray(base_size = 18)
 ```
 
-- Work on questions 4 - 7, editing your .qmd as you go.
+
+:::poll
+Which group is the largest?
+:::
+
+:::notes
+The General Social Survey is a widely used sources of data on the attitudes, behaviors, and attributes of Americans. This plot shows the relationship between the political affiliation and college degree status of 500 participants.
+
+Cannot tell which group is the largest since this plot as been normalized so that the proportions within each party sum to 1. The unnormalized plot on the following slide is one that allows us to answer this questions.
+:::
 
 ```{r}
-countdown::countdown(10, font_size = "1.5em")
+countdown::countdown(1)
+```
+
+##
+
+```{r}
+library(tidyverse)
+library(stat20data)
+library(infer)
+ggplot(gss, aes(x = partyid, fill = college)) +
+  geom_bar() +
+  labs(x = "Party", fill = "College", y = "proportion") +
+  theme_gray(base_size = 18)
+```
+
+:::notes
+The unnormalized bar chart of counts preserves original counts and thus is good at comparing joint proportions. The normalized bar count shows condition proportions and thus is good for showing associations between variables.
+:::
+
+
+## {background-image="images/world-energy-supply.jpeg" background-size="contain"}
+
+
+:::{.poll .fragment .fade-in-then-out}
+What does this plot show?
+:::
+
+:::notes
+Important note: it looks like a leading "1" was cropped from the numbers along the y axis.
+
+This is a confusing stacked bar chart! (unfortunately I wasn't able to track down the source.)
+
+The height of each total bar appears to be the energy supply from renewables worldwide in each of these years. The proportion on top, however, appears to be that number divided by the global *total* energy supply, which changes every year. The fact that those proportions are decreasing left to right as the bar heights are increasing suggests that renewables are increasing every year (the numerator) but the total energy supply (the denominator) is increasing at a faster rate.
+:::
+
+```{r}
+countdown::countdown(.5, top = 0)
+```
+
+# Lab 1: Arbuthnot
+
+```{r}
+countdown::countdown(20)
 ```
 
 
@@ -361,24 +182,23 @@ countdown::countdown(10, font_size = "1.5em")
 
 A template for a line plot:
 
-```{r eval = FALSE, echo = TRUE, error = TRUE}
+\
+
+```{r style="font-size: 1.15em"}
+#| eval: FALSE
+#| echo: TRUE
+#| error: TRUE
+
 ggplot(DATAFRAME, aes(x = XVARIABLE, y = YVARIABLE)) +
   geom_line()
 ```
+
+\
 
 Where:
 
 - `DATAFRAME` is the name of your data frame
 - `XVARIABLE` is the name of the variable of that data frame that you want on the x-axis
 - `YVARIABLE` is the name of the variable of that data frmae that you want on the y-axis
-
-## Part III: Extensions
-
-How do trends in a more modern data set compare to Arbuthnot's data? Find out in the `present` data frame found in the `stat20data` package.
-
-```{r echo = TRUE, eval = FALSE}
-data(present)
-?present
-```
 
 
