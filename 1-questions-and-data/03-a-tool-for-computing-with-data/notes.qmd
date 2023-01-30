@@ -353,6 +353,58 @@ penguins_df <- data.frame(bill_length_mm, bill_depth_mm, species)
 penguins_df
 ```
 
+## Functions on data frames
+
+Now that we have moved from vectors to data frames, we can now think about functions that take in data frames as input! With these functions, we can perform some very useful data wrangling steps. The first three functions come from the `tidyverse` library.
+
+**`select()`**
+: A data wrangling function in the `tidyverse` library which allows you to pick out columns of your choice from a data frame.
+
+Let's print out the `penguins` data frame again.
+
+```{r}
+penguins
+```
+
+You might imagine a scenario where, depending on what you want to do, only a few of the columns in the data frame are useful. For example, in the lecture of next class, we will examine the relationship between the `island` which penguins live on and their `species`. We really only need the `island` and `species` column for that purpose.
+
+```{r}
+#| echo: true
+#| eval: false
+select(penguins, island, species)
+```
+
+We have indicated that we want to work on the `penguins` data set, and then separated each column that we are interested in extracting with a comma. Make sure your spelling is consistent with that of the column names in the data frame!
+
+
+**`arrange()`**
+: A data wrangling function in the `tidyverse` library which allows you to sort rows of a data frame by the values in a specific column of that data frame.
+
+Take another look at the `penguins` data frame above. We can see that the penguins seem to be sorted by `species` and `island`, but what if we want to sort by another column? For example, if we wanted to find the penguin with the shortest bill in millimeters, it would be difficult to do with the data in this configuration. We would have to comb through all 333 penguins on record to do this. That would be quite exhausting (and we are in the 2020s)!
+
+`arrange()` makes solving a problem like this very easy.
+
+```{r}
+arrange(penguins, bill_length_mm)
+```
+
+We first indicate that we are working with the `penguins` data set, and then indicate the column which we want to sort our data frame by. Now we know that the penguin with the smallest bill is ...
+
+If you wanted to find the penguin with the *largest* bill length (in millimeters), there's just a slight modification we need to do!
+
+```{r}
+arrange(penguins, desc(bill_length_mm) )
+```
+
+Wrapping `bill_length_mm` inside of `desc()` (for *descending*), we can see that the penguin with the largest bill is ... 
+
+**Mutating`**
+
+: The act of creating a new column in a data frame out of information contained in existing columns of that data frame.
+
+Sometimes the information that we are looking for in our data frame isn't recorded explicitly as a column
+
+
 ## Summary
 
 This was our first introduction to R, a supercharged calculator for storing and computing on data. We learned how to do basic arithmetic, construct and save a **vector**, call **functions**, query the **class** of an object, and construct a **data frame**. This forms the foundation of our use of R. If that foundation feels shakey, don't fret. Next class will be dedicated to a workshop on R.
