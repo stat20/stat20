@@ -10,32 +10,9 @@ date: 02/01/23
 
 ## Part I: Understanding the Context of the Data
 
-1. What is the unit of observation in the survey of students in Stat 20?
+The first part of each of our labs will be a worksheet where you'll think more about the context of the data, help formulate your questions, and set expectations for what the data will look like. Please record your answers on the worksheet below and upload it to Gradescope as Lab 2.1.
 
-2. Where in the Taxonomy of Data are the variables that correspond to each of the following survey questions (i.e., what is their type)?
-   - Question 7: What is your favorite thing about Cal?
-   - Question 15: Where would you rather be?
-   - Question 22: What is the chance that a fire alarm goes off in one of the dorms this week? 
-
-3. What values would you expect `Major` to take? Do you anticipate any challenges when analyzing this data?
-
------------
-
-Questions 4 - 7 can be answered using data visualization. To lay the groundwork for answering these questions using the survey data set, plan out your plots and set your expectations for what the data might look like. Please:
-
-- sketch (with paper and pencil) a plot that captures the distribution or relationship between the variables,
-- label the axis and add axis tick marks with plausible values,
-- depict a shape that reflects your expectation of the phenomena,
-- write out the *aesthetic mappings* (the variables in use and which visual cues / aesthetic each one is mapped to) and
-- write out the *geometry* utilized by your plot.
-  
-4. Do students prefer to spend time at the beach or in the mountains?
-
-5. How much coding experience do students have?
-
-6. What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022?
-
-7. What is the relationship between students' optimism for cryptocurrency and their skepticism of the effect of technology on interpersonal relationships?
+- [Part 1: Understanding the Context of the Data](lab-context.qmd)
 
 
 ## Part II: Computing on the Data
@@ -44,13 +21,11 @@ The real survey data is accessible on [stat20.datahub.berkeley.edu](stat20.datah
 
 Using this data, construct the plots that you proposed in Part I and calculate for the first three a measure of a typical observation (mean, median, or mode, as appropriate). Use these summaries to answer the original question in a sentence or two, noting, where appropriate, the shape of the distribution and what a "typical" observation is.
 
-8. Do students prefer to spend time at the beach or in the mountains?
+7. How much coding experience do students have?
 
-9. How much coding experience do students have?
+8. What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022?
 
-10. What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022?
-
-11. What is the relationship between students' optimism for cryptocurrency and their skepticism of the effect of technology on interpersonal relationships?
+9. What is the relationship between students' optimism for cryptocurrency and their skepticism of the effect of technology on interpersonal relationships?
 
 
 ## Part III: Extensions
@@ -59,10 +34,7 @@ Six variables appear in the survey data frame that were derived from the origina
 
 For the following questions, please answer with a plot and a sentence or two written response given the structure in the plot.
 
-12. Is there an association between students most identifying as an entrepreneur and their optimism for cryptocurrency?
+10. Is there an association between students most identifying as an entrepreneur and their optimism for cryptocurrency?
 
-13. Is there an association between students most identifying as a humanist and their optimism for cryptocurrency?
+11. Propose your own question involving one or two variables and answer it using a plot with a written interpretation.
 
-14. Propose your own question involving one or two variables and answer it using a plot with a written interpretation.
-
-15. Propose your own question involving two or three variables and answer it using a plot with a written interpretation.

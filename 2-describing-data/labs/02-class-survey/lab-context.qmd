@@ -1,0 +1,55 @@
+---
+title: "Lab 2.1: Class Survey"
+subtitle: "Understanding the Context of the Data"
+format: pdf
+---
+
+\thispagestyle{empty} 
+
+1. What is the unit of observation in the survey of students in Stat 20?
+
+\vspace{.5cm}
+
+2. Where in the Taxonomy of Data are the variables that correspond to each of the following survey questions (i.e., what is their type)?
+   - What is your favorite thing about Cal (`favorite_thing_cal`)?
+   - Where would you rather be (`beach_or_mtns`)?
+   - What is the chance that a fire alarm goes off in one of the dorms this week (`fire_alarm`)?
+   
+\
+\
+\
+\
+
+3. What values would you expect `major` to take? Do you anticipate any challenges when analyzing this data?
+
+\
+\
+\
+
+\newpage
+
+Questions 4 - 6 can be answered using data visualization. To lay the groundwork for answering these questions using the survey data set, plan out your plots and set your expectations for what the data might look like. Please:
+
+- sketch (with paper and pencil) a plot that captures the distribution or relationship between the variables,
+- label the axis and add axis tick marks with plausible values,
+- depict a shape that reflects your expectation of the phenomena,
+- write out the *aesthetic mappings* (the variables in use and which visual cues / aesthetic each one is mapped to) and
+- write out the *geometry* utilized by your plot.
+
+---
+
+4. How much coding experience do students have?
+
+\vspace{16cm}
+
+5. What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022?
+
+\vspace{10cm}
+
+6. What is the relationship between students' optimism for cryptocurrency and their skepticism of the effect of technology on interpersonal relationships?
+
+\vspace{10cm}
+
+
+
+
