@@ -71,7 +71,7 @@ format:
     reference-location: document
     code-fold: true
     code-link: true
-    code-summary: "."
+    code-summary: ""
     
 execute:
   freeze: auto
