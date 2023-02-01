@@ -1,0 +1,92 @@
+---
+format:
+  pdf:
+    include-in-header:
+      - preamble.tex
+      - fancyhdr.tex
+    fontsize: 10pt
+    margin-top: .8in
+    margin-bottom: .5in
+---
+
+\thispagestyle{empty}
+
+\begin{center}
+\textsc{Stat 20: PS 2.1} \\
+\noindent\rule{12cm}{0.4pt}
+\end{center}
+
+1. In the space below, outline a procedure to take a data set like the following and return a single statistic that fulfills the desiderata:
+   a. The statistic will increase in magnitude as variability increases
+   b. The statistic will decrease in magnitude as the variability decreases
+   c. The statistic is zero when there is no variability
+
+You can express your procedure as a written recipe or using mathematical notation.
+
+$$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11  \quad 11$$
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+2. Imagine that the small data set above had been measured in meters. Provide reasoning for would happen to the measure of center - mean, median, mode - if it had instead been measured in centimeters. Repeat the exercise for three measures of spread: standard deviation, variance, and IQR. Which measures are resistant to multiplication by a scalar (100 in this case)?
+
+
+{{< pagebreak >}}
+
+3. Sketch your best sense of the distribution of the following variable(s). For each, please: 
+
+  i. Use a form of statistical graphic that emphasizes the important elements of the distribution.
+  ii. Label the axes and provide plausible values for the tick marks.
+  iii. Describe in words the shape, center, and spread of the distribution.
+  iv. State measures of center and spread would be most appropriate.
+
+Make a note of any assumptions you're making in interpreting these variable names.
+
+*Number of body piercings* among Stat 20 students
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+*Scores on an easy quiz* among Stat 20 students
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+*Distance from campus* and *Year at Cal (first, second, etc)* among all Cal students
