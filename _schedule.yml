@@ -21,7 +21,7 @@ labs:
   - filedir: "01-arbuthnot"
     date: 01/25/23
   - filedir: "02-class-survey"
-    date: 02/01/23
+    date: 02/03/23
   - filedir: "03-flights"
     date: 02/08/23
 release-schedule:
