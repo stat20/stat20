@@ -22,12 +22,21 @@ format:
 
 ## Agenda
 
+- Quiz Review
+- Lab 1 Review
 - Concept Question
+- *Break*
 - Measures of Center
 - Measures of Spread
 - Summarize
 - *Break*
 - Lab 2: Arbuthnot
+
+# Quiz Review
+
+# Lab 1 Review
+
+
 
 # Concept Question
 
@@ -359,7 +368,7 @@ $$ s = 1.70 $$
 **Characteristics**
 
 ::: {.column width="33%"}
-- Incorporates information from all observations
+- Incorporates info from all observations
 :::
 
 ::: {.column width="33%"}
@@ -410,44 +419,3 @@ df %>%
 :::
 
 ::::
-
-# Summarize
-
-## Functions for Data Wrangling
-
-The most powerful package in R for data wrangling is `dplyr`, and it is loaded when you include `library(tidyverse)`.
-
-1. **`arrange()`**: sorts a data frame according to the values of one (or many) columns.
-
-. . .
-
-2. **`select()`**: selects from a data frame only the columns of interest.
-
-. . .
-
-3. **`mutate()`**: creates a new column in a data frame that can be a function of existing columns.
-
-. . .
-
-> All of the `dplyr` functions take a data frame as their first argument and return a data frame.
-
-## Summarize
-
-. . .
-
-Calculates summary statistics on the columns of a data frame.
-
-```{r}
-#| eval: false
-#| echo: true
-#| error: true
-summarize(DATAFRAME, NAME = FUN1(COL1))
-```
-
-- `FUN1` can be any function that can operate on a vector (like `mean()`).
-- `COL1` is the name of a column found in `DATAFRAME`.
-- You can optionally call the resulting statistic a `NAME` of your choice.
-
-# Break
-
-# Lab 2: Arbuthnot
