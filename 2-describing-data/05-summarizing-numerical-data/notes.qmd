@@ -1,8 +1,10 @@
 ---
 title: "Summarizing Numerical Data"
 subtitle: "Seeing the forest for the trees."
-image: images/violins.png
+image: images/violins-sm.png
 date: 02/01/23
+format:
+  html: default
 ---
 
 {{< include ../../assets/includes/_notes-header.qmd >}}
@@ -30,21 +32,27 @@ The same considerations of omission and inclusion come into play when developing
 
 In these notes we'll keep this guidance in mind as we discuss how to summarize numerical data with graphics, in words, and with statistics.
 
+:::{.callout-tip}
+
+## Code along
+
+As you read through these notes, you'll find figures and tables that were produced by running R code. If you'd like to peek into that code, click the gray arrow on the left side of the code. There's no need to learn all of these functions just yet, but it might be helpful to start reasoning through what you think the different functions are doing. When you learn these functions in the coming weeks, these notes can serve as a source of helpful examples.
+:::
+
 ## Constructing Graphical Summaries
 
 Let's turn to an example admittedly less complex than Hamlet: the Palmer penguins. One of the numerical variables Dr. Gorman recorded was the length of the bill in millimeters. The values of the first 16 penguins are:
 
 :::{.column-margin}
-![](images/culmen-depth.png){width="250px"}
+![](images/culmen-depth.png){width="250px" fig-alt="A sketch of the a penguin in profile, with a measuring bar indicating a measurement of the bill length."}
 :::
 
 
 ```{r}
 library(tidyverse)
-library(palmerpenguins)
+library(stat20data)
 bill_16 <- penguins %>%
   select(bill_length_mm) %>%
-  drop_na() %>%
   slice(1:16)
 bill_16  
 ```
@@ -370,12 +378,18 @@ For categorical data, however, the mode is very useful. The mode of the species 
 
 ### Measures of Spread
 
-There are many different ways to capture spread or dispersion of data. So many, in fact, that we'll save this part for a discussion during class time.
+There are many different ways to capture spread or dispersion of data. Two commonly-used statistics are the (sample) **variance**, $s^2$, and the (sample) **standard deviation**, *s*.
+
+$$ s^2 = \frac{1}{n - 1} \sum_{i=1}^{n} \left( x_i - \bar{x}\right)^2 $$
+
+$$ s = \sqrt{\frac{1}{n - 1} \sum_{i=1}^{n} \left( x_i - \bar{x}\right)^2} $$
+
+Although the formulations might look dense, there are good reasons for each decision that was made in constructing these statistics. We will discuss those decisions, as well as several other ways one could measure spread, next class.
 
 ## Summary
 
 A summary of a summaries...this better be brief! Summaries of numerical data - graphical and numerical - often involve choices of what information to include and what information to omit. These choices involve a degree of judgement and knowledge of the criteria that were used to construct the commonly used statistics and graphics.
 
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
+<!-- {{< include ../../assets/includes/_links-to-materials.qmd >}} -->
 
 
