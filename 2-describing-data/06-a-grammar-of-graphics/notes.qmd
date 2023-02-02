@@ -3,9 +3,6 @@ title: "A Grammar of Graphics"
 subtitle: "A unified framework for constructing statistical graphics."
 image: images/penguin-plot.png
 date: 02/03/23
-format:
-  html: default
-  pdf: default
 ---
 
 {{< include ../../assets/includes/_notes-header.qmd >}}
