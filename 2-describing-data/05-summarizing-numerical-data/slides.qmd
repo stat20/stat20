@@ -23,20 +23,15 @@ format:
 ## Agenda
 
 - Quiz Review
-- Lab 1 Review
-- Concept Question
-- *Break*
+- Concept Questions
+
 - Measures of Center
 - Measures of Spread
 - Summarize
 - *Break*
-- Lab 2: Arbuthnot
+- Handout
 
 # Quiz Review
-
-# Lab 1 Review
-
-
 
 # Concept Question
 
@@ -203,11 +198,14 @@ $$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11
 
 :::{.callout-warning appearance="simple" icon=false}
 
+
 ## Desiderata
 
+::: {.incremental}
 - The statistic should be *low* when the numbers are the same or very similar to one another.
 - The statistic should be *high* when the numbers are very different.
 - The statistic should not grow or shrink with the sample size ( $n$ ).
+:::
 :::
 :::
 
@@ -253,7 +251,7 @@ $$ 6 \quad 7 \quad {\Large 7 \quad  7} \quad 8 \quad  {\large 8} \quad 9 \quad {
 
 . . .
 
-### The Inner Quartile Range (IQR)
+### The Interquartile Range (IQR)
 
 The difference between the median of the larger half of the sorted data set, $Q_3$, and the median of the smaller half, $Q_1$.
 
@@ -270,7 +268,7 @@ $$ 9.5 - 7 = 2.5 $$
 - Robust to outliers
 - Used to set the width of the box in a boxplot
 
-##
+##  {.scrollable}
 
 $$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11  \quad 11$$
 
@@ -299,7 +297,7 @@ $$ MAD = 1.4 $$
 - Robust to extreme values
 
 
-##
+##  {.scrollable}
 
 $$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11  \quad 11$$
 
@@ -339,17 +337,17 @@ $$ s^2 = 2.87 $$
 ::::
 
 
-##
+## {.scrollable}
 
 $$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11  \quad 11$$
 
 . . .
 
-### Sample Standard Deviation
+### Sample Standard Deviation 
 
 Take the differences from each observation, $x_i$, to the sample mean, $\bar{x}$, square them, add them up, divide by $n - 1$, then take the square root.
 
-$$s: \quad \sqrt{\frac{1}{n - 1}\sum_{i = 1}^n (x_i - \bar{x})^2} $$
+![](images/sd)
 
 . . .
 
