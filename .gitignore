@@ -18,4 +18,4 @@
 
 # Quarto specific
 /.quarto/
-_site
+_output
