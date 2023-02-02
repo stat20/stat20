@@ -9,7 +9,7 @@ date: 02/03/23
 
 \
 
-[I]{.dropcap}n the last set of notes, we saw that there is a side to the discipline of Statistics that looks like engineering. Summary statistics - medians, standard deviations, etc. - are carefully crafted tools that capture different characteristics of a data set for use in very specific situations. There is another practice in statistics that looks more like a science; that is, a field that seeks to take many different phenomenona and explain them using a systematic overarching theory. That practice is data visualization.
+[I]{.dropcap}n the last set of notes, we saw that there is a side to the discipline of Statistics that looks like engineering. Summary statistics - medians, standard deviations, etc. - are carefully crafted tools that capture different characteristics of a data set for use in very specific situations. There is another practice in statistics that looks more like a science; that is, a field that seeks to take many different phenomena and explain them using a systematic overarching theory. That practice is data visualization.
 
 At this point in the course, you've seen several several examples of data visualizations.
 
@@ -52,7 +52,7 @@ Let's go through each of these components one-by-one to understand the role that
 #| fig-height: 3.8
 #| fig-align: center
 library(tidyverse) # loads ggplot2
-library(palmerpenguins)
+library(stat20data)
 
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm,
@@ -76,7 +76,7 @@ select(penguins,
 
 In this course we've talked plenty about the structure of a data frame, so this part of the grammar of graphics is straight-forward. Be sure that every variable that you wish to include in your plot is present in the same data frame.
 
-But maintain some skepticism about the data that you intend to use. In the data frame above, we see that some of the values are listed as `NA`, meaning that they're missing ("NA" stands for "not applicable" or "no answer"). Why are they missing? How will this affect your plot? Real data is often riddled with errors, typos, or other unexpected features, so be sure to check your data[^datacheck].
+<!-- But maintain some skepticism about the data that you intend to use. In the data frame above, we see that some of the values are listed as `NA`, meaning that they're missing ("NA" stands for "not applicable" or "no answer"). Why are they missing? How will this affect your plot? Real data is often riddled with errors, typos, or other unexpected features, so be sure to check your data[^datacheck]. -->
 
 More fundamentally, be sure the data you're using is well-suited to the message you aim to convey with your plot.  Many plots go wrong right here at the outset, so be sure you're on firm footing.
 
@@ -140,14 +140,13 @@ Both plots share the same data (`penguins`) and the same aesthetic mappings(`bil
 
 ### Example: Arbuthnot
 
-In Lab 2 you created your very first plot, which looked like this.
+In the Arbuthnot Lab you created your very first plot, which looked like this.
 
 ```{r}
 #| fig-width: 4
 #| fig-height: 3
 #| fig-align: center
 library(stat20data)
-data(arbuthnot)
 arbuthnot <- mutate(arbuthnot, total = boys + girls)
 ggplot(arbuthnot, aes(x = year, y = total)) +
     geom_line()
@@ -186,7 +185,7 @@ ggplot(arbuthnot, aes(x = year, y = total)) +
 
 Is this a better graphic? Again, that depends. It makes it possible to see both the trend over time and the individual observations. But this plot is more complicated and therefore articulates each of those individual messages less clearly. Sometimes simplicity and a single message is best.
 
-You've seen another example of a plot that combines two geometries:
+Here's another example of a plot that combines two geometries:
 
 ![](images/income-dist.png){fig-align=center width="400px"}
 
