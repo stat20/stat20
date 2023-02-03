@@ -17,7 +17,7 @@ Please record your answers on the worksheet below and upload it to Gradescope as
 
 The real data from your surveys is available in the `stat20data` package as `class_survey`.
 
-Using this data, i. construct the plots that you proposed in Part I and ii. calculate for the first three a measure of a typical observation (mean, median, or mode, as appropriate). Use these summaries to answer the original question in a sentence or two, noting, where appropriate, the shape of the distribution and what a "typical" observation is.
+Using this data, i. construct the plots that you proposed in Part I, and ii. calculate for the first three a measure of a typical observation (mean, median, or mode, as appropriate). Use these summaries to answer the original question in a sentence or two, noting, where appropriate, the shape of the distribution and what a "typical" observation is.
 
 #### Question 8  
 Do students prefer to spend time at the beach or in the mountains?
@@ -34,7 +34,7 @@ What is the relationship between students' optimism for cryptocurrency and their
 
 . . .
 
-Six variables appear in the survey data frame that were derived from the original `Title` question: `Artist`, `Humanist`, `Natural_Scientist`, `Social_Scientist`, `Comp_Scientist` and `Entrepreneur`. The `Artist` variable is `TRUE` for those students who most identified as an artist and `FALSE` otherwise. The other five variables are defined similarly.
+Six variables appear in the survey data frame that were derived from the original `title` question: `artist`, `humanist`, `natural_scientist`, `social_scientist`, `comp_scientist` and `entrepreneur`. The `artist` variable is `TRUE` for those students who most identified as an artist and `FALSE` otherwise. The other five variables are defined similarly.
 
 For the following three questions, please answer with a plot and a sentence or two written response given the structure in the plot.
 
