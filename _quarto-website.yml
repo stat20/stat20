@@ -1,6 +1,8 @@
 project:
   type: website
-
+  output-dir: _site
+  
+# Website Configuration and Layout
 website:
   title: "Stat 20 Draft"
   description: "Introduction to Probability and Statistics at UC Berkeley"
