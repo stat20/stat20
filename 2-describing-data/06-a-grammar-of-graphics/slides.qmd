@@ -23,10 +23,10 @@ format:
 ## Agenda
 
 - Concept Questions
-- Lab 3: Class Survey
+- Lab 2: Class Survey
   - Part I
 - *Break*
-- Lab 3: Class Survey
+- Lab 2: Class Survey
   - Part II
 
 # Concept Questions
