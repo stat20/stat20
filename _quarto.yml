@@ -1,6 +1,11 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - "*.qmd"
+    - "!4-generalization/"
+    - "!5-causation/"
+    - "!6-prediction/"
 
 # Format-specific Metadata
 format:
