@@ -1,6 +1,7 @@
 ---
 title: "Summarizing Numerical Data"
-format: revealjs
+format: 
+  stat20-slides-revealjs: default
 ---
 
 ## Agenda

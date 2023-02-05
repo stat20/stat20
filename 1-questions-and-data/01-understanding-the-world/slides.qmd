@@ -1,6 +1,7 @@
 ---
 title: "Understanding the World with Data"
-format: revealjs
+format: 
+  stat20-slides-revealjs: default
 ---
 
 ## Agenda

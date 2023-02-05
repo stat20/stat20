@@ -1,6 +1,7 @@
 ---
 title: "A Tool for Computing with Data"
-format: revealjs
+format: 
+  stat20-slides-revealjs: default
 ---
 
 ## Agenda
