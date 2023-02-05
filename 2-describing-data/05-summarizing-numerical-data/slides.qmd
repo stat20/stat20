@@ -14,7 +14,7 @@ format:
 - Measures of Spread
 - Summarize
 - *Break*
-- Lab 2: Arbuthnot
+- Problem Set 2.1 
 
 # Quiz Review
 

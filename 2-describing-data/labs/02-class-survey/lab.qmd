@@ -1,7 +1,7 @@
 ---
 title: "Lab 2: Class Survey"
 image: images/dog-pants.png
-date: 02/01/23
+date: 02/03/23
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}
@@ -15,37 +15,50 @@ Please record your answers on the worksheet below and upload it to Gradescope as
 
 ## Part II: Computing on the Data
 
+The easiest way to create your qmd will be to run the following line of code at the console in RStudio. It will download the questions found below into a new qmd and put it into an RStudio project to help keep your code organized.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: false
+usethis::use_course("https://tinyurl.com/lab-2-class-survey")
+```
+
+And answer yes to both questions that appear in the console.
+
+* * *
+
 The real data from your surveys is available in the `stat20data` package as `class_survey`.
 
-Using this data, i. construct the plots that you proposed in Part I and ii. calculate for the first three a measure of a typical observation (mean, median, or mode, as appropriate). Use these summaries to answer the original question in a sentence or two, noting, where appropriate, the shape of the distribution and what a "typical" observation is.
+Using this data, i. construct the plots that you proposed in Part I, and ii. calculate for the first three a measure of a typical observation (mean, median, or mode, as appropriate). Use these summaries to answer the original question in a sentence or two, noting, where appropriate, the shape of the distribution and what a "typical" observation is.
 
-#### Question 8  
+#### Question 1  
 Do students prefer to spend time at the beach or in the mountains?
 
-#### Question 9  
+#### Question 2  
 How much coding experience do students have?
 
-#### Question 10  
+#### Question 3  
 What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022?
 
-#### Question 11  
+#### Question 4  
 What is the relationship between students' optimism for cryptocurrency and their skepticism of the effect of technology on interpersonal relationships?
 
 
 . . .
 
-Six variables appear in the survey data frame that were derived from the original `Title` question: `Artist`, `Humanist`, `Natural_Scientist`, `Social_Scientist`, `Comp_Scientist` and `Entrepreneur`. The `Artist` variable is `TRUE` for those students who most identified as an artist and `FALSE` otherwise. The other five variables are defined similarly.
+Six variables appear in the survey data frame that were derived from the original `title` question: `artist`, `humanist`, `natural_scientist`, `social_scientist`, `comp_scientist` and `entrepreneur`. The `artist` variable is `TRUE` for those students who most identified as an artist and `FALSE` otherwise. The other five variables are defined similarly.
 
 For the following three questions, please answer with a plot and a sentence or two written response given the structure in the plot.
 
-#### Question 12  
+#### Question 5  
 Is there an association between students most identifying as an entrepreneur and their optimism for cryptocurrency?
 
-#### Question 13  
+#### Question 6  
 Is there an association between students most identifying as a humanist and their optimism for cryptocurrency?
 
-#### Question 14  
+#### Question 7  
 Propose your own question involving one or two variables and answer it using a plot with a written interpretation.
 
-#### Question 15  
+#### Question 8  
 Propose your own question involving two or three variables and answer it using a plot with a written interpretation.
