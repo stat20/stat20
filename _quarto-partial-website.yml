@@ -1,8 +1,10 @@
 # If running locally, first source assets/scripts/ignore_future_docs.R
 project:
+  type: website
   output-dir: _site-ignore-future
   post-render: assets/scripts/unignore_future_docs.R
-
+    
+# Website Configuration and Layout
 website:
   title: "Stat 20"
   navbar:

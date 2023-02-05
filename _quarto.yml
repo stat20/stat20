@@ -1,6 +1,28 @@
 project:
   type: website
+  output-dir: _site
 
+# Format-specific Metadata
+format:
+  html:
+    theme:
+      - sandstone
+      - assets/styles.scss
+    toc: true
+    published-title: "class date"
+    reference-location: document
+    code-fold: true
+    code-link: true
+    code-summary: ""
+
+# General Metadata
+execute:
+  freeze: auto
+  message: false
+  warning: false
+  fig-align: center
+
+# Website Configuration and Layout
 website:
   title: "Stat 20 Draft"
   description: "Introduction to Probability and Statistics at UC Berkeley"
@@ -60,21 +82,3 @@ website:
     right:
       - text: License
         href: license.qmd
-        
-format:
-  html:
-    theme: 
-      - sandstone
-      - assets/styles.scss
-    toc: true
-    published-title: "class date"
-    reference-location: document
-    code-fold: true
-    code-link: true
-    code-summary: ""
-    
-execute:
-  freeze: auto
-  message: false
-  warning: false
-  fig-align: center
