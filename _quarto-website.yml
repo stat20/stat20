@@ -1,4 +1,9 @@
 project:
   type: website
   output-dir: _site
-  
+  render:
+    - "*.qmd"
+    - "!3-probability/"
+    - "!4-generalization/"
+    - "!5-causation/"
+    - "!6-prediction/"

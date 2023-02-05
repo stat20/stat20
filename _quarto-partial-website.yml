@@ -2,6 +2,12 @@
 project:
   type: website
   output-dir: _site-ignore-future
+  render:
+    - "*.qmd"
+    - "!3-probability/"
+    - "!4-generalization/"
+    - "!5-causation/"
+    - "!6-prediction/"
   post-render: assets/scripts/unignore_future_docs.R
     
 # Website Configuration and Layout
