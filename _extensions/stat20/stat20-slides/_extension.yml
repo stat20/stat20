@@ -1,0 +1,23 @@
+title: stat20-slides
+author: andrewpbray
+version: 1.0.0
+quarto-required: ">=1.2.0"
+contributes:
+  formats:
+    revealjs:
+      author: "STAT 20: Introduction to Probability and Statistics"
+      height: 900
+      width: 1600
+      theme: slides.scss
+      multiplex: false
+      transition: fade
+      slide-number: c
+      incremental: false
+      center: false
+      menu: false
+      highlight-style: github
+      progress: false
+      code-overflow: wrap
+      title-slide-attributes:
+        data-background-image: stat20-hex-bg.png
+        data-background-size: contain

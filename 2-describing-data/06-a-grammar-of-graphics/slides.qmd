@@ -1,23 +1,7 @@
 ---
 title: "A Grammar of Graphics"
-format:
-  revealjs:
-    author: "STAT 20: Introduction to Probability and Statistics"
-    height: 900
-    width: 1600
-    theme: ../../assets/slides.scss
-    multiplex: false
-    transition: fade
-    slide-number: c
-    incremental: false
-    center: false
-    menu: false
-    highlight-style: github
-    progress: false
-    code-overflow: wrap
-    title-slide-attributes:
-      data-background-image: ../../assets/stat20-hex-bg.png
-      data-background-size: contain
+format: 
+  stat20-slides-revealjs: default
 ---
 
 ## Agenda

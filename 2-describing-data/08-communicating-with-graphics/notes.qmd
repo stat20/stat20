@@ -42,11 +42,8 @@ We will use two running examples throughout these notes: a line plot of the numb
 #| fig-height: 3
 
 library(tidyverse)
-library(palmerpenguins)
 library(stat20data)
 library(patchwork)
-data(penguins)
-data(arbuthnot)
 
 arbuthnot <- mutate(arbuthnot, total = boys + girls)
 
@@ -290,13 +287,11 @@ The result was a data frame with 707 rows (one for every respondent) and 2 colum
 #| fig-width: 5
 #| fig-height: 4
 
-data(class_survey)
-
-ggplot(class_survey, aes(x = Tech_Relationships,
-                         y = Crypto)) +
+ggplot(class_survey, aes(x = tech,
+                         y = crypto)) +
     geom_point() +
     labs(x = "Technology is destructive to relationships",
-         y = "Cryptocurrency will play a\n dominant role in finance",
+         y = "cryptocurrency will play a\n dominant role in finance",
          title = "No association between opinions on technology and \n cryptocurrency")
 ```
 
@@ -315,14 +310,12 @@ One approach to fixing the problem of points piled on top of one another is to u
 #| fig-width: 5
 #| fig-height: 4
 
-data(class_survey)
-
 set.seed(20)
-ggplot(class_survey, aes(x = Tech_Relationships,
-                         y = Crypto)) +
+ggplot(class_survey, aes(x = tech,
+                         y = crypto)) +
     geom_jitter() +
     labs(x = "Technology is destructive to relationships",
-         y = "Cryptocurrency will play a\n dominant role in finance",
+         y = "cryptocurrency will play a\n dominant role in finance",
          title = "No association between opinions on technology and \n cryptocurrency")
 ```
 
@@ -334,15 +327,13 @@ The second technique is to make the points transparent by changing an aestheric 
 #| fig-align: center
 #| fig-width: 5
 #| fig-height: 4
-
-data(class_survey)
-
+#| 
 set.seed(20)
-ggplot(class_survey, aes(x = Tech_Relationships,
-                         y = Crypto)) +
+ggplot(class_survey, aes(x = tech,
+                         y = crypto)) +
     geom_jitter(alpha = .3) +
     labs(x = "Technology is destructive to relationships",
-         y = "Cryptocurrency will play a\n dominant role in finance",
+         y = "cryptocurrency will play a\n dominant role in finance",
          title = "No association between opinions on technology and \n cryptocurrency")
 ```
 
