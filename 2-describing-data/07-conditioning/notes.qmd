@@ -350,7 +350,7 @@ msleep %>%
 
 ## Groupwise Operations
 
-The last example above demonstrates a very common scenario: you want to performa some calculations on one particular group of observations in your data set. But what if you want to do that same calculation for every group?
+The last example above demonstrates a very common scenario: you want to perform some calculations on one particular group of observations in your data set. But what if you want to do that same calculation for every group?
 
 The `vore` variable has four levels: `carni`, `herbi`, `insecti`, and `omni`. It would not be too difficult to copy and paste the above pipeline four times and modify each filter function to focus on a different group. But what if there were a dozen different levels?
 
