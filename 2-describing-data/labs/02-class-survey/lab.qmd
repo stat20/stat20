@@ -12,6 +12,8 @@ Please record your answers on the worksheet below and upload it to Gradescope as
 
 - [Part 1: Understanding the Context of the Data](lab-context.qmd)
 
+To answer this worksheet, consult the printout of the original survey found [here]("handout-survey.pdf").
+
 
 ## Part II: Computing on the Data
 
