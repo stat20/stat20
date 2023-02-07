@@ -154,7 +154,7 @@ One way to keep them straight is to keep an eye on the number of observations th
 ```{r}
 #| fig-height: 3
 #| fig-align: center
-#| 
+
 library(patchwork)
 
 p_and <- p_sleep +
@@ -315,7 +315,6 @@ In Lab 1, this question was tacked with two or three separate lines of code, one
 ```{r}
 #| code-fold: false
 library(stat20data)
-data(arbuthnot)
 
 arbuthnot %>%
     mutate(total = boys + girls) %>%
@@ -390,4 +389,4 @@ As we begin to do analyses that require multiple operations, the pipe operator, 
 
 If you're thinking, :grimacing: , yikes there was a *lot* of coding in these notes, you're right. Don't worry. We'll have plenty of time to practice in class and there is no lab due next week.
 
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
+<!-- {{< include ../../assets/includes/_links-to-materials.qmd >}} -->
