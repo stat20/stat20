@@ -1,6 +1,7 @@
 ---
 title: "Communicating with Graphics"
 subtitle: "Six ways to hone the message of a data visualization."
+image: images/english-civil-war.png
 date: 02/10/23
 ---
 
@@ -429,9 +430,11 @@ Were you curious about what caused that dip in the number of christenings in 17t
 
 Within `ggplot2`, annotations are a flexible way to add the context or comparisons that help guide readers in interpreting your data.  You can add text, shapes, lines, points. To learn more, consult the documentation[^annotate].
 
-So if the drop after 1642 corresponds to the English Civil War, what about the spike down around 1666? What about 1703? If you're curious, explore Wikipedia to find out an add those events as annotations to this plot.
+So if the drop after 1642 corresponds to the English Civil War, what about the spike down around 1666? What about 1703? If you're curious, explore Wikipedia to find out and add those events as annotations to this plot.
 
 [^annotate]: Documentation for annotation layers in ggplot2: <https://ggplot2.tidyverse.org/reference/annotate.html>.
+
+<!-- ## 7. Drill Down using Facets -->
 
 ## Summary
 

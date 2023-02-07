@@ -8,8 +8,7 @@ The following practice problems all deal with a data set that's near and dear to
 ```{r}
 #| message: false
 library(tidyverse)
-library(palmerpenguins)
-data(penguins)
+library(stat20data)
 ```
 
 For the questions below that ask you to extract a subset of the data, check your answer by using the new data frame to modify the penguins plot.
@@ -18,7 +17,9 @@ For the questions below that ask you to extract a subset of the data, check your
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm,
                      color = species)) +
-    geom_point()
+    geom_point() +
+  lims(x = c(29, 60),
+       y = c(12, 23))
 ```
 
 
@@ -26,17 +27,53 @@ ggplot(penguins, aes(x = bill_length_mm,
 
 Extract a data frame that excludes the Adelie penguins.
 
+```{r}
+penguins %>%
+  filter(species != "Adelie") %>%
+  ggplot(aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     color = species)) +
+    geom_point()+
+  lims(x = c(29, 60),
+       y = c(12, 23))
+```
+
 
 #### Question 2
 
-Extract a data frame that excludes the Adelie penguins and retains those with bill lengths between 40 and 50 mm. Sort it in decreasing order by bill length.
+Extract a data frame that excludes the Adelie penguins and retains penguins with bill lengths between 40 and 50 mm. Sort it in decreasing order by bill length.
+
+```{r}
+penguins %>%
+  filter(species != "Adelie",
+         bill_length_mm >= 40,
+         bill_length_mm <= 50) %>%
+  arrange(desc(bill_length_mm)) %>%
+  ggplot(aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     color = species)) +
+    geom_point()+
+  lims(x = c(29, 60),
+       y = c(12, 23))
+```
 
 
 #### Question 3
 
-Calculate the mean bill length and bill depth for each of the three species of penguins. Does those statistics line up with what you see in the penguins plot above?
+Calculate the mean bill length and bill depth for each of the three species of penguins. Do those statistics line up with what you see in the penguins plot above?
 
+```{r}
+penguins %>%
+  group_by(species) %>%
+  summarize(mean(bill_length_mm),
+            mean(bill_depth_mm))
+
+summarize(group_by(penguins, species),
+          mean(bill_length_mm),
+            mean(bill_depth_mm))
+```
 
 #### Question 4
 
 Consider a new metric called `bill_size` that's the sum of the length and depth. What is the average bill size and it's standard deviation among each species, broken out among each of the islands? (that is, nine pairs of statistics) Sort your resulting data frame in decreasing order by average bill size.
+
