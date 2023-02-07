@@ -1,5 +1,6 @@
 ---
 title: "A Tool for Computing with Data"
+<<<<<<< HEAD
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
@@ -19,6 +20,10 @@ format:
     title-slide-attributes:
       data-background-image: ../../assets/stat20-hex-bg.png
       data-background-size: contain
+=======
+format: 
+  stat20-slides-revealjs: default
+>>>>>>> 5efc5f49fa12e3c65e7216782635242f54f1d353
 ---
 
 ## Agenda
