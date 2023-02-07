@@ -1,7 +1,7 @@
 ---
 title: "Conditioning"
 subtitle: "Filtering, groupwise operations, and data pipelines."
-image: images/penguin-plot.png
+image: images/mammals.png
 from: markdown+emoji
 date: 02/08/23
 ---
@@ -389,7 +389,5 @@ There are several ways to subset a data frame but the most important for data an
 As we begin to do analyses that require multiple operations, the pipe operator, `%>%`, can be used to stitch the functions together into a single pipeline.
 
 If you're thinking, :grimacing: , yikes there was a *lot* of coding in these notes, you're right. Don't worry. We'll have plenty of time to practice in class and there is no lab due next week.
-
-<!-- ## Faceted Plots -->
 
 {{< include ../../assets/includes/_links-to-materials.qmd >}}
