@@ -18,6 +18,8 @@ format:
     title-slide-attributes:
       data-background-image: ../../assets/stat20-hex-bg.png
       data-background-size: contain
+execute:
+  echo: true
 ---
 
 ## Agenda
