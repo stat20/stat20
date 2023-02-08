@@ -389,4 +389,4 @@ As we begin to do analyses that require multiple operations, the pipe operator, 
 
 If you're thinking, :grimacing: , yikes there was a *lot* of coding in these notes, you're right. Don't worry. We'll have plenty of time to practice in class and there is no lab due next week.
 
-<!-- {{< include ../../assets/includes/_links-to-materials.qmd >}} -->
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
