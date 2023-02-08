@@ -8,7 +8,6 @@ format:
 #| echo: false
 library(tidyverse)
 library(stat20data)
-class_survey
 ```
 
 
@@ -17,7 +16,8 @@ class_survey
 - Concept Questions
 - Data Pipelines
 - *Break*
-- Practice Problems
+- Worksheet - Digital
+- Lab 3.1: Flights 
 
 # Concept Questions
 
@@ -703,4 +703,9 @@ TRUE * TRUE
 
 # Break
 
-# Practice Problems
+# Worksheet - Digital
+
+```{r}
+#| echo: false
+countdown::countdown(25, top = 0)
+```
