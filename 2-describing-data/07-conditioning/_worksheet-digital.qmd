@@ -1,6 +1,7 @@
 ---
 title: "Practice Problems"
 subtitle: "Conditioning"
+format: pdf
 ---
 
 The following practice problems all deal with a data set that's near and dear to our hearts, the Palmer penguins. Like always, let's start our analysis by loading in the necessary packages and data sets.
