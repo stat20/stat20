@@ -1,7 +1,6 @@
 ---
 title: "Practice Problems"
 subtitle: "Conditioning"
-format: pdf
 ---
 
 The following practice problems all deal with a data set that's near and dear to our hearts, the Palmer penguins. Like always, let's start our analysis by loading in the necessary packages and data sets.
@@ -27,17 +26,6 @@ ggplot(penguins, aes(x = bill_length_mm,
 #### Question 1
 
 Extract a data frame that excludes the Adelie penguins.
-
-```{r}
-penguins %>%
-  filter(species != "Adelie") %>%
-  ggplot(aes(x = bill_length_mm,
-                     y = bill_depth_mm,
-                     color = species)) +
-  geom_point()+
-  lims(x = c(29, 60),
-       y = c(12, 23))
-```
 
 
 #### Question 2
