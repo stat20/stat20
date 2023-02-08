@@ -1,7 +1,7 @@
 ---
 title: "Conditioning"
 subtitle: "Filtering, groupwise operations, and data pipelines."
-image: images/penguin-plot.png
+image: images/mammals.png
 from: markdown+emoji
 date: 02/08/23
 ---
@@ -154,7 +154,7 @@ One way to keep them straight is to keep an eye on the number of observations th
 ```{r}
 #| fig-height: 3
 #| fig-align: center
-#| 
+
 library(patchwork)
 
 p_and <- p_sleep +
@@ -315,7 +315,6 @@ In Lab 1, this question was tacked with two or three separate lines of code, one
 ```{r}
 #| code-fold: false
 library(stat20data)
-data(arbuthnot)
 
 arbuthnot %>%
     mutate(total = boys + girls) %>%
@@ -350,7 +349,7 @@ msleep %>%
 
 ## Groupwise Operations
 
-The last example above demonstrates a very common scenario: you want to performa some calculations on one particular group of observations in your data set. But what if you want to do that same calculation for every group?
+The last example above demonstrates a very common scenario: you want to perform some calculations on one particular group of observations in your data set. But what if you want to do that same calculation for every group?
 
 The `vore` variable has four levels: `carni`, `herbi`, `insecti`, and `omni`. It would not be too difficult to copy and paste the above pipeline four times and modify each filter function to focus on a different group. But what if there were a dozen different levels?
 
@@ -390,6 +389,4 @@ As we begin to do analyses that require multiple operations, the pipe operator, 
 
 If you're thinking, :grimacing: , yikes there was a *lot* of coding in these notes, you're right. Don't worry. We'll have plenty of time to practice in class and there is no lab due next week.
 
-<!-- ## Faceted Plots -->
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
+<!-- {{< include ../../assets/includes/_links-to-materials.qmd >}} -->

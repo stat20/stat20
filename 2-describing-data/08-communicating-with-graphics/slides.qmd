@@ -14,10 +14,8 @@ data(arbuthnot)
 
 ## Agenda
 
-- Quiz
 - Concept Question
 - *Break*
-- Lab 4: Part I
 
 # Concept Questions
 
