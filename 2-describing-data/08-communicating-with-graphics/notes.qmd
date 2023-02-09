@@ -442,4 +442,4 @@ There are two main uses for data visualization. The first is as part of explorat
 
 This is far from a complete list of what all can be done to improve your plots, but it is sufficient to produce polished graphics that effectively communicate your message.
 
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
+<!-- {{< include ../../assets/includes/_links-to-materials.qmd >}} -->
