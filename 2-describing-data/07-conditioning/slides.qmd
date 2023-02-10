@@ -1,23 +1,40 @@
 ---
 title: "Conditioning"
-format: 
-  stat20-slides-revealjs: default
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+execute:
+  echo: true
 ---
+
+## Agenda
 
 ```{r}
 #| echo: false
 library(tidyverse)
 library(stat20data)
-class_survey
 ```
-
-
-## Agenda
 
 - Concept Questions
 - Data Pipelines
 - *Break*
-- Practice Problems
+- Worksheet - Digital
+- Lab 3.1: Flights 
 
 # Concept Questions
 
@@ -99,7 +116,7 @@ countdown::countdown(1, top = 0)
 
 ## Question 3: Opinion
 
-10. What are students’ perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022?
+10. What are students’ perceptions of the chance that there is a new COVID variant that disrupts instruction in Spring 2023?
 
 :::{.poll}
 Do you think students in their first semester would be *more* likely or *less* likely to think we would remain in remote learning for the entire semester?
@@ -117,15 +134,16 @@ Q: what is the comparison group: all students or students who are not in their f
 Which data frame will have fewer rows?
 :::
 
+. . .
+
 ```{r echo = TRUE}
 class_survey <- mutate(class_survey, 
                        first_sem = year == "This is my first semester!")
+
+# this one
 df_1 <- filter(class_survey, first_sem)
-```
 
-\
-
-```{r}
+# or this one
 df_2 <- filter(class_survey, year == "This is my first semester!")
 ```
 
@@ -703,4 +721,9 @@ TRUE * TRUE
 
 # Break
 
-# Practice Problems
+# Worksheet - Digital
+
+```{r}
+#| echo: false
+countdown::countdown(25, top = 0)
+```

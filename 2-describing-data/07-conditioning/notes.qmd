@@ -105,7 +105,7 @@ The filter above uses the most direct condition: it retains the rows that have a
 
 At first, the `==` operator looks like a typo. Why doesn't we use `=`? The reason is that a single equals sign is already busy at work in R: it sets the values of arguments inside a function. Here, it is determinining whether the thing on the left holds the same value as the thing on the right. It might help you keep things straight if you read it in your head as "is exactly equal to".
 
-Let's return only the rows with large animals, defined as those with a log body weight greater than 6.
+Let's return only the rows with large animals, defined as those with a log body weight greater than 12.
 
 ```{r}
 #| code-fold: false
@@ -119,7 +119,7 @@ There were 9 such animals and all of them large.
 
 What if you want both the little brown bat and the African elephant? What if you want both the large creatures as well as those that sleep only briefly? These are tasks that call for multiple comparisons composed together with the logical operators `&`, `|`, and `%in%`.
 
-This filter returns the creates who are large and who sleep little.
+This filter returns the creatures who are large and who sleep little.
 
 ```{r}
 #| code-fold: false
@@ -127,7 +127,7 @@ This filter returns the creates who are large and who sleep little.
 filter(msleep, log_bodywt > 12 & sleep_total < 5)
 ```
 
-This can be read as "filter the msleep data frmae to return the rows where both the log body weight is greater than 12 and the sleep total is less than 5". We see that there are 8 such creatures, one fewer than the data frame with only the body weight filter (bottle-nosed dolphins sleep, on average, 5.2 hrs).
+This can be read as "filter the msleep data frame to return the rows where both the log body weight is greater than 12 and the sleep total is less than 5". We see that there are 8 such creatures, one fewer than the data frame with only the body weight filter (bottle-nosed dolphins sleep, on average, 5.2 hrs).
 
 Using `&` to represent "and" is common across most computer languages but you can alternatively use the somewhat more compact syntax of simply adding the second filter after a comma.
 
@@ -389,4 +389,4 @@ As we begin to do analyses that require multiple operations, the pipe operator, 
 
 If you're thinking, :grimacing: , yikes there was a *lot* of coding in these notes, you're right. Don't worry. We'll have plenty of time to practice in class and there is no lab due next week.
 
-<!-- {{< include ../../assets/includes/_links-to-materials.qmd >}} -->
+{{< include ../../assets/includes/_links-to-materials.qmd >}}

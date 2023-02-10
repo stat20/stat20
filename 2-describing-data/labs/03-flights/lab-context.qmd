@@ -1,26 +1,96 @@
 ---
-title: "Lab 3: Flights"
-image: images/airline.jpg
-date: 02/08/23
+format:
+  pdf:
+    include-in-header:
+      - preamble.tex
+      - fancyhdr.tex
+    fontsize: 10pt
+    margin-top: .8in
+    margin-bottom: .5in
 ---
 
-{{< include ../../../assets/includes/_labs-header.qmd >}}
+\thispagestyle{empty}
 
-```{r global_options, include=FALSE}
-knitr::opts_chunk$set(eval = FALSE, echo = FALSE,
-                      message = FALSE, error = FALSE, warning = FALSE)
-library(tidyverse)
-library(stat20data)
-data(flights)
-```
+\begin{center}
+\textsc{Stat 20: Lab 3.1 Flights} \\
+\noindent\rule{12cm}{0.4pt}
+\end{center}
 
 ## Part I: Understanding the Context of the Data
 
-For the questions on the handout, consult the image of the data frame found in the slides linked above.
+1. What is the unit of observation in the data frame in the slides?
 
-- [Part 1: Understanding the Context of the Data](lab-context.qmd)
+\
+\
+\
 
+2. Which variables are categorical?
 
+\
+\
+\
+\
+\
+\
+
+3. Which variables are numerical?
+
+\
+\
+\
+\
+\
+\
+\
+
+4. Do any of the variable have ambiguous data types to you?
+
+\
+\
+\
+\
+
+5. Is there any discernible pattern to the manner in which the rows are ordered?
+
+\
+\
+\
+
+6. What is your guess for the units/format used to record the departure time? Said another way, what would a value of 1517 represent?
+
+\
+\
+\
+
+{{< pagebreak >}}
+
+7. What filter would you use to extract the flights that left in the springtime destined for Portland, Oregon? Draw a sketch of this smaller data frame showing at least the columns used in the filter.
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+8. Provide a sketch of the code that can be used to calculate the mean departure delays of all flights. Provide a second sketch of code that calculates the mean departure delays for Oakland and San Francisco Airport separately. Provide a sketch of this second data frame with correct dimensions.
 
 
 <!-- ## Part II: Computing on the Data -->
