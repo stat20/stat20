@@ -2,6 +2,7 @@
 title: "Lab 3: Flights"
 image: images/airline.jpg
 date: 02/08/23
+code-fold: false
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}
