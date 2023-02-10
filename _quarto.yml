@@ -1,6 +1,5 @@
 project:
   type: website
-  output-dir: _site
 
 # Format-specific Metadata
 format:
