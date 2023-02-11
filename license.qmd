@@ -8,3 +8,7 @@ toc: false
 The source materials for the curriculum for this course and the software that builds this website are all available under at:
 
 <https://github.com/stat20/course-materials>
+
+Below is a test of a new method of distributing assignments. Click the R logo to synchronize your RStudio with the most recent assignments.
+
+[{{< fa brands r-project >}}](https://stat20.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fstat20%2Fstat20-assignments&urlpath=rstudio%2F&branch=master)
