@@ -1,5 +1,5 @@
 ---
-title: "Summarizing numerical associations"
+title: "Summarizing Numerical Associations"
 subtitle: "Correllation and the least squares line"
 date: 02/15/23
 from: markdown+emoji
@@ -58,7 +58,7 @@ States with higher poverty rates tend to have lower graduation rates. This is a 
 You can detect associations in scatter plots by scanning from left to right along the x-axis and determining whether or not the conditional distribution of the y-variable is changing or not. In the figure to the left below, when you look first to the states with low poverty rates (in the blue box), you find that the conditional distribution of the graduation rate (represented by the blue density curve along the right side of the scatter plot) is high: most of those states have graduation rates between 85% and 90%. When you scan to the right in that scatter plot, and condition on having a high poverty rate (the states in the red box), the conditional distribution shifts downwards. Those states have graduations rates in the low 80%s.
 
 :::{.column-margin}
-These density curves are conditional distribution because we've set a condition on the data we're visualizing. When focusing on the data that's in the blue box, for example, we've in effect set up a filter where Poverty < 9.
+These density curves are conditional distributions because we've set a condition on the data we're visualizing. When focusing on the data that's in the blue box, for example, we've in effect set up a filter where Poverty < 9.
 :::
 
 ```{r}
