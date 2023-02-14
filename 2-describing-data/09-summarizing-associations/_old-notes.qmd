@@ -1,0 +1,459 @@
+---
+title: "Summarizing numerical associations"
+subtitle: "Covariance, Pearson correlation, and a taste of non-linear correlation measures"
+date: 02/15/23
+---
+
+{{< include ../../assets/includes/_notes-header.qmd >}}
+
+\
+
+How would you describe the structure that you see in these two scatter plots?
+
+```{r}
+#| fig-align: center
+#| fig-width: 7.75
+#| fig-height: 4
+
+library(MASS)
+library(tidyverse)
+library(patchwork)
+
+# set the random seed so the plot always look the same
+set.seed(1) 
+
+n_samples <- 300
+sigma_ident <- matrix(c(1,0,0,1), 2, 2)
+sigma_is_corr <- matrix(c(1,.8,.8, 1), 2, 2)
+
+df_corr <- mvrnorm(n = n_samples, 
+                   mu = c(0, 0), 
+                   Sigma = sigma_is_corr) %>% 
+    as_tibble() %>% 
+    setNames(c('x', 'y')) %>%
+    mutate(index = "B")
+
+df_indep <- data.frame(x = df_corr$x,
+                       y = sample(df_corr$y),
+                       index = "A")
+
+plot_indep <- df_indep %>%
+    ggplot(aes(x = x,
+               y = y)) + 
+    geom_point() + 
+    lims(x = c(-4, 4),
+         y = c(-4, 4)) +
+    labs(subtitle = "A") +
+    theme_bw()
+
+plot_corr <- df_corr %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    lims(x = c(-4, 4), 
+         y = c(-4, 4)) +
+    labs(subtitle = "B") +
+    theme_bw()
+
+plot_indep + plot_corr
+```
+
+You might say that plot A can shows no particular association between the x and the y, unlike plot B. Plot B displays an association that can be described in terms of its *shape*, *direction*, and *strength*. The shape is straightforward: it looks like a linear relationship. The direction is too: this is a positive relationship. What about its strength? Is it weak? Moderate? Strong? Very strong?
+
+We've seen the notion of "association" come up before in the context of Summarizing Categorical Data.  Let's generalize that definition to also encompass the numerical data that we see in these scatter plots.
+
+**Association**
+:    There is an association between two variables if the conditional distribution of one varies as you move across values of the other.
+
+Visually, you can see this by conditioning on a particular interval of the x axis, taking a vertical strip of points within that interval, and considering the distribution of their y coordinate. If you repeat this process for plot B three times, taking on vertical strip of points from the left side of the plot, one from the center, one from the right, the conditional distribution of the y coordinates is steadily shifting upwards. That's what characterizes the association we see in plot B. By contrast, if we repeated this procedure for plot A, the distribution of the y would stay rooted around 0.
+
+Assigning adjectives like "weak", "moderate", and "strong" to describe the strength of an association is helpful, but it becomes particularly powerful when it is quantified with a statistic. At this point we are familiar with several statistics to measure the center and spread of a numerical variable. These are *univariate* statistics because they are calculated on just one variable. We can calculate the means and standard deviations of the x and the y variables in each of the scatter plots above.
+
+```{r}
+df <- bind_rows(df_indep, df_corr)
+
+df %>%
+    group_by(index) %>%
+    summarize(mean_x = mean(x),
+              mean_y = mean(y),
+              sd_x = sd(x),
+              sd_y = sd(y))
+```
+
+They are . . . identical?
+
+It's puzzling but true: if you look at the tick marks on the x and y axes, both scatter plots share the same center and spread for both variables. What we need is a statistic to capture what is obvious to our eye: that plot B has an association between the x and y while plot A does not. This will need to be a statistic calculated from two variables, our first *bivariate* statistic. There are many statistics that could be constructed to serve this purpose. Here we look at a few of the most common.
+
+
+## Covariance
+
+If you were asked for a mathematical formula for the "typical value" of a variable you could probably come up with the mean or median. Similarly, if you were asked for a formula for the "typical distance to the typical value" you could probably derive the variance or [median absolute deviation](https://en.wikipedia.org/wiki/Median_absolute_deviation). The covariance formula is not quite so immediately discoverable.
+
+Instead of trying to quantify any possible association between two variables let's restrict our attention to *linear associations* for now. In other words, if our first variable increases, the second variable increases proportionally. What would we want out of a bivariate association statistic?
+
+::: {.callout-warning appearance="simple" icon="false"}
+## Desiderata
+
+-   Large positive when there is a strong increasing association
+-   Large negative when there is a strong decreasing association
+-   Close to 0 when there is no association
+:::
+
+#### Digression: residuals
+
+Suppose we observe $n$ observations of a variable $x_1, \dots, x_n$. The residuals quantify how far each observation is from the typical value. In detail, the residuals from the mean are $x_1 - \overline{x}$, $x_2 - \overline{x}$, ..., $x_n - \overline{x}$ where we [recall](https://www.stat20.org/2-describing-data/05-summarizing-numerical-data/notes.html#constructing-numerical-summaries) $\overline{x}$ is the mean.
+
+### Sample Covariance
+
+Suppose we make $n$ observations of two variables $x_1, \dots, x_n$ and $y_1, \dots, y_n$ and we want to quantify the association between x and y. One of the standard statistics that is used is called the *sample covariance*.
+
+$$
+\text{cov(x, y)} = \frac{(x_1 - \overline{x})(y_1 - \overline{y}) + (x_2 - \overline{x})(y_2 - \overline{y}) + \dots + (x_n - \overline{x})(y_n - \overline{y})}{n- 1}
+$$
+
+:::{.column-margin}
+Like sample variance, sample covariance formula uses `n-1` instead of an `n` in the denominator for technical reasons not worth getting into at this point. When `n` is large it doesn't really make a difference which one you use. 
+
+In R, the relevant function is `cov(x, y)`.
+:::
+
+In other words the sample covariance is the "the typical product of x and y residuals".
+
+
+It may not be immediately clear how this covariance formula satisfies our desiderata. When we want to understand a complex mathematical object it is often helpful to consider special cases.
+
+:::{style="text-align: center"}
+**Special case 1:** $x_1 = 0, y_1 = 0, x_2 = 1, y_2 = 1$
+:::
+
+```{r}
+#| fig-align: center
+#| fig-width: 3.3
+#| fig-height: 3
+
+data.frame(c(0, 1), c(0, 1)) %>% 
+    setNames(c('x', 'y')) %>%  
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() + 
+    lims(x = c(0, 1), 
+         y = c(-1, 1)) +
+    theme_bw()
+```
+
+In this example, $\overline{x} = \frac{1}{2}$ and $\overline{y} = \frac{1}{2}$. We can plug these into the covariance formula:
+
+$$
+\text{cov} = \frac{(0 - \frac{1}{2})(0 - \frac{1}{2}) + (1 - \frac{1}{2})(1 - \frac{1}{2})}{2} = \frac{\frac{1}{4} + \frac{1}{4}}{2 - 1} = 0.5
+$$
+
+i.e. the covariance is positive.
+
+:::{style="text-align: center"}
+**Special case 2:** $x_1 = 0, y_1 = 0, x_2 = 1, y_2 = -1$
+:::
+
+```{r}
+#| fig-align: center
+#| fig-width: 3.3
+#| fig-height: 3
+
+data.frame(c(0, 1), c(0, -1)) %>% 
+    setNames(c('x', 'y')) %>%  
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() + 
+    lims(x = c(0, 1), 
+         y = c(-1, 1)) +
+    theme_bw()
+
+```
+
+Here $\overline{x} = \frac{1}{2}$ and $\overline{y} = -\frac{1}{2}$, which we plug into the covariance formula:
+
+$$
+\text{cov} = \frac{(0 - \frac{1}{2})(0 - -\frac{1}{2}) + (1 - \frac{1}{2})(-1 - -\frac{1}{2})}{2} = \frac{-\frac{1}{4} + -\frac{1}{4}}{2 - 1} = -0.5
+$$
+
+i.e. the covariance is negative.
+
+
+Some takeaways from these calculations.
+
+-   If our data points are typically  linearly increasing then the terms in the covariance formula will be mostly positive and the covariance will be a large positive value.
+
+-   If the points are typically linearly decreasing then the covariance will be a large negative value.
+
+-   If each pair of x/y terms are randomly increasing or decreasing then about half the terms in the formula will be positive and half will be negative; here the covariance will be close to 0.
+
+
+### Example
+
+> Is a child's height more associated with their mother or father's height?
+
+To answer this, lets turn to data from a survey of childrens' heights and their parents' heights, all measured in inches.
+
+```{r}
+library(HistData)
+data(GaltonFamilies)
+family_heights <- tibble(GaltonFamilies)
+family_heights %>%
+    select(father, mother, childHeight)
+```
+
+Let's explore the relationship between heights by constructing two scatter plots, each with a different x variable.
+
+```{r}
+#| fig-align: center
+#| fig-width: 7.75
+#| fig-height: 4
+
+p_dad <- family_heights %>% 
+    ggplot(aes(x = father, 
+               y = childHeight)) + 
+    geom_jitter() + 
+    xlab("Father height (inches)") + 
+    ylab("Child height (inches)") +
+    theme_bw()
+
+p_mom <- family_heights %>% 
+    ggplot(aes(x = mother, 
+               y = childHeight)) + 
+    geom_jitter() + 
+    xlab("Mother height (inches)") + 
+    ylab("Child height (inches)") +
+    theme_bw()
+
+p_dad + p_mom
+```
+
+It's not exactly clear which association is stronger. Let's compare covariances.
+
+```{r}
+#| code-fold: false
+family_heights %>% 
+    summarise(father_cov = cov(father, childHeight),
+              mother_cov = cov(mother, childHeight))
+```
+
+As measured by the covariance, child height is more strongly associated with father height.
+
+
+## Pearson correlation: a rescaled version of covariance
+
+There is something unsatisfactory about covariance; it depends on the scale of the variables. Suppose we had instead measured mothers' heights in femtometers (femtometer = $10^{-15}$ meters).
+
+```{r}
+#| code-fold: false
+# 2.54 cm/in, 10^13 femtometers/cm
+family_heights <- family_heights %>% 
+        mutate(mother_femtometers = mother * 2.54 * 10^13)
+
+
+family_heights %>% 
+    summarise(father_cov = cov(father, childHeight),
+              mother_cov = cov(mother_femtometers, childHeight))
+```
+
+Suddenly the covariance between child height (inches) and mother height (femtometers) is ridiculously large! The issue here is that covariance depends on the scale of the variables. For example, switching from inches to femtometers multiplies the mother's height variable by $2.54 \cdot 10^{13}$. But changing the unit of measurement should not change the strength of association!
+
+::: {.callout-warning appearance="simple" icon="false"}
+## Additional desiderata for linear bivariate association
+
+-   Scale free; multiplying a variable by a (positive) number does not change the association.
+:::
+
+#### A digression: scaled residuals
+
+One data intrinsic measure of scale is the standard deviation (the square root of the variance). We can make our data residuals scale free by dividing by the standard deviation i.e.$\frac{x_1 - \overline{x}}{\text{sd}(x)}, \frac{x_2 - \overline{x}}{\text{sd}(x)}, \dots$. These residuals now measure the distance from each observation to the typical observation *relative to the natural variability of the dataset.*
+
+One major advantage of the scaled residuals is that multiplying the observations by any positive number does not change the relative residuals. The relative residuals are scale free.
+
+<!-- Perhaps ask why we want sqrt variance not variance i.e. the units-->
+
+### Pearson correlation formula
+
+The correlation is simply the covariance using the scaled residuals.
+
+$$
+\text{cor}(x, y) = \frac{\frac{(x_1 - \overline{x})}{sd(x)} \frac{(y_1 - \overline{y})}{sd(y)}  + 
+\frac{(x_2 - \overline{x})}{sd(x)} \frac{(y_2 - \overline{y})}{sd(y)} + \dots}{n} = \frac{\text{cov(x, y)}}{\text{sd}(x) \text{sd}(y)} = r
+$$
+
+It is a mathematical fact that the pearson correlation is always between -1 and 1. Moreover it does not depend on the units/scale of the x or y data!
+
+Now let's compare the association between the child height and parent height using correlation. 
+```{r}
+#| code-fold: false
+family_heights %>% 
+    summarise(father_cor = cor(father, childHeight),
+              mother_cor = cor(mother, childHeight),
+              mother_cor_femto = cor(mother_femtometers, childHeight))
+```
+
+Notice the change of units does not affect the correlation!
+
+
+## Moving beyond linearity
+
+Not all associations are linear. Each of the plots below shows to variables that are associated. The first column shows a moderate association; the second column shows a stronger association; the third column shows a perfect association (we call this a *deterministic relationship*).
+
+```{r}
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 8
+
+# Setup data
+n_samples <- 200
+
+x_vals <- runif(n=n_samples, min=-1, max=1)
+
+
+y_lin_low <- x_vals + rnorm(n=n_samples, mean=0, sd=1)
+y_lin_med <- x_vals + rnorm(n=n_samples, mean=0, sd=.25)
+y_lin_det <- x_vals
+
+deg <- 3
+y_mono_low <- x_vals^deg + rnorm(n=n_samples, mean=0, sd=1)
+y_mono_med <- x_vals^deg + rnorm(n=n_samples, mean=0, sd=.1)
+y_mono_det <- x_vals^deg
+
+
+y_nonlin_low <- cos(x_vals * (2 * pi )) + rnorm(n=n_samples, mean=0, sd=1)
+y_nonlin_med <- cos(x_vals * (2 * pi )) + rnorm(n=n_samples, mean=0, sd=.25)
+y_nonlin_det <- cos(x_vals * (2 * pi ))
+
+df <- tibble(x_vals, 
+             y_lin_low, y_lin_med, y_lin_det,
+             y_mono_low, y_mono_med, y_mono_det,
+             y_nonlin_low, y_nonlin_med, y_nonlin_det)
+
+# compute correlations
+library(XICOR)
+
+
+x_vals_vec <- df[, 1][[1]]
+
+corr_df <- tibble(method = character(),
+                  variable = character(),
+                  corr = numeric())
+for (method in c('pearson', 'spearman', 'chatterjee')){
+    for (j in 2:dim(df)[2]){
+        col <- colnames(df)[j]
+        
+        y_vals_vec <- df[, j][[1]]
+        
+        if (method == 'chatterjee'){
+            corr_val <- calculateXI(x=x_vals_vec, y=y_vals_vec)
+        }else{
+            corr_val <- cor(x_vals_vec, y_vals_vec, method=method)
+        }
+        
+        corr_df <- corr_df %>% add_row(method=method, variable=col, corr=corr_val)
+    }
+}
+
+# make plots
+title_txt_size <- 5
+get_title <- function(corr_df, v){
+    
+    pc <- corr_df %>% filter(method=='pearson', variable==v) %>% .[[3]]
+    sc <- corr_df %>% filter(method=='spearman', variable==v) %>% .[[3]]
+    cc <- corr_df %>% filter(method=='chatterjee', variable==v) %>% .[[3]]
+    
+    
+    txt <- ''
+    txt <- paste0(txt, 'r = ', round(pc, 2))
+    # txt <- paste0(txt, ', spearman = ', round(sc, 2))
+    # txt <- paste0(txt, ', chatterjee = ', round(cc, 2))
+    txt
+}
+
+plot_lin_low <- df %>%
+    ggplot(aes(x=x_vals, y=y_lin_low)) +
+    geom_point() +
+    ggtitle(get_title(corr_df=corr_df, v='y_lin_low'))  + 
+    theme(plot.title = element_text(size = title_txt_size)) + 
+    labs(x='x', y='y') +
+    theme_bw()
+
+plot_lin_med <- df %>% 
+    ggplot(aes(x=x_vals, y=y_lin_med)) +
+    geom_point() + 
+    ggtitle(get_title(corr_df=corr_df, v='y_lin_med'))  + 
+    theme(plot.title = element_text(size = title_txt_size)) + 
+    labs(x='x', y='y') +
+    theme_bw()
+
+plot_lin_det <- df %>% 
+    ggplot(aes(x=x_vals, y=y_lin_det)) + 
+    geom_point() + 
+    ggtitle(get_title(corr_df=corr_df, v='y_lin_det'))  + 
+    theme(plot.title = element_text(size = title_txt_size)) + 
+    labs(x='x', y='y') +
+    theme_bw()
+
+plot_mono_low <- df %>% 
+    ggplot(aes(x=x_vals, y=y_mono_low)) + 
+    geom_point() + 
+    ggtitle(get_title(corr_df=corr_df, v='y_mono_low'))  + 
+    theme(plot.title = element_text(size = title_txt_size)) + 
+    labs(x='x', y='y') +
+    theme_bw()
+
+plot_mono_med <- df %>%
+    ggplot(aes(x=x_vals, y=y_mono_med)) + 
+    geom_point() + 
+    ggtitle(get_title(corr_df=corr_df, v='y_mono_med'))  + 
+    theme(plot.title = element_text(size = title_txt_size)) + 
+    labs(x='x', y='y') +
+    theme_bw()
+
+plot_mono_det <- df %>%
+    ggplot(aes(x=x_vals, y=y_mono_det)) + 
+    geom_point() + 
+    ggtitle(get_title(corr_df=corr_df, v='y_mono_det'))  + 
+    theme(plot.title = element_text(size = title_txt_size)) + 
+    labs(x='x', y='y') +
+    theme_bw()
+
+plot_nonlin_low <- df %>%
+    ggplot(aes(x=x_vals, y=y_nonlin_low)) +
+    geom_point() + 
+    ggtitle(get_title(corr_df=corr_df, v='y_nonlin_low'))  + 
+    theme(plot.title = element_text(size = title_txt_size)) + 
+    labs(x='x', y='y') +
+    theme_bw()
+
+plot_nonlin_med <- df %>%
+    ggplot(aes(x=x_vals, y=y_nonlin_med)) + 
+    geom_point() + 
+    ggtitle(get_title(corr_df=corr_df, v='y_nonlin_med'))  + 
+    theme(plot.title = element_text(size = title_txt_size)) + 
+    labs(x='x', y='y') +
+    theme_bw()
+
+plot_nonlin_det <- df %>%
+    ggplot(aes(x=x_vals, y=y_nonlin_det)) +
+    geom_point() + 
+    ggtitle(get_title(corr_df=corr_df, v='y_nonlin_det'))  + 
+    theme(plot.title = element_text(size = title_txt_size)) + 
+    labs(x='x', y='y') +
+    theme_bw()
+
+(plot_lin_low + plot_lin_med + plot_lin_det) /
+    (plot_mono_low + plot_mono_med + plot_mono_det) /
+    (plot_nonlin_low + plot_nonlin_med + plot_nonlin_det)
+
+```
+
+The first row shows a linear association. The second row shows a non-linear but *monotonic* association. A monotonic positive association just means that if x goes up then y has to go up -- but it does not need to go up proportionally to the increase in x. A monotonic negative association means the opposite (x goes up, y goes down). Monotonic is a generalization of linear (linear is monotonic, but monotonic is not necessarily linear).
+
+These scatter plots demonstrate that the (Pearson) correlation coefficient is designed to capture one particular form of association - linear association. It does a reasonably good job of detecting non-linear but monotonic associations. It utterly fails, however, at detecting the non-linear non-monotonic associations found in the lower right plot. What we need are slightly different statistics. We will discuss them in class.
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
+
+
+<!-- We can quantify a monotonic relationship with [Spearman's rank correlation](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient). -->
+
+<!-- The third row shows a non-linear association that non-monotonic. Quantifying such general associations is not easy. In fact [statisticians are still inventing](https://arxiv.org/abs/1909.10140) ways of quantifying general relationships such as Chatterjee's correlation coefficient! -->
