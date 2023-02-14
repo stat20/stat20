@@ -123,7 +123,7 @@ If you flew out of OAK or SFO during this time period, what is the tail number o
 
 <!-- 24. What is the tailnumber of the fastest plane in the data set? What type of plane is it (google it!)? Be sure to be clear how you're defining fastest. -->
 
-<!-- 25.  Using the airport nearest your hometown, which day of the week and which airline seems best for  -->
+<!-- 25.  Using the airport nearest your hometown, which day of the week and which airline seems best for -->
 <!-- flying there from San Francisco?  If you're from near SFO or OAK or from abroad, use Chicago as your hometown. Be clear on how you're defining *best*. -->
 
 <!--      Note that there is no explicit weekday column in this data set, but there is sufficient information to piece it together. The following line of code can be added to your pipeline to create that new column. It uses functions in the `lubridate` package, so be sure to load it in at the start of this exercise. -->
