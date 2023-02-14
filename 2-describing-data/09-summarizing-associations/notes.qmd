@@ -247,7 +247,7 @@ So what good is the intercept? Well, it's useful in helping us calculate a resid
 One of the benefits of explaining the association between two variables with a line instead of just the correlation coefficient is that it allows us to calculate what we would *expect* an observation's y-value to be if it behaved like a typical observation, so that we can see how far our expectation is from reality. That gap between expectation and reality is called a *residual*.
 
 **Residual** ($\hat{e}_i$)
-:   The difference between the observed value of a data point, $y_i$, and the value that we would expect according to a linear model, $\hat{y}_i.
+:   The difference between the observed value of a data point, $y_i$, and the value that we would expect according to a linear model, $\hat{y}_i$.
     $$ \hat{e}_i = y_i - \hat{y}_i $$
     
 :::{.column-margin}
@@ -283,7 +283,38 @@ With that in hand, we can calculate California's residual.
 
 This residual tells us that California is actually a bit of an underachiever. Among states with a poverty rate around 12.8, we would expect their graduate rate to be around 84.7. California's rate, however, is 81.1, a decrease of 3.6.
 
-<!-- The calculation of the residual can be expressed directly on the graphic. -->
+The calculation of the residual can be seen in the plot below.
+
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+#| fig-align: center
+library(ggrepel)
+poverty <- poverty %>%
+  mutate(is_ca = case_when(
+    State == "California" ~ "California (12.8, 81.1)", 
+    TRUE ~ ""))
+ca_pred <- m1$fitted.values[poverty$State == "California"]
+poverty %>%
+  ggplot(aes(x = Poverty, 
+             y = Graduates)) +
+  annotate("segment", x = 12.8, xend = 12.8, 
+           y = 81.1, yend = ca_pred,
+           lty = 2, color = "tomato") +
+  annotate("segment", x = 5.2, xend = 12.8, 
+           y = ca_pred, yend = ca_pred,
+           lty = 2, color = "darkgray") +
+  geom_point() +
+  geom_text_repel(aes(label = is_ca)) +
+  geom_abline(slope = coef(m1)[2],
+              intercept = coef(m1)[1],
+              color = "blue") +
+  labs(x = "Poverty Rate",
+       y = "Graduation Rate") +
+  theme_bw()
+```
+
+The horizontal dashed line represents $\hat{y} = 84.7$, y-value of the least squares line when it passes through $x = 12.8$. The vertical red dashed line is the residual: the distance between the line and the observation in the y direction.
 
 Residuals open up a new avenue for numerical statistics. While the slope and intercept are two statistics that tell us about the *overall* linear relationship between the two variables, each residual is a statistic that tells us whether an *individual* observation's y-value is higher or lower than we'd expect based on its x-value.
 
