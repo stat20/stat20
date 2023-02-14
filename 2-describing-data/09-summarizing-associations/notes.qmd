@@ -186,12 +186,12 @@ Another approach to summarizing the linear association is to just ... draw a lin
 This line serves both a graphical summary and *also* as a numerical summary. After all, every line that you draw on a scatter plot is defined by two numbers: the slope and the y-intercept. This line is called a *simple linear model*.
 
 **Simple Linear Model**
-:    An expression for a possible value of the $y$ variable, $\hat{y}$, as a linear function of the $x$ variable with slope $b_1$ and intercept $b_0.
+:    An expression for a possible value of the $y$ variable, $\hat{y}$, as a linear function of the $x$ variable with slope $b_1$ and y-intercept $b_0$.
      $$\hat{y} = b_0 + b_1x$$
 
 Therefore, a simple linear model captures the linear relationship of two variables in not one but *two* summary statistics, $b_0$ and $b_1$.
 
-For the line above, we can do our best to eye-ball this. The line appears to rise -2 percentage points for every 2.5 that it runs, so I'd estimate the slope to be about $-2/2.5 = -0.8$. If I were to draw the line all the way to the left until it crossed the y-axis at a poverty rate of 0, its y-intercept would be around 95. So I could express the line that's drawn above as:
+For the line above, we can do our best to eye-ball these. The line appears to rise -2 percentage points for every 2.5 that it runs, so I'd estimate the slope to be about $-2/2.5 = -0.8$. If I were to draw the line all the way to the left until it crossed the y-axis at a poverty rate of 0, its y-intercept would be around 95. So I could express the line that is drawn above as:
 
 $$\hat{y} = 95 - 0.8 x$$
 
@@ -205,7 +205,7 @@ If that felt a little shifty to you - drawing a line by hand and then eyeballing
 **Least Squares Intercept**
 :    $$ b_0 = \bar{y} - b_1 \bar{x}$$
 
-So how does this line look compared to the hand-drawn line? Let's find calculate the slope and intercept and add the line to our scatter plot.
+So how does this line look compared to the hand-drawn line? Let's calculate the slope and intercept and add the resulting line to our scatter plot.
 
 ```{r}
 #| fig-width: 3
@@ -264,7 +264,7 @@ poverty %>%
   select(State, Graduates, Poverty)
 ```
 
-This shows us that $y_i = 81.1$, so the next step is to find where the line passes through California's x-value, $x_i = 12.8$. There are several ways to find that, including simply plugging that value into the equation for the line show above.
+This shows us that for California, $y = 81.1$, so the next step is to find where the line passes through California's x-value, $x = 12.8$. There are several ways to do that calculation, including using R like a calculator and simply plugging that value into the equation for the line show above.
 
 ```{r}
 #| code-fold: false
@@ -314,7 +314,7 @@ poverty %>%
   theme_bw()
 ```
 
-The horizontal dashed line represents $\hat{y} = 84.7$, y-value of the least squares line when it passes through $x = 12.8$. The vertical red dashed line is the residual: the distance between the line and the observation in the y direction.
+The horizontal dashed line represents $\hat{y} = 84.7$, the y-value of the least squares line when it passes through $x = 12.8$. The vertical red dashed line is the residual: the distance between the line and the observation in the y direction.
 
 Residuals open up a new avenue for numerical statistics. While the slope and intercept are two statistics that tell us about the *overall* linear relationship between the two variables, each residual is a statistic that tells us whether an *individual* observation's y-value is higher or lower than we'd expect based on its x-value.
 
