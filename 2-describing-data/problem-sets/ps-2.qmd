@@ -1,0 +1,19 @@
+---
+title: "Problem Set 2: Summarizing Data"
+---
+
+This problem set has three components, each one submitted separately to Gradescope.
+
+### PS 2.1: Summarizing Numerical Data
+
+[Paper Worksheet](../05-summarizing-numerical-data/worksheet-analog.pdf)
+
+
+### PS 2.2: Conditioning
+
+[Download .qmd file](../07-conditioning/_worksheet-digital.qmd)
+
+
+### PS 2.3: Communicating with Graphics
+
+[Download .qmd file](../08-communicating-with-graphics/_worksheet-digital.qmd)

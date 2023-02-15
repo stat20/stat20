@@ -1,60 +1,62 @@
 ---
-title: "Quantifying Numerical Associations"
-format: 
-  stat20-slides-revealjs: default
+title: "Summarizing Numerical Associations"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
 ---
 
-## Agenda
-- Types of associations
+# Concept Questions
 
-- Correlation and causation
-
-- Rank based measures of association
-
-- Correlations in the class survey
-
-
-## What is the Pearson correlation?
+## Estimate the correlation
 
 ```{r}
 countdown::countdown(1, top = 0)
 ```
 
 :::{.poll}
-What is the Pearson correlation between these two variables.
+What is the (Pearson) correlation coefficient between these two variables.
 :::
 
 ```{r}
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 3
 library(tidyverse)
 n_samples <- 100
 set.seed(1)
-x <- runif(n=n_samples, min=-1, max=1) 
-y <- - x + rnorm(n=n_samples, mean=0, sd=.1)
+x <- runif(n = n_samples, min = -1, max = 1) 
+y <- -x + rnorm(n = n_samples, mean = 0, sd = .1)
 
-data.frame(x=x, y=y) %>% ggplot(aes(x=x, y=y)) +  geom_point()
+data.frame(x = x, 
+           y = y) %>% 
+  ggplot(aes(x = x, y = y)) +  
+  geom_point() +
+  theme_bw()
 ```
 
+:::notes
+This plot has a strong negative linear association, so the correlation coefficient will be around -.8 or -.9.
 
-## What is the Pearson correlation?
-
-```{r}
-countdown::countdown(1, top = 0)
-```
-
-:::{.poll}
-What is the Pearson correlation between these two variables.
+The goal of this exercise is threefold:
+- Start calibrating the ability to associate the correlation with the structure in a scatter plot.
+- Make it clear that this is still just an informal eye-balling procedure (therefore multiple answers can be reasonable, but some are un-reasonable).
+- Set some of them up for a challenge on the next one; some will conflate correlation with association.
 :::
-
-
-```{r}
-library(tidyverse)
-n_samples <- 100
-set.seed(1)
-x <- runif(n=n_samples, min=-1, max=1) 
-y <- x^2 + rnorm(n=n_samples, mean=0, sd=.1)
-
-data.frame(x=x, y=y) %>% ggplot(aes(x=x, y=y)) +  geom_point()
-```
 
 
 ## 
@@ -175,7 +177,7 @@ library(patchwork)
 ```
 
 :::{.poll}
-Which **four** plots exhibit the strongest association (linear or non-linear)?
+Which *four* plots exhibit the strongest association?
 :::
 
 ```{r}
@@ -186,7 +188,7 @@ countdown::countdown(1, top = 0)
 Student will likely identify A, B, E, and F. F only appears to be highly associated because of the scaling of the y-axis. This is a good opportunity to review definition of association. The following slides demonstrate the effects of that scaling.
 :::
 
-## Pearson Correlation and Scale {auto-animate=true}
+## Correlation and Scale {auto-animate=true}
 
 ```{r}
 #| echo: false
@@ -357,245 +359,184 @@ df_f %>%
 ```
 
 
+<!-- ## Non-linear Associations -->
 
-## Is there an association between these variables?
+<!-- ```{r} -->
+<!-- countdown::countdown(3, top = 0) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| fig-align: center -->
+<!-- #| fig-width: 5 -->
+<!-- #| fig-height: 3 -->
+<!-- n_samples <- 100 -->
+<!-- set.seed(1) -->
+<!-- x <- runif(n = n_samples, min = -1, max = 1)  -->
+<!-- y <- x^2 + rnorm(n = n_samples, mean = 0, sd = .1) -->
+
+<!-- data.frame(x = x, y = y) %>% -->
+<!--   ggplot(aes(x = x, y = y)) + -->
+<!--   geom_point() + -->
+<!--   theme_bw() -->
+<!-- ``` -->
+
+
+<!-- :::{.poll} -->
+<!-- #### Group discussion -->
+
+<!-- Come up with at least one example from real life where you might expect to see this kind of U-shaped association. Come up with another example of an inverted U-shape. -->
+<!-- ::: -->
+
+## Describing Associations
+
+When considering the structure in a scatter plot, pay attention to:
+
+1. The strength of the association
+   - *How much does the conditional distribution of y change when you move along the x?*
+   
+. . .
+
+2. The shape of the association
+   - *Linear? Quadratic? Cubic or beyond?*
+   
+. . .
+
+3. The direction of the (linear) association
+   - *Positive or negative?*
+
+## 
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+poverty <- read_delim("https://www.dropbox.com/s/0z45xgms0sie7l9/poverty.csv?dl=1")
+
+m1 <- lm(Graduates ~ Poverty, data = poverty)
+
+p_nolabs <- poverty %>%
+  ggplot(aes(x = Poverty, 
+             y = Graduates)) +
+  geom_point() +
+  geom_abline(slope = coef(m1)[2],
+              intercept = coef(m1)[1],
+              color = "blue") +
+  labs(x = "Poverty Rate",
+       y = "Graduation Rate") +
+  theme_bw()
+
+p_nolabs
+```
+
+:::poll
+Guess: Which state has the highest poverty rate? The lowest?
+:::
+
+:::notes
+This can be asked without poll-everywhere, without group discussion, just asking students to shout out which states they think will have highest and lowest. They often have prior guesses about this.
+
+As they answer, ask where they're thinking those states points are; how they're using this plot to think about the highest povery rate and the lowest poverty rate. Point out that these two questions donest even take advantage of the scatter plot, which allows you to see the relationship between two variables. Each question just deals with the *marginal* distribution of poverty or graduation rate, which could just as well be two separate histograms, as shown on the next slide.
+:::
+
+##
+
+```{r}
+#| fig-align: center
+p_grad <- ggplot(poverty, aes(x = Graduates)) +
+  geom_histogram() +
+  theme_bw()
+
+p_poverty <- ggplot(poverty, aes(x = Poverty)) +
+  geom_histogram() +
+  theme_bw()
+
+library(patchwork)
+p_grad + p_poverty
+```
+
+:::notes
+This is an equally-useful set of plots to answer the previous question.
+
+If we want to ask a question that requires a scatter plot (and a linear model) to answer, we need to ask a conditional question.
+:::
+
+##
 
 ```{r}
 countdown::countdown(1, top = 0)
 ```
 
-:::{.poll}
-Based on this plot, do you see evidence of an association between these two variables?
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+library(ggrepel)
+p_nolabs +   
+  geom_text_repel(aes(label = State), size = 3)
+```
+
+. . .
+
+:::poll
+Which state has the highest graduation rate given its poverty rate?
+:::
+
+:::notes
+This assesses whether or not students have an informal sense of what a residual is.
 :::
 
 
-```{r}
-library(tidyverse)
-n_samples <- 100
-set.seed(1)
-x <- runif(n=n_samples, min=-1, max=1) 
-y <- x^2 + rnorm(n=n_samples, mean=0, sd=.1)
+## Calculating the residuals {auto-animate=true}
 
-data.frame(x=x, y=y) %>% ggplot(aes(x=x, y=y)) +  geom_point()
-```
+$$ \hat{e}_i = y_i - \hat{y}_i $$
 
-
-
-
-## Where might you see a U-shaped association?
-
-```{r}
-countdown::countdown(4, top = 0)
-```
-
-```{r}
-library(tidyverse)
-n_samples <- 100
-set.seed(1)
-x <- runif(n=n_samples, min=-1, max=1) 
-y <- x^2 + rnorm(n=n_samples, mean=0, sd=.1)
-
-data.frame(x=x, y=y) %>% ggplot(aes(x=x, y=y)) +  geom_point()
-```
-
-
-:::{.poll}
-Group discussion: Give examples in real life where you might expect to see this kind of U-shaped association? What about an inverted U shaped association?
-:::
-
-
-
-# Causation and correlation
-
-
-## Does correlation imply causation?
-
-```{r}
-countdown::countdown(1, top = 0)
-```
-
-:::{.poll}
-Does a strong measure of association imply that one variable causes another?
-:::
-
-
-
-
-## Does causation imply correlation?
-
-```{r}
-countdown::countdown(1, top = 0)
-```
-
-:::{.poll}
-Does a casual relationship between two variables imply there is a correlation?
-:::
-
-
-:::{.notes}
-Some "counter-examples" could include
-
-- the causal variable has a small effect compared to other variables (e.g. a drug might have a small effect on a disease, but the patient's co-morbidities might have a much larger effect). 
-
-- the relationship is non-linear e.g. U shaped so Pearson correlation would not really pick it up
-:::
-
-## Correlation and causation IRL
-
-```{r}
-countdown::countdown(5, top = 0)
-```
-
-
-:::{.poll}
-In groups come up with examples of two variables that
-
-1. One causes the other and they are strongly correlated
-
-2. One causes the other and they are weakly correlated
-
-3. No direct causal relationship and they are strongly correlated
-
-4. No direct causal relationship and they are weakly correlated
-:::
-
-
-
-
-# Rank based methods of association
-
-## Pearson correlation
-
-```{r}
-library(palmerpenguins)
-library(tidyverse)
-data(penguins)
-
-penguins %>% 
-    ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
-    geom_point()
-```
-
-
-## Pearson correlation
+. . .
 
 ```{r}
 #| echo: true
-penguins %>%  
-    summarise(pearson=cor(flipper_length_mm, body_mass_g,
-                          use='complete.obs'))
+poverty %>%
+  mutate(y_hat = fitted(m1))
 ```
 
-
-:::{.notes}
-Emphasize the use='complete.obs' handles the NaNs, which is different than na.rm in mean().
+:::notes
+The use of `fitted()` (and `residuals()`) are nice and clean functions, which is why they're used here, but they're brittle used like this. Each fitted value in the vector that this function returns is associated with the state only through their ordering. If the `poverty` data frame is rearranged before this call to mutate, it will put the y-hats in the wrong rows. There are ways to fix this, but it requires code that's best not to show.
 :::
 
+## Calculating the residuals {auto-animate=true}
 
-## Spearman correlation
+$$ \hat{e}_i = y_i - \hat{y}_i $$
 
 ```{r}
 #| echo: true
-penguins %>%  
-    summarise(spearman=cor(flipper_length_mm, body_mass_g,
-                           method='spearman', use='complete.obs'))
+poverty %>%
+  mutate(y_hat = fitted(m1),
+         res = Graduates - y_hat)
 ```
 
+## Calculating the residuals {auto-animate=true}
 
-## Rank transformation
+$$ \hat{e}_i = y_i - \hat{y}_i $$
 
 ```{r}
 #| echo: true
-values <- c(2.6, 1.2, 3.9)
-rank(values)
+poverty %>%
+  mutate(y_hat = fitted(m1),
+         res = Graduates - y_hat) %>%
+  arrange(desc(res))
 ```
 
+## Calculating the residuals {auto-animate=true}
 
-## Rank transformation
+$$ \hat{e}_i = y_i - \hat{y}_i $$
 
 ```{r}
-penguins %>% 
-    mutate(flipper_length_rank = rank(flipper_length_mm)) %>% 
-    ggplot(aes(x=flipper_length_mm, y=flipper_length_rank)) +
-    geom_point()
+#| echo: true
+poverty %>%
+  mutate(y_hat = fitted(m1),
+         res = Graduates - y_hat) %>%
+  arrange(res)
 ```
 
-
-## Rank transformation
-
-```{r}
-penguins %>% 
-    ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
-    geom_point()
-```
-
-
-## Rank transformation
-```{r}
-penguins %>% 
-    mutate(flipper_rank=rank(flipper_length_mm),
-           body_mass_rank=rank(body_mass_g)) %>% 
-    ggplot(aes(x=flipper_rank, y=body_mass_rank)) +
-    geom_point()
-```
-
-
-## Spearman correlation by dplyr
-
-
-```{r}
-countdown::countdown(4, top = 0)
-```
-
-
-:::{.poll}
-Calculate the spearman correlation between `flipper_length_mm` and `body_mass_g` without the `cor` function.
-:::
-
-
-## Spearman and robustness
-```{r}
-penguins %>% 
-    ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
-    geom_point()
-
-```
-
-```{r}
-penguins%>%  
-    summarise(pearson=cor(flipper_length_mm, body_mass_g,
-                          method='pearson', use='complete.obs'),
-              spearman=cor(flipper_length_mm, body_mass_g,
-                           method='spearman', use='complete.obs'))
-```
-
-
-
-## Spearman and robustness
-```{r}
-penguins_outlier <- penguins %>% 
-    add_row(flipper_length_mm=0, body_mass_g=7000) 
-
-
-penguins_outlier %>% 
-    ggplot(aes(x=flipper_length_mm, y=body_mass_g)) +
-        geom_point()
-```
-
-
-```{r}
-penguins_outlier %>%  
-    summarise(pearson=cor(flipper_length_mm, body_mass_g,
-                          method='pearson', use='complete.obs'),
-              spearman=cor(flipper_length_mm, body_mass_g,
-                          method='spearman', use='complete.obs'))
-```
-
-## Finding correlations in the class survey data
-```{r}
-countdown::countdown(10, top = 0)
-```
-
-:::{.poll}
-In groups, answer the questions in the handout about the class survey data.
-:::

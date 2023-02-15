@@ -1,7 +1,8 @@
 ---
 title: "Lab 3: Flights"
-image: images/airline.jpg
+image: images/airline.png
 date: 02/08/23
+code-fold: false
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}
@@ -21,23 +22,81 @@ For the questions on the handout, consult the image of the data frame found in t
 - [Part 1: Understanding the Context of the Data](lab-context.qmd)
 
 
+## Part II: Computing on the Data
+
+The data for this lab can be found in the `flights` data frame in the `stat20data` package. Run `?flights` at the console to learn more about the columns.
+
+You can pull down these questions in RStudio by running the following command at the console:
+
+```{r}
+#| echo: true
+#| eval: false
+
+usethis::use_course("https://tinyurl.com/lab-3-flights")
+```
 
 
-<!-- ## Part II: Computing on the Data -->
+#### Question 1
 
-<!-- 8. **filter()**: Filter the data set to contain only the flights that went to Portland, Oregon and print the first few rows of the data frame. How many were there in 2020? -->
+Filter the data set to contain only the flights that left in the springtime destined for Portland, Oregon and print the first few rows of the data frame. How many were there in 2020?
 
-<!-- 9. **mutate()**: Mutate a new variable called `avg_speed` that is the average speed of the plane during the flight, measured in miles per hour. (Look through the column names or the help file to find variables that can be used to calculate this.) -->
 
-<!-- 10. **arrange()**: Arrange the data set to figure out: which flight holds the record for longest departure delay (in hrs) and what was its destination? What was the destination and delay time (in hrs) for the flight that was least delayed, i.e. that left the most ahead of schedule? -->
+#### Question 2
 
-<!-- 11. **summarize()**: Confirm the records for departure delay from the question above by summarizing that variable by its maximum and its minimum value. -->
+Mutate a new variable called `avg_speed` that is the average speed of the plane during the flight, measured in miles per hour. Save it back into the data frame; you'll use it later on (Look through the column names or the help file to find variables that can be used to calculate this.)
 
-<!-- 12. How many flights left SFO during March 2020? -->
 
-<!-- 13. How many flights left SFO during April 2020? -->
+#### Question 3
 
-<!-- 14. Create a bar chart that shows the distribution by month of all the flights leaving the Bay Area (SFO and OAK). Do you any sign of an effect of the pandemic? -->
+Arrange the data frame to figure out: which flight holds the record for longest departure delay (in hrs) and what was its destination? What was the destination and delay time (in hrs) for the flight that was least delayed, i.e. that left the most ahead of schedule?
+
+
+#### Question 4
+
+Confirm the records for departure delay from the question above by summarizing that variable by its maximum and its minimum value.
+
+
+#### Question 5
+
+What is the mean departure delay of flights leaving from Oakland and San Francisco separately? (calculate two means)
+
+
+#### Question 6
+
+What proportion of the flights left on or ahead of schedule? For Oakland and SFO separately, what proportion of flights left on or ahead of schedule?
+
+
+#### Question 7
+
+How many flights left SFO during March 2020? See the examples of Data Pipelines in the Conditioning notes for a helpful function.
+
+
+#### Question 8
+
+How many flights left SFO during April 2020?
+
+
+#### Question 9
+
+Create a bar chart that shows the distribution by month of all the flights leaving the Bay Area (SFO and OAK). Do you any sign of an effect of the pandemic?
+
+
+#### Question 10
+
+Create a histogram showing the distribution of departure delays for all flights. Describe in words the shape and modality of the distribution and, using numerical summaries, (i.e. summary statistics) its center and spread. Be sure to use measures of center and spread that are most appropriate for this type of distribution. Also set the limits of the x-axis to focus on where most of the data lie.
+
+
+#### Question 11
+
+Add a new column to your data frame called `before_times` that takes values of `TRUE` and `FALSE` indicating whether the flight took place up through the end of March or after April 1st, respectively. Remake the histograms above, but now separated into two subplots: one with the departure delays from the before times, the other with the flights from afterwards. Can you visually detect any difference in the distribution of departure delays?
+
+This is best done with a new layer called `facet_wrap()`. Learn about it's use by reading the documentation: <https://ggplot2.tidyverse.org/reference/facet_wrap.html>.
+
+
+#### Question 12
+
+If you flew out of OAK or SFO during this time period, what is the tail number of the plane that you were on? If you did not fly in this period, find the tail number of the plane that flew JetBlue flight 40 to New York's JFK Airport from SFO on May 1st.
+
 
 <!-- 15. Create a histogram showing the distribution of departure delays for all flights. Describe in words the shape and modality of the distribution and, using numerical summaries, (i.e. summary statistics) its center and spread. Be sure to use measures of center and spread that are most appropriate for this type of distribution. Also set the limits of the x-axis to focus on where most of the data lie. -->
 
@@ -64,7 +123,7 @@ For the questions on the handout, consult the image of the data frame found in t
 
 <!-- 24. What is the tailnumber of the fastest plane in the data set? What type of plane is it (google it!)? Be sure to be clear how you're defining fastest. -->
 
-<!-- 25.  Using the airport nearest your hometown, which day of the week and which airline seems best for  -->
+<!-- 25.  Using the airport nearest your hometown, which day of the week and which airline seems best for -->
 <!-- flying there from San Francisco?  If you're from near SFO or OAK or from abroad, use Chicago as your hometown. Be clear on how you're defining *best*. -->
 
 <!--      Note that there is no explicit weekday column in this data set, but there is sufficient information to piece it together. The following line of code can be added to your pipeline to create that new column. It uses functions in the `lubridate` package, so be sure to load it in at the start of this exercise. -->

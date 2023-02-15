@@ -10,8 +10,6 @@ x <- yaml::read_yaml("_schedule.yml")
 # notes depending on whether the class materials release
 # date has passed.
 
-# todo: remove ".quarto", "_site", "_freeze" for speed
-
 ignore_future_notes <- function(x, notes_offset = 0, cm_offset = 0) {
   
   current_datetime <- .POSIXct(Sys.time(), "America/Los_Angeles")
