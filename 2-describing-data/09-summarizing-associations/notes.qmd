@@ -327,3 +327,6 @@ If you have $n$ data points, you can calculate $n$ residuals.
 In these notes we considered the question of how to capture the association between two variables with numerical summary statistics. The correlation coefficient is one of the most common: it captures the strength and direction of the linear trend. This statistic can be used, along with other simple summary statistics, to calculate the slope and intercept of the least squares line. The least squares line is an alternative approach to summarizing the linear relationship between two numerical variables. It has the advantage of providing an expectation for the y-value of every observation, which allows us to calculate residuals, and expression of whether each observation is higher or lower than we'd expect.
 
 We'll spend time practicing calculating these statistics - and looking at lots of scatter plots - in class tomorrow.
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
+
