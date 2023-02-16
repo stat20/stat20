@@ -16,7 +16,7 @@ Repeat question 1 but use the horsepower of the car instead of the weight. Compa
 
 #### Question 3
 
-What is the better way to compare the strength of the linear relationship between these two pairs of variables: the correlation coefficient or the slope of a linear model? Why?
+What is the better way to compare the strength of the linear relationship between these two pairs of variables (mpg and wt; mpg and hp): the correlation coefficients or the slopes of the linear models? Why?
 
 
 #### Question 4
