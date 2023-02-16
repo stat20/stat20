@@ -1,0 +1,542 @@
+---
+title: "Summarizing Numerical Associations"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+# Concept Questions
+
+## Estimate the correlation
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.poll}
+What is the (Pearson) correlation coefficient between these two variables?
+:::
+
+```{r}
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 3
+library(tidyverse)
+n_samples <- 100
+set.seed(1)
+x <- runif(n = n_samples, min = -1, max = 1) 
+y <- -x + rnorm(n = n_samples, mean = 0, sd = .1)
+
+data.frame(x = x, 
+           y = y) %>% 
+  ggplot(aes(x = x, y = y)) +  
+  geom_point() +
+  theme_bw()
+```
+
+:::notes
+This plot has a strong negative linear association, so the correlation coefficient will be around -.8 or -.9.
+
+The goal of this exercise is threefold:
+- Start calibrating the ability to associate the correlation with the structure in a scatter plot.
+- Make it clear that this is still just an informal eye-balling procedure (therefore multiple answers can be reasonable, but some are un-reasonable).
+- Set some of them up for a challenge on the next one; some will conflate correlation with association.
+:::
+
+
+## 
+
+```{r}
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 5
+
+# simulate data -----------------------------------------------------
+set.seed(9274)
+
+x1 <- seq(0, 6, by = 0.05)
+
+y_u <- (x1-3)^2 - 4 + rnorm(length(x1), mean = 0, sd = 1)
+y_lin_pos_strong <- 3*x1 + 10 + rnorm(length(x1), mean = 0, sd = 2)
+y_lin_pos_weak <- 3*x1 + 10 + rnorm(length(x1), mean = 0, sd = 20)
+
+x2 <- seq(-8, -2, by = 0.05)
+
+y_n <- -1 * (x2 + 5)^2 + 1 + rnorm(length(x2), mean = 0, sd = 2)
+y_lin_neg_strong <- -5 * x2 + 3 + rnorm(length(x2), mean = 0, sd = 2)
+y_none <- rnorm(length(x2), mean = 0, sd = 1)
+
+df <- data.frame(x = c(rep(x1, 3), rep(x2, 3)),
+                 y = c(y_u, y_lin_pos_strong, y_lin_pos_weak,
+                       y_n, y_lin_neg_strong, y_none),
+                 plot_num = rep(LETTERS[1:6], each = length(x1)))
+
+library(tidyverse)
+pa <- df %>%
+    filter(plot_num == "A") %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    facet_wrap(vars(plot_num), scales = "free") +
+    theme_bw(base_size = 14) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(x = "",
+         y = "")
+
+pb <- df %>%
+    filter(plot_num == "B") %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    facet_wrap(vars(plot_num), scales = "free") +
+    theme_bw(base_size = 14) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(x = "",
+         y = "")
+
+pc <- df %>%
+    filter(plot_num == "C") %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    facet_wrap(vars(plot_num), scales = "free") +
+    theme_bw(base_size = 14) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(x = "",
+         y = "")
+
+pd <- df %>%
+    filter(plot_num == "D") %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    facet_wrap(vars(plot_num), scales = "free") +
+    theme_bw(base_size = 14) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(x = "",
+         y = "")
+
+pe <- df %>%
+    filter(plot_num == "E") %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    facet_wrap(vars(plot_num), scales = "free") +
+    theme_bw(base_size = 14) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(x = "",
+         y = "")
+
+pf <- df %>%
+    filter(plot_num == "F") %>%
+    ggplot(aes(x = x, 
+               y = y)) +
+    geom_point() +
+    facet_wrap(vars(plot_num), scales = "free") +
+    theme_bw(base_size = 14) +
+    ylim(-9, 9) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(x = "",
+         y = "")
+
+library(patchwork)
+(pa + pb + pc) / (pd + pe + pf)
+```
+
+:::{.poll}
+Which *four* plots exhibit the strongest association?
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.notes}
+Student will likely identify A, B, E, and F. F only appears to be highly associated because of the scaling of the y-axis. This is a good opportunity to review definition of association. The following slides demonstrate the effects of that scaling.
+:::
+
+## Correlation and Scale {auto-animate=true}
+
+```{r}
+#| echo: false
+df_f <- filter(df, plot_num == "F") %>%
+    select(x, y)
+```
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+```{r}
+#| echo: true
+#| eval: false
+df_f
+```
+:::
+
+::: {.column width="55%"}
+
+:::
+
+::::
+
+## Pearson Correlation and Scale {auto-animate=true}
+
+:::: {.columns}
+
+::: {.column width="45%"}
+```{r}
+#| echo: true
+df_f
+```
+:::
+
+::: {.column width="55%"}
+
+:::
+
+::::
+
+## Pearson Correlation and Scale {auto-animate=true}
+
+:::: {.columns}
+
+::: {.column width="45%"}
+```{r}
+#| echo: true
+#| eval: false
+df_f %>%
+    ggplot(aes(x = x,
+               y = y)) +
+    geom_point() +
+    ylim(-9, 9) +
+    theme_bw()
+```
+:::
+
+::: {.column width="55%"}
+
+:::
+
+::::
+
+## Pearson Correlation and Scale {auto-animate=true}
+
+:::: {.columns}
+
+::: {.column width="45%"}
+```{r}
+#| echo: true
+#| eval: false
+df_f %>%
+    ggplot(aes(x = x,
+               y = y)) +
+    geom_point() +
+    ylim(-9, 9) +
+    theme_bw()
+```
+:::
+
+::: {.column width="55%"}
+```{r}
+#| echo: false
+#| eval: true
+#| fig-height: 8
+df_f %>%
+    ggplot(aes(x = x,
+               y = y)) +
+    geom_point(size = 5) +
+    ylim(-9, 9) +
+    theme_bw(base_size = 36)
+```
+:::
+
+::::
+
+## Pearson Correlation and Scale {auto-animate=true}
+
+:::: {.columns}
+
+::: {.column width="45%"}
+```{r}
+#| echo: true
+#| eval: false
+df_f %>%
+    ggplot(aes(x = x,
+               y = y)) +
+    geom_point() +
+    theme_bw()
+```
+:::
+
+::: {.column width="55%"}
+
+:::
+
+::::
+
+## Pearson Correlation and Scale {auto-animate=true}
+
+:::: {.columns}
+
+::: {.column width="45%"}
+```{r}
+#| echo: true
+#| eval: false
+df_f %>%
+    ggplot(aes(x = x,
+               y = y)) +
+    geom_point() +
+    theme_bw()
+```
+:::
+
+::: {.column width="55%"}
+```{r}
+#| echo: false
+#| eval: true
+#| fig-height: 8
+df_f %>%
+    ggplot(aes(x = x,
+               y = y)) +
+    geom_point(size = 5) +
+    theme_bw(base_size = 36)
+
+```
+:::
+
+::::
+
+## Pearson Correlation and Scale {auto-animate=true}
+
+```{r}
+#| echo: true
+#| eval: false
+df_f %>%
+    summarize(pearson = cor(x, y))
+```
+
+
+## Pearson Correlation and Scale {auto-animate=true}
+
+```{r}
+#| echo: true
+df_f %>%
+    summarize(pearson = cor(x, y))
+```
+
+
+<!-- ## Non-linear Associations -->
+
+<!-- ```{r} -->
+<!-- countdown::countdown(3, top = 0) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| fig-align: center -->
+<!-- #| fig-width: 5 -->
+<!-- #| fig-height: 3 -->
+<!-- n_samples <- 100 -->
+<!-- set.seed(1) -->
+<!-- x <- runif(n = n_samples, min = -1, max = 1)  -->
+<!-- y <- x^2 + rnorm(n = n_samples, mean = 0, sd = .1) -->
+
+<!-- data.frame(x = x, y = y) %>% -->
+<!--   ggplot(aes(x = x, y = y)) + -->
+<!--   geom_point() + -->
+<!--   theme_bw() -->
+<!-- ``` -->
+
+
+<!-- :::{.poll} -->
+<!-- #### Group discussion -->
+
+<!-- Come up with at least one example from real life where you might expect to see this kind of U-shaped association. Come up with another example of an inverted U-shape. -->
+<!-- ::: -->
+
+## Describing Associations
+
+When considering the structure in a scatter plot, pay attention to:
+
+1. The strength of the association
+   - *How much does the conditional distribution of y change when you move along the x?*
+   
+. . .
+
+2. The shape of the association
+   - *Linear? Quadratic? Cubic or beyond?*
+   
+. . .
+
+3. The direction of the (linear) association
+   - *Positive or negative?*
+
+## 
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+poverty <- read_delim("https://www.dropbox.com/s/0z45xgms0sie7l9/poverty.csv?dl=1")
+
+m1 <- lm(Graduates ~ Poverty, data = poverty)
+
+p_nolabs <- poverty %>%
+  ggplot(aes(x = Poverty, 
+             y = Graduates)) +
+  geom_point() +
+  geom_abline(slope = coef(m1)[2],
+              intercept = coef(m1)[1],
+              color = "blue") +
+  labs(x = "Poverty Rate",
+       y = "Graduation Rate") +
+  theme_bw()
+
+p_nolabs
+```
+
+:::poll
+Guess: Which state has the highest poverty rate? The lowest?
+:::
+
+:::notes
+This can be asked without poll-everywhere, without group discussion, just asking students to shout out which states they think will have highest and lowest. They often have prior guesses about this.
+
+As they answer, ask where they're thinking those states points are; how they're using this plot to think about the highest povery rate and the lowest poverty rate. Point out that these two questions donest even take advantage of the scatter plot, which allows you to see the relationship between two variables. Each question just deals with the *marginal* distribution of poverty or graduation rate, which could just as well be two separate histograms, as shown on the next slide.
+:::
+
+##
+
+```{r}
+#| fig-align: center
+p_grad <- ggplot(poverty, aes(x = Graduates)) +
+  geom_histogram() +
+  theme_bw()
+
+p_poverty <- ggplot(poverty, aes(x = Poverty)) +
+  geom_histogram() +
+  theme_bw()
+
+library(patchwork)
+p_grad + p_poverty
+```
+
+:::notes
+This is an equally-useful set of plots to answer the previous question.
+
+If we want to ask a question that requires a scatter plot (and a linear model) to answer, we need to ask a conditional question.
+:::
+
+##
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+library(ggrepel)
+p_nolabs +   
+  geom_text_repel(aes(label = State), size = 3)
+```
+
+. . .
+
+:::poll
+Which state has the highest graduation rate given its poverty rate?
+:::
+
+:::notes
+This assesses whether or not students have an informal sense of what a residual is.
+:::
+
+
+## Calculating the residuals {auto-animate=true}
+
+$$ \hat{e}_i = y_i - \hat{y}_i $$
+
+. . .
+
+```{r}
+#| echo: true
+poverty %>%
+  mutate(y_hat = fitted(m1))
+```
+
+:::notes
+The use of `fitted()` (and `residuals()`) are nice and clean functions, which is why they're used here, but they're brittle used like this. Each fitted value in the vector that this function returns is associated with the state only through their ordering. If the `poverty` data frame is rearranged before this call to mutate, it will put the y-hats in the wrong rows. There are ways to fix this, but it requires code that's best not to show.
+:::
+
+## Calculating the residuals {auto-animate=true}
+
+$$ \hat{e}_i = y_i - \hat{y}_i $$
+
+```{r}
+#| echo: true
+poverty %>%
+  mutate(y_hat = fitted(m1),
+         res = Graduates - y_hat)
+```
+
+## Calculating the residuals {auto-animate=true}
+
+$$ \hat{e}_i = y_i - \hat{y}_i $$
+
+```{r}
+#| echo: true
+poverty %>%
+  mutate(y_hat = fitted(m1),
+         res = Graduates - y_hat) %>%
+  arrange(desc(res))
+```
+
+## Calculating the residuals {auto-animate=true}
+
+$$ \hat{e}_i = y_i - \hat{y}_i $$
+
+```{r}
+#| echo: true
+poverty %>%
+  mutate(y_hat = fitted(m1),
+         res = Graduates - y_hat) %>%
+  arrange(res)
+```
+

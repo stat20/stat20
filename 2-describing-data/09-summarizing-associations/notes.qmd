@@ -205,6 +205,8 @@ If that felt a little shifty to you - drawing a line by hand and then eyeballing
 **Least Squares Intercept**
 :    $$ b_0 = \bar{y} - b_1 \bar{x}$$
 
+<!-- Give a bit of instuition for where these come from -->
+
 So how does this line look compared to the hand-drawn line? Let's calculate the slope and intercept and add the resulting line to our scatter plot.
 
 ```{r}
@@ -235,6 +237,8 @@ lm(Graduates ~ Poverty, data = poverty)
 ```
 
 The syntax for `lm()` uses what's called "formula notation" in R. The first argument is a formula of the form `y ~ x` and can be read as, "Explain the y as a function of the x". In the second argument, you specify which data frame contains the variables used in the formula.
+
+<!-- Maybe put lm() under a heading and/or provide a template in the same way we did for ggplot at first. -->
 
 So if the correlation coefficient measures the strength of the linear relationship between two variables, what exactly are the slope and intercept measuring? The slope captures the expected change in the $y$ associated with the $x$ changing by 1 unit. In this example, states that are separated by 1 percentage point in their poverty rate tend to be separated by about -.89 in their graduation rate. This is distinct from what the correlation tells us because while $r$ will stay the same regardless of the units in which the data is measured, $b_1$ is expressly designed to tell us how those units of measurement relate to one another.
 
