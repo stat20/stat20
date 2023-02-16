@@ -142,5 +142,5 @@ Which flight has the highest arrival delay given its departure delay? (Consult t
 
 #### Question 21
 
-Fit a second linear model that explains arrival delay using departure delay and the distance of the flight and print out the coefficients (the intercept and slopes). Speculate as to why the *sign* (positive or negative) of the distance coefficient is what it is. Can we compare the coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not?
+Fit a multiple linear regression model that explains arrival delay using departure delay and the distance of the flight and print out the coefficients (the intercept and two slopes). Speculate as to why the *sign* (positive or negative) of the distance coefficient is what it is. Can we compare the coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not?
 
