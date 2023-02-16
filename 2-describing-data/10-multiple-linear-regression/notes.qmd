@@ -186,6 +186,7 @@ While the standard scatter plot allows us to understand the association between 
 ```{r}
 #| code-fold: false
 #| echo: false
+#| eval: false
 library(plotly)
 library(reshape2)
 
@@ -215,15 +216,19 @@ p %>%
   )
 ```
 
-```{=html}
-<center>
-<iframe width="500" height="500"
-  src="images/plotly-3d.html"
-></iframe>
-</center>
-```
+<!-- ```{=html} -->
+<!-- <center> -->
+<!-- <iframe width="500" height="500" -->
+<!--   src="images/plotly-3d.html" -->
+<!-- ></iframe> -->
+<!-- </center> -->
+<!-- ``` -->
 
-Take a moment to explore this scatter plot. Can you find the name of the restaurant with very bad decor but pretty good food and a price to match? (It's Gennaro.) What about the restaurant that equally bad decor but has rock bottom prices that's surprising given it's food quality isn't actually somewhat respectable? (It's Lamarca.)
+![](images/3d-points.png){width="450" fig-align="center"}
+
+Take a moment to explore this scatter plot[^error]. Can you find the name of the restaurant with very bad decor but pretty good food and a price to match? (It's Gennaro.) What about the restaurant that equally bad decor but has rock bottom prices that's surprising given it's food quality isn't actually somewhat respectable? (It's Lamarca.)
+
+[^error]: This is a screenshot from an interactive 3D scatter plot. We'll see the interactive plot in class tomorrow.
 
 Instead of depicting the relationship between these three variables graphically, let's do it numerically by fitting a linear model.
 
@@ -244,6 +249,7 @@ Indeed this linear model is describing a *plane*.
 ```{r}
 #| code-fold: false
 #| echo: false
+#| eval: false
 p %>%
   add_surface(x = axis_x,
               y = axis_y,
@@ -256,13 +262,15 @@ p %>%
   )
 ```
 
-```{=html}
-<center>
-<iframe width="500" height="500"
-  src="images/plotly-3d-plane.html"
-></iframe>
-</center>
-```
+<!-- ```{=html} -->
+<!-- <center> -->
+<!-- <iframe width="500" height="500" -->
+<!--   src="images/plotly-3d-plane.html" -->
+<!-- ></iframe> -->
+<!-- </center> -->
+<!-- ``` -->
+
+![](images/3d-plane.png){width="450" fig-align="center"}
 
 If you inspect this plane carefully you're realize that the tilt of the plane is not quite the same in every dimension. The tilt in the decor dimension is just a little bit steeper than that in the food dimension, a geometric expression of the fact that the coefficient in front of decor, 1.88, is just a bit higher than the coefficient in front of food, 1.64.
 
