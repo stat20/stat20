@@ -124,6 +124,9 @@ Using the airport nearest your hometown, which day of the week and which airline
 Note that there is no explicit weekday column in this data set, but there is sufficient information to piece it together. The following line of code can be added to your pipeline to create that new column. It uses functions in the `lubridate` package, so be sure to load it in at the start of this exercise.
 
 ```{r}
+#| echo: true
+#| code-fold: false
+#| eval: false
 mutate(day_of_week = wday(ymd(paste(year, month, day, set = "-")), label = T))
 ```
 
