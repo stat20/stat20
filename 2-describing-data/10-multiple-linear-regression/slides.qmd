@@ -1,5 +1,5 @@
 ---
-title: "Summarizing Numerical Associations"
+title: "Multiple Linear Regression"
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
@@ -22,521 +22,202 @@ format:
 
 # Concept Questions
 
-## Estimate the correlation
+## Estimate the coefficient
 
 ```{r}
 countdown::countdown(1, top = 0)
 ```
 
-:::{.poll}
-What is the (Pearson) correlation coefficient between these two variables?
-:::
-
 ```{r}
-#| fig-align: center
-#| fig-width: 5
-#| fig-height: 3
 library(tidyverse)
-n_samples <- 100
-set.seed(1)
-x <- runif(n = n_samples, min = -1, max = 1) 
-y <- -x + rnorm(n = n_samples, mean = 0, sd = .1)
-
-data.frame(x = x, 
-           y = y) %>% 
-  ggplot(aes(x = x, y = y)) +  
-  geom_point() +
-  theme_bw()
+library(stat20data)
 ```
 
-:::notes
-This plot has a strong negative linear association, so the correlation coefficient will be around -.8 or -.9.
+\
+\
 
-The goal of this exercise is threefold:
-- Start calibrating the ability to associate the correlation with the structure in a scatter plot.
-- Make it clear that this is still just an informal eye-balling procedure (therefore multiple answers can be reasonable, but some are un-reasonable).
-- Set some of them up for a challenge on the next one; some will conflate correlation with association.
+```{r}
+#| echo: true
+m1 <- lm(bill_depth_mm ~ bill_length_mm, data = penguins)
+```
+
+\
+\
+\
+
+:::{.poll}
+What will be the sign of the coefficient for  `bill_length_mm`?
+:::
+
+:::notes
+This one warms students up to the idea of working between the formula, the equation of the line, and a plot. It will also likely surprise them: without controlling for the species, there's actually a slight negative relationship here.
 :::
 
 
 ## 
 
 ```{r}
-#| fig-align: center
-#| fig-width: 8
-#| fig-height: 5
-
-# simulate data -----------------------------------------------------
-set.seed(9274)
-
-x1 <- seq(0, 6, by = 0.05)
-
-y_u <- (x1-3)^2 - 4 + rnorm(length(x1), mean = 0, sd = 1)
-y_lin_pos_strong <- 3*x1 + 10 + rnorm(length(x1), mean = 0, sd = 2)
-y_lin_pos_weak <- 3*x1 + 10 + rnorm(length(x1), mean = 0, sd = 20)
-
-x2 <- seq(-8, -2, by = 0.05)
-
-y_n <- -1 * (x2 + 5)^2 + 1 + rnorm(length(x2), mean = 0, sd = 2)
-y_lin_neg_strong <- -5 * x2 + 3 + rnorm(length(x2), mean = 0, sd = 2)
-y_none <- rnorm(length(x2), mean = 0, sd = 1)
-
-df <- data.frame(x = c(rep(x1, 3), rep(x2, 3)),
-                 y = c(y_u, y_lin_pos_strong, y_lin_pos_weak,
-                       y_n, y_lin_neg_strong, y_none),
-                 plot_num = rep(LETTERS[1:6], each = length(x1)))
-
-library(tidyverse)
-pa <- df %>%
-    filter(plot_num == "A") %>%
-    ggplot(aes(x = x, 
-               y = y)) +
-    geom_point() +
-    facet_wrap(vars(plot_num), scales = "free") +
-    theme_bw(base_size = 14) +
-    theme(axis.text.x=element_blank(),
-          axis.ticks.x=element_blank(),
-          axis.text.y=element_blank(),
-          axis.ticks.y=element_blank()) +
-    labs(x = "",
-         y = "")
-
-pb <- df %>%
-    filter(plot_num == "B") %>%
-    ggplot(aes(x = x, 
-               y = y)) +
-    geom_point() +
-    facet_wrap(vars(plot_num), scales = "free") +
-    theme_bw(base_size = 14) +
-    theme(axis.text.x=element_blank(),
-          axis.ticks.x=element_blank(),
-          axis.text.y=element_blank(),
-          axis.ticks.y=element_blank()) +
-    labs(x = "",
-         y = "")
-
-pc <- df %>%
-    filter(plot_num == "C") %>%
-    ggplot(aes(x = x, 
-               y = y)) +
-    geom_point() +
-    facet_wrap(vars(plot_num), scales = "free") +
-    theme_bw(base_size = 14) +
-    theme(axis.text.x=element_blank(),
-          axis.ticks.x=element_blank(),
-          axis.text.y=element_blank(),
-          axis.ticks.y=element_blank()) +
-    labs(x = "",
-         y = "")
-
-pd <- df %>%
-    filter(plot_num == "D") %>%
-    ggplot(aes(x = x, 
-               y = y)) +
-    geom_point() +
-    facet_wrap(vars(plot_num), scales = "free") +
-    theme_bw(base_size = 14) +
-    theme(axis.text.x=element_blank(),
-          axis.ticks.x=element_blank(),
-          axis.text.y=element_blank(),
-          axis.ticks.y=element_blank()) +
-    labs(x = "",
-         y = "")
-
-pe <- df %>%
-    filter(plot_num == "E") %>%
-    ggplot(aes(x = x, 
-               y = y)) +
-    geom_point() +
-    facet_wrap(vars(plot_num), scales = "free") +
-    theme_bw(base_size = 14) +
-    theme(axis.text.x=element_blank(),
-          axis.ticks.x=element_blank(),
-          axis.text.y=element_blank(),
-          axis.ticks.y=element_blank()) +
-    labs(x = "",
-         y = "")
-
-pf <- df %>%
-    filter(plot_num == "F") %>%
-    ggplot(aes(x = x, 
-               y = y)) +
-    geom_point() +
-    facet_wrap(vars(plot_num), scales = "free") +
-    theme_bw(base_size = 14) +
-    ylim(-9, 9) +
-    theme(axis.text.x=element_blank(),
-          axis.ticks.x=element_blank(),
-          axis.text.y=element_blank(),
-          axis.ticks.y=element_blank()) +
-    labs(x = "",
-         y = "")
-
-library(patchwork)
-(pa + pb + pc) / (pd + pe + pf)
+#| echo: true
+m1
 ```
 
-:::{.poll}
-Which *four* plots exhibit the strongest association?
-:::
+. . .
+
+```{r}
+#| fig-align: center
+penguins %>%
+  ggplot(aes(x = bill_length_mm,
+             y = bill_depth_mm)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_bw()
+```
+
+
+## Estimate the coefficient, take two
 
 ```{r}
 countdown::countdown(1, top = 0)
 ```
 
-:::{.notes}
-Student will likely identify A, B, E, and F. F only appears to be highly associated because of the scaling of the y-axis. This is a good opportunity to review definition of association. The following slides demonstrate the effects of that scaling.
-:::
-
-## Correlation and Scale {auto-animate=true}
-
-```{r}
-#| echo: false
-df_f <- filter(df, plot_num == "F") %>%
-    select(x, y)
-```
-
-
-:::: {.columns}
-
-::: {.column width="45%"}
-```{r}
-#| echo: true
-#| eval: false
-df_f
-```
-:::
-
-::: {.column width="55%"}
-
-:::
-
-::::
-
-## Pearson Correlation and Scale {auto-animate=true}
-
-:::: {.columns}
-
-::: {.column width="45%"}
-```{r}
-#| echo: true
-df_f
-```
-:::
-
-::: {.column width="55%"}
-
-:::
-
-::::
-
-## Pearson Correlation and Scale {auto-animate=true}
-
-:::: {.columns}
-
-::: {.column width="45%"}
-```{r}
-#| echo: true
-#| eval: false
-df_f %>%
-    ggplot(aes(x = x,
-               y = y)) +
-    geom_point() +
-    ylim(-9, 9) +
-    theme_bw()
-```
-:::
-
-::: {.column width="55%"}
-
-:::
-
-::::
-
-## Pearson Correlation and Scale {auto-animate=true}
-
-:::: {.columns}
-
-::: {.column width="45%"}
-```{r}
-#| echo: true
-#| eval: false
-df_f %>%
-    ggplot(aes(x = x,
-               y = y)) +
-    geom_point() +
-    ylim(-9, 9) +
-    theme_bw()
-```
-:::
-
-::: {.column width="55%"}
-```{r}
-#| echo: false
-#| eval: true
-#| fig-height: 8
-df_f %>%
-    ggplot(aes(x = x,
-               y = y)) +
-    geom_point(size = 5) +
-    ylim(-9, 9) +
-    theme_bw(base_size = 36)
-```
-:::
-
-::::
-
-## Pearson Correlation and Scale {auto-animate=true}
-
-:::: {.columns}
-
-::: {.column width="45%"}
-```{r}
-#| echo: true
-#| eval: false
-df_f %>%
-    ggplot(aes(x = x,
-               y = y)) +
-    geom_point() +
-    theme_bw()
-```
-:::
-
-::: {.column width="55%"}
-
-:::
-
-::::
-
-## Pearson Correlation and Scale {auto-animate=true}
-
-:::: {.columns}
-
-::: {.column width="45%"}
-```{r}
-#| echo: true
-#| eval: false
-df_f %>%
-    ggplot(aes(x = x,
-               y = y)) +
-    geom_point() +
-    theme_bw()
-```
-:::
-
-::: {.column width="55%"}
-```{r}
-#| echo: false
-#| eval: true
-#| fig-height: 8
-df_f %>%
-    ggplot(aes(x = x,
-               y = y)) +
-    geom_point(size = 5) +
-    theme_bw(base_size = 36)
-
-```
-:::
-
-::::
-
-## Pearson Correlation and Scale {auto-animate=true}
+\
 
 ```{r}
 #| echo: true
-#| eval: false
-df_f %>%
-    summarize(pearson = cor(x, y))
+m2 <- lm(bill_depth_mm ~ bill_length_mm + species, penguins)
 ```
 
+\
+\
+\
 
-## Pearson Correlation and Scale {auto-animate=true}
+:::{.poll}
+What will be the sign of the coefficient for  `bill_length_mm`? How many coefficients will be in this linear model?
+:::
+
+:::notes
+After the first question, some should get the second one correct, but the fact that it can change may surprise some students. They haven't need an example of a categorical variable with more than k = 2 levels, so it will be challenging for them to think through how many coefficients are required (since there are k = 3 levels, there are k = 3-1 dummy variables required, for a total of 4 coefficients.)
+
+You may want to follow this question up by drawing on a board a data frame with `bill_length_mm` and `species` and show how you need to mutate two new dummy variables. You can also mention that by default, R leaves as the references level the one which comes first alphabetically.
+:::
+
+## 
+
+```{r}
+#| fig-align: center
+
+penguins <- mutate(penguins, yhat = fitted(m2))
+
+penguins %>%
+  ggplot(aes(x = bill_length_mm,
+             y = bill_depth_mm,
+             color = species)) +
+  geom_point() +
+  geom_line(aes(y = yhat, 
+                group = species,
+                color = species),
+            lwd = 1.5) +
+  theme_bw(base_size = 13)
+```
+
+##
 
 ```{r}
 #| echo: true
-df_f %>%
-    summarize(pearson = cor(x, y))
+m2
 ```
 
+. . .
 
-<!-- ## Non-linear Associations -->
+**Dummy Variable**
+
+A variable that is 1 if an observation takes a particular level of a categorical variable and 0 otherwise. A categorical variable with $k$ levels can be encoded using $k - 1$ dummy variables.
+
+
+## Interpreting coefficients
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+\
+
+```{r}
+#| echo: true
+m2
+```
+
+:::poll
+Which is the correct interpretation of the coefficient in front of Gentoo?
+:::
+
+:::notes
+This one assess their ability to use a conditional interpretation of a regression coefficient (controlling for the other variables in the model...)
+:::
+
+
+<!-- ## MLR Geometry -->
+
+<!-- . . . -->
 
 <!-- ```{r} -->
-<!-- countdown::countdown(3, top = 0) -->
+<!-- countdown::countdown(1, top = 0) -->
 <!-- ``` -->
 
 <!-- ```{r} -->
-<!-- #| fig-align: center -->
-<!-- #| fig-width: 5 -->
-<!-- #| fig-height: 3 -->
-<!-- n_samples <- 100 -->
-<!-- set.seed(1) -->
-<!-- x <- runif(n = n_samples, min = -1, max = 1)  -->
-<!-- y <- x^2 + rnorm(n = n_samples, mean = 0, sd = .1) -->
-
-<!-- data.frame(x = x, y = y) %>% -->
-<!--   ggplot(aes(x = x, y = y)) + -->
-<!--   geom_point() + -->
-<!--   theme_bw() -->
+<!-- zagat <- read_csv("https://www.dropbox.com/s/c797oanmvdzjegt/zagat.csv?dl=1") -->
 <!-- ``` -->
 
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- m3 <- lm(price ~ food + decor + geo, data = zagat) -->
+<!-- ``` -->
 
-<!-- :::{.poll} -->
-<!-- #### Group discussion -->
-
-<!-- Come up with at least one example from real life where you might expect to see this kind of U-shaped association. Come up with another example of an inverted U-shape. -->
+<!-- :::poll -->
+<!-- What is the geometry described by this model? -->
 <!-- ::: -->
 
-## Describing Associations
+<!-- ::: -->
+<!-- The answer is two parallel planes. -->
 
-When considering the structure in a scatter plot, pay attention to:
+<!-- This is to test their ability to extrapolate from the examples they've seen in the notes. It's also to have fun spinning a 3D scatter plot. -->
 
-1. The strength of the association
-   - *How much does the conditional distribution of y change when you move along the x?*
-   
-. . .
-
-2. The shape of the association
-   - *Linear? Quadratic? Cubic or beyond?*
-   
-. . .
-
-3. The direction of the (linear) association
-   - *Positive or negative?*
-
-## 
-
-```{r}
-#| fig-width: 5
-#| fig-height: 3
-#| fig-align: center
-
-poverty <- read_delim("https://www.dropbox.com/s/0z45xgms0sie7l9/poverty.csv?dl=1")
-
-m1 <- lm(Graduates ~ Poverty, data = poverty)
-
-p_nolabs <- poverty %>%
-  ggplot(aes(x = Poverty, 
-             y = Graduates)) +
-  geom_point() +
-  geom_abline(slope = coef(m1)[2],
-              intercept = coef(m1)[1],
-              color = "blue") +
-  labs(x = "Poverty Rate",
-       y = "Graduation Rate") +
-  theme_bw()
-
-p_nolabs
-```
-
-:::poll
-Guess: Which state has the highest poverty rate? The lowest?
-:::
-
-:::notes
-This can be asked without poll-everywhere, without group discussion, just asking students to shout out which states they think will have highest and lowest. They often have prior guesses about this.
-
-As they answer, ask where they're thinking those states points are; how they're using this plot to think about the highest povery rate and the lowest poverty rate. Point out that these two questions donest even take advantage of the scatter plot, which allows you to see the relationship between two variables. Each question just deals with the *marginal* distribution of poverty or graduation rate, which could just as well be two separate histograms, as shown on the next slide.
-:::
-
-##
-
-```{r}
-#| fig-align: center
-p_grad <- ggplot(poverty, aes(x = Graduates)) +
-  geom_histogram() +
-  theme_bw()
-
-p_poverty <- ggplot(poverty, aes(x = Poverty)) +
-  geom_histogram() +
-  theme_bw()
-
-library(patchwork)
-p_grad + p_poverty
-```
-
-:::notes
-This is an equally-useful set of plots to answer the previous question.
-
-If we want to ask a question that requires a scatter plot (and a linear model) to answer, we need to ask a conditional question.
-:::
-
-##
-
-```{r}
-countdown::countdown(1, top = 0)
-```
+<!-- Students might ask about higher dim, where these models describe "hyperplanes". -->
+<!-- ::: -->
 
 
-```{r}
-#| fig-width: 5
-#| fig-height: 3
-#| fig-align: center
+<!-- ## -->
 
-library(ggrepel)
-p_nolabs +   
-  geom_text_repel(aes(label = State), size = 3)
-```
+<!-- ```{r} -->
+<!-- #| code-fold: false -->
+<!-- #| echo: false -->
+<!-- #| eval: false -->
+<!-- library(plotly) -->
+<!-- library(reshape2) -->
 
-. . .
-
-:::poll
-Which state has the highest graduation rate given its poverty rate?
-:::
-
-:::notes
-This assesses whether or not students have an informal sense of what a residual is.
-:::
-
-
-## Calculating the residuals {auto-animate=true}
-
-$$ \hat{e}_i = y_i - \hat{y}_i $$
-
-. . .
-
-```{r}
-#| echo: true
-poverty %>%
-  mutate(y_hat = fitted(m1))
-```
-
-:::notes
-The use of `fitted()` (and `residuals()`) are nice and clean functions, which is why they're used here, but they're brittle used like this. Each fitted value in the vector that this function returns is associated with the state only through their ordering. If the `poverty` data frame is rearranged before this call to mutate, it will put the y-hats in the wrong rows. There are ways to fix this, but it requires code that's best not to show.
-:::
-
-## Calculating the residuals {auto-animate=true}
-
-$$ \hat{e}_i = y_i - \hat{y}_i $$
-
-```{r}
-#| echo: true
-poverty %>%
-  mutate(y_hat = fitted(m1),
-         res = Graduates - y_hat)
-```
-
-## Calculating the residuals {auto-animate=true}
-
-$$ \hat{e}_i = y_i - \hat{y}_i $$
-
-```{r}
-#| echo: true
-poverty %>%
-  mutate(y_hat = fitted(m1),
-         res = Graduates - y_hat) %>%
-  arrange(desc(res))
-```
-
-## Calculating the residuals {auto-animate=true}
-
-$$ \hat{e}_i = y_i - \hat{y}_i $$
-
-```{r}
-#| echo: true
-poverty %>%
-  mutate(y_hat = fitted(m1),
-         res = Graduates - y_hat) %>%
-  arrange(res)
-```
+<!-- grid_points <- 30 -->
+<!-- axis_x <- seq(min(zagat$food),  -->
+<!--               max(zagat$food), -->
+<!--               length.out = grid_points) -->
+<!-- axis_y <- seq(min(zagat$decor),  -->
+<!--               max(zagat$decor), -->
+<!--               length.out = grid_points) -->
+<!-- zagat_plane <- expand.grid(food = axis_x,  -->
+<!--                          decor = axis_y,  -->
+<!--                          KEEP.OUT.ATTRS = F) -->
+<!-- zagat_plane$price <- predict.lm(m3, newdata = zagat_plane) -->
+<!-- z <- acast(zagat_plane, food ~ decor + geo, value.var = "price") -->
+<!-- p <- plot_ly(zagat, x = ~food, y = ~decor, z = ~price, showlegend=FALSE) %>% -->
+<!--   add_markers(marker = list(size = 5, -->
+<!--                             opacity = .6, -->
+<!--                             color = "steelblue"), -->
+<!--               name = ~restaurant) %>% -->
+<!--   config(displayModeBar = FALSE)  -->
+<!-- p %>% -->
+<!--   add_surface(x = axis_x, -->
+<!--               y = axis_y, -->
+<!--               z = z, showscale=FALSE, -->
+<!--               colorscale = list(c(0, 1), c("tan", "tan")), -->
+<!--               name = "Linear Model") -->
+<!-- ``` -->
 
