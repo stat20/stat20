@@ -91,7 +91,7 @@ What does it mean to put a categorical variable, `geo`, into a linear model? And
 When working with linear models like the one above, the value of the explanatory variable, $geowest$, is multiplied by a slope, 1.45. According to the Taxonomy of Data, arithmetic functions like multiplication are only defined for numerical variables. While that would seem to rule out categorical variables for use as explanatory variables, statisticians have come up with a clever work-around: the dummy variable.
 
 **Dummy Variable**
-: A logical variable that is true if an observation takes a particular level of a categorical variable and false otherwise. A categorical variable with $k$ levels can be encoded using $k-1$ dummy variables.
+: A variable that is 1 if an observation takes a particular level of a categorical variable and 0 otherwise. A categorical variable with $k$ levels can be encoded using $k-1$ dummy variables.
 
 The categorical variable `geo` can be converted into dummy variable by shifting the question from "Which side of Manhattan are you on?" to "Are you on the west side of Manhattan?" This is a `mutate` step.
 
@@ -309,4 +309,4 @@ We began this unit on Summarizing Data with graphical and numerical summaries of
 
 If this felt like a deep dive into a multiple linear regression, don't worry. Linear models are one of the most commonly used statistical tools, so we'll be revisiting them throughout the course: investigating their use in making generalizations, causal claims, and predictions.
 
-
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
