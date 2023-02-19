@@ -17,6 +17,8 @@ notes:
     date: 02/10/23
   - filedir: "09-summarizing-associations"
     date: 02/15/23
+  - filedir: "10-multiple-linear-regression"
+    date: 02/17/23
 labs:
   - filedir: "01-arbuthnot"
     date: 01/25/23

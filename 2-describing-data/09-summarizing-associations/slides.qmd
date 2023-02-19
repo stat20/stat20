@@ -29,7 +29,7 @@ countdown::countdown(1, top = 0)
 ```
 
 :::{.poll}
-What is the (Pearson) correlation coefficient between these two variables.
+What is the (Pearson) correlation coefficient between these two variables?
 :::
 
 ```{r}

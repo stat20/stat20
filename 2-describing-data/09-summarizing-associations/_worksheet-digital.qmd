@@ -1,0 +1,27 @@
+---
+title: "Practice: Summarizing Associations"
+---
+
+There is a data set built into R called `mtcars` that includes several measures on different types of cars. Learn more about the data set using `?mtcars`.
+
+#### Question 1
+
+Summarize the association between the fuel efficiency (measured in miles per gallon) and the weight of the car using a scatter plot, the correlation coefficient, and a linear model. Since we seek to explain the fuel efficiency, put that one on the y.
+
+
+#### Question 2
+
+Repeat question 1 but use the horsepower of the car instead of the weight. Compare the scatter plots: why does one of them have a higher correlation coefficient than the other?
+
+
+#### Question 3
+
+What is the better way to compare the strength of the linear relationship between these two pairs of variables (mpg and wt; mpg and hp): the correlation coefficients or the slopes of the linear models? Why?
+
+
+#### Question 4
+
+Which car has the lowest fuel efficiency given its weight?
+
+
+

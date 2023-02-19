@@ -1,0 +1,312 @@
+---
+title: "Multiple Linear Regression"
+subtitle: "Summarizing linear relationships in high dimensions"
+date: 02/18/23
+image: images/3d-scatterplot.png
+---
+
+{{< include ../../assets/includes/_notes-header.qmd >}}
+
+\
+
+[I]{.dropcap}n the last lecture we built our first linear model: an equation of a line drawn through the scatter plot.
+
+$$ \hat{y} = 96.2 + -0.89 x $$
+
+While the idea is simple enough, there is a sea of terminology that floats around this method. A *linear model* is any model that explains the $y$, often called the *response variable* or *dependent variable*, as a linear function of the $x$, often called the *explanatory variable* or *independent variable*. There are many different methods that can be used to decide which line to draw through a scatter plot. The most commonly-used approach is called the *method of least squares*, a method we'll look at closely when we turn to prediction. If we zoom out, a linear model fit by least squares is an example of a *regression model*, which refers to any model (linear or non-linear) used to explain a numerical response variable.
+
+The reason for all of this jargon isn't purely to infuriate students of statistics. Linear models are one of the most widely used statistical tools; you can find them in used in diverse fields like biology, business, and political science. Each field tends to adapt the tool and the language around them to their specific needs.
+
+A reality of practicing statistics in these field, however, is that most data sets are more complex than the example that we saw in the last notes, where there were only two variables. Most phenomena have many different variables that relate to one another in complex ways. We need a more more powerful tool to help guide us into these higher dimensions.
+
+## Scatterplots of three variables
+
+In studying the Grammar of Graphics, we learned how Hans Rosling's Gapminder visualization used location along the x, location along the y, color, size, and time to encode not just two but *five* different data dimensions in his scatter plot. We start with a more modest goal. Let's build a scatter plot - and a corresponding linear model - that summarizes data in three variables, and let's turn to a data set not from public health but the world of food.
+
+:::{.column-margin}
+![Hans Rosling's Gapminder visualization](images/gapminder.png)
+:::
+
+The Zagat Guide was for many years the authoritative source of restaurant reviews. Their approach was very different from Yelp!. Zagat's review of a restaurant was compiled by a professional restaurant reviewer who would visit a restaurant and rate it on a 30 point scale across three categories: food, decor, and service. They would also note the average price of a meal and write up a narrative review.
+
+Here's an example of a review from an Italian restaurant called Marea in New York City.
+
+![](images/zagat.png){fig-alt="A picture of a Zagat review of the Italian restaurant Marea in New York City, with scores on food, decor, and service along with quotations from the narrative review." width="400" fig-align="center"}
+
+In addition to learning about the food scores (27), and getting some helpful tips ("bring your bank manager"), we see they've also recorded a few more variables on this restaurant: the phone number and website, their opening hours, and the neighborhood (Midtown).
+
+### Two numerical, one categorical
+
+What is the relationship between the food quality and the price of a meal at Italian restaurant? Are these two variables positively correlated or is the best Italian meal in New York a simple and inexpensive slice of pizza?
+
+To answer these questions, we need more data. The data frame below contains Zagat reviews from 168 Italian restaurants in Manhattan.
+
+```{r}
+library(tidyverse)
+zagat <- read_csv("https://www.dropbox.com/s/c797oanmvdzjegt/zagat.csv?dl=1")
+zagat
+```
+
+Applying the taxonomy of data, we see that for each restaurant we have recorded the price of an average meal, the food, decor, and service scores (all numerical variables) as well as a note regarding geography (a categorical nominal variable). `geo` captures whether the restaurant is located on the east side or the west side of Manhattan[^geo].
+
+[^geo]: Fifth Avenue is the wide north-south street that divides Manhattan into an east side and a west side.
+
+Let's summarize the relationship between food quality, price, and one categorical variable - geography - using a colored scatter plot.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+zagat %>%
+  ggplot(aes(x = food,
+             y = price,
+             color = geo)) +
+  geom_jitter() +
+  theme_bw() +
+  labs(x = "Food Quality",
+       y = "Price of Average Meal",
+       color = "Geography")
+```
+
+It looks like if you want a very tasty meal, you'll have to pay for it. There is a moderately strong, positive, and linear relationship between food quality and price. This plot, however, has a third variable in it: geography. The restaurants from the east and west sides are fairly well mixed, but to my eye the points on the west side might be a tad bit lower on price than the points from the east side. I could numerically summarize the relationship between these three variables by hand-drawing two lines, one for each neighborhood.
+
+![](images/zagat-handdrawn.png){fig-align="center" width="450"}
+
+For a more systematic approach for drawing lines through the center of scatter plots, we need to return to the method of least squares, which is done in R using `lm()`. In this linear model, we wish to explain the $y$ variable as a function of two explanatory variables, `food` and `geo`, both found in the `zagat` data frame. We can express that relationship using the formula notation.
+
+```{r}
+#| code-fold: false
+m1 <- lm(price ~ food + geo, zagat)
+m1
+```
+
+It worked . . . or did it? If extend our reasoning from the last notes, we should write this model as
+
+$$\widehat{price} = -15.97 + 2.87 \times food - 1.45 \times geowest$$
+
+What does it mean to put a categorical variable, `geo`, into a linear model? And how do three three numbers translate into the two lines shown above?
+
+#### Dummy variables
+
+When working with linear models like the one above, the value of the explanatory variable, $geowest$, is multiplied by a slope, 1.45. According to the Taxonomy of Data, arithmetic functions like multiplication are only defined for numerical variables. While that would seem to rule out categorical variables for use as explanatory variables, statisticians have come up with a clever work-around: the dummy variable.
+
+**Dummy Variable**
+: A variable that is 1 if an observation takes a particular level of a categorical variable and 0 otherwise. A categorical variable with $k$ levels can be encoded using $k-1$ dummy variables.
+
+The categorical variable `geo` can be converted into dummy variable by shifting the question from "Which side of Manhattan are you on?" to "Are you on the west side of Manhattan?" This is a `mutate` step.
+
+```{r}
+#| code-fold: false
+zagat %>%
+  mutate(geowest = geo == "west") %>%
+  select(food, price, geo, geowest)
+```
+
+The new dummy variable `geowest` is a *logical* variable, so it has a dual representation as TRUE/FALSE as well as 1/0. Previously, this allowed us to do Boolean algebra. Here, it allows us to include a dummy variable in a linear model.
+
+While you can create dummy variables by hand using `mutate`, they are created automatically whenever you put a categorical variable into `lm()`. Let's revisit the linear model that we fit above.
+
+$$\widehat{price} = -15.97 + 2.87 \times food - 1.45 \times geowest$$
+
+To understand the geometry of this model, let's focus on what the fitted values will be for any restaurant that is on the west side. For those restaurants, the `geowest` dummy variable will take a value of 1, so if we plug that in and rearrange,
+
+\begin{eqnarray}
+\widehat{price} &= -15.97 + 2.87 \times food - 1.45 \times 1 \\
+ &= (-15.97 - 1.45) + 2.87 \times food \\
+ &= -17.42 + 2.87 \times food
+\end{eqnarray}
+
+That is a familiar sight: that is an equation for a line.
+
+Let's repeat this process for the restaurants on the east side, where the `geowest` dummy variable will take a value of 0.
+
+\begin{eqnarray}
+\widehat{price} &= -15.97 + 2.87 \times food - 1.45 \times 0 \\
+ &= -15.97 + 2.87 \times food
+\end{eqnarray}
+
+That is also the equation for line.
+
+If you look back and forth between these two equations, you'll notice that they share the same slope and have different y-intercepts. Geometrically, this means that the output of `lm()` was describing the equation of *two parallel lines*. That means we can use the output of `lm()` to replace my hand-drawn lines with ones that arise from the method of least squares.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+zagat <- zagat %>%
+  mutate(y_hat = fitted(m1))
+
+# We use geom_line instead of geom_abline since the model
+# now has two slope coefficients
+p_parallel <- zagat %>%
+  ggplot(aes(x = food,
+             y = price,
+             color = geo)) +
+  geom_jitter() +
+  theme_bw() +
+  labs(x = "Food Quality",
+       y = "Price of Average Meal",
+       color = "Geography") +
+  geom_line(aes(y = y_hat))
+
+p_parallel
+```
+
+
+### Multiple Linear Regression
+
+The model that we fit that explains the price of a meal in terms the food rating and the geography is our first example of a *multiple linear regression model*.
+
+**Multiple Linear Regression**
+:    A method of explaining a continuous numerical $y$ variable in terms of a linear function of $p$ explanatory variables, $x_i$, which can be numerical or dummy variables.
+     $$ \hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \ldots b_p x_p $$
+     Each of the $b_i$ are called *coefficients*.
+     
+To fit a muliple linear regression model using least squares in R, you can use the `lm()` function, which each additional explanatory variable separated by a `+`.
+
+```{r}
+#| code-fold: false
+#| eval: false
+#| error: false
+
+lm(y ~ x_1 + x_2 + x_3 ... x_p, data)
+```
+
+Multiple linear regression is powerful because it has no limit to the number of variables that we can include in the model. While Hans Rosling was able to fit 5 variables into a single graphic, what if we had 10 variables? Multiple linear regression allows us to understand high dimensional linear relationships beyond whats possible using our visual system.
+
+To build intuition around how to interpret these higher dimensional models, let's look at a model that we can visualize: one with two numerical explanatory variables.
+
+### Three numerical
+
+While the standard scatter plot allows us to understand the association between two numerical variables like `price` and `food`, to understand the relationship between three numerical variables, we will need to build this scatterplot in 3D[^plotly].
+
+[^plotly]: While `ggplot2` is the best package for static statistical graphics, it does not have any interactive functionality. This plot was made using a system called `plotly`, which can be used both in R and Python. Read more about how it works at <https://plotly.com/r/>.
+
+```{r}
+#| code-fold: false
+#| echo: false
+#| eval: false
+library(plotly)
+library(reshape2)
+
+m1 <- lm(price ~ food + decor, data = zagat)
+grid_points <- 30
+axis_x <- seq(min(zagat$food), 
+              max(zagat$food),
+              length.out = grid_points)
+axis_y <- seq(min(zagat$decor), 
+              max(zagat$decor),
+              length.out = grid_points)
+zagat_plane <- expand.grid(food = axis_x, 
+                         decor = axis_y, 
+                         KEEP.OUT.ATTRS = F)
+zagat_plane$price <- predict.lm(m1, newdata = zagat_plane)
+z <- acast(zagat_plane, food ~ decor, value.var = "price")
+p <- plot_ly(zagat, x = ~food, y = ~decor, z = ~price, showlegend=FALSE) %>%
+  add_markers(marker = list(size = 5,
+                            opacity = .6,
+                            color = "steelblue"),
+              name = ~restaurant) %>%
+  config(displayModeBar = FALSE) 
+p %>%
+    htmlwidgets::saveWidget(
+    "images/plotly-3d.html",
+    selfcontained = TRUE
+  )
+```
+
+<!-- ```{=html} -->
+<!-- <center> -->
+<!-- <iframe width="500" height="500" -->
+<!--   src="images/plotly-3d.html" -->
+<!-- ></iframe> -->
+<!-- </center> -->
+<!-- ``` -->
+
+![](images/3d-points.png){width="450" fig-align="center"}
+
+Take a moment to explore this scatter plot[^error]. Can you find the name of the restaurant with very bad decor but pretty good food and a price to match? (It's Gennaro.) What about the restaurant that equally bad decor but has rock bottom prices that's surprising given it's food quality isn't actually somewhat respectable? (It's Lamarca.)
+
+[^error]: This is a screenshot from an interactive 3D scatter plot. We'll see the interactive plot in class tomorrow.
+
+Instead of depicting the relationship between these three variables graphically, let's do it numerically by fitting a linear model.
+
+```{r}
+#| code-fold: false
+m2 <- lm(price ~ food + decor, data = zagat)
+m2
+```
+
+We can write the corresponding equation of the model as
+
+$$ \widehat{price} = -24.5 + 1.64 \times food + 1.88 \times decor $$
+
+To understand the geometry of this model, we can't use the trick that we did with dummy variables. `decor` is a numerical variable just like `food`, so it takes more values than just 0 and 1.
+
+Indeed this linear model is describing a *plane*.
+
+```{r}
+#| code-fold: false
+#| echo: false
+#| eval: false
+p %>%
+  add_surface(x = axis_x,
+              y = axis_y,
+              z = z, showscale=FALSE,
+              colorscale = list(c(0, 1), c("tan", "tan")),
+              name = "Linear Model") %>%
+    htmlwidgets::saveWidget(
+    "images/plotly-3d-plane.html",
+    selfcontained = TRUE
+  )
+```
+
+<!-- ```{=html} -->
+<!-- <center> -->
+<!-- <iframe width="500" height="500" -->
+<!--   src="images/plotly-3d-plane.html" -->
+<!-- ></iframe> -->
+<!-- </center> -->
+<!-- ``` -->
+
+![](images/3d-plane.png){width="450" fig-align="center"}
+
+If you inspect this plane carefully you're realize that the tilt of the plane is not quite the same in every dimension. The tilt in the decor dimension is just a little bit steeper than that in the food dimension, a geometric expression of the fact that the coefficient in front of decor, 1.88, is just a bit higher than the coefficient in front of food, 1.64.
+
+
+#### Interpreting coefficients
+
+When moving from simple linear regression, with one explanatory variable, to the multiple linear regression, with many, the interpretation of the coefficients becomes trickier but also more insightful.
+
+Mathematically, the coefficient in front of food, 1.64, tells us the difference that we would expect to see in the response variable, price, when two Italian restaurants are separated by a food rating of one *and they have the same decor rating*. Said another way, controlling for decor, a one point increase in the food rating is associated with a \$1.64 increase in the price. Similarly for decor: controlling for the quality of the food, a one-point increase in decor is associated with a \$1.88 increase in the price.
+
+This conditional interpretation of the coefficients extends to the first setting we looked at, when one variable is numerical and the other is a dummy. Here is that model:
+
+$$\widehat{price} = -15.97 + 2.87 \times food - 1.45 \times geowest$$
+
+For two restaurants both on the same side of Manhattan, a one point increase in food score is associated with a \$2.87 increase in the price of a meal. Also, for two restaurants with the exact same quality of food, the restaurant on the west side is expected to be \$1.45 cheaper than the restaurant on the east side. This is a useful bit of insight - it gives a sense of what the premium is of being on the eastside. 
+
+It is also visible in the geometry of the model. When we're looking at restaurants with the same food quality, we're looking at a vertical slice of the scatter plot. Here the vertical line gray line is indicating restaurants where the food quality gets a score of 18. The difference in expected price of meals on the east side and west side is the vertical distance between the red line and the blue line, which is exactly 1.45.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+#| echo: false
+#| code-fold: false
+p_parallel +
+  geom_vline(xintercept = 18,
+             color = "darkgray",
+             lty = 2)
+```
+
+<!-- ## Simpson's Paradox -->
+
+## Summary
+
+We began this unit on Summarizing Data with graphical and numerical summaries of just a single variable: histograms and bar charts, means and standard deviations. In the last set of notes we introduced our first bivariate numerical summaries: the correlation coefficient, and the linear model. In these notes, we introduced multiple linear regression, a method that can numerically describe the linear relationships between an unlimited number of variables. The types of variables that can be included in these models is similarly vast. Numerical variables can be included directly, generalizing the geometry of a line into a plane in higher dimension. Categorical variables can be included using the trick of dummy variables, logical variables that take a value of 1 where a particular condition is true. The interpretation of all of the coefficients that result from a multiple regression is challenging but rewarding: it allows us to answer questions about the relationship between two variables after controlling for the values of other variables.
+
+If this felt like a deep dive into a multiple linear regression, don't worry. Linear models are one of the most commonly used statistical tools, so we'll be revisiting them throughout the course: investigating their use in making generalizations, causal claims, and predictions.
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
