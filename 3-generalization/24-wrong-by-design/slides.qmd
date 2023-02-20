@@ -1,0 +1,359 @@
+---
+title: "Wrong By Design"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+execute: 
+  echo: false
+---
+
+## Agenda
+
+- Concept Questions
+- Practice Problems
+
+
+# Concept Questions
+
+## 
+
+![](images/lab-8-q14.png)
+
+:::poll
+Instead of constructing a confidence interval to learn about the parameter, we could assert the value of a parameter and see whether it is consistent with the data using a hypothesis test. Say you are interested in testing whether there is a clear majority opinion of support or opposition to the project.
+
+\
+
+What are the null and alternative hypotheses?
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+:::notes
+The null is the p = .5 and the alternative is that p != .5.
+
+This brings up a good discussion of one- and two-tailed tests. When students share their answers, you can draw a picture of a null distribution on the board with the observed statistic as a vertical line and consider how the p-value calculation would change depending on the alternative hypothesis.
+
+This also brings up a discussion of the link between hypothesis tests and confidence intervals. Below the picture of the null distribution on the board, you could draw a bootstrap distribution centered on the vertical line of the observed statistic. In the HT setting, you consider the location of the statistic relative to the null distribution. In making a decision with a CI, you consider the location of the parameter relative to the bootstrap distribution (or more generally, the sampling distribution of the statistic).
+:::
+
+
+##
+
+```{r}
+#| echo: true
+
+library(tidyverse)
+library(infer)
+library(stat20data)
+data(ppk)
+
+ppk <- ppk %>%
+  mutate(support_after = Q21_words %in% c("Somewhat support", 
+                                          "Strongly support",
+                                          "Very strongly support"))
+
+obs_stat <- ppk %>%
+  specify(response = support_after,
+          success = "TRUE") %>%
+  calculate(stat = "prop")
+```
+
+##
+
+```{r}
+#| echo: true
+null <- ppk %>%
+  specify(response = support_after,
+          success = "TRUE") %>%
+  hypothesize(null = "point", p = .5) %>%
+  generate(reps = 500, type = "draw") %>%
+  calculate(stat = "prop")
+
+visualize(null) +
+  shade_p_value(obs_stat, direction = "both")
+```
+
+
+##
+
+:::poll
+What would a Type I error be in this context?
+:::
+
+:::notes
+Answer: Concluding that there is a clear majority when in fact there is an even split.
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+##
+
+:::poll
+What would a Type II error be in this context?
+:::
+
+:::notes
+Answer: Concluding that there is an even split when in fact there is a clear majority.
+
+After the previous question, students should get this quite easily.
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+
+## 
+
+Imagine a scenario when your sample consists of the entire population. After setting up the hypotheses for your test, you ponder the chance that you'll make a statistical error.
+
+:::poll
+What is the probability that you'll make a Type I error using $\alpha = .05$?
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+
+# Hypothesis Testing Review
+
+# One goal for today
+
+[Learn why we don't accept the null hypothesis.]{.bigadage}
+
+
+## What is it good for?
+
+Hypothesis tests have been shown to be valuable contributors to science ([p < .05]{.fragment .highlight-green})
+but are sometimes abused ([p < .05]{.fragment .highlight-green}).
+
+- Used to assess the degree to which data is consistent with a particular model.
+- The most widely used tool in statistical inference.
+
+
+## Step 1
+
+. . .
+
+Lay out your model(s).
+
+$H_0$: null model, business as usual  
+$H_A$: alternative model, business not as usual
+
+- Hypotheses are statments about the TRUE STATE of the world and should involve
+*parameters*, not *statistics*.
+- Hypotheses should suggest a *test statistic* that has some bearing on the claim.
+- The nature of $H_A$ determines one- or two-sided tests; default to two.
+
+
+## Step 2
+
+Construct the appropriate null distribution.
+
+```{r, echo=FALSE, eval=TRUE, fig.height = 3.5, fig.width = 10, fig.align='center'}
+x1  <- 0:75
+df <- data.frame(x = x1, y = dbinom(x1, 75, 0.5))
+library(tidyverse)
+ggplot(df, aes(x = x, y = y)) +
+  geom_bar(stat = "identity", col = "darkgreen", fill = "white") +
+  stat_function(fun = dnorm, args = list(mean = 75/2, sd = sqrt(74/4)), 
+                col = "goldenrod", lwd = 1.2)
+```
+
+1. Permutation (when `null = "independence"`)
+2. Simulation (when `null = "point"`)
+3. Normal Approximation
+
+
+## Step 3
+
+. . .
+
+Calculate a measure of consistency between the observed test statistic (the data) and the null distribution (i.e., a p-value).
+
+- If your observed test stat is in the tails > low p-val > data is inconsistent
+with null hypothesis > "reject null hypothesis".
+- If your observed test stat is in the body > high p-val > data is consistent with the null hypothesis > "fail to reject the null hypothesis".
+
+. . .
+
+> What can go wrong?
+
+
+# Decision Errors
+
+
+##  {background-image="images/covid-dashboard.png" background-size="contain"}
+
+
+## Grammar of Graphics review
+
+. . .
+
+:::: columns
+::: {.column width="50%"}
+```{r, out.width="100%", fig.align='center'}
+knitr::include_graphics("images/covid-barchart.png")
+```
+:::
+
+::: {.column width="50%"}
+What geometries are in use in this graphic?
+:::
+::::
+
+
+## {.smaller}
+
+```{r, out.width="100%", fig.align='center'}
+knitr::include_graphics("images/covid-positivity.png")
+```
+
+**A simplified model**
+
+[UHS tests a sample of the Cal community every week and monitors the positivity rate (proportion of tests that are positive).]{.fragment} [Assume this is a random sample of constant size and that the test is perfectly accurate.]{.fragment} [Let $p$ be the positivity rate.]{.fragment}
+
+. . .
+
+:::: columns
+::: {.column width="45%"}
+[$H_0$]{.inversebox} $\quad p = 5%$ 
+
+The incidence of COVID at Cal is at a manageable level.
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="45%"}
+::: {.fragment}
+[$H_A$]{.inversebox}  $\quad p > 5%$ 
+
+The incidence of COVID at Cal is at an elevated level.
+:::
+:::
+::::
+
+. . .
+
+> **Decision protocol**: if there is a big enough spike in a given week, shift classes to remote.
+
+
+## Decision Errors
+
+```{r, out.width="100%", fig.align='center'}
+knitr::include_graphics("images/decision-errors-table.jpg")
+```
+
+:::notes
+Build this plot up slowly on the board. Recommended order:
+
+1. Null dist. If the null distribution is true, than we'd observe p-hats from the null distribution on the left.
+2. Vertical line that demarcates rejection region from do-not-reject region.
+3. If we use alpha = .05, what is the chance that we generate a p-hat in the reject region? .05
+4. Alt dist. What if instead the alt were true with this particular p (draw alt dist on right)?
+5. If we're generating p-hats from the alt distribution, what's the chance we'd generate one that looks like it's from the null (i.e. in the fail-to-reject region)?
+6. If we're generating p-hats from the alt distribution, what is the chance we'd notice i.e. that change that we'd reject the null? 
+
+This can lead into a discussion of what effects power:
+
+What would we have to do to this graphic to increase the area under the curve that represents power?
+
+1. increase alpha
+2. bring the distributions farther apart (increase effect size)
+3. decrease the spread of the distributions (increasing sample size is the approach they'll be familiar with. this is also where clever methods in survey sampling and experimental design come in: blocking and stratification)
+:::
+
+# Error Rates and Statistical Power
+
+## Decision Errors Rates
+
+```{r, out.width="100%", fig.align='center'}
+knitr::include_graphics("images/decision-error-rates.jpg")
+```
+
+
+## What affects the error rates?
+
+- **Sample size, $n$**: with increasing $n$, the variability of the null distribution will decrease.
+
+- **Changing $\alpha$**: decreasing $\alpha$ will decrease type I error but increase type II error.
+
+- **Increasing _effect size_**: change data collection process to separate the distribution under $H_A$ and decrease type II error.
+    - Ex: If you're testing whether a pain medicine provides pain relief, only conduct the test if using a medicine that you expect to have cause a dramatic decrease in pain.
+
+
+## {}
+
+::: poll
+Consider a setting where the Cal UHS testing system observes a positivity rate of 5.5% in a one week interval, double the previous week.  Administration needs to decide whether or not to move to remote learning. Which error would be worse?
+
+A. Moving to remote instruction when in fact the true number of cases on campus is still low.
+
+B. Failing to move to remote instruction when in fact the true number of cases on campus is elevated.
+:::
+
+```{r}
+countdown::countdown(1, font_size = "2em")
+```
+
+
+## Statistical Power
+
+**Power** is the probability that you will reject the null hypothesis if it is in fact false.
+
+$$ P(\textrm{reject } H_0 | H_0 \textrm{ is false}) $$
+
+. . .
+
+:::: columns
+::: {.column width="50%"}
+> The more power, the higher the probability of finding an effect.
+:::
+
+::: {.column width="50%"}
+```{r, out.width="70%"}
+knitr::include_graphics("images/PeopleBirding.jpeg")
+```
+:::
+::::
+
+
+::: footer
+https://upload.wikimedia.org/wikipedia/commons/6/66/PeopleBirding.JPG
+:::
+
+## {background-image="images/unmasking-the-mask.png" background-size="contain"}
+
+:::notes
+This is an example of how low-power studies resulted in a failure to detect that masks were in fact helpful. The plot on the next page is pretty tricky to interpret, so only show it if you've skimmed the paper and are ready to talk through the plot.
+:::
+
+
+## {background-image="images/power-masks.png" background-size="contain"}
+
+
+# One goal for today
+
+[Learn why we don't accept the null hypothesis.]{.bigadage}

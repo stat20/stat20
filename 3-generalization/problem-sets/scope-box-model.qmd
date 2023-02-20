@@ -1,0 +1,83 @@
+---
+title: "PS 4: Scope & the Box Model"
+subtitle: "Due Thursdsay October 27" 
+format: pdf
+---
+
+## Scope
+
+On Wednesday 10/18, we discussed 4 sets of case study pairs. Pick one of the four sets (A, B, C, or D) and answer the following questions for **both** studies in your chosen set (Please indicate clearly which set you have chosen.)
+
+##### Question 1: Scope
+
+Identify the target population, access frame, sample, and unit of observation. Draw a data scope diagram that shows the relationship between the target, frame, and sample.
+
+#### Question 2: Data
+
+Are there units that are in the target, but not the frame? The frame but not the target?
+
+Additionally, answer the following questions:
+
+-   Who collected the data?
+
+-   Why were they collected?
+
+-   When were the data collected?
+
+-   Where were they collected?
+
+#### Question 3: Question
+
+Refine the question, if needed, to one that is answerable by the data. To do this: Consider whether the granularity implied by the question matches that of the sample. Consider whether the question is too vague or too ambitious.
+
+#### Question 4: Bias
+
+Identify possible sources of bias. Label them according to whether they are coverage, selection, non-response, measurement, or some other type of bias. For each, conjecture how the bias might limit the conclusions and their generalizability.
+
+#### Question 5: Variation
+
+Determine whether a chance mechanism was used in the data collection process. If so, identify the type of mechanism: sampling, assignment, measurement, or some combination of them.
+
+#### Question 6: Comparison
+
+After you have described both of the studies, compare them:
+
+-   How do their scope diagrams differ, and relatedly consider their sources of bias and variation.
+
+-   Does one seem more reliably generalizable than the other? Why?
+
+-   Without calling it out, the notes have provided examples of data from:
+
+    -   observational studies,
+
+    -   longitudinal studies,
+
+    -   controlled experiments,
+
+    -   survey samples, and
+
+    -   administrative sources.
+
+Based on these names alone, can you classify the data from your examples?
+
+## Box Model
+
+A town has 1,000 people in it. They live in 300 households. The number of people in a household ranges from 1 to 6, inclusive. About 400 of the 1,000 people in the town are children.
+
+For each of the sampling schemes below, describe a box model that imitates the chance process. You may use multiple boxes, if needed. For each box, describe:
+
+1.  The box and tickets (what tickets go in the box, and their values)
+2.  The number of draws
+3.  Whether or not the tickets are replaced between draws
+
+#### Question 7
+
+Select 50 households at random and report the average number of people in the household.
+
+#### Question 8
+
+Visit the elementary, middle, and high schools (there is one of each in the town) and take a sample of 25 from each school. Report the average household size across the 75 students sampled.
+
+#### Question 9 BONUS
+
+There are at least three problems regarding bias with the scenario in question 8. Can you identify them?
