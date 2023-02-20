@@ -441,7 +441,7 @@ We will use `slice_sample`, which you have seen before, and compute the average 
 #| code-fold: false
 
 # read in the donkey data
-donkeys <- read.csv('https://raw.githubusercontent.com/shomurali/course-materials/sho2/4-generalization/18-chance-intro/donkeys.csv')
+donkeys <- read.csv('donkeys.csv')
 
 # take a quick look at the dataset
 glimpse(donkeys)

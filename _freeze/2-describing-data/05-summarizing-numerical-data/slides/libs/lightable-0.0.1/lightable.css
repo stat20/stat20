@@ -41,12 +41,17 @@
 
 .lightable-classic {
   border-top: 0.16em solid #111111;
+<<<<<<< HEAD
+=======
   border-bottom: 0.16em solid #111111;
+>>>>>>> 5efc5f49fa12e3c65e7216782635242f54f1d353
   width: 100%;
   margin-bottom: 10px;
   margin: 10px 5px;
 }
 
+<<<<<<< HEAD
+=======
 .lightable-classic tfoot tr td {
   border: 0;
 }
@@ -55,6 +60,7 @@
   border-top: 0.14em solid #111111;
 }
 
+>>>>>>> 5efc5f49fa12e3c65e7216782635242f54f1d353
 .lightable-classic caption {
   color: #222222;
 }
@@ -76,6 +82,13 @@
   border-bottom: 0.10em solid #111111;
 }
 
+<<<<<<< HEAD
+.lightable-classic tbody tr:last-child td {
+  border-bottom: 0.14em solid #111111;
+}
+
+=======
+>>>>>>> 5efc5f49fa12e3c65e7216782635242f54f1d353
 .lightable-classic.lightable-hover tbody tr:hover {
   background-color: #F9EEC1;
 }
@@ -86,11 +99,16 @@
 
 .lightable-classic-2 {
   border-top: 3px double #111111;
+<<<<<<< HEAD
+=======
   border-bottom: 3px double #111111;
+>>>>>>> 5efc5f49fa12e3c65e7216782635242f54f1d353
   width: 100%;
   margin-bottom: 10px;
 }
 
+<<<<<<< HEAD
+=======
 .lightable-classic-2 tfoot tr td {
   border: 0;
 }
@@ -99,6 +117,7 @@
   border-top: 3px double #111111;
 }
 
+>>>>>>> 5efc5f49fa12e3c65e7216782635242f54f1d353
 .lightable-classic-2 caption {
   color: #222222;
 }
@@ -142,6 +161,8 @@
   margin-bottom: 10px;
 }
 
+<<<<<<< HEAD
+=======
 .lightable-material tfoot tr td {
   border: 0;
 }
@@ -150,6 +171,7 @@
   border-top: 1px solid #EEE;
 }
 
+>>>>>>> 5efc5f49fa12e3c65e7216782635242f54f1d353
 .lightable-material th {
   height: 56px;
   padding-left: 16px;
@@ -190,6 +212,8 @@
   background-color: #363640;
 }
 
+<<<<<<< HEAD
+=======
 .lightable-material-dark tfoot tr td {
   border: 0;
 }
@@ -198,6 +222,7 @@
   border-top: 1px solid #FFFFFF12;
 }
 
+>>>>>>> 5efc5f49fa12e3c65e7216782635242f54f1d353
 .lightable-material-dark th {
   height: 56px;
   padding-left: 16px;
@@ -235,6 +260,8 @@
   color: #444;
 }
 
+<<<<<<< HEAD
+=======
 .lightable-paper tfoot tr td {
   border: 0;
 }
@@ -243,6 +270,7 @@
   border-top: 1px solid #00000020;
 }
 
+>>>>>>> 5efc5f49fa12e3c65e7216782635242f54f1d353
 .lightable-paper thead tr:last-child th {
   color: #666;
   vertical-align: bottom;

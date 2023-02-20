@@ -1,5 +1,10 @@
 project:
+<<<<<<< HEAD
+  type: default
+=======
   type: website
+  output-dir: _site
+>>>>>>> 5efc5f49fa12e3c65e7216782635242f54f1d353
 
 # Format-specific Metadata
 format:

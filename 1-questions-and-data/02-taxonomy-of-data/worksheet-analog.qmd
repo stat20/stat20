@@ -3,45 +3,45 @@ title: " "
 format: pdf
 ---
 
-\thispagestyle{empty} 
+\thispagestyle{empty}
 
-1. What type of variable is being measured by each of the following questions?
+1.  What type of variable is being measured by each of the following questions?
 
-   ![](images/variable-types.png)
+    ![](images/variable-types.png)
 
-1. Last class you collected data on six different variables on your classmates. List the data types of each of those variables, the units that they were measured in, and the range of possible values that you would expect them to take.
-   
-   - Name:
-   - Contact info:
-   - Hometown:
-   - \# Siblings + Pets:
-   - \# Semesters in college:
-   - Farthest distance from campus during the break:
+2.  Last class you collected data on six different variables on your classmates. List the data types of each of those variables, the units that they were measured in, and the range of possible values that you would expect them to take.
 
-1. On the back of this page, sketch out a data frame that contains the data from your group mates on the questions above. Introduce yourself to other nearby groups to extend your data frame until it has 6 rows.
+    -   Name:
+    -   Contact info:
+    -   Hometown:
+    -   \# Siblings + Pets:
+    -   \# Semesters in college:
+    -   Farthest distance from campus during the break:
 
-   {{< pagebreak >}}
+3.  On the back of this page, sketch out a data frame that contains the data from your group mates on the questions above. Introduce yourself to other nearby groups to extend your data frame until it has 6 rows.
 
-   \thispagestyle{empty} 
+    {{< pagebreak >}}
 
-   \
-   \
-   \
-   \
-   \
-   \
-   \
-   \
-   \
-   \
-   \
-   \
-   \
-   \
-   \
+    \thispagestyle{empty}
 
-1. As discussed in the lecture notes, this is not a data frame:
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
+    \
 
-   ![](images/non-tidy-contingency-table.png){fig-alt="Contingency table showing the counts of handedness by sex at birth." width="260" fig-align="center"}
+4.  As discussed in the lecture notes, this is not a data frame:
 
-   It does, however, depict a data set, just in a different format. Sketch the data that is summarized here but structured as a data frame. Think through: what was the unit of observation? What were the variables? How many rows are there? How many columns? (you need not fill out the entire data frame; just a schematic)
+    ![](images/non-tidy-contingency-table.png){fig-alt="Contingency table showing the counts of handedness by sex at birth." width="260" fig-align="center"}
+
+    It does, however, depict a data set, just in a different format. Sketch the data that is summarized here but structured as a data frame. Think through: what was the unit of observation? What were the variables? How many rows are there? How many columns? (you need not fill out the entire data frame; just a schematic)

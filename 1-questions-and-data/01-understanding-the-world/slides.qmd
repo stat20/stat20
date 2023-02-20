@@ -17,14 +17,21 @@ format:
    - Ed Discussion Forum
    - Syllabus
 
-# {{< fa pen-to-square >}} Introductions {background-color="#00403d"}
+# {{< fa pen-to-square >}} Introductions {background-color="#42E8ED"}
 
-- In groups of 3,  take turns introducing yourselves to one another by providing the info listed on the handout (your name, hometown, etc).
+In groups of 3, take turns introducing yourselves to one another by providing (and collecting) the following info:
 
-- Each person should finish with a handout filled-in with info on their groupmates.
+- Name
+- Contact info
+- Hometown
+- \# Siblings + Pets
+- \# Semesters in college
+- Farthest distance from campus over the break
+
+ Each person should finish with a sheet filled in with info on their groupmates.
 
 ```{r}
-countdown::countdown(5, top = 0)
+countdown::countdown(10, top = 0)
 ```
 
 # The Data Science Lifecycle

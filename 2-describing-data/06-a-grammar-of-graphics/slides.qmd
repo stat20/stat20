@@ -81,11 +81,11 @@ On a piece of note paper:
 - Identify the geometry used in the plot.
 :::
 
+
+
 ## {data-menu-title="Hans Rosling's Gapminder"}
 
-<center>
-<iframe src="https://embed.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe>
-</center>
+{{< video https://www.youtube.com/watch?v=hVimVzgtD6w width="100%" height="100%" >}}
 
 ##
 
@@ -110,7 +110,7 @@ countdown::countdown(4, top = 0)
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="50%"} 
 
 #### Visual Cues / Aesthetics
 

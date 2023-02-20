@@ -1,0 +1,90 @@
+---
+title: "Lab 8: People's Park Survey"
+date: "11/10/22"
+image: images/ppk-aerial.jpeg
+execute:
+  eval: false
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = FALSE, 
+                      echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+```{r echo = FALSE, eval = FALSE}
+# Learning Objectives
+Students will be able to:
+1. explain the goals of the survey
+2. answer questions about the survey design
+3. develop plots that address the questions that drove the creation of the survey
+4. construct confidence intervals for parameters of interest: proportions, difference in proportions, and means
+5. interpret the confidence intervals
+```
+
+```{r}
+library(tidyverse)
+library(infer)
+```
+
+In answering the following questions, it will be helpful to consult
+
+   a. the email from Chancellor Christ,
+   b. slide describing the background and methodology, and
+   c. the original questionnaire.
+
+## Part I: Understanding the Context of the Data
+
+Based on your interpretation of these documents, address the following questions.
+
+1. What was the goal(s) of the Chancellor's office in commissioning this survey?
+
+2. Identify the target population, access frame, sample, and unit of observation. Draw a data scope diagram that shows the relationship between the target, frame, and sample.
+
+3. For each of the following types of bias, describe the precautions the Chancellor's office took to limit this kind of bias.
+
+   a. coverage 
+   b. selection 
+   c. non-response 
+   d. measurement 
+
+4. Which single source of bias potentially creates the most serious problem for the generalizing from the sample to the population? How might this bias impact the findings, e.g., unduly inflate or reduce the measured support for the People's Park Project?
+
+5. Describe two parameters that the Chancellor's office is trying to estimate using the survey data.
+
+6. Consider the type of data collected in question 8, which is measured using the Likert Scale. Review the Wikipedia article on the Likert Scale (particularly the Scoring and Analysis section) to determine: Where does this type of data fall in the Data Taxonomy? 
+
+7. Sketch a data frame of what the first 5 rows of the data frame might look like that contains the responses from the first 5 students. Include columns showing what the data might look like that comes out of questions 1, 7, and 8. Note that in the data set, the data values are all translated from words into numbers. Speculate as to how this translation is done.
+
+
+## Part II: Computing on the Data
+
+The `ppk` data set represents a subset of questions that were asked in the questionnaire and have had random noise added to them. The results, in aggregate, share similar statistical properties to the raw data, but a given row no longer reflects an individual student's response completely.
+
+8. Print the first few rows with the columns that correspond to the responses to survey questions 1, 7, and 8. Note: we have changed the data back from all numerical data, as suggested by lab question 7, to a mix of numerical and categorical data. Please comment on whether your encoding of the data from Q7 on the questionnaire matches the encoding in `ppk`.
+
+9. Create visualizations for each of the following survey questions.
+For each, add a title and axis labels to make it clear what they are showing, and describe the distribution in words. If your visualization is of ordinal data, the bars should be ordered accordingly.
+
+    a. Question 10
+    b. Question 18 and 21, being sure to show the change of each individual respondent before and after the information.
+
+
+10. Create a new column called `support_before` that takes the response data from question 18 and returns `TRUE` for answers of "Very strongly support", "Strongly support", and "Somewhat support" and FALSE otherwise. What proportion of the survey participants in each class (freshman, sophomore, etc) supported the People's Park Project?
+
+11. What is the mean and median rating of the condition of People's Park (question 15 on the survey)?
+
+12. Create a new column called `change_in_support` that measures the change in support from question 18 to 21. What is the average change in support of the survey participants in each class (freshman, sophomore, etc) for the People's Park Project after being presented the information on page 14 of the questionnaire?
+
+
+## Part III: Making Inferences about Berkeley Students
+
+13. Create a 95% bootstrap confidence interval for the Berkeley student median rating of the condition of People's Park. Interpret the interval in the context of the problem. 
+
+14. Create a 95% confidence interval based on the normal curve for the proportion of Berkeley students who support the People's Park Project. Interpret the interval in the context of the problem.
+
+15. Create a 95% bootstrap confidence interval for the average change in support for the Project among Berkeley students before and after being exposed to the information on page 14 of the questionnaire. Does the interval contain 0? What are the implications of that for those working in the Chancellor's Office on the People's Park Project?
+
+

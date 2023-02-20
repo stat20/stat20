@@ -1,0 +1,4 @@
+- source: slides-shobhana.qmd
+  quarto-pub:
+    - id: 4e16d40e-0278-424e-a1aa-3a97d3077b94
+      url: 'https://quartopub.com/sites/shobhana/taxonomy-of-data'
