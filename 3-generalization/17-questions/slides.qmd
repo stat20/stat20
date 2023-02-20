@@ -1,0 +1,172 @@
+---
+title: "Questions and Data Scope"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+
+- Review the Template
+- Work on the Question and Data Scope Activity
+- Lab 6 
+
+:::{.notes}
+Review the template carefully and refer to the notes, as needed.
+
+Divide the students into groups of 4-6 and give them one of the four sets of data and questions.
+
+As they work through them, choose groups to write up their "solution" 
+
+Go over them on the board together and identify the better designs and the type of data collected. 
+:::
+
+
+
+## Activity Template
+
+
+You have been given descriptions of two studies. Each includes a broad question and a general description of the data available for the study. For each study please answer the following questions.
+
+## SCOPE:
+
+Identify the target population, access frame, sample, and unit of observation. Draw a data scope diagram that shows the relationship between the target, frame, and sample. Are there units that are in the target, but not the frame? The frame but not the target? 
+
+
+Additionally, answer the following questions:
+
++ Who collected the data?
++ Why were they collected?
++ When were the data collected?
++ Where were they collected?
+
+
+
+## QUESTION:
+
+Refine the question, if needed, to one that is answerable by the data. To do this:
+
++ Consider whether the granularity implied by the question matches that of the sample.
+
++ Consider whether the question is too vague or too ambitious.
+
+
+## BIAS 
+
+Identify possible sources of bias. Label them according to whether they are:
+
++ coverage, 
++ selection, 
++ non-response, 
++ measurement, or 
++ some other type of bias. 
+
+For each type of bias, conjecture how the bias might limit the conclusions and their generalizability.
+
+## Variance
+
+Determine whether a chance mechanism was used in the data collection process. If so, identify the type of mechanism: 
+
++ sampling, 
++ assignment, 
++ measurement, or 
++ some combination of them.
+
+
+
+
+
+
+# SET A
+
+---
+
+## World Health Organization
+
+Substantial global progress has been made in reducing childhood mortality since 1990. The total number of under-5 deaths worldwide has declined from 12.6 million in 1990 to 5.0 million in 2020. Yet,  two regions, Sub-Saharan Africa and Southern Asia, account for more than 80 per cent of these under-five deaths, despite making up only 50% of the global population. These statistics are based on country data collected by the WHO.  The WHO aims to use statistics from the 194 countries in the United Nations to correlate child mortality with diseases such as infectious diseases, pre-term birth complications, and congenital anomalies. So far the data in the study have come from 80 countries that have provided  birth registrations and vital statistics systems.
+
+## Penguins in Antarctica
+
+One study aimed to compare several characteristics of male and female penguins to their foraging behavior. The study wanted to determine whether a higher quality winter habitat was associated with more similar foraging behaviors among the sexes. Each breeding season from 2007 to 2010, nests on five islands in the Palmer Archipelago in Antarctica were selected to be monitored. After one egg was laid, the adults were captured, marked, measured, blood samples taken to determine their sex.  One aspect of the study was to build a model to accurately predict a penguin’s sex based on less invasive measurements than a blood sample. A second aspect was to relate penguin foraging behavior over the season to sea-ice levels and prey nutrition levels.
+
+
+
+# SET B
+
+---
+
+## Donkeys 
+
+Donkeys play important roles in rural Kenya. People need donkeys for moving crops and water, for personal transportation, and for plowing fields. When a donkey gets sick, the vet needs to figure out how much the donkey weighs in order to prescribe the right amount of medicine. But, many vets in rural Kenya don’t have a scale big enough to weigh a donkey. Too little medicine can cause a sickness to re-emerge, and too much medicine can cause a harmful overdose. There are over 1.8 million donkeys in Kenya, so it’s important to have a simple, accurate way to estimate the weight of a donkey.  Our motivating question is: how can we accurately estimate the weight of a donkey using other easy to get measurements?  To address this question, The UK Donkey Sanctuary carried out a study at 17 mobile de-worming sites in rural Kenya. All donkeys brought to these sites between July 23 and August 11, 2010, that were not pregnant or visibly diseased were entered into the study.
+
+## The search for exoplanets
+
+To discover planets that revolve around stars other than the Sun, a team of astronomers at the University of Geneva (UNIGE) have developed a method that makes it possible to ensure the presence of a planet in a few months. By analyzing data from the space telescope K2, one star showed a significant long-duration temporary decrease of luminosity, the signature of a possible transit, in other words, the passage of a planet in front of its star. “We had to analyze hundreds of light curves” explains the astronomer, to find one where such a transit was unequivocal. To confirm these findings, they consulted data from the Gaïa mission to determine the diameter of the star (referenced as EPIC248847494) and its distance, 1500 light-years away from the planet Earth.	
+
+
+# SET C
+
+---
+
+## Baseball
+
+Sean Lahman created and maintains the Lahman Baseball Database, an open-source collection of baseball statistics.  It contains data on individual baseball players and statistics on teams for every season, dating back to 1871.  It’s fun to explore all sorts of questions about baseball. For the purposes of this exercise, a data scientist is interested in the relationship between team payrolls and winning the World Series.
+
+## National Youth Tobacco Study
+
+The National Youth Tobacco Survey (NYTS) is a complex survey carried out by the CDC and the Food and Drug Administration. NYTS is a school-based, pencil-and-paper questionnaire, self-administered to a cross-sectional, nationally representative sample of students in grades 6-12 in the U.S. In 2016, 20,675 students completed the NYTS; the overall survey response rate was 71.6%. Students were asked if they had used an e-cigarette in the past 30 days. In an effort to address the reasons middle and high school students used e-cigarettes, they were also asked who introduced them to e-cigarettes, whether they used other forms of tobacco, flavors and brands used, who purchased them and where they were purchased,  and their opinions about e-cigarette. 
+
+
+
+# SET D
+
+---
+
+## Cherry Blossom run	
+
+The Cherry Blossom Run is an annual 10-mile race that takes place in April in Washington D.C. when the cherry trees are in bloom. Data were scraped from the Run’s Web pages and include official times and other information, such as the age, sex, and address for all registered runners from 1999 to 2012. Originally designed as a preparatory race for professional runners in the New York Marathon, the Cherry Blossom Run has gained popularity and now over 10,000 people participate each year. An ambitious data scientist used these data to compare the times of 30-year-old runners to 50-year-old runners, to study how run times decreased as people age. 	
+
+## Physician’s assurance 
+
+To test the effects of a physician's words on patient symptoms, the researchers set up a simple experiment with 76 study participants. They began their experiment by inducing a harmless, allergic reaction in study participants. A health care provider administered a histamine skin prick, a test traditionally used as a baseline to diagnose allergies. Histamine causes reactions like swelling, rashes and itching.
+
+Following the skin prick, participants rated how itchy they were on a scale of zero to 100 at 3, 9, 12, 15 and 18 minutes after the skin prick. Six minutes in, the health care provider came back in to check on the participants. With approximately half of the participants, the provider assured them that "from this point forward your allergic reaction will start to diminish, and your rash and irritation will go away." 
+
+
+# COMPARISON
+
+---
+
++ What are some of the key differences between the scope diagrams?
+
++ How might these differences impact the sources of bias and variation?
+
++ Which studies seem more reliably generalizable than the others? Why?
+
++ These data are examples of different designs: 
+
+  + observational studies, 
+  + longitudinal studies, 
+  + controlled experiments, 
+  + survey samples, and 
+  + administrative sources. 
+
+Based on the name alone, can you classify the data in each of the examples? 
+
+  
+

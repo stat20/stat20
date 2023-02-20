@@ -1,0 +1,9 @@
+---
+title: "PS 7: Communication"
+---
+
+Craft a communicatory plot showing something interesting you found in a data set. Also show an initial exploratory version of the plot so we can compare side by side what you did to polish the communicatory plot.
+
+You can use a dataset/plot we have previously used in the class. You are welcome to make a new plot or use a new dataset. To customize ggplot you may have to do some googling e.g. "how do I change the title font size". [These notes](https://idc9.github.io/stor390/notes/custom_viz/custom_viz.html) have some example code.
+
+In class on Monday 11/28/22 you will have the opportunity to present your data visualization. The "best" visualization as voted by the class will win a prize.

@@ -1,0 +1,89 @@
+---
+title: "Sampling Distributions"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+
+- Concept Questions
+- Time to work on lab
+- Individual quiz
+- Group quiz
+- Debrief quiz
+
+# Concept Questions
+
+##
+
+```{r}
+countdown::countdown(3, bottom = 0)
+```
+
+
+
+:::{.poll}
+There are 4 graphs shown here. The two in the first row are  population distributions, and the bottom row has two sampling distributions (of the sample mean). Match the numbered graphs to the lettered graphs.
+:::
+
+![](images/cq1.png){fig-align=center width=1250}
+
+:::{.notes}
+Many of them will guess, and it will be 
+good to make them compute the box average
+:::
+
+
+##
+
+
+```{r}
+countdown::countdown(3, bottom = 0)
+```
+
+Summary statistics from one month of the National Health Interview Survey are shown below:
+
+<center>
+
+|    Age | Eats breakfast | Current drinker |
+|:---------:|:---------------------:|:---------------------:|
+|18-64| 70% | 40% |
+| 65 and over | 90% | 10% |
+</center>
+
+:::{.poll}
+True or false: the statistics show that as people age, they adopt healthier lifestyles.
+:::
+
+```{r}
+countdown::countdown(3, bottom = 0)
+```
+
+
+##
+
+Say we want estimate the size of an average class at Berkeley. Should we ask the administration?  Or should we survey the students, ask them how large their classes are, and take the average of these values? Does it matter?
+
+:::{.poll}
+Should we survey students? Does it matter?
+:::
+
+```{r}
+countdown::countdown(3, bottom = 0)
+```

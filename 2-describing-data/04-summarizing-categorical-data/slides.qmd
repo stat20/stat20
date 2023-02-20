@@ -35,7 +35,7 @@ An example of a marginal proportion.
 ![](images/2x2-table.png)
 
 :::poll
-What proportion of those in the marching band where juniors?
+What proportion of those in the marching band were juniors?
 :::
 
 ```{r}
@@ -59,7 +59,7 @@ countdown::countdown(.5, top = 0)
 ```
 
 :::notes
-An example of a join proportion.
+An example of a joint proportion.
 :::
 
 ## 
