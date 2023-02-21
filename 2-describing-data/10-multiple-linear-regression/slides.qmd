@@ -196,6 +196,36 @@ This one assess their ability to use a conditional interpretation of a regressio
 <!-- library(reshape2) -->
 
 <!-- grid_points <- 30 -->
+<!-- axis_x <- seq(min(zagat$food), -->
+<!--               max(zagat$food), -->
+<!--               length.out = grid_points) -->
+<!-- axis_y <- seq(min(zagat$decor), -->
+<!--               max(zagat$decor), -->
+<!--               length.out = grid_points) -->
+<!-- zagat_plane <- expand.grid(food = axis_x, -->
+<!--                          decor = axis_y, -->
+<!--                          KEEP.OUT.ATTRS = F) -->
+<!-- zagat_plane$price <- predict.lm(m3, newdata = zagat_plane) -->
+<!-- z <- acast(zagat_plane, food ~ decor + geo, value.var = "price") -->
+<!-- p <- plot_ly(zagat, x = ~food, y = ~decor, z = ~price, showlegend=FALSE) %>% -->
+<!--   add_markers(marker = list(size = 5, -->
+<!--                             opacity = .6, -->
+<!--                             color = "steelblue"), -->
+<!--               name = ~restaurant) %>% -->
+<!--   config(displayModeBar = FALSE) -->
+<!-- p %>% -->
+<!--   add_surface(x = axis_x, -->
+<!--               y = axis_y, -->
+<!--               z = z, showscale=FALSE, -->
+<!--               colorscale = list(c(0, 1), c("tan", "tan")), -->
+<!--               name = "Linear Model") -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- library(plotly) -->
+<!-- library(reshape2) -->
+<!-- m1 <- lm(price ~ food + decor, data = zagat) -->
+<!-- grid_points <- 30 -->
 <!-- axis_x <- seq(min(zagat$food),  -->
 <!--               max(zagat$food), -->
 <!--               length.out = grid_points) -->
@@ -205,19 +235,30 @@ This one assess their ability to use a conditional interpretation of a regressio
 <!-- zagat_plane <- expand.grid(food = axis_x,  -->
 <!--                          decor = axis_y,  -->
 <!--                          KEEP.OUT.ATTRS = F) -->
-<!-- zagat_plane$price <- predict.lm(m3, newdata = zagat_plane) -->
-<!-- z <- acast(zagat_plane, food ~ decor + geo, value.var = "price") -->
-<!-- p <- plot_ly(zagat, x = ~food, y = ~decor, z = ~price, showlegend=FALSE) %>% -->
+<!-- zagat_plane$price <- predict.lm(m1, newdata = zagat_plane) -->
+<!-- z <- acast(zagat_plane, food ~ decor, value.var = "price") -->
+
+<!-- m2 <- lm(price ~ food + decor + geo, data = zagat) -->
+
+<!-- zagat_plane_geo <- zagat_plane %>% -->
+<!--   mutate(geo = 1) -->
+<!-- zagat_plane_geo$price <- predict.lm(m2, newdata = zagat_plane_geo) -->
+<!-- z_geo <- acast(zagat_plane_geo, food ~ decor, value.var = "price") -->
+<!-- zagat_plane_west <- zagat_plane %>% -->
+<!--   mutate(geo = 0) -->
+<!-- zagat_plane_west$price <- predict.lm(m2, newdata = zagat_plane_west) -->
+<!-- z_west <- acast(zagat_plane_west, food ~ decor, value.var = "price") -->
+
+<!-- plot_ly(zagat, x = ~food, y = ~decor, z = ~price) %>% -->
 <!--   add_markers(marker = list(size = 5, -->
-<!--                             opacity = .6, -->
-<!--                             color = "steelblue"), -->
-<!--               name = ~restaurant) %>% -->
-<!--   config(displayModeBar = FALSE)  -->
-<!-- p %>% -->
-<!--   add_surface(x = axis_x, -->
-<!--               y = axis_y, -->
-<!--               z = z, showscale=FALSE, -->
-<!--               colorscale = list(c(0, 1), c("tan", "tan")), -->
-<!--               name = "Linear Model") -->
+<!--                             opacity = .6)) %>% -->
+<!--   add_surface(x = ~axis_x,  -->
+<!--               y = ~axis_y,  -->
+<!--               z = ~z_geo, -->
+<!--               showscale = FALSE) %>% -->
+<!--   add_surface(x = ~axis_x,  -->
+<!--               y = ~axis_y,  -->
+<!--               z = ~z_west, -->
+<!--               showscale = FALSE) -->
 <!-- ``` -->
 
