@@ -1,0 +1,40 @@
+---
+title: "Probability Basics"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+
+- Concept Questions
+- Activity: coin tosses
+- Handout
+
+# Concept Question 1
+
+
+# Concept Question 2
+
+# Activity: Coin tossing 
+
+```{r}
+countdown::countdown(25, top = 0)
+```
+
+# Handout (PS 3.2)
