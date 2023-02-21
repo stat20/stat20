@@ -202,41 +202,59 @@ prob_die <- rep(1/6, 6)
 set.seed(12345)
 
 p1 <- data.frame(die) %>% 
-  ggplot(aes(x = die, y=prob_die)) +
+  ggplot(aes(x = factor(die), y=prob_die)) +
   geom_col(width = 0.98, fill = "goldenrod2") +
   xlab("number of spots") +
   ylab("probability") +
-  ggtitle("Equally likely outcomes \n when rolling a die") +
+  ggtitle("Probability distribution of the \n outcome of a die roll") +
   lims(y = c(0, .35))
 
-roll_6 <- table(sample(die, 6, replace = TRUE))
-p2 <- data.frame(roll_6) %>%
-  ggplot(aes(x = Var1, y=Freq/6)) +
+roll_6 <- sample(die, 6, replace = TRUE)
+roll_6 <- data.frame(table(roll_6)) %>%
+  add_row(roll_6 = factor(1), Freq = 0, .before = 1) %>%
+  mutate(spots = factor(1:6),
+         prop_rolls = Freq/6)
+# adding in a new row at the top that lists the number of times
+# 1 was rolled in 6 rolls
+# then adding in the values for the x-axis
+
+p2 <- roll_6 %>%
+  ggplot(aes(x = spots, y= prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
   ylab("proportion of rolls") +
-  ggtitle("6 rolls") +
+  ggtitle("Empirical distribution for 6 rolls") +
   lims(y = c(0, .35))
 
 
-roll_60 <- table(sample(die, 60, replace = TRUE))
-p3 <- data.frame(roll_60) %>%
-  ggplot(aes(x = Var1, y=Freq/60)) +
+roll_60 <- sample(die, 60, replace = TRUE)
+
+roll_60 <- data.frame(table(roll_60)) %>%
+    mutate(spots = factor(1:6),
+         prop_rolls = Freq/60)
+
+p3 <- roll_60 %>%
+  ggplot(aes(x = spots, y= prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
   ylab("proportion of rolls") +
-  ggtitle("60 rolls") +
+  ggtitle("Empirical distribution for 60 rolls") +
   lims(y = c(0, .35))
   
 
+roll_600 <- sample(die, 600, replace = TRUE)
 
-roll_600 <- table(sample(die, 600, replace = TRUE))
+roll_600 <- data.frame(table(roll_600)) %>%
+    mutate(spots = factor(1:6),
+         prop_rolls = Freq/600)
+
+
 p4 <- data.frame(roll_600) %>%
-  ggplot(aes(x = Var1, y=Freq/600)) +
+  ggplot(aes(x = spots, y=prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
   ylab("proportion of rolls") +
-  ggtitle("600 rolls") +
+  ggtitle("Empirical distribution for 600 rolls") +
   lims(y = c(0, .35))
 
 (p1 + p2)/(p3+p4)
