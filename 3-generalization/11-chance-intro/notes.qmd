@@ -17,7 +17,6 @@ image: images/kerrich.png
 library(tidyverse)
 library(stat20data)
 library(infer)
-library(palmerpenguins)
 library(patchwork)
 ```
 
@@ -28,9 +27,9 @@ library(patchwork)
 For example, if the data are from a clinical trial for a new Covid-19 treatment, the design of the trial will decide who gets the treatment, and who doesn't. Or perhaps we want to poll voters to estimate the support for decriminalizing
 marijuana possession federally (President Biden took a first step
 towards this goal by pardoning all Americans  convicted of simple
-marijuana possession under federal law).
+marijuana possession under federal law). Who is selected for such an opinion poll can make a big difference in the estimate of the proportion of voters who support decriminalization of marijuana. 
 
-Who is selected for such an opinion poll can make a big difference in the estimate of the proportion of voters who support decriminalization of marijuana. You may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently they are taken more seriously. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538]. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''
+You may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently they are taken more seriously. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538]. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''
 
 [^538]: This website was begun as poll aggregation site, by the statistician Nate Silver.
 
@@ -42,7 +41,7 @@ In order to make estimates as these polling organizations are doing, or understa
 
 ##### Example 1: Tossing a fair coin and counting the number of heads
 
-![](images/us-quarter.png){width="100"}
+![](images/us-quarter.png){width="100" fig-align="center"}
 
 Suppose I told you that I am going to toss a fair coin, and ask you what is the chance of the coin landing heads. Like most people, you reply 50%. Where does this number come from?
 Try tossing a coin twice and see how it lands. You might have it land heads once and tails once, or you may get two heads, or two tails. Is this surprising? Okay, let’s toss it ten times and count the number of heads and tails. I am going to simulate this in R (we will explore the code later in the notes): 
@@ -85,7 +84,6 @@ tosses <- sample(coin1, 100, replace = TRUE)
 data.frame(tosses) %>%
   group_by(tosses) %>% 
   summarise(n = n())
-
 ```
 
 
@@ -94,6 +92,7 @@ We see that as the number of tosses increases, the distribution of tosses begins
 Now, instead of counting the number of heads and tails, let's look at the *proportion* of tosses that land heads when we toss a coin $n$ times, where $n$ varies from $1$ to $1000$. We can plot the proportion of the tosses that land heads against the number of tosses:
 
 ```{r}
+#| fig-align: center
 set.seed(12345)
 coin1 <- c("H", "T")
 toss_num <- 1000 # total number of tosses 
@@ -107,16 +106,14 @@ prop_heads <- rename(prop_heads, toss_num = V2)
 #  making the resultant vector into a data frame and renaming the columns
 
 prop_heads %>% 
- ggplot(aes(y=prop_heads, x = toss_num)) +
+  ggplot(aes(y = prop_heads, x = toss_num)) +
   geom_line() + 
-  annotate("segment", x = 0, xend = max(toss_num)+ 50, y = 0.5, yend = 0.5,
-             color = "red", linetype = 2, size = 0.9) + 
-    xlab("Number of tosses") +
-   ylab("Proportion of tosses that land heads") +
-   ggtitle("As we increase the number of tosses,
+  annotate("segment", x = 0, xend = max(toss_num) + 50, y = 0.5, yend = 0.5,
+           color = "red", linetype = 2, size = 0.9) + 
+  xlab("Number of tosses") +
+  ylab("Proportion of tosses that land heads") +
+  ggtitle("As we increase the number of tosses,
            the proportion of heads settles at about 50% ")
-
-
 ```
 
 We see that at the beginning, for a small number of tosses, the proportion of times that the coin lands heads is all over the place, but it eventually settles down to be around 0.5. This verifies our intuition that if we toss a fair coin, the proportion of times that the coin lands heads should be about 0.5. This idea of the probability of a particular outcome as a long run proportion of times that we see that outcome is called the *frequentist theory of probability*, and we will be using this theory in our class. (A different theory of probability uses a *subjective* notion of probability, but we won’t get into that at this time.) We will think about the probability of heads as the long-run relative frequency, or the proportion of times the coin will land heads if we toss it many, many times. This fits with our intuition that if we have a *fair* coin, that means that each of the two possible outcomes will occur roughly the same number of times when we toss it over and over again. We can then call the two outcomes *equally likely* and can define the probability of heads to be 1/2.
@@ -164,14 +161,13 @@ Let's simulate rolling a die and counting how many times we see each face.
 If we roll it 6 times, we don't really expect to see each face once, and as you can see below, in this particular instance of rolling the die six times, we didn't see the face with one spot, but saw two spots twice. 
 ```{r}
 set.seed(12345)
-die = 1:6
+die <- 1:6
 
 die_rolls <- sample(die, 6, replace = TRUE)
 
 data.frame(die_rolls) %>%
   group_by(die_rolls) %>% 
   summarise(n = n())
-
 ```
 
 
@@ -210,7 +206,8 @@ p1 <- data.frame(die) %>%
   geom_col(width = 0.98, fill = "goldenrod2") +
   xlab("number of spots") +
   ylab("probability") +
-  ggtitle("Equally likely outcomes \n when rolling a die")
+  ggtitle("Equally likely outcomes \n when rolling a die") +
+  lims(y = c(0, .35))
 
 roll_6 <- table(sample(die, 6, replace = TRUE))
 p2 <- data.frame(roll_6) %>%
@@ -218,7 +215,8 @@ p2 <- data.frame(roll_6) %>%
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
   ylab("proportion of rolls") +
-  ggtitle("6 rolls")
+  ggtitle("6 rolls") +
+  lims(y = c(0, .35))
 
 
 roll_60 <- table(sample(die, 60, replace = TRUE))
@@ -227,7 +225,8 @@ p3 <- data.frame(roll_60) %>%
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
   ylab("proportion of rolls") +
-  ggtitle("60 rolls")
+  ggtitle("60 rolls") +
+  lims(y = c(0, .35))
   
 
 
@@ -237,10 +236,10 @@ p4 <- data.frame(roll_600) %>%
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
   ylab("proportion of rolls") +
-  ggtitle("600 rolls")
+  ggtitle("600 rolls") +
+  lims(y = c(0, .35))
 
 (p1 + p2)/(p3+p4)
-
 ```
 
 The important takeaway here is that we have a *theoretical* probability distribution of the outcomes, and we have what actually happens when we perform the experiment over and over. Eventually, the empirical distribution begins to look like the theoretical distribution. 
