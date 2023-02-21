@@ -1,6 +1,6 @@
 ---
-title: "Chance *is* a fine thing!"
-subtitle: "Introducing probability: definitions, examples, and axioms"
+title: "Introducing probability"
+subtitle: "Definitions, examples, and axioms"
 date: '2/22/2023'
 image: images/kerrich.png
 ---
@@ -130,7 +130,7 @@ Probability
 : The chance or probability of a particular outcome is the fraction of times that this outcome is expected to occur, when the experiment that results in the outcome is repeated over and over again (long run relative frequency).
 
 Event
-: a collection of outcomes as a result of the experiment being performed, perhaps more than once. For example, we could toss a coin twice, and consider the *event* of both tosses landing heads. We usually denote events by upper case letters from the beginning of the alphabet: $A, B, C, \ldots$
+: A collection of outcomes as a result of the experiment being performed, perhaps more than once. For example, we could toss a coin twice, and consider the *event* of both tosses landing heads. We usually denote events by upper case letters from the beginning of the alphabet: $A, B, C, \ldots$
 
 
 ##### Example 2: Tossing a fair six-sided die[^dice] 
@@ -251,11 +251,16 @@ What we have done here is estimate chances using the idea that the *chance* (or 
 
 The chance of an event (where an *event* might be one outcome, such as "rolling a die and seeing two spots", or a collection of outcomes, such as "rolling an even number") needs to satisfy some basic mathematical rules called _axioms_ (which are intuitively clear if you think of the chance of an event as its relative frequency):
 
-1. The chance of any event is at least $0$ and not more than $1$.
+Rule 1
+: The chance of any event is at least $0$ ($P(A) \ge 0$ for any event $A$).
 
-2. We call the collection of all possible outcomes the *outcome space* $\Omega$. The chance of an outcome being in $\Omega$ is $1$ ($P(\Omega) = 1$). The empty event (with no outcomes in it) is called the *impossible* event and denoted by the symbol for the empty set $\emptyset$. The probability of the impossible event is $0$.
+Rule 2
+: We call the collection of all possible outcomes the *outcome space* $\Omega$. The chance of an outcome being in $\Omega$ is $1$ ($P(\Omega) = 1$). 
 
-3. If two events $A$ and $B$ do not overlap, that is, they have no outcomes in common, we say that the events are *mutually exclusive*. Note that if $A$ and $B$ are mutually exclusive, if we know that one of them happens, the other one cannot. We denote this by writing $A \cap B = \emptyset$ and read this as $A$ *intersect* $B$ is empty. Therefore, we have that $P(A \cap B) = P(\emptyset) = 0$. 
+Note that the empty event (with no outcomes in it) is called the *impossible* event and denoted by the symbol for the empty set $\emptyset$. The probability of the impossible event is $0$.
+
+Mutually exclusive events
+: If two events $A$ and $B$ do not overlap, that is, they have no outcomes in common, we say that the events are *mutually exclusive*. Note that if $A$ and $B$ are mutually exclusive, if we know that one of them happens, the other one cannot. We denote this by writing $A \cap B = \emptyset$ and read this as $A$ *intersect* $B$ is empty. Therefore, we have that $P(A \cap B) = P(\emptyset) = 0$. 
 
 For example: the event that a coin lands heads on a single toss and that it lands tails are mutually exclusive. Another example is that if we roll a die, the events that we roll an even number and the event that we roll an odd number are mutually exclusive, but the events that we roll an even number and the event that we roll a prime number are *not* mutually exclusive. The event that Manchester City win the English Premier League in 2023, and the event that Arsenal win the EPL in 2023 are mutually exclusive, but the events that Manchester City are EPL champions in 2023 and Manchester City are EPL champions in 2022 are *not* mutually exclusive. 
 
@@ -263,18 +268,15 @@ In general, the collection of outcomes that are in *both* $A$ *and* $B$ is writt
 
 If we want to consider the event consisting of all the outcomes that are *either* in $A$ *or* in $B$, we call this event the *union* of $A$ and $B$, and write it as $A \cup B$. In general, the collection of all outcomes that are in $A$ or $B$ is written as $A \cup B$ and can be read as $A$ union $B$ or $A$ *or* $B$.
 
-If $A$ and $B$ are mutually exclusive, then $P(A \cup B) = P(A) + P(B)$. That is, for two mutually exclusive events, the probability that *either* of the two events might occur is the *sum* of their probabilities.
+Rule 3
+: If $A$ and $B$ are mutually exclusive ($A \cap B = \emptyset$), then $P(A \cup B) = P(A) + P(B)$. That is, for two mutually exclusive events, the probability that *either* of the two events might occur is the *sum* of their probabilities. This is called the *addition rule*.
 
 For example, consider rolling a fair six-sided die, and the two events $A$ and $B$, where $A$ is the event of rolling a multiple of $5$, and $B$ is the event that we roll a multiple of $2$. The only outcome in $A$ is $\{5\}$, while $B$ consists of $\{2, 4, 6\}$. Since all the sides of a fair die are equally likely, the chance of $A$ is the chance of rolling a $5$ which is $1/6$. The chance of rolling an even number is $1/6 + 1/6 +1/6 = 3/6$ (applying the same idea of adding up the chances, since we can't have the die show two sides at the same time). 
 This implies that the probability of *either* $A$ *or* $B = P(A \cup B) = 1/6 + 3/6 = 4/6$.
 
 Note that *both* events cannot happen - using a six-sided die, you cannot roll a multiple of 5 that is also an even number. That is, the chance of $A$ *and* $B$ is $0$.
 
-4. Let $A$ be an event in $\Omega$. The *complement* of $A$, written as $A^C$  consists of all those outcomes in $\Omega$ that are *not* in $A$. Note that $A  \cup A^C = \Omega$, so $P(A) + P(A^C) =  1$.
-
-**Addition rule**
-The third rule above, that says that the chance of either $A$ or $B$ for mutually exclusive events $A$ and $B$ is the sum of their chances, is called the *addition rule*: If $A \cap B = \emptyset$, then $P(A \cup B) = P(A) + P(B)$.
-
+An important consequence of rule 3: Let $A$ be an event in $\Omega$. The *complement* of $A$, written as $A^C$  consists of all those outcomes in $\Omega$ that are *not* in $A$. Note that $A  \cup A^C = \Omega$, so $P(A) + P(A^C) =  1$.
 
 
 ## Venn Diagrams
@@ -602,7 +604,7 @@ cat("The proportion of times we see 2 heads out of 4 tosses is", mean(two_heads)
 
 #### Rolling a pair of dice and summing the spots
 
-This is something that we could use if we wanted to play Monopoly and couldn't find the dice. Recall the box we used to simulate a die roll. Now we are going to define a vector in R to represent a die, and sample twice with replacement, from this vector.
+This is something that we could use if we wanted to play Monopoly and couldn't find the dice. Recall the box we used to simulate a die roll. Now we are going to define a vector in R to represent a die, and sample twice with replacement, from this vector, and add the spots.
 
 
 ```{r}
