@@ -188,6 +188,11 @@ countdown::countdown(2, bottom = 0)
 ```
 
 
+:::{.notes}
+Both parts are false since we are using the addition rule on events that are not mutually exclusive. It is important that you do not talk about what the actual probability is since that uses the multiplication rule and we have not discussed that in the notes. This is more an exercise in when *not* to use the addition rule. I plan to add a bit about this in Friday's notes. 
+:::
+
+
 # Concept Question 4
 
 ##
