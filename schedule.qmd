@@ -84,7 +84,7 @@ a %>%
 
 ```
 
-![](assets/schedule-sketch.png)
+![](assets/schedule-sketch-2.png)
 
 ## Office Hours
 
