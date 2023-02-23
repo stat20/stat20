@@ -81,3 +81,6 @@ website:
     right:
       - text: License
         href: license.qmd
+    left:
+      - text: "This site is powered by Netlify."
+        href: https://www.netlify.com/
