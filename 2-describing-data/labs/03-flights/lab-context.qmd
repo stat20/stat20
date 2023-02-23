@@ -43,7 +43,7 @@ format:
 \
 \
 
-4. Do any of the variable have ambiguous data types to you?
+4. Do any of the variable have ambiguous data types to you? Why are they ambiguous?
 
 \
 \
