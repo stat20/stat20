@@ -63,7 +63,24 @@ ggplot(data.frame(t(flips)), aes(x=n_switches + 1, y = longest_run)) +
   geom_jitter(alpha =0.3) + 
   xlab("number of runs") +
   ylab("length of longest run") + 
-  geom_point(aes(x=40, y = 10), color = "red", pch = 17, size = 2) +
-  geom_point(aes(x=50, y = 6), color = "green", pch = 16, size = 2)
+  geom_point(aes(x=56, y = 6), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=56, y = 5), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=59, y = 5), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=71, y = 4), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=41, y = 7), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=48, y = 9), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=52, y = 7), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=47, y = 7), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=56, y = 4), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=49, y = 6), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=48, y = 9), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=65, y = 3), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=52, y = 5), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=51, y = 5), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=63, y = 4), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=58, y = 5), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=60, y = 5), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=46, y = 8), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=50, y = 5), color = "green", pch = 16, size = 2)
 ```
 
