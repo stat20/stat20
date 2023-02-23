@@ -38,7 +38,7 @@ We will revisit this case at the end of these notes. Now, let's talk about the *
 
 ## Computing chances
 
-In the previous set of notes, we learned about outcome spaces, events, and their probabilities. If two events were mutually exclusive$ P(A \cap B) = \emptyset$, we can compute the probability of at least one of the events occuring ($A\cup B$) using the addition rule $P(A \cup B) = P(A) + P(B)$. These notes are about how we compute probabilities when two events are *not* mutually exclusive. 
+In the previous set of notes, we learned about outcome spaces, events, and their probabilities. If two events are mutually exclusive $P(A \cap B) = \emptyset$, we can compute the probability of *at least one* of the events occurring ($A\cup B$) using the addition rule $P(A \cup B) = P(A) + P(B)$. These notes are about how we compute probabilities when two events are *not* mutually exclusive. 
 
 #### Example 1: Drawing red and blue tickets from a box
 
