@@ -134,7 +134,7 @@ The first box is correct and represents a box model for this situation. The seco
 ### Conditional probabilities 
 
 In Example 1 above, we saw that the probability of a red ticket on a draw changes if we sample without replacement. If we get a blue ticket on the first draw, the chance of a red ticket on the second draw is 2/3 (since there are 3 tickets left, of which 2 are blue). 
-If we get a red ticket on the first draw, the chance of a red ticket on the second draw is 1/3. These chances - that *depend* on what happened on the first draw are called *conditional probabilities*. If $A$ is the event of a blue ticket on the first draw, and $B$ is the event of a red ticket on the second draw, we say that the chance of $B$ *given* $A$ is 2/3, which is a *conditional* probability, because we put a condition on the first card, that it had to be blue. 
+If we get a red ticket on the first draw, the chance of a red ticket on the second draw is 1/3. These chances that *depend* on what happened on the first draw are called *conditional probabilities*. If $A$ is the event of a blue ticket on the first draw, and $B$ is the event of a red ticket on the second draw, we say that the chance of $B$ *given* $A$ is 2/3, which is a *conditional* probability, because we put a condition on the first card, that it had to be blue. 
 
 What about if we don't put a condition on the first card? What is the chance that the second card is red? 
 <details> <summary> Check your answer </summary> 
@@ -146,7 +146,7 @@ This kind of chance, where we put no condition on the first card, is called an *
 ##  The Multiplication Rule: computing the probability of an intersection
 
 We often want to know the probability that two (or more) events will *both* happen: What is the chance if we roll a pair of dice, that both will show six spots; or if we deal two cards from a standard 52 card deck, that both would be kings, or in a family with two babies, both would suffer SIDS. 
-What do we know? Recall what the Venn diagram of intersectiing events looks like:
+What do we know? Recall what the Venn diagram of intersecting events looks like:
 
 ![](images/venn-diagram-intersection.png){fig-align=center width="300"}
 
@@ -238,7 +238,7 @@ Professor Roy Meadow claimed that the chance of two of Sally Clark's sons dying 
 
 The first error was in treating the deaths as independent, and the second was in looking at the wrong probability. Let's look at the first mistake. It turns out that the chance of a second child dying of "cot death" or SIDS is 1/60 *given* that the first child died of SIDS. This was a massive error, and it turned out that the prosecution suppressed the pathology reports for the second baby, who had a very bad infection and might have died of that. It is also believed that male infants are more likely to suffer cot death. 
 
-The second error is an example of what is called the Prosecutor's Fallacy. They looked the chance of the evidence if Sally Clark were innocent. They should have actually compared the chance of innocence given the evidence with the chance of murder given the evidence. These multiple errors ruined many lives. Though Sally Clark was eventually acquitted, helped by the Royal Statistical Society's evidence, her life was shattered, and she died soon after being released. The moral of this story is to be very careful while multiplying probabilities. You must check for independence. 
+The second error is an example of what is called the Prosecutor's Fallacy. They looked for the chance of the evidence if Sally Clark were innocent. They should have actually compared the chance of innocence given the evidence with the chance of murder given the evidence. These multiple errors ruined many lives. Though Sally Clark was eventually acquitted, helped by the Royal Statistical Society's evidence, her life was shattered, and she died soon after being released. The moral of this story is to be very careful while multiplying probabilities. You must check for independence. 
 
 ## Mutually exclusive vs independent events
 
