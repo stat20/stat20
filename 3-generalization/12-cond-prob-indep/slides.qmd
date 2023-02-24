@@ -22,17 +22,19 @@ format:
 
 ## Agenda
 
-- Concept Questions (for discussion)
-- Activity: card game: betting on the other side
-- Practice: computing probabilities
-- Introduce Lab 7: Waiting for the bus
+- Concept Questions
+- Break
+- Handout: PS 3.3a (computing probabilities)
+- Break
+- Digital worksheet: PS 3.3b (simulating probabilities)
+
 
 # Concept Questions
 
 ##
 
 ```{r}
-countdown::countdown(2, bottom = 0)
+countdown::countdown(1, bottom = 0)
 ```
 
 
@@ -50,17 +52,40 @@ The outcomes are mutually exclusive and so can't be independent, since they are 
 
 
 ```{r}
-countdown::countdown(3, top = 0)
+countdown::countdown(2, top = 0)
 ```
 
-![](images/phillies-astros.jpg){width=400}
+![](images/phillies-astros.jpg){width=300}
 
 :::{.poll}
-The World Series begins on Friday in Houston, between the Houston Astros and the Philadelphia Phillies. The first team to win 4 games wins the series (best of 7). The Astros are heavily favored. Assume that the chance that the Astros will beat the Phillies in any single game is estimated at  60%, independently of all the other games.Should you bet on Astros winning in a clean sweep? (That is, they will win the first 4 games, and therefore the series.)
+The Houston Astros beat the Philadelphia Phillies in the 2022 World Series. The winners in the World Series have to win a majority of 7 games, so the first team to win 4 games wins the series (best of 7). The Astros were heavily favored to win, so the outcome wasn't really a suprise. Suppose we assumed that the probability that the Astros would have beaten the Phillies in any single game was estimated at 60%, independently of all the other games, what was the probability that the Astros would have won in a clean sweep? 
+
+(Clean sweep means that they won in the first 4 games - which didn't happen, they won in 6 games.)
 :::
 
+
 :::{.notes}
-Straightforward application of multiplication rule for independent events. Chance is 0.6^4 = 0.1296. Follow up comment/question can be, if the teams were more evenly matched, say chance of either team winning is 50%, the chance of going to 7 games and chance of winning in 6 games is equal given 5 games are played. 
+Straightforward application of multiplication rule for independent events. probability is 0.6^4 = 0.1296. Follow up comment/question: if the teams were more evenly matched, say probability of either team winning is 50%, the probability of going to 7 games and probability of winning in 6 games is equal given 5 games are played. 
+:::
+
+
+##
+
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+![](images/phillies-astros.jpg){width=300}
+
+:::{.poll}
+Suppose we assume, instead, that the probability that the Astros would have beaten the Phillies in any single game was 50%, independently of all the other games. In this case, was the probability that the series would have gone to 6 games higher than the probability that the series would have gone to 7 games, **given** that 5 games were played?
+:::
+
+
+
+:::{.notes}
+if 5 games are played it means one of the teams is leading 3-2. Therefore there are two scenarios: the team that is ahead wins game 6 and the series, or the team that is behind wins game 6 and they go to 7 games. Both are equally likely. 
 :::
 
 ## 
@@ -71,86 +96,45 @@ countdown::countdown(3, bottom = 0)
 
 :::{.poll}
 On each turn of a game, I toss a coin as many times as the number of spots I get when I roll a die.
-On a turn what is the chance that all my tosses land heads? Is it true that it is $\left(\frac{1}{2}\right)^k$, where $k$ is the number of spots from the die I just rolled? (Be careful! are you being asked for a conditional probability?)
+On a turn what is the probability that all my tosses land heads? Is it true that it is $\left(\frac{1}{2}\right)^k$, where $k$ is the number of spots from the die I just rolled? (Be careful! are you being asked for a conditional probability?)
 :::
 
 :::{.notes}
-False, the chance of coin landing heads on all tosses is (1/2)*(1/6) + (1/4)*(1/6) + ...+ (1/64)*(1/6). The point is using the multiplication rule for dependent events.
+False, the probability of coin landing heads on all tosses is (1/2)*(1/6) + (1/4)*(1/6) + ...+ (1/64)*(1/6). The point is using the multiplication rule for dependent events.
 :::
-
-
 
 
 
 ## 
 
 ```{r}
-countdown::countdown(4, bottom = 0)
+countdown::countdown(3, bottom = 0)
 ```
 
 :::{.poll}
-A woman’s risk of developing breast and/or ovarian cancer is greatly increased if she inherits a harmful mutation in the BRCA2 gene. About **0.2%** of women have the harmful BRCA2 mutation. Suppose a test is developed that is 99% accurate in identifying whether a woman has the BRCA2 mutation: this means that the chance that a woman *with* the mutation tests positive is 99% and the chance that a woman *without* the mutation tests negative is 99%. What is the chance that a woman who tests positive has the mutation?
+A rare condition affects **0.2%** of the population. A test for this condition is 99% accurate: this means that the probability that a person *with* the condition tests positive is 99% and the probability that a person *without* the condition tests negative is 99%. What is the probability that a person who tests positive has the condition? 
+
 :::
 
 :::{.notes}
-Here, though this is a common Bayes' theorem type problem, I want them to think heuristically. If the test returns a false positive 1% of the time, then 10 out of a 1000 cases will be false positives, and because the chance of the mutation is 0.2%, 2 out of a 1000 cases will be mutations. This means that about 2 in 12 cases or about between 16% and 17% of the positives are mutations. (if we use Bayes' rule, it works out to be 16.55%)
+Important NOT to use Bayes' theorem, but show them how to think about the chances, and where the positive tests come from. We can think about the number of cases in 100,000, then the numbers are nice and whole.
+
+Since prevalence is 0.2%, then  0.2% of 100,000 is 0.002*100000 = 200 people will have the condition. Out of the remaining (100000-200 = 99800) people who do not have the condition, 1% will test positive, which is 998 people, so the total number of positive tests is 998+200 = 1198. The proportion of true positives is 200/1198 = about 16.67% cases or about between 16% and 17% of the positives are true positives (if we use Bayes' rule, it works out to be 16.55%)
 :::
-
-
-# Activity
-
-## Bet on the other side
-
-- Divide the class into groups of 5-6 students each
-- Each group should designate a dealer and a recorder 
-- Write template on the board/hand out copies
-- Demo the game and then give each group a set of 3 cards
-- Have them play about 25 times
-
-```{r}
-countdown::countdown(20, bottom = 0)
-```
-
-
-:::{.notes}
-Groups of 5 or 6 with one recorder, one dealer, 3 or 4 players who bet
-Dealer pulls a card and shows them, after shuffling around (including flipping sides to shuffle well, and then dealer shows one side very carefully to the everyone, then the dealer asks them to bet on the flip side of the card being the same or different; the recorder marks their choices on the sheet; dealer reveals the back side of the card; recorder marks with check or X and hands out the chocolate to winners.  
-Play how many rounds  at least 25-30 rounds, and see what is the pattern
-Template: Names along columns, rounds on the rows, on top dealer and recorder names are written in, in each cell, recorder marks each player’s choice down “S” or “D”, do they think the other side will be the same or will it be different. 
-Once done, discuss the prob of same card on the other side being 2/3 (If you see a black side, then the red-red pair is impossible. There are three possible cards, and two of them are black.)
-:::
-
-
-# Lab 7: Bus Waiting Times
-
-## 
-![](../labs/images/bus.jpeg){fig-align=center}
-
-:::poll
-A bus is scheduled to arrive at your bus stop every 12 minutes. If you walk to the bus stop without checking the schedule, how long would you expect to have to wait for the next bus?
-:::
-
-```{r}
-countdown::countdown(1)
-```
-
-:::notes
-A common sensible guess is 6 minutes, but is is usually an underestimate in practice, as demonstrated by the lab.
-:::
-
 
 ## Useful R function: `seq()`
 
-. . .
+\
 
-Creates a sequence of numbers that can be defined by their first and last number and the space between each number (or the total numbers in the sequence).
+Creates a sequence of numbers that can be defined by their first and last number and the space between each number (or the total numbers in the sequence):
+`seq(from, to, by)`
 
-. . . 
+\
 
 :::poll
 **Code Along**
 
-How can you use `seq()` to generate the following sequence: 1, 1.25, 1.5, 1.75, 2?
+How can you use `seq()` to generate the following sequence: 1, 1.25, 1.5, 1.75, 2 and call it `a`?
 :::
 
 ```{r}
@@ -159,17 +143,19 @@ countdown::countdown(1)
 
 
 
-## Useful R function: `sample()`
+## Useful R function: `sample()` 
 
-. . .
 
-Used to take a random sample of a vector with or without replacement. 
+\
+
+Used to take a random sample of a vector with or without replacement: 
+`sample(x, size, replace = FALSE)`
 
 
 :::poll
 **Code Along**
 
-How can you use `sample()` to create the following vector from `a`: 1.75, 1.75, 1.25.
+How can you use `sample()` to create the following vector from `a`: 1.25, 1.25, 1.50.
 
 ```{r}
 #| echo: true
@@ -178,6 +164,35 @@ a <- seq(from = 1, to = 2, by = .25)
 
 :::
 
+. . . 
+
+When we want a specific sample, or want the same sample every time we run our code, we use the function `set.seed()`. This initializes R's pseudorandom number generator, so that when you are running simulations or code that requires random sampling, you can reproduce your results. 
+
 :::notes
 A good time to mention setting the seed again.
+This sample is obtained using the seed 12
 :::
+
+# Break 
+
+```{r}
+countdown::countdown(5)
+```
+
+# PS 3.3a (paper handout) 
+
+```{r}
+countdown::countdown(25)
+```
+
+# Break 
+
+```{r}
+countdown::countdown(5)
+```
+
+# PS 3.3b (digital handout)
+
+```{r}
+countdown::countdown(30)
+```

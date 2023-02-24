@@ -1,0 +1,86 @@
+---
+format:
+  pdf:
+    include-in-header:
+      - preamble.tex
+      - fancyhdr.tex
+    fontsize: 10pt
+    margin-top: .8in
+    margin-bottom: .5in
+---
+
+\thispagestyle{empty}
+
+\begin{center}
+\textsc{Stat 20: PS 3.3a} \\
+\noindent\rule{12cm}{0.4pt}
+\end{center}
+
+#### Question 1 Chegg's survey
+
+The company Chegg wants to justify its business model and decides to conduct an opinion poll. It sends out a survey to its 7.8 million subscribers (as of 2021) asking if they have ever cheated on an assignment using Chegg. It gets back 1.5 million responses of which 87% of the respondents say that they have never used Chegg to cheat on an assignment. 
+
+(a) Could this survey be set up as a box model? If so, what tickets would go in the box and how many would we draw? If not, why not?
+
+\
+
+(b) Is this sample of 1.5 million a representative sample of high school and college students?
+
+\
+
+#### Question 2 Independent? Mutually exclusive?
+
+(a) Consider the events $A$ and $B$ which have probabilities $0.6$ and $0.5$ respectively, and we further have that $P(A \cup B) = 0.8$. Are $A$ and $B$ mutually exclusive, independent, both, or neither?
+\
+
+\
+
+(b) What is the probability that *neither* $A$ *nor* $B$ will be true?
+
+\
+
+
+#### Question 3
+
+Is it possible for two non-empty events to be *both* mutually exclusive *and* independent?
+\
+
+\
+
+#### Question 4
+
+Suppose $A$ and $B$ are non-empty events such that $P(A) = 0.5$ and $P(B) = 0.7$.  What is the smallest and biggest that their union, $P(A \cup B)$, and their intersection, $P(A \cap B)$, can be?
+
+\
+
+
+\
+
+
+#### Question 5
+
+ It was established that the H1N1 (swine flu) pandemic of 2009 originated in pigs from a very small region in central Mexico. Early cases in the US were associated with recent travel to Mexico. Say at that time, a college student went to Mexico and let’s assume that at the time, the rate of infection for travelers to Mexico was 1 in 1,000. Let’s suppose that the test for H1N1 has 99% accuracy. That is the chance of a false positive is 1% and the chance of a false negative is also 1%. If a person has a positive test result, what is the approximate chance that they truly have H1N1? 
+(Please do **not** do complicated probability computations, but do a rough computation, as done in the slides.)
+
+\ 
+
+\
+
+\
+
+\
+
+
+#### Question 6 The Paradox of Chevalier de Méré
+
+Antoine Gombaud, the self-styled Chevalier, lived in the 17th century and liked to gamble on the outcomes of die rolls. One game that he was fond of involved betting money on getting at least one six in 4 rolls of a fair six-sided die. You saw how he computed this probability in the last class as $\displaystyle \frac{1}{6} +  \frac{1}{6} +  \frac{1}{6} +  \frac{1}{6} =  \frac{2}{3}$. 
+
+(a) We discussed how this is incorrect, but what is the correct probability of getting at least one six in 4 rolls of a fair die?
+
+\
+
+(b) Another game that he used to play was betting on rolling a pair of sixes at least once in 24 rolls of a pair of fair six-sided dice. He computed this probability as $\displaystyle 24 \times  \frac{1}{36} =  \frac{2}{3}$. This is also incorrect. What is the correct answer?
+\
+
+\
+
