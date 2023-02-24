@@ -38,7 +38,7 @@ In the following questions, use the chunks and uncomment the code by removing th
 #                  sum(sample(die6, size = 4, replace = TRUE)))
 ```
 
-- Our code created a vector with the result of 100 simulations of the game. 
+- We have created a vector with the result of 100 simulations of the game. 
 - Now we want to see how the proportion of wins behaves as the number of simulations increases. - - In the next chunk, we will use `data.frame()` to create a data frame from our vector `game1_100` and add two columns, one that gives the simulation number (a sequence of the numbers from 1 to 100), and another that records if that instance of the game was a win: was the number of sixes at least 1, that is, greater than 0?
 - Once we have done that, we create another column that records the *cumulative* proportion of wins (number of wins up to that point divided by the number of simulations up to that point).
 - We have provided the code below to help you do this, and then created a line graph with the number of simulations along the x-axis and the proportion of wins so far along the y-axis. 
