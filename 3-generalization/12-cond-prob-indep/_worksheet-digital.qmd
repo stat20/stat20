@@ -1,0 +1,59 @@
+---
+title: "PS 3.3b: Simulations"
+---
+
+In the following questions, use the chunks and uncomment the code. 
+
+```{r}
+#| message: false
+#| echo: false
+
+library(tidyverse)
+library(patchwork)
+```
+
+#### Question 1 Simulating the probabilities in de Méré's paradox, for 4 rolls of a die
+
+- First create a box that represents a die, and remember - the only outcome you are interested in is rolling a 6, so let's call it die6. 
+
+```{r}
+# die6 <- 
+```
+
+- Now sample from this box 4 times, to simulate rolling a die 4 times, and then count the number of sixes in 4 rolls. (Hint: if your box has 0's and 1's, then it is easy to count the number of sixes, if you defined `die6` correctly.)
+
+```{r}
+
+```
+
+- You should now use `replicate()` to repeat the process above 100 times, counting the number of times you get at least 1 six in 4 rolls. So you are simulating rolling a die 4 times, counting the number of sixes, and recording a win if you have at least 1 six in 4 rolls. Repeat this over and over, and compute the proportion of wins for the number of games played. To begin, let's do 100 simulations of rolling the die 4 times and counting the number of sixes. If we are using `sum()` what must our box have been? 
+
+```{r}
+# game1_100 <- replicate(100, 
+#                  sum(sample(die6, size = 100, replace = TRUE)))
+```
+
+- What you have now is a vector with the result of 100 simulations of the game. Now we want to see how the proportion of wins behaves as the number of simulations increases. Use `data.frame()` to create a data frame from `game1_100` and add two columns, one that gives the simulation number (just the numbers from 1 to 100), and another that records if that simulation was a win or loss (was the number of sixes at least 1?). 
+- Once you have done that, create another column that records the *cumulative* proportion of wins (number of wins up to that point divided by the number of simulations up to that point). We provide some code for you below to help you do this, and then create a line graph with the number of simulations along the x-axis and the proportion of wins so far along the y-axis. Note that the function `cumsum()` computes the cumulative sum of a vector. For example, if `x = c(1, 2, 4, 7)`, then `cumsum(x)` will give `1 3 7 14`.  
+
+```{r}
+# data.frame(game1_100) %>% 
+# mutate(sim_num = 1:100,
+#       win = game1_100 > 0,
+#       prop_win = cumsum(win)/sim_num) %>%
+#       ggplot(aes(x = sim_num, y = prop_win)) +
+#        geom_line() + 
+#        annotate("segment", x=0, xend = 100, 
+#                  y = 0.5, yend = 0.5, lty = 2, color ="red") +
+#        annotate("text", x=- 1, y = 0.5, label = "0.5", color = "red") + 
+#        ggtitle("Game 1 with 100 simulations") +
+#        xlab("number of simulations of the game") +
+#        ylab("proportion of wins")
+```
+
+
+- Now repeat this process, but with 1,000 and 10,000 simulations, and compare the plots. What do you see? How does this compare with the probability you computed in PS 3.3a?
+
+#### Question 2 Simulating the probabilities in de Méré's paradox, for 24 rolls of a pair of dice.
+
+Repeat the entire process above to estimate the probability of at least 1 pair of sixes in 24 rolls of a pair of dice. What do you see when you compare the plots? If you could travel back to the mid-seventeenth century, what advice would you give Chevalier de Méré?
