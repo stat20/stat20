@@ -26,6 +26,7 @@ format:
 - Break
 - Handout: PS 3.3a (computing probabilities)
 - Break
+- Two useful R functions
 - Digital worksheet: PS 3.3b (simulating probabilities)
 
 
@@ -122,7 +123,21 @@ Important NOT to use Bayes' theorem, but show them how to think about the chance
 Since prevalence is 0.2%, then  0.2% of 100,000 is 0.002*100000 = 200 people will have the condition. Out of the remaining (100000-200 = 99800) people who do not have the condition, 1% will test positive, which is 998 people, so the total number of positive tests is 998+200 = 1198. The proportion of true positives is 200/1198 = about 16.67% cases or about between 16% and 17% of the positives are true positives (if we use Bayes' rule, it works out to be 16.55%)
 :::
 
-## Useful R function: `seq()`
+# Break 
+
+```{r}
+countdown::countdown(5)
+```
+
+# PS 3.3a (paper handout) 
+
+```{r}
+countdown::countdown(25)
+```
+
+# Two useful R functions
+
+##  `seq()`
 
 \
 
@@ -143,7 +158,7 @@ countdown::countdown(1)
 
 
 
-## Useful R function: `sample()` 
+## `sample()` 
 
 
 \
@@ -172,18 +187,6 @@ When we want a specific sample, or want the same sample every time we run our co
 A good time to mention setting the seed again.
 This sample is obtained using the seed 12
 :::
-
-# Break 
-
-```{r}
-countdown::countdown(5)
-```
-
-# PS 3.3a (paper handout) 
-
-```{r}
-countdown::countdown(25)
-```
 
 # Break 
 
