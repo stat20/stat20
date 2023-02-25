@@ -10,7 +10,6 @@ image: images/sally-clark-headline.jpeg
 \
 
 
-
 ```{r}
 #| echo: false
 #| message: false
