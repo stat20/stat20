@@ -1,0 +1,22 @@
+---
+title: "Problem Set 3: Linear Models and Probability"
+---
+
+This problem set has three components, each one submitted separately to Gradescope.
+
+### PS 3.1: Summarizing Associations
+
+[Download .qmd file](../../2-describing-data/09-summarizing-associations/_worksheet-digital.qmd)
+
+
+### PS 3.2: Chance Intro
+
+[Paper Worksheet](../11-chance-intro/worksheet-analog.pdf)
+
+### PS 3.3a: Independent and Conditional Probability
+
+[Paper Worksheet](../12-cond-prob-indep/worksheet-analog.pdf)
+
+### PS 3.3b: Simulations
+
+[Download .qmd file](../12-cond-prob-indep/_worksheet-digital.qmd)
