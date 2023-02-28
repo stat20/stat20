@@ -1,7 +1,7 @@
 ---
 title: "Random Variables"
 subtitle: "Discrete random variables, probability mass functions, cumulative distribution functions"
-date:  "3/2/2023"
+date:  "3/1/2023"
 image: images/roulette-us.jpg
 ---
 
@@ -91,10 +91,11 @@ The probability mass function (pmf) of a discrete random variable $X$
 : The **pmf** of a discrete random variable $X$ is defined to be the function $f(x) = P(X = x)$.
 
 We can write down the definition of the function $f(x)$ and it gives the same information as in the table:
-$$ f(x) = \begin{cases}
-  \displaystyle \frac{1}{8}, \; x = 0, 3 \\
-  \displaystyle \frac{3}{8}, \; x = 1, 2 
-  \end{cases} $$
+ $$f(x) = \begin{cases}
+          \frac{1}{8}, \; x = 0, 3 \\
+          \frac{3}{8}, \; x = 1, 2 
+  \end{cases} 
+$$  
 
 We see here that $f(x) > 0$ for only $4$ real numbers, and is $0$ otherwise. We can think of the total probability mass as $1$, and $f(x)$ describes how this mass of $1$ is distributed among the real numbers. It is often easier and more compact to define the probability distribution of $X$ using $f$ rather than the table. 
 
@@ -310,7 +311,7 @@ $F(8) = P(X\le 8) $ is all the probability up to $8$, including any probability 
 
 ## Connections to the box model and simulations in `R`.
 
-#### Example: The discrete uniform random variable
+#### Example: the discrete uniform random variable
 
 Say we have a ten sided die. How can we set up a box model to model for rolling this die once?
 
@@ -318,9 +319,15 @@ Say we have a ten sided die. How can we set up a box model to model for rolling 
 
 A box with ten tickets, marked $\fbox{1}, \fbox{2}, \ldots \fbox{10}$; and draw once from this box. 
 
-We can also simulate the probability distribution, and you can see that it will closely match the actual probability distribution.
+We can also simulate the probability distribution by drawing over and over again, and looking at the empirical distribution. You can see below that it closely matches the actual probability distribution.
+
 ```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+
 die_10 <- seq(from = 1, to = 10, by = 1)
+prob_10 <- rep(0.1, 10)
 
 set.seed(12345)
 
@@ -328,17 +335,73 @@ n_rolls <- 10^5
 
 rolls <- sample(die_10, n_rolls, replace = TRUE)
 
-data.frame(rolls) %>% 
-  ggplot(aes(x=rolls)) + 
+p1 <- data.frame(die_10) %>% 
+  mutate(prob_10 = prob_10) %>%
+  ggplot(aes(x = factor(die_10), y = prob_10)) +
+  geom_col(fill = "goldenrod2", width = 0.98) + 
+   ylab("probability") + 
+   xlab(" number of spots") + 
+  ggtitle("Outcomes from rolling a ten sided die:\n probability distribution")
+  
+
+p2 <- data.frame(rolls) %>% 
+  ggplot(aes(x=factor(rolls))) + 
   geom_bar(aes(y=..prop..), fill="blue", width = 0.98) + 
   ylab("proportion of draws") + 
-  xlab("ticket drawn")
+  xlab("ticket drawn") + 
+  ggtitle("Outcomes from rolling a ten sided die:\n empirical distribution") 
+ 
 
+p1 + p2
 
 ```
 
+#### Example: the binomial(*n*, *p*) random variable
+
+Let $X \sim Bin(30, 0.5)$. We can simulate the values of this random variable by drawing from the box ![](images/binom-box.jpeg){width="80"} $30$ times, and summing the draws. This will simulate counting the number of successes in $n$ trials. As in the example above, we will plot the probability distribution of $X$ on the left, and the empirical distribution on the right. 
 
 
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+
+box <- c(0,1)
+binom_30 <- seq(from = 0, to = 30, by = 1)
+prob_30 <- round(dbinom(binom_30, size = 30, prob = 0.5), 3)
+
+set.seed(12345)
+
+n_sims <- 10^6
+
+draws <- replicate(n_sims, sum(sample(box, 30, replace = TRUE)))
+
+p1 <- data.frame(binom_30) %>% 
+  mutate(prob_30 = prob_30) %>%
+  ggplot(aes(x = factor(binom_30), y = prob_30)) +
+  geom_col(fill = "goldenrod2", width = 0.98, color = "white") + 
+   ylab("probability") + 
+   xlab(" number of successes") + 
+  ggtitle("Probabilities for the binomial random variable \n n = 30, p = 0.5") +
+  theme_bw()
+  
+
+fac_30 <- factor(binom_30, levels = 0:30)
+
+p2 <- data.frame(draws) %>% 
+  ggplot(aes(x=draws)) + 
+  geom_bar(aes(y=..prop..), fill="blue", width = 0.98, color = "white") + 
+  ylab("proportion of draws") + 
+  xlab("sum of draws") + 
+  ggtitle("Empirical distribution for random numbers generated \n
+          from the (30, 0.5) distribution")  +
+  theme_bw() +
+  scale_x_discrete(limits = factor(seq(0,30)), labels = fac_30, drop = FALSE)
+  
+
+p1 + p2
+
+```
 
 
 [^covid]: <https://www.covidstates.org/reports/state-of-the-covid-19-pandemic>
@@ -347,8 +410,10 @@ data.frame(rolls) %>%
 
 ## Summary
 
-In these notes, we defined random variables, and described discrete and continuous random variables.
-For any random variable, there is an associated probability distribution, and this is described by the probability mass function or pmf $f(x)$. We can also defined a function that, for a random variable $X$, and any real number $x$, describes all the probability that is to the left of $x$. This function is called the cdf of $X$ and is denoted $F(x)$.
+- In these notes, we defined random variables, and described discrete and continuous random variables.
+- For any random variable, there is an associated probability distribution, and this is described by the probability mass function or pmf $f(x)$. We also defined a function that, for a random variable $X$, and any real number $x$, describes all the probability that is to the left of $x$. This function is called the cumulative distribution function (cdf) of $X$ and is denoted $F(x)$.
+- We looked at some special distributions (Bernoulli, binomial, discrete uniform, and hypergeometric)
+- Finally, we looked at connections between random variables and box models, and saw how to simulate some empirical distributions.
 
 
 
