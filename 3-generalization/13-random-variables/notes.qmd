@@ -1,7 +1,7 @@
 ---
 title: "Random Variables"
 subtitle: "Discrete random variables, probability mass functions, cumulative distribution functions"
-date:  "2/27/2023"
+date:  "3/2/2023"
 image: images/roulette-us.jpg
 ---
 
