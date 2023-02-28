@@ -96,7 +96,7 @@ $$ f(x) = \begin{cases}
   \displaystyle \frac{3}{8}, \; x = 1, 2 
   \end{cases} $$
 
-We see here that $f(x) > 0 $ for only $4$ real numbers, and is $0$ otherwise. We can think of the total probability mass as $1$, and $f(x)$ describes how this mass of $1$ is *distributed* among the real numbers. It is often easier and more compact to define the probability distribution of $X$ using $f$ rather than the table. 
+We see here that $f(x) > 0$ for only $4$ real numbers, and is $0$ otherwise. We can think of the total probability mass as $1$, and $f(x)$ describes how this mass of $1$ is distributed among the real numbers. It is often easier and more compact to define the probability distribution of $X$ using $f$ rather than the table. 
 
 
 ## Special distributions
@@ -109,7 +109,7 @@ This is the simplest discrete distribution: $X$ be a random variable that takes 
 
 
 Parameter of a probability distribution
-: a constant(s) associated with the distribution. If you know the parameters of a probability distribution, then you can compute all the values of $f(x)$.
+: A constant(s) associated with the distribution. If you know the parameters of a probability distribution, then you can compute all the values of $f(x)$.
 
 
 ### Discrete uniform random distribution
