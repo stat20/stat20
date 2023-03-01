@@ -40,7 +40,7 @@ In the following examples,
 
 \vspace{4cm}
 
-(i) The chance that you have to roll a six-sided die 8 times until you get a total of 2 sixes.
+(d) The chance that you have to roll a six-sided die 8 times until you get a total of 2 sixes.
 
 \pagebreak
 
