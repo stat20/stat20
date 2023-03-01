@@ -55,7 +55,7 @@ Examples of continuous random variables
 
 #### Example: Making bets on red in Roulette
 
-![](images/roulette-us.jpg){fig-align="center" width="600"}
+![](images/roulette-us.jpg){fig-align="center" width="400"}
 
 The roulette wheels used in Las Vegas have 38 numbered slots, numbered from $1$ to $36$, of which 18 are colored red, and 18 black. There are two green slots numbered with zero and a double zero. As the wheel spins, a ball is sent spinning in the opposite direction. When the wheel slows the ball will land in one of the numbered slots. Players can make various bets on where the ball lands, among them is betting on red or black. If a player bets one dollar on red, and ball lands on red, then they win a dollar, in addition to getting their stake back. If the ball does not land on red, then they loses their dollar to the casino. Suppose a player bets six times on six consecutive spins, betting on red each time. Their *net gain* can be defined as the amount they won minus the amount they lost. Is net gain a random variable? What are its possible values (write down how much the player can win or lose in one spin of the wheel, then two, and so on)? 
 
