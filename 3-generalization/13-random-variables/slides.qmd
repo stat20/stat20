@@ -26,7 +26,7 @@ format:
 - Review quiz 3
 - Concept questions
 - Break
-- Handout: PS 4.1 (computing probabilities)
+- Handout: PS 4.1 (random variables)
 
 
 # Probability and quiz review
