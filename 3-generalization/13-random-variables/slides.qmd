@@ -22,11 +22,15 @@ format:
 
 ## Agenda
 
-- Concept Questions
+- Brief lecture on probability distributions and random variables
+- Review quiz 3
+- Concept questions
 - Break
 - Handout: PS 4.1 (computing probabilities)
-- Break
-- Lab 4, Part 1
+
+
+# Probability and quiz review
+
 
 # Concept Questions
 
@@ -171,26 +175,4 @@ countdown::countdown(5, top = 0)
 ```
 
 # PS 4.1 (paper handout) 
-
-```{r}
-countdown::countdown(30,  top = 0)
-```
-
-
-# Break 
-
-```{r}
-countdown::countdown(5, top = 0)
-```
-
-
-# Lab 4
-
-## Part 1 (paper handout)
-
-```{r}
-countdown::countdown(40, top = 0)
-```
-
-
 
