@@ -27,7 +27,7 @@ What is the unit of observation in the `iran` data frame?
 
 #### Question 2
 
-What is the empirical distribution of the vote counts (by city) for Ahmadinejad? Answer with a plot, numerical summaries of center and spread, and a written interpretation.
+What is the empirical distribution of the vote counts for Ahmadinejad? Answer with a plot, numerical summaries of center and spread, and a written interpretation.
 
 #### Question 3
 
