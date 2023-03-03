@@ -543,6 +543,7 @@ We considered the probability distributions of sums and averages.
 
 Finally, we introduced continuous distributions. Next time we will introduce the most celebrated continuous distribution, the normal distribution. 
 
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
 
 
 

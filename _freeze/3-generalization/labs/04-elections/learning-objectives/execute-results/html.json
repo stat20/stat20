@@ -1,0 +1,14 @@
+{
+  "hash": "13379deb6bc3fe88800cfe33e1281462",
+  "result": {
+    "markdown": "1. Write down a probability model for vote counts.\n\n2. Review\n  - Unit of observation\n  - \n  \n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(rvest)\n# Reading in the table from Wikipedia\ntab <- read_html(\"https://en.wikipedia.org/wiki/List_of_tallest_buildings\") %>% \n  html_node(\".wikitable\") %>%\n  html_table(fill = TRUE)\n```\n:::\n\n\n\n\nReferences:\n\nOriginal iran analysis:\n\nhttps://www.researchgate.net/publication/45856921_A_first-digit_anomaly_in_the_2009_Iranian_presidential_election\n\nhttps://arxiv.org/pdf/0906.2789.pdf\n\nFollow up by walter mebane:\n\nhttp://websites.umich.edu/~wmebane/note18jun2009.pdf\n\nGelman's take:\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
