@@ -29,20 +29,6 @@ What is the unit of observation in the `iran` data frame?
 
 What is the empirical distribution of the vote counts (by city) for Ahmadinejad? Answer with a plot, numerical summaries of center and spread, and a written interpretation.
 
-```{r}
-library(tidyverse)
-library(stat20data)
-
-iran %>%
-  ggplot(aes(x = ahmadinejad)) +
-  geom_histogram()
-
-iran %>%
-  summarize(med_count = median(ahmadinejad),
-            iqr_count = IQR(ahmadinejad))
-```
-
-
 #### Question 3
 
 One model for the probability distribution of first digits is the discrete uniform distribution. Let $X$ be the first digit of the vote count for Ahmadinejad in a randomly selected city.
@@ -52,45 +38,19 @@ $$X \sim Uniform(1, 9)$$
 We've started creating the distribution table for $X$ as a data frame by creating a column containing the possible values $x$. Complete the table by mutating and saving a column called `prob` with the corresponding probabilities. Use that table to visualize the distribution and color the bars with gold to make clear this is a probability distribution, not an empirical distribution.
 
 ```{r}
+#| echo: true
+#| eval: false
 fd_unif <- data.frame(first_digit = seq(1, 9))
 ```
-
-```{r}
-fd_unif <- fd_unif %>%
-  mutate(prob = 1/9)
-
-fd_unif %>%
-  ggplot(aes(x = first_digit,
-             y = prob)) +
-  geom_col(fill = "gold")
-```
-
 
 #### Question 4
 
 What is the expected value of $X \sim Unif(1, 9)$? Answer this question by mutating a new column in `fd_unif` and taking its sum, as in the notes.
 
-```{r}
-expected_first_digit <- fd_unif %>%
-  mutate(product = first_digit * prob) %>%
-  summarize(EX = sum(product)) %>%
-  pull(EX)
-
-expected_first_digit
-```
 
 #### Question 5
 
 What is the variance of $X \sim Unif(1, 9)$? Answer this question by again mutating a new column in `fd_unif` and taking its sum, as in the notes.
-
-```{r}
-var_first_digit <- fd_unif %>%
-  mutate(product = (first_digit - expected_first_digit)^2 * prob) %>%
-  summarize(VX = sum(product)) %>%
-  pull(VX)
-
-var_first_digit
-```
 
 #### Question 6
 
@@ -105,38 +65,15 @@ Repeat question 2 but using Benford's Law and the dataframe `fd_benford`. As a c
 Will this distribution have a expected value that is higher, lower, or the same as the Uniform distribution?
 
 ```{r}
+#| echo: true
+#| eval: false
 fd_benford <- data.frame(first_digit = seq(1, 9))
 ```
 
-```{r}
-fd_benford <- fd_benford %>%
-  mutate(prob = log(1 + 1/first_digit, base = 10))
-
-fd_benford %>%
-  ggplot(aes(x = first_digit,
-             y = prob)) +
-  geom_col(fill = "gold")
-```
 
 #### Question 7
 
 Using the methods from Questions 4 and 5, calculate the expected value and the variance of Benford's Law.
-
-```{r}
-expected_first_digit <- fd_benford %>%
-  mutate(product = first_digit * prob) %>%
-  summarize(EX = sum(product)) %>%
-  pull(EX)
-
-var_first_digit <- fd_benford %>%
-  mutate(product = (first_digit - expected_first_digit)^2 * prob) %>%
-  summarize(VX = sum(product)) %>%
-  pull(VX)
-
-expected_first_digit
-var_first_digit
-```
-
 
 #### Question 8
 
@@ -147,19 +84,13 @@ To answer this, use `fd_benford` as your box with every row a ticket. You can si
 Create a plot of the resulting distribution of first digits.
 
 ```{r}
-# fd_benford %>%
-#   slice_sample(n = ___, 
-#                replace = ___, 
-#                weight_by = ___)
-```
-
-```{r}
+#| echo: true
+#| eval: false
 fd_benford %>%
-  slice_sample(n = nrow(iran),
-               replace = TRUE,
-               weight_by = prob)
+  slice_sample(n = ___,
+               replace = ___,
+               weight_by = ___)
 ```
-
 
 
 #### Question 8
@@ -169,18 +100,13 @@ What do the first digit empirical distributions look like for the four candidate
 Inside the `stat20data` package there is a function called `get_first()` that pulls off the first digit of every element in a vector. Piece all four plots together into one single plot using the `patchwork` library (see <https://www.stat20.org/2-describing-data/05-summarizing-numerical-data/notes.html#constructing-graphical-summaries> for an example of its use).
 
 ```{r}
+#| eval: false
+#| echo: true
 penguins %>%
   mutate(first_digit = get_first(bill_length_mm)) %>%
   select(bill_length_mm, first_digit)
 ```
 
-```{r}
-# repeat this four times, one for each candidate
-iran %>%
-  mutate(first_digit = get_first(ahmadinejad)) %>%
-  ggplot(aes(x = first_digit)) +
-  geom_bar()
-```
 
 #### Question 9
 
