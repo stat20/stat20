@@ -27,7 +27,7 @@ Given the cdf of the random variable $X$ below, compute $E(X)$ and $Var(X)$.
 
 A discrete random variable $X$ takes values from $-5$ to $5$ and has expectation $0$ ($E(X) = 0$). You have two choices: 
 (i) Consider $S_{100}$, the sum of $100$ random variables $X_1, X_2, \ldots, X_{100}$ which are independent and have the same distribution as $X$. You will win a prize if $-15 \le S_{100} \le 15$. 
-(ii) Consider $S_{200}$, the sum of $200$ random variables $X_1, X_2, \ldots, X_{200}$ which are independent and have the same distribution as $X$. You will win a prize if $-30 \le S_{100} \le 30$.
+(ii) Consider $S_{200}$, the sum of $200$ random variables $X_1, X_2, \ldots, X_{200}$ which are independent and have the same distribution as $X$. You will win a prize if $-30 \le S_{200} \le 30$.
 
 Does option (i) give a better chance of winning a prize or option (ii)? Or are they the same? Is it even possible to answer this question without knowing $SD(X)$?
 
@@ -50,7 +50,8 @@ x+1, \: -1 \le x \le 0\\
 0, \: \text{ for all other }x
 \end{cases}
 $$
-(a) Does $f$ satisfy the criteria to be a probability density function? (It should be non-negative and integrate to 1, that is, the total area under the curve is 1.)
+
+(a) Does $f$ satisfy the criteria to be a probability density function? (It should be non-negative and integrate to 1, that is, the total area under the curve is 1.)    
 (b) What is your guess for $E(X)$, without doing any integration or summation?
 
 
@@ -60,8 +61,6 @@ $$
 
 A box of 100 tickets contains 45 red tickets, 50 blue tickets,
   and 5 yellow tickets. Twenty tickets will be drawn from this box at
-  random, \textit{without} replacement. 
+  random, \textit{without} replacement. What is the expected number of red tickets in the sample?
 
-(a) What is the expected number of red tickets in the sample?
-(b) What is the variance of the number of red tickets in the sample?
 
