@@ -60,7 +60,7 @@ $$X ~ Benford()$$
 
 Benford's Law is a distribution without any parameters: it always takes values on the integers from 1 to 9 and the probability of each is $\log_{10} \left(1 + 1/x\right)$ where $x$ is the integer.
 
-Repeat question 2 but using Benford's Law and the dataframe `fd_benford`. As a check that your table represents a valid probability distribution, verify that the sum of `prob` is 1. (Hint: read the documentation to `log()` carefully.)
+Repeat question 3 but using Benford's Law and the dataframe `fd_benford`. As a check that your table represents a valid probability distribution, verify that the sum of `prob` is 1. (Hint: read the documentation to `log()` carefully.)
 
 Will this distribution have a expected value that is higher, lower, or the same as the Uniform distribution?
 
