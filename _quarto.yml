@@ -23,7 +23,7 @@ execute:
 
 # Website Configuration and Layout
 website:
-  title: "Stat 20 Draft"
+  title: "Stat 20 Staff Guide"
   description: "Introduction to Probability and Statistics at UC Berkeley"
   search:
     location: navbar
@@ -33,12 +33,12 @@ website:
   favicon: assets/favicon.ico
   image: assets/stat20-hex.png
   open-graph:
-    site-name: "Stat 20"
+    site-name: "Stat 20 Staff Guide"
     image: assets/stat20-hex.png
   twitter-card: true
   page-navigation: true
   navbar:
-    title: "Draft"
+    title: "Staff Guide"
     logo: assets/stat20-hex-small.png
     background: warning
     foreground: "gray-800"
@@ -82,5 +82,5 @@ website:
       - text: License
         href: license.qmd
     left:
-      - text: "This site is powered by Netlify."
+      - text: "This site is hosted by Netlify."
         href: https://www.netlify.com/

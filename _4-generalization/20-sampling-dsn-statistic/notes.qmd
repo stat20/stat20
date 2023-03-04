@@ -67,9 +67,9 @@ set.seed(123412)
 data("class_survey")
 
 hist_box <- class_survey %>%
-      select(Coding_Exp_Scale) %>%
+      select(coding_exp_scale) %>%
       drop_na() %>%
-      ggplot(aes(x=Coding_Exp_Scale)) + 
+      ggplot(aes(x=coding_exp_scale)) + 
       geom_histogram(aes(y=..density..), breaks=seq(0.5, 10.5, by = 1), 
                  color="black", fill="gray") + 
       xlab("Coding Experience") +
@@ -85,10 +85,10 @@ hist_box <- class_survey %>%
 
 
 sample_means <- class_survey %>%
-  select(Coding_Exp_Scale) %>%
+  select(coding_exp_scale) %>%
   drop_na() %>% 
   rep_sample_n(size = 50, reps = 5000) %>%
-  summarise(mean_coding_exp = mean(Coding_Exp_Scale))
+  summarise(mean_coding_exp = mean(coding_exp_scale))
 
 hist_means <- ggplot(sample_means, aes(x=mean_coding_exp)) + 
     geom_histogram(aes(y=..density..), bins = 15,
@@ -99,9 +99,9 @@ hist_means <- ggplot(sample_means, aes(x=mean_coding_exp)) +
     ggtitle("Sampling distribution \nof the Sample Average")
 
 hist_emp <- class_survey %>%
-  select(Coding_Exp_Scale) %>%
+  select(coding_exp_scale) %>%
   slice_sample(n=50) %>%
-  ggplot(aes(x=Coding_Exp_Scale)) + 
+  ggplot(aes(x=coding_exp_scale)) + 
   geom_histogram(aes(y=..density..), bins = 10,
                   fill = "gray", color = "black") +
   xlab("Coding Experience") +
@@ -116,16 +116,16 @@ Notice that the empirical histogram looks like the population distribution, with
 What do you think is the relationship between the population mean and center of the sampling distribution? Note that the sampling distribution is centered at the average of the values.
 <details>
 <summary>Check your answer</summary>
-The center of this sampling distribution is at `r round(hist_means$data %>% summarise(mean(mean_coding_exp)),2)`. Compare this to the population average which is `r round(hist_box$data %>% summarise(mean(Coding_Exp_Scale)),2)`! 
+The center of this sampling distribution is at `r round(hist_means$data %>% summarise(mean(mean_coding_exp)),2)`. Compare this to the population average which is `r round(hist_box$data %>% summarise(mean(coding_exp_scale)),2)`! 
 
 </details>
 What about the standard deviation of the sample average compared to the standard deviation of the tickets in the box?
 
 <details>
 <summary>Check your answer</summary>
-The population standard deviation is `r round(hist_box$data %>% summarise(sd(Coding_Exp_Scale)),2)`, while the sd of the means is `r round(hist_means$data %>% summarise((sd(mean_coding_exp))),2)`. This is quite different, was it what you expected?
+The population standard deviation is `r round(hist_box$data %>% summarise(sd(coding_exp_scale)),2)`, while the sd of the means is `r round(hist_means$data %>% summarise((sd(mean_coding_exp))),2)`. This is quite different, was it what you expected?
 
-Lets divide the sd of the box by the square root of the sample size. This gives us `r round(hist_box$data %>% summarise(sd(Coding_Exp_Scale))/sqrt(50),2)`
+Lets divide the sd of the box by the square root of the sample size. This gives us `r round(hist_box$data %>% summarise(sd(coding_exp_scale))/sqrt(50),2)`
 </details>
 
 We see that:
