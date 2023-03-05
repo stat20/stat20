@@ -93,7 +93,7 @@ fd_benford %>%
 ```
 
 
-#### Question 8
+#### Question 9
 
 What do the first digit empirical distributions look like for the four candidates in the Iranian presidential election?
 
@@ -108,7 +108,7 @@ penguins %>%
 ```
 
 
-#### Question 9
+#### Question 10
 
 How do the observed first digit distributions compare to those simulated from Benford's Law? Which candidate has a first-digit distribution most similar to and most different from the simulated ones?
 
@@ -120,14 +120,14 @@ The [OpenElections](http://www.openelections.net) project obtains and standardiz
 - To read the csv file into R, you will need to point R to the raw version of the data set. To view the raw csv you will either click the button that says "Raw" at the top right of the data frame on GitHub or click the link that says "View Raw Data". When you are looking at the raw csv file, the url in your browser is the one you can use to access the file from within R.
 - There may be strange extra rows in your data, such as a row tallying total overall votes. Visually inspect the data to see if anything jumps out and be sure to take this into consideration when doing your analysis.
 
-#### Question 10
+#### Question 11
 
 What state did you choose to study? What is the unit of observation in your state's data frame? What are the dimensions?
 
-#### Question 11
+#### Question 12
 
 Use this data to create a plot of that state's first digit distribution by precinct. Use the number of votes cast for Joseph Biden in each precinct.
 
-#### Question 12
+#### Question 13
 
 Does the election you chose appear to fit Benford's distribution better or worse than the Iran election?
