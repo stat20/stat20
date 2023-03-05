@@ -10,6 +10,34 @@ date:  "3/6/2023"
 
 [U]{.dropcap}nder construction.
 
+
+Topics
+Sample vs Population, Statistics vs Parameters
+Sources of Bias
+Selection Bias
+Non-response bias
+Measurement Bias
+Sources of Variability: if I were to repeat the random experiment again, why would things change?
+Sampling Variability
+Measurement Variability
+Random assignment in experiments
+If you know the Population; triptych
+Sampling without rep
+Sampling with rep
+Types of Questions students should be able to answer
+What is the population they wish to generalize to?
+What is the parameter of interest?
+Identify potential sources of bias and their impact on the estimate.
+In class
+PS analog: Identifying sources of variability and bias + scope diagrams?
+PS digital: recreate two sampling models:
+One with bias
+One with two different sample sizes
+Computing ideas
+Sampling rows with / without replacement according to weights
+
+
+
 :::{.content-hidden unless-profile="staff-guide"}
 ## Learning Objectives
 
