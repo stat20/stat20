@@ -1,0 +1,25 @@
+# If running locally, first source assets/scripts/ignore_future_docs.R
+project:
+  type: website
+  output-dir: _stat20-staff-guide
+    
+# Website Configuration and Layout
+website:
+  title: "Stat 20 Staff Guide"
+  page-navigation: true
+  repo-actions: [edit, issue]
+  open-graph:
+    site-name: "Stat 20 Staff Guide"
+  navbar:
+    title: false
+    background: warning
+    left:
+      - text: Guide
+        href: staff-guide/index.qmd
+  sidebar:
+    - title: "Guide"
+      style: "floating"
+      align: left
+      contents:
+        - staff-guide/index.qmd
+        - staff-guide/roles-and-expectations.qmd

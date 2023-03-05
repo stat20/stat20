@@ -18,6 +18,7 @@
 
 # Quarto specific
 /.quarto/
-_output
 _site
-site_libs/
+_stat20-live
+_stat20-full
+_stat20-staff-guide

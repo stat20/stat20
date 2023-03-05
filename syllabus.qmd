@@ -14,6 +14,7 @@ abstract: "[Welcome to the Age of Data]{style=\"font-family: Cinzel, serif; font
 abstract-title: ""
 theme: [sandstone, assets/styles.scss]
 toc-depth: 4
+sidebar: false
 ---
 
 ### Course Culture
