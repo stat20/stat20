@@ -1,31 +1,13 @@
 ---
 toc: false
 page-layout: custom
-# listing:
-#   - id: recent-notes
-#     type: grid
-#     grid-columns: 1
-#     contents: "*/*/notes.qmd"
-#     page-size: 1
-#     fields: [title]
-#   - id: recent-labs
-#     type: grid
-#     grid-columns: 1
-#     contents: labs
-#     page-size: 1
-#     fields: [title]
-#   - id: recent-ps
-#     type: grid
-#     grid-columns: 1
-#     contents: problem-sets
-#     page-size: 1
-#     fields: [title]
-  
 ---
 
 :::::{.content-block}
 ::::{.grid}
 :::{#banner .g-col-12 .g-col-md-6 style="margin: 3em 1em 0em 1em"}
+
+:::{.content-visible unless-profile="staff-guide"}
 
 :::{.banner-text}
 Introduction to Probability and Statistics
@@ -34,6 +16,20 @@ Introduction to Probability and Statistics
 [Stat 20 UC Berkeley]{.smallcaps}
 
 For information about the course, please [see the syllabus](syllabus.qmd).
+:::
+
+:::{.content-hidden unless-profile="staff-guide"}
+
+:::{.banner-text}
+Staff Guide
+:::
+
+A home base for course staff with:
+
+- Draft versions of notes and assignments
+- A guide with helpful documentation for serving as course staff
+:::
+
 
 <!-- This page features a data visualization that is building itself piece by piece each day until the Plenary Lecture on Tuesday 9/27 at 7 pm. When you have a good guess of what the visualization is depicting, enter your guess [here](https://docs.google.com/forms/d/e/1FAIpQLSck6zeezgVXRjO1WpDaS0rQ5kOHKyfhiK5wiRNbEjqeSWnhHg/viewform?usp=sf_link). Each person may submit only one guess and the first to guess correctly wins the puzzle. The winner will be announced at the start of the Plenary Lecture. -->
 
