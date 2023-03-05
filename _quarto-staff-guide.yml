@@ -18,8 +18,34 @@ website:
         href: staff-guide/index.qmd
   sidebar:
     - title: "Guide"
-      style: "floating"
+      style: floating
       align: left
       contents:
         - staff-guide/index.qmd
         - staff-guide/roles-and-expectations.qmd
+    - title: "Notes"
+      style: floating
+      align: left
+      collapse-level: 1
+      contents:
+        - section: "Questions and Data"
+          contents:
+            - 1-questions-and-data/01-understanding-the-world/notes.qmd
+            - 1-questions-and-data/02-taxonomy-of-data/notes.qmd
+            - 1-questions-and-data/03-a-tool-for-computing-with-data/notes.qmd
+        - section: "Describing Data"
+          contents:
+            - 2-describing-data/04-summarizing-categorical-data/notes.qmd
+            - 2-describing-data/05-summarizing-numerical-data/notes.qmd
+            - 2-describing-data/06-a-grammar-of-graphics/notes.qmd
+            - 2-describing-data/07-conditioning/notes.qmd
+            - 2-describing-data/08-communicating-with-graphics/notes.qmd
+            - 2-describing-data/09-summarizing-associations/notes.qmd
+            - 2-describing-data/10-multiple-linear-regression/notes.qmd
+        - section: "Generalization"
+          contents:
+            - 3-generalization/11-chance-intro/notes.qmd
+            - 3-generalization/12-cond-prob-indep/notes.qmd
+            - 3-generalization/13-random-variables/notes.qmd
+            - 3-generalization/14-ev-se/notes.qmd
+            - 3-generalization/15-sampling-distributions/notes.qmd
