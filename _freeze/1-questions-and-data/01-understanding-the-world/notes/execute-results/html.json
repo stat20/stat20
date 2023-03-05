@@ -1,7 +1,7 @@
 {
-  "hash": "50e3d27114332441aa7282443bf852d1",
+  "hash": "36a5b6f612973ae8d71eb707e27f5804",
   "result": {
-    "markdown": "---\ntitle: \"Understanding the World through Data\"\nimage: images/claims.png\ndate: 01/18/23\ninclude-after-body: learning-objectives.qmd\n---\n\n\nWelcome to Stat 20!\n\nThere is no reading in advance of the first day of class. To view the materials used during the class session, see the links below.\n\n\n## Materials from class\n\n#### Slides\n\n- [Andrew](slides.qmd)\n- [Silas](slides.qmd)\n- [Shobhana](slides.qmd)\n- [Jeremy](slides.qmd)\n\n#### Worksheet\n\n- [Worksheet](worksheet.qmd)\n\n",
+    "markdown": "---\ntitle: \"Understanding the World through Data\"\nimage: images/claims.png\ndate: 01/18/23\n---\n\n\nWelcome to Stat 20!\n\nThere is no reading in advance of the first day of class. To view the materials used during the class session, see the links below.\n\n\n## Materials from class\n\n#### Slides\n\n- [Andrew](slides.qmd)\n- [Silas](slides.qmd)\n- [Shobhana](slides.qmd)\n- [Jeremy](slides.qmd)\n\n#### Worksheet\n\n- [Worksheet](worksheet.qmd)\n\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
