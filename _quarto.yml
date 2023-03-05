@@ -1,29 +1,10 @@
 project:
   type: website
-
-# Format-specific Metadata
-format:
-  html:
-    theme:
-      - sandstone
-      - assets/styles.scss
-    toc: true
-    published-title: "class date"
-    reference-location: document
-    code-fold: true
-    code-link: true
-    code-summary: ""
-
-# General Metadata
-execute:
-  freeze: auto
-  message: false
-  warning: false
-  fig-align: center
+  output-dir: _stat20-full
 
 # Website Configuration and Layout
 website:
-  title: "Stat 20 Staff Guide"
+  title: "Stat 20"
   description: "Introduction to Probability and Statistics at UC Berkeley"
   search:
     location: navbar
@@ -33,14 +14,15 @@ website:
   favicon: assets/favicon.ico
   image: assets/stat20-hex.png
   open-graph:
-    site-name: "Stat 20 Staff Guide"
+    site-name: "Stat 20"
     image: assets/stat20-hex.png
   twitter-card: true
   page-navigation: true
   navbar:
-    title: "Staff Guide"
+    title: " "
     logo: assets/stat20-hex-small.png
-    background: warning
+    logo-alt: "Stat 20 logo"
+    background: white
     foreground: "gray-800"
     collapse-below: sm
     left:
@@ -84,3 +66,24 @@ website:
     left:
       - text: "This site is hosted by Netlify."
         href: https://www.netlify.com/
+
+
+# Format-specific Metadata
+format:
+  html:
+    theme:
+      - sandstone
+      - assets/styles.scss
+    toc: true
+    published-title: "class date"
+    reference-location: document
+    code-fold: true
+    code-link: true
+    code-summary: ""
+
+# General Metadata
+execute:
+  freeze: auto
+  message: false
+  warning: false
+  fig-align: center
