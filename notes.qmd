@@ -11,6 +11,17 @@ listing:
     - image
     - date
   categories: false
+sidebar: false
 ---
 
 \
+
+:::{.content-hidden unless-profile="staff-guide"}
+
+:::{.callout-caution}
+## Under Construction
+
+Below you'll find all of the course material that is planned for this semester. Material for future dates is in draft mode and may be revised. Material from the present or past is identical to how it appears on `stat20.org`. 
+:::
+
+:::
