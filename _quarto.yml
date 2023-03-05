@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: _stat20-full
+  output-dir: _site/stat20-full
 
 # Website Configuration and Layout
 website:
