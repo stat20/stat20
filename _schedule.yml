@@ -19,6 +19,16 @@ notes:
     date: 02/15/23
   - filedir: "10-multiple-linear-regression"
     date: 02/17/23
+  - filedir: "11-chance-intro"
+    date: 02/22/23
+  - filedir: "12-cond-prob-indep"
+    date: 02/24/23
+  - filedir: "13-random-variables"
+    date: 03/01/23
+  - filedir: "14-ev-se"
+    date: 03/03/23
+  - filedir: "15-sampling-distribution"
+    date: 03/08/23
 labs:
   - filedir: "01-arbuthnot"
     date: 01/25/23
