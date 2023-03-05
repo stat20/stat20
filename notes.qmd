@@ -1,6 +1,7 @@
 ---
 title: Lecture Notes
 listing:
+  id: notes-listing
   contents:
       - "*/*/notes.qmd"
   sort: "date desc"
@@ -11,7 +12,6 @@ listing:
     - image
     - date
   categories: false
-sidebar: false
 ---
 
 \
@@ -24,4 +24,7 @@ sidebar: false
 Below you'll find all of the course material that is planned for this semester. Material for future dates is in draft mode and may be revised. Material from the present or past is identical to how it appears on `stat20.org`. 
 :::
 
+:::
+
+:::{.content-hidden #notes-listing when-profile="staff-guide"}
 :::
