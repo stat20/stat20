@@ -1,0 +1,34 @@
+---
+title: "Sampling Distributions"
+subtitle: "The bias and variance of moving from sample to population."
+date:  "3/6/2023"
+---
+
+{{< include ../../assets/includes/_notes-header.qmd >}}
+
+\
+
+[U]{.dropcap}nder construction.
+
+:::{.content-hidden unless-profile="staff-guide"}
+## Learning Objectives
+
+#### Concept Acquisition
+
+#### Tool Acquisition
+
+#### Concept Application
+
+#### Key Terms
+
+- sample
+- population
+- population parameter
+- selection bias
+- non-response bias
+- measurement bias
+- sampling variability
+- measurement variability
+- random assignment
+
+:::

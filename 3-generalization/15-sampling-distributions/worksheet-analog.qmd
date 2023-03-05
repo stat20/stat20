@@ -1,0 +1,19 @@
+---
+format:
+  pdf:
+    include-in-header:
+      - preamble.tex
+      - fancyhdr.tex
+    fontsize: 10pt
+    margin-top: .8in
+    margin-bottom: .5in
+---
+
+\thispagestyle{empty}
+
+\begin{center}
+\textsc{Stat 20: PS 4.3: Sampling Distribution} \\
+\noindent\rule{12cm}{0.4pt}
+\end{center}
+
+#### Question 1

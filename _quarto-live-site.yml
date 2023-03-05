@@ -1,7 +1,7 @@
 # If running locally, first source assets/scripts/ignore_future_docs.R
 project:
   type: website
-  output-dir: _stat20-live
+  output-dir: _site/stat20-live
 
 
 # Placeholder for future book chapter list

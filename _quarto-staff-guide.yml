@@ -1,7 +1,7 @@
 # If running locally, first source assets/scripts/ignore_future_docs.R
 project:
   type: website
-  output-dir: _stat20-staff-guide
+  output-dir: _site/stat20-staff-guide
     
 # Website Configuration and Layout
 website:
