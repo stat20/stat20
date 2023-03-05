@@ -6,6 +6,7 @@ listing:
   type: default
   categories: false
   fields: [title]
+sidebar: false
 ---
 
 Problem sets are compilations of the practice done in class. Each problem set is in multiple parts that correspond to different class activities; each part is submitted individually to Gradescope.

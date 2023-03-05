@@ -10,6 +10,7 @@ listing:
     - subtitle
     - image
   categories: false
+sidebar: false
 ---
 
 Lab assignments are an opportunity to put the concepts from the notes into practice to answer questions about a real data set. Your lab report should be a pdf file generated from a fully reproducible qmd file. For a helpful R reference, see [base R](https://raw.githubusercontent.com/rstudio/cheatsheets/main/base-r.pdf), [data visualization (ggplot2)](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf), and [data wrangling (dplyr)](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf). 
