@@ -24,6 +24,6 @@ jobs:
         shell: bash
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          QUARTO_PROFILE: partial-website
+          QUARTO_PROFILE: live-site
         run: |
           quarto publish netlify --id 1188ba29-f00d-4f5a-ac6f-75c715522c69
