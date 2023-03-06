@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '48 1 * * SUN'
+    - cron: '51 1 * * *'
 
 name: "Publish Live Website to stat20.org"
 jobs:
