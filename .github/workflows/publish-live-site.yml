@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '8 4 * * MON,WED'
+    - cron: '8 4 * * TUE,THU'
 
 name: "Publish Live Website to stat20.org"
 jobs:

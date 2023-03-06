@@ -49,3 +49,4 @@ website:
             - 3-generalization/13-random-variables/notes.qmd
             - 3-generalization/14-ev-se/notes.qmd
             - 3-generalization/15-sampling-distributions/notes.qmd
+            - 3-generalization/16-confidence-intervals/notes.qmd

@@ -1,0 +1,14 @@
+{
+  "hash": "9d5ad46a69634f0b90fd072cbcd826ea",
+  "result": {
+    "markdown": "---\ntitle: \"Confidence Intervals\"\nsubtitle: \"\"\ndate:  \"3/8/2023\"\n---\n<!-- The bit before that is commented out adds publish date to document metadata and button links at the top of the doc. This workflow can be revisited but currently doesn't work because listings aren't updated with these dates, only the renderd docs. -->\n\n::: {.cell}\n\n:::\n\n\n\n[[Discuss]{.btn .btn-primary}](https://edstem.org/us/courses/31657) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/477232) [[PDF]{.btn .btn-primary}](notes.pdf)\n\n\n\n\\\n\n[U]{.dropcap}nder construction.\n\n\n\n:::{.content-hidden unless-profile=\"staff-guide\"}\n## Learning Objectives\n\n#### Concept Acquisition\n\n#### Tool Acquisition\n\n#### Concept Application\n\n#### Key Terms\n\n:::",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
