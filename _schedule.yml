@@ -36,6 +36,10 @@ labs:
     date: 02/03/23
   - filedir: "03-flights"
     date: 02/08/23
+  - filedir: "04-elections"
+    date: 02/08/23
+  - filedir: "05-peoples-park"
+    date: 03/08/23
 release-schedule:
 # how many seconds to add to 00:00 of each file's release `date`
   notes-offset: -100800
