@@ -2,11 +2,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '8 4 * * TUE,THU'
-on:
-  workflow_dispatch:
-  push:
-    branches: main
-
 name: "Publish Live Website to stat20.org"
 jobs:
   build-deploy:
