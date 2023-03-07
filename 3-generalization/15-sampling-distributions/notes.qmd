@@ -8,33 +8,33 @@ date:  "3/6/2023"
 
 \
 
-<!-- :::{.content-hidden unless-profile="staff-guide"} -->
-<!-- ## Learning Objectives -->
+:::{.content-hidden unless-profile="staff-guide"}
+## Learning Objectives
 
-<!-- #### Concept Acquisition -->
+#### Concept Acquisition
 
-<!-- #### Tool Acquisition -->
+#### Tool Acquisition
 
-<!-- - `slice_sample()` -->
-<!-- - `rep_slice_sample()` -->
+- `slice_sample()`
+- `rep_slice_sample()`
 
-<!-- #### Concept Application -->
+#### Concept Application
 
-<!-- #### Key Terms -->
+#### Key Terms
 
-<!-- - sample -->
-<!-- - population -->
-<!-- - population parameter -->
-<!-- - selection bias -->
-<!-- - non-response bias -->
-<!-- - measurement bias -->
-<!-- - sampling variability -->
-<!-- - measurement variability -->
-<!-- - random assignment -->
+- sample
+- population
+- population parameter
+- selection bias
+- non-response bias
+- measurement bias
+- sampling variability
+- measurement variability
+- random assignment
 
-<!-- --------------------------- -->
+---------------------------
 
-<!-- ::: -->
+:::
 
 [G]{.dropcap}eneralization is the process of using a subset of information to draw conclusions about some broader set or phenomenon. It is powerful - it allows us to draw conclusions about things we have not observed - but it is tricky to do well. In these notes, you will learn the sources of error that can creep in when making a generalization.
 
@@ -406,27 +406,27 @@ Observe:
 - The data frame produced by this function has a new column that has been appended to the left side: `replicate`. This column keeps track of which replicate the row belongs to. The first three rows constitute the first sample of size 3. The second three rows constitute the second sample of size 3.
 - The dimensions of the output data frame are 6 rows by 9 columns. Compare that to the dimensions of the original penguins data frame: 366 by 8. This function added one new column and contains `n` $\times$ `reps` rows.
 
-<!-- :::{.content-hidden unless-profile="staff-guide"} -->
+:::{.content-hidden unless-profile="staff-guide"}
 
-<!-- ## Reading Questions -->
+## Reading Questions
 
-<!-- (@) What source of error do you suspect will be most prominent. -->
+(@) What source of error do you suspect will be most prominent.
 
-<!-- (@) What source of error do you suspect will be most prominent. -->
+(@) What source of error do you suspect will be most prominent.
 
-<!-- (@) Def of sampling distribution -->
+(@) Def of sampling distribution
 
-<!-- (@) The `mtcars` data frame contains 11 different variables (including its horsepower, `hp`, and its miles per gallon, `mpg`) recorded on 32 different models of car. Treating this data frame as your population, which expression would you use to draw a random sample of size five without replacement, where each car is equally likely? -->
+(@) The `mtcars` data frame contains 11 different variables (including its horsepower, `hp`, and its miles per gallon, `mpg`) recorded on 32 different models of car. Treating this data frame as your population, which expression would you use to draw a random sample of size five without replacement, where each car is equally likely?
 
-<!-- You're welcome to test this out before answering. `mtcars` is built into R. -->
+You're welcome to test this out before answering. `mtcars` is built into R.
 
-<!-- ( ) `mtcars %>% rep_slice_sample(n = 5, replace = FALSE, reps = 5)` -->
+( ) `mtcars %>% rep_slice_sample(n = 5, replace = FALSE, reps = 5)`
 
-<!-- ( ) `mtcars %>% slice_sample(n = 5, replace = FALSE)` -->
+( ) `mtcars %>% slice_sample(n = 5, replace = FALSE)`
 
-<!-- ( ) `mtcars %>% rep_slice_sample(n = 5, replace = TRUE)` -->
+( ) `mtcars %>% rep_slice_sample(n = 5, replace = TRUE)`
 
-<!-- ( ) `mtcars %>% slice_sample(n = 5, replace = FALSE, weight_by = hp)` -->
+( ) `mtcars %>% slice_sample(n = 5, replace = FALSE, weight_by = hp)`
 
-<!-- ::: -->
+:::
 
