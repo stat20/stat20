@@ -10,6 +10,7 @@ website:
   repo-actions: [edit, issue]
   open-graph:
     site-name: "Stat 20 Staff Guide"
+  reader-mode: true
   navbar:
     title: false
     background: warning
