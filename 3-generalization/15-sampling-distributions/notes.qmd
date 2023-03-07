@@ -423,9 +423,9 @@ Observe:
 
 You're welcome to test this out before answering. `mtcars` is built into R.
 
-( ) `mtcars %>% slice_sample(n = 5, replace = FALSE)`
-
 ( ) `mtcars %>% rep_slice_sample(n = 5, replace = FALSE, reps = 5)`
+
+( ) `mtcars %>% slice_sample(n = 5, replace = FALSE)`
 
 ( ) `mtcars %>% rep_slice_sample(n = 5, replace = TRUE)`
 
