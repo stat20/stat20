@@ -8,34 +8,6 @@ date:  "3/6/2023"
 
 \
 
-:::{.content-hidden unless-profile="staff-guide"}
-## Learning Objectives
-
-#### Concept Acquisition
-
-#### Tool Acquisition
-
-- `slice_sample()`
-- `rep_slice_sample()`
-
-#### Concept Application
-
-#### Key Terms
-
-- sample
-- population
-- population parameter
-- selection bias
-- non-response bias
-- measurement bias
-- sampling variability
-- measurement variability
-- random assignment
-
----------------------------
-
-:::
-
 [G]{.dropcap}eneralization is the process of using a subset of information to draw conclusions about some broader set or phenomenon. It is powerful - it allows us to draw conclusions about things we have not observed - but it is tricky to do well. In these notes, you will learn the sources of error that can creep in when making a generalization.
 
 ![](images/generalization.png){width="200" fig-align="center"}
@@ -407,6 +379,28 @@ Observe:
 - The dimensions of the output data frame are 6 rows by 9 columns. Compare that to the dimensions of the original penguins data frame: 366 by 8. This function added one new column and contains `n` $\times$ `reps` rows.
 
 :::{.content-hidden unless-profile="staff-guide"}
+## Learning Objectives
+
+#### Concept Acquisition
+
+#### Tool Acquisition
+
+- `slice_sample()`
+- `rep_slice_sample()`
+
+#### Concept Application
+
+#### Key Terms
+
+- sample
+- population
+- population parameter
+- selection bias
+- non-response bias
+- measurement bias
+- sampling variability
+- measurement variability
+- random assignment
 
 ## Reading Questions
 
