@@ -155,7 +155,7 @@ pop_eager <- pop_eager %>%
 pop_eager %>%
   ggplot(aes(x = year)) +
   geom_bar(fill = "purple") +
-  labs(title = "Sampling Distribution")
+  labs(title = "Population Distribution")
 ```
 
 
