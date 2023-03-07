@@ -1,5 +1,5 @@
 ---
-title: "Title of notes"
+title: "Hypothesis Tests"
 subtitle: ""
 date:  ""
 ---

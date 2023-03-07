@@ -27,7 +27,7 @@ Staff Guide
 A home base for course staff with:
 
 - Draft versions of notes and assignments
-- A guide with helpful documentation for serving as course staff
+- A guide with helpful documentation for course staff
 :::
 
 

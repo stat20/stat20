@@ -1,0 +1,14 @@
+{
+  "hash": "b8bcf9e466427aa95bfb89c4786dcc8f",
+  "result": {
+    "markdown": "---\ntitle: \"Lab 6: Hypothesis Tests\"\ndate: 03/15/23\ncode-fold: false\n---\n<!-- The bit before that is commented out adds publish date to document metadata and button links at the top of the doc. This workflow can be revisited but currently doesn't work because listings aren't updated with these dates, only the renderd docs. -->\n\n::: {.cell}\n\n:::\n\n---\npublished-title: \"release date\"\n---\n\n[[Discuss]{.btn .btn-primary}](https://edstem.org/us/courses/31657) [[Slides]{.btn .btn-primary}](slides.qmd)\n\n\n\n:::{.content-hidden unless-profile=\"staff-guide\"}\n### Learning Objectives\n\n1. Identify the research questions\n2. Identify the population and parameters of interest\n3. blah blah\n4. next up\n\n\n---------------\n\n:::\n\n\n::: {.cell}\n\n```{.r .cell-code}\nusethis::use_course(\"https://tinyurl.com/lab-5-peoples-park\")\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
