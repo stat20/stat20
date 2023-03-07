@@ -1,6 +1,10 @@
+# on:
+#   schedule:
+#     - cron: '8 4 * * TUE,THU'
 on:
-  schedule:
-    - cron: '8 4 * * TUE,THU'
+  workflow_dispatch:
+  push:
+    branches: main
 
 name: "Publish Live Website to stat20.org"
 jobs:
