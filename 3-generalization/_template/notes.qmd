@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Title of notes"
 subtitle: ""
 date:  ""
 ---
