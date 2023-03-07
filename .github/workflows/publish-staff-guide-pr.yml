@@ -2,7 +2,7 @@ on:
   pull_request:
     branches: main
     
-name: "Publish Test Staff Guide for PR"
+name: "Preview at https://stat20guide-pr.netlify.app/"
 
 jobs:
   build-deploy:
