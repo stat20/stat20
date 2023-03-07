@@ -1,6 +1,7 @@
-# on:
-#   schedule:
-#     - cron: '8 4 * * TUE,THU'
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '8 4 * * TUE,THU'
 on:
   workflow_dispatch:
   push:
