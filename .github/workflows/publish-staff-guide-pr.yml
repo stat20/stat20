@@ -21,3 +21,8 @@ jobs:
           QUARTO_PROFILE: staff-guide
         run: |
           quarto publish netlify --id 3f1e6a82-2bfc-4ac3-94f8-73f78436dd2a
+      - name: Add PR Comment
+        uses: mshick/add-pr-comment@v2
+          with:
+          message: |
+            Preview the changes on <https://stat20guide-pr.netlify.app/>
