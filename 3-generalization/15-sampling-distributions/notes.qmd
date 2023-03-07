@@ -2,9 +2,6 @@
 title: "From Samples to Populations"
 subtitle: "The bias and variance of moving from sample to population."
 date:  "3/6/2023"
-format:
-  html: default
-  pdf: default
 ---
 
 {{< include ../../assets/includes/_notes-header.qmd >}}
