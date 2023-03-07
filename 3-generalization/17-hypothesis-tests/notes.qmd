@@ -1,0 +1,26 @@
+---
+title: "Hypothesis Tests"
+subtitle: ""
+date:  ""
+---
+
+{{< include ../../assets/includes/_notes-header.qmd >}}
+
+\
+
+[U]{.dropcap}nder construction.
+
+
+
+:::{.content-hidden unless-profile="staff-guide"}
+## Learning Objectives
+
+#### Concept Acquisition
+
+#### Tool Acquisition
+
+#### Concept Application
+
+#### Key Terms
+
+:::

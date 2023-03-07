@@ -1,0 +1,27 @@
+---
+title: "Lab 6: Hypothesis Tests"
+date: 03/15/23
+code-fold: false
+---
+
+{{< include ../../../assets/includes/_labs-header.qmd >}}
+
+:::{.content-hidden unless-profile="staff-guide"}
+### Learning Objectives
+
+1. Identify the research questions
+2. Identify the population and parameters of interest
+3. blah blah
+4. next up
+
+
+---------------
+
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+
+usethis::use_course("https://tinyurl.com/lab-5-peoples-park")
+```
