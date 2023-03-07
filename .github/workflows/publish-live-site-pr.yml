@@ -1,0 +1,30 @@
+on:
+  pull_request:
+    branches: main
+    
+name: "Preview at https://stat20-pr.netlify.app/"
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+      - name: Install dependencies
+        run: |
+          install.packages('yaml')
+        shell: sudo Rscript {0}
+      - name: Ignore future posts
+        run: |
+          Rscript assets/scripts/ignore_future_docs.R
+      - name: Render and Publish
+        shell: bash
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          QUARTO_PROFILE: live-site
+        run: |
+          quarto publish netlify --id 4f93185f-50a9-491c-b86f-3f8e51eb3ae9
