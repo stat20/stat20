@@ -218,7 +218,7 @@ Consider the function $g(X) = (X-\mu)^2$, which describes the square of the dist
 
 \
 
-#### Example: Rolls of a weighted die
+#### Example: Rolls of a weighted die 
 
 Recall our first example, where the probability mass function $f$ is given by:
 $$
