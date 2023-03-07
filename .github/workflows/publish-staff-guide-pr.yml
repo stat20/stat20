@@ -1,0 +1,23 @@
+on:
+  pull_request:
+    branches: main
+    
+name: "Publish Test Staff Guide for PR"
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+      - name: Render and Publish
+        shell: bash
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          QUARTO_PROFILE: staff-guide
+        run: |
+          quarto publish netlify --id 3f1e6a82-2bfc-4ac3-94f8-73f78436dd2a
