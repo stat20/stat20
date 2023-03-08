@@ -30,13 +30,13 @@ format:
 ##
 
 ```{r}
-countdown::countdown(3, bottom = 0)
+countdown::countdown(1, bottom = 0)
 ```
 
 
 
 :::{.poll}
-The top two are plots are population distributions; the bottom two are sampling distributions of the sample mean. Match numbers to letters.
+The top plots are population distributions; the bottom two are sampling distributions of the sample mean. Match numbers to letters.
 :::
 
 ```{r}
@@ -90,12 +90,155 @@ good to make them compute the box average
 
 ##
 
-Say we want estimate the size of an average class at Berkeley. Should we ask the administration?  Or should we survey the students, ask them how large their classes are, and take the average of these values? Does it matter?
+Say we want estimate the size of an average class at Berkeley. 
 
 :::{.poll}
-Should we survey students? Does it matter?
+Should we ask the administration?  Or should we survey the students, ask them how large their classes are, and take the average of these values? Does it matter?
 :::
 
 ```{r}
 countdown::countdown(3, bottom = 0)
+```
+
+
+##
+
+#### Scenario 1: Calling on the front row
+
+```{r}
+library(tidyverse)
+pop_eager <- data.frame(year = factor(rep(c(1, 2, 3, 4), 
+                                   times = c(245, 210, 47, 25))),
+                        eagerness = rep(c(10, 6, 3, 1), 
+                                        times = c(245, 210, 47, 25)))
+set.seed(34)
+pop_eager <- pop_eager %>%
+  slice_sample(n = nrow(pop_eager)) 
+
+library(infer)
+samp_1 <- pop_eager %>%
+  slice_sample(n = 18,
+                   replace = FALSE,
+                   weight_by = eagerness) 
+
+many_samps <- samp_1 %>%
+  mutate(replicate = 1)
+
+set.seed(40211)
+
+for (i in 2:500) {
+  many_samps <- pop_eager %>%
+    slice_sample(n = 18,
+                 replace = FALSE,
+                 weight_by = eagerness) %>%
+    mutate(replicate = i ) %>%
+    bind_rows(many_samps)
+}
+
+p1 <- many_samps %>%
+  filter(replicate == 1) %>%
+  ggplot(aes(x = year)) + 
+  geom_bar() +
+  labs(title = "Sample 1")
+
+p2 <- many_samps %>%
+  filter(replicate == 2) %>%
+  ggplot(aes(x = year)) + 
+  geom_bar() +
+  labs(title = "Sample 1")
+
+p3 <- many_samps %>%
+  filter(replicate == 3) %>%
+  ggplot(aes(x = year)) + 
+  geom_bar() +
+  labs(title = "Sample 1")
+
+many_xbars <- many_samps %>%
+  group_by(replicate) %>%
+  summarize(xbar = mean(as.numeric(year)))
+
+p4 <- many_xbars %>%
+  ggplot(aes(x = xbar)) +
+  geom_bar(fill = "purple") +
+  lims(x = c(0, 4)) +
+  labs(title = "Sampling Distribution")
+
+library(patchwork)
+
+p_patched <- (p1 + p2 + p3) / p4
+p_patched
+```
+
+##
+
+```{r}
+#| fig-height: 2
+#| fig-width: 6
+#| fig-align: center
+
+p4
+```
+
+:::poll
+How would the sampling distribution change if instead of calling on the front row, the Prof. put all 527 names on tickets in a box, mixed them up, then drew 18 names without replacement?
+:::
+
+```{r}
+countdown::countdown(1, bottom = 0)
+```
+
+##
+
+#### Scenario 2: Drawing names from a box
+
+```{r}
+pop_equal <- pop_eager %>%
+  mutate(eagerness = 1)
+
+samp_1 <- pop_equal %>%
+  slice_sample(n = 18,
+                   replace = FALSE,
+                   weight_by = eagerness)
+
+many_samps <- samp_1 %>%
+  mutate(replicate = 1)
+
+for (i in 2:500) {
+  many_samps <- pop_equal %>%
+    slice_sample(n = 18,
+                 replace = FALSE,
+                 weight_by = eagerness) %>%
+    mutate(replicate = i ) %>%
+    bind_rows(many_samps)
+}
+
+p1 <- many_samps %>%
+  filter(replicate == 1) %>%
+  ggplot(aes(x = year)) +
+  geom_bar() +
+  labs(title = "Sample 1")
+
+p2 <- many_samps %>%
+  filter(replicate == 2) %>%
+  ggplot(aes(x = year)) +
+  geom_bar() +
+  labs(title = "Sample 1")
+
+p3 <- many_samps %>%
+  filter(replicate == 3) %>%
+  ggplot(aes(x = year)) +
+  geom_bar() +
+  labs(title = "Sample 1")
+
+many_xbars <- many_samps %>%
+  group_by(replicate) %>%
+  summarize(xbar = mean(as.numeric(year)))
+
+p4 <- many_xbars %>%
+  ggplot(aes(x = xbar)) +
+  geom_bar(fill = "purple") +
+  lims(x = c(0, 4)) +
+  labs(title = "Sampling Distribution")
+
+(p1 + p2 + p3) / p4
 ```
