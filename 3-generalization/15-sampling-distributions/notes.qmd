@@ -378,6 +378,8 @@ Observe:
 - The data frame produced by this function has a new column that has been appended to the left side: `replicate`. This column keeps track of which replicate the row belongs to. The first three rows constitute the first sample of size 3. The second three rows constitute the second sample of size 3.
 - The dimensions of the output data frame are 6 rows by 9 columns. Compare that to the dimensions of the original penguins data frame: 366 by 8. This function added one new column and contains `n` $\times$ `reps` rows.
 
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
+
 :::{.content-hidden unless-profile="staff-guide"}
 ## Learning Objectives
 
@@ -421,10 +423,5 @@ You're welcome to test this out before answering. `mtcars` is built into R.
 ( ) `mtcars %>% rep_slice_sample(n = 5, replace = TRUE)`
 
 ( ) `mtcars %>% slice_sample(n = 5, replace = FALSE, weight_by = hp)`
-
-## Materials from class
-
-- [Main Slides](slides.qmd)
-- [Worksheet](worksheet-analog.qmd)
 
 :::

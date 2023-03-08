@@ -53,6 +53,51 @@ format:
 
 6. On a separate sheet of paper, make two sketches: an empirical distribution of the data and what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Add a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be.
 
+<!-- {{< newpage >}} -->
+
+<!-- ## Case Study 2: Cherry Blossom Run	 -->
+
+<!-- The Cherry Blossom Run is an annual 10-mile race that takes place in April in Washington D.C. when the cherry trees are in bloom. Data were scraped from the Run’s Web pages and include official times and other information, such as the age, sex, and address for all registered runners from 1999 to 2012. Originally designed as a preparatory race for professional runners in the New York Marathon, the Cherry Blossom Run has gained popularity and now over 10,000 people participate each year. An ambitious data scientist used these data to compare the times of 30-year-old runners to 50-year-old runners, to study how run times decreased as people age. 	 -->
+
+<!-- 1. Describe the sample. How large is it ($n$) and what is the unit of observation? -->
+
+<!-- \ -->
+
+<!-- 2. Describe the population. How large is it ($N$)? -->
+
+<!-- \ -->
+
+<!-- 3. Identify the population parameter that researchers are interested in estimating and the corresponding statistic that will serve as the estimate. -->
+
+<!-- \ -->
+
+<!-- 4. Identify possible sources of bias and whether they are selection or measurement bias. How do you expect this will effect the estimate of the parameter? -->
+
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+
+
+<!-- 5. Identify possible sources of variation and whether they are sampling or measurement variability. How do you expect this will effect the estimate of the parameter? -->
+
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+
+<!-- 6. On a separate sheet of paper, make two sketches: an empirical distribution of the data and what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Add a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be. -->
+
 {{< newpage >}}
 
 ## Case Study 2: National Youth Tobacco Study
@@ -79,6 +124,9 @@ The National Youth Tobacco Survey (NYTS) is a complex survey carried out by the 
 \
 \
 \
+\
+\
+\
 
 
 5. Identify possible sources of variation and whether they are sampling or measurement variability. How do you expect this will effect the estimate of the parameter?
@@ -89,5 +137,53 @@ The National Youth Tobacco Survey (NYTS) is a complex survey carried out by the 
 \
 \
 \
+\
+\
+\
 
 6. On a separate sheet of paper, make two sketches: an empirical distribution of the data and what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Add a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be.
+
+<!-- {{< newpage >}} -->
+
+<!-- ## Case Study 4: Baseball -->
+
+<!-- Sean Lahman created and maintains the Lahman Baseball Database, an open-source collection of baseball statistics.  It contains data on individual baseball players and statistics on teams for every season, dating back to 1871.  It’s fun to explore all sorts of questions about baseball. For the purposes of this exercise, a data scientist is interested in the relationship between team payrolls and winning the World Series. -->
+
+<!-- 1. Describe the sample. How large is it ($n$) and what is the unit of observation? -->
+
+<!-- \ -->
+
+<!-- 2. Describe the population. How large is it ($N$)? -->
+
+<!-- \ -->
+
+<!-- 3. Identify the population parameter that researchers are interested in estimating and the corresponding statistic that will serve as the estimate. -->
+
+<!-- \ -->
+
+<!-- 4. Identify possible sources of bias and whether they are selection or measurement bias. How do you expect this will effect the estimate of the parameter? -->
+
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+
+
+<!-- 5. Identify possible sources of variation and whether they are sampling or measurement variability. How do you expect this will effect the estimate of the parameter? -->
+
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+
+<!-- 6. On a separate sheet of paper, make two sketches: an empirical distribution of the data and what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Add a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be. -->
