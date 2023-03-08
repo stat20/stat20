@@ -1,6 +1,7 @@
 ---
 title: "Lab 5: People's Park"
 date: 03/08/23
+image: images/ppk.png
 code-fold: false
 ---
 
@@ -21,13 +22,6 @@ Students will be able to:
 
 :::
 
-```{r}
-#| echo: true
-#| eval: false
-
-usethis::use_course("https://tinyurl.com/lab-5-peoples-park")
-```
-
 In answering the following questions, it will be helpful to consult
 
 1. [the email from Chancellor Christ](references/chancellors-email.pdf),
@@ -38,33 +32,43 @@ In answering the following questions, it will be helpful to consult
 
 - [Lab 5.1: People's Park](lab-context.pdf)
 
-## Part II: Computing on the Data
 
-The data collected by the Chancellor's Office on Cal students can be found as `ppk` in the `stat20data` package.
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| eval: false -->
 
-The `ppk` data set represents a subset of questions that were asked in the questionnaire and have had random noise added to them. The results, in aggregate, share similar statistical properties to the raw data, but a given row no longer reflects an individual student's response completely.
+<!-- usethis::use_course("https://tinyurl.com/lab-5-peoples-park") -->
+<!-- ``` -->
 
-9. Print the first few rows with the columns that correspond to the responses to survey questions 1, 7, and 8. Note: we have changed the data back from all numerical data, as suggested by lab question 7, to a mix of numerical and categorical data. Please comment on whether your encoding of the data from Q7 on the questionnaire matches the encoding in `ppk`.
 
-10. Return to your sketches from question 8 here in the lab. Create those visualizations (or more appropriate analogues) using the questionnaire data. For each, add a title and axis labels to make it clear what they are showing, and describe the distribution in words. If your visualization is of ordinal data, the bars should be ordered accordingly. For question 9 you're welcome to select just three of the priorities to visualize.
 
-    a. Question 9
-    b. Question 10
-    c. Question 18 and 21 (showing the change from before and after the information)
+<!-- ## Part II: Computing on the Data -->
 
-11. Create a new column called `support_before` that takes the response data from question 18 and returns `TRUE` for answers of "Very strongly support", "Strongly support", and "Somewhat support" and FALSE otherwise. What proportion of the survey participants in each class (freshman, sophomore, etc) supported the People's Park Project before being presented with the information on the bottom of page 14?
+<!-- The data collected by the Chancellor's Office on Cal students can be found as `ppk` in the `stat20data` package. -->
 
-12. What is the mean and median rating of the condition of People's Park (question 15 on the survey)?
+<!-- The `ppk` data set represents a subset of questions that were asked in the questionnaire and have had random noise added to them. The results, in aggregate, share similar statistical properties to the raw data, but a given row no longer reflects an individual student's response completely. -->
 
-13. Create a new column called `change_in_support` that measures the change in support from question 18 to 21. What is the average change in support of the survey participants in each class (freshman, sophomore, etc) for the People's Park Project after reading the information?
+<!-- 9. Print the first few rows with the columns that correspond to the responses to survey questions 1, 7, and 8. Note: we have changed the data back from all numerical data, as suggested by lab question 7, to a mix of numerical and categorical data. Please comment on whether your encoding of the data from Q7 on the questionnaire matches the encoding in `ppk`. -->
 
-14. Construct one addition visualization that captures a variable or relationship between two variables that you are interested in. Describe the structure that you see in the plot.
+<!-- 10. Return to your sketches from question 8 here in the lab. Create those visualizations (or more appropriate analogues) using the questionnaire data. For each, add a title and axis labels to make it clear what they are showing, and describe the distribution in words. If your visualization is of ordinal data, the bars should be ordered accordingly. For question 9 you're welcome to select just three of the priorities to visualize. -->
 
-For the following confidence intervals, please use bootstrap percentile intervals.
+<!--     a. Question 9 -->
+<!--     b. Question 10 -->
+<!--     c. Question 18 and 21 (showing the change from before and after the information) -->
 
-15. Create a 95% confidence interval for the median rating of the condition of People's Park. Interpret the interval in the context of the problem.
+<!-- 11. Create a new column called `support_before` that takes the response data from question 18 and returns `TRUE` for answers of "Very strongly support", "Strongly support", and "Somewhat support" and FALSE otherwise. What proportion of the survey participants in each class (freshman, sophomore, etc) supported the People's Park Project before being presented with the information on the bottom of page 14? -->
 
-16. Create a 95% confidence interval for the overall proportion of students that support the People's Park Project without having been exposed to the information on page 14. Interpret the interval in the context of the problem.
+<!-- 12. What is the mean and median rating of the condition of People's Park (question 15 on the survey)? -->
 
-17. Create a 95% confidence interval for the overall change in support the Project before and after being exposed to the information on page 14. Does the interval contain 0? What are the implications of that for those working in the Chancellor's Office on the People's Park Project?
+<!-- 13. Create a new column called `change_in_support` that measures the change in support from question 18 to 21. What is the average change in support of the survey participants in each class (freshman, sophomore, etc) for the People's Park Project after reading the information? -->
+
+<!-- 14. Construct one addition visualization that captures a variable or relationship between two variables that you are interested in. Describe the structure that you see in the plot. -->
+
+<!-- For the following confidence intervals, please use bootstrap percentile intervals. -->
+
+<!-- 15. Create a 95% confidence interval for the median rating of the condition of People's Park. Interpret the interval in the context of the problem. -->
+
+<!-- 16. Create a 95% confidence interval for the overall proportion of students that support the People's Park Project without having been exposed to the information on page 14. Interpret the interval in the context of the problem. -->
+
+<!-- 17. Create a 95% confidence interval for the overall change in support the Project before and after being exposed to the information on page 14. Does the interval contain 0? What are the implications of that for those working in the Chancellor's Office on the People's Park Project? -->
 
