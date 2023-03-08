@@ -20,4 +20,82 @@ format:
       data-background-size: contain
 ---
 
-Under construction.
+## Agenda
+
+1. Concept Questions
+2. PS Analog Worksheet
+3. Lab 5.1: People's Park
+
+
+##
+
+```{r}
+countdown::countdown(3, bottom = 0)
+```
+
+
+
+:::{.poll}
+The top two are plots are population distributions; the bottom two are sampling distributions of the sample mean. Match numbers to letters.
+:::
+
+```{r}
+#| fig-width: 8
+#| fig-height: 5
+#| fig-align: center
+library(tidyverse)
+set.seed(123123)
+family_pop1 <- rep(c(1,2,3,4), times = c(20,40,25,15)) 
+family_pop2 <- rep(c(1,2,3,4), times = c(15,20,35,30))
+
+pop_plot1 <- ggplot(data.frame(family_pop1), aes(x=family_pop1)) +
+  geom_bar(fill = "gray55", width = 0.98) + 
+  xlab("") + 
+  annotate("text", x=3.8, y = 35, label="(1)", color = "black", size=5) +
+  theme_gray(base_size = 16)
+
+pop_plot2 <- ggplot(data.frame(family_pop2), aes(x=family_pop2)) +
+  geom_bar(fill = "gray55", width = 0.98) + 
+  xlab("") + 
+  annotate("text", x=1, y = 30, label="(2)", color = "black", size=5) +
+  theme_gray(base_size = 16)
+
+family_sample1 <- replicate(500, 
+                        mean(sample(family_pop1, 200, replace = TRUE)))
+
+sample_plot1 <- ggplot(data.frame(family_sample1), aes(x=family_sample1)) +
+  geom_histogram(fill = "gray", color = "black",
+                 bins = 25) + xlab("") +
+  annotate("text", x=2.2, y = 42, label="(B)", color = "black", size=5) +
+  theme_gray(base_size = 16)
+
+family_sample2 <- replicate(500, 
+                            mean(sample(family_pop2, 200, replace = TRUE)))
+
+sample_plot2 <- ggplot(data.frame(family_sample2), aes(x=family_sample2)) +
+  geom_histogram(fill = "gray", color = "black",
+                 bins = 25) + xlab("") +
+  annotate("text", x=3, y = 60, label="(A)", color = "black", size=5) +
+  theme_gray(base_size = 16)
+
+library(patchwork)
+
+(pop_plot1 + pop_plot2) / (sample_plot2 + sample_plot1)
+```
+
+:::{.notes}
+Many of them will guess, and it will be 
+good to make them compute the box average
+:::
+
+##
+
+Say we want estimate the size of an average class at Berkeley. Should we ask the administration?  Or should we survey the students, ask them how large their classes are, and take the average of these values? Does it matter?
+
+:::{.poll}
+Should we survey students? Does it matter?
+:::
+
+```{r}
+countdown::countdown(3, bottom = 0)
+```

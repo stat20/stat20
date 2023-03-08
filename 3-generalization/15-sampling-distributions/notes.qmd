@@ -256,7 +256,7 @@ This distribution is shown in the bottom row. We can see that in this scenario, 
 <!-- samp_1 <- pop_equal %>% -->
 <!--   slice_sample(n = 18, -->
 <!--                    replace = FALSE, -->
-<!--                    weight_by = eagerness)  -->
+<!--                    weight_by = eagerness) -->
 
 <!-- many_samps <- samp_1 %>% -->
 <!--   mutate(replicate = 1) -->
@@ -272,19 +272,19 @@ This distribution is shown in the bottom row. We can see that in this scenario, 
 
 <!-- p1 <- many_samps %>% -->
 <!--   filter(replicate == 1) %>% -->
-<!--   ggplot(aes(x = year)) +  -->
+<!--   ggplot(aes(x = year)) + -->
 <!--   geom_bar() + -->
 <!--   labs(title = "Sample 1") -->
 
 <!-- p2 <- many_samps %>% -->
 <!--   filter(replicate == 2) %>% -->
-<!--   ggplot(aes(x = year)) +  -->
+<!--   ggplot(aes(x = year)) + -->
 <!--   geom_bar() + -->
 <!--   labs(title = "Sample 1") -->
 
 <!-- p3 <- many_samps %>% -->
 <!--   filter(replicate == 3) %>% -->
-<!--   ggplot(aes(x = year)) +  -->
+<!--   ggplot(aes(x = year)) + -->
 <!--   geom_bar() + -->
 <!--   labs(title = "Sample 1") -->
 
@@ -422,5 +422,9 @@ You're welcome to test this out before answering. `mtcars` is built into R.
 
 ( ) `mtcars %>% slice_sample(n = 5, replace = FALSE, weight_by = hp)`
 
-:::
+## Materials from class
 
+- [Main Slides](slides.qmd)
+- [Worksheet](worksheet-analog.qmd)
+
+:::
