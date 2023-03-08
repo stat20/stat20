@@ -12,7 +12,7 @@ date:  "3/6/2023"
 
 ![](images/generalization.png){width="200" fig-align="center"}
 
-There are four terms that you will see come up again and again as we discuss generalization. They familiar terms that have tightly coupled meanings, so we present them together.
+There are four terms that you will see come up again and again as we discuss generalization. They are familiar terms that have tightly coupled meanings, so we present them together.
 
 **Sample**
 : The subset of units that are observed, measured, and analyzed. Commonly referred to as a data set. The size of the sample is indicated by $n$.
@@ -67,7 +67,7 @@ How good of an answer is 1.77 to the professors question of, "What year are my s
 
 #### Identifying the components
 
-In this setting, the population is the set of all $N = 527$ students in Pimentel. That is the set of units (students) that the professor seeks to understand and from which the sample is drawn. The sample is the subset of $n = 18$ students who were sitting in the front row and who were asked their age. The sample mean, $\bar{x} = 1.77$, is an example of a statistic. Other statistics that could be calculated from the sample include the median (2) and the mode (1). These statistics be used to estimate their analogs in the population, such as the population mean, $\mu$. The value of $\mu$ is what the professor seeks to learn, but at this point is still unknown.
+In this setting, the population is the set of all $N = 527$ students in Pimentel. That is the set of units (students) that the professor seeks to understand and from which the sample is drawn. The sample is the subset of $n = 18$ students who were sitting in the front row and who were asked their year at Cal. The sample mean, $\bar{x} = 1.77$, is an example of a statistic. Other statistics that could be calculated from the sample include the median (2) and the mode (1). These statistics be used to estimate their analogs in the population, such as the population mean, $\mu$. The value of $\mu$ is what the professor seeks to learn, but at this point is still unknown.
 
 Using this terminology, we can ask the question again: how good of an estimate of the mean year of the entire class is the sample mean, 1.77? How much error did we incur when generalizing and where did that error come from?
 
@@ -108,7 +108,7 @@ What about measurement bias? In this case, the process of measuring a student's 
 Whether or not bias is present, data typically also exhibit variation.
 
 **Sampling variability**
-:    If the sample is drawn from the population with some amount of randomness, the variability from one sample to the next.
+:    If the sample is drawn from the population with some amount of randomness, the sampling variability describes the variability from one sample to the next.
 
 <!-- Add a few examples -->
 
@@ -174,9 +174,9 @@ slice(pop_eager, 1, 2, 3, 4, 5)
 sum_eager <- summarize(pop_eager, sum(eagerness))
 ```
 
-When simulate the process that the professor used to draw 18 students, we can select the first student, a junior, with probability of 3 divided by the total eagerness of all of the students (the sum of the eagerness column), which is 4900. The probability of that student (or any junior) is $3/4900 = 0.0006$. That is small, but that's not surprising: there are 527 students in the class, so the probability of selecting just one of them should be small.
+When simulating the process that the professor used to draw 18 students, we can select the first student, a junior, with probability of 3 divided by the total eagerness of all of the students (the sum of the eagerness column), which is 4900. The probability of that student (or any junior) is $3/4900 = 0.0006$. That is small, but that's not surprising: there are 527 students in the class, so the probability of selecting just one of them should be small.
 
-The probability of selecting the fourth student, a first year, can be calculated as $10/4900 = .002$. That's also small, but it is 3.33 (10/3) times the chance of selecting a junior. In this setting, we're using eagerness as a *sampling weight* to determine the relative probability of selecting more eager students into the sample.
+The probability of selecting the fourth student from the population data frame above, a first year, can be calculated as $10/4900 = .002$. That's also small, but it is 3.33 (10/3) times the chance of selecting a junior. In this setting, we're using eagerness as a *sampling weight* to determine the relative probability of selecting more eager students into the sample.
 
 Let's now simulate the process of drawing 18 rows out of the data frame of 527 rows, where each row is being selected with a probability proportional to it's eagerness. The three plots along the top row of the plot below illustrate what the empirical distribution of three samples might look like. They help us envision what the professor's plot on the board would look like on three different days where the 18 students in the front row were called on, and in each of those days, it is the first year students who are most likely to end up the front row.
 
@@ -212,13 +212,13 @@ p2 <- many_samps %>%
   filter(replicate == 2) %>%
   ggplot(aes(x = year)) + 
   geom_bar() +
-  labs(title = "Sample 1")
+  labs(title = "Sample 2")
 
 p3 <- many_samps %>%
   filter(replicate == 3) %>%
   ggplot(aes(x = year)) + 
   geom_bar() +
-  labs(title = "Sample 1")
+  labs(title = "Sample 3")
 
 many_xbars <- many_samps %>%
   group_by(replicate) %>%
