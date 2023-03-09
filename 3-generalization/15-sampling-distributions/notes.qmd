@@ -113,7 +113,7 @@ Whether or not bias is present, data typically also exhibit variation.
 <!-- Add a few examples -->
 
 **Measurement variability**
-:    When we take multiple measurements on the same object, we get variations in measurements that are centered on the truth.
+:    When we take multiple measurements on the same object, we get variations in measurements from one sample to the next.
 
 <!-- Add a few examples -->
 
