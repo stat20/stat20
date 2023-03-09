@@ -145,13 +145,13 @@ p2 <- many_samps %>%
   filter(replicate == 2) %>%
   ggplot(aes(x = year)) + 
   geom_bar() +
-  labs(title = "Sample 1")
+  labs(title = "Sample 2")
 
 p3 <- many_samps %>%
   filter(replicate == 3) %>%
   ggplot(aes(x = year)) + 
   geom_bar() +
-  labs(title = "Sample 1")
+  labs(title = "Sample 3")
 
 many_xbars <- many_samps %>%
   group_by(replicate) %>%
@@ -222,13 +222,13 @@ p2 <- many_samps %>%
   filter(replicate == 2) %>%
   ggplot(aes(x = year)) +
   geom_bar() +
-  labs(title = "Sample 1")
+  labs(title = "Sample 2")
 
 p3 <- many_samps %>%
   filter(replicate == 3) %>%
   ggplot(aes(x = year)) +
   geom_bar() +
-  labs(title = "Sample 1")
+  labs(title = "Sample 3")
 
 many_xbars <- many_samps %>%
   group_by(replicate) %>%
