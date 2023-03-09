@@ -31,8 +31,8 @@ notes:
     date: 03/08/23
   - filedir: "16-confidence-intervals"
     date: 03/10/23
-  - filedir: "17-hypothesis-tests"
-    date: 03/15/23
+  # - filedir: "17-hypothesis-tests"
+  #   date: 03/15/23
 labs:
   - filedir: "01-arbuthnot"
     date: 01/25/23
