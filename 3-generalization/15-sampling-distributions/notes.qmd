@@ -212,13 +212,13 @@ p2 <- many_samps %>%
   filter(replicate == 2) %>%
   ggplot(aes(x = year)) + 
   geom_bar() +
-  labs(title = "Sample 1")
+  labs(title = "Sample 2")
 
 p3 <- many_samps %>%
   filter(replicate == 3) %>%
   ggplot(aes(x = year)) + 
   geom_bar() +
-  labs(title = "Sample 1")
+  labs(title = "Sample 3")
 
 many_xbars <- many_samps %>%
   group_by(replicate) %>%
@@ -246,6 +246,8 @@ Both of these notions are captured in the sampling distribution. To understand t
 5. Plot the distribution of those 500 $\bar{x}$s.
 
 This distribution is shown in the bottom row. We can see that in this scenario, it's possible to get $\bar{x}$s that are as low as around 1 and as high as around 1.8. The $\bar{x}$ that we would expect from this process is around 1.4. 
+
+<!-- Show in plot graphically what bias and variance is (the distance between the center of the sampling distribution and the population parameter and the spread of the sampling distribution) -->
 
 <!-- #### Scenario 2: Drawing names from a box -->
 
@@ -306,8 +308,6 @@ This distribution is shown in the bottom row. We can see that in this scenario, 
 In these notes we laid out a common goal of making generalizations: estimating the value of population parameters using statistics calculated from samples. The process of generalization is subject to several sources of error that are lumped into statistical bias and variation. Two of the central forms of statistical bias are selection bias and measurement bias. Two common forms of variation are sampling variability and measurement variability. With these notions of error in mind, we learned about the sampling distribution, the distribution of statistics that we would observe if we were to sample from the sample population many times and compute many statistics.
 
 The sampling distribution is the central concept in making generalizations so we will revisit it throughout the coming weeks.
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
 
 ---------------------------
 ---------------------------
@@ -379,6 +379,8 @@ Observe:
 
 - The data frame produced by this function has a new column that has been appended to the left side: `replicate`. This column keeps track of which replicate the row belongs to. The first three rows constitute the first sample of size 3. The second three rows constitute the second sample of size 3.
 - The dimensions of the output data frame are 6 rows by 9 columns. Compare that to the dimensions of the original penguins data frame: 366 by 8. This function added one new column and contains `n` $\times$ `reps` rows.
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
 
 <!-- :::{.content-hidden unless-profile="staff-guide"} -->
 <!-- ## Learning Objectives -->
