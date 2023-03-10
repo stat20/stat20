@@ -23,7 +23,7 @@ format:
 ## Agenda
 
 - Concept Questions
-- Practice Problems
+- Lab 5
 
 # Concept Questions
 
