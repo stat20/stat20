@@ -221,7 +221,7 @@ The answer is A but note here the SD of the sampling dist is called the SE.
 ##
 
 ```{r}
-#| echo: false
+#| echo: true
 #| fig-align: center
 
 library(stat20data)
