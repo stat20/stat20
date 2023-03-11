@@ -474,7 +474,7 @@ In the special case of a 0-1 box:
 
 With an equation to estimate $SE$ from our data in hand, we can form a 95% confidence interval.
 
-$$\left[\hat{p} - 1.96 \frac{\sqrt{p(1-p)}}{\sqrt{n}}, \hat{p} + 1.96 \frac{\sqrt{p(1-p)}}{\sqrt{n}}\right]$$
+$$\left[\hat{p} - 1.96 \frac{\sqrt{\hat{p}(1-\hat{p})}}{\sqrt{n}}, \hat{p} + 1.96 \frac{\sqrt{\hat{p}(1-\hat{p})}}{\sqrt{n}}\right]$$
 
 [^sdp]: This calculation results from casting the total number of 1's in a sample of size $n$ as a binomial random variable with success probability $p$. Call that random variable $Y$. The variance of a binomial random variable is $Var(Y) = np(1-p)$. Observing that sample proportion can be considered a binomial count divided by $n$, and applying the properties of variance, we can find the variance of $\hat{p}$ as,
 
@@ -510,6 +510,8 @@ The confidence intervals that we have made are approximate in the following sens
 + The SD of the sample is used in place of the SD of the population in  calculating the SE of the statistic.
 
 There are times when we are unwilling to make the assumption of normality. This is the topic of the next set of notes. 
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
 
 :::{.content-hidden unless-profile="staff-guide"}
 ## Learning Objectives
