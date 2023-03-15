@@ -1,0 +1,380 @@
+---
+title: "Bootstrapping"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## While you're waiting
+
+If you've been given an index card, please write on it:
+
+1. Your first name
+2. Your year at Cal (1 is first year, 2 is second year, etc)
+3. Whether or not you are interested in majoring in a business- or econ-related field. 1 = yes, 0 = no
+
+:::notes
+As students arrive, randomly give ~8 of them an index card.
+:::
+
+
+## Agenda
+
+- Concept Question
+- Activity: The Bootstrap
+- Bootstrapping with `infer`
+
+# Concept Question
+
+## {.smaller}
+
+:::poll
+Which of these is a valid bootstrap sample?
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+data(penguins)
+
+set.seed(30)
+a <- penguins %>%
+  sample_n(5) %>%
+  mutate(name = c("Gus", "Luz", "Ida", "Ola", "Abe")) %>%
+  rename(length = bill_length_mm) %>%
+  select(name, species, length)
+```
+
+:::: columns
+::: {.column width="33%"}
+
+<br>
+<br>
+<br>
+
+```{r}
+library(kableExtra)
+kable(a, caption = "Original Sample")
+```
+:::
+
+::: {.column width="33%"}
+```{r}
+a %>%
+  slice_sample(prop = 1, replace = T) %>%
+  kable(caption = "BS A")
+a %>%
+  slice_sample(n = 6, replace = T) %>%
+  kable(caption = "BS C")
+```
+:::
+
+::: {.column width="33%"}
+```{r}
+names_b <- a %>%
+  slice_sample(prop = 1, replace = T) %>%
+  pull(name)
+a %>%
+  mutate(name = names_b) %>%
+  kable(caption = "BS C")
+  
+a %>%
+  slice_sample(prop = 1, replace = T) %>%
+  kable(caption = "BS D")
+```
+:::
+::::
+
+# The Bootstrap
+
+## {background-image="images/triptych-bootstrap.jpg" background-size="contain"}
+
+
+
+## Parameters and Statistics
+
+\
+
+**Our Goal**: Assess the sampling error / variability in our estimate of the _median_ year at Cal and the proportion of students in an econ-related field.
+
+. . .
+
+\
+
+
+**Our Tool**: The Bootstrap
+
+
+## {background-image="images/boot-1.jpg" background-size="contain"}
+
+## Collecting a sample of data
+
+If you've been given an index card, please write on it:
+
+1. Your first name
+2. Your year at Cal (1 is first year, 2 is second year, etc)
+3. Whether or not you are interested in majoring in a business- or econ-related field. 1 = yes, 0 = no
+
+##
+
+boardwork
+
+:::notes
+Collect index cards from students and record the data into a data frame on the board labelled "Observed sample". Calculate the sample median and sample proportion of econ-related majors.
+
+Ask for a volunteer to generate the first bootstrap sample. Hand them the stack of cards and have them randomly choose a single card and read off the data to you. As they do so, write out the first row of a "Bootstrap Sample 1" data frame on the board. Be sure to label the row with the student name - that helps emphasis when there are repeats.Have them return the card to the deck, shuffle, and randomly choose a card and read off the data. Repeat until you have filled out the same number of rows as in the original data set. Calculate the median and proportion (you may want to write dplyr code to do this using `summarize()`).
+
+Ask for a second volunteer to generate the second bootstrap sample. Repeat the procedure as before, drawing a third data frame on the board and computing a second set of statistics (median and proportion).
+
+Collect the bootstrapped medians and proportions and sketch them as the first few points in a broader density plot that we'll be able to see when we take more and more bootstrap samples. Label this as the "bootstrap distribution" and speak of it as an approximation to the true sampling distribution. You can explain the 1 - alpha bootstrap interval as the interval that captures the middle 95% of bootstrapped statistics.
+:::
+
+# Bootstrapping with Infer
+
+## {background-image="images/infer-plain.jpg" background-size="contain"}
+
+## {background-image="images/infer-code.jpg" background-size="contain"}
+
+## Example: Penguins
+
+Let's consider out 342 penguins to be a SRS from the broader population of Antarctic penguins. What is a point and interval estimate for the population proportion of penguins that are Adelie?
+
+\
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+data(penguins)
+```
+
+. . .
+
+:::{.columns}
+:::{.column width="67%"}
+```{r}
+#| eval: false
+#| echo: true
+penguins <- penguins %>%
+  mutate(is_adelie = species == "Adelie")
+
+penguins %>%
+  ggplot(aes(x = is_adelie)) +
+  geom_bar()
+```
+
+\
+\
+\
+
+:::
+
+:::{.column width="33%" .fragment}
+```{r}
+#| echo: false
+#| fig-height: 10
+
+penguins <- penguins %>%
+  mutate(is_adelie = species == "Adelie")
+
+penguins %>%
+  ggplot(aes(x = is_adelie)) +
+  geom_bar() +
+  theme_gray(base_size = 20)
+```
+:::
+:::
+
+
+## Point estimate
+
+```{r}
+#| echo: true
+obs_stat <- penguins %>%
+  summarize(p_adelie = mean(is_adelie))
+obs_stat
+```
+
+
+## Generating one bootstrap sample
+
+```{r inf-1, eval = FALSE}
+#| label: inf-1
+#| eval: false
+#| echo: true
+library(infer)
+penguins %>%
+  specify(response = is_adelie,
+          success = "TRUE") %>%
+  generate(reps = 1, 
+           type = "bootstrap")
+```
+
+. . .
+
+```{r ref.label = "inf-1", echo = FALSE}
+```
+
+
+## Two more bootstrap samples
+
+:::{.columns}
+:::{.column width="50%"}
+```{r}
+#| echo: true
+penguins %>%
+  specify(response = is_adelie,
+          success = "TRUE") %>%
+  generate(reps = 1, 
+           type = "bootstrap")
+```
+:::
+
+:::{.column width="50%" .fragment}
+```{r}
+#| echo: true
+penguins %>%
+  specify(response = is_adelie,
+          success = "TRUE") %>%
+  generate(reps = 1, 
+           type = "bootstrap")
+```
+:::
+:::
+
+
+## Visualizing 9 bs samples {auto-animate=true}
+
+:::{.columns}
+:::{.column width="50%"}
+```{r bs9, eval = FALSE}
+#| echo: true
+penguins %>%
+  specify(response = is_adelie,
+          success = "TRUE") %>%
+  generate(reps = 9, 
+           type = "bootstrap") %>%
+  ggplot(aes(x = is_adelie)) +
+  geom_bar() +
+  facet_wrap(vars(replicate),
+             nrow = 3)
+```
+:::
+
+:::{.column width="50%" .fragment}
+```{r ref.label="bs9", echo = FALSE}
+```
+:::
+:::
+
+## Calculating 9 $\hat{p}$ {auto-animate=true}
+
+:::{.columns}
+:::{.column width="50%"}
+```{r calc9, eval = FALSE}
+#| echo: true
+penguins %>%
+  specify(response = is_adelie,
+          success = "TRUE") %>%
+  generate(reps = 9, 
+           type = "bootstrap") %>%
+  calculate(stat = "prop")
+```
+:::
+
+:::{.column width="50%" .fragment}
+```{r ref.label="calc9", echo = FALSE}
+```
+:::
+:::
+
+. . .
+
+> Note the change in data frame size.
+
+
+## The bootstrap dist (reps = 500) {auto-animate=true}
+
+. . .
+
+:::{.columns}
+:::{.column width="50%"}
+```{r viz500, eval = FALSE}
+#| echo: true
+penguins %>%
+  specify(response = is_adelie,
+          success = "TRUE") %>%
+  generate(reps = 500, 
+           type = "bootstrap") %>%
+  calculate(stat = "prop") %>%
+  ggplot(aes(x = stat)) +
+  geom_histogram()
+```
+:::
+
+:::{.column width="50%" .fragment}
+```{r ref.label="viz500", echo = FALSE}
+```
+:::
+:::
+
+
+## Interval Estimate
+
+. . .
+
+We can extract the missing 95% by identifying the .025 quantile and the .975 quantile of the bootstrap distribution with `get_ci()`.
+
+```{r getci, eval = FALSE}
+#| echo: true
+penguins %>%
+  specify(response = is_adelie,
+          success = "TRUE") %>%
+  generate(reps = 500, 
+           type = "bootstrap") %>%
+  calculate(stat = "prop") %>%
+  get_ci(level = .95)
+```
+
+. . .
+
+```{r ref.label = "getci", echo = FALSE}
+```
+
+
+## `infer` Documentation
+
+![](images/infer-docs.png)
+
+## Your Turn
+
+:::poll
+Create a 95% confidence interval for the median bill length of penguins.
+:::
+
+```{r}
+countdown::countdown(5, font_size = "2em")
+```
+
+
+## {background-image="images/infer-code.jpg" background-size="contain"}
+

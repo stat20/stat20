@@ -9,6 +9,16 @@ listing:
 sidebar: false
 ---
 
+:::{.content-hidden unless-profile="staff-guide"}
+
+:::{.callout-tip}
+## Solutions
+
+Solutions to problems sets can be found in the google drive file [here](https://drive.google.com/drive/u/1/folders/1CdAUo7M15AvA7WtWKk0BX26WjcDaKb5f).
+:::
+
+:::
+
 Problem sets are compilations of the practice done in class. Each problem set is in multiple parts that correspond to different class activities; each part is submitted individually to Gradescope.
 
 \

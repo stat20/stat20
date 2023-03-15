@@ -113,7 +113,7 @@ Whether or not bias is present, data typically also exhibit variation.
 <!-- Add a few examples -->
 
 **Measurement variability**
-:    When we take multiple measurements on the same object, we get variations in measurements that are centered on the truth.
+:    When we take multiple measurements on the same object, we get variations in measurements from one sample to the next.
 
 <!-- Add a few examples -->
 
@@ -247,6 +247,8 @@ Both of these notions are captured in the sampling distribution. To understand t
 
 This distribution is shown in the bottom row. We can see that in this scenario, it's possible to get $\bar{x}$s that are as low as around 1 and as high as around 1.8. The $\bar{x}$ that we would expect from this process is around 1.4. 
 
+<!-- Show in plot graphically what bias and variance is (the distance between the center of the sampling distribution and the population parameter and the spread of the sampling distribution) -->
+
 <!-- #### Scenario 2: Drawing names from a box -->
 
 <!-- ```{r} -->
@@ -378,53 +380,50 @@ Observe:
 - The data frame produced by this function has a new column that has been appended to the left side: `replicate`. This column keeps track of which replicate the row belongs to. The first three rows constitute the first sample of size 3. The second three rows constitute the second sample of size 3.
 - The dimensions of the output data frame are 6 rows by 9 columns. Compare that to the dimensions of the original penguins data frame: 366 by 8. This function added one new column and contains `n` $\times$ `reps` rows.
 
-:::{.content-hidden unless-profile="staff-guide"}
-## Learning Objectives
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
 
-#### Concept Acquisition
+<!-- :::{.content-hidden unless-profile="staff-guide"} -->
+<!-- ## Learning Objectives -->
 
-#### Tool Acquisition
+<!-- #### Concept Acquisition -->
 
-- `slice_sample()`
-- `rep_slice_sample()`
+<!-- #### Tool Acquisition -->
 
-#### Concept Application
+<!-- - `slice_sample()` -->
+<!-- - `rep_slice_sample()` -->
 
-#### Key Terms
+<!-- #### Concept Application -->
 
-- sample
-- population
-- population parameter
-- selection bias
-- non-response bias
-- measurement bias
-- sampling variability
-- measurement variability
-- random assignment
+<!-- #### Key Terms -->
 
-## Reading Questions
+<!-- - sample -->
+<!-- - population -->
+<!-- - population parameter -->
+<!-- - selection bias -->
+<!-- - non-response bias -->
+<!-- - measurement bias -->
+<!-- - sampling variability -->
+<!-- - measurement variability -->
+<!-- - random assignment -->
 
-(@) What source of error do you suspect will be most prominent.
+<!-- ## Reading Questions -->
 
-(@) What source of error do you suspect will be most prominent.
+<!-- (@) What source of error do you suspect will be most prominent. -->
 
-(@) Def of sampling distribution
+<!-- (@) What source of error do you suspect will be most prominent. -->
 
-(@) The `mtcars` data frame contains 11 different variables (including its horsepower, `hp`, and its miles per gallon, `mpg`) recorded on 32 different models of car. Treating this data frame as your population, which expression would you use to draw a random sample of size five without replacement, where each car is equally likely?
+<!-- (@) Def of sampling distribution -->
 
-You're welcome to test this out before answering. `mtcars` is built into R.
+<!-- (@) The `mtcars` data frame contains 11 different variables (including its horsepower, `hp`, and its miles per gallon, `mpg`) recorded on 32 different models of car. Treating this data frame as your population, which expression would you use to draw a random sample of size five without replacement, where each car is equally likely? -->
 
-( ) `mtcars %>% rep_slice_sample(n = 5, replace = FALSE, reps = 5)`
+<!-- You're welcome to test this out before answering. `mtcars` is built into R. -->
 
-( ) `mtcars %>% slice_sample(n = 5, replace = FALSE)`
+<!-- ( ) `mtcars %>% rep_slice_sample(n = 5, replace = FALSE, reps = 5)` -->
 
-( ) `mtcars %>% rep_slice_sample(n = 5, replace = TRUE)`
+<!-- ( ) `mtcars %>% slice_sample(n = 5, replace = FALSE)` -->
 
-( ) `mtcars %>% slice_sample(n = 5, replace = FALSE, weight_by = hp)`
+<!-- ( ) `mtcars %>% rep_slice_sample(n = 5, replace = TRUE)` -->
 
-## Materials from class
+<!-- ( ) `mtcars %>% slice_sample(n = 5, replace = FALSE, weight_by = hp)` -->
 
-- [Main Slides](slides.qmd)
-- [Worksheet](worksheet-analog.qmd)
-
-:::
+<!-- ::: -->
