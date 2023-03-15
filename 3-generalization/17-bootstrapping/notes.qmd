@@ -64,7 +64,7 @@ For step four we repeat this process of drawing a bootstrap sample and calculati
 Note this just a toy example. With $n=5$, the sample is unlikely to represent the important features of the population, and the bootstrap should not be applied. At a more reasonable sample size, however, this bootstrap distribution will become a good approximation of the sampling distribution and therefore can be used to calculate a confidence interval.
 
 **Bootstrap Confidence Interval (percentile method)**
-:    For a 95% confidence interval, the interval spanning the middle 95% of the bootstrap statistics. Equivalent to finding the 2.5% and 97.5% quantiles of the bootstrap distribution. The confidence level can be adapted by modifying the quantiles accordingly.
+:    For a 95% confidence interval, the interval spans the middle 95% of the bootstrap statistics which is equivalent to finding the 2.5% and 97.5% quantiles of the bootstrap distribution. The confidence level can be adapted by modifying the quantiles accordingly.
 
 Let's see the bootstrap in practice in two settings with two very different statistics.
 
@@ -93,7 +93,7 @@ boot_pop_dist <- ggplot(food_scores, aes(x = score)) +
 boot_pop_dist
 ```
 
-Next, to approximate the bootstrap sampling distribution, we proceed with a simulation. We take a sample of 100, this time with replacement, from the bootstrap population, and we compute the mean food safety score. This process gets repeated 10,000 times, and the distribution of the 10,000 bootstrap means gives us an estimate of the bootstrap sampling distribution.
+Next, to approximate the bootstrap sampling distribution, we proceed with a simulation. We take a sample of 100, this time with replacement, from the bootstrap population, and we compute the mean food safety score. This process gets repeated 500 times, and the distribution of the 500 bootstrap means gives us an estimate of the bootstrap sampling distribution.
 
 The *bootstrap sampling distribution* looks like the following.
 
@@ -133,7 +133,7 @@ To form a 95% confidence interval for the population mean, we can find the quant
 get_ci(boot, level = .95)
 ```
 
-If we compare this confidence interval to the one we created using the normal curve, it matches exactly (when rounded to the nearest tenths place). This is we're in a setting where the sample size is large enough for the sample to be a good stand-in for the population (so the bootstrap is accurate) and also large enough for the Central Limit Theorem to kick in (so the normal approximation is also accurate).
+If we compare this confidence interval to the one we created using the normal curve, it matches exactly (when rounded to the nearest tenths place). This is because we're in a setting where the sample size is large enough for the sample to be a good stand-in for the population (so the bootstrap is accurate) and also large enough for the Central Limit Theorem to kick in (so the normal approximation is also accurate).
 
 Next we provide an example where we truly don't know the population and where we need a confidence interval for a statistic that's a bit more complex than the mean.
 
@@ -194,7 +194,7 @@ The linear model that we fitted on the Adelie penguins collected for the researc
 
 How can we find a confidence interval for the coefficient of flipper length?
 
-Let's return to the box model and the associated thought-experiment We would describe the box as:
+Let's return to the box model and the associated thought-experiment. We would describe the box as:
 
 + one ticket for every Adelie penguin in Antarctica
 + each ticket has the penguin's body mass, flipper length, and sex written on it (we are ignoring the other measurements)
