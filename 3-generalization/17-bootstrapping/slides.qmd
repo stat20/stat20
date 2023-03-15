@@ -377,4 +377,3 @@ countdown::countdown(5, font_size = "2em")
 
 
 ## {background-image="images/infer-code.jpg" background-size="contain"}
-
