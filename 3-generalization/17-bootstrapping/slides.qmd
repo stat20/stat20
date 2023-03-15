@@ -85,7 +85,7 @@ a %>%
   kable(caption = "BS A")
 a %>%
   slice_sample(n = 6, replace = T) %>%
-  kable(caption = "BS C")
+  kable(caption = "BS B")
 ```
 :::
 
@@ -157,7 +157,7 @@ Collect the bootstrapped medians and proportions and sketch them as the first fe
 
 ## Example: Penguins
 
-Let's consider out 342 penguins to be a SRS from the broader population of Antarctic penguins. What is a point and interval estimate for the population proportion of penguins that are Adelie?
+Let's consider our 344 penguins to be a SRS from the broader population of Antarctic penguins. What is a point and interval estimate for the population proportion of penguins that are Adelie?
 
 \
 
@@ -342,7 +342,7 @@ penguins %>%
 
 . . .
 
-We can extract the missing 95% by identifying the .025 quantile and the .975 quantile of the bootstrap distribution with `get_ci()`.
+We can extract the middle 95% by identifying the .025 quantile and the .975 quantile of the bootstrap distribution with `get_ci()`.
 
 ```{r getci, eval = FALSE}
 #| echo: true
