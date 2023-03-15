@@ -1,0 +1,15 @@
+---
+title: "Problem Set 4: Random Variables"
+---
+
+This problem set has two components, each one submitted separately to Gradescope.
+
+### PS 4.1: Random Variables
+
+[Paper Worksheet](../../3-generalization/13-random-variables/worksheet-analog.pdf)
+
+
+### PS 4.2: Expected Value and Variance
+
+[Paper Worksheet](../../3-generalization/14-ev-se/worksheet-analog.pdf)
+
