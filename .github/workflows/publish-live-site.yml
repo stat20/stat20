@@ -16,6 +16,8 @@ jobs:
       - name: Install dependencies
         run: |
           install.packages('yaml')
+          install.packages('jsonlite')
+          install.packages('htmltools')
         shell: sudo Rscript {0}
       - name: Ignore future posts
         run: |
