@@ -20,89 +20,102 @@ format:
 
 An experiment conducted by MythBusters tested if a person can be subconsciously influenced into yawning if another person near them yawns.
 
-In this study 50 people were randomly assigned to two groups: 34 to a group where a person near them yawned (\texttt{seeded = 1}) and 16 to a control group where there wasn't a yawn seed (\texttt{seeded = 0}). They then recorded the whether each subject yawned (\texttt{yawned = 1}) or not (`response`: ). The results are as follows:
-
 ```{r}
 #| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
 library(stat20data)
-table(yawn$group, yawn$response)
+library(knitr)
+library(kableExtra)
+
+table(yawn$group, yawn$response) %>%
+  kbl(format = "latex") %>%
+  kable_paper(full_width = F) %>%
+  column_spec(1, bold = T) %>%
+  row_spec(0, bold = T) %>%
+  kable_styling(position = "float_right")
 ```
 
-1. What is the explanatory variable?  Response variable? 
+In this study 50 people were randomly assigned to two groups: 34 to a group where a person near them yawned (`group`: `stimulus`) and 16 to a control group where there wasn't a yawn seed (`group`: `no stimulus`). They then recorded the whether each subject yawned (`response`: `yawn`) or not (`response`: `no yawn`).
+
+(@) What is the explanatory variable?  Response variable? 
+
+\
+\
+
+(@) What was the proportion of yawners in the stimulus group, $\hat{p}_s$?
+
+\
+\
+
+(@) What was the proportion of yawners in the no stimulus group, $\hat{p}_n$?
+
+\
+\
+
+(@) If there were *no association* between yawning and the proximity of another yawner, what would you expect the difference to be between these two proportions?
 
 \
 \
 \
-\
 
-2. What was the proportion of yawners in the seeded group?
-
-\
-\
-\
-\
-
-3. What was the proportion of yawners in the unseeded group?
+(@) What are the possible values that $\hat{p}_s - \hat{p}_{n}$ can take? (i.e., what is the maximum value? the minimum value?)
 
 \
 \
 \
-\
 
-4. If there were *no association* between yawning and the proximity of another yawner, what would you expect the difference to be between these two proportions?
-
-\
-\
-\
-\
-
-5. Let $X$ be the number of people in the unseeded group that yawned.  What are the possible values that $X$ can take?
-
-\
-\
-\
-\
-
-6. In terms of $X$, what is an example of a result that would demonstrate a `strong` association between yawning and being exposed to a yawn?  $X = $
+(@) In terms of $\hat{p}_s - \hat{p}_{n}$, what is an example of a result that would demonstrate a `strong` association between yawning and being exposed to a yawn?
 
 
 \newpage
 
-\textbf{Simulating Yawners} What kind of data would be observed if there was no association between these variables and if the only variation was caused by the process of randomly assigning subjects to the two conditions? Find out by \emph{simulating} the process.
+### Simulating Yawners
+
+What kind of data would be observed if there was no association between these variables and if the only variation was caused by the process of randomly assigning subjects to the two conditions? Find out by *simulating* the process.
 
 1. Create a deck of cards, 36 of which represent subjects who did not yawn, 14 of which represent subjects who yawned.
 
-2. Shuffle the deck of cards to simulate the process of randomly assignment to the two conditions: being exposed to a yawn (seeded) and not being exposed (unseeded).
+2. Shuffle the deck of cards to simulate the process of randomly assignment to the two conditions: being exposed to a yawn (stimulus) and not being exposed (no stimulus).
 
-3. Deal them into two decks of size 16 and 34, representing the 1/3 of the subjects that were assigned to the unseeded group and the 2/3 assigned to the seeded group.
+3. Deal them into two decks of size 16 and 34, representing the 1/3 of the subjects that were assigned to the stimulus group and the 2/3 assigned to the no stimulus group.
 
-4. Count the number of yawners that happened to end up in the unseeded group just by chance and record your count below as $x_1$.
+4. Calculate the difference in the proportion of yawners in the two group, $\hat{p}_s - \hat{p}_{n}$, and record it below.
 
-5. Repeat process 5 more times.
+5. Repeat process 5 more times and sketch the distribution of simulated statistics from the class in the blank plot
 
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|}
-  \hline
-  $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ \\
-  \hline
-  \hspace{0.75in} & \hspace{0.75in} & \hspace{0.75in} & \hspace{0.75in} & \hspace{0.75in} & \hspace{0.75in} \\[5ex]
-  \hline
-\end{tabular}
-\end{center}
+\renewcommand{\arraystretch}{1.5}
 
-\vspace{2.5in}
+```{r}
+#| echo: false
+#| layout: [[15,-5, 45]]
 
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-  \hline
-  0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 \\
-\end{tabular}
-\end{center}
+library(latex2exp)
 
-\vspace{5mm}
+df <- data.frame(Sim = 1:6,
+           a = c(""))
+names(df) <- c("Sim", "$\\hat{p}_s - \\hat{p}_{n}$")
+knitr::kable(df, escape = FALSE)
 
-1. How many yawners would you expect to find in the unseeded group just by chance?
+data.frame(x = c(0, 1), y = c(0, 1)) %>%
+  ggplot(aes(x = x, y = y)) +
+  theme_bw() +
+  labs(x = "", y = "") +
+  theme(axis.text.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())
+```
 
-2.  What value of $X$ did the MythBusters actually observe?
+(@) If there was in fact no relationship between yawning and the stimulus, what values of the statistic would you expect to see?
 
-3. Is this data convincing evidence that yawning is contagious? Why or why not?
+\
+\
+
+(@)  What value of $\hat{p}_s - \hat{p}_{n}$ did the MythBusters actually observe?
+
+\
+\
+
+(@) Is this data convincing evidence that yawning is contagious? Why or why not?
