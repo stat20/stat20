@@ -44,7 +44,7 @@ Shuffle the deck, say that's its fair, then select a random student to be the fi
 Walk through how students started with a previous notion that the deck was fair (null hypothesis: p(red) = .5). As they observed data, they assessed the degree of consistency with that notion by computing the probability of the data. Calculate a table of the binomial probabilities of one black, two blacks, three blacks, on the board. With 4 blacks, the probability is 1/2^4 = .0625 and with 5 blacks its 1/2^5 = .03125. Draw a line between these two probability and identify it as the alpha = .05 threshold that is generally used for "calling bullshit on the null".
 :::
 
-# Concept Question
+# Concept Questions
 
 ## {.smaller}
 
@@ -69,7 +69,7 @@ F. The probability of getting in a car accident is the same if using a cell phon
 
 ```{r}
 #| echo: false
-countdown::countdown(1, top = 0)
+countdown::countdown(1, bottom = 0)
 ```
 
 
@@ -95,13 +95,34 @@ What is your guess at the p-value?
 
 ```{r}
 #| echo: false
-countdown::countdown(1, top = 0)
+countdown::countdown(1, bottom = 0)
 ```
 
 :::notes
 .3 is probably the best answer but .2 is ok too.
 :::
 
+##
+
+A pharmaceutical company developed a new treatment for eczema and performed a
+hypothesis test to see if it worked better than the company's old treatment. The P-value for the test was $10\%$. Are the following statements true or false?
+
+\
+
+A. The probability that the null hypothesis is false is $10\%$.
+
+B. The probability that the null hypothesis is false is $90\%$.
+
+C. The P-value of about $10\%$ was computed assuming that the null hypothesis was true.
+
+D. The new drug is significantly better than the old. 
+
+E. The alternative hypothesis is 10 times more likely the null.
+
+```{r}
+#| echo: false
+countdown::countdown(1, bottom = 0)
+```
 
 # Hypothesis Testing with `infer`
 

@@ -31,7 +31,7 @@ notes:
     date: 03/08/23
   - filedir: "16-confidence-intervals"
     date: 03/10/23
-  - filedir: "17-bootstrapping"
+  - filedir: "17-hypothesis-tests"
     date: 03/15/23
   - filedir: "18-hypothesis-tests"
     date: 03/17/23
@@ -46,8 +46,8 @@ labs:
     date: 02/08/23
   - filedir: "05-peoples-park"
     date: 03/08/23
-  # - filedir: "06-h-tests"
-  #   date: 03/20/23
+  - filedir: "06-h-tests"
+    date: 03/20/23
 release-schedule:
 # how many seconds to add to 00:00 of each file's release `date`
   notes-offset: -100800
