@@ -1,0 +1,108 @@
+---
+format:
+  pdf:
+    include-in-header:
+      - preamble.tex
+      - fancyhdr.tex
+    fontsize: 10pt
+    margin-top: .8in
+    margin-bottom: .5in
+---
+
+\thispagestyle{empty}
+
+\begin{center}
+\textsc{Stat 20: PS 5.2 Hypothesis Tests} \\
+\noindent\rule{12cm}{0.4pt}
+\end{center}
+
+#### Is Yawning Contagious?
+
+An experiment conducted by MythBusters tested if a person can be subconsciously influenced into yawning if another person near them yawns.
+
+In this study 50 people were randomly assigned to two groups: 34 to a group where a person near them yawned (\texttt{seeded = 1}) and 16 to a control group where there wasn't a yawn seed (\texttt{seeded = 0}). They then recorded the whether each subject yawned (\texttt{yawned = 1}) or not (`response`: ). The results are as follows:
+
+```{r}
+#| echo: false
+library(stat20data)
+table(yawn$group, yawn$response)
+```
+
+1. What is the explanatory variable?  Response variable? 
+
+\
+\
+\
+\
+
+2. What was the proportion of yawners in the seeded group?
+
+\
+\
+\
+\
+
+3. What was the proportion of yawners in the unseeded group?
+
+\
+\
+\
+\
+
+4. If there were *no association* between yawning and the proximity of another yawner, what would you expect the difference to be between these two proportions?
+
+\
+\
+\
+\
+
+5. Let $X$ be the number of people in the unseeded group that yawned.  What are the possible values that $X$ can take?
+
+\
+\
+\
+\
+
+6. In terms of $X$, what is an example of a result that would demonstrate a `strong` association between yawning and being exposed to a yawn?  $X = $
+
+
+\newpage
+
+\textbf{Simulating Yawners} What kind of data would be observed if there was no association between these variables and if the only variation was caused by the process of randomly assigning subjects to the two conditions? Find out by \emph{simulating} the process.
+
+1. Create a deck of cards, 36 of which represent subjects who did not yawn, 14 of which represent subjects who yawned.
+
+2. Shuffle the deck of cards to simulate the process of randomly assignment to the two conditions: being exposed to a yawn (seeded) and not being exposed (unseeded).
+
+3. Deal them into two decks of size 16 and 34, representing the 1/3 of the subjects that were assigned to the unseeded group and the 2/3 assigned to the seeded group.
+
+4. Count the number of yawners that happened to end up in the unseeded group just by chance and record your count below as $x_1$.
+
+5. Repeat process 5 more times.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+  \hline
+  $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ \\
+  \hline
+  \hspace{0.75in} & \hspace{0.75in} & \hspace{0.75in} & \hspace{0.75in} & \hspace{0.75in} & \hspace{0.75in} \\[5ex]
+  \hline
+\end{tabular}
+\end{center}
+
+\vspace{2.5in}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 \\
+\end{tabular}
+\end{center}
+
+\vspace{5mm}
+
+1. How many yawners would you expect to find in the unseeded group just by chance?
+
+2.  What value of $X$ did the MythBusters actually observe?
+
+3. Is this data convincing evidence that yawning is contagious? Why or why not?
