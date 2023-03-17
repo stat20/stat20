@@ -33,6 +33,8 @@ notes:
     date: 03/10/23
   - filedir: "17-bootstrapping"
     date: 03/15/23
+  - filedir: "18-hypothesis-tests"
+    date: 03/17/23
 labs:
   - filedir: "01-arbuthnot"
     date: 01/25/23
