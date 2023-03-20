@@ -80,11 +80,11 @@ What kind of data would be observed if there was no association between these va
 
 2. Shuffle the deck of cards to simulate the process of randomly assignment to the two conditions: being exposed to a yawn (stimulus) and not being exposed (no stimulus).
 
-3. Deal them into two decks of size 16 and 34, representing the 1/3 of the subjects that were assigned to the stimulus group and the 2/3 assigned to the no stimulus group.
+3. Deal them into two decks of size 16 and 34, representing the 1/3 of the subjects that were assigned to the no stimulus group and the 2/3 assigned to the stimulus group.
 
 4. Calculate the difference in the proportion of yawners in the two group, $\hat{p}_s - \hat{p}_{n}$, and record it below.
 
-5. Repeat process 5 more times and sketch the distribution of simulated statistics from the class in the blank plot
+5. Repeat process 5 more times and sketch the distribution of simulated statistics from the class in the blank plot.
 
 \renewcommand{\arraystretch}{1.5}
 
