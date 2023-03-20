@@ -24,7 +24,6 @@ execute:
 
 ## Agenda
 
-- Pick a Card
 - Concept Questions
 - Hypothesis Testing with `infer`
 - Practice Problems
@@ -83,9 +82,11 @@ Most of these they haven't seen examples of, so it will be worth laying out the 
 
 We want to understand whether blood thinners are helpful or harmful. We’ll consider both of these possibilities using a two-sided hypothesis test.
 
+:::{.smaller}
 *Null*: Blood thinners do not have an overall survival effect, i.e., the survival proportions are the same in each group. 
 
 *Alternative*: Blood thinners have an impact on survival, either positive or negative, but not zero.
+:::
 
 ![](images/two-sided.png){fig-width="400" fig-align="center"}
 
@@ -105,7 +106,7 @@ countdown::countdown(1, bottom = 0)
 ##
 
 A pharmaceutical company developed a new treatment for eczema and performed a
-hypothesis test to see if it worked better than the company's old treatment. The P-value for the test was $10\%$. Are the following statements true or false?
+hypothesis test to see if it worked better than the company's old treatment. The P-value for the test was $10\%$. Which of the following statements are true?
 
 \
 
@@ -354,4 +355,10 @@ class_survey %>%
   get_p_value(obs_stat = obs_stat,  
                direction = "both")  
 ```
+
+## Your turn
+
+We want to 
+
+Using the `class_survey` data, create a plot of the distribution of thoughts on climate change separated out by whether or not a student is an econ major. Also compute a statistic that 
 
