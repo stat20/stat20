@@ -10,7 +10,7 @@
     ],
     "includes": {
       "include-in-header": [
-        "<script src=\"notes_files/libs/kePrint-0.0.1/kePrint.js\"></script>\n<link href=\"notes_files/libs/lightable-0.0.1/lightable.css\" rel=\"stylesheet\" />\n"
+        "<script src=\"../../site_libs/kePrint-0.0.1/kePrint.js\"></script>\n<link href=\"../../site_libs/lightable-0.0.1/lightable.css\" rel=\"stylesheet\" />\n"
       ]
     },
     "engineDependencies": {},
