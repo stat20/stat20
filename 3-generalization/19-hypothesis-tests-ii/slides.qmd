@@ -1,0 +1,171 @@
+---
+title: "Hypothesis Tests II"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+execute: 
+  echo: false
+---
+
+## Agenda
+
+```{r}
+#| echo: false
+#| message: false
+library(stat20data)
+library(tidyverse)
+library(infer)
+```
+
+-   Time to fill out the *Mid-Semester Feedback* form
+-   Concept Questions - *Hypothesis Tests II*
+-   *Break* 
+-   Unstructured work time on Lab 5 (time permitting)
+
+# Time to fill out the *Mid-Semester Feedback* form
+
+- Click [here](https://forms.gle/DycRj75gwNywMZxV9) to fill out this form if you haven't already. 
+
+. . .
+
+```{r}
+countdown::countdown(minutes = 10)
+```
+
+# Concept Questions
+
+## Concept Questions: `infer` Exercises
+
+-   Today's CQ's will work like exercises. You will be practicing using the `infer` library to perform hypothesis tests. The tests we will perform are:
+
+  -   A test using an "independence" null hypothesis
+  
+  -   A test using a "point" null hypothesis
+  
+## Concept Question 1
+
+> In order to study gender bias in promotion decisions, researchers took 48 resumes and randomly assigned them to 48 bank managers who were asked whether they would promote this candidate or not. The resumes were identical except the name: 24 of them had names generally associated with women, 24 of them had names generally associated with men.
+
+. . . 
+
+The data from this study can be found in the `promote` data frame. Use this data to determine whether gender played a role in promotion decisions.
+
+## Concept Question 1 - Steps
+
+a. Write the null and alternative hypothesis.
+
+. . . 
+
+b. Compute the observed test statistic.
+
+. . . 
+
+c. Visualize the observed data using an appropriate plot.
+
+. . . 
+
+d. Construct a plot featuring 9 subplots, each one featuring a visualization of a data set generated under the null hypothesis. Does your visualization of the observed data from the previous part look like it be one of these plots? (Hint: Go up to the `generate()` step and then make the plot). 
+
+## Concept Question 1 - Steps (cont.)
+
+e. Construct and save the null distribution of statistics.
+
+. . . 
+
+f. Visualize the null distribution. 
+
+. . . 
+
+g. Compute the p-value. 
+
+. . . 
+
+h. Interpret the p-value. What does it say about the consistency between the null hypothesis and the observed data?
+
+# Concept Question 1 - Work Time
+
+```{r}
+countdown::countdown(minutes = 15, top = 1)
+```
+
+# Concept Question 1 - Discussion
+
+# Concpet Question 2
+
+## Concept Question 2
+
+> In the 2016 NBA season, it was noted that professional basketball player Steph Curry had a remarkable basket-shooting performance beyond 30 feet. The `curry` data frame contains his long range shooting performance across 27 attempts. By comparison, the long range shooting percentage of NBA players that season was 7.5%. 
+
+. . . 
+
+-   Assess whether this data is consistent with the notion that Steph Curry has a long range shooting percentage that is no different from the average NBA player. Said another way, assess just how remarkable Curry's shooting performance was in 2016.
+
+## Concept Question 2 - Steps (cont.)
+
+a. Write the null and alternative hypothesis.
+
+. . . 
+
+b. Compute the observed test statistic.
+
+. . . 
+
+c. Visualize the observed data using an appropriate plot.
+
+. . . 
+
+d. Construct a plot featuring 9 subplots, each one featuring a visualization of a data set generated under the null hypothesis. Does your visualization of the observed data from the previous part look like it be one of these plots?
+
+## Concept Question 2 - Steps (cont.)
+
+e. Construct and save the null distribution of statistics.
+
+. . . 
+
+f. Visualize the null distribution.
+
+. . .
+
+g. Compute the p-value.
+
+. . . 
+
+h. Interpret the p-value. What does it say about the consistency between the null hypothesis and the observed data?
+
+
+# Concept Question 2 - Work Time
+
+```{r}
+countdown::countdown(minutes = 15)
+```
+
+# Concept Question 2 - Discussion
+
+# *Break*
+
+```{r}
+countdown::countdown(minutes = 5)
+```
+
+# Unstructured time on Lab 5
+
+```{r}
+countdown::countdown(minutes = 30)
+```
+
+# End of Lecture 19
