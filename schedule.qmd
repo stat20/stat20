@@ -8,7 +8,7 @@ sidebar: false
 **Workshop**: 1 hr Monday\
 **Reading Questions due**: 11:59 pm Tuesday and Thursday on Gradescope\
 **Labs and PS due**: Tuesday morning 10 am on Gradescope\
-**Homework Party**: Thursday 5-7pm in Evans 340\
+**Homework Party**: Thursday 4-6 pm in Evans 342\
 **Final Exam**: Thursday 5/11/23 in person from 11:30am-2:30pm
 
 :::{.panel-tabset}
