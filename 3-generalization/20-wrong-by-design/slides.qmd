@@ -193,17 +193,17 @@ countdown::countdown(1)
 ```
 
 
-## 
+<!-- ##  -->
 
-Imagine a scenario when your sample consists of the entire population. After setting up the hypotheses for your test, you ponder the chance that you'll make a statistical error.
+<!-- Imagine a scenario when your sample consists of the entire population. After setting up the hypotheses for your test, you ponder the chance that you'll make a statistical error. -->
 
-:::poll
-What is the probability that you'll make a Type I error using $\alpha = .05$?
-:::
+<!-- :::poll -->
+<!-- What is the probability that you'll make a Type I error using $\alpha = .05$? -->
+<!-- ::: -->
 
-```{r}
-countdown::countdown(1)
-```
+<!-- ```{r} -->
+<!-- countdown::countdown(1) -->
+<!-- ``` -->
 
 
 # Hypothesis Testing Review
@@ -239,6 +239,30 @@ $H_A$: alternative model, business not as usual
 
 ## Step 2
 
+Select a test statistic that bears on the null hypothesis.
+
+. . .
+
+::::{.columns}
+:::{.column width="50%"}
+- $\bar{x}$
+- $\hat{p}$
+- $m$
+- $r$
+- $b_1$
+:::
+:::{.column width="50%"}
+- $\bar{x}_1 - \bar{x}_2$
+- $\hat{p}_1 - \hat{p}_2$
+- $m_1 - m_2$
+- $\chi^2$
+- *The list goes on...*
+:::
+::::
+
+
+## Step 3
+
 Construct the appropriate null distribution.
 
 ```{r, echo=FALSE, eval=TRUE, fig.height = 3.5, fig.width = 10, fig.align='center'}
@@ -256,7 +280,7 @@ ggplot(df, aes(x = x, y = y)) +
 3. Normal Approximation
 
 
-## Step 3
+## Step 4
 
 . . .
 
@@ -320,7 +344,7 @@ knitr::include_graphics("images/covid-positivity.png")
 
 :::: columns
 ::: {.column width="45%"}
-[$H_0$]{.inversebox} $\quad p = 5%$ 
+[$H_0$]{.inversebox} $\quad p = 3\%$ 
 
 The incidence of COVID at Cal is at a manageable level.
 :::
@@ -330,7 +354,7 @@ The incidence of COVID at Cal is at a manageable level.
 
 ::: {.column width="45%"}
 ::: {.fragment}
-[$H_A$]{.inversebox}  $\quad p > 5%$ 
+[$H_A$]{.inversebox}  $\quad p > 3\%$ 
 
 The incidence of COVID at Cal is at an elevated level.
 :::
@@ -389,7 +413,7 @@ knitr::include_graphics("images/decision-error-rates.jpg")
 ## {}
 
 ::: poll
-Consider a setting where the Cal UHS testing system observes a positivity rate of 5.5% in a one week interval, double the previous week.  Administration needs to decide whether or not to move to remote learning. Which error would be worse?
+Consider a setting where the Cal UHS testing system observes a positivity rate of 3.5% in a one week interval, double the previous week.  Administration needs to decide whether or not to move to remote learning. Which error would be worse?
 
 A. Moving to remote instruction when in fact the true number of cases on campus is still low.
 

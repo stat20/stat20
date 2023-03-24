@@ -423,3 +423,5 @@ Although hypothesis testing provides a framework for making decisions based on d
 That is, always keep in mind that the conclusion to a hypothesis test may not be right!
 Sometimes when the null hypothesis is true, we will accidentally reject it and commit a type I error; sometimes when the alternative hypothesis is true, we will fail to reject the null hypothesis and commit a type II error.
 The power of the test quantifies how likely it is to obtain data which will reject the null hypothesis when indeed the alternative is true; the power of the test is increased when larger sample sizes are taken.
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
