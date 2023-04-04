@@ -1,0 +1,63 @@
+---
+title: "Lab 6: Sports"
+date: "10/05/22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+
+## Part I: Understanding the Context of the Data
+
+1. Please write here the sport you are focusing on.
+
+2. Write out two descriptive and two predictive questions that we could answer your sport of choice using statistics.
+
+---
+
+You will find that your sport has two data-sets associated with it: a *teams* dataset and a *players* dataset. You can find excerpts of each dataset in a file attached to Ed. Use these excerpts to answer the following questions.
+
+3. What is the unit of observation for the *teams* data set? What about for the *players* data set?
+
+4. What is a question you could answer using the *teams* data set but not the *batting* data set, and vice versa?
+
+5. What is a question that we would need more granular (measured on a finer/more specific part of the game) data than the *teams* and *players* data set provide to answer?
+
+6. Choose a variable from your dataset. Based on what values you expect it to take and its place in the Taxonomy of Data:
+
+-   sketch a visualization of this variable. label and title your axes, and provide the aesthetic mapping and the geometry you are using. 
+-   In one or two sentences, describe your visualization in terms of shape, spread and center, and explain these choices.
+
+
+7. Some people believe analytics is ruining sports because teams are more cautious which makes the games less entertaining. Do you agree or disagree? Why?
+
+## Part II: Computing on the Data
+
+Use the following code to load your data-sets into the environment pane from the `stat20data` library. The data are called *SPORT_teams* and *SPORT_players*, respectively. Here, we load the two datasets for football.
+
+```{r}
+library(stat20data)
+data(football_teams)
+data(football_players)
+```
+
+The following questions apply to the *teams* datasets. 
+
+8. Subset the *teams* dataset to only include years from 2000 to present day. What are the dimensions of this filtered dataset?
+
+11. Plot the relationship between **IMPORTANT METRIC HERE** and wins. Describe the relationship. How does it compare to the relationship between runs and wins?
+
+12. Fit a simple linear model to predict **IMPORTANT METRIC HERE** by runs. Write out the equation for the linear model report the $R^2$.
+
+13. What is the average number of season **IMPORTANT METRIC HERE** and wins? Based on the previous model, how many games would you predict a team that scored the average number of runs would win? What about a team that scored 600 runs? What about 850 runs?
+
+14. Fit a multiple linear regression model to predict wins by **IMPORTANT METRIC 1 HERE** and **IMPORTANT METRIC 2 HERE** allowed. Write out the equation for the linear model and report the $R^2$. How does this model compare to the simple linear regression from the previous question?
+
+15. Fit a multiple regression model to predict **IMPORTANT METRIC 1 HERE** using at least two other variables in this data set. How does the $R^2$ value change? Do you think the new model you created predicts wins better?
+
+The following questions apply to the *players* datasets. 
+
+TBD
+
