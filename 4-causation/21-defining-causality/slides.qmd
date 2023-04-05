@@ -44,7 +44,7 @@ D. Soldier 2
 :::
 
 ```{r}
-countdown::countdown(1)
+countdown::countdown(2)
 ```
 
 :::notes
@@ -58,6 +58,51 @@ Students may bring up good points about ambiguity in the wording of the problem 
 
 As a postscript, this is likely one reason why firing squads are have multiple shooters. Each one has plausible deniability that "the prisoner would have died anyways", so they didn't cause the death. Apparently, it's common for marksmen to occasionally neglect to fire, so this also has redundancy. The judge and captain, though they might be insolated from guilt because they are higher up the causal chain, they are still a cause of the death by this definition.
 :::
+
+## 
+
+-   In the next slide, you will see the first few rows of a dataset containing demographic information on California counties. Scroll to see all of the rows.
+
+. . .
+
+:::poll
+- We are interested in determining whether a difference in `median_edu` has a causal effect on `homeownership`. With this in mind, which county serves as the best counterfactual match to Fresno County?
+
+(A) Kern County
+(B) Marin County
+(C) Contra Costa County 
+(D) Shasta County
+(E) Del Norte County
+:::
+
+:::notes
+
+The answer is (A), since all categorical columns except homeownership have the same entries. 
+
+You may want to mention that this was a final question last year. 
+:::
+
+
+. . . 
+
+```{r}
+countdown::countdown(2)
+```
+
+## {.scrollable}
+
+```{r}
+library(openintro)
+library(tidyverse)
+set.seed(35)
+county %>%
+  filter(state == "California") %>%
+  drop_na(smoking_ban) %>%
+  slice_sample(n = 10) %>%
+  select(name,homeownership,median_edu,metro, smoking_ban) %>%
+  knitr::kable()
+```
+
 
 # PS 8 / PS 9: A Matter of Taste
 
