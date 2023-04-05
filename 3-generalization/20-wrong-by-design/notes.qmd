@@ -389,7 +389,7 @@ Often times in planning a study there are two competing considerations:
 
 As an example, imagine you are working to develop a new drug to reduce to size of tumors and you would like to test the effectiveness of the drug on mice. The more data that you collect, the greater your ability to detect even slight reductions in tumor size due to your drug. But more is data is not always better. Here, collecting data means paying researchers and sacrificing mice, so there is a cost, both financial and ethical, to collecting more data.
 
-One way to balance these two competing needs is frame the problem as follows: what is the smallest sample size that I would need to have a high probability of detecting an effect of the drug, if it is in fact effective? This probability is a vital consideration when planning a study. It is called the statistical power of the test.
+One way to balance these two competing needs is to frame the problem as follows: what is the smallest sample size that I would need to have a high probability of detecting an effect of the drug, if it is in fact effective? This probability is a vital consideration when planning a study. It is called the statistical power of the test.
 
 **Power**
 :    The probability of rejecting the null hypothesis when the null hypothesis is false This probability depends on how big the effect is (e.g., how good the medical treatment is) as well as the sample size.
@@ -404,7 +404,7 @@ Review the definitions of Type I and Type II error at the beginning of these not
 
 <summary>Check your answer</summary>
 
-The power is directly related to the concept of a Type II error, failing to reject a null hypothesis that is false. Since the power is the probability of correctly rejecting a null hypothesis is false, it can be calculated as one minus the probability of a Type II error. The probability of committing a Type II error is often assigned the Greek letter beta, $\beta$, therefore you will sometimes see power written as $1 - \beta$.
+The power is directly related to the concept of a Type II error, failing to reject a null hypothesis that is false. Since the power is the probability of correctly rejecting a null hypothesis that is false, it can be calculated as one minus the probability of a Type II error. The probability of committing a Type II error is often assigned the Greek letter beta, $\beta$, therefore you will sometimes see power written as $1 - \beta$.
 
 </details>
 
@@ -423,3 +423,5 @@ Although hypothesis testing provides a framework for making decisions based on d
 That is, always keep in mind that the conclusion to a hypothesis test may not be right!
 Sometimes when the null hypothesis is true, we will accidentally reject it and commit a type I error; sometimes when the alternative hypothesis is true, we will fail to reject the null hypothesis and commit a type II error.
 The power of the test quantifies how likely it is to obtain data which will reject the null hypothesis when indeed the alternative is true; the power of the test is increased when larger sample sizes are taken.
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}

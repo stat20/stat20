@@ -82,7 +82,7 @@ Create two 95% confidence intervals for the overall proportion of students that 
 
 #### Question 16
 
-Create two 95% confidence intervals for the overall change in support the Project before and after being exposed to the information on page 14 using both the bootstrap and the normal curve. Which method for making the CI, if any, would you expect to be more accurate?
+Create two 95% confidence intervals for the average change in support the Project before and after being exposed to the information on page 14 using both the bootstrap and the normal curve. Which method for making the CI, if any, would you expect to be more accurate?
 
 #### Question 17
 
