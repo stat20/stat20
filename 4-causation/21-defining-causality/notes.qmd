@@ -44,9 +44,9 @@ This is a claim concerning the nature of the data that is on hand, a *descriptiv
 
 > 2. The global consumer price index rose in April.
 
-This claim looks deceptively like the first but there is one important difference. The first claim concerns the CPI, which is calculated using data from the US. The third claim is about the broader global population of which the US data is a subset. In other words, this is a *generalization* from a sample to a population.
+This claim looks deceptively like the first but there is one important difference. The first claim concerns the CPI, which is calculated using data from the US. This second claim is about the broader global population of which the US data is a subset. In other words, this is a *generalization* from a sample to a population.
 
-For a generalization to be sound, we must take several considerations into account. First off: is the sample representative of the population or is it biased in some way? Secondly: what sources of variability are present? When working with a sample that originated from a chance method, it's important to consider the degree to which sampling variability might be explain the structure you see in the data. Our primary tools in this area are the confidence interval, to assess the uncertainty in an statistic, and the hypothesis test, to assess whether a particular statistic is consistent with an assertion about the state of the population parameters.
+For a generalization to be sound, we must take several considerations into account. First off: is the sample representative of the population or is it biased in some way? Secondly: what sources of variability are present? When working with a sample that originated from a chance method, it's important to consider the degree to which sampling variability might be able to explain the structure you see in the data. Our primary tools in this area are the confidence interval, to assess the uncertainty in a statistic, and the hypothesis test, to assess whether a particular statistic is consistent with an assertion about the state of the population parameters.
 
 > 3. The Consumer Price Index rose 8.3% because of the war in Ukraine.
 
@@ -87,9 +87,9 @@ As you ponder where to draw the line to determine which of the these four people
 
 One of the earliest articulations of what it means to be a cause can be found in the writing of Thucydides, the ancient Greek historian. It comes at the end of a passage where he describes a village called Orobiae, which experienced an earthquake followed by a tsunami.
 
-> About the same time that these earthquakes were so common, the sea at Orobiae, in Euboea, retiring from the then line of coast, returned in a huge wave and invaed part o the town, and retreated leaving some of it stll under water; so that what was once land is now sea...
+> About the same time that these earthquakes were so common, the sea at Orobiae, in Euboea, retiring from the then line of coast, returned in a huge wave and invaed part o the town, and retreated leaving some of it still under water; so that what was once land is now sea...
 >
-> The cause, in my opinion of this phenomenon must be sought in the earthquake. At the point where its shock has been the most violent, the sea is driven back, and suddenly recoiling wth redoubled force, causes the inundation.
+> The cause, in my opinion of this phenomenon must be sought in the earthquake. At the point where its shock has been the most violent, the sea is driven back, and suddenly recoiling with redoubled force, causes the inundation.
 >
 > Without the earthquake, I do not see how such an accident could happen.
 
@@ -187,7 +187,7 @@ If you've ever used a GPS navigation app, you're already accustomed to thinking 
 
 ![](images/the-route-not-taken.png){fig-align="center" width="300"}
 
-Each one of the three paths is a potential route I could take and each of those times are the app's predictions for what the potential outcomes will be. Importantly, though, these are just predictions, not data. To collect data, I have to select one of these routes to drive, then I could record data on the time it took me. If I choose the blue path and it ends up taking me 16 minutes, I'll never know for sure that it was my choice of the blue route that led to this apparently short drive time. To know that, I'd have to rewind the clock and, in a different world, decide to take the gray route and observe a drive time that is more than 16 minutes.
+Each one of the three paths is a potential route I could take and each of those times are the app's predictions for what the potential outcomes will be. Importantly, though, these are just predictions, not data. To collect data, I have to select one of these routes to drive, then I could record data on the time it took me. If I choose the blue path and it ends up taking me 16 minutes, I'll never know for sure that it was my choice of the blue route that led to this apparently short drive time. To know that, I'd have to rewind the clock and, in a different world, decide to take one of the gray routes and observe a drive time that is more than 16 minutes.
 
 While our definition of causation prevents us from ever making completely airtight conclusions about cause and effect in scenarios like these, over the years scientists and statisticians have crafted many clever strategies for working around these constraints to build compelling causal claims.
 
@@ -237,7 +237,7 @@ tab %>%
 ```
 :::
 
-How well does Eleanor serve as a counterfactual for Evelyn? Well, it depends on how similar they are to one another in ways that matter to the mechanism of cause and effect. As we see in the table above, they're a perfect match on several variables that probably matter: GSA, the number of years of work experience, and the strength of letters of recommendation.
+How well does Eleanor serve as a counterfactual for Evelyn? Well, it depends on how similar they are to one another in ways that matter to the mechanism of cause and effect. As we see in the table above, they're a perfect match on several variables that probably matter: GPA, the number of years of work experience, and the strength of letters of recommendation.
 
 This general approach is called *matching* and it relies upon the idea of finding a different unit that is a close match for every possible important variable, but differs on the variable of interest. There are many methods for determining which two units in a data set are the closest matches for one another. One time-worn method is called propensity score matching but you can imagine even adapting the method that we used for the k-nearest neighbor algorithm: calculating the (Euclidean) distance between each pair of observations.
 
