@@ -1,5 +1,5 @@
 ---
-title: 'PS 8: A Matter of Taste'
+title: 'Lab 6.1: A Matter of Taste'
 format: pdf
 header-includes:
    - \usepackage{multicol}
