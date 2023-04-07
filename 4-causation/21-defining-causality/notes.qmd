@@ -321,6 +321,9 @@ We set the stage for reasoning about causation by defining cause and effect in t
 
 This definition is problematic if we intend to establish causes using only data. While we are never able to actually observe all of the data necessary to prove a causal claim absolutely, there are many methods that have been devised to approximate the counterfactual. One approach is to look at different units across time, and aim to make those units as similar as possible. A second approach is to look at the same unit at two points in time. A third approach is to conduct an experiment, which is the subject of the final set of notes.
 
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
+
+
 \
 
 

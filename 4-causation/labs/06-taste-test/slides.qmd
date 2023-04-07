@@ -1,0 +1,152 @@
+---
+title: "Lab 6: A Matter of Taste"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../../assets/stat20-hex-bg.png
+      data-background-size: contain
+execute: 
+  echo: false
+---
+
+:::notes
+Suggested timeline
+- [10 min] Slides and making teams
+- [40 min] Working on the protocol
+
+General Advice
+- The students have seen *nothing* about experimental design yet in class. The idea is to have them use their own mental models to solve this problem, then later review and revise them. That's to say: coach them only to be precise in their protocol, not to be using best practices in experimental design. Errors made here are great learning opportunities later.
+- The first phase of the lab can all be done with paper and pencil, so you can ask that students stow their laptops.
+- This can be a bit of a jolt for students: from working with ggplot2 code to suddenly thinking about experiments without having seen them in class.
+:::
+
+
+## Making Claims with Data
+
+- **John Arbuthnot's Question**: What proportion of total births are of girls?
+
+. . .
+
+- **The Data**: Christening records from London churches.
+
+. . .
+
+- **The Analysis**: In all years studied, the proportion of girls was less than 50%.
+
+. . .
+
+```{r}
+#| echo: false
+#| fig-height: 3
+#| message: false
+#| fig-align: center
+
+library(tidyverse)
+library(stat20data)
+data(arbuthnot)
+arbuthnot <- arbuthnot %>%
+  mutate(p_girls = girls / (boys + girls))
+ggplot(arbuthnot, aes(x = year, y = p_girls)) +
+  geom_line() +
+  ylim(0, 1) +
+  theme_gray(base_size = 14)
+```
+
+- **Potential Claim**: At birth, humans are more likely to be genetically male than genetically female.
+
+:::notes
+First layout the arc of the Arbuthnot lab from the beginning of the semester. The general theme is: how can we construct claims and answer questions using data?
+
+This week students will work backwards: start with a claim that they think may be true, then decide how to collect data in a manner that will be most effective at determining whether or not the claim is true.
+:::
+
+## But first
+
+Please get into groups of 3 (4 is ok too). Take turns introducing yourselves.
+
+
+## A Matter of Taste
+
+**Your challenge**: Determine whether or not one of your group members can distinguish between two different types of bubble water (or a similar claim of your choosing).
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](images/la-croix.png)
+:::
+
+::: {.column width="50%"}
+### Each team will have access to
+
+- 50 minutes (lab Thursday)
+- 2 cans of soda water, each one from a different flavor
+- small cups
+- straws
+- saltine crackers
+:::
+::::
+
+
+## Group Members
+
+![](images/members.png)
+
+:::notes
+The main reason for the roles here is to dedicate just one person to handling the materials for covid safety. There will also be sanitizer.
+:::
+
+## Claim and Hypotheses
+
+![](images/claim.png)
+
+:::notes
+Prompt them to think carefully about their wording here in the claim. How ambitious and general do they want to be?
+:::
+
+
+## Protocol
+
+![](images/protocol.png)
+
+:::notes
+Here they must be very precise. We're spoken about reproducible science in class, so use that language to encourage careful work. They must be able to pass this protocol off to another group, and they should be able to carry out the intended experiment with no ambiguity.
+:::
+
+
+## Data
+
+
+![](images/data.png)
+
+:::notes
+This is intended to be a blank table with n rows and at least 1 column. They may plan to record either several extraneous variables or not enough to draw the conclusions they intend. As before, don't correct them. They may discover mid-experiment that they did this part wrong, and that's great.
+:::
+
+
+## Graphics
+
+![](images/eda.png)
+
+
+## Things to remember
+
+- Be precise in your protocol.
+- Be sure your claim corresponds to your protocol corresponds to your data corresponds to your plots.
+- Before leaving today, scan both sides of the handout with a scanner app and upload to Gradescope as Lab 6.1.
+
+```{r}
+countdown::countdown(50)
+```

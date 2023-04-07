@@ -1,0 +1,12 @@
+---
+title: "Lab 6: A Matter of Taste"
+date: 04/05/23
+image: images/la-croix-small.png
+code-fold: false
+---
+
+{{< include ../../../assets/includes/_labs-header.qmd >}}
+
+## Part I: Understanding the Context of the Data
+
+- [Lab 6.1: A Matter of Taste](lab-context.pdf)
