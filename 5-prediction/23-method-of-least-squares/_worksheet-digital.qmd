@@ -30,7 +30,7 @@ Remake your scatter plot but add a line representing your linear model by adding
 
 ```{r}
 #rss <- function(coef) {
-#  ___((flights$avg_speed - (coef[1] - coef[2] * flights$distance))^___)
+#  ___((flights$avg_speed - (coef[1] + coef[2] * flights$distance))^___)
 #}
 
 #optim(par = c(___, ___), fn = ___)
