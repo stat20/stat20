@@ -26,6 +26,7 @@ execute:
 
 - Linear Models Review
 - Concept Questions
+- Optimization with Algorithms
 - Problem Set 6.1: Method of Least Squares
 
 
@@ -40,10 +41,301 @@ Go to `pollev.com` and get ready for a kahoot.
 
 Scenario 1, asking them to identify the a. response variable, b. predictor variables, and c. whether it requires a regression or a classification model.
 
+# Fitting Predictive Models via Optimization
+
+## Two approaches
+
+::::{.columns}
+:::{.column width="50%"}
+#### Calculus
+
+Certain models (like least squares) can be fit simply by taking partial derivatives, setting to 0, and solving.
+:::
+
+:::{.column width="50%" .fragment}
+#### Algorithms
+
+There are many iterative algorithms that accomplish the same task, some better than others. Two examples:
+
+- Gradient Descent: the most-used algorithm currently. Used to fit deep learning models.
+- Nelder-Mead: an older and more general (and generally not as reliable!) algorithm.
+:::
+::::
+
+## Nelder-Mead
+
+::::{.columns}
+:::{.column width="70%"}
+
+> The downhill simplex method now takes a series of steps, most steps just moving the point of the simplex where the function is largest (“highest point”) through the opposite face of the simplex to a lower point. These steps are called reflections, and they are constructed to conserve the volume of the simplex (and hence maintain its nondegeneracy). When it can do so, the method expands the simplex in one or another direction to take larger steps. When it reaches a “valley floor”, the method contracts itself in the transverse direction and tries to ooze down the valley. If there is a situation where the simplex is trying to “pass through the eye of a needle”, it contracts itself in all directions, pulling itself in around its lowest (best) point. (from Wikipedia)
+:::
+
+:::{.column width="30%"}
+![](images/Nelder-Mead_Himmelblau.gif)
+:::
+::::
+
+## Nelder-Mead on a simple function
+
+Can we use Nelder-Mead to find the mimimum value of this function (with zero calculus)?
+
+$$
+f(x) = \left(x + .5 \right)^2
+$$
+
+```{r}
+#| echo: false
+#| fig-align: center
+
+library(tidyverse)
+
+tibble(x = seq(-1, 1, .01)) %>%
+  mutate(y = (x + .5)^2)%>%
+  ggplot(aes(x = x, y = y)) +
+  geom_line(col = "goldenrod", linewidth = 2.5) +
+  labs(y = "f(x)") +
+  theme_bw(base_size = 22)
+```
+
+## Writing a new function in R {auto-animate="true"}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "1"
+f <- function(x) {
+  (x + .5)^2
+}
+```
+
+1. Functions are created with `function()` and assigned to an object (here, our new function is `f()`)
+2. The arguments go inside the parens of `function()`
+
+## Writing a new function in R {auto-animate="true"}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "2"
+f <- function(x) {
+  (x + .5)^2
+}
+```
+
+1. Functions are created with `function()` and assigned to an object (here, our new function is `f()`)
+2. The arguments go inside the parens of `function()`
+3. The guts of the function goes between `{}`.
+4. Once you run this function once, you'll have access to `f()` in your environment.
+
+## Finding values of $f(x)$ {auto-animate="true"}
+
+::::{.columns}
+:::{.column width="50%"}
+$$
+f(x) = \left(x + .5 \right)^2
+$$
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+
+tibble(x = seq(-1, 1, .01)) %>%
+  mutate(y = (x + .5)^2)%>%
+  ggplot(aes(x = x, y = y)) +
+  geom_line(col = "goldenrod", linewidth = 2.5) +
+  annotate(geom = "point", x = 0, y = f(0),
+           col = "red", size = 8) +
+  labs(y = "f(x)") +
+  theme_bw(base_size = 22)
+```
+:::
+
+:::{.column width="50%"}
+```{r}
+#| echo: true
+f <- function(x) {
+  (x + .5)^2
+}
+```
+
+:::
+::::
+
+## Finding values of $f(x)$ {auto-animate="true"}
+
+::::{.columns}
+:::{.column width="50%"}
+$$
+f(x) = \left(x + .5 \right)^2
+$$
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+
+tibble(x = seq(-1, 1, .01)) %>%
+  mutate(y = (x + .5)^2)%>%
+  ggplot(aes(x = x, y = y)) +
+  geom_line(col = "goldenrod", linewidth = 2.5) +
+  annotate(geom = "point", x = 0, y = f(0),
+           col = "red", size = 8) +
+  labs(y = "f(x)") +
+  theme_bw(base_size = 22)
+```
+:::
+
+:::{.column width="50%"}
+```{r}
+#| echo: true
+f <- function(x) {
+  (x + .5)^2
+}
+
+f(x = 0)
+```
+
+:::
+::::
+
+
+## Finding values of $f(x)$ {auto-animate="true"}
+
+::::{.columns}
+:::{.column width="50%"}
+$$
+f(x) = \left(x + .5 \right)^2
+$$
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+
+tibble(x = seq(-1, 1, .01)) %>%
+  mutate(y = (x + .5)^2)%>%
+  ggplot(aes(x = x, y = y)) +
+  geom_line(col = "goldenrod", linewidth = 2.5) +
+  annotate(geom = "point", x = .75, y = f(.75),
+           col = "red", size = 8) +
+  labs(y = "f(x)") +
+  theme_bw(base_size = 22)
+```
+:::
+
+:::{.column width="50%"}
+```{r}
+#| echo: true
+f <- function(x) {
+  (x + .5)^2
+}
+```
+
+:::
+::::
+
+## Finding values of $f(x)$ {auto-animate="true"}
+
+::::{.columns}
+:::{.column width="50%"}
+$$
+f(x) = \left(x + .5 \right)^2
+$$
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+
+tibble(x = seq(-1, 1, .01)) %>%
+  mutate(y = (x + .5)^2)%>%
+  ggplot(aes(x = x, y = y)) +
+  geom_line(col = "goldenrod", linewidth = 2.5) +
+  annotate(geom = "point", x = .75, y = f(.75),
+           col = "red", size = 8) +
+  labs(y = "f(x)") +
+  theme_bw(base_size = 22)
+```
+:::
+
+:::{.column width="50%"}
+```{r}
+#| echo: true
+f <- function(x) {
+  (x + .5)^2
+}
+
+f(x = .75)
+```
+
+:::
+::::
+
+## Finding minimum value of $f(x)$ {auto-animate="true"}
+
+::::{.columns}
+:::{.column width="50%"}
+$$
+f(x) = \left(x + .5 \right)^2
+$$
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+
+tibble(x = seq(-1, 1, .01)) %>%
+  mutate(y = (x + .5)^2)%>%
+  ggplot(aes(x = x, y = y)) +
+  geom_line(col = "goldenrod", linewidth = 2.5) +
+  # annotate(geom = "point", x = .75, y = f(.75),
+  #          col = "red", size = 8) +
+  labs(y = "f(x)") +
+  theme_bw(base_size = 22)
+
+set.seed(40)
+```
+:::
+
+:::{.column width="50%"}
+```{r}
+#| echo: true
+f <- function(x) {
+  (x + .5)^2
+}
+
+optim(par = .5, fn = f)
+```
+
+:::
+::::
+
+## Notes on `optim()`
+
+```{r}
+#| eval: false
+#| echo: true
+
+optim(par = .5, fn = f)
+```
+
+- The function to optimize is passed to `fn`. You provide a starting point for the algorithm with `par` (which must be a scalar or a vector).
+- This is a random algorithm - each time you run it you'll get a (slightly) different answer.
+- The best guess of the algorithm will be returned as `$par`
+
+. . .
+
+**optim's guess**: 0.4
+
+**true answer**: 0.5
+
 
 # Problem Set
 
-## Optimization in R
+```{r}
+countdown::countdown(25)
+```
+
+
 
 
 
