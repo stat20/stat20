@@ -1,0 +1,52 @@
+---
+title: "Method of Least Squares"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+execute: 
+  echo: false
+---
+
+## Agenda
+
+- Linear Models Review
+- Concept Questions
+- Problem Set 6.1: Method of Least Squares
+
+
+# Linear Models Review
+
+Go to `pollev.com` and get ready for a kahoot.
+
+
+## Concept Questions
+
+##
+
+Scenario 1, asking them to identify the a. response variable, b. predictor variables, and c. whether it requires a regression or a classification model.
+
+
+# Problem Set
+
+## Optimization in R
+
+
+
+
+
+
