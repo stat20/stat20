@@ -1,0 +1,112 @@
+---
+title: "The Method of Least Squares"
+subtitle: "Fitting a regression model by minimizing RSS"
+date: "04/12/2023"
+image: images/prediction.png
+format:
+  html:
+    code-fold: true
+    code-link: true
+    code-summary: "."
+execute: 
+  warning: false
+  message: false
+---
+
+{{< include ../../assets/includes/_notes-header.qmd >}}
+
+\
+
+:::{.content-hidden unless-profile="staff-guide"}
+### Learning Objectives
+
+1. Identify the response and explanatory variables in a prediction problem and whether it requires a regression or classification model.
+2. Refamiliarize with components of linear regression.
+3. 
+
+:::
+
+:::{style="text-align: center"}
+## Welcome to Unit IV: Prediction
+:::
+
+[A]{.dropcap}s we near the end of the semester, we revisit one last time the four different claims that might be made based on the line plot found in the news story. 
+
+:::{.column-margin}
+![Inflation in the news[^nyt].](images/nyt-inflation.png){#fig-inflation fig-align=center width="70%"}
+:::
+
+1. The Consumer Price Index rose 8.3% in April.
+2. The global consumer price index rose in April.
+3. The Consumer Price Index rose 8.3% because of the war in Ukraine.
+4. The Consumer Price Index will likely rise throughout the summer.
+
+In this unit use, we aim to make claims like the final one, "The Consumer Price Index will likely rise throughout the summer". This is a *prediction*, a claim that uses the structure of the data at hand to predict the value of observations about which we have only partial information. In midsummer, we know the date will be July 15th, that's the x-coordinate. But what will the y-coordinate be, the Consumer Price Index?
+
+The realm of prediction is the subject of intense research activity and commercial investment at the moment. Falling under the terms "machine learning" and "AI", models for prediction have become very powerful in recent years; they can diagnose diseases, help drive autonomous vehicles, and compose text with eerily human sensibilities. At the core of these complicated models, though, are a few simple ideas that make it all possible. 
+
+::: {style="text-align:center;"}
+![Four types of claims made with data covered in this class.](images/claims-only.png){#fig-claims width="500px"}
+:::
+
+[^nyt]: Smialek, Jeanna (2022, May 11). Consumer Prices are Still Climbing Rapidly. *The New York Times*. <https://www.nytimes.com/2022/05/11/business/economy/april-2022-cpi.html>
+
+
+## Key Concepts in Prediction
+
+In making predictions, the most important question is "what do you want to predict?" The answer to that question is called the *response variable*.
+
+**Response Variable**
+:    The variable that is being predicted. Also called the dependent or outcome variable. Indicated by $y$ or $Y$ when treated as a random variable.
+
+The related question to ask is is, "what data will you use to predict your response?" The answer to that questions 
+
+**Predictor Variable(s)**
+:    The variable or variables that used to predict the response. Also called the independent variables or the features. Indicated by $x_1, x_2, \ldots$ etc.
+
+An analyst working at the Federal Reserve to predict the Consumer Price Index in midsummer would use the CPI as their response variable. Their predictors could be time (the x-coordinate in the plot from the newspaper article) but could also include the federal interest rate and the unemployment rate.
+
+A second analyst working in another office at the Federal Reserve tasked with predicting whether or not the economy will be recession within six months; that event would be the response variable. To predict this outcome, they might use those same predictors - the interest rate and the unemployment rate - but also predictors like the real GDP, industrial production, and retail sales.
+
+The prediction problems being tackled by these two analysts diverge in an important way: the first is trying to predict a numerical variable and the second a categorical variable. This distinction in the Taxonomy of Data defines the two primary classes of models used for prediction.
+
+**Regression Model**
+:    A statistical model used to predict a numerical response variable.
+
+**Classification Model**
+:    A statistical model used to predict a categorical response variable.
+
+The past two decades have been a golden age for predictive models, with hundreds of new model types being invented that can address regression tasks or classifications tasks or often both. To take a deep dive into this diverse landscape, take a course in statistical or machine learning. For the purpose of this course, we'll just take a dip and focus on two models: Least Squares Linear Model for Regression and a Logistic Linear Model for Classification.
+
+<!-- Add tree diagram that mimics taxonomy of data but then shows the different model classes. -->
+<!-- Add tradeoff between interpretability and accuracy diagram inspired by ISLR ch1. -->
+
+## Linear Regression
+
+We've seen linear regression before, but we saw it in a very particular context: we used linear regression for its ability to help us describe the structure of the data set at hand. It calculates not just one but two or more summary statistics - the regression coefficients, that tell us about the linear relationships between the variables.
+
+We're going to revisit to this model for its ability to also make predictions on unseen data. Before we do so, though, you should be sure you're familiar with the terms of concepts: correlation coefficient, slope, intercept, fitted values, and residuals. Take a moment to skim those notes:
+
+- [Summarizing Numerical Associations](../../2-describing-data/09-summarizing-associations/notes.qmd)
+- [Multiple Linear Regression](../../2-describing-data/10-multiple-linear-regression/notes.qmd)
+
+### The Method of Least Squares
+
+When we presented the equations to calculate the slope and intercept of a least squares linear model in Unit 1, we did so without any explanation of where those equations came from. The remainder of these notes will cast some light on this mystery.
+
+The least squares linear model is so-called because it defines a line that has a particular mathematical property: it is the line that has the lowest residual sum of squares of all possible lines.
+
+**Residual Sum of Squares (RSS)**
+:    For observations of a response variable $y_i$, predictions of it's value (fitted values) $\hat{y}_i$, and a data set with $n$ observations, the RSS is
+     $$ RSS = \sum_{i = 1}^n \left(y_i - \hat{y}_i \right)^2$$
+
+So how can we use this definition to decide precisely which slope and intercept to use? Please watch the following 19 minute video to find out.
+
+[![](images/method-of-least-squares-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1521247/external_tools/78985)
+
+
+## Summary
+
+Prediction is the task of predicting the value of a response variable for an unseen observation using its values of other variables that are known, the predictors. The nature of the response variable determines the nature of the task (and corresponding model): regression concerns the prediction of numerical response variables, classification concerns the prediction of categorical response variables. One such regression model is the least squares linear model, which uses the line that minimizes the residual sum of squares. Finding the value of the coefficients is a task that can be solved directly using calculus (in simple settings like this one) and also with optimization algorithms (in more general settings).
+
+
