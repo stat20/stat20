@@ -4,6 +4,8 @@ subtitle: "Method of Least Squares"
 ---
 
 ```{r}
+#| message: false
+#| echo: false
 library(tidyverse)
 library(stat20data)
 ```
