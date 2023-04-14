@@ -59,14 +59,14 @@ In making predictions, the most important question is "what do you want to predi
 **Response Variable**
 :    The variable that is being predicted. Also called the dependent or outcome variable. Indicated by $y$ or $Y$ when treated as a random variable.
 
-The related question to ask is is, "what data will you use to predict your response?" The answer to that questions 
+The related question to ask is is, "what data will you use to predict your response?" The answer to that question is... 
 
 **Predictor Variable(s)**
 :    The variable or variables that used to predict the response. Also called the independent variables or the features. Indicated by $x_1, x_2, \ldots$ etc.
 
-An analyst working at the Federal Reserve to predict the Consumer Price Index in midsummer would use the CPI as their response variable. Their predictors could be time (the x-coordinate in the plot from the newspaper article) but could also include the federal interest rate and the unemployment rate.
+An analyst working at the Federal Reserve to predict the Consumer Price Index in midsummer would use the CPI as their response variable. Their predictor could be time (the x-coordinate in the plot from the newspaper article) but could also include the federal interest rate and the unemployment rate.
 
-A second analyst working in another office at the Federal Reserve tasked with predicting whether or not the economy will be recession within six months; that event would be the response variable. To predict this outcome, they might use those same predictors - the interest rate and the unemployment rate - but also predictors like the real GDP, industrial production, and retail sales.
+A second analyst working in another office at the Federal Reserve is tasked with predicting whether or not the economy will be recession within six months; that event (recession or no recession) would be the response variable. To predict this outcome, they might use those same predictors - the interest rate and the unemployment rate - but also predictors like the real GDP, industrial production, and retail sales.
 
 The prediction problems being tackled by these two analysts diverge in an important way: the first is trying to predict a numerical variable and the second a categorical variable. This distinction in the Taxonomy of Data defines the two primary classes of models used for prediction.
 
@@ -85,7 +85,7 @@ The past two decades have been a golden age for predictive models, with hundreds
 
 We've seen linear regression before, but we saw it in a very particular context: we used linear regression for its ability to help us describe the structure of the data set at hand. It calculates not just one but two or more summary statistics - the regression coefficients, that tell us about the linear relationships between the variables.
 
-We're going to revisit to this model for its ability to also make predictions on unseen data. Before we do so, though, you should be sure you're familiar with the terms of concepts: correlation coefficient, slope, intercept, fitted values, and residuals. Take a moment to skim those notes:
+We're going to revisit to this model for its ability to also make predictions on unseen data. Before we do so, though, you should be sure you're familiar with these concepts: correlation coefficient, slope, intercept, fitted values, and residuals. Take a moment to skim those notes:
 
 - [Summarizing Numerical Associations](../../2-describing-data/09-summarizing-associations/notes.qmd)
 - [Multiple Linear Regression](../../2-describing-data/10-multiple-linear-regression/notes.qmd)
@@ -97,7 +97,7 @@ When we presented the equations to calculate the slope and intercept of a least 
 The least squares linear model is so-called because it defines a line that has a particular mathematical property: it is the line that has the lowest residual sum of squares of all possible lines.
 
 **Residual Sum of Squares (RSS)**
-:    For observations of a response variable $y_i$, predictions of it's value (fitted values) $\hat{y}_i$, and a data set with $n$ observations, the RSS is
+:    For observations of a response variable $y_i$, predictions of its value (fitted values) $\hat{y}_i$, and a data set with $n$ observations, the RSS is
      $$ RSS = \sum_{i = 1}^n \left(y_i - \hat{y}_i \right)^2$$
 
 So how can we use this definition to decide precisely which slope and intercept to use? Please watch the following 19 minute video to find out.
