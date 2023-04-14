@@ -35,11 +35,44 @@ execute:
 Go to `pollev.com` and get ready for a kahoot.
 
 
-## Concept Questions
+# Concept Questions
 
-##
+## Scenario 1
 
-Scenario 1, asking them to identify the a. response variable, b. predictor variables, and c. whether it requires a regression or a classification model.
+An engineer working for Waymo self-driving cars is working to solve a problem. When it rains, reflections of other cars in puddles can disorient the self-driving car. Their team is working on a model to determine when the self-driving car is seeing a reflection of a car vs a real car.
+
+:::{.poll}
+Please identify A. the response, B. the predictor(s), and 
+3. whether it is regression or classification (poll only has 3.)
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+:::{.notes}
+This is a serious challenge encountered by self-driving cars at the moment. This is probably best thought of as a classification problem, with the response being either reflection / not or puddle / not. The predictors could be sensor input (cameras, lidar) as well as weather info (to know if it's been raining).
+:::
+
+## Scenario 2
+
+An analyst working for the UC Berkeley Admissions Office is working to help the university decide how many students to send offer letters to. They have a target class size (that fits within the budget and residence halls), but they're not sure how many students will accept the offer. How many should they admit?
+
+:::{.poll}
+Please identify A. the response, B. the predictor(s), and 
+3. whether it is regression or classification (poll only has 3.)
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+:::{.notes}
+This is another very real task. Universities use what's called a "yield model" to predict whether or not a student will accept the offer. That's a classification method. Those classifiers aggregated up across all offers lead to a numerical prediction for the total yield, which looks more like a regression problem, so either answer could work. It could also be a direct regression model where they use aggregate stats of the class to predict the total yield.
+
+Response is either the decision of a single student or the total number of students that accept. Predictors could be either student level covariates (for classification) or class-level averages (for regression). They might also include broader economic indicators like unemployment rate.
+:::
+
 
 # Fitting Predictive Models via Optimization
 
