@@ -17,15 +17,19 @@ In this lab, you will have the opportunity to work with datasets from a few diff
     -   `teams` dataset [preview](images/baseball_players.png)
     -   `players` dataset [preview](images/baseball_teams.png)
     
-- **Football**
+- **Football**[^football]
     -   `teams` dataset [preview](images/football_players.png)
     -   `players` dataset [preview](images/football_teams.png)
 
-*The teams dataset was created using data from [Pro Football Reference](https://www.pro-football-reference.com).
+[^football]: The football `teams` dataset was created using data from [Pro Football Reference](https://www.pro-football-reference.com).
     
-- **Soccer**
-    -   `teams` dataset preview
-    -   `players` dataset preview
+- **Soccer**[^soccer]
+    -   `teams` dataset [preview](images/partial-view-soccer-teams.png)
+    -   `teams` data glimpse [preview](images/glimpse-soccer-teams.png)
+    -   `players` dataset [preview](images/partial-view-soccer-players.png)
+    -   `players` data glimpse [preview](images/glimpse-soccer-players.png)
+    
+[^soccer]: Both the teams and the player datasets were created using the `r` package `worldfootballR`, and the data was obtained from the website [FBRef](https://fbref.com/en/comps/9/Premier-League-Stats). 
     
 
 ## Part II: Computing on the Data
