@@ -1,0 +1,38 @@
+---
+title: "Communication critique"
+format: html
+editor: visual
+---
+
+For each question below do the following:
+
+-   Who is the target audience? What is the communication medium? What is the goal the communication is trying to accomplish?
+
+-   Discuss how each of the four principles for effective communication are or are not used.
+
+-   Discuss how each of the strategies for effective communication are or are not used.
+
+-   Are there ways to improve how the content was communicated?
+
+# Question 1: stat20 website
+
+Critique our course website, [www.stat20.org/](https://www.stat20.org/) (either the whole website or a specific part e.g. one set of notes/slides, etc).
+
+# Question 2: a data visualization
+
+Any data visualization. Could be something in our course or anywhere else. Some suggestions\
+\
+
+-   Check out [Flowing data](https://flowingdata.com/made-by-flowingdata/), for example
+
+    -   [Where bars out number grocery stores](https://flowingdata.com/2014/05/29/bars-versus-grocery-stores-around-the-world/)
+
+    -   [Commonnness of Divorce in America](https://flowingdata.com/2022/06/07/commonness-of-divorce-in-america/)
+
+    -   [Life satisfaction and age](https://flowingdata.com/2022/11/10/life-satisfaction-and-age/)
+
+    -   [Rhythm of food](https://rhythm-of-food.net/)
+
+# Question 3: something else
+
+Choose a piece of public communication. This could be anything e.g. a news article, a website, a visualization, etc. Post a link to the piece so we can see what you are talking about. For example, you could pick [AirBnB's pitch deck to venture capitalists](https://www.slideshare.net/PitchDeckCoach/airbnb-first-pitch-deck-editable).
