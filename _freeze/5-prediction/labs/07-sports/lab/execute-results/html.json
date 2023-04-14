@@ -1,0 +1,14 @@
+{
+  "hash": "a5fadceaebc5e90e5a6a03531873a1d0",
+  "result": {
+    "markdown": "---\ntitle: \"Lab 7: Sports\"\ndate: 04/14/23\nimage: images/box_score.jpeg\ncode-fold: false\n---\n<!-- The bit before that is commented out adds publish date to document metadata and button links at the top of the doc. This workflow can be revisited but currently doesn't work because listings aren't updated with these dates, only the renderd docs. -->\n\n::: {.cell}\n\n:::\n\n---\npublished-title: \"release date\"\n---\n\n[[Discuss]{.btn .btn-primary}](https://edstem.org/us/courses/31657) [[Slides]{.btn .btn-primary}](slides.qmd)\n\n\n\n## Part I: Understanding the Context of the Data\n\n- [Lab 7.1 (Paper Worksheet)](lab-context.pdf)\n\nIn this lab, you will have the opportunity to work with datasets from a few different sports. Each sport has a `teams` and `players` dataset associated with it,\n\n- **Baseball**\n    -   `teams` dataset [preview](images/baseball_players.png)\n    -   `players` dataset [preview](images/baseball_teams.png)\n    \n- **Football**\n    -   `teams` dataset [preview](images/football_players.png)\n    -   `players` dataset [preview](images/football_teams.png)\n\n*The teams dataset was created using data from [Pro Football Reference](https://www.pro-football-reference.com).\n    \n- **Soccer**\n    -   `teams` dataset [preview](images/partial-view-soccer-teams.png)\n    -   `teams` data glimpse [preview](images/glimpse-soccer-teams.png)\n    -   `players` dataset [preview](images/partial-view-soccer-players.png)\n    -   `players` data glimpse [preview](images/glimpse-soccer-players.png)\n    \n\n## Part II: Computing on the Data\n\nTo be released.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
