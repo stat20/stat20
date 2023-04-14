@@ -1,0 +1,33 @@
+---
+title: "Lab 7: Sports"
+date: 04/14/23
+image: images/box_score.jpeg
+code-fold: false
+---
+
+{{< include ../../../assets/includes/_labs-header.qmd >}}
+
+## Part I: Understanding the Context of the Data
+
+- [Lab 7.1 (Paper Worksheet)](lab-context.pdf)
+
+In this lab, you will have the opportunity to work with datasets from a few different sports. Each sport has a `teams` and `players` dataset associated with it,
+
+- **Baseball**
+    -   `teams` dataset [preview](images/baseball_players.png)
+    -   `players` dataset [preview](images/baseball_teams.png)
+    
+- **Football**
+    -   `teams` dataset [preview](images/football_players.png)
+    -   `players` dataset [preview](images/football_teams.png)
+
+*The teams dataset was created using data from [Pro Football Reference](https://www.pro-football-reference.com).
+    
+- **Soccer**
+    -   `teams` dataset preview
+    -   `players` dataset preview
+    
+
+## Part II: Computing on the Data
+
+To be released.
