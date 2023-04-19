@@ -15,19 +15,74 @@ In this lab, you will have the opportunity to work with datasets from a few diff
 
 - **Baseball**
     -   `teams` dataset [preview](images/baseball_players.png)
+    -   `teams` dataset [link](https://www.dropbox.com/s/qcyu24rcldfd8u9/baseball_teams_init.csv?dl=1)
     -   `players` dataset [preview](images/baseball_teams.png)
+    -   `players` dataset [link](https://www.dropbox.com/s/oipadwa5lc2rp8v/baseball_players_init.csv?dl=1)
     
 - **Football**
     -   `teams` dataset [preview](images/football_players.png)
+    -   `teams` dataset [link](https://www.dropbox.com/s/a0i9mpfrjghhk5t/football_teams_init.csv?dl=1)
     -   `players` dataset [preview](images/football_teams.png)
+    -   `players` dataset [link](https://www.dropbox.com/s/uyn69av0x0jnbnu/football_players_init.csv?dl=1)
 
 *The teams dataset was created using data from [Pro Football Reference](https://www.pro-football-reference.com).
     
 - **Soccer**
     -   `teams` dataset preview
+    -   `teams` dataset [link](https://www.dropbox.com/s/835bho6ijmyx5am/soccer_teams_init.csv?dl=1)
     -   `players` dataset preview
+    -   `players` dataset [link](https://www.dropbox.com/s/1pyqn1fxiwcf5bb/soccer_players_init.csv?dl=1)
     
 
 ## Part II: Computing on the Data
 
-To be released.
+Now you may load in your data-sets into R. The following code snippet will be useful for this and you may copy it into your .qmd document. Make sure you load the `tidyverse` library at the top of your .qmd document as well, as `read_csv()` is a function within this library.
+
+```{r}
+#| message: false
+#| echo: false
+teams <- read_csv("insert data set link here", show_col_types = FALSE)
+players <- read_csv("insert data set link here", show_col_types = FALSE)
+```
+
+The questions throughout this Part (questions 9-17) apply solely to the `teams` dataset.
+
+---
+
+9. What are the dimensions of the your `teams` dataset?
+
+10. Split your `teams` dataset into training and testing portions. 
+
+---
+
+### Model One: Simple Linear Model
+
+10. Write code to plot a relationship between an explanatory variable of your choice and a response variable of your choice. Describe the relationship.
+
+11. Fit a simple linear model to predict the response variable of your choice by the explanatory variable of your choice. Write out the equation for the linear model and report your training $R^2$.
+
+12. What is the average value of your predictor variable and the average value of your response variable? Based on the previous model, what would you predict the response variable to be with the average of your explanatory variable?
+
+13. Report your testing $R^2$ and compare it to your training $R^2$ in one or two sentences.
+
+---
+
+### Model Two: "Everything but the kitchen sink"
+
+14. Now, fit a linear model to predict your response variable which satisfies the following:
+  - includes *all* other variables in the dataset as explanatory variables
+  - at least two non-linear transformations
+  - at least one polynomial term (up to degree 2), involving a variable you expect is non-linearly associated with your response variable.
+  
+15. Report your training and testing $R^2$'s. Compare the two values and explain the reasoning behind the relationship you notice.
+
+---
+
+### Model Three: Your best choice
+  
+16. Finally, fit a linear model which you think best predicts your response variable. You may use any number of variables you wish and employ non-linear transformations and polynomials if you would like, too. Report your training $R^2$.
+
+17. Report your testing $R^2$ and compare it to your training $R^2$ in one or two sentences.
+
+
+
