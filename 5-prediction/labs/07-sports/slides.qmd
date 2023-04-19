@@ -68,3 +68,9 @@ knitr::include_graphics("images/sports_analytics.png")
 knitr::include_graphics(c("images/baseball_ball.png","images/football.png", "images/soccer.png"))
 ```
 
+# Lab Work Time
+
+```{r}
+countdown::countdown(25)
+```
+

@@ -26,7 +26,6 @@ execute:
 
 - A Matter of Taste II
 - Principles of Experimental Design
-- Final Words
 
 # A Matter of Taste II
 
@@ -34,9 +33,9 @@ Please:
 
 1. Conduct your experiment
 2. Record your data
-3. Complete and submit PS 9 as a group (see notes page for today for link).
+3. Complete and submit part II as a group
 
-If you don't finish in the allotted time, finish up PS 9 after class.
+If you don't finish in the allotted time, finish up after class.
 
 ```{r}
 countdown::countdown(60)
@@ -67,21 +66,16 @@ knitr::include_graphics("images/la-croix.png")
 ::: poll
 Could your taster distinguish between flavors?
 
-A. Yes, and it was statistically significant (p < .05)
-B. Yes, but it was not statistically significant (p > .05)
-B. No.
-C. We tested a different claim
+A. Yes, and it was statistically significant (p < .05).  
+B. Yes, but it was not statistically significant (p > .05).  
+C. No.  
+D. We tested a different claim.  
 :::
-
-:::
-The goal of this question is to allow all groups to, in brief, share their results with the class. It also opens up the conversation about how there were many different ways to carry out this experiment. Two groups might have come to different conclusions because their tasters really had different abilities, or because their claims and experiments were slightly different, or just due to random chance.
-:::
-
-## {background-image="images/student-example-front.png" background-size="contain"}
 
 :::notes
-Insert in these slides screencaps 
+The goal of this question is to allow all groups to concisely share their results with the class. It also opens up the conversation about how there were many different ways to carry out this experiment. Two groups might have come to different conclusions because their tasters really had different abilities, or because their claims and experiments were slightly different, or just due to random chance.
+
+You may want to project 1 or 2 protocols and ask the groups to talk through how they uses the principles of experimental design.
 :::
 
-## {background-image="images/student-example-back.png" background-size="contain"}
 

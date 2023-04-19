@@ -43,7 +43,7 @@ An engineer working for Waymo self-driving cars is working to solve a problem. W
 
 :::{.poll}
 Please identify A. the response, B. the predictor(s), and 
-3. whether it is regression or classification (poll only has 3.)
+C. whether it is regression or classification (poll only has C.)
 :::
 
 ```{r}
@@ -60,7 +60,7 @@ An analyst working for the UC Berkeley Admissions Office is working to help the 
 
 :::{.poll}
 Please identify A. the response, B. the predictor(s), and 
-3. whether it is regression or classification (poll only has 3.)
+C. whether it is regression or classification (poll only has C.)
 :::
 
 ```{r}
@@ -70,7 +70,7 @@ countdown::countdown(1)
 :::{.notes}
 This is another very real task. Universities use what's called a "yield model" to predict whether or not a student will accept the offer. That's a classification method. Those classifiers aggregated up across all offers lead to a numerical prediction for the total yield, which looks more like a regression problem, so either answer could work. It could also be a direct regression model where they use aggregate stats of the class to predict the total yield.
 
-Response is either the decision of a single student or the total number of students that accept. Predictors could be either student level covariates (for classification) or class-level averages (for regression). They might also include broader economic indicators like unemployment rate.
+Response is either the decision of a single student or the total number of students that accept. Predictors could be either student level covariates (for classification) or class-level averages (for regression). Those might also include broader economic indicators like unemployment rate.
 :::
 
 
@@ -79,13 +79,13 @@ Response is either the decision of a single student or the total number of stude
 ## Two approaches
 
 ::::{.columns}
-:::{.column width="50%"}
+:::{.column width="30%"}
 #### Calculus
 
 Certain models (like least squares) can be fit simply by taking partial derivatives, setting to 0, and solving.
 :::
 
-:::{.column width="50%" .fragment}
+:::{.column width="30%" .fragment}
 #### Algorithms
 
 There are many iterative algorithms that accomplish the same task, some better than others. Two examples:
@@ -357,9 +357,9 @@ optim(par = .5, fn = f)
 
 . . .
 
-**optim's guess**: 0.4
+**optim's guess**: -0.4
 
-**true answer**: 0.5
+**true answer**: -0.5
 
 
 # Problem Set

@@ -14,24 +14,27 @@ code-fold: false
 In this lab, you will have the opportunity to work with datasets from a few different sports. Each sport has a `teams` and `players` dataset associated with it,
 
 - **Baseball**
-    -   `teams` dataset [preview](images/baseball_players.png)
+    -   `teams` dataset [preview](images/baseball_teams.png)
     -   `teams` dataset [link](https://www.dropbox.com/s/qcyu24rcldfd8u9/baseball_teams_init.csv?dl=1)
-    -   `players` dataset [preview](images/baseball_teams.png)
+    -   `players` dataset [preview](images/baseball_players.png)
     -   `players` dataset [link](https://www.dropbox.com/s/oipadwa5lc2rp8v/baseball_players_init.csv?dl=1)
     
 - **Football**
-    -   `teams` dataset [preview](images/football_players.png)
+    -   `teams` dataset [preview](images/football_teams.png)
     -   `teams` dataset [link](https://www.dropbox.com/s/a0i9mpfrjghhk5t/football_teams_init.csv?dl=1)
-    -   `players` dataset [preview](images/football_teams.png)
+    -   `players` dataset [preview](images/football_players.png)
     -   `players` dataset [link](https://www.dropbox.com/s/uyn69av0x0jnbnu/football_players_init.csv?dl=1)
 
-*The teams dataset was created using data from [Pro Football Reference](https://www.pro-football-reference.com).
+[^football]: The football `teams` dataset was created using data from [Pro Football Reference](https://www.pro-football-reference.com).
     
-- **Soccer**
-    -   `teams` dataset preview
+
+- **Soccer**[^soccer]
+    -   `teams` dataset [preview](images/partial-view-soccer-teams.png)
     -   `teams` dataset [link](https://www.dropbox.com/s/835bho6ijmyx5am/soccer_teams_init.csv?dl=1)
-    -   `players` dataset preview
+    -   `players` dataset [preview](images/partial-view-soccer-players.png)
     -   `players` dataset [link](https://www.dropbox.com/s/1pyqn1fxiwcf5bb/soccer_players_init.csv?dl=1)
+    
+[^soccer]: Both the teams and the player datasets were created using the `r` package `worldfootballR`, and the data was obtained from the website [FBRef](https://fbref.com/en/comps/9/Premier-League-Stats). 
     
 
 ## Part II: Computing on the Data
