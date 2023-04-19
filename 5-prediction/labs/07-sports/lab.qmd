@@ -13,13 +13,13 @@ code-fold: false
 
 In this lab, you will have the opportunity to work with datasets from a few different sports. Each sport has a `teams` and `players` dataset associated with it,
 
-- **Baseball**
-    -   `teams` dataset [preview](images/baseball_players.png)
-    -   `players` dataset [preview](images/baseball_teams.png)
+- **Baseball** 
+    -   `teams` dataset [preview](images/baseball_teams.png)
+    -   `players` dataset [preview](images/baseball_players.png)
     
 - **Football**[^football]
-    -   `teams` dataset [preview](images/football_players.png)
-    -   `players` dataset [preview](images/football_teams.png)
+    -   `teams` dataset [preview](images/football_teams.png)
+    -   `players` dataset [preview](images/football_players.png)
 
 [^football]: The football `teams` dataset was created using data from [Pro Football Reference](https://www.pro-football-reference.com).
     
