@@ -1,0 +1,33 @@
+---
+title: "Overfitting handout"
+format: pdf
+---
+
+Instead of $R^2$ we often just use the residual sum of squares (RSS), $\sum_{i=1}^n (y_i - \widehat{y}_i)^2$ or the mean square error (MSE) where MSE = $\frac{1}{n}\sum_{i=1}^n (y_i - \widehat{y}_i)^2.$ For this handout just use the test set or training set MSE to evaluate regression models.[^1]
+
+[^1]: There is a mathematical subtlety that comes up when using test set $R^2 = 1 - RSS/TSS$. If you fit a linear (or polynomial) regression model, the training set $R^2$ is always between 0 and 1. BUT in general this is not true; the test set $R^2$ is NOT required to always be between 0 and 1. Even more frustrating; the training $R^2$ is only between 0 and 1 for a linear regression based model, but not necessarily for other modeling frameworks (e.g. deep learning).
+
+Download the following training and test datasets.
+
+```{r}
+library(tidyverse)
+train <- read_csv('https://raw.githubusercontent.com/idc9/course-materials/main/3-prediction/14-overfitting/train.csv')
+
+val <- read_csv('https://raw.githubusercontent.com/idc9/course-materials/main/3-prediction/14-overfitting/validation.csv')
+
+test <- read_csv('https://raw.githubusercontent.com/idc9/course-materials/main/3-prediction/14-overfitting/test.csv')
+```
+
+# Question 1
+
+What is the best MSE value you can obtain on the test set by fitting a polynomial model to the training set?
+
+-   Fit polynomial models to the training set for different degrees (I suggest sticking to degrees less than 10).
+
+-   Evaluate the models' MSE on the validation set.
+
+-   Pick the best model from the validation set and compute the MSE for the test set.
+
+# Question 2
+
+Is there a way to cheat on question 1? If so, try cheating and see how low of a MSE you can get on the test set.
