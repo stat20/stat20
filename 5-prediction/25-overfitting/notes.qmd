@@ -670,3 +670,5 @@ So which is the better predictive model: Model 1 or Model 2? In terms of trainin
 This lecture is about overfitting: what happens when your model takes the particular data set it was built on too seriously. The more complex a model is, the more prone to overfitting it is. Polynomial models are able to create very complex functions thus high-degree polynomial models can easily overfit. Fitting a model and evaluating it on the same data set can be problematic; if the model is overfitted the evaluation metric (e.g. $R^2$) might be very good, but the model might be lousy on predictions on new data.
 
 A better way to approach predictive modeling is to fit the model to a training set then evaluate it with a separate testing set.
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
