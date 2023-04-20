@@ -1,0 +1,7 @@
+---
+title: "Problem Set 6: Prediction I"
+---
+
+### PS 6.1: Method of Least Squares
+
+[Digital Worksheet](../../5-prediction/23-method-of-least-squares/_worksheet-digital.qmd)
