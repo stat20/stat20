@@ -1,5 +1,5 @@
 ---
-title: "Practice: Pricing Houses"
+title: "Problem Set 7.2"
 ---
 
 Please run the following code cell to load in the data and do the preliminary data wrangling steps found in the notes.
@@ -41,7 +41,7 @@ LA %>%
 
 #### Transformations
 
-Fit two linear models: one that predicts price with sqft and another that predicts log price with log sqft. Which one explains the variance in price better, as measured by r squared?
+Fit two linear models: one that predicts price with sqft and another that predicts log price with log sqft. Which one explains the variance in price better, as measured by *training* $R^2$?
 
 ```{r}
 # SOLUTION
