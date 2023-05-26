@@ -6,12 +6,11 @@ subtitle: "Regression"
 ```{r}
 library(tidyverse)
 library(stat20data)
-data(flights)
 ```
 
 #### Question 1
 
-Create a scatter plot of the relationship between distance traveled and average speed in miles per hour of every flight that left the bay area in 2020.
+Create a scatter plot of the relationship between distance traveled and average speed in miles per hour of every flight that left the bay area in 2020 (recall the data set is called `flights.
 
 ```{r}
 flights <- flights %>%
@@ -25,34 +24,29 @@ flights %>%
 
 #### Question 2
 
-Use the `lm()` function to fit a linear model by least squares that predicts the average speed of the flight based on the distance and save it to `m1`. Recall the general form of arguments is `lm(y ~ x, data)`.
+Use the `lm()` function to fit a linear model by least squares that predicts the average speed of the flight based on the distance and save it to `m1`. Recall the general form of arguments is `lm(y ~ x, data)`. What is the equation of the linear model that you have fit?
 
 ```{r}
 m1 <- lm(avg_speed ~ distance, data = flights)
-```
-
-#### Question 3
-
-What is the equation of the linear model that you have fit?
-
-```{r}
 m1
 ```
 
 predicted-avg-speed = 351.4 + .078 \* distance
 
-#### Question 4
+#### Question 3
 
 What average speed would does your model predict for a flight travelling 0 miles? 500 miles? 5000 miles? Which of these, if any, do you expect to be accurate and why?
 
 ```{r}
+# they should get used to using predict
 newx <- data.frame(distance = c(0, 500, 5000))
 predict(m1, newx)
 
+# but it's also use to know how to do it by hand
 351.4 + .078 * 5000
 ```
 
-#### Question 5
+#### Question 4
 
 Remake your scatter plot but add a line representing your linear model by adding a layer with `geom_smooth(method = "lm")`. How could you modify your model to improve the predictions that it makes?
 
@@ -66,3 +60,21 @@ flights %>%
 ```
 
 We could use a curved line instead of a straight one.
+
+
+#### Question 5 (under construction)
+
+`lm()` uses the closed form equations to find the least squares estimates but there are other ways to do this optimization. Use `optim()` to find the slope and intercept that minimizes the RSS function. Does it match the estimates that come out of `lm()`?
+
+```{r}
+rss <- function(coef) {
+  sum((flights$avg_speed - (coef[1] - coef[2] * flights$distance))^2)
+}
+
+optim(par = c(0, 1), fn = rss)
+```
+
+
+#### Question 6
+
+Change the RSS function so it captures the sum of the absolute value of the residuals, then estimate the parameters using `optim()`. Plot the new line on your existing scatter plot.
