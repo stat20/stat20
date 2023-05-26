@@ -104,3 +104,10 @@ We compute 10 morphological features for each cell nucleus in the biopsy image.
 :::{.notes}
 Each biopsy has 30 features; these come from computing 3 summary statistics (mean, max, standard deviation) of each of the 10 cell features to summarize the population of cells in the biopsy.
 :::
+
+## Lab worktime
+
+```{r}
+countdown::countdown(25)
+```
+
