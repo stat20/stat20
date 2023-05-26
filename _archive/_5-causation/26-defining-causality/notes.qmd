@@ -1,7 +1,7 @@
 ---
 title: "Defining Causality"
 subtitle: "Conditional counterfactuals and two strategies for constructing causal claims"
-date: "11/30/2022"
+date: "04/05/2022"
 format:
   html:
     code-fold: true
@@ -17,7 +17,7 @@ execute:
 \
 
 :::{style="text-align: center"}
-## Welcome to Unit IV: Causality
+## Welcome to Unit III: Causality
 :::
 
 At the beginning of this course, we considered four different claims associated with the following news article[^nyt]. 

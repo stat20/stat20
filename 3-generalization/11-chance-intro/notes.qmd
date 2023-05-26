@@ -733,6 +733,9 @@ In the next set of notes, we are going to use R to simulate what happens when we
 
 [^fppbox]: The box model was introduced by Freedman, Pisani, and
 Purves in their textbook
+
 [*Statistics*](https://wwnorton.com/books/9780393929720)
+
 [^uar]: We call the tickets equally likely when each ticket has the same chance of being drawn. That is, if there are $n$ tickets in the box, each has a chance of $1/n$ to be drawn. We also refer to this as drawing a ticket *uniformly at random*, because the chance of drawing the tickets are the same, or *uniform*.
+
 [^unsplash]: Photo via unsplash.com

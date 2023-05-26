@@ -1,0 +1,192 @@
+---
+title: "Last Day of Class"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+# Why we're here
+
+## {data-menu-title="Claims 1" transition="none"}
+
+:::{.bigadage style="text-align: center"}
+To learn to critique and construct\
+claims made using data.
+:::
+
+## {data-menu-title="Claims 2" transition="none"}
+
+:::{.bigadage style="text-align: center"}
+To learn to [critique]{style="color: red"} and [construct]{style="color: red"}\
+claims made using data.
+:::
+
+## {data-menu-title="Claims 3" background-image="images/stat20-sketch-01.jpg" background-size="contain"  transition="none"}
+
+:::{.bigadage style="text-align: center"}
+To learn to [critique]{style="color: red"} and [construct]{style="color: red"}\
+claims made using data.
+:::
+
+## {data-menu-title="Claims 4" background-image="images/stat20-sketch-02.jpg" background-size="contain"  transition="none"}
+
+:::{.bigadage style="text-align: center"}
+To learn to [critique]{style="color: red"} and [construct]{style="color: red"}\
+claims made using data.
+:::
+
+## Understanding Cancer: Summary
+
+![](images/benign_vs_malignant.png)
+
+
+## Understanding Cancer: Summary {.smaller}
+
+```{r}
+#| echo: false
+
+# load data and set "B" (benign) as the reference level
+library(tidyverse)
+cells <- read_csv("https://www.dropbox.com/s/0rbzonyrzramdgl/cells.csv?dl=1") %>%
+  mutate(diagnosis = factor(diagnosis, levels = c("B", "M")))
+
+cells
+```
+
+. . .
+
+### The Data Frame
+
+- Units of obs across the rows
+- Variables down the columns
+
+## Understanding Cancer: Summary {.smaller}
+
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 3
+#| fig-align: center
+
+ggplot(cells, aes(x = area_mean,
+                  y = area_sd,
+                  color = diagnosis)) +
+  geom_point(shape = 3) +
+  theme_bw()
+```
+
+. . .
+
+### Grammar of Graphics
+
+- Aesthetic mappings
+- Geometries
+- And more
+
+## Understanding Cancer: Summary {.smaller}
+
+```{r}
+#| echo: true
+cells %>%
+  summarize(mean(area_mean),
+            sd(area_mean),
+            cor(area_sd, area_mean))
+```
+
+. . .
+
+#### Numerical Summaries
+
+- Statistics that fulfill desiderata
+- Measures of center and spread. . .
+- and correlation and
+
+## Understanding Cancer: Summary {.smaller}
+
+```{r}
+#| echo: true
+m1 <- glm(diagnosis ~ area_mean, data = cells, family = "binomial")
+m1
+```
+
+. . .
+
+- Regression coefficients are summary statistics too!
+
+
+## {data-menu-title="Claims 5" background-image="images/stat20-sketch-03.jpg" background-size="contain"  transition="none"}
+
+:::{.bigadage style="text-align: center"}
+To learn to [critique]{style="color: red"} and [construct]{style="color: red"}\
+claims made using data.
+:::
+
+## Generalization
+
+. . .
+
+1. Sources of Variation and Bias
+2. Measuring sampling variation with SEs and CIs
+3. Hypothesis testing
+  - Independence Nulls
+  - Point Nulls
+
+## {data-menu-title="Claims 6" background-image="images/stat20-sketch-04.jpg" background-size="contain"  transition="none"}
+
+:::{.bigadage style="text-align: center"}
+To learn to [critique]{style="color: red"} and [construct]{style="color: red"}\
+claims made using data.
+:::
+
+## {data-menu-title="Claims 7" background-image="images/stat20-sketch-05.jpg" background-size="contain"  transition="none"}
+
+:::{.bigadage style="text-align: center"}
+To learn to [critique]{style="color: red"} and [construct]{style="color: red"}\
+claims made using data.
+:::
+
+
+
+## {data-menu-title="Asking a Question" background-image="images/stat20-sketch-17.jpg" background-size="contain" transition="none"}
+
+::: {.bigadage .absolute top=285 left=185}
+:::{style="font-size: .73em"}
+Understand\
+the World
+:::
+:::
+
+::: {.bigadage .absolute top=300 left=1210}
+Data
+:::
+
+
+## {data-menu-title="Making a Claim" background-image="images/stat20-sketch-18.jpg" background-size="contain" transition="none"}
+
+::: {.bigadage .absolute top=285 left=185}
+:::{style="font-size: .73em"}
+Understand\
+the World
+:::
+:::
+
+::: {.bigadage .absolute top=300 left=1210}
+Data
+:::
+
+## {data-menu-title="Shoebill Pic 3" background-image="images/shoebill-3.png" background-size="contain"}
