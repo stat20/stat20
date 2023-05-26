@@ -65,16 +65,16 @@ The diagnosis is in the column named `diagnosis`; each other column should be us
 8. Calculate the misclassification rate first on the training data and then on the testing data. Is there any evidence that this model is overfitting? How can you tell one way or the other?
 
 
-9. Build a more complex model to predict the diagnosis using five predictors of your choosing, then calculate the testing and training $R^2$. Is there evidence that your model is overfitting? How can you tell one way or the other?
+9. Build a more complex model to predict the diagnosis using five predictors of your choosing, then calculate the testing and training misclassification rate. Is there evidence that your model is overfitting? How can you tell one way or the other?
 
 
 10. If you were to deploy your method in a clinical setting to help diagnose cancer, which type of classification error would be worse and why?
 
 
-11. Calculate the total number of false positives in the test data set when using your simple model with only one variable.
+11. Calculate the total number of false negatives in the test data set when using your simple model with only one variable.
 
 
-12. What can you change about your classification rule to lower the number of false negatives? Make this change and calculate the new number of false positives.
+12. What can you change about your classification rule to lower the number of false negatives? Make this change and calculate the new number of false negatives.
 
 
 13. Calculate the testing misclassification rate using your new classification rule. Did it go up or down? Why?
