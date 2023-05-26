@@ -6,7 +6,7 @@
 # quarto (e.g. uses true instead of yes). ymlthis has
 # far more dependencies (including yaml).
 
-schedule <- yaml::read_yaml("_schedule-2.yml")
+schedule <- yaml::read_yaml("_schedule.yml")
 
 # Reduce to data frame of files in the future
 df <- as.data.frame(do.call(rbind, schedule[[1]]$contents))
