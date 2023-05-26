@@ -79,6 +79,22 @@ The questions throughout this Part (questions 9-20) apply solely to the `teams` 
 
 #### Model Two: "Everything but the kitchen sink"
 
+Be sure to read this footnote[^sink].
+
+[^sink]: Note about questions 15 and 16: As these are real data sets, they have characteristics that make them challenging to fit a model to out-of-the-box (e.g. missing values). These challenges become more visible the more variables that you include in your model. Using the suggestions from the Ed post on this lab, do your best to fit a very complex model, but we don't want you too much time getting this model to run.
+
+    As an alternative, toggle the code cells for 15 and 16 to `eval: false` as below.
+
+    ```{{r}}
+    #| eval: false
+         
+    # Here is my code that fits my complex model...
+    ```
+
+    This will cause your code to be printed, but not run, so that we can see what you tried.
+         
+    In place of a fitted model and corresponding R^2, please describe in a paragraph the different techniques that you tried for building your model, the errors / challenges that you encountered, and how you tried to fix those errors. 
+
 15. Using the same train-test approach, fit a second linear model to predict your response variable which satisfies the following:
   - includes *all* other variables in the data set as explanatory variables
   - at least two non-linear transformations
