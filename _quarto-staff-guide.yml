@@ -29,6 +29,7 @@ website:
       align: left
       collapse-level: 1
       contents:
+        - notes.qmd
         - section: "Questions and Data"
           contents:
             - 1-questions-and-data/01-understanding-the-world/notes.qmd
