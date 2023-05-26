@@ -1,30 +1,8 @@
 ---
-title: Lecture Notes
-listing:
-  id: notes-listing
-  contents:
-      - "*/*/notes.qmd"
-  sort: "date desc"
-  type: default
-  fields: 
-    - title
-    - subtitle
-    - image
-    - date
-  categories: false
+title: "Lecture Notes"
+subtitle: "Course notes for STAT 20: Introduction to Probability and Statistics"
 ---
 
 \
 
-:::{.content-hidden unless-profile="staff-guide"}
-
-:::{.callout-caution}
-## Under Construction
-
-Below you'll find all of the course material that is planned for this semester. Material for future dates is in draft mode and may be revised. Material from the present or past is identical to how it appears on `stat20.org`. 
-:::
-
-:::
-
-:::{.content-hidden #notes-listing when-profile="staff-guide"}
-:::
+Navigate the notes using the menu in the left sidebar or the search in the upper right corner of the page.
