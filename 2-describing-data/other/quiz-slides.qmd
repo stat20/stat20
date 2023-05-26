@@ -1,7 +1,23 @@
 ---
 title: "Quiz"
-format: 
-  stat20-slides-revealjs: default
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../../assets/stat20-hex-bg.png
+      data-background-size: contain
 ---
 
 ## As you come in
@@ -9,16 +25,15 @@ format:
 1. Please clear your desktop of everything expect a pen / pencil and your cheat sheet.
 2. Remove hats, hoods, and sunglasses.
 3. Write your name and Berkeley ID at the top of the quiz when you get it.
-4. Fill in the bubble for the correct answer right on the quiz itself (no separate bubble sheet this time).
-5. The quiz will begin at Berkeley time and last 25 min (followed by 15 min for a group quiz)
+4. The quiz will begin at Berkeley time and last 25 min (followed by 15 min for a group quiz)
 
 ## Individual Quiz
 
-1. Fill in the bubble next to correct answer(s) right on the quiz. There is no separate answer sheet this time.
-2. If you have a question, just raise your hand and we'll come by.
-3. Keep your eyes on your own quiz.
-4. If you finish early please bring your quiz up to the front, then return to your seat and hold tight (don't pull out your phone).
-5. Good luck!
+1. If you have a question, just raise your hand and we'll come by.
+2. Keep your eyes on your own quiz.
+3. When you finish, please stay seated (don't pull out your phone).
+4. After 25 minutes we'll come by and pick up your quizzes.
+4. Good luck!
 
 ```{r}
 #| echo: false
@@ -28,12 +43,13 @@ countdown::countdown(25, top = 0)
 
 ## Group Quiz
 
-1. Write one person's name in the name and ID fields. Write your other group members name above the title of the quiz. Be sure they're very legible and not near the staple.
-2. Your group will be working on a version of the Quiz that will be similar to but not the exact same as the one that you took individually, so read each questions and answer carefully.
-3. When you have agreed on your answers, please raise your hands and we'll come by to pick up your quiz. If you finish early, you're welcome to leave.
+1. Write one person's name in the name and ID fields. Write your other group members name above the title of the quiz.
+2. Your group will be working on a version of the Quiz that will be similar to but not the exact same as the one that you took individually, so read each question and answer carefully.
+3. When you have agreed on your answers, please raise your hands and we'll come by to pick up your quiz.
 
 ```{r}
 #| echo: false
 
 countdown::countdown(15, top = 0)
 ```
+
