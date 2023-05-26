@@ -65,7 +65,7 @@ countdown::countdown(5)
 :::: {.columns}
 
 ::: {.column width="65%"}
-![](images/shoebill-2.png){fig-alt="Photo of shoebill with duck in its mouth, at an angle." fig-align="Center"}
+![](images/shoebill-2.png){fig-alt="Photo of shoebill with duck in its mouth, at an angle." fig-align="center"}
 :::
 
 ::: {.column width="35%"}
