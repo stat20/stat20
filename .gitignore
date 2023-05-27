@@ -22,6 +22,7 @@ _site
 _stat20-live
 _stat20-full
 _stat20-staff-guide
+_freeze
 
 # PDFs not generated from qmds
 !3-generalization/labs/05-peoples-park/references/background-methods.pdf
