@@ -1,6 +1,4 @@
-project:
-  type: website
-    
+
 # Set release dates for lecture notes
 website:
   sidebar:
