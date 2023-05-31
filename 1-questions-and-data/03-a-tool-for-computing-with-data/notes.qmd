@@ -363,7 +363,8 @@ This was our first introduction to R, a supercharged calculator for storing and 
 - [Hands on Programming with R](https://rstudio-education.github.io/hopr/) by Garret Grolemund. A friendly introduction to the R language with fun examples.
 - The official (somewhat dense) documentation fo the R language. <https://cran.r-project.org/doc/manuals/r-release/R-lang.html>
 
-- [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund. A comprehensive but approachable guide to doing data science with R. A good reference once you're deeper into this course.
+- [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund. A comprehensive but approachable guide to doing data science with R. A good reference once you're deeper into this course..
 
-{{< include images/temp/_class-date.md >}}
+<!-- {{< include images/temp/_class-date.md >}} -->
+
 {{< include images/_links-to-materials.qmd >}}
