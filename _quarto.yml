@@ -1,6 +1,5 @@
 project:
-  type: website
-  output-dir: _site/stat20-full
+  type: default
 
 # Website Configuration and Layout
 website:
@@ -87,3 +86,6 @@ execute:
   message: false
   warning: false
   fig-align: center
+  
+profile:
+  default: schedule
