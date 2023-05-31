@@ -1,0 +1,57 @@
+project:
+  type: website
+    
+# Set release dates for lecture notes
+website:
+  sidebar:
+    - title: "Notes"
+      style: floating
+      align: left
+      collapse-level: 1
+      contents:
+        - notes.qmd
+        - section: "Questions and Data"
+          contents:
+            - href: 1-questions-and-data/01-understanding-the-world/notes.qmd
+            - 1-questions-and-data/02-taxonomy-of-data/notes.qmd
+            - href: 1-questions-and-data/03-a-tool-for-computing-with-data/notes.qmd
+              date: 01/25/23
+        - section: "Describing Data"
+          contents:
+            - 2-describing-data/04-summarizing-categorical-data/notes.qmd
+            - 2-describing-data/05-summarizing-numerical-data/notes.qmd
+            - 2-describing-data/06-a-grammar-of-graphics/notes.qmd
+            - 2-describing-data/07-conditioning/notes.qmd
+            - 2-describing-data/08-communicating-with-graphics/notes.qmd
+            - 2-describing-data/09-summarizing-associations/notes.qmd
+            - 2-describing-data/10-multiple-linear-regression/notes.qmd
+        - section: "Generalization"
+          contents:
+            - 3-generalization/11-chance-intro/notes.qmd
+            - 3-generalization/12-cond-prob-indep/notes.qmd
+            - 3-generalization/13-random-variables/notes.qmd
+            - 3-generalization/14-ev-se/notes.qmd
+            - 3-generalization/15-sampling-distributions/notes.qmd
+            - 3-generalization/16-confidence-intervals/notes.qmd
+            - 3-generalization/17-bootstrapping/notes.qmd
+            - 3-generalization/18-hypothesis-tests/notes.qmd
+            - 3-generalization/19-hypothesis-tests-2/notes.qmd
+            - 3-generalization/20-wrong-by-design/notes.qmd
+        - section: "Causation"
+          contents:
+            - 4-causation/21-defining-causality/notes.qmd
+            - 4-causation/22-experiments/notes.qmd
+        - section: "Prediction"
+          contents:
+            - 5-prediction/23-method-of-least-squares/notes.qmd
+            - 5-prediction/24-improving-predictions/notes.qmd
+            - 5-prediction/25-overfitting/notes.qmd
+            - 5-prediction/26-case-study-home-prices/notes.qmd
+            - 5-prediction/27-logistic-regression/notes.qmd
+            - 5-prediction/28-to-explain-or-to-predict/notes.qmd
+
+# Set release dates for assignments
+assignments:
+  labs:
+    - href: 5-prediction/23-method-of-least-squares/notes.qmd
+      date: 01/22/23
