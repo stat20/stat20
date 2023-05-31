@@ -9,7 +9,7 @@
 schedule <- yaml::read_yaml("_schedule.yml")
 
 # Reduce to data frame of files in the future
-df <- as.data.frame(do.call(rbind, schedule[[1]]$contents))
+df <- as.data.frame(do.call(rbind, schedule$notes))
 df$scheduled_date <- strptime(df$date, format = "%m/%d/%y", tz="America/Los_Angeles")
 current_datetime <- .POSIXct(Sys.time(), "America/Los_Angeles")
 future_df <- subset(df, scheduled_date > current_datetime)
@@ -21,7 +21,6 @@ ignored_docs <- paste0("!", unlist(future_df$href))
 quarto_live$project$render <- c("*.qmd", ignored_docs)
 
 ymlthis::use_yml_file(quarto_live, "_quarto-live.yml")
-
 
 # a riff on the following code might work in correcting
 # the yaml output so that ymlthis isn't necessary
