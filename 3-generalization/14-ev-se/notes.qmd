@@ -1,14 +1,11 @@
 ---
 title: "Expected value and variance of a random variable"
 subtitle: "Measuring the center and spread of a distribution"
-date:  "3/3/2023"
 image: images/front-image.png
+format:
+  html: default
+  pdf: default
 ---
-
-{{< include ../../assets/includes/_notes-header.qmd >}}
-
-\
-
 
 ```{r}
 #| echo: false
@@ -543,10 +540,7 @@ We considered the probability distributions of sums and averages.
 
 Finally, we introduced continuous distributions. Next time we will introduce the most celebrated continuous distribution, the normal distribution. 
 
+{{< include images/tmp/_date-meta.md >}}
+
 {{< include ../../assets/includes/_links-to-materials.qmd >}}
-
-
-
-
-
 

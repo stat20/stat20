@@ -1,13 +1,13 @@
 ---
 title: "Logistic Regression"
 subtitle: "A model for binary classification"
-date: "04/26/2023"
 image: images/sigmoid.png
 format:
   html:
     code-fold: true
     code-link: true
     code-summary: "."
+  pdf: default
 execute: 
   warning: false
   message: false
@@ -15,10 +15,6 @@ execute:
   fig-height: 3
   fig-align: "center"
 ---
-
-{{< include ../../assets/includes/_notes-header.qmd >}}
-
-\
 
 [T]{.dropcap}he framework that we used to build a predictive model for regression followed four distinct steps:
 
@@ -196,6 +192,8 @@ It seems, on the surface that this simple logistic regression model, though it i
 In these notes we introduced the concept of classification using a logistic regression model. Logistic regression uses the logistic function to transform predictions into a probability that the response is 1. These probabilities can be used to classify y as 0 or 1 by checked to see if they exceed a threshold (often .5).
 
 These notes focus on step 1 of the predictive model building process: deciding on the mathematical form of the model. In class tomorrow will take up the remaining three as we learn how to use apply logistic regression as a classification model to complete the eighth and final lab of Stat 20.
+
+{{< include images/tmp/_date-meta.md >}}
 
 {{< include ../../assets/includes/_links-to-materials.qmd >}}
 

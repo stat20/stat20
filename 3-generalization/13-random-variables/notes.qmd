@@ -1,14 +1,11 @@
 ---
 title: "Random Variables"
 subtitle: "Discrete random variables, probability mass functions, cumulative distribution functions"
-date:  "3/1/2023"
 image: images/roulette-us.jpg
+format:
+  html: default
+  pdf: default
 ---
-
-{{< include ../../assets/includes/_notes-header.qmd >}}
-
-\
-
 
 ```{r}
 #| echo: false
@@ -415,5 +412,7 @@ p1 + p2
 - We looked at some special distributions (Bernoulli, binomial, discrete uniform, and hypergeometric)
 - Finally, we looked at connections between random variables and box models, and saw how to simulate some empirical distributions.
 
+
+{{< include images/tmp/_date-meta.md >}}
 
 {{< include ../../assets/includes/_links-to-materials.qmd >}}
