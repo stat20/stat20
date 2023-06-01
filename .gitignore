@@ -26,7 +26,7 @@ _stat20-full
 _stat20-staff-guide
 
 # Automated date files from _schedule.yml
-*/tmp/_date-meta.md
+*/images/tmp
 
 # PDFs not generated from qmds
 !3-generalization/labs/05-peoples-park/references/background-methods.pdf
