@@ -26,10 +26,10 @@ execute:
 ## Welcome to Unit IV: Prediction
 :::
 
-[A]{.dropcap}s we near the end of the semester, we revisit one last time the four different claims that might be made based on the line plot found in the news story. 
+[A]{.dropcap}s we near the end of the semester, we revisit one last time the four different claims that might be made based on the line plot found in the news story[^nyt]. 
 
 :::{.column-margin}
-![Inflation in the news[^nyt].](images/nyt-inflation.png){#fig-inflation fig-align=center width="70%"}
+![Inflation in the news.](images/nyt-inflation.png){#fig-inflation fig-align=center width="70%"}
 :::
 
 1. The Consumer Price Index rose 8.3% in April.
