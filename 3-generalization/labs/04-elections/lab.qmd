@@ -1,6 +1,5 @@
 ---
 title: "Lab 4: Elections"
-date: 03/03/23
 image: images/iran_green2.jpg
 code-fold: false
 ---
