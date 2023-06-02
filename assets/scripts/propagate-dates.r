@@ -1,27 +1,23 @@
-# read in schedule
-schedule <- yaml::read_yaml("_quarto-schedule.yml")
+# read in course settings
+course_settings <- yaml::read_yaml("_course-settings.yml")
 
-# map write_meta_file over all date fields
-
-library(tidyverse)
-notes_and_sections <- schedule$website$sidebar[[1]]$contents[-1] |>
-  purrr::list_flatten() |>
-  purrr::list_flatten()
-
-notes_list <- notes_and_sections[names(notes_and_sections) != "section"]
-
-map(notes_list, write_meta_yml)
-
-write_meta_yml <- function(x) {
-  # prepare contents of file
-  contents_as_str <- paste0("---\ndate: ", 
+# load utility function
+write_meta_file <- function(x) {
+  meta_as_str <- paste0("---\ndate: ", 
                             x$date,
                             "\n---\n")
   
-  # write to file at appropriate path
-  tmp_dir <- stringr::str_replace(x$href, "notes.qmd", "images/tmp")
+  # put the meta file in images/tmp/ relative to materials qmd
+  tmp_dir <- paste0(gsub("^(.*/)[^/]+$", "\\1", x$href), "images/tmp")
   dir.create(tmp_dir, showWarnings = FALSE)
-  file_conn <- file(paste0(tmp_dir, "/_date-meta.md"))
-  writeLines(contents_as_str, file_conn)
-  close(file_conn)
+  writeLines(text = meta_as_str, con = paste0(tmp_dir, "/_date-meta.md"))
 }
+
+# collect list of all materials
+materials_list <- purrr::map(course_settings$schedule, "materials") |>
+  purrr::list_flatten()
+
+# write meta file for all materials  
+purrr::map(materials_list, write_meta_file)
+
+cli::cli_alert_success("Dates have been propagated from _course-settings to the metadata of {length(materials_list)} files.")
