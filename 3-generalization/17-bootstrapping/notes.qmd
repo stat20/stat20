@@ -1,13 +1,13 @@
 ---
 title: "Bootstrapping"
 subtitle: "Another Approach to Confidence Intervals"
-date: "03/15/2023"
 format:
   html:
     toc-depth: 4
     code-fold: true
     code-link: true
     code-summary: "."
+  pdf: default
 execute: 
   warning: false
   message: false
@@ -270,10 +270,6 @@ In these notes, we have introduced the bootstrap as a technique for approximatin
 
 - A rule of thumb for the number of resamples needed for a reasonable bootstrap distribution is 10,000, however for the use of this class, use 500. Too few bootstrap samples can create problems for getting a good bootstrap sampling distribution.
 
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
-
-
 ---------------------------
 ---------------------------
 
@@ -378,3 +374,7 @@ df %>%
 df %>%
   drop_na()
 ```
+
+{{< include images/tmp/_date-meta.md >}}
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}

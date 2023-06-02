@@ -2,12 +2,10 @@
 title: "A Grammar of Graphics"
 subtitle: "A unified framework for constructing statistical graphics."
 image: images/penguin-plot.png
-date: 02/03/23
+format:
+  html: default
+  pdf: default
 ---
-
-{{< include ../../assets/includes/_notes-header.qmd >}}
-
-\
 
 [I]{.dropcap}n the last set of notes, we saw that there is a side to the discipline of Statistics that looks like engineering. Summary statistics - medians, standard deviations, etc. - are carefully crafted tools that capture different characteristics of a data set for use in very specific situations. There is another practice in statistics that looks more like a science; that is, a field that seeks to take many different phenomena and explain them using a systematic overarching theory. That practice is data visualization.
 
@@ -268,6 +266,7 @@ Now that you have a sense of how to build a ggplot, scroll back up to the plots 
 
 The Grammar of Graphics is a framework to express a great variety of statistical graphics in terms of their shared elements. In this framework, the core features of the plot are the data, the aesthetic mapping between aesthetic attributions and variables in the data frame, and the geometry that is used to express the observation. There are a wide range of geometries and aesthetic attributes that can be drawn from and recombined in powerful ways. These notes cover just the fundamentals of the framework, so if you are unsatisfied with the resulting plots, that's good. In the next set of notes, we will polish up these plots to make thoughtful graphics that focus on effectively conveying a single message.
 
+
+{{< include images/tmp/_date-meta.md >}}
+
 {{< include ../../assets/includes/_links-to-materials.qmd >}}
-
-

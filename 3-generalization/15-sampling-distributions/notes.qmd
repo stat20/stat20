@@ -1,12 +1,10 @@
 ---
 title: "From Samples to Populations"
 subtitle: "The bias and variance of moving from sample to population."
-date:  "3/6/2023"
+format:
+  html: default
+  pdf: default
 ---
-
-{{< include ../../assets/includes/_notes-header.qmd >}}
-
-\
 
 [G]{.dropcap}eneralization is the process of using a subset of information to draw conclusions about some broader set or phenomenon. It is powerful - it allows us to draw conclusions about things we have not observed - but it is tricky to do well. In these notes, you will learn the sources of error that can creep in when making a generalization.
 
@@ -379,6 +377,8 @@ Observe:
 
 - The data frame produced by this function has a new column that has been appended to the left side: `replicate`. This column keeps track of which replicate the row belongs to. The first three rows constitute the first sample of size 3. The second three rows constitute the second sample of size 3.
 - The dimensions of the output data frame are 6 rows by 9 columns. Compare that to the dimensions of the original penguins data frame: 366 by 8. This function added one new column and contains `n` $\times$ `reps` rows.
+
+{{< include images/tmp/_date-meta.md >}}
 
 {{< include ../../assets/includes/_links-to-materials.qmd >}}
 

@@ -1,20 +1,16 @@
 ---
 title: "Experiments"
 subtitle: "The principles of experimental design"
-date: "04/07/2023"
 format:
   html:
     code-fold: true
     code-link: true
     code-summary: "."
+  pdf: default
 execute: 
   warning: false
   message: false
 ---
-
-[[Discuss]{.btn .btn-primary}](https://edstem.org) [[PDF]{.btn .btn-primary}](notes.pdf)
-
-\
 
 <!-- Lead out with running example: are you reading these notes as a website or are you reading them as a pdf on a tablet? Do you think your choice in this regard will effect your understanding of the material and the course -->
 
@@ -214,5 +210,7 @@ You may heard the phrase "Correlation does not imply causation ... unless it's s
 <!-- A future potential source of questions: -->
 <!-- - what would a study look like if it did *not* have a control? (Queen Charlotte inoculating all of the prisoners in Newgate prison in London) what is the problem? -->
 <!-- - what would a study look like if it were *not* randomized? (Lind's Scurvy Trials) -->
+
+{{< include images/tmp/_date-meta.md >}}
 
 {{< include ../../assets/includes/_links-to-materials.qmd >}}

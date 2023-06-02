@@ -1,21 +1,17 @@
 ---
 title: "Evaluating and Improving Predictions"
 subtitle: "$R^2$, Adding Predictors, Transformations, and Polynomials"
-date: "04/14/2023"
 image: images/polynomial.png
 format:
   html:
     code-fold: true
     code-link: true
     code-summary: "."
+  pdf: default
 execute: 
   warning: false
   message: false
 ---
-
-{{< include ../../assets/includes/_notes-header.qmd >}}
-
-\
 
 :::{.content-hidden unless-profile="staff-guide"}
 ### Learning Objectives
@@ -381,5 +377,7 @@ In this lecture we learned how to evaluate and improve out predictions. While th
 
 To improve our predictions - and increase the $R^2$ - we saw three different strategies. If you have additional predictors in your data frame, its easy as pie to add them to your regression model and you are guaranteed to increase your $R^2$.
 A second strategy is capture non-linear structure by creating new variables that are simple transformations of the existing variable. The third approach, also targeting non-linear structure, is to replace a single predictor with a polynomial.
+
+{{< include images/tmp/_date-meta.md >}}
 
 {{< include ../../assets/includes/_links-to-materials.qmd >}}

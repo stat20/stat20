@@ -1,6 +1,4 @@
-project:
-  type: website
-    
+
 # Modify aesthetics and add Guide to navbar
 website:
   title: "Stat 20 Staff Guide"

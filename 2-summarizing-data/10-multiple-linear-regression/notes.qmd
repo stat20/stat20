@@ -1,13 +1,11 @@
 ---
 title: "Multiple Linear Regression"
 subtitle: "Summarizing linear relationships in high dimensions"
-date: 02/18/23
 image: images/3d-scatterplot.png
+format:
+  html: default
+  pdf: default
 ---
-
-{{< include ../../assets/includes/_notes-header.qmd >}}
-
-\
 
 [I]{.dropcap}n the last lecture we built our first linear model: an equation of a line drawn through the scatter plot.
 
@@ -308,5 +306,7 @@ p_parallel +
 We began this unit on Summarizing Data with graphical and numerical summaries of just a single variable: histograms and bar charts, means and standard deviations. In the last set of notes we introduced our first bivariate numerical summaries: the correlation coefficient, and the linear model. In these notes, we introduced multiple linear regression, a method that can numerically describe the linear relationships between an unlimited number of variables. The types of variables that can be included in these models is similarly vast. Numerical variables can be included directly, generalizing the geometry of a line into a plane in higher dimension. Categorical variables can be included using the trick of dummy variables, logical variables that take a value of 1 where a particular condition is true. The interpretation of all of the coefficients that result from a multiple regression is challenging but rewarding: it allows us to answer questions about the relationship between two variables after controlling for the values of other variables.
 
 If this felt like a deep dive into a multiple linear regression, don't worry. Linear models are one of the most commonly used statistical tools, so we'll be revisiting them throughout the course: investigating their use in making generalizations, causal claims, and predictions.
+
+{{< include images/tmp/_date-meta.md >}}
 
 {{< include ../../assets/includes/_links-to-materials.qmd >}}

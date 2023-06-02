@@ -1,14 +1,11 @@
 ---
 title: "How to Calculate Chances"
 subtitle: "Two important ideas: Conditional probabability and Independence"
-date:  "2/24/2023"
-image: images/sally-clark-headline.jpeg 
+image: images/sally-clark-headline.jpeg
+format:
+  html: default
+  pdf: default
 ---
-
-{{< include ../../assets/includes/_notes-header.qmd >}}
-
-\
-
 
 ```{r}
 #| echo: false
@@ -265,9 +262,12 @@ We defined conditional probability and independence, and the multiplication rule
 
 We noted that independent events are very different from mutually exclusive events, and finally we learned how to compute probabilities of unions of events that may not be mutually exclusive.
 
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
-
 
 [^js]: <https://www.theguardian.com/uk-news/2021/nov/20/sally-clark-cot-death-mothers-wrongly-jailed>
 
 [^mh]: image from Wikipedia <https://en.wikipedia.org/wiki/Monty_Hall_problem>
+
+
+{{< include images/tmp/_date-meta.md >}}
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}

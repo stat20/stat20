@@ -1,13 +1,11 @@
 ---
 title: "Introducing Probability"
 subtitle: "Definitions, examples, and axioms"
-date: '2/22/2023'
 image: images/kerrich.png
+format:
+  html: default
+  pdf: default
 ---
-
-{{< include ../../assets/includes/_notes-header.qmd >}}
-
-\
 
 ```{r}
 #| echo: false
@@ -726,9 +724,6 @@ In the next set of notes, we are going to use R to simulate what happens when we
 
 - Finally, we simulated drawing from the box and computing summary statistics in R. 
 
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
-
-
  [^freq]: This is known as the *frequentist* theory of probability: the chance of something is the relative frequency with which it occurs in repeated trials (that are assumed to be independent).
 
 [^fppbox]: The box model was introduced by Freedman, Pisani, and
@@ -739,3 +734,8 @@ Purves in their textbook
 [^uar]: We call the tickets equally likely when each ticket has the same chance of being drawn. That is, if there are $n$ tickets in the box, each has a chance of $1/n$ to be drawn. We also refer to this as drawing a ticket *uniformly at random*, because the chance of drawing the tickets are the same, or *uniform*.
 
 [^unsplash]: Photo via unsplash.com
+
+
+{{< include images/tmp/_date-meta.md >}}
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}

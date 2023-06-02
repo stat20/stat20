@@ -1,4 +1,6 @@
 
+:::{.content-hidden when-format="pdf"}
+
 ## Materials from class
 
 ```{r}
@@ -56,3 +58,5 @@ if (length(worksheet_filenames) > 0) {
   }
 }
 ```
+
+:::

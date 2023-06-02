@@ -1,11 +1,12 @@
 ---
 title: "Understanding the World through Data"
 image: images/claims.png
-date: 01/18/23
 ---
 
 Welcome to Stat 20!
 
 There is no reading in advance of the first day of class. To view the materials used during the class session, see the links below.
+
+{{< include images/tmp/_date-meta.md >}}
 
 {{< include images/_links-to-materials.qmd >}}

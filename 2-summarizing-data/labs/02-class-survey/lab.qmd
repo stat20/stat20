@@ -1,7 +1,6 @@
 ---
 title: "Lab 2: Class Survey"
 image: images/dog-pants.png
-date: 02/03/23
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}

@@ -1,21 +1,17 @@
 ---
 title: "Overfitting"
 subtitle: "Overfitting with scissors and the utility of a train/test split."
-date: "04/19/2023"
 image: images/poly.png
 format:
   html:
     code-fold: true
     code-link: true
     code-summary: "."
+  pdf: default
 execute: 
   warning: false
   message: false
 ---
-
-{{< include ../../assets/includes/_notes-header.qmd >}}
-
-\
 
 [L]{.dropcap}earning through examples is one of the most important ways we acquire knowledge. Have you ever given someone an example to illustrate a concept, but that person gets too caught up in the details of the example and learns the wrong lesson? There is an expression for this: "missing the forest for the trees"[^trees].
 Before reading these notes please listen to Act 3 of an episode of the podcast "This American Life" called "Kids Look Back" (10 minutes).
@@ -671,4 +667,7 @@ This lecture is about overfitting: what happens when your model takes the partic
 
 A better way to approach predictive modeling is to fit the model to a training set then evaluate it with a separate testing set.
 
+{{< include images/tmp/_date-meta.md >}}
+
 {{< include ../../assets/includes/_links-to-materials.qmd >}}
+

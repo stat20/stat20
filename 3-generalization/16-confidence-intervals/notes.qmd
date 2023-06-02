@@ -1,11 +1,11 @@
 ---
 title: "Confidence Intervals"
 subtitle: "Quantifying the sampling variability of a statistic."
-date:  "3/8/2023"
 toc-depth: 4
+format:
+  html: default
+  pdf: default
 ---
-
-{{< include ../../assets/includes/_notes-header.qmd >}}
 
 ```{r}
 #| echo: false
@@ -18,8 +18,6 @@ library(infer)
 library(palmerpenguins)
 library(patchwork)
 ```
-
-\
 
 [T]{.dropcap}he process of generalizing from a statistic of a sample to a parameter of a population is known as *statistical inference*. The parameter of interest could be a mean, median, proportion, correlation coefficient, the coefficient of a linear model . . . the list goes on. In the scenario that unfolded in Pimentel Hall, the parameter was the mean year of the 527 students in the class. The process of estimating that parameter by calculating the sample mean of the 18 students who decided to sit in the front row that day induces a sampling distribution.
 
@@ -510,6 +508,8 @@ The confidence intervals that we have made are approximate in the following sens
 + The SD of the sample is used in place of the SD of the population in  calculating the SE of the statistic.
 
 There are times when we are unwilling to make the assumption of normality. This is the topic of the next set of notes. 
+
+{{< include images/tmp/_date-meta.md >}}
 
 {{< include ../../assets/includes/_links-to-materials.qmd >}}
 

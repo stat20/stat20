@@ -1,13 +1,13 @@
 ---
 title: "To Explain or to Predict?"
 subtitle: "A postscript"
-date: "04/28/2023"
 image: images/stat-process.png
 format:
   html:
     code-fold: true
     code-link: true
     code-summary: "."
+  pdf: default
 execute: 
   warning: false
   message: false
@@ -16,10 +16,8 @@ execute:
   fig-align: "center"
 ---
 
-{{< include ../../assets/includes/_notes-header.qmd >}}
-
-\
-
 [I]{.dropcap}n preparation for the last day of class, there are no new lecture notes and no reading questions. However, we'd invite you to read through a paper that has informed how this course thinks about statistics. Written by Galit Schmueli, it's called To Explain or to Predict? It can be found on Ed.
 
 This paper serves as an appropriate end cap to this course as you head into a final that will cover the different claims that are made with data: summaries, generalizations, causal claims, and predictions.
+
+{{< include images/tmp/_date-meta.md >}}

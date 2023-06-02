@@ -1,14 +1,11 @@
 ---
 title: "Expected value and variance of a random variable"
 subtitle: "Measuring the center and spread of a distribution"
-date:  "3/3/2023"
 image: images/front-image.png
+format:
+  html: default
+  pdf: default
 ---
-
-{{< include ../../assets/includes/_notes-header.qmd >}}
-
-\
-
 
 ```{r}
 #| echo: false
@@ -51,7 +48,7 @@ $$
 
 As you can see, the box average is nothing but a *weighted* average of the possible values of $X$, weighted by their probability.
 
-![](images/weighted-die-ev){fig-align="center" width="500"}
+![](images/weighted-die-ev.png){fig-aligned="center" width="500"}
 
 \
 
@@ -71,7 +68,7 @@ If $X$ is the spots when we roll a fair six-sided die, then $f(x) = P(x = x) = 1
 
 In general, if we have a discrete uniform random variable on the values $1, 2, 3, \ldots, n$, we expect to be in the middle, since all the values are equally likely ($f(x) = 1/n$ for all $x$). Therefore the expected value of a discrete uniform random variable is $E(X) = \frac{n+1}{2}$.
 
-![](images/disc-unif-ev){fig-align="center" width="400"}
+![](images/disc-unif-ev.png){fig-aligned="center" width="400"}
 
 \
 
@@ -81,7 +78,7 @@ Consider a Bernoulli($p$) random variable which takes the value $1$ with probabi
 $$ E(X) = 1 \times p + 0 \times (1-p) = p$$
 The expected value of a Bernoulli($p$) random variable is therefore just $p$.
 
-![](images/bernoulli-ev.png){fig-align="center" width="800"}
+![](images/bernoulli-ev.png){fig-aligned="center" width="800"}
 
 In all the figures above, note the red triangle marking the expected value. If you imagine the probability histogram to be a thin lamina - like a thin sheet of cardboard, you can imagine the expected value as a "balancing point", or the point where the lamina would balance. It is the "center of mass" for the probability distribution. The expected value for a random variable is analogous to the average for data, and if you look at equally likely values, it is the same. Other terms that we use for the expected value of a random variable are *expectation* and *mean*. These can be used interchangeably.
 
@@ -90,26 +87,31 @@ In all the figures above, note the red triangle marking the expected value. If y
 #### Example: Computing expectation in two ways
 
 Let $X$ be a random variable such that 
-$$X = \begin{cases}
+
+$$
+X = \begin{cases}
 1\: \text{with prob}\, 4/15\\
 2 \: \text{with prob}\, 7/30 \\
 0 \: \text{with prob}\, 1/3 \\
 -1 \: \text{with prob} \, 1/6
 \end{cases}
 $$
+
 Find the expected value of $X$ in two ways:
 
 (i) use the formula for expected value of $X$
 
 <details><summary> Check your answer </summary>
+
 $$
-\begin{align}
+\begin{aligned}
 E(X) &= 1 \times \frac{4}{15} + 2 \times \frac{7}{30} +  0 \times \frac{1}{3} + (-1) \times \frac{1}{6}  \\
  &= \frac{1 \times 8 + 2 \times 7 + 0 \times 10 + (-1) \times 5}{30} \\
  &= \frac{8 + 14 + 0 - 5}{30} \\
  &= \frac{17}{30} = 0.5666667
- \end{align}
- $$
+\end{aligned}
+$$
+ 
 </details>
 
 (ii) make the box of equally likely tickets that corresponds to $X$ and find the average of the tickets in the box.
@@ -193,18 +195,22 @@ Do **not** apply the function to $f(x)$! The probability distribution remains th
 #### Example: Binomial random variables
 
 Let $X\sim Bin(n, p)$. Recall that $X$ counts the number of successes in $n$ trials, where the probability of success on each trial is $p$. We can define $n$ Bernoulli($p$) random variables $X_1, X_2, \ldots, X_n$ where $X_k = 1$ with probability $p$, that is, $X_k$ is 1 if the $k$th trial is a success. We see that our binomial random variable $X$ can be written as a sum of these random variables: 
+
 $$
 X = X_1 + X_2 + \ldots + X_n
 $$
+
 The expected value of $X_k$ is $E(X_k) = p$ for each $k$, so using the additivity of expectation, we get 
+
 $$
-\begin{align}
+\begin{aligned}
 E(X) &= E( X_1 + X_2 + \ldots + X_n) \\
  &= E(X_1) + E(X_2) + \ldots + E(X_n) \\
  &= p + p +  \ldots + p\\
  &= np
-\end{align}
+\end{aligned}
 $$
+
 Therefore, if $X\sim Bin(n, p)$, then $E(X) = np$. This intuitively makes sense: if I toss a fair coin 100 times, I expect to see about $50$ heads. This is a very neat trick to compute the expected value of a binomial random variable because you can imagine that computing the expected value using the formula $\displaystyle \sum_x x \cdot f(x)$ would be very messy and difficult. Using Bernoulli random variables allowed us to easily calculate the expected value of a binomial random variable.
 
 ## Variance and standard deviation of a random variable
@@ -277,13 +283,15 @@ Note that $E(c^2) = c^2$ as $c^2$ is a constant. Thus we have that $SD(c) = 0$.
 2. The variance of a constant multiple of a random variable $Var(cX)$
 : Note that $E(cX) = c\mu$ by the properties of expectation. Thus we have (using the short cut formula):
 
-$$ \begin{align} 
+$$
+\begin{aligned} 
     Var(cX)  &= E((cX)^2) - (c\mu)^2 \\
     &= E(c^2 X^2) - c^2 \mu^2 \\
     &= c^2E(X^2) - c^2\mu^2\\
     &= c^2\left(E(X^2) - \mu^2 \right) \\
     &= c^2 Var(X)
-    \end{align}$$
+\end{aligned}
+$$
 
 Thus, $SD(cX) = \sqrt{Var(cX)} = \sqrt{c^2 Var(X)} = \lvert c \rvert SD(X).$ 
 ($SD(X) \ge 0$)
@@ -291,13 +299,18 @@ Thus, $SD(cX) = \sqrt{Var(cX)} = \sqrt{c^2 Var(X)} = \lvert c \rvert SD(X).$
 3. The variance of $X$ is unchanged by adding a constant
 : If we add a constant to $X$, the spread of the distribution does not change, only its center changes. Let $c$ be a real number. Then we have:
 
-$$Var(X+c) = Var(X)$$
+$$
+Var(X+c) = Var(X)
+$$
 
 
 4. Additivity of variance
 : In certain situations (when we know that $X$ and $Y$ are independent random variables - the events $X = x$ and $Y = y$ are independent for all values of $x$ and $y$), we have that:
 
-$$ Var(X + Y) = Var(X) + Var(Y) \text{ and } Var(X - Y) = Var(X) + Var(Y)$$
+$$
+Var(X + Y) = Var(X) + Var(Y) \text{ and } Var(X - Y) = Var(X) + Var(Y)
+$$
+
 If we have that  $Var(X + Y) = Var(X) + Var(Y)$, then $SD(X +Y) = \sqrt{Var(X) + Var(Y)}$.
 
 \
@@ -344,7 +357,7 @@ Suppose we have $n$ independent random variables $X_1, X_2, \ldots, X_n$ such th
 
 Consider the box shown below:
 
-![](images/box-1.png){fig-align="center" width="400"}
+![](images/box-1.png){fig-aligned="center" width="400"}
 
 Say I draw $25$ tickets with replacement from this box, and let $X_k$ be the value of the $k$th ticket. Then each of the $X_k$ has the same distribution, and they are independent since we draw the tickets with replacement. Therefore $X_1, X_2, \ldots, X_{25}$ are iid random variables with pmf given by:
 $$
@@ -372,6 +385,7 @@ s1
 ```
 
 Now we will repeat this process a few times:
+
 ```{r}
 replicate(10, sum(sample(box, size = 25, replace = TRUE)))
 ```
@@ -386,16 +400,19 @@ $E(X_k) = 0.2\times 0 + 0.3 \times 1 + 0.1 \times 2 + 0.2 \times 3 + 0.2 \times 
 $Var(X_k) = \sum_x (x-1.9)^2 P(X=x) = 2.09$
 
 $E(S_{25}) = E(X_1 + X_2 + \ldots +X_{25}) = 25 \times E(X_1) = 25 \times 1.9$
+
 We can use $X_1$ since all the $X_k$ have the same distribution.
 
 Since the $X_k$ are independent, we can write that 
+
 $$
-\begin{align} 
+\begin{aligned} 
 Var(S_{25}) &= Var(X_1 + X_2 + \ldots +X_{25})\\
 &= Var(X_1) + Var(X_2) + \ldots +Var(X_{25})\\
 &= 25 \times 2.09
-\end{align}
+\end{aligned}
 $$
+
 We can see that the expectation and variance of the sum scale with $n$, and the expected value of the sum of $n$ i.i.d random variables is $n$ times the expected value of any one of them, and the variance of the sum is also $n$ times the variance of any one of the iid random variables. This gives rise to the following "law" for the standard deviation of the sum.
 
 Square root law for sums of iid random variables
@@ -510,7 +527,7 @@ Now we don't talk about $P(X = x$), but rather that probability that $X$ lies in
 If $X$ is a random variable taking values in the interval $(0,1)$ with probability density function 
 $f(x) = 1$ for $x$ in $(0,1)$ and $f(x) = 0$ outside of this interval. Because $f(x)$ is flat, all intervals of the same length will have the same area under the curve, so the distribution defined by $f$ is called the *Uniform*$(0,1)$ distribution. If a random variable $X$ has this distribution, we say that $X \sim U(0,1)$. The probability that $X$ is in any interval $(a, b)$ which is a subinterval of $(0,1)$ is given by the area of the rectangle formed by the interval and $y=f(x)$, and so is just the width of the interval.
 
-![](images/unif-1.png){fig-align="center" width="600"}
+![](images/unif-1.png){fig-aligned="center" width="600"}
 
 Cumulative distribution function $F(x)$
 : The cdf is still defined as before: $F(x) = P(X \le x)$. The difference is in how we compute it. There are no discrete bits of mass for $F(x)$ to collect. Now we have that $F(x)$ is the area under the curve upto the point $x$. 
@@ -543,10 +560,7 @@ We considered the probability distributions of sums and averages.
 
 Finally, we introduced continuous distributions. Next time we will introduce the most celebrated continuous distribution, the normal distribution. 
 
+{{< include images/tmp/_date-meta.md >}}
+
 {{< include ../../assets/includes/_links-to-materials.qmd >}}
-
-
-
-
-
 
