@@ -1,6 +1,5 @@
 ---
 title: "Lab 5: People's Park"
-date: 03/08/23
 image: images/ppk.png
 code-fold: false
 ---

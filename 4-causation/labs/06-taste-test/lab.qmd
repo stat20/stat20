@@ -1,6 +1,5 @@
 ---
 title: "Lab 6: A Matter of Taste"
-date: 04/05/23
 image: images/la-croix-small.png
 code-fold: false
 ---

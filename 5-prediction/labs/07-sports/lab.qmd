@@ -1,6 +1,5 @@
 ---
 title: "Lab 7: Sports"
-date: 04/14/23
 image: images/box_score.jpeg
 code-fold: false
 ---

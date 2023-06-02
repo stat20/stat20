@@ -1,7 +1,6 @@
 ---
 title: "Lab 8: Diagnosing Cancer"
 image: images/benign_vs_malignant.png
-date: "04/26/23"
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}
