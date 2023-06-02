@@ -88,4 +88,4 @@ execute:
   fig-align: center
   
 profile:
-  default: schedule
+  default: toc
