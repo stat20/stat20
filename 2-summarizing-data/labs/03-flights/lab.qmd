@@ -1,7 +1,6 @@
 ---
 title: "Lab 3: Flights"
 image: images/airline.png
-date: 02/08/23
 code-fold: false
 ---
 

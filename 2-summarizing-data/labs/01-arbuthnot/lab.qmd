@@ -1,7 +1,6 @@
 ---
 title: "Lab 1: Arbuthnot"
 image: images/christenings-sm.png
-date: 01/25/23
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}
