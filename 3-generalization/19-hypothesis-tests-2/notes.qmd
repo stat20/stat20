@@ -29,10 +29,10 @@ In these notes, you'll learn a method for simulating data that corresponds to a 
 
 #### 2009 Presidential Election in Iran
 
-In 2009, Iran held a presidential election where the incumbent, Mahmoud Ahmadinejad, faced three challengers, Mohsen Rezai and two allied members of the reformist opposition, Mehdi Karroubi and Mir-Hussein Mousavi. Leading up to the elections, polling for Mousavi and Karroubi was strong; they were considered to present the first serious challenge to Ahmadinejad's governance. When the results of the election came in, any hopes for an upset were dashed by an decisive victory for the incumbent: Ahmadinejad received 62.6% of votes cast, Mousavi 33.75%, and Karroubi a bit above 1%.
+In 2009, Iran held a presidential election where the incumbent, Mahmoud Ahmadinejad, faced three challengers, Mohsen Rezai and two allied members of the reformist opposition, Mehdi Karroubi and Mir-Hussein Mousavi[^candidates]. Leading up to the elections, polling for Mousavi and Karroubi was strong; they were considered to present the first serious challenge to Ahmadinejad's governance. When the results of the election came in, any hopes for an upset were dashed by an decisive victory for the incumbent: Ahmadinejad received 62.6% of votes cast, Mousavi 33.75%, and Karroubi a bit above 1%.
 
 :::{.column-margin}
-![From left to right: Rezai, Ahmadinejad, Karroubi, and Mousavi[^candidates].](images/4-candidates.png){fig-align="center" width="320"}
+![From left to right: Rezai, Ahmadinejad, Karroubi, and Mousavi.](images/4-candidates.png){fig-align="center" width="320"}
 :::
 
 [^candidates]: Image from Pyvand Iran News archives <http://www.payvand.com/news/09/jun/1085.html>.
