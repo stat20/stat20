@@ -22,6 +22,8 @@ schedule:
         date: 02/03/23
       - href: 2-summarizing-data/07-conditioning/notes.qmd
         date: 02/08/23
+      - href: 2-summarizing-data/labs/03-flights/lab.qmd
+        date: 02/08/23
       - href: 2-summarizing-data/08-communicating-with-graphics/notes.qmd
         date: 02/10/23
       - href: 2-summarizing-data/09-summarizing-associations/notes.qmd
@@ -94,6 +96,15 @@ instructors:
   - name: Andrew Bray
     email: "andrewbray@berkeley.edu"
     quartopub-name: andrew
+  - name: Silas Gifford
+    email: "marsonstars@berkeley.edu"
+    quartopub-name: silas
+  - name: Jeremy Sanchez
+    email: "jeremysanchez@berkeley.edu"
+    quartopub-name: sanchez
+  - name: Shobhana Stoyanov
+    email: "shobhana@berkeley.edu"
+    quartopub-name: shobhana
     
 semester: "Spring, 2023"
 
