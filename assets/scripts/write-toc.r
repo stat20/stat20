@@ -25,6 +25,6 @@ toc_yaml <- list(website = list(sidebar = list(list(title = "Notes",
                                                     contents = notes_menu))))
 
 # write file
-ymlthis::use_yml_file(toc_yaml, "_quarto-toc.yml")
+yaml::write_yaml(toc_yaml, "_quarto-toc.yml")
 
 cli::cli_alert_success("Table of contents has been updated using the schedule of the notes in _course-settings.yml.")
