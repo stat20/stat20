@@ -22,8 +22,9 @@ _freeze/
 /.quarto/
 _site
 
-# Automated date files from _schedule.yml
+# Files derived from _schedule.yml
 **/images/tmp
+_quarto-toc.yml
 
 # PDFs not generated from qmds
 !3-generalization/labs/05-peoples-park/references/background-methods.pdf
