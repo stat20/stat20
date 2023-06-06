@@ -27,7 +27,7 @@ materials_list <- purrr::map(course_settings$schedule, "materials") |>
 
 purrr::map_chr(materials_list, "date") |>
   lubridate::mdy() |>
-  max()
+  min()
 
 
 
