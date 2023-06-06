@@ -18,6 +18,7 @@ materials_list <- purrr::map(course_settings$schedule, "materials") |>
   purrr::list_flatten()
 
 # write meta file for all materials  
-purrr::map(materials_list, write_meta_file)
+purrr::walk(materials_list, write_meta_file)
 
 cli::cli_alert_success("Dates have been propagated from _course-settings to the metadata of {length(materials_list)} files.")
+
