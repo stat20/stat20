@@ -33,3 +33,4 @@ _quarto-toc.yml
 
 # docker-compose run-time environment
 .env
+docker-compose.override.yml
