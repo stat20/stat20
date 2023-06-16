@@ -1,12 +1,18 @@
 Prerequisites
 =============
-x. Install [Docker](https://www.docker.com/products/docker-desktop/).
-x. Checkout this repository into a new working directory.
+Install [Docker](https://www.docker.com/products/docker-desktop/).
+
+If you are running on a computer with Apple Silicon (using a new "M" processor),
+  - Update macOS to Venture 13 or newer.
+  - Install Apple's Rosetta emulation by running `softwareupdate --install-rosetta`.
+  - In Docker Desktop, enable Settings > Features in development > Use Rosetta for x86/amd64 emulation on Apple Silicon.
+
+Checkout this repository into a new working directory.
 
 
 Run the Container
 =================
-In a terminal window, change into the working directory and run `make up`. This initializes your environment by creating the file `.env` in the working directory. It then runs `docker compose`.
+In a terminal window, change into the working directory and run `make up`. This initializes your environment by creating the file `.env`. It then runs `docker compose`.
 
 When your environment changes, for example if you log out and back in, or if you manually copy your working directory to another platform, run `make clean` or manually delete the `.env` file. Then run `make up`.
 
