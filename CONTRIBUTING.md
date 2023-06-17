@@ -7,6 +7,12 @@ If you are running on a computer with Apple Silicon (using a new "M" processor),
   - Install Apple's Rosetta emulation by running `softwareupdate --install-rosetta`.
   - In Docker Desktop, enable Settings > Features in development > Use Rosetta for x86/amd64 emulation on Apple Silicon.
 
+If you are running Microsoft Windows,
+  - Install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
+  - In a Command or Power Shell window, run `wsl --install -d Ubuntu`.
+  - In an Ubuntu window, run `apt update`, then `apt install make`.
+  - Run `exec ssh-agent bash` to start your SSH agent.
+
 Checkout this repository into a new working directory.
 
 
