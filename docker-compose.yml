@@ -1,0 +1,26 @@
+# https://rocker-project.org/use/editor.html#rstudio-ide
+
+version: "3.8"
+services:
+  stat20:
+    # `latest` tag is sufficient when developing from master.
+    # Pin a SHA when developing production materials.
+    image: stat20/stat20-docker:latest
+    ports:
+      - "8787:8787"
+    volumes:
+      - ./:/home/rstudio/stat20
+
+      # SSH_AUTH_SOCK is needed for git+ssh to work.
+      - type: bind
+        source: ${SSH_AUTH_SOCK_SOURCE}
+        target: ${SSH_AUTH_SOCK_TARGET}
+
+    # In env_file we expect to find USERID, GROUPID, and ssh auth socket vars
+    # which are seeded by `make`.
+    # https://rocker-project.org/images/versioned/rstudio.html#userid-and-groupid
+    env_file: ./.env
+
+    environment:
+      # https://rocker-project.org/images/versioned/rstudio.html#disable_auth
+      DISABLE_AUTH: true

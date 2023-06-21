@@ -30,3 +30,7 @@ _quarto-toc.yml
 !3-generalization/labs/05-peoples-park/references/background-methods.pdf
 !3-generalization/labs/05-peoples-park/references/chancellors-email.pdf
 !3-generalization/labs/05-peoples-park/references/questionnaire.pdf
+
+# docker-compose run-time environment
+.env
+docker-compose.override.yml
