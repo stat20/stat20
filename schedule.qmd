@@ -43,11 +43,23 @@ lessons <- c("Graphics", "Stats", "Homework", "Models", "Summarizing Categorical
 cal_df <- as.data.frame(matrix(c(cal, lessons), ncol = 5, byrow = TRUE))
 names(cal_df) <- c("MON", "TUE", "WED", "THU", "FRI")
 
+cal_df$is_date <- c(TRUE, FALSE)
+
 library(gt)
 gt(cal_df) |>
+  cols_align(
+    align = "center"
+  ) |>
   tab_style(
     style = cell_text(size = pct(75)),
     locations = cells_column_labels()
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = c("bottom"),
+      style = NULL
+    ),
+    locations = cells_body(rows = is_date)
   ) |>
   opt_horizontal_padding(scale = 3) |>
   opt_vertical_padding(scale = 3)
