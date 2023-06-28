@@ -4,12 +4,12 @@ toc: false
 sidebar: false
 ---
 
-**Class Sessions**: 2 hr blocks on Wednesday and Friday\
-**Workshop**: 1 hr Monday\
-**Reading Questions due**: 11:59 pm Tuesday and Thursday on Gradescope\
-**Labs and PS due**: Tuesday morning 10 am on Gradescope\
-**Homework Party**: Thursday 4-6 pm in Evans 342\
-**Final Exam**: Thursday 5/11/23 in person from 11:30am-2:30pm
+<!-- **Class Sessions**: 2 hr blocks on Wednesday and Friday\ -->
+<!-- **Workshop**: 1 hr Monday\ -->
+<!-- **Reading Questions due**: 11:59 pm Tuesday and Thursday on Gradescope\ -->
+<!-- **Labs and PS due**: Tuesday morning 10 am on Gradescope\ -->
+<!-- **Homework Party**: Thursday 4-6 pm in Evans 342\ -->
+<!-- **Final Exam**: Thursday 5/11/23 in person from 11:30am-2:30pm -->
 
 :::{.panel-tabset}
 
@@ -17,6 +17,7 @@ sidebar: false
 
 ```{r}
 #| echo: false
+#| results: asis
 
 # read in course settings
 course_settings <- yaml::read_yaml("_course-settings.yml")
@@ -25,48 +26,134 @@ course_settings <- yaml::read_yaml("_course-settings.yml")
 materials_list <- purrr::map(course_settings$schedule, "materials") |>
   purrr::list_flatten()
 
-d <- purrr::map_chr(materials_list, "date") |>
+# get set of all dates
+sched_dates <- purrr::map_chr(materials_list, "date") |>
   lubridate::mdy()
 
+# create a vector all all dates (M-F) to appear in calendar
 library(lubridate)
 
-first_day_of_class <- min(d)
+first_day <- min(sched_dates)
+first_mon <- first_day - wday(first_day) + 2
+last_day <- max(sched_dates)
+last_fri <- last_day + (6 - wday(last_day))
 
-first_mon <- first_day_of_class - (wday(first_day_of_class) - 1)
+date_seq <- 0:(last_fri - first_mon)
+cal_dates <- first_mon + 
+  date_seq[-c(seq(6, as.integer(last_fri - first_mon), 7),
+              seq(7, as.integer(last_fri - first_mon), 7))]# exclude weekends
 
-first_week <- first_mon + 0:4
-cal <- mday(first_week)
+# create (nested) list of all titles to appear on those dates
+return_title_if_match <- function(x, d) {
+  if (mdy(x$date) == d) {
+    if(exists("title", where = x)) {
+      title <- x$title
+    } else {
+      title <- rmarkdown::yaml_front_matter(x$href)$title
+    }
+    if(exists("href", where = x)) {
+      if(stringr::str_extract(x$href, "[^/]+$") == "notes.qmd") {
+        title <- glue::glue("<a href='{x$href}'><span class='btn bg-primary'>{title}</span></a>")
+      } else if(stringr::str_extract(x$href, "[^/]+$") == "lab.qmd") {
+        title <- glue::glue("<a href='{x$href}'><span class='btn bg-secondary'>{title}</span></a>")
+      } else {
+        title <- glue::glue("<a href='{x$href}'><span class='btn'>{title}</span></a>")
+        }
+      } else {
+      title <- glue::glue("<span class='btn'>{title}</span>")
+    }
+    title
+  }
+}
 
-last_day_of_class <- min(d)
+return_titles <- function(x) {
+  purrr::map(materials_list, return_title_if_match, x) |>
+  unlist()
+}
 
-lessons <- c("Graphics", "Stats", "Homework", "Models", "Summarizing Categorical Data")
-cal_df <- as.data.frame(matrix(c(cal, lessons), ncol = 5, byrow = TRUE))
-names(cal_df) <- c("MON", "TUE", "WED", "THU", "FRI")
+cal_titles <- purrr::map(cal_dates, return_titles)
 
-is_date <- c(TRUE, FALSE)
+# form calendar tibble
+
+## interleave two lists
+# cal_dates <- as.list(cal_dates)
+idx <- order(c(seq_along(cal_dates), seq_along(cal_titles)))
+d_and_t <- c(lubridate::mday(cal_dates), cal_titles)[idx]
+
+mon_idx <- sort(c(seq(1, length(d_and_t), 10),
+                  seq(2, length(d_and_t), 10)))
+tue_idx <- sort(c(seq(3, length(d_and_t), 10),
+                  seq(4, length(d_and_t), 10)))
+wed_idx <- sort(c(seq(5, length(d_and_t), 10),
+                  seq(6, length(d_and_t), 10)))
+thu_idx <- sort(c(seq(7, length(d_and_t), 10),
+                  seq(8, length(d_and_t), 10)))
+fri_idx <- sort(c(seq(9, length(d_and_t), 10),
+                  seq(10, length(d_and_t), 10)))
+
+cal_df <- tibble::tibble(MON = d_and_t[mon_idx],
+                         TUE = d_and_t[tue_idx],
+                         WED = d_and_t[wed_idx],
+                         THU = d_and_t[thu_idx],
+                         FRI = d_and_t[fri_idx])
+
+# cal_df[2, 5][[1]][[1]] <- "<a href='https://www.w3schools.com/tags/tag_a.asp'><span class='btn bg-primary'>The Taxonomy of Data</span></a>"
 
 library(gt)
-gt(cal_df) |>
-  cols_align(align = "center") |>
-  cols_width(everything() ~ pct(20)) |>
-  tab_style( # style header
-    style = cell_text(size = pct(75)),
-    locations = cells_column_labels()
-  ) |>
-  tab_style( # style rows with dates
-    style = cell_borders(sides = c("bottom"),
-                         style = NULL),
-    locations = cells_body(rows = is_date)) |> 
-  tab_style( # style columns with vertical lines
-    style = cell_borders(sides = c("left", "right"),
-                         color = "--quarto-border-color"),
-    locations = cells_body()) |>
-  tab_style( # remove top border
-    style = cell_borders(sides = "top",
-                         style = NULL),
-    locations = cells_column_labels()) |>
-  opt_horizontal_padding(scale = 3) |>
-  opt_vertical_padding(scale = 3)
+
+make_cal <- function(cal_df, from_week, to_week, mo_label) {
+  cal_df2 <- cal_df |>
+    dplyr::slice(from_week:to_week)
+  is_date <- rep(c(TRUE, FALSE), nrow(cal_df2) / 2)
+  gt(cal_df2) |>
+    tab_header(title = md(paste0("### ", mo_label))) |>
+    cols_align(align = "center") |>
+    cols_width(everything() ~ pct(20)) |>
+    tab_style( # style col names
+      style = cell_text(size = pct(75)),
+      locations = cells_column_labels()) |>
+    tab_style( # style rows with dates
+      style = cell_borders(sides = c("bottom"),
+                           style = NULL),
+      locations = cells_body(rows = is_date)) |> 
+    tab_style( # style columns with vertical lines
+      style = cell_borders(sides = c("left", "right"),
+                           color = "--quarto-border-color"),
+      locations = cells_body()) |>
+    tab_style( # remove top border
+      style = cell_borders(sides = "top",
+                           style = NULL),
+      locations = cells_column_labels()) |>
+    opt_horizontal_padding(scale = 2) |>
+    opt_vertical_padding(scale = 2) |>
+    tab_options(table.border.top.style = "none") |>
+    fmt_url(columns = 3,
+            rows = 2,
+            as_button = TRUE) |>
+    fmt_markdown(columns = c(3, 5))
+}
+
+## make by-month calendars to cover the schedule ##
+
+# months of every item on calendar
+cal_months <- month(cal_dates, label = TRUE, abbr = FALSE)
+unique_mo <- unique(cal_months)
+
+for (i in seq_along(unique_mo)) {
+  mo_label <- unique_mo[i]
+  mo_span <- range(which(cal_months == mo_label))
+  
+  make_cal(cal_df,
+           from_week = ceiling(mo_span[1]/5) * 2 - 1, 
+           to_week = ceiling(mo_span[2]/5) * 2,
+           mo_label = mo_label) |>
+    htmltools::tagList() |>
+    print()
+}
+
+
+# blank out materials from other months (maybe form cal_df after month is specified)
+# add links
 ```
 
 
