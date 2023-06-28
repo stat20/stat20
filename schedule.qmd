@@ -43,7 +43,7 @@ cal_dates <- first_mon +
   date_seq[-c(seq(6, as.integer(last_fri - first_mon), 7),
               seq(7, as.integer(last_fri - first_mon), 7))]# exclude weekends
 
-# create (nested) list of all titles to appear on those dates
+# create list of all titles to appear on those dates
 return_title_if_match <- function(x, d) {
   if (mdy(x$date) == d) {
     if(exists("title", where = x)) {
@@ -51,7 +51,7 @@ return_title_if_match <- function(x, d) {
     } else {
       title <- rmarkdown::yaml_front_matter(x$href)$title
     }
-    if(exists("href", where = x)) {
+    if(exists("href", where = x)) { # format title
       if(stringr::str_extract(x$href, "[^/]+$") == "notes.qmd") {
         title <- glue::glue("<a href='{x$href}'><span class='btn bg-primary'>{title}</span></a>")
       } else if(stringr::str_extract(x$href, "[^/]+$") == "lab.qmd") {
@@ -67,10 +67,20 @@ return_title_if_match <- function(x, d) {
 }
 
 return_titles <- function(x) {
-  purrr::map(materials_list, return_title_if_match, x) |>
+  title_vec <- purrr::map(materials_list, return_title_if_match, x) |>
   unlist()
+  if (length(title_vec) > 1) { # if there are multiple titles, add a line break
+    glue::glue_collapse(title_vec, sep = "<br>")
+  } else {
+    if(is.null(title_vec)) {
+      " "
+    } else {
+      title_vec
+    }
+  }
 }
 
+# return title
 cal_titles <- purrr::map(cal_dates, return_titles)
 
 # form calendar tibble
@@ -96,8 +106,6 @@ cal_df <- tibble::tibble(MON = d_and_t[mon_idx],
                          WED = d_and_t[wed_idx],
                          THU = d_and_t[thu_idx],
                          FRI = d_and_t[fri_idx])
-
-# cal_df[2, 5][[1]][[1]] <- "<a href='https://www.w3schools.com/tags/tag_a.asp'><span class='btn bg-primary'>The Taxonomy of Data</span></a>"
 
 library(gt)
 
@@ -127,10 +135,7 @@ make_cal <- function(cal_df, from_week, to_week, mo_label) {
     opt_horizontal_padding(scale = 2) |>
     opt_vertical_padding(scale = 2) |>
     tab_options(table.border.top.style = "none") |>
-    fmt_url(columns = 3,
-            rows = 2,
-            as_button = TRUE) |>
-    fmt_markdown(columns = c(3, 5))
+    fmt_markdown()
 }
 
 ## make by-month calendars to cover the schedule ##
@@ -151,9 +156,7 @@ for (i in seq_along(unique_mo)) {
     print()
 }
 
-
 # blank out materials from other months (maybe form cal_df after month is specified)
-# add links
 ```
 
 
