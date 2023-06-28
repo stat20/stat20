@@ -20,6 +20,8 @@ schedule:
         date: 02/03/23
       - href: 2-summarizing-data/labs/02-class-survey/lab.qmd
         date: 02/03/23
+      - title: "Quiz!"
+        date: 02/06/23
       - href: 2-summarizing-data/07-conditioning/notes.qmd
         date: 02/08/23
       - href: 2-summarizing-data/labs/03-flights/lab.qmd
@@ -38,7 +40,8 @@ schedule:
         date: 02/24/23
       - href: 3-generalization/13-random-variables/notes.qmd
         date: 03/01/23
-      - href: 3-generalization/14-ev-se/notes.qmd
+      - title: "Expectation and Variance"
+        href: 3-generalization/14-ev-se/notes.qmd
         date: 03/03/23
       - href: 3-generalization/labs/04-elections/lab.qmd
         date: 03/03/23
