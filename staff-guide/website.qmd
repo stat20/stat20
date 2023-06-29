@@ -1,0 +1,11 @@
+---
+title: Configuring this Website
+---
+
+## Live Website
+
+This website is designed to start each semester with minimal information, then grow throughout the semester as new topics are introduced and new assignments released.
+
+
+
+
