@@ -1,0 +1,47 @@
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+jobs:
+  publish:
+    name: publish to stat20staff netlify
+    runs-on: ubuntu-latest
+    steps:
+      # for accessing this repo's assets in the container
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      # run the container, attaching this repo as a working directory
+      - name: Run the build process with Docker
+        uses: addnab/docker-run-action@v3
+        with:
+          image: stat20/stat20-docker:latest
+          options: -v ${{ github.workspace }}:/home/rstudio/stat20
+          shell: bash
+          run: |
+            /assets/scripts/propagate-dates.r
+            /assets/scripts/write-toc.r
+            quarto publish netlify --id 33fedc67-c501-4720-bd24-6e00c15aa700
+
+
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches: main
+# name: "Publish Staff Guide"
+# jobs:
+#   build-deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out repository
+#         uses: actions/checkout@v3
+#       - name: Set up Quarto
+#         uses: quarto-dev/quarto-actions/setup@v2
+#         with:
+#           tinytex: true
+#       - name: Render and Publish
+#         shell: bash
+#         env:
+#           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+#           QUARTO_PROFILE: staff-site
+#         run: |
+#           quarto publish netlify --id 33fedc67-c501-4720-bd24-6e00c15aa700
