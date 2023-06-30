@@ -21,6 +21,8 @@ jobs:
           options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${NETLIFY_AUTH_TOKEN} -e QUARTO_PROFILE=${QUARTO_PROFILE}
           shell: bash
           run: |
+            pwd
+            ls
             cd ./stat20/
             r ./assets/scripts/propagate-dates.r
             r ./assets/scripts/write-toc.r
