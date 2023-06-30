@@ -18,7 +18,7 @@ jobs:
            QUARTO_PROFILE: staff-site
         with:
           image: stat20/stat20-docker:latest
-          options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${NETLIFY_AUTH_TOKEN} -e QUARTO_PROFILE=${QUARTO_PROFILE}
+          options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }} -e QUARTO_PROFILE=staff-site
           shell: bash
           run: |
             # execute from the textbook
@@ -33,27 +33,3 @@ jobs:
             r ./assets/scripts/write-toc.r
 
             quarto publish netlify --id 33fedc67-c501-4720-bd24-6e00c15aa700
-
-
-# on:
-#   workflow_dispatch:
-#   push:
-#     branches: main
-# name: "Publish Staff Guide"
-# jobs:
-#   build-deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Check out repository
-#         uses: actions/checkout@v3
-#       - name: Set up Quarto
-#         uses: quarto-dev/quarto-actions/setup@v2
-#         with:
-#           tinytex: true
-#       - name: Render and Publish
-#         shell: bash
-#         env:
-#           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-#           QUARTO_PROFILE: staff-site
-#         run: |
-#           quarto publish netlify --id 33fedc67-c501-4720-bd24-6e00c15aa700
