@@ -23,6 +23,10 @@ jobs:
           run: |
             pwd
             ls
+            cd home
+            ls
+            cd rstudio
+            ls
             cd ./stat20/
             r ./assets/scripts/propagate-dates.r
             r ./assets/scripts/write-toc.r
