@@ -1,7 +1,6 @@
 on:
-  workflow_dispatch:
-  push:
-    branches: publish-staff-site
+  pull_request:
+    branches: main
 jobs:
   publish:
     name: publish to stat20staff netlify
