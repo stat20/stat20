@@ -1,9 +1,9 @@
 on:
-  push:
+  pull_request:
     branches: main
 jobs:
   publish:
-    name: publish to stat20staff
+    name: publish to stat20staff-pr
     runs-on: ubuntu-latest
     steps:
       # for accessing this repo's assets in the container
@@ -31,4 +31,4 @@ jobs:
 
             r ./assets/scripts/write-toc.r
 
-            quarto publish netlify --id 33fedc67-c501-4720-bd24-6e00c15aa700
+            quarto publish netlify --id 3f1e6a82-2bfc-4ac3-94f8-73f78436dd2a
