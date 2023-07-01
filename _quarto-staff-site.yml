@@ -1,0 +1,23 @@
+
+# Modify aesthetics and add Guide to navbar
+website:
+  title: "Stat 20 Staff Guide"
+  page-navigation: true
+  repo-actions: [edit, issue]
+  open-graph:
+    site-name: "Stat 20 Staff Guide"
+  reader-mode: true
+  navbar:
+    title: false
+    background: warning
+    left:
+      - text: Guide
+        href: staff-guide/index.qmd
+  sidebar:
+    - title: "Guide"
+      style: floating
+      align: left
+      contents:
+        - staff-guide/index.qmd
+        - staff-guide/roles-and-expectations.qmd
+        - staff-guide/website.qmd
