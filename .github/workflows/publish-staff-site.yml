@@ -1,9 +1,9 @@
 on:
-  pull_request:
+  push:
     branches: main
 jobs:
   publish:
-    name: publish to stat20staff netlify
+    name: publish to stat20staff
     runs-on: ubuntu-latest
     steps:
       # for accessing this repo's assets in the container
