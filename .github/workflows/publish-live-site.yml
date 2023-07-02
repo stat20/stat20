@@ -2,6 +2,7 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '10 * * * *'
+    - cron: '35 * * * *'
 name: "Publish Live Website to stat20.org"
 jobs:
   publish:
