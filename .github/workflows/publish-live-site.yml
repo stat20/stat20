@@ -26,9 +26,9 @@ jobs:
             # _freeze probably won't exist, but lets document that it shouldn't
             rm -rf ./_freeze
 
-            # this doesn't always succeed
-            r ./assets/scripts/propagate-dates.r || true
-
+            # run pre-render scripts
+            r ./assets/scripts/propagate-dates.r
+            r ./assets/scripts/ignore-future-docs.r
             r ./assets/scripts/write-toc.r
 
-            quarto publish netlify --id 33fedc67-c501-4720-bd24-6e00c15aa700
+            quarto publish netlify --id 4f93185f-50a9-491c-b86f-3f8e51eb3ae9
