@@ -1,3 +1,4 @@
+
 # read in course settings
 course_settings <- yaml::read_yaml("_course-settings.yml")
 
