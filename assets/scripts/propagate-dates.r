@@ -24,5 +24,5 @@ href_list <- purrr::map(course_settings$schedule, "materials") |>
 # write meta file for all materials  
 purrr::walk(href_list, write_meta_file)
 
-cli::cli_alert_success("Dates have been propagated from _course-settings to the metadata of {length(materials_list)} files.")
+cli::cli_alert_success("Dates have been propagated from _course-settings to the metadata of {length(href_list)} files.")
 
