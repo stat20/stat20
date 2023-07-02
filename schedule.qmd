@@ -49,7 +49,17 @@ return_title_if_match <- function(x, d) {
     if(exists("title", where = x)) {
       title <- x$title
     } else {
-      title <- rmarkdown::yaml_front_matter(x$href)$title
+      if (file.exists(x$href)) { # if a future file was ignored, update path
+        current_path <- x$href
+      } else {
+        dir_path_part_to_ignore <- stringr::str_extract(x$href,
+                                               "^.*/([^/]+)/[^/]+$", group = 1)
+        dir_path_part_ignored  <- paste0("_", dir_path_part_to_ignore)
+        current_path <- stringr::str_replace(x$href,
+                                             dir_path_part_to_ignore,
+                                             dir_path_part_ignored)
+      }
+      title <- rmarkdown::yaml_front_matter(current_path)$title
     }
     if(exists("href", where = x)) { # format title
       if(stringr::str_extract(x$href, "[^/]+$") == "notes.qmd") {
