@@ -86,14 +86,10 @@ schedule:
       - href: 5-prediction/28-to-explain-or-to-predict/notes.qmd
         date: 04/28/23
         
-release-timing:
+auto-publish:
 # how many seconds to add to 00:00 of each file's release `date`
-  notes-offset: -100800
-  # 8 pm on the day before the day before class
-  class-materials-offset: 21600
-  # 6 am on the day of class
-  labs-offset: 21600
-  # 6 am on the day of class
+  timezone: "America/Los_Angeles"
+  live-as-of: "01/22/23"
 
 instructors:
   - name: Andrew Bray
