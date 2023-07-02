@@ -4,28 +4,31 @@ on:
     - cron: '8 4 * * TUE,THU'
 name: "Publish Live Website to stat20.org"
 jobs:
-  build-deploy:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          tinytex: true
-      - name: Install dependencies
-        run: |
-          install.packages('yaml')
-          install.packages('jsonlite')
-          install.packages('htmltools')
-        shell: sudo Rscript {0}
-      - name: Ignore future posts
-        run: |
-          Rscript assets/scripts/ignore_future_docs.R
-      - name: Render and Publish
-        shell: bash
+      # for accessing this repo's assets in the container
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      # run the container, attaching this repo as a working directory
+      - name: Run the build process with Docker
+        uses: addnab/docker-run-action@v3
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          QUARTO_PROFILE: live-site
-        run: |
-          quarto publish netlify --id 1188ba29-f00d-4f5a-ac6f-75c715522c69
+           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        with:
+          image: stat20/stat20-docker:latest
+          options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
+          shell: bash
+          run: |
+            # execute from the textbook
+            cd /home/rstudio/stat20/
+
+            # _freeze probably won't exist, but lets document that it shouldn't
+            rm -rf ./_freeze
+
+            # run pre-render scripts
+            r ./assets/scripts/propagate-dates.r
+            r ./assets/scripts/ignore-future-docs.r
+            r ./assets/scripts/write-toc.r
+
+            quarto publish netlify --id 4f93185f-50a9-491c-b86f-3f8e51eb3ae9
