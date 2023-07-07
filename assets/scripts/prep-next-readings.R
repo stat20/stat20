@@ -106,4 +106,3 @@ reading_list <- next_notes |>
 yaml::write_yaml(reading_list, "assets/items.yml")
 
 cli::cli_alert_success("PDFs of {unlist(purrr::map(reading_list, 'title'))} now available on home page.")
-
