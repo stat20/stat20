@@ -1,13 +1,17 @@
 ---
 toc: false
 page-layout: custom
+listing:
+  id: readings-listing
+  template: assets/custom.ejs
+  contents: assets/items.yml
 ---
 
 :::::{.content-block}
 ::::{.grid}
 :::{#banner .g-col-12 .g-col-md-6 style="margin: 3em 1em 0em 1em"}
 
-:::{.content-visible unless-profile="staff-guide"}
+:::{.content-visible unless-profile="staff-site"}
 
 :::{.banner-text}
 Introduction to Probability and Statistics
@@ -16,9 +20,15 @@ Introduction to Probability and Statistics
 [Stat 20 UC Berkeley]{.smallcaps}
 
 For information about the course, please [see the syllabus](syllabus.qmd).
+
+
+::: {#readings-listing}
 :::
 
-:::{.content-hidden unless-profile="staff-guide"}
+
+:::
+
+:::{.content-hidden unless-profile="staff-site"}
 
 :::{.banner-text}
 Staff Guide
@@ -29,6 +39,11 @@ A home base for course staff with:
 - Draft versions of notes and assignments
 - A guide with helpful documentation for course staff
 - Extraneous entries to test continuous integration
+
+::: {#readings-listing}
+:::
+
+
 :::
 
 
@@ -41,16 +56,6 @@ A home base for course staff with:
 :::{#hex .g-col-12 .g-col-md-6 style="margin: 0em 1em 0em 1em"}
 
 \
-
-<!-- ![](assets/p10.svg){fig-alt="Many blue points arrayed vertically in a long irregular strip with the word Lincoln along the right side and 35 on the left side."} -->
-
-<!-- ![](assets/p4b.svg){fig-alt="Many blue points arrayed vertically in a long irregular strip with the word Lincoln along the right side."} -->
-
-<!-- ![](assets/p3.svg){fig-alt="Many blue points arrayed vertically in a long irregular strip."} -->
-
-<!-- ![](assets/p2.svg){fig-alt="Many blue points of varying sizes arranged in a packed circle."} -->
-
-<!-- ![](assets/p1.svg){fig-alt="Many blue points arranged in a packed circle."} -->
 
 ![](assets/stat20-hex.png){fig-alt="Hex logo of Stat 20 showing a golden bear."}
 :::
