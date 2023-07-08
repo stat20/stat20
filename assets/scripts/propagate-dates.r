@@ -26,3 +26,7 @@ purrr::walk(href_list, write_meta_file)
 
 cli::cli_alert_success("Dates have been propagated from _course-settings to the metadata of {length(href_list)} files.")
 
+# temporary debug
+ip = as.data.frame(installed.packages()[,c(1,3:4)])
+ip = ip[is.na(ip$Priority),1:2,drop=FALSE]
+ip
