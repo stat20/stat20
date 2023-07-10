@@ -1,8 +1,11 @@
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: '10 * * * *'
+#     - cron: '35 * * * *'
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: '10 * * * *'
-    - cron: '35 * * * *'
+  pull_request:
+    branches: main
 name: "Publish Live Website to stat20.org"
 jobs:
   publish:
