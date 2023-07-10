@@ -72,11 +72,17 @@ next_notes <- purrr::map(notes_list,
 # render notes to pdf #
 #=====================#
 
-render_pdf <- function(x) {
-  quarto::quarto_render(x, output_format = "pdf")
-}
+# render_pdf <- function(x) {
+#   quarto::quarto_render(x, output_format = "pdf")
+# }
+# 
+# purrr::walk(purrr::map(next_notes, "href"), render_pdf)
 
-purrr::walk(purrr::map(next_notes, "href"), render_pdf)
+a <- unlist(purrr::map(next_notes, "href"))
+
+quarto::quarto_render(a[1], output_format = "pdf")
+quarto::quarto_render(a[2], output_format = "pdf")
+
 
 #================#
 # write pdfs.yml #
