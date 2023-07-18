@@ -29,6 +29,9 @@ jobs:
 
             # _freeze probably won't exist, but lets document that it shouldn't
             rm -rf ./_freeze
+            
+            # debug
+            echo PATH=$PATH
 
             # run pre-render scripts
             r ./assets/scripts/propagate-dates.r
