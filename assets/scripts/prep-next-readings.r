@@ -72,25 +72,12 @@ next_notes <- purrr::map(notes_list,
 # render notes to pdf #
 #=====================#
 
+paste(next_notes)
+
 render_pdf <- function(x) {
+  quarto::check()
   quarto::quarto_render(x, output_format = "pdf", debug = TRUE)
 }
-
-# debugging
-our_quarto_path <- function() {
-  path_env <- Sys.getenv("QUARTO_PATH", unset = NA)
-  if (is.na(path_env)) {
-    path <- unname(Sys.which("quarto"))
-    if (nzchar(path)) path else NULL
-  } else {
-    path_env
-  }
-}
-which_quarto <- our_quarto_path()
-paste("OUR QUARTO:", which_quarto)
-
-ls_quarto <- system("ls /usr/local/bin/quarto", intern = TRUE)
-paste("Does /usr/local/bin/quato exist?", ls_quarto)
 
 purrr::walk(purrr::map(next_notes, "href"), render_pdf)
 
