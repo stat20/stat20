@@ -5,7 +5,7 @@
 #     - cron: '35 * * * *'
 on:
   pull_request:
-    branches: debug-pdf-preview
+    branches: main
 name: "Publish Live Website to stat20.org"
 jobs:
   publish:
