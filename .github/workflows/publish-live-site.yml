@@ -35,7 +35,9 @@ jobs:
 
             # run pre-render scripts
             r ./assets/scripts/propagate-dates.r
-            env QUARTO_PATH=/usr/local/bin/quarto r ./assets/scripts/prep-next-readings.r
+            export QUARTO_PATH=/usr/local/bin/quarto
+            r ./assets/scripts/prep-next-readings.r
+            unser QUARTO_PATH
             r ./assets/scripts/ignore-future-docs.r
             r ./assets/scripts/write-toc.r
 
