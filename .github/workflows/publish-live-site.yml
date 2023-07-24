@@ -35,6 +35,9 @@ jobs:
             
             # run pre-render scripts
             r ./assets/scripts/propagate-dates.r
+            # manually render these notes
+            quarto render 2-summarizing-data/09-summarizing-associations/notes.qmd --to pdf
+            quarto render 2-summarizing-data/10-multiple-linear-regression/notes.qmd --to pdf
             r --verbose ./assets/scripts/prep-next-readings.r
             r ./assets/scripts/ignore-future-docs.r
             r ./assets/scripts/write-toc.r
