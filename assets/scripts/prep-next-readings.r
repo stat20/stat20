@@ -72,29 +72,12 @@ next_notes <- purrr::map(notes_list,
 # render notes to pdf #
 #=====================#
 
-paste("next_notes:", next_notes)
-
 render_pdf <- function(x) {
   quarto::quarto_render(x, output_format = "pdf", debug = TRUE)
 }
 
 next_notes_href <- unlist(purrr::map(next_notes, "href"))
-###paste("next_notes_href:")
-###paste(next_notes_href)
-###paste("MARK 05")
-
-#quarto::quarto_render(next_notes_href[1], output_format = "pdf")
-###quarto::quarto_render("2-summarizing-data/09-summarizing-associations/notes.qmd", output_format = "pdf")
-###paste("MARK 7")
-###quarto::quarto_render(next_notes_href[2], output_format = "pdf")
-###paste("MARK 8")
-####purrr::walk(next_notes_href, render_pdf)
-###paste("MARK 10")
-###a <- unlist(purrr::map(next_notes, "href"))
-
-# quarto::quarto_render(a[1], output_format = "pdf")
-# quarto::quarto_render(a[2], output_format = "pdf")
-
+purrr::walk(next_notes_href, render_pdf)
 
 #================#
 # write pdfs.yml #
