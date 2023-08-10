@@ -1,8 +1,11 @@
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: '10 * * * *'
+#     - cron: '35 * * * *'
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: '10 * * * *'
-    - cron: '35 * * * *'
+  pull_request:
+    branches: main
 name: "Publish Live Website to stat20.org"
 jobs:
   publish:
@@ -21,16 +24,19 @@ jobs:
           options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
           shell: bash
           run: |
+            # exit if any command returns non-zero exit
+            set -e
+
             # execute from the textbook
             cd /home/rstudio/stat20/
 
             # _freeze probably won't exist, but lets document that it shouldn't
             rm -rf ./_freeze
-
+            
             # run pre-render scripts
-            r ./assets/scripts/propagate-dates.r
-            r ./assets/scripts/prep-next-readings.r
-            r ./assets/scripts/ignore-future-docs.r
-            r ./assets/scripts/write-toc.r
+            Rscript ./assets/scripts/propagate-dates.r
+            Rscript ./assets/scripts/prep-next-readings.r
+            Rscript ./assets/scripts/ignore-future-docs.r
+            Rscript ./assets/scripts/write-toc.r
 
             quarto publish netlify --id 4f93185f-50a9-491c-b86f-3f8e51eb3ae9
