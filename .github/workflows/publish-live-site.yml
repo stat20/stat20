@@ -34,9 +34,9 @@ jobs:
             rm -rf ./_freeze
             
             # run pre-render scripts
-            r ./assets/scripts/propagate-dates.r
+            Rscript ./assets/scripts/propagate-dates.r
             Rscript ./assets/scripts/prep-next-readings.r
-            r ./assets/scripts/ignore-future-docs.r
-            r ./assets/scripts/write-toc.r
+            Rscript ./assets/scripts/ignore-future-docs.r
+            Rscript ./assets/scripts/write-toc.r
 
             quarto publish netlify --id 4f93185f-50a9-491c-b86f-3f8e51eb3ae9
