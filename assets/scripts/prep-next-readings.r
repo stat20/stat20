@@ -92,25 +92,25 @@ n2_time <- n2_release[2] |>
 # determine which notes are within the release window
 next_notes_date <- purrr::map(next_notes, "date") |>
   unlist() |>
-  mdy()
+  lubridate::mdy()
 
 notes_1_date <- min(next_notes_date)
 notes_1_release_date <- notes_1_date
-wday(notes_1_release_date) <- n1_day
+lubridate::wday(notes_1_release_date) <- n1_day
 if (notes_1_release_date > notes_1_date) {
-  notes_1_release_date <- notes_1_release_date - weeks(1)
+  notes_1_release_date <- notes_1_release_date - lubridate::weeks(1)
 }
-hour(notes_1_release_date) <- as.integer(n1_time[1])
-second(notes_1_release_date) <- as.integer(n1_time[2])
+lubridate::hour(notes_1_release_date) <- as.integer(n1_time[1])
+lubridate::second(notes_1_release_date) <- as.integer(n1_time[2])
 
 notes_2_date <- max(next_notes_date)
 notes_2_release_date <- notes_2_date
-wday(notes_2_release_date) <- n2_day
+lubridate::wday(notes_2_release_date) <- n2_day
 if (notes_2_release_date > notes_2_date) {
-  notes_2_release_date <- notes_2_release_date - weeks(1)
+  notes_2_release_date <- notes_2_release_date - lubridate::weeks(1)
 }
-hour(notes_2_release_date) <- as.integer(n2_time[1])
-second(notes_2_release_date) <- as.integer(n2_time[2])
+lubridate::hour(notes_2_release_date) <- as.integer(n2_time[1])
+lubridate::second(notes_2_release_date) <- as.integer(n2_time[2])
 
 # check if it is past the release date
 is_past_release <- c(notes_1_release_date < live_date,
