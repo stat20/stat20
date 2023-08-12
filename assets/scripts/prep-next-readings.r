@@ -68,30 +68,83 @@ next_notes <- purrr::map(notes_list,
   head(n = 2)
 
 
+#==============================#
+# decide which notes to render #
+#==============================#
+
+# read in render day/times
+n1_release <- course_settings$`auto-publish`$`notes-1-release` |>
+  stringr::str_split_fixed(",", n = 2)
+n1_day <- n1_release[1] |>
+  stringr::str_trim()
+n1_time <- n1_release[2] |>
+  stringr::str_trim() |>
+  stringr::str_split_fixed(":", n = 2)
+
+n2_release <- course_settings$`auto-publish`$`notes-2-release` |>
+  stringr::str_split_fixed(",", n = 2)
+n2_day <- n2_release[1] |>
+  stringr::str_trim()
+n2_time <- n2_release[2] |>
+  stringr::str_trim() |>
+  stringr::str_split_fixed(":", n = 2)
+
+# determine which notes are within the release window
+next_notes_date <- purrr::map(next_notes, "date") |>
+  unlist() |>
+  mdy()
+
+notes_1_date <- min(next_notes_date)
+notes_1_release_date <- notes_1_date
+wday(notes_1_release_date) <- n1_day
+if (notes_1_release_date > notes_1_date) {
+  notes_1_release_date <- notes_1_release_date - weeks(1)
+}
+hour(notes_1_release_date) <- as.integer(n1_time[1])
+second(notes_1_release_date) <- as.integer(n1_time[2])
+
+notes_2_date <- max(next_notes_date)
+notes_2_release_date <- notes_2_date
+wday(notes_2_release_date) <- n2_day
+if (notes_2_release_date > notes_2_date) {
+  notes_2_release_date <- notes_2_release_date - weeks(1)
+}
+hour(notes_2_release_date) <- as.integer(n2_time[1])
+second(notes_2_release_date) <- as.integer(n2_time[2])
+
+# check if it is past the release date
+is_past_release <- c(notes_1_release_date < live_date,
+                     notes_2_release_date < live_date)
+
+notes_to_release <- next_notes[is_past_release]
+notes_to_release <- next_notes
+
 #=====================#
 # render notes to pdf #
 #=====================#
 
-render_pdf <- function(x) {
-  quarto::quarto_render(x, 
-                        output_format = "pdf",
-                        debug = TRUE)
+if (length(notes_to_release) > 0) {
+  notes_to_release_href <- unlist(purrr::map(notes_to_release, "href"))
+  
+  render_pdf <- function(x) {
+    quarto::quarto_render(x, 
+                          output_format = "pdf",
+                          debug = TRUE)
+  }
+  
+  purrr::walk(notes_to_release_href, render_pdf)
+  
+  # quarto_render moves them to _site, where they'll
+  # get deleted during project render. copy them
+  # to on-deck dir, which is in the project site resources
+  
+  pdfs <- list.files("_site", "notes\\.pdf$", recursive = TRUE)
+  from <- fs::path(paste0("_site/", pdfs))
+  to <- fs::path(paste0("on-deck/", pdfs)) |>
+    stringr::str_remove("\\/notes.pdf")
+  fs::dir_create(to)
+  fs::file_move(from, to)
 }
-
-next_notes_href <- unlist(purrr::map(next_notes, "href"))
-purrr::walk(next_notes_href, render_pdf)
-
-# quarto_render moves them to _site, where they'll
-# get deleted during project render. copy them
-# to on-deck dir, which is in the project site resources
-
-pdfs <- list.files("_site", "notes\\.pdf$", recursive = TRUE)
-from <- fs::path(paste0("_site/", pdfs))
-to <- fs::path(paste0("on-deck/", pdfs)) |>
-  stringr::str_remove("\\/notes.pdf")
-fs::dir_create(to)
-fs::file_move(from, to)
-
 
 #================#
 # write pdfs.yml #
@@ -118,7 +171,7 @@ update_href <- function(x) {
   purrr::list_modify(x, href = repath_href(x$href))
 }
 
-reading_list <- next_notes |>
+reading_list <- notes_to_release |>
   purrr::map(update_title) |>
   purrr::map(update_href)
 
