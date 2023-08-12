@@ -40,3 +40,5 @@ jobs:
             Rscript ./assets/scripts/write-toc.r
 
             quarto publish netlify --id 4f93185f-50a9-491c-b86f-3f8e51eb3ae9
+            echo "past quarto line"
+            
