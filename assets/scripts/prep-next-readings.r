@@ -117,7 +117,6 @@ is_past_release <- c(notes_1_release_date < live_date,
                      notes_2_release_date < live_date)
 
 notes_to_release <- next_notes[is_past_release]
-notes_to_release <- next_notes
 
 #=====================#
 # render notes to pdf #
