@@ -2,8 +2,19 @@
 title: Pre-semester Checklist
 ---
 
-1. Copy the previous semester's Google Drive folder and rename it to the current semester.
 
+### Communication and web infrastructure
+
+Google Drive is used primarily to author and collect data via Forms, record meeting notes using Docs, and store and share logistical information using the Stat 20 Logistics Sheet. Slack is used as the staff communication platform. Ed is used as the student communication platform. Gradescope is used to distribute, collect, and grade assignments. bCourses is used only for it's administrative role: it pulls the enrollment information from the registrar and syncs it with Ed and Gradescope. Otherwise, it is not used.
+
+1. Copy the previous semester's Google Drive folder and rename it to the current semester.
+2. Create staff Slack.
+3. Create Stat 20 bCourses site (one site for all sections).
+4. Create Gradescope site from bCourses site.
+   1. Create new course on Gradescope.
+   2. In course settings, link to canvas course and select the bCourses site.
+   3. Under roster, click Sync Canvas Roster to pull in instructors and students.
+5. Create a class forum. To use Ed, see [this FAQ](https://berkeley.service-now.com/kb_view.do?sysparm_article=KB0013904) for how to set it up from bCourses.
 
 
 
