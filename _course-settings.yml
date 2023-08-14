@@ -3,11 +3,11 @@ schedule:
   - unit: "Questions and Data"
     materials:
       - href: 1-questions-and-data/01-understanding-the-world/notes.qmd
-        date: 01/18/23
+        date: 08/24/23
       - href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
-        date: 01/20/23
+        date: 08/29/23
       - href: 1-questions-and-data/03-a-tool-for-computing-with-data/notes.qmd
-        date: 01/25/23
+        date: 08/31/23
   - unit: "Summarizing Data"
     materials:
       - href: 2-summarizing-data/labs/01-arbuthnot/lab.qmd
