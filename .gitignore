@@ -22,9 +22,10 @@ _freeze/
 /.quarto/
 _site
 
-# Files derived from _schedule.yml
+# Files derived from _course-settings.yml
 **/images/tmp
 _quarto-toc.yml
+assets/items.yml
 
 # PDFs not generated from qmds
 !3-generalization/labs/05-peoples-park/references/background-methods.pdf

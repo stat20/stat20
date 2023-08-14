@@ -89,9 +89,10 @@ schedule:
         date: 04/28/23
         
 auto-publish:
-# how many seconds to add to 00:00 of each file's release `date`
   timezone: "America/Los_Angeles"
   live-as-of: "02/10/23"
+  notes-1-release: "Friday, 17:00" # for Tu/Weds notes
+  notes-2-release: "Tuesday, 17:00" # for Thu/Fri notes
 
 instructors:
   - name: Andrew Bray
