@@ -2,10 +2,31 @@
 title: Configuring this Website
 ---
 
-## Live Website
+## Design
 
-This website is designed to start each semester with minimal information, then grow throughout the semester as new topics are introduced and new assignments released.
+One repo to rule them all.
+
+### Principles
+
+1. Organization: files should be organized in a way that prioritizes thinking of it as a curriculum (instead of a website or a series of assignments). (subpoint: modularity)
+2. Reproducibility:
+3. Documentation:
+4. Automation: automate as many non-human tasks as possible.
+
+## Contributing
+
+### Software
+
+Working with your own software or with the Stat 20 image.
+
+### Workflow
+
+1. Run `quarto preview --profile staff`
+
+### Adding a page
+
+1. Create a new qmd file
+2. Add your content like normal
 
 
-
-
+## 
