@@ -2,6 +2,7 @@
 title: "Lab 7: Sports"
 image: images/box_score.jpeg
 code-fold: false
+sidebar: false
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}

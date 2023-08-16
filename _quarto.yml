@@ -33,16 +33,14 @@ website:
         href: schedule.qmd
       - text: Notes
         href: notes.qmd
-      - text: Labs
-        href: labs.qmd
-      - text: Problem Sets
-        href: problem-sets.qmd
+      - text: Assignments
+        href: assignments.qmd
     right:
       - text: "{{< fa comments >}}"
-        href: https://edstem.org/us/courses/31657
+        href: https://edstem.org/us/courses/42631
         aria-label: Ed Discussion Forum
       - text: "{{< fa chart-column >}}"
-        href: https://www.gradescope.com/courses/416233
+        href: https://www.gradescope.com/courses/571644
         aria-label: Gradescope
       - text: "{{< fa brands r-project >}}"
         href: https://stat20.datahub.berkeley.edu/
@@ -51,16 +49,6 @@ website:
     background: white
     foreground: "gray-800"
     border: false
-    center: 
-      - text: "{{< fa comments >}}"
-        href: https://edstem.org/us/courses/31657
-        aria-label: Ed Discussion Forum
-      - text: "{{< fa chart-column >}}"
-        href: https://www.gradescope.com/courses/416233
-        aria-label: Gradescope
-      - text: "{{< fa brands r-project >}}"
-        href: https://stat20.datahub.berkeley.edu/
-        aria-label: RStudio
     right:
       - text: License
         href: license.qmd

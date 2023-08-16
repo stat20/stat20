@@ -1,6 +1,7 @@
 ---
 title: "Lab 8: Diagnosing Cancer"
 image: images/benign_vs_malignant.png
+sidebar: false
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}

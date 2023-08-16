@@ -2,6 +2,7 @@
 title: "Lab 3: Flights"
 image: images/airline.png
 code-fold: false
+sidebar: false
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}

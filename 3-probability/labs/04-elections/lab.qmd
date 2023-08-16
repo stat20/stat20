@@ -2,6 +2,7 @@
 title: "Lab 4: Elections"
 image: images/iran_green2.jpg
 code-fold: false
+sidebar: false
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}

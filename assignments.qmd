@@ -1,0 +1,48 @@
+---
+title: Assignments
+listing:
+  - id: lab-listing
+    contents: 
+      - "*/labs/*/lab.qmd"
+    sort: "date desc"
+    type: grid
+    fields: 
+      - title
+      - subtitle
+      - image
+    categories: false
+  - id: ps-listing
+    contents: 
+      - "*/problem-sets/ps*.qmd"
+    sort: "date desc"
+    type: table
+    fields: 
+      - title
+    categories: false
+    sort-ui: false
+    filter-ui: false
+sidebar: false
+---
+
+:::{.content-hidden unless-profile="staff-guide"}
+
+:::{.callout-caution}
+## Under Construction
+
+Any labs that have not yet been released should still be considered as draft and might change before being released. Any labs already released are identical to how they look on the main course website.
+:::
+
+:::
+
+## Labs
+
+Lab assignments are an opportunity to put the concepts from the notes into practice to answer questions about a real data set. Your lab report should be a pdf file generated from a fully reproducible qmd file. For a helpful R reference, see [base R](https://raw.githubusercontent.com/rstudio/cheatsheets/main/base-r.pdf), [data visualization (ggplot2)](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf), and [data wrangling (dplyr)](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf). 
+
+:::{#lab-listing}
+:::
+
+
+## Problem Sets
+
+:::{#ps-listing}
+:::

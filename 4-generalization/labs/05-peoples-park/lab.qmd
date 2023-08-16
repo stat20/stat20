@@ -2,6 +2,7 @@
 title: "Lab 5: People's Park"
 image: images/ppk.png
 code-fold: false
+sidebar: false
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}

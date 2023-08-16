@@ -25,6 +25,20 @@ Google Drive is used primarily to author and collect data via Forms, record meet
    2. Move notes and assignments in and out of an archive as needed.
    3. Update instructor info.
    4. Check that assignment release dates are as desired.
+2. Update external links. Go into `_quarto.yml` and update the `href` fields with the new urls.
+   
+   ```{.yaml}
+    right:
+      - text: "{{< fa comments >}}"
+        href: https://edstem.org/us/courses/31657
+        aria-label: Ed Discussion Forum
+      - text: "{{< fa chart-column >}}"
+        href: https://www.gradescope.com/courses/416233
+        aria-label: Gradescope
+      - text: "{{< fa brands r-project >}}"
+        href: https://stat20.datahub.berkeley.edu/
+        aria-label: RStudio
+    ```
 
 ### Computing Platform
 
