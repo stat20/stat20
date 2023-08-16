@@ -63,13 +63,15 @@ return_title_if_match <- function(x, d) {
     }
     if(exists("href", where = x)) { # format title
       if(stringr::str_extract(x$href, "[^/]+$") == "notes.qmd") {
-        title <- glue::glue("<a href='{x$href}'><span class='btn bg-primary'>{title}</span></a>")
+        title <- glue::glue("<a href='{x$href}'><span class='btn bg-info'>{title}</span></a>")
       } else if(stringr::str_extract(x$href, "[^/]+$") == "lab.qmd") {
-        title <- glue::glue("<a href='{x$href}'><span class='btn bg-secondary'>{title}</span></a>")
+        title <- glue::glue("<a href='{x$href}'><span class='btn bg-warning'>{title}</span></a>")
       } else {
-        title <- glue::glue("<a href='{x$href}'><span class='btn'>{title}</span></a>")
-        }
-      } else {
+        title <- glue::glue("<span class='btn bg-secondary'>{title}</span>")
+      }
+    } else if (exists("calendar-color", where = x)) {
+      title <- glue::glue("<span class='btn' style='background-color: {x$`calendar-color`};'>{title}</span>")
+    } else {
       title <- glue::glue("<span class='btn'>{title}</span>")
     }
     title
@@ -124,7 +126,7 @@ make_cal <- function(cal_df, from_week, to_week, mo_label) {
     dplyr::slice(from_week:to_week)
   is_date <- rep(c(TRUE, FALSE), nrow(cal_df2) / 2)
   gt(cal_df2) |>
-    tab_header(title = md(paste0("### ", mo_label))) |>
+    tab_header(title = md(paste0("## ", mo_label))) |>
     cols_align(align = "center") |>
     cols_width(everything() ~ pct(20)) |>
     tab_style( # style col names
