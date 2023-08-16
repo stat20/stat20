@@ -90,9 +90,9 @@ schedule:
         
 auto-publish:
   timezone: "America/Los_Angeles"
-  live-as-of: "09/1/23"
+  live-as-of: "09/2/23"
   notes-1-release: "Friday, 17:00" # for Tu/Weds notes
-  notes-2-release: "Tuesday, 17:00" # for Thu/Fri notes
+  notes-2-release: "Friday, 17:00" # for Thu/Fri notes
 
 instructors:
   - name: Andrew Bray
