@@ -38,7 +38,6 @@ A home base for course staff with:
 
 - Draft versions of notes and assignments
 - A guide with helpful documentation for course staff
-- Extraneous entries to test continuous integration
 
 ::: {#readings-listing}
 :::
