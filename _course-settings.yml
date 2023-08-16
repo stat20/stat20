@@ -98,8 +98,11 @@ instructors:
   - name: Andrew Bray
     email: "andrewbray@berkeley.edu"
     quartopub-name: andrew
+  - name: Iain Carmichael
+    email: "iain@berkeley.edu"
+    quartopub-name: 
   - name: Silas Gifford
-    email: "marsonstars@berkeley.edu"
+    email: "silascs@berkeley.edu"
     quartopub-name: silas
   - name: Jeremy Sanchez
     email: "jeremysanchez@berkeley.edu"
