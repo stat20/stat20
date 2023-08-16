@@ -1,6 +1,7 @@
 ---
 title: "Lab 2: Class Survey"
 image: images/dog-pants.png
+sidebar: false
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}
