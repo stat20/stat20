@@ -1,10 +1,11 @@
 ---
-title: Readers
+title: Grading
 ---
+
 
 ## Reader Meeting
 
-Readers meet with the head reader once each week for 1 hour. Those meeting generally involve.
+Readers meet with the head reader once each week for 1 hour. Those meeting generally involve:
 
 1. Check-ins on the previous week's grading
 2. Group sprints to finish up almost-done assignments
