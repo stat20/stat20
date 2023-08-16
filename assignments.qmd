@@ -19,6 +19,8 @@ listing:
     fields: 
       - title
     categories: false
+    sort-ui: false
+    filter-ui: false
 sidebar: false
 ---
 
