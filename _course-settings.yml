@@ -12,16 +12,20 @@ schedule:
     materials:
       - href: 2-summarizing-data/labs/01-arbuthnot/lab.qmd
         date: 09/5/23
+      - title: "No Class"
+        date: 09/4/23
+        calendar-color: "#20c997"
       - href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
         date: 09/5/23
       - href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
         date: 09/7/23
+      - title: "Quiz 1"
+        date: 09/11/23
+        calendar-color: "#c5b3e6"
       - href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
         date: 09/12/23
       - href: 2-summarizing-data/labs/02-class-survey/lab.qmd
         date: 09/12/23
-      - title: "Quiz!"
-        date: 09/13/23
       - href: 2-summarizing-data/04-conditioning/notes.qmd
         date: 09/14/23
       - href: 2-summarizing-data/labs/03-flights/lab.qmd
@@ -30,6 +34,9 @@ schedule:
         date: 09/19/23
       - href: 2-summarizing-data/06-summarizing-associations/notes.qmd
         date: 09/21/23
+      - title: "Quiz 2"
+        date: 09/25/23
+        calendar-color: "#c5b3e6"
       - href: 2-summarizing-data/07-multiple-linear-regression/notes.qmd
         date: 09/26/23
   - unit: "Probability"
@@ -40,6 +47,9 @@ schedule:
         date: 10/3/23
       - href: 3-probability/03-random-variables/notes.qmd
         date: 10/5/23
+      - title: "Quiz 3"
+        date: 10/9/23
+        calendar-color: "#c5b3e6"
       - title: "Expectation and Variance"
         href: 3-probability/04-ev-se/notes.qmd
         date: 10/10/23
@@ -55,6 +65,9 @@ schedule:
         date: 10/17/23
       - href: 4-generalization/03-bootstrapping/notes.qmd
         date: 10/19/23
+      - title: "Quiz 4"
+        date: 10/23/23
+        calendar-color: "#c5b3e6"
       - href: 4-generalization/04-hypothesis-tests/notes.qmd
         date: 10/24/23
       - href: 4-generalization/05-hypothesis-tests-2/notes.qmd
@@ -67,6 +80,9 @@ schedule:
         date: 11/02/23
       - href: 5-causation/labs/06-taste-test/lab.qmd
         date: 11/02/23
+      - title: "Quiz 5"
+        date: 11/6/23
+        calendar-color: "#c5b3e6"
       - href: 5-causation/02-experiments/notes.qmd
         date: 11/07/23
   - unit: "Prediction"
@@ -79,14 +95,33 @@ schedule:
         date: 11/14/23
       - href: 6-prediction/03-overfitting/notes.qmd
         date: 11/16/23
+      - title: "Quiz 6"
+        date: 11/20/23
+        calendar-color: "#c5b3e6"
       - href: 6-prediction/04-case-study-home-prices/notes.qmd
         date: 11/28/23
       - href: 6-prediction/05-logistic-regression/notes.qmd
         date: 11/30/23
       - href: 6-prediction/labs/08-cancer/lab.qmd
         date: 11/30/23
-#      - href: 6-prediction/06-to-explain-or-to-predict/notes.qmd
-#        date: 04/28/23
+      - title: "RRR Week"
+        date: 12/4/23
+        calendar-color: "#20c997"
+      - title: "RRR Week"
+        date: 12/5/23
+        calendar-color: "#20c997"
+      - title: "RRR Week"
+        date: 12/6/23
+        calendar-color: "#20c997"
+      - title: "RRR Week"
+        date: 12/7/23
+        calendar-color: "#20c997"
+      - title: "RRR Week"
+        date: 12/8/23
+        calendar-color: "#20c997"
+      - title: "Final Exam"
+        date: 12/14/23
+        calendar-color: "#c5b3e6"
         
 auto-publish:
   timezone: "America/Los_Angeles"
