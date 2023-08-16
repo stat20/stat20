@@ -29,4 +29,4 @@ Working with your own software or with the Stat 20 image.
 2. Add your content like normal
 
 
-## 
+### Course Settings {#sec-course-settings}

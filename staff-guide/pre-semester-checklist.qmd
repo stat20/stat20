@@ -20,6 +20,11 @@ Google Drive is used primarily to author and collect data via Forms, record meet
 
 ### Course Website
 
+1. Update `_course-settings.yml` (see @sec-course-settings for details).
+   1. Update assignment dates for new semester.
+   2. Move notes and assignments in and out of an archive as needed.
+   3. Update instructor info.
+   4. Check that assignment release dates are as desired.
 
 ### Computing Platform
 
