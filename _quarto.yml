@@ -19,6 +19,7 @@ website:
     image: assets/stat20-hex.png
   twitter-card: true
   page-navigation: true
+  reader-mode: true
   navbar:
     title: " "
     logo: assets/stat20-hex-small.png
