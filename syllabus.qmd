@@ -2,10 +2,11 @@
 title: "Syllabus"
 subtitle: "Stat 20: Introduction to Probability and Statistics"
 toc: true
-doi: "Spring 2023"
+doi: "Fall 2023"
 doi-title: Term
 author:
     - Andrew Bray
+    - Iain Carmichael
     - Silas Gifford
     - Jeremy Sanchez
     - Shobhana Murali Stoyanov
@@ -129,11 +130,12 @@ The final exam will be held in person during finals week. The Stat 20 Final is s
 
 Your final grade in the course will be computed based on:
 
-- Labs 50%
+- Labs 40%
+- Plenary Lectures: 3%
 - Reading Questions: 5%
 - Quizzes 15%
 - Problem sets 10%
-- Final 20%
+- Final 27%
 
 The goal of your course staff is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determine letter grades (> 90% is some kind of A, etc.). In order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone one emergency drop for quizzes and two emergency drops for reading questions. This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. For reading questions, we will drop your two lowest.
 
