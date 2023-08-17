@@ -16,7 +16,7 @@ The content below are experimental tests for future functionality.
 
 #### Distributing assignments via nbgitpuller
 
-Below is a test of a new method of distributing assignments. Click the R logo to synchronize your RStudio with the most recent assignments (qmd files).
+Below is a test of a new method of distributing assignments. Click the R logo to synchronize your RStudio with the most recent assignments (qmds).
 
 [{{< fa brands r-project >}}](https://stat20.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fstat20%2Fstat20-assignments&urlpath=rstudio%2F&branch=master)
 
