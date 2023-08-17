@@ -3,11 +3,9 @@
 #   schedule:
 #     - cron: '10 * * * *'
 #     - cron: '35 * * * *'
-# on:
-#   pull_request:
-#     branches: main
 on:
-  pull_request_target
+  pull_request:
+    branches: main
   
 name: "Publish Live Website to stat20.org"
 jobs:
