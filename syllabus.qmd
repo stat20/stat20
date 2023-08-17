@@ -2,10 +2,11 @@
 title: "Syllabus"
 subtitle: "Stat 20: Introduction to Probability and Statistics"
 toc: true
-doi: "Spring 2023"
+doi: "Fall 2023"
 doi-title: Term
 author:
     - Andrew Bray
+    - Iain Carmichael
     - Silas Gifford
     - Jeremy Sanchez
     - Shobhana Murali Stoyanov
