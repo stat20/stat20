@@ -15,13 +15,21 @@ One repo to rule them all.
 
 ## Contributing
 
-### Software
+### Configuring your machine
 
-Working with your own software or with the Stat 20 image.
+1. Create a fork of <https://github.com/stat20/stat20> into your personal GitHub account.
+2. On your machine, a new RStudio project from version control, linked to your fork of the Stat 20 repo.
+3. Be sure you've [configured git](https://happygitwithr.com/hello-git) on your machine (allowing you to make commits) and [stored a Personal Access Token](https://happygitwithr.com/https-pat) (PAT) (allowing your machine to push commits to your repo on GitHub).
 
 ### Workflow
 
-1. Run `quarto preview --profile staff`
+1. Go your the GitHub page to be sure your fork is synced with `stat20/stat20`.
+2. In RStudio on `main`, pull any new changes.
+3. Create a new branch named with what you're adding (e.g. `update-lab-6`).
+4. Edit the files you wish to work on. As you go, the easiest way to see how your changes look is to run `quarto preview --profile staff-site` at the terminal. That will do a minimal render of the website to show you the document that you're working on and will re-render that document every time you save. You can also run `quarto preview` if you want to see the student-facing site (with no staff guide).
+5. Commit your changes to your new branch and push them to your fork on GitHub.
+6. Go to your fork on GitHub and make a pull request from your new branch into `stat20/stat20`, `main` branch. Once the PR is made, it will kick-off a test rendering of both the student site and the staff site (the staff site will take > 10 min to fully render). Once they're done, you can go to <https://stat20-pr.netlify.app/> and <https://stat20staff-pr.netlify.app/> to see how they look. Note: this action will kickoff anew for each commit that you add to the PR, so it can be good to make the PR when you have just one commit on the branch, then check back as you push more commits to see how it looks.
+7. Once the PR is merged into `main`, it will kick-off an action that will render and publish the staff site to <https://stat20staff.netlify.app/>. <https://stat20.org/> doesn't get rendered and published when `main` is changed, but instead of a pre-programmed schedule.
 
 ### Adding a page
 
