@@ -18,7 +18,7 @@ library(infer)
 library(patchwork)
 ```
 
-[I]{.dropcap}n this new unit of generalization, we are changing gear. After exploring datasets by creating graphical and numerical summaries, now we want to generalize from the data to the world. To do this, we need an understanding of the language and notation of probability.
+[I]{.dropcap}n this new unit of generalization, we are changing gear. After exploring datasets by creating graphical and numerical summaries, now we want to generalize from the data to the world. Chance, or probability, plays a fundamental role in how we draw conclusions from our data, and use the data to make decisions and interpret our results. Before we study the ideas of probability, we will need to learn the language we will use.
 
 ![](images/andrew-gen-focus.jpeg){fig-align=center width="400"}
 
