@@ -23,12 +23,12 @@ jobs:
             # execute from the textbook
             cd /home/rstudio/stat20/
 
-            # _freeze probably won't exist, but lets document that it shouldn't
+            # _freeze should not exist
             rm -rf ./_freeze
 
-            # this doesn't always succeed
-            r ./assets/scripts/propagate-dates.r || true
-
-            r ./assets/scripts/write-toc.r
-
+            # run pre-render scripts
+            Rscript ./assets/scripts/propagate-dates.r
+            Rscript ./assets/scripts/write-toc.r
+            
+            # render site using staff profile and upload to stat20staff.netlify.app
             quarto publish netlify --id 33fedc67-c501-4720-bd24-6e00c15aa700
