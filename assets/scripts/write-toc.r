@@ -28,6 +28,13 @@ notes_menu <- course_settings$schedule |>
   # add landing page
   append("notes.qmd", 0)
 
+# add glossary
+glossary <- list(list(section = "Glossary",
+                 contents = list(list(href = "glossary-defs.qmd"),
+                                 list(href = "glossary-fns.qmd"))))
+notes_menu <- notes_menu |>
+  append(glossary)
+
 # add sidebar options
 toc_yaml <- list(website = list(sidebar = list(list(title = "Notes",
                                                     style = "floating",

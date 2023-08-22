@@ -1,0 +1,15 @@
+---
+title: "Functions"
+filters:
+  - glossary
+glossary:
+  id: functions
+  class: fn
+  contents:
+    - "1-questions-and-data/*"
+---
+
+### Questions and Data
+
+:::{#functions}
+:::
