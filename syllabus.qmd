@@ -34,33 +34,39 @@ The reason that this course is structured in this manner is that applied data sc
 
 #### Before class
 
-**It is your responsibility to become familiar with the topics that appear in the course notes and to work through the reading questions by 11:59 pm on the night before Wednesday's and Friday's class sessions**. You're encouraged to experiment to find the method that works best for you: downloading the notes as a pdf and making notes on them, asking and answering questions over the class forum, reading through the website and discussing with friends, etc.
+**It is your responsibility to become familiar with the topics that appear in the course notes and to work through the reading questions on Gradescope by 11:59 pm Monday (for Tues/Weds class) and 11:19 Wednesday (for Thurs/Fri class)**. You're encouraged to experiment to find the method that works best for you: downloading the notes as a pdf and making notes on them, asking and answering questions over the class forum, etc.
 
-#### During class on Wednesday and Friday
+#### During class on Tue/Wed and Thu/Fri
 
-Class time (2 hrs) will be spent on a range of activities, but the most common will be concept questions (using Poll Everywhere) and working through components of your Problem Sets and Labs. Therefore, the most efficient way to complete your assignments is to be an active participant in class. Attendance is expected on Wednesday and Friday.
+Class time (2 hrs) will be spent on a range of activities, but the most common will be concept questions (using Poll Everywhere) and working through components of your Problem Sets and Labs. Therefore, the most efficient way to complete your assignments is to be an active participant in class. Attendance is expected on these class days.
 
 #### During class on Monday
 
-Monday is a shorter (1 hr) and less-structured class dedicated to finishing up work on your assignments.
+Monday is shorter (1 hr) class that alternates between:
 
-<!-- #### Plenary lectures -->
+  - Workshops: less-structured class dedicated to finishing up work on your assignments
+  - Quizzes: see information on quizzes below.
 
-<!-- While in general this course does not have full lectures, there are a few select exceptions. Several times during the semester, the course will be hosting a special guest to give a lecture to all 8 sections of Stat 20. These speakers will all be preeminent scientists and data scientists working in academia and industry and will speak on how the ideas and tools and the we discuss in class look in the real world. -->
+#### Plenary lectures
 
-<!-- The schedule of plenary lectures will be posted to the course schedule as soon as it is finalized. Lectures will generally be Monday evening. If you cannot attend in person, you can alternatively watch a recording of the lecture and complete a related assignment. -->
+While in general this course does not have full lectures, there are a few select exceptions. Several times during the semester, the course will be hosting a special guest to give a lecture to all sections of Stat 20. These speakers will all be preeminent scientists and data scientists working in academia and industry and will speak on how the ideas and tools and the we discuss in class look in the real world.
+
+The schedule of plenary lectures will be posted to the course schedule as soon as it is finalized. Lectures will held in the evening. There is an assignment associated with plenary lectures. If you cannot make the Stat 20 plenary lectures, you are welcome to go to attend other official statistics / data science seminars on campus.
+
+#### Group tutoring
+
+Tutors will offer group tutoring sessions several times each week. This is an opportunity to finish up any assignments that you've started in class or review any topics that are muddy. Each group tutoring session will be staffed by 2-4 tutors. You're welcome to attend any session that works well for your schedule
+
+Group tutoring is a great place to go to meet other students and collaborate on assignments with tutors on hand to help you get unstuck.
+
 
 #### Office Hours
 
-Tutors and the instructor will offer office hours each week across a range of times. We ask that you visit the office hours of the instructor of your lab section but you're welcome to visit the office hours of any tutor, not only the one who works in your section. We may adjust the office hour schedule throughout the semester as we understand student needs and preferences.
-
-Please come to office hours! Coming to office hours does not send a signal that you are behind or need extra help. On the contrary, coming to office hours early and often tends to co-occur with success in the course.
-
-Feel free to come to office hours even if you don’t have a specific question about an assignment. The course staff is happy to chat about the course material, statistics in general, careers in statistics, or whatever other statistics or data science topics are on your mind!
+Office hours are an opportunity to chat one-on-one with your instructor. Please come to office hours! Coming to office hours does not send a signal that you are behind or need extra help. On the contrary, coming to office hours early and often tends to co-occur with success in the course. Instructors are happy to chat about the course material, statistics in general, careers in statistics, or whatever other statistics or data science topics are on your mind!
 
 #### COVID policy
 
-Maintaining your health and that of the Berkeley community is of primary importance to course staff, so if you are feeling ill or have been exposed to illness, please do not come to class. All of the materials used in class will be posted to the course website. You're encouraged to reach out to fellow students to discuss the class materials or stop by office hours to chat with a tutor or the instructor.
+Maintaining your health and that of the Berkeley community is of primary importance to course staff, so if you are feeling ill or have been exposed to illness, please do not come to class. All of the materials used in class will be posted to the course website. You're encouraged to reach out to fellow students to discuss the class materials or stop by group tutoring or office hours to chat with a tutor or the instructor.
 
 ### Materials
 
@@ -108,11 +114,17 @@ We will be assessing most of the questions on the lab for correctness but for ot
 
 During class, we will give you a second engagement with the day's material in the form of a worksheet. These worksheets will run like traditional homework problems and drill the concepts in the reading notes rather than asking you to apply the concepts with a data set, like the lab does.
 
-The problem sets will be procured completely from these in-class worksheets and released in one or two week intervals at the end of the week.
+The problem sets will be procured completely from these in-class worksheets and released in one or two week intervals.
 
 #### Reading Questions
 
-Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per “lecture” and can be a mix of multiple choice, short answer, and coding questions. You can answer them directly on Gradescope. Note that the reading questions will be due 11:59 pm the night before class, that is, on 11:59 pm Tuesdays for the Wednesday lecture, and 11:59 pm Thursdays for the Friday lecture.
+Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per “lecture” and can be a mix of multiple choice, short answer, and coding questions. You can answer them directly on Gradescope. Note that the reading questions will be due 11:59 pm the night before class, that is, on 11:59 pm Monday for the Tue/Wed lecture, and 11:59 pm Wednesday for the Thu/Fri lecture.
+
+#### Plenary Lecture Reviews
+
+An important way to engage with new ideas and people at a University is to attend a guest lecture. A plenary lecture review is a written assignment that details the background of the speaker, the question they address, the tools, data, and methods they use, and their key findings.
+
+You will be writing up few reviews of plenary lectures that you attend over the course of the semester. 
 
 #### Quizzes
 
@@ -131,7 +143,7 @@ The final exam will be held in person during finals week. The Stat 20 Final is s
 Your final grade in the course will be computed based on:
 
 - Labs 35%
-- Plenary Lectures: 3%
+- Plenary Lecture Reviews: 3%
 - Reading Questions: 3%
 - Quizzes 25%
 - Problem sets 7%
