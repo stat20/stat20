@@ -40,6 +40,10 @@ Google Drive is used primarily to author and collect data via Forms, record meet
         aria-label: RStudio
     ```
 
+### Week one of classes
+
+1. Hold (full) staff meeting
+2. Send out greeting via Ed. 
 ### Computing Platform
 
 
