@@ -55,18 +55,18 @@ The schedule of plenary lectures will be posted to the course schedule as soon a
 
 #### Group tutoring
 
-Tutors will offer group tutoring sessions several times each week. This is an opportunity to finish up any assignments that you've started in class or review any topics that are muddy. Each group tutoring session will be staffed by 2-4 tutors. You're welcome to attend any session that works well for your schedule
+Tutors will offer group tutoring sessions several times each week. This is an opportunity to finish up any assignments that you've started in class or review any topics that are muddy. Each group tutoring session will be staffed by 2-4 tutors. You're welcome to attend any session that works well for your schedule.
 
 Group tutoring is a great place to go to meet other students and collaborate on assignments with tutors on hand to help you get unstuck.
 
 
-#### Office Hours / Group Tutoring Sessions
+#### Instructor Office Hours 
 
-The instructors and tutors will offer office hours / group tutoring sessions each week across a range of times. We ask that you visit the office hours of the instructor of your lab section but you're welcome to visit the office hours of any tutor, not only the one who works in your section. We may adjust the office hour schedule throughout the semester as we understand student needs and preferences.
+The instructors will offer office hours each week across a range of times. We ask that you visit the office hours of the instructor of your lab section but you're welcome to visit the office hours of any tutor, not only the one who works in your section. We may adjust the office hour schedule throughout the semester as we understand student needs and preferences.
 
-Take advantage of this opportunity! Doing so does not send a signal that you are behind or need extra help. On the contrary, visiting course staff early and often tends to co-occur with success in the course.
+Take advantage of this opportunity! Coming to office hours does not send a signal that you are behind or need extra help. On the contrary, visiting us early and often tends to co-occur with success in the course.
 
-Feel free to come visit us even if you don’t have a specific question about an assignment. The course staff is happy to chat about the course material, statistics in general, careers in statistics, or whatever other statistics or data science topics are on your mind!
+Feel free to come even if you don’t have a specific question about an assignment. The instructors are happy to chat about the course material, statistics in general, careers in statistics, or whatever other statistics or data science topics are on your mind!
 
 
 #### COVID policy
