@@ -51,7 +51,7 @@ Monday is shorter (1 hr) class that alternates between:
 
 While in general this course does not have full lectures, there are a few select exceptions. Several times during the semester, the course will be hosting a special guest to give a lecture to all sections of Stat 20. These speakers will all be preeminent scientists and data scientists working in academia and industry and will speak on how the ideas and tools and the we discuss in class look in the real world.
 
-The schedule of plenary lectures will be posted to the course schedule as soon as it is finalized. Lectures will held in the evening. There is an assignment associated with plenary lectures. If you cannot make the Stat 20 plenary lectures, you are welcome to go to attend other official statistics / data science seminars on campus.
+The schedule of plenary lectures will be posted to the course schedule as soon as it is finalized. Lectures will held in the evening. There is an assignment associated with plenary lectures. If you cannot make the Stat 20 plenary lectures, you are welcome to go to attend other official statistics / data science seminars on campus, subject to your instructor’s approval. Make sure to get their approval ahead of time.
 
 #### Group tutoring
 
@@ -62,7 +62,7 @@ Group tutoring is a great place to go to meet other students and collaborate on 
 
 #### Instructor Office Hours 
 
-The instructors will offer office hours each week across a range of times. We ask that you visit the office hours of the instructor of your lab section but you're welcome to visit the office hours of any tutor, not only the one who works in your section. We may adjust the office hour schedule throughout the semester as we understand student needs and preferences.
+The instructors will offer office hours each week across a range of times. We ask that you only visit the office hours of your instructor, but you are welcome to visit the tutoring sessions of *any* tutors, not just the ones who work in your section. We may adjust the office hour and group tutoring sessions schedule throughout the semester as we understand student needs and preferences. Please check the office hours tab on the syllabus page to see the times of the various office hour/group tutoring sessions.
 
 Office hours are an opportunity to chat one-on-one with your instructor. Please come to office hours! Coming to office hours does not send a signal that you are behind or need extra help. On the contrary, coming to office hours early and often tends to co-occur with success in the course. Instructors are happy to chat about the course material, statistics in general, careers in statistics, and whatever other statistics or data science topics are on your mind!
 
@@ -96,13 +96,13 @@ In a course this large, the instructors have a difficult time responding to indi
 
 #### Course website
 
-All of the assignments will be posted to the course website at [https://stat20.org](https://stat20.org). This also holds the course notes, the syllabus, and links to Gradescope, Ed, and RStudio.
+All of the assignments will be posted to the course website at [https://stat20.org](https://stat20.org). This also holds the course notes, the syllabus, and links to Gradescope, Ed, and RStudio. Note that we will *not* be using bcourses except perhaps to occasionally post videos
 
 ### Assignments, Exams, and Grading
 
 #### Turning-in assignments
 
-You will be turning in your assignments on a platform called  [Gradescope](https://www.gradescope.com/). This is also the platform where your assignments will be graded, so you can return there to get feedback on your work. You are welcome to file a regrade request if you notice that we made an error in applying the rubric to your work, but be sure to do so within a week of the grades being posted.
+You will be turning in your assignments on a platform called  [Gradescope](https://www.gradescope.com/). This is also the platform where your assignments will be graded, so you can return there to get feedback on your work. You are welcome to file a regrade request if you notice that we made an error in applying the rubric to your work, but be sure to do so **within a week** of the grades being posted. We will not accept regrade requests past that point.
 
 #### Labs 
 
@@ -120,7 +120,7 @@ The problem sets will be procured completely from these in-class worksheets and 
 
 #### Reading Questions
 
-Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per lecture note. These questions be a mix of multiple choice, short answer, and coding questions. You can answer them directly on Gradescope. Note that the reading questions will be due 11:59 pm on Monday (for the Tuesday/Wednesday lectures) and Friday (for the Thursday/Friday lectures).
+Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per lecture note. These questions be a mix of multiple choice, short answer, and coding questions. You can answer them directly on Gradescope. Note that the reading questions will be due 11:59 pm on Monday (for the Tuesday/Wednesday lectures) and Wednesday (for the Thursday/Friday lectures).
 
 #### Plenary Lecture Reviews
 
@@ -213,7 +213,7 @@ And again, if you have questions about the boundaries of the collaboration polic
 
 1. What should I do if I'm on the waitlist?
 
-   Attend lecture and section (remember, we are teaching it as *one* two hour class), and submit all assignments on time. Visit your instructor on the first day of class so you can be added to the course Ed and Gradescope.
+   Attend *both* lecture and section (remember, we are teaching it as *one* two hour class), and submit all assignments on time. Visit your instructor on the first day of class so you can be added to the course Ed and Gradescope.
 
 2. Are class sessions recorded?
 
