@@ -122,9 +122,9 @@ Reading questions serve to check your understanding and engagement while going t
 
 #### Plenary Lecture Reviews
 
-An important way to engage with new ideas and people at a University is to attend a guest lecture. A plenary lecture review is a written assignment that details the background of the speaker, the question they address, the tools, data, and methods they use, and their key findings.
+An important way to engage with new ideas and people at a University is to attend guest lectures.  Stat 20 will host 3-5 such lectures over the course of semester and will also provide a list of guest lectures in other departments that focus on topics related to probability, statistics, and data science.
 
-You will be writing up few reviews of plenary lectures that you attend over the course of the semester. 
+A plenary lecture review is a written assignment that details the background of the speaker, the question they address, the tools, data, and methods they use, and their key findings. You will be asked to submit three such lecture reviews over the course of the semester based on the lectures that you have chosen to attend. These lecture reviews will be due at the end of the semester.
 
 #### Quizzes
 
