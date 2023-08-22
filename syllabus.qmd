@@ -64,14 +64,7 @@ Group tutoring is a great place to go to meet other students and collaborate on 
 
 The instructors will offer office hours each week across a range of times. We ask that you visit the office hours of the instructor of your lab section but you're welcome to visit the office hours of any tutor, not only the one who works in your section. We may adjust the office hour schedule throughout the semester as we understand student needs and preferences.
 
-Take advantage of this opportunity! Coming to office hours does not send a signal that you are behind or need extra help. On the contrary, visiting us early and often tends to co-occur with success in the course.
-
-Feel free to come even if you don’t have a specific question about an assignment. The instructors are happy to chat about the course material, statistics in general, careers in statistics, or whatever other statistics or data science topics are on your mind!
-
-<<<<<<< HEAD
-=======
 Office hours are an opportunity to chat one-on-one with your instructor. Please come to office hours! Coming to office hours does not send a signal that you are behind or need extra help. On the contrary, coming to office hours early and often tends to co-occur with success in the course. Instructors are happy to chat about the course material, statistics in general, careers in statistics, and whatever other statistics or data science topics are on your mind!
->>>>>>> 8bfb7ed (adjust wording for clarity and typos)
 
 #### COVID policy
 
@@ -131,13 +124,10 @@ Reading questions serve to check your understanding and engagement while going t
 
 #### Plenary Lecture Reviews
 
-An important way to engage with new ideas and people at a University is to attend guest lectures.  Stat 20 will host 3-5 such lectures over the course of semester and will also provide a list of guest lectures in other departments that focus on topics related to probability, statistics, and data science.
+An important way to engage with new ideas and people at a University is to attend guest lectures. Stat 20 will host 3-5 such lectures over the course of semester and will also provide a list of guest lectures in other departments that focus on topics related to probability, statistics, and data science.
 
-<<<<<<< HEAD
 A plenary lecture review is a written assignment that details the background of the speaker, the question they address, the tools, data, and methods they use, and their key findings. You will be asked to submit three such lecture reviews over the course of the semester based on the lectures that you have chosen to attend. These lecture reviews will be due at the end of the semester.
-=======
-You will be writing up a few reviews of plenary lectures that you attend over the course of the semester. 
->>>>>>> 8bfb7ed (adjust wording for clarity and typos)
+
 
 #### Quizzes
 
@@ -149,7 +139,7 @@ The *individual* component will last ~25 minutes. You are allowed one, A4, one-s
 
 #### Exam
 
-The final exam will be held in person during finals week. Your current final time is dependent on your section and so is available on CalCentral. 
+The final exam will be held in person during finals week. The current time and date is **Thursday, December 14 from 8am to 11am**,  *not* what you see on CalCentral. 
 
 #### Grading
 
@@ -162,16 +152,14 @@ Your final grade in the course will be computed based on:
 - Problem sets 7%
 - Final 27%
 
-<<<<<<< HEAD
+The goal of this course is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determine letter grades (> 90% is some kind of A, etc.). 
+
 In order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone:
 
 -   one emergency drop for quizzes  
 -   two emergency drops for reading questions. 
 
 This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. For reading questions, we will drop your two lowest.
-=======
-The goal of this course is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determine letter grades (> 90% is some kind of A, etc.). In order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone one emergency drop for quizzes and two emergency drops for reading questions. This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. For reading questions, we will drop your two lowest.
->>>>>>> 8bfb7ed (adjust wording for clarity and typos)
 
 
 ### Policies
