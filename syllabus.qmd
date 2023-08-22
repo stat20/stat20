@@ -36,9 +36,15 @@ The reason that this course is structured in this manner is that applied data sc
 
 **It is your responsibility to become familiar with the topics that appear in the course notes and to work through the reading questions on Gradescope by 11:59 pm Monday (for Tues/Weds class) and 11:19 Wednesday (for Thurs/Fri class)**. You're encouraged to experiment to find the method that works best for you: downloading the notes as a pdf and making notes on them, asking and answering questions over the class forum, etc.
 
+<<<<<<< HEAD
+#### During class on Tuesday and Thursday (Wednesday and Friday)
+
+Class time (2 hrs) will be spent on a range of activities, but the most common will be concept questions (using Poll Everywhere) and working through components of your Problem Sets and Labs. Therefore, the most efficient way to complete your assignments is to be an active participant in class. Attendance is expected on Tuesday and Thursday (Wednesday and Friday).
+=======
 #### During class on Tue/Wed and Thu/Fri
 
 Class time (2 hrs) will be spent on a range of activities, but the most common will be concept questions (using Poll Everywhere) and working through components of your Problem Sets and Labs. Therefore, the most efficient way to complete your assignments is to be an active participant in class. Attendance is expected on these class days.
+>>>>>>> bb6ce0a4f64eec3772a33bb4045f933475fce36a
 
 #### During class on Monday
 
@@ -60,9 +66,17 @@ Tutors will offer group tutoring sessions several times each week. This is an op
 Group tutoring is a great place to go to meet other students and collaborate on assignments with tutors on hand to help you get unstuck.
 
 
-#### Office Hours
+#### Office Hours / Group Tutoring Sessions
 
+<<<<<<< HEAD
+The instructors and tutors will offer office hours / group tutoring sessions each week across a range of times. We ask that you visit the office hours of the instructor of your lab section but you're welcome to visit the office hours of any tutor, not only the one who works in your section. We may adjust the office hour schedule throughout the semester as we understand student needs and preferences.
+
+Take advantage of this opportunity! Doing so does not send a signal that you are behind or need extra help. On the contrary, visiting course staff early and often tends to co-occur with success in the course.
+
+Feel free to come visit us even if you don’t have a specific question about an assignment. The course staff is happy to chat about the course material, statistics in general, careers in statistics, or whatever other statistics or data science topics are on your mind!
+=======
 Office hours are an opportunity to chat one-on-one with your instructor. Please come to office hours! Coming to office hours does not send a signal that you are behind or need extra help. On the contrary, coming to office hours early and often tends to co-occur with success in the course. Instructors are happy to chat about the course material, statistics in general, careers in statistics, or whatever other statistics or data science topics are on your mind!
+>>>>>>> bb6ce0a4f64eec3772a33bb4045f933475fce36a
 
 #### COVID policy
 
@@ -136,7 +150,7 @@ The *individual* component will last ~25 minutes. You are allowed one, A4, ~~two
 
 #### Exam
 
-The final exam will be held in person during finals week. The Stat 20 Final is scheduled to be held in Exam Group 14: Thursday 05/11/23 in person from 11:30am-2:30pm.
+The final exam will be held in person during finals week. Your current final time is dependent on your section and so is available on CalCentral. 
 
 #### Grading
 
@@ -149,7 +163,12 @@ Your final grade in the course will be computed based on:
 - Problem sets 7%
 - Final 27%
 
-The goal of your course staff is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determine letter grades (> 90% is some kind of A, etc.). In order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone one emergency drop for quizzes and two emergency drops for reading questions. This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. For reading questions, we will drop your two lowest.
+In order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone:
+
+-   one emergency drop for quizzes  
+-   two emergency drops for reading questions. 
+
+This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. For reading questions, we will drop your two lowest.
 
 
 ### Policies
@@ -160,7 +179,7 @@ Stat 20 is a course that is designed to allow all students to succeed. If you ha
 
 #### Late Work
 
-Unfortunately, with a class of this size, we are unable to keep track of and grade submissions of labs, reading question, and problem sets that come in very late. If you narrowly miss the standard deadline, you will still be able to submit within an hour for a small penalty (5% reduction in score). If you don't submit within an hour you can still submit within a day for a larger penalty (30% reduction).
+Unfortunately, with a class of this size, we are unable to keep track of and grade submissions of labs, reading questions, and problem sets that come in very late. If you narrowly miss the standard deadline, you will still be able to submit within an hour for a small penalty (5% reduction in score). If you don't submit within an hour you can still submit within a day for a larger penalty (30% reduction).
 
 
 ### Collaboration policy
@@ -203,7 +222,7 @@ And again, if you have questions about the boundaries of the collaboration polic
 
 1. What should I do if I'm on the waitlist?
 
-   Attend lecture and section (remember, we are teaching it as *one* two hour class), and submit all assignments on time. After 3 class meetings, we will take a look at the waitlist.
+   Attend lecture and section (remember, we are teaching it as *one* two hour class), and submit all assignments on time. Visit your instructor on the first day of class so you can be added to the course Ed and Gradescope.
 
 2. Are class sessions recorded?
 
