@@ -96,7 +96,7 @@ In a course this large, the instructors have a difficult time responding to indi
 
 #### Course website
 
-All of the assignments will be posted to the course website at [https://stat20.org](https://stat20.org). This also holds the course notes, the syllabus, and links to Gradescope, Ed, and RStudio. Note that we will *not* be using bcourses except perhaps to occasionally post videos
+All of the assignments will be posted to the course website at [https://stat20.org](https://stat20.org). This also holds the course notes, the syllabus, and links to Gradescope, Ed, and RStudio. Note that we will *not* be using bcourses except perhaps to occasionally post videos.
 
 ### Assignments, Exams, and Grading
 
