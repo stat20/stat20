@@ -1,8 +1,18 @@
 ---
 title: "Lecture Notes"
 subtitle: "Course notes for STAT 20: Introduction to Probability and Statistics"
+filters:
+  - glossary
+glossary:
+  id: learning-objs
+  class: lo
+  contents:
+    - "1-questions-and-data/*"
 ---
 
 \
 
-Navigate the notes using the menu in the left sidebar or the search in the upper right corner of the page.
+Navigate the notes using the menu in the left sidebar or the search in the upper right corner of the page. 
+
+:::{#learning-objs .content-hidden unless-profile="staff-site"}
+:::
