@@ -51,7 +51,7 @@ Monday is shorter (1 hr) class that alternates between:
 
 Several times during the semester, the course will be hosting a special guest to give a lecture to all sections of Stat 20. These speakers are preeminent scientists and data scientists from academia or industry who will speak about how the ideas and tools from Stat 20 are used in and impact the real world. These plenary lectures will be held outside of class time in the evening and the schedule will be announced during the semester. 
 
-As a part of the graded assignments for the class **you will be asked to attend three lectures outside the class and hand in a small written assignment about each**. These lecture could be the Stat 20 plenary lectures or they could be from another event; the only restriction is that they have to be related to data science (and approved by your instructor).
+As a part of the graded assignments for the class **you will be asked to attend three lectures outside the class and hand in a small written assignment about each**. These lecture could be the Stat 20 plenary lectures or they could be from another event; the only restriction is that they have to be related to data science.
 
 #### Group tutoring
 
