@@ -295,7 +295,7 @@ countdown::countdown(4, top = 0)
 :::
 
 ::: {.column width="50%" .fragment}
-- Forum to ask questions, answer questions, and coure announcements
+- Forum to ask questions, answer questions, and course announcements
 - Please answer each other's questions!
 
 :::{.poll .fragment}
