@@ -1,7 +1,23 @@
 ---
 title: "Understanding the World with Data"
 format: 
-  stat20-slides-revealjs: default
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
 ---
 
 ## Agenda
@@ -310,10 +326,10 @@ Practice by asking/answering a question on the "Syllabus Discussion" thread on E
 :::: {.columns}
 
 ::: {.column width="50%" .incremental}
-- Read the lecture notes for "Taxonomy of Data"
+- Read the lecture notes for "Taxonomy of Data", posted Friday 5pm.
 - Leave a comment/question on "Taxonomy of Data" thread on Ed.
-- Answer the Reading Questions on Gradescope by 11:59 pm Thursday
-- Problem Set 1 due next Tuesday 10 am
+- Answer the Reading Questions on Gradescope by 11:59 pm Monday
+- Problem Set 1, posted Friday 5pm, due next Tuesday 9 am
   - Stay tuned for Ed post with links to survey
 :::
 
