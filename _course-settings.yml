@@ -125,7 +125,7 @@ schedule:
         
 auto-publish:
   timezone: "America/Los_Angeles"
-  live-as-of: "08/23/23"
+  live-as-of: "Sys.time()"
   notes-1-release: "Friday, 17:00" # for Tu/Weds notes
   notes-2-release: "Friday, 17:00" # for Thu/Fri notes
 
