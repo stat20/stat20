@@ -44,7 +44,7 @@ Lab assignments are an opportunity to put the concepts from the notes into pract
 
 ## Problem Sets
 
-Problem sets are collected every ~2 weeks and are a compilation of the worksheets that we do during class. The goal of the problems sets is simply practice: they help you drill the techniques needed to complete the labs.
+<!-- Problem sets are collected every ~2 weeks and are a compilation of the worksheets that we do during class. The goal of the problems sets is simply practice: they help you drill the techniques needed to complete the labs. -->
 
 :::{#ps-listing}
 :::
