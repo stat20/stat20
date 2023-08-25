@@ -11,16 +11,16 @@ listing:
       - subtitle
       - image
     categories: false
-  # - id: ps-listing
-  #   contents: 
-  #     - "*/problem-sets/ps*.qmd"
-  #   sort: "date desc"
-  #   type: table
-  #   fields: 
-  #     - title
-  #   categories: false
-  #   sort-ui: false
-  #   filter-ui: false
+  - id: ps-listing
+    contents:
+      - "1-questions-and-data/problem-sets/ps*.qmd"
+    sort: "date desc"
+    type: table
+    fields:
+      - title
+    categories: false
+    sort-ui: false
+    filter-ui: false
 sidebar: false
 ---
 
@@ -46,5 +46,5 @@ Lab assignments are an opportunity to put the concepts from the notes into pract
 
 Problem sets are collected every ~2 weeks and are a compilation of the worksheets that we do during class. The goal of the problems sets is simply practice: they help you drill the techniques needed to complete the labs.
 
-<!-- :::{#ps-listing} -->
-<!-- ::: -->
+:::{#ps-listing}
+:::
