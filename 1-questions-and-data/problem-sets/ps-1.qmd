@@ -8,8 +8,8 @@ title: "Problem Set 1: Questions and Data"
 
 Please fill out the following two surveys:
 
-1. [Welcome to Class](https://forms.gle/oS7uKfKRvPwj1DbBA)
-1. [Data Collection](https://forms.gle/aEVYreH3XxUmZovf8)
+1. [Welcome Survey](https://forms.gle/rQJ2bGTA95WAv2St7)
+1. [Data Collection](https://forms.gle/mcC7n91dMAj6w9Kh7)
 
 then go to Gradescope to attest to having completed them.
 
