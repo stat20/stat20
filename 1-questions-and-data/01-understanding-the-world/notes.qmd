@@ -3,6 +3,29 @@ title: "Understanding the World through Data"
 image: images/claims.png
 ---
 
+:::{.lo .content-hidden unless-profile="staff-site"}
+
+#### Concept Acquisition
+
+1. The Data Science lifecycle represents the iterative process by which models questions, claims, data, and understanding inform one other.
+1. The formulation of an empirical question informs the data that bears upon it.
+1. The properties of the data determine the claims that it can support.
+1. Common claims made with data include summaries, predictions, generalizations, and causal claims.
+
+#### Tool Acquisition
+
+1. Practice using the polling platform
+1. Practice using the discussion platform
+
+#### Concept Application
+1. Identify data sets that will help answer a particular empirical question.
+1. Classify a claim as a summary, prediction, generalization, or causal claim.
+1. Formulate a claim that is supported by a particular data set.
+
+----------------------------------------------------
+
+:::
+
 Welcome to Stat 20!
 
 There is no reading in advance of the first day of class. To view the materials used during the class session, see the links below. 
