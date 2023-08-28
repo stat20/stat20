@@ -27,3 +27,14 @@ For each of the following scenarios, identify which type of claim is being made:
 
 <!-- Generalization -->
 
+\
+\
+\
+
+@. Astronomers detect a new planet just beyond our solar system. Sensors aboard the James Webb Space Telescope determine its volume and, using the NASA data described above, determines that the planet is likely rocky.
+
+<!-- Prediction -->
+
+\
+\
+\
