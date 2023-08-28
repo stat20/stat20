@@ -38,3 +38,22 @@ For each of the following scenarios, identify which type of claim is being made:
 \
 \
 \
+
+@. A 2020 study conducted in Sydney, Australia wanted to characterise the working arrangements of medical research scientists and support staff in Australia during the COVID‐19 pandemic, and to evaluate factors (in particular: wearing pyjamas) that influence the self‐assessed productivity and mental health of medical institute staff working from home. A newspaper article opened its article on the study with "Academics who are tempted to remain in pajamas during the working day should think again, says an Australian study that has linked the practice to a deterioration in mental health."
+
+<!---Causal, but justified? See https://www.everydayresearchmethods.com/current-affairs/ maybe can talk about which comes first, the not getting out of pyjamas or the (self-reported) poorer mental health--->
+
+\
+\
+\
+
+
+@. Resilience is the ability to bounce back from adversity and stress, while the A1C test — also known as the hemoglobin A1C or HbA1c test — is a simple blood test that measures your average blood sugar levels over the past 3 months. A study published in July 2018 in Diabetes Care, that involved more than 470 adolescents ages 10 to 19 with type 1 diabetes, found that strengths in managing diabetes, such as confidence in care or support from others, were associated with resilience. This resilience was linked with a lower A1C.
+
+<!---Descriptive/summary, it is still not saying that resilience CAUSES diabetes or lack thereof, but links the two, link https://www.everydayhealth.com/type-2-diabetes/how-resilience-can-help-you-manage-diabetes-and-how-to-build-it/-->
+
+
+\
+\
+\
+
