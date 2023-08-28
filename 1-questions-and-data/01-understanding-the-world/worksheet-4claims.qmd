@@ -3,21 +3,27 @@ title: ""
 format: pdf
 ---
 
-## Making Claims with Data
+# Making Claims with Data
 
-For each of the following scenarios, identify which type of claim is being made.
+For each of the following scenarios, identify which type of claim is being made: a Summary, a Generalization, a Causal Claim, or a Prediction.
 
-I. Summary \
-II. Generalization \
-III. Causal Claim \
-IV. Prediction \
+@. NASA has published a data set containing total volume of each of the 8 planets of our solar system (Mercury is the smallest, Jupiter is the largest) and whether or not they are gaseous or rocky. Based on this data, an astronomer writes that, on average, gaseous planets are larger than rocky planets.
 
-
-1. NASA has published a data set containing total volume of each of the 8 planets of our solar system (Mercury is the smallest, Jupiter is the largest) and whether or not they are gaseous or rocky. Based on this data, an astronomer writes that, on average, gaseous planets are larger than rocky planets.
+<!-- Summary or Generalization depending on whether it's implied that we're talking about just our solar system. -->
 
 \
 \
 \
 
-1. A biology professor created two versions of a midterm, version A (all multiple choice) and version B (a mix of multiple choice and short answer), and passed them out to students randomly. After grading the exams, they consider a data set of the score and exam version (A or B) of all 100 students in the class.
+@. A biology professor created two versions of a midterm, version A (all multiple choice) and version B (a mix of multiple choice and short answer), and passed them out to students randomly. After grading the exams, they consider a data set of the score and exam version (A or B) of all 100 students in the class, on seeing that the average score on version A is higher than on version B, conclude that short answer questions are more challenging than multiple choice questions.
+
+<!-- This one's a bit ambiguous! Generalization probably makes the most sense but there's also a causal angle here: that it was the format of the questions that led to the difference in scores. -->
+
+\
+\
+\
+
+@. The group *Morning Consult* conducted a poll of a representative sample of registered 1,256 Republican voters on August 24, 2023, asking them who they planned to vote for in the primary election. 58% of respondents replied "Trump" and 14% replied "DeSantis". A major news outlet ran a headline, "Trump leads DeSantis by 44 points among registered Republican voters.
+
+<!-- Generalization -->
 
