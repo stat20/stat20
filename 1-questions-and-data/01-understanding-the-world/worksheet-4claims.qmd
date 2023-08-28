@@ -1,0 +1,23 @@
+---
+title: ""
+format: pdf
+---
+
+## Making Claims with Data
+
+For each of the following scenarios, identify which type of claim is being made.
+
+I. Summary \
+II. Generalization \
+III. Causal Claim \
+IV. Prediction \
+
+
+1. NASA has published a data set containing total volume of each of the 8 planets of our solar system (Mercury is the smallest, Jupiter is the largest) and whether or not they are gaseous or rocky. Based on this data, an astronomer writes that, on average, gaseous planets are larger than rocky planets.
+
+\
+\
+\
+
+1. A biology professor created two versions of a midterm, version A (all multiple choice) and version B (a mix of multiple choice and short answer), and passed them out to students randomly. After grading the exams, they consider a data set of the score and exam version (A or B) of all 100 students in the class.
+
