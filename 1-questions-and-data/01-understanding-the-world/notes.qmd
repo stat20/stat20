@@ -53,7 +53,7 @@ Example: Data from a randomized controlled experiment shows that taking a new an
 
 :::{.def}
 **Prediction**
- ~ A guess about the value of an unknown variable, usually based on other known variables. 
+ ~ A guess about the value of an unknown variable, based on other known variables.
 :::
 
 Example: Based on reading the news and the price of Uber's stock today, I predict that Uber's stock price will go up 1.2% tomorrow.
