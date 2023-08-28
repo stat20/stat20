@@ -88,6 +88,10 @@ countdown::countdown(1, top = 0)
 ![](images/shoebill-1-grayscale.png){fig-alt="A shoebill with a duck in its mouth in grayscale." width="800"}
 :::
 
+::: {.column width="45%"}
+![](~/Documents/BerkeleyTeaching/20/2023Fall/shoebill-1-gray8.png){fig-alt="An 8 x 8 grayscale image" width="300"}
+:::
+
 ::::
 
 
