@@ -39,11 +39,10 @@ For each of the following scenarios, identify which type of claim is being made:
 \
 \
 
-@. A 2020 study conducted in Sydney, Australia wanted to characterise the working arrangements of medical research scientists and support staff in Australia during the COVID‐19 pandemic, and to evaluate factors (in particular: wearing pyjamas) that influence the self‐assessed productivity and mental health of medical institute staff working from home. A newspaper article opened its article on the study with "Academics who are tempted to remain in pajamas during the working day should think again, says an Australian study that has linked the practice to a deterioration in mental health."
+@. A 2020 study conducted in Sydney, Australia wanted to characterize the working arrangements of medical research scientists and support staff in Australia during the COVID‐19 pandemic, and to evaluate factors (in particular: wearing pyjamas) that influence the self‐assessed productivity and mental health of medical institute staff working from home. A newspaper article opened its article on the study with "Academics who are tempted to remain in pajamas during the working day should think again, says an Australian study that has linked the practice to a deterioration in mental health."
 
 <!---Causal, but justified? See https://www.everydayresearchmethods.com/current-affairs/ maybe can talk about which comes first, the not getting out of pyjamas or the (self-reported) poorer mental health--->
 
-\
 \
 \
 
@@ -55,5 +54,14 @@ For each of the following scenarios, identify which type of claim is being made:
 
 \
 \
+
+@. Eli Lilly is a pharmaceutical company that is constantly on the hunt for new and effective drugs. They maintain an internal website called the Discovery Dashboard that allows researchers within the company to, at a glance, get a sense of the progress of various clinic trials. Pointing to a time-series line plot, a researcher exclaims, "Wow, I didn't realize how many phase II trials we had running back in January!"
+
+<!---Summary. The company will have the comprehensive list of how many trial they were engaged in in January.-->
+
+\
 \
 
+@. An online auction platform is rolling out a new feature called "Price Genie". When a seller inputs all of the information about the object they wish to sell, the site generates a dollar amount that is their suggested price that the seller start the bidding at. This dollar amount is calculated from data on past sales of similar items.
+
+<!-- Prediction. -->
