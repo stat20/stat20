@@ -53,13 +53,13 @@ countdown::countdown(1, top = 0)
 :::: {.columns}
 
 ::: {.column width="55%" .incremental}
-- Images are composed of pixels (this image is 1012 by 1520)
+- Images are composed of pixels (this image is 1520 by 1012)
 - The color in each pixel is in RGB
   
   ![](images/rgb.png){width="460"}
 
 - Each band takes a value from 0-255
-- This image is data with 1020 x 1520 x 3 values.
+- This image is data with 1520 x 1012 x 3 values.
 :::
 
 ::: {.column width="45%"}
