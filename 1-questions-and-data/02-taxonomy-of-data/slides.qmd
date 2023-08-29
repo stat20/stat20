@@ -182,7 +182,7 @@ countdown::countdown(1, top = 0)
 countdown::countdown(20, top = 0)
 ```
 
-# Worksheet via RStudio
+# Writing in RStudio
 
 . . .
 
