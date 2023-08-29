@@ -3,9 +3,61 @@ title: "Understanding the World through Data"
 image: images/claims.png
 ---
 
-Welcome to Stat 20!
+:::{.lo .content-hidden unless-profile="staff-site"}
 
-There is no reading in advance of the first day of class. To view the materials used during the class session, see the links below. 
+#### Concept Acquisition
+
+1. The Data Science lifecycle represents the iterative process by which models questions, claims, data, and understanding inform one other.
+1. The formulation of an empirical question informs the data that bears upon it.
+1. The properties of the data determine the claims that it can support.
+1. Common claims made with data include summaries, predictions, generalizations, and causal claims.
+
+#### Tool Acquisition
+
+1. Practice using the polling platform
+1. Practice using the discussion platform
+
+#### Concept Application
+1. Identify data sets that will help answer a particular empirical question.
+1. Classify a claim as a summary, prediction, generalization, or causal claim.
+1. Formulate a claim that is supported by a particular data set.
+
+----------------------------------------------------
+
+:::
+
+![](images/claims.png){width=550 fig-align="center"}
+
+:::{.def}
+**Summary**
+ ~ A numerical, graphical, or verbal description of an aspect of data that is on hand.
+:::
+
+Example: Using data from the Stat 20 class survey, the proportion of respondents to the survey who reported having no experience writing computer code is 70%.
+
+:::{.def}
+**Generalization**
+ ~ A numerical, graphical, or verbal description of a broader set of units than those on which data was been recorded.
+:::
+
+<!-- Also: the use of a particular data set to draw a conclusion about the nature of the mechanism that generated the data. -->
+
+Example: Using data from the Stat 20 class survey, the proportion of Berkeley students who have no experience writing computer code is 70%.
+
+:::{.def}
+**Causal Claim**
+ ~ A claim that changing the value of one variable will influence the value of another variable.
+:::
+
+Example: Data from a randomized controlled experiment shows that taking a new antibiotic eliminates more than 99% of bacterial infections.
+
+:::{.def}
+**Prediction**
+ ~ A guess about the value of an unknown variable, based on other known variables.
+:::
+
+Example: Based on reading the news and the price of Uber's stock today, I predict that Uber's stock price will go up 1.2% tomorrow.
+
 
 {{< include images/tmp/_date-meta.md >}}
 
