@@ -1,7 +1,23 @@
 ---
 title: "Taxonomy of Data"
 format: 
-  stat20-slides-revealjs: default
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
 ---
 
 ## Agenda
@@ -88,10 +104,6 @@ countdown::countdown(1, top = 0)
 ![](images/shoebill-1-grayscale.png){fig-alt="A shoebill with a duck in its mouth in grayscale." width="800"}
 :::
 
-::: {.column width="45%"}
-![](~/Documents/BerkeleyTeaching/20/2023Fall/shoebill-1-gray8.png){fig-alt="An 8 x 8 grayscale image" width="300"}
-:::
-
 ::::
 
 
@@ -132,11 +144,31 @@ countdown::countdown(20, top = 0)
 
 # Worksheet via RStudio
 
-## 
+. . .
 
-Demo
+:::{.bigadage}
+Goal: write a brief memo about your home county.
+:::
 
-## Your turn
+## Step-by-step
+
+1. Create and save a new .qmd file.
+1. Add a title and author.
+1. Add a header with the name of the county and state (if you are from abroad, provide the name of a county and state that you would like to visit)
+1. Add 1-3 paragraphs about this county in text, as described by Wikipedia.
+1. An example of **bold** and *italics* text.
+1. A bulleted list of your top three favorite things about this county.
+1. A sentence at the bottom with an acknowledgement that text came from Wikipedia along with a link to that source.
+
+## Step-by-step
+
+1. Create and save a new .qmd file.
+1. Add a title and author.
+1. Add a header with the name of the county and state (if you are from abroad, provide the name of a county and state that you would like to visit)
+1. Add 1-3 paragraphs about this county in text, as described by Wikipedia.
+1. An example of **bold** and *italics* text.
+1. A bulleted list of your top three favorite things about this county.
+1. A sentence at the bottom with an acknowledgement that text came from Wikipedia along with a link to that source.
 
 ```{r}
 countdown::countdown(20, top = 0)
