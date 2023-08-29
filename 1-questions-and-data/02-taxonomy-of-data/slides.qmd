@@ -94,10 +94,6 @@ countdown::countdown(1, top = 0)
 - 0 is black, 255 is white
 - This image is data with 1520 x 1012 x 1 values.
 
-:::{.fragment}
-> To simplify, assume our photos are 8 x 8 grayscale images.
-
-:::
 :::
 
 ::: {.column width="45%"}
@@ -106,8 +102,22 @@ countdown::countdown(1, top = 0)
 
 ::::
 
+## Grayscale
+
+:::: {.columns}
+
+-  To simplify, assume our photos are 8 x 8 grayscale images.
+
+
+::: {.column width="45%"}
+![](images/shoebill-1-gray8.png){fig-alt="An 8 x 8 grayscale image" width="500"}
+:::
+
+::::
 
 ## Images in a Data Frame
+
+Consider the following images which are our data:
 
 :::: {.columns}
 
@@ -123,7 +133,36 @@ countdown::countdown(1, top = 0)
 ![](images/shoebill-3.png)
 :::
 
+
+:::{.incremental}
+
+- Let's simplify them to 8 x 8 grayscale images
+
+:::
+
 ::::
+
+
+## Images in a Data Frame
+
+
+
+:::: {.columns}
+
+::: {.column width="33%"}
+![](images/shoebill-1-gray8.png)
+:::
+
+::: {.column width="33%"}
+![](images/shoebill-2-gray8.png)
+:::
+
+::: {.column width="34%"}
+![](images/shoebill-3-gray8.png)
+:::
+
+::::
+
 
 :::{.poll}
 If you were to put the data from these (8 x 8 grayscale) images into a *data frame*, what would the dimensions of that data frame be in rows x columns?
@@ -132,6 +171,7 @@ If you were to put the data from these (8 x 8 grayscale) images into a *data fra
 ```{r}
 countdown::countdown(1, top = 0)
 ```
+
 
 
 # Reading Questions

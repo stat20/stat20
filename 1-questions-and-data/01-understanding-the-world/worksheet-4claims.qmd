@@ -1,0 +1,67 @@
+---
+title: ""
+format: pdf
+---
+
+# Making Claims with Data
+
+For each of the following scenarios, identify which type of claim is being made: a Summary, a Generalization, a Causal Claim, or a Prediction.
+
+@. NASA has published a data set containing total volume of each of the 8 planets of our solar system (Mercury is the smallest, Jupiter is the largest) and whether or not they are gaseous or rocky. Based on this data, an astronomer writes that, on average, gaseous planets are larger than rocky planets.
+
+<!-- Summary or Generalization depending on whether it's implied that we're talking about just our solar system. -->
+
+\
+\
+\
+
+@. A biology professor created two versions of a midterm, version A (all multiple choice) and version B (a mix of multiple choice and short answer), and passed them out to students randomly. After grading the exams, they consider a data set of the score and exam version (A or B) of all 100 students in the class, on seeing that the average score on version A is higher than on version B, conclude that short answer questions are more challenging than multiple choice questions.
+
+<!-- This one's a bit ambiguous! Generalization probably makes the most sense but there's also a causal angle here: that it was the format of the questions that led to the difference in scores. -->
+
+\
+\
+\
+
+@. The group *Morning Consult* conducted a poll of a representative sample of registered 1,256 Republican voters on August 24, 2023, asking them who they planned to vote for in the primary election. 58% of respondents replied "Trump" and 14% replied "DeSantis". A major news outlet ran a headline, "Trump leads DeSantis by 44 points among registered Republican voters.
+
+<!-- Generalization -->
+
+\
+\
+\
+
+@. Astronomers detect a new planet just beyond our solar system. Sensors aboard the James Webb Space Telescope determine its volume and, using the NASA data described above, determines that the planet is likely rocky.
+
+<!-- Prediction -->
+
+\
+\
+\
+
+@. A 2020 study conducted in Sydney, Australia wanted to characterize the working arrangements of medical research scientists and support staff in Australia during the COVID‐19 pandemic, and to evaluate factors (in particular: wearing pyjamas) that influence the self‐assessed productivity and mental health of medical institute staff working from home. A newspaper article opened its article on the study with "Academics who are tempted to remain in pajamas during the working day should think again, says an Australian study that has linked the practice to a deterioration in mental health."
+
+<!---Causal, but justified? See https://www.everydayresearchmethods.com/current-affairs/ maybe can talk about which comes first, the not getting out of pyjamas or the (self-reported) poorer mental health--->
+
+\
+\
+
+
+@. Resilience is the ability to bounce back from adversity and stress, while the A1C test — also known as the hemoglobin A1C or HbA1c test — is a simple blood test that measures your average blood sugar levels over the past 3 months. A study published in July 2018 in Diabetes Care, that involved more than 470 adolescents ages 10 to 19 with type 1 diabetes, found that strengths in managing diabetes, such as confidence in care or support from others, were associated with resilience. This resilience was linked with a lower A1C.
+
+<!---Descriptive/summary, it is still not saying that resilience CAUSES diabetes or lack thereof, but links the two, link https://www.everydayhealth.com/type-2-diabetes/how-resilience-can-help-you-manage-diabetes-and-how-to-build-it/-->
+
+
+\
+\
+
+@. Eli Lilly is a pharmaceutical company that is constantly on the hunt for new and effective drugs. They maintain an internal website called the Discovery Dashboard that allows researchers within the company to, at a glance, get a sense of the progress of various clinic trials. Pointing to a time-series line plot, a researcher exclaims, "Wow, I didn't realize how many phase II trials we had running back in January!"
+
+<!---Summary. The company will have the comprehensive list of how many trial they were engaged in in January.-->
+
+\
+\
+
+@. An online auction platform is rolling out a new feature called "Price Genie". When a seller inputs all of the information about the object they wish to sell, the site generates a dollar amount that is their suggested price that the seller start the bidding at. This dollar amount is calculated from data on past sales of similar items.
+
+<!-- Prediction. -->
