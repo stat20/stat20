@@ -41,6 +41,8 @@ for (i in seq_along(instr_names)) {
 cat("\n")
 
 ##== Worksheets ==##
+# TODO scope this more narrowly to only pick up non-problem set worksheets
+# or just add them as ignores on on the assignment page?
 
 f <- list.files()
 is_worksheet <- stringr::str_detect(f, "worksheet.*.qmd$")
@@ -50,7 +52,7 @@ worksheet_titles <- worksheet_filenames %>%
   stringr::str_replace("-", " - ") %>%
   stringr::str_replace(".qmd", "") %>%
   stringr::str_to_title()
-  
+
 if (length(worksheet_filenames) > 0) {
   cat("#### Worksheet\n\n")
   for (i in seq_along(worksheet_filenames)) {
