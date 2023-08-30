@@ -30,19 +30,19 @@ image: images/claims.png
 
 :::{.def}
 **Summary**
- ~ A numerical, graphical, or verbal description of an aspect of data that is on hand.
+ ~ A description of some aspect of the data we have. 
 :::
 
-Example: Using data from the Stat 20 class survey, the proportion of respondents to the survey who reported having no experience writing computer code is 70%.
+Example: Using data from a class survey, the average height of students in Stat 20 is 5'6. 
 
 :::{.def}
 **Generalization**
- ~ A numerical, graphical, or verbal description of a broader set of units than those on which data was been recorded.
+ ~Claiming that some aspect of a particular dataset we on hand will be hold true for a broader set of possible observations.
 :::
 
 <!-- Also: the use of a particular data set to draw a conclusion about the nature of the mechanism that generated the data. -->
 
-Example: Using data from the Stat 20 class survey, the proportion of Berkeley students who have no experience writing computer code is 70%.
+Example: Based on our Stat20 survey data, we believe the average height of Cal students is 5'6. 
 
 :::{.def}
 **Causal Claim**
