@@ -11,7 +11,7 @@ schedule:
   - unit: "Summarizing Data"
     materials:
       - href: 2-summarizing-data/labs/01-arbuthnot/lab.qmd
-        date: 09/5/23
+        date: 08/31/23
       - title: "No Class"
         date: 09/4/23
         calendar-color: "#20c997"
