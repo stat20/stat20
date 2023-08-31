@@ -3,8 +3,8 @@ toc: false
 page-layout: custom
 listing:
   id: readings-listing
-  template: assets/custom.ejs
-  contents: assets/items.yml
+  template: assets/ejs-templates/homepage-readings.ejs
+  contents: assets/ejs/templates/homepage-readings.yml
 ---
 
 :::::{.content-block}
