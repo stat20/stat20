@@ -125,7 +125,7 @@ schedule:
         
 auto-publish:
   timezone: "America/Los_Angeles"
-  live-as-of: "09/12/23"
+  live-as-of: "Sys.time()"
   notes-1-release: "Friday, 17:00" # for Tu/Weds notes
   notes-2-release: "Friday, 17:00" # for Thu/Fri notes
 
@@ -135,7 +135,7 @@ instructors:
     quartopub-name: andrew
   - name: Iain Carmichael
     email: "iain@berkeley.edu"
-    quartopub-name: 
+    quartopub-name: iainc
   - name: Silas Gifford
     email: "silascs@berkeley.edu"
     quartopub-name: silas
@@ -146,5 +146,5 @@ instructors:
     email: "shobhana@berkeley.edu"
     quartopub-name: shobhana
     
-semester: "Spring, 2023"
+semester: "Fall, 2023"
 

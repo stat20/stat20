@@ -49,9 +49,9 @@ Monday is shorter (1 hr) class that alternates between:
 
 #### Plenary lectures
 
-While in general this course does not have full lectures, there are a few select exceptions. Several times during the semester, the course will be hosting a special guest to give a lecture to all sections of Stat 20. These speakers will all be preeminent scientists and data scientists working in academia and industry and will speak on how the ideas and tools and the we discuss in class look in the real world.
+Several times during the semester, the course will be hosting a special guest to give a lecture to all sections of Stat 20. These speakers are preeminent scientists and data scientists from academia or industry who will speak about how the ideas and tools from Stat 20 are used in and impact the real world. These plenary lectures will be held outside of class time in the evening and the schedule will be announced during the semester. 
 
-The schedule of plenary lectures will be posted to the course schedule as soon as it is finalized. Lectures will held in the evening. There is an assignment associated with plenary lectures. If you cannot make the Stat 20 plenary lectures, you are welcome to go to attend other official statistics / data science seminars on campus.
+As a part of the graded assignments for the class **you will be asked to attend three lectures outside the class and hand in a small written assignment about each**. These lecture could be the Stat 20 plenary lectures or they could be from another event; the only restriction is that they have to be related to data science.
 
 #### Group tutoring
 
@@ -62,16 +62,9 @@ Group tutoring is a great place to go to meet other students and collaborate on 
 
 #### Instructor Office Hours 
 
-The instructors will offer office hours each week across a range of times. We ask that you visit the office hours of the instructor of your lab section but you're welcome to visit the office hours of any tutor, not only the one who works in your section. We may adjust the office hour schedule throughout the semester as we understand student needs and preferences.
+The instructors will offer office hours each week across a range of times. We ask that you only visit the office hours of your instructor, but you are welcome to visit the tutoring sessions of *any* tutors, not just the ones who work in your section. We may adjust the office hour and group tutoring sessions schedule throughout the semester as we understand student needs and preferences. Please check the office hours tab on the syllabus page to see the times of the various office hour/group tutoring sessions.
 
-Take advantage of this opportunity! Coming to office hours does not send a signal that you are behind or need extra help. On the contrary, visiting us early and often tends to co-occur with success in the course.
-
-Feel free to come even if you don’t have a specific question about an assignment. The instructors are happy to chat about the course material, statistics in general, careers in statistics, or whatever other statistics or data science topics are on your mind!
-
-<<<<<<< HEAD
-=======
 Office hours are an opportunity to chat one-on-one with your instructor. Please come to office hours! Coming to office hours does not send a signal that you are behind or need extra help. On the contrary, coming to office hours early and often tends to co-occur with success in the course. Instructors are happy to chat about the course material, statistics in general, careers in statistics, and whatever other statistics or data science topics are on your mind!
->>>>>>> 8bfb7ed (adjust wording for clarity and typos)
 
 #### COVID policy
 
@@ -103,13 +96,13 @@ In a course this large, the instructors have a difficult time responding to indi
 
 #### Course website
 
-All of the assignments will be posted to the course website at [https://stat20.org](https://stat20.org). This also holds the course notes, the syllabus, and links to Gradescope, Ed, and RStudio.
+All of the assignments will be posted to the course website at [https://stat20.org](https://stat20.org). This also holds the course notes, the syllabus, and links to Gradescope, Ed, and RStudio. Note that we will *not* be using bcourses except perhaps to occasionally post videos.
 
 ### Assignments, Exams, and Grading
 
 #### Turning-in assignments
 
-You will be turning in your assignments on a platform called  [Gradescope](https://www.gradescope.com/). This is also the platform where your assignments will be graded, so you can return there to get feedback on your work. You are welcome to file a regrade request if you notice that we made an error in applying the rubric to your work, but be sure to do so within a week of the grades being posted.
+You will be turning in your assignments on a platform called  [Gradescope](https://www.gradescope.com/). This is also the platform where your assignments will be graded, so you can return there to get feedback on your work. You are welcome to file a regrade request if you notice that we made an error in applying the rubric to your work, but be sure to do so **within a week** of the grades being posted. We will not accept regrade requests past that point.
 
 #### Labs 
 
@@ -127,17 +120,14 @@ The problem sets will be procured completely from these in-class worksheets and 
 
 #### Reading Questions
 
-Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per lecture note. These questions be a mix of multiple choice, short answer, and coding questions. You can answer them directly on Gradescope. Note that the reading questions will be due 11:59 pm on Monday (for the Tuesday/Wednesday lectures) and Friday (for the Thursday/Friday lectures).
+Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per lecture note. These questions be a mix of multiple choice, short answer, and coding questions. You can answer them directly on Gradescope. Note that the reading questions will be due 11:59 pm on Monday (for the Tuesday/Wednesday lectures) and Wednesday (for the Thursday/Friday lectures).
 
 #### Plenary Lecture Reviews
 
-An important way to engage with new ideas and people at a University is to attend guest lectures.  Stat 20 will host 3-5 such lectures over the course of semester and will also provide a list of guest lectures in other departments that focus on topics related to probability, statistics, and data science.
+An important way to engage with new ideas and people at a University is to attend guest lectures. Stat 20 will host 3-5 such lectures over the course of semester and will also provide a list of guest lectures in other departments that focus on topics related to probability, statistics, and data science.
 
-<<<<<<< HEAD
 A plenary lecture review is a written assignment that details the background of the speaker, the question they address, the tools, data, and methods they use, and their key findings. You will be asked to submit three such lecture reviews over the course of the semester based on the lectures that you have chosen to attend. These lecture reviews will be due at the end of the semester.
-=======
-You will be writing up a few reviews of plenary lectures that you attend over the course of the semester. 
->>>>>>> 8bfb7ed (adjust wording for clarity and typos)
+
 
 #### Quizzes
 
@@ -149,7 +139,7 @@ The *individual* component will last ~25 minutes. You are allowed one, A4, one-s
 
 #### Exam
 
-The final exam will be held in person during finals week. Your current final time is dependent on your section and so is available on CalCentral. 
+The final exam will be held in person during finals week. The current time and date is **Thursday, December 14 from 8am to 11am**,  *not* what you see on CalCentral. 
 
 #### Grading
 
@@ -162,16 +152,14 @@ Your final grade in the course will be computed based on:
 - Problem sets 7%
 - Final 27%
 
-<<<<<<< HEAD
+The goal of this course is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determine letter grades (> 90% is some kind of A, etc.). 
+
 In order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone:
 
 -   one emergency drop for quizzes  
 -   two emergency drops for reading questions. 
 
 This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. For reading questions, we will drop your two lowest.
-=======
-The goal of this course is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determine letter grades (> 90% is some kind of A, etc.). In order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone one emergency drop for quizzes and two emergency drops for reading questions. This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. For reading questions, we will drop your two lowest.
->>>>>>> 8bfb7ed (adjust wording for clarity and typos)
 
 
 ### Policies
@@ -225,7 +213,7 @@ And again, if you have questions about the boundaries of the collaboration polic
 
 1. What should I do if I'm on the waitlist?
 
-   Attend lecture and section (remember, we are teaching it as *one* two hour class), and submit all assignments on time. Visit your instructor on the first day of class so you can be added to the course Ed and Gradescope.
+   Attend *both* lecture and section (remember, we are teaching it as *one* two hour class), and submit all assignments on time. Visit your instructor on the first day of class so you can be added to the course Ed and Gradescope.
 
 2. Are class sessions recorded?
 

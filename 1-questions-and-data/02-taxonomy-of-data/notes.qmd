@@ -7,6 +7,26 @@ format:
   pdf: default
 ---
 
+:::{.lo .content-hidden unless-profile="staff-site"}
+#### Concept Acquisition
+
+1. Data is a collection of measurements of variables made on observation units. They can be organized in a data frame.
+1. Variables can be classified as Numerical or Categorical. Types of numerical variables include continuous and discrete variables. Types of categorical variables include ordinal and nominal.
+
+#### Tool Acquisition
+
+1. Create a pdf document from a .qmd file using RStudio.
+
+#### Concept Application
+
+1. Identify the unit of observation in a written description of a study or in a given data frame.
+1. Identify the variables recorded on the observations based on a written description of a study or in a given data frame. Classify each one according to the taxonomy of data.
+1. Distinguish between a (tidy) data frame and other tabular displays.
+
+----------------------------------------------------
+
+:::
+
 [In the beginning was data]{style="font-family: Cinzel, serif; font-size: 1.2em"}, and from that data was built an understanding of the world.
 
 :::{style="text-align: center"}
@@ -26,8 +46,10 @@ This is a philosophical question and it is up for debate. What is clearer is tha
 
 The defining element of data science is the centrality of data as the means of advancing our understanding of the world. The word "data" is used in many different ways, so let's write down a definition to get everyone on the same page.
 
+:::{.def}
 **Data**
-  ~ An item of (chiefly numerical) information, especially one obtained by scientific work, a number of which are typically collected together for reference, analysis, or calculation. From Latin *datum*: that which is given. Facts.
+ ~ An item of (chiefly numerical) information, especially one obtained by scientific work, a number of which are typically collected together for reference, analysis, or calculation. From Latin *datum*: that which is given. Facts.
+:::
 
 This broad definition permits a staggering diversity in the forms that data can take. When you conducted a chemistry experiment in high school and recorded your measurements in a table in a lab notebook, that was data. When you registered for this class and your name showed on CalCentral, that was data. When the James Webb Space Telescope took a photo of the distant reaches of our solar system, recording levels of light pixel-by-pixel, that was data.
 
@@ -36,8 +58,10 @@ This broad definition permits a staggering diversity in the forms that data can 
 
 Such diversity in data is more precisely described as diversity in the types of *variables* that are being measured in a data set.
 
+:::{.def}
 **Variable**
-  ~ A characteristic of an object or observational unit that can be measured and recorded.
+ ~ A characteristic of an object or observational unit that can be measured and recorded.
+:::
   
 In your chemistry notebook you may have recorded the *temperature* and *pressure* of a unit of gas, two variables that are of scientific interest. In the CalCentral data set, *name* is the variable that was recorded (on you!) but you can imagine other variables that the registrars office might have recorded: your year at Cal, your major, etc. Each of these are called *variables* because the value that is measured generally varies as you move from one object to the next. While your value of the *name* variable might be Penelope, if we record the same variable on another student we'll likely come up with different value.
 
@@ -62,22 +86,30 @@ Within the realm of data, an analogous taxonomy has emerged.
 
 The principle quality of a variable is whether it is *numerical* or *categorical*.
 
+:::{.def}
 **Numerical Variable**
-  ~ A variable that take numbers as values and where the magnitude of the number has a quantitative meaning.
-  
+ ~ A variable that take numbers as values and where the magnitude of the number has a quantitative meaning.
+:::
+
+:::{.def}
 **Categorical Variable**
   ~ A variable that take categories as values. Each unique category is called a *level*.
+:::
 
 When most people think "data" they tend to think about numerical variables (like the *temperature* and *pressure* recorded in your lab notebook) but categorical variables (like the *name* recorded on CalCentral) are very common.
 
 All numerical variables can be classified as either *continuous* or *discrete*.
 
+:::{.def}
 **Continuous Numerical Variable**
-  ~ A numerical variable that takes values on an interval of the real number line.
-  
+ ~ A numerical variable that takes values on an interval of the real number line.
+:::
+
+:::{.def}
 **Discrete Numerical Variable**
-  ~ A numerical variable that takes values that have jumps between them.
-  
+ ~ A numerical variable that takes values that have jumps between them.
+:::
+
 A good example of a continuous numerical variable is *temperature*. If we are measuring outside air temperature on Earth in Fahrenheit, it is possible that we would record values anywhere from around [-125 degrees F](https://en.wikipedia.org/wiki/Lowest_temperature_recorded_on_Earth) and [+135 degrees F](https://en.wikipedia.org/wiki/Highest_temperature_recorded_on_Earth). While we might end up rounding our measurement to the nearest integer degree, we can imagine that the phenomenon of temperature itself varies smoothly and continuously across this range.
 
 A good example of a discrete numerical variable is *household size*. When the US Census goes door-to-door every year collecting data on every household, they record the number of people living in that household. A household can have 1 person, or 2 people, or 3 people, or 4 people, and so on, but it cannot have 2.83944 people. This makes it discrete.
@@ -85,13 +117,17 @@ A good example of a discrete numerical variable is *household size*. When the US
 What unites both types of numerical variables is that the magnitude of the numbers have meaning and you can perform mathematical operations on them and the result also has meaning. It is possible and meaningful to talk about the average air temperature across three locations. It is also possible and meaningful to talk about the sum total number of people across ten households.
   
 The ability to perform mathematical operations drops away when we move to ordinal variables. All categorical variables can be classified as either *ordinal* or *nominal*.
-  
-**Ordinal Categorical Variable**
-  ~ A categorical variable with levels that have a natural ordering.
 
+:::{.def}
+**Ordinal Categorical Variable**
+ ~ A categorical variable with levels that have a natural ordering.
+:::
+
+:::{.def}
 **Nominal Categorical Variable**
-  ~ A categorical variable with levels with no ordering.
-  
+ ~ A categorical variable with levels with no ordering.
+:::
+
 You have likely come across ordinal categorical variables if you have taken an opinion survey. Consider the question:"Do you strongly agree, agree, feel neutral about, disagree, or strongly disagree with the following statement: Dogs are better than cats?" When you record answers to this question, you're recording measurements on a categorical variable that takes values "strongly agree", "agree", "neutral", "disagree", "strongly disagree". Those are the *levels* of the categorical variable and they have a natural ordering: "strongly agree" is closer to "agree" than it is to "strongly disagree".
 
 You can contrast this with a nominal categorical variable. Consider a second question that asks (as the registrar does): "What is your name?" There are many more possible levels in this case - "Penelope", "David", "Shobhana", etc. - but those levels have no natural ordering. In fact this is very appropriate example of a nominal variable because the word itself derives from the Latin *nomen*, or "name".
@@ -146,9 +182,10 @@ When we seek to grow our understanding of a phenomenon, sometimes we select a si
 
 To keep all of this data organized, we need a structure. While there are several different ways to structure a given data set, the format that has become most central to data science is the data frame.
 
+:::{.def}
 **Data Frame**
-
-:   An array that associates the observations (downs the rows) with the variables measured on each observation (across the columns). Each cell stores a value observed for a variable on an observation.
+ ~ An array that associates the observations (downs the rows) with the variables measured on each observation (across the columns). Each cell stores a value observed for a variable on an observation.
+:::
 
 While this definition might seem opaque, you are already familiar with a data frame. You are you just more accustomed to seeing it laid out this like this:
 
@@ -193,9 +230,10 @@ You might be accustomed to calling this a "spreadsheet" or a "table", but the or
 
 One of the first questions that you should address when you first come across a data frame is to determine what the unit of observation is.
 
+:::{.def}
 **Unit of Observation**
-
-:  The class of object on which the variables are observed.
+ ~ The class of object on which the variables are observed.
+:::
 
 In the case of data frame above, the unit of observation is a single penguin near Palmer Station. The first row captures the measurements on the first penguin, the second row captures the measurements of the second penguin, and so on. If I log into CalCentral to see the data frame that records information on the students enrolled in this class, the unit of observation is a single student enrolled in this class.
 
@@ -219,4 +257,5 @@ In this lecture note we have focused on the nature of the data that will serve a
 
 {{< include images/tmp/_date-meta.md >}}
 
-{{< include images/_links-to-materials.qmd >}}
+{{< include ../../assets/includes/_links-to-materials.qmd >}}
+

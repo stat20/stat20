@@ -1,8 +1,11 @@
 on:
   workflow_dispatch:
-  pull_request:
-    branches: main
-name: "Publish to stat20staff-pr.netlify.app"
+  schedule:
+    - cron: "1 0 * * 5" # Every Friday at 5:01 pm (PDT)
+    - cron: "1 13 * * 2" # Every Tuesday at 6:01 am (PDT)
+    - cron: "1 13 * * 4" # Every Thursday at 6:01 am (PDT)
+  
+name: "Publish to stat20.org"
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -15,21 +18,25 @@ jobs:
         uses: addnab/docker-run-action@v3
         env:
            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-           QUARTO_PROFILE: staff-site
         with:
           image: stat20/stat20-docker:latest
-          options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }} -e QUARTO_PROFILE=toc,staff-site
+          options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
           shell: bash
           run: |
+            # exit if any command returns non-zero exit
+            set -e
+
             # execute from the textbook
             cd /home/rstudio/stat20/
 
             # _freeze should not exist
             rm -rf ./_freeze
-
+            
             # run pre-render scripts
             Rscript ./assets/scripts/propagate-dates.r
+            Rscript ./assets/scripts/prep-next-readings.r
+            Rscript ./assets/scripts/ignore-future-docs.r
             Rscript ./assets/scripts/write-toc.r
-
-            # render site with staff profile and upload to stat20staff-pr.netlify.app
-            quarto publish netlify --id 3f1e6a82-2bfc-4ac3-94f8-73f78436dd2a
+            
+            # render site and upload to stat20.org
+            quarto publish netlify --id 1188ba29-f00d-4f5a-ac6f-75c715522c69

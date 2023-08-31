@@ -1,13 +1,9 @@
-# on:
-#   workflow_dispatch:
-#   schedule:
-#     - cron: '10 * * * *'
-#     - cron: '35 * * * *'
 on:
+  workflow_dispatch:
   pull_request:
     branches: main
   
-name: "Publish Live Website to stat20.org"
+name: "Publish to stat20-pr.netlify.app"
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -31,7 +27,7 @@ jobs:
             # execute from the textbook
             cd /home/rstudio/stat20/
 
-            # _freeze probably won't exist, but lets document that it shouldn't
+            # _freeze should not exist
             rm -rf ./_freeze
             
             # run pre-render scripts
@@ -39,7 +35,6 @@ jobs:
             Rscript ./assets/scripts/prep-next-readings.r
             Rscript ./assets/scripts/ignore-future-docs.r
             Rscript ./assets/scripts/write-toc.r
-
-            quarto publish netlify --id 4f93185f-50a9-491c-b86f-3f8e51eb3ae9
-            echo "past quarto"
             
+            # render site and upload to stat20-pr.netlify.app
+            quarto publish netlify --id 4f93185f-50a9-491c-b86f-3f8e51eb3ae9

@@ -1,0 +1,15 @@
+---
+title: "Definitions"
+filters:
+  - glossary
+glossary:
+  id: definitions
+  class: def
+  contents:
+    - "1-questions-and-data/*"
+---
+
+### Questions and Data
+
+:::{#definitions}
+:::
