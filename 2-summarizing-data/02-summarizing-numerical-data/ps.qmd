@@ -1,4 +1,5 @@
 ---
+title: "Summarizing Numerical Data"
 format:
   pdf:
     include-in-header: 
@@ -12,7 +13,7 @@ format:
 \thispagestyle{empty}
 
 \begin{center}
-\textsc{Stat 20: PS 2.1} \\
+\textsc{{{< meta title>}}} \\
 \noindent\rule{12cm}{0.4pt}
 \end{center}
 

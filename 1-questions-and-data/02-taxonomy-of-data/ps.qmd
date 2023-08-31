@@ -1,5 +1,5 @@
 ---
-title: " "
+title: "Taxonomy of Data"
 format: pdf
 ---
 

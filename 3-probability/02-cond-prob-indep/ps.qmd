@@ -1,4 +1,5 @@
 ---
+title: "Conditional Probability"
 format:
   pdf:
     include-in-header: 

@@ -1,4 +1,5 @@
 ---
+title: "Random Variables"
 format:
   pdf:
     include-in-header: 

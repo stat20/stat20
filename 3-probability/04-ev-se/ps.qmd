@@ -1,4 +1,5 @@
 ---
+title: "Expectation and Variance"
 format:
   pdf:
     include-in-header: 

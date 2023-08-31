@@ -1,4 +1,5 @@
 ---
+title: "Intro to Chance"
 format:
   pdf:
     include-in-header: 
