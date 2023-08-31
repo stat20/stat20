@@ -175,7 +175,7 @@ reading_list <- notes_to_release |>
   purrr::map(update_href)
 
 # write file
-yaml::write_yaml(reading_list, "assets/items.yml")
+yaml::write_yaml(reading_list, "assets/ejs-templates/homepage-readings-items.yml")
 
 cli::cli_alert_success("PDFs of {unlist(purrr::map(reading_list, 'title'))} now available on home page.")
 
