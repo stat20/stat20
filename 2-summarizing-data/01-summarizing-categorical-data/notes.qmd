@@ -7,7 +7,23 @@ format:
   pdf: default
 ---
 
-<!-- ![](images/claims.png){fig-alt="Diagram showing the four types of claims that are made using data: descriptive claim, predictions, generalizations, and causal claims." width="400px" fig-align=center} -->
+:::{.lo .content-hidden unless-profile="staff-site"}
+
+#### Concept Acquisition
+
+Todo.
+
+#### Tool Acquisition
+
+Todo.
+
+#### Concept Application
+
+Todo.
+
+----------------------------------------------------
+
+:::
 
 \
 
@@ -17,7 +33,7 @@ format:
 
 In spring of 2022, the New York Times ran the following story[^nyt].
 
-![An article from the New York times entitled consumer prices are still climbing rapidly with an associated line graph showing the inflation rate (as measured by the change in the consumer price index) over the last 40 years with a spike upwards in spring of 2022.](images/nyt-inflation.png){#fig-inflation fig-align=center width="600px"}
+![An article from the New York times entitled consumer prices are still climbing rapidly with an associated line graph showing the inflation rate (as measured by the change in the consumer price index) over the last 40 years with a spike upwards in spring of 2022.](images/nyt-inflation.png){#fig-inflation fig-align=center width="500px"}
 
 "Consumer Prices" refers to the Consumer Price Index[^cpi], a weighted average of the prices of thousands of everyday consumer goods: sports equipment, soft drinks, sneakers, internet service, etc. An increase in that index is thought to correspond to rising inflation.
 
@@ -81,6 +97,9 @@ table(penguins$species, penguins$island) %>%
     column_spec(1, bold = T, border_right = T) %>%
     row_spec(0, bold = T)
 ```
+
+\
+
 :::
 
 ::: {.content-visible when-format="pdf"}
@@ -97,12 +116,11 @@ library(kableExtra)
 table(penguins$species, penguins$island) %>%
     kbl(format = "latex") %>%
     kable_paper(full_width = F) %>%
+    kable_styling(latex_options = "HOLD_position") %>%
     column_spec(1, bold = T, border_right = T) %>%
     row_spec(0, bold = T)
 ```
 :::
-
-\
 
 After a few moments of looking at this table, a few features emerge:
 
