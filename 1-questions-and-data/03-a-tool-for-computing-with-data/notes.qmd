@@ -8,17 +8,17 @@ format:
   pdf: default
 ---
 
-[T]{.dropcap}he concepts of a *variable*, its *type*, and the structure of a *data frame* are useful because they help guide our thinking about the nature of a data. But we need more than definitions. If our goal is to construct a claim with data, we need to a tool to aid in the construction. Our tool must be able to do two things: it must be able to **store** the data and it must be able to perform **computations** on the data.
+[T]{.dropcap}he concepts of a *variable*, its *type*, and the structure of a *data frame* are useful because they help guide our thinking about the nature of a data. But we need more than definitions. If our goal is to construct a claim with data, we need a tool to aid in the construction. Our tool must be able to do two things: it must be able to **store** the data and it must be able to perform **computations** on the data.
 
 <!-- - look into quipu as an early way to do this -->
 
-In high school, you gained experience with one such tool: the graphing calculator. This fits our needs: you can enter a list of number into a graphic calculator like the Ti-84, it can store that list and it can execute computations on it, such as taking its sum. But the types of data that a calculator can store are very limited, as is the volume, as are the options for computation.
+In high school, you gained experience with one such tool: the graphing calculator. This fits our needs: you can enter a list of number into a graphing calculator like the Ti-84, it can store that list and it can execute computations on it, such as taking its sum. But the types of data that a calculator can store are very limited, as is the volume of data, as are the options for computation.
 
 In this class, we will use a tool that is far more powerful: the computer language called R. The Ti-84 is to R what a tricycle is to the space ship. One of these tools can bring you to the end of the block; the other to the moon.
 
 ## R and RStudio
 
-R is one of the most powerful languages for doing statistics data science. One of the reasons for its power and popularity is that it is both free and open-source.  This turns languages like R into something that resembles Wikipedia: a collaborative effort that is constantly evolving. Extensions to the R language have been authored by professional programmers[^pro], people working in industry and government[^gov], professors[^prof], and students like you[^ug].
+R is one of the most powerful languages for doing statistics and data science. One of the reasons for its power and popularity is that it is both free and open-source.  This turns languages like R into something that resembles Wikipedia: a collaborative effort that is constantly evolving. Extensions to the R language have been authored by professional programmers[^pro], people working in industry and government[^gov], professors[^prof], and students like you[^ug].
 
 [^pro]: The `googlesheets4` package, which reads spreadsheet data into R was authored by Jenny Bryan, a developer at Posit: :<https://googlesheets4.tidyverse.org/>.
 
@@ -76,7 +76,7 @@ You can add exponents by using `^`, but don't forget about the order of operatio
 
 ## Saving Objects
 
-Whenever you want to save the output of an R command, add an assignment arrow `<-` (less than, minus) as well as a name, such as "answer".
+Whenever you want to save the output of an R command, add an assignment arrow `<-` (less than, minus) as well as a name, such as "answer" to the left of the command.
 
 ```{r}
 answer <- 2 ^ (3 + 1)
@@ -160,7 +160,7 @@ Every function in R has a built-in help file that tells you about how it works. 
 ?mean
 ```
 
-This will pop up the help file in a tab next to your Files tab in the lower right hand corner of RStudio. In addition to describing what the function does, the help file lists out its **arguments**. Arguments are the separate pieces of input that you can supply to a function and they can be *named* or *unnamed*.
+This will pop up the help file in a tab next to your Files tab in the lower right hand corner of RStudio. In addition to describing what the function does, the help file lists out the function's **arguments**. Arguments are the separate pieces of input that you can supply to a function and they can be *named* or *unnamed*.
 
 In the command that we entered above, we used a single unnamed argument, `my_fav_numbers`. We could have alternatively written this with a named argument:
 
@@ -174,13 +174,13 @@ As the help file suggests, `x` is the R object (here a vector of numbers) that y
 ![Help file for `mean()`.](images/mean-help.png){#fig-mean-help fig-alt="Screenshot of the helpfile from the mean function." fig-align=center width="300px"}
 :::
 
-The test how this actually works, let's add a second unnamed argument to our function. From reading the help file, you learn that you can supply it a `trim` argument to trim off some percent of the highest and lowest values before computing the mean. Let's trim off 25% from the lower end and 25% from the upper end.
+To test how this actually works, let's add a second unnamed argument to our function. From reading the help file, you learn that you can supply it a `trim` argument to trim off some percent of the highest and lowest values before computing the mean. Let's trim off 25% from the lower end and 25% from the upper end.
 
 ```{r}
 mean(my_fav_numbers, .25)
 ```
 
-It worked! We trim off the 9 and the 28, then take $(11 + 19) / 2 = 15$. We can write the command using named arguments. The code will be a bit more verbose but the answer will be the same.
+It worked! We trim off the 9 and the 28, then take $(11 + 19) / 2 = 15$. We can also write the command using named arguments. The code will be a bit more verbose but the answer will be the same.
 
 ```{r}
 mean(x = my_fav_numbers, trim = .25)
@@ -249,7 +249,7 @@ What about `my_fav_colors`?
 class(my_fav_colors)
 ```
 
-R stores that as a *character vector*. This is a very flexible class that can be used to store text as data. But what if there are only a few fixed values that a variable can take? In that case, you can do better than a character vector, you can use a *factor*. Factor is a very useful class in R because it encodes the notion of levels discussed in the last notes.
+R stores that as a *character vector*. This is a very flexible class that can be used to store text as data. But what if there are only a few fixed values that a variable can take? In that case, you can do better than a character vector by usinggit a *factor*. Factor is a very useful class in R because it encodes the notion of levels discussed in the last notes.
 
 To illustrate the difference, let's make a character vector but then enrich it by turning it into a factor using `factor()`.
 
