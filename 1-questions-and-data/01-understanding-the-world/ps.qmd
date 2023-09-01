@@ -1,6 +1,7 @@
 ---
 title: "Course Surveys"
-format: pdf
+subtitle: "PS"
+format: stat20handout-pdf
 ---
 
 Welcome to Stat 20!

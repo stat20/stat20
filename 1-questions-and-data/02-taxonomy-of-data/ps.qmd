@@ -1,15 +1,14 @@
 ---
 title: "Taxonomy of Data"
-format: pdf
+subtitle: "PS"
+format: stat20handout-pdf
 ---
 
-\thispagestyle{empty} 
-
-1. What type of variable is being measured by each of the following questions?
+@. What type of variable is being measured by each of the following questions?
 
    ![](images/variable-types.png)
 
-1. Last class you collected data on six different variables on your classmates. List the data types of each of those variables, the units that they were measured in, and the range of possible values that you would expect them to take.
+@. Last class you collected data on six different variables on your classmates. List the data types of each of those variables, the units that they were measured in, and the range of possible values that you would expect them to take.
    
    - Name:
    - Contact info:
@@ -17,8 +16,12 @@ format: pdf
    - \# Siblings + Pets:
    - \# Semesters in college:
    - Farthest distance from campus during the break:
+   
+\
+\
+\
 
-1. On the back of this page, sketch out a data frame that contains the data from your group mates on the questions above. Introduce yourself to other nearby groups to extend your data frame until it has 6 rows.
+@. On the back of this page, sketch out a data frame that contains the data from your group mates on the questions above. Introduce yourself to other nearby groups to extend your data frame until it has 6 rows.
 
    {{< pagebreak >}}
 
@@ -40,7 +43,7 @@ format: pdf
    \
    \
 
-1. As discussed in the lecture notes, this is not a data frame:
+@. As discussed in the lecture notes, this is not a data frame:
 
    ![](images/non-tidy-contingency-table.png){fig-alt="Contingency table showing the counts of handedness by sex at birth." width="260" fig-align="center"}
 

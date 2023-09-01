@@ -1,21 +1,7 @@
 ---
 title: "Conditional Probability"
-format:
-  pdf:
-    include-in-header: 
-      text: |
-        \usepackage{fancyhdr}
-    fontsize: 10pt
-    margin-top: .8in
-    margin-bottom: .5in
+format: stat20handout-pdf
 ---
-
-\thispagestyle{empty}
-
-\begin{center}
-\textsc{Stat 20: PS 3.3a} \\
-\noindent\rule{12cm}{0.4pt}
-\end{center}
 
 #### Question 1 Chegg's survey
 

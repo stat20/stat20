@@ -1,40 +1,24 @@
 ---
 title: "Intro to Chance"
-format:
-  pdf:
-    include-in-header: 
-      text: |
-        \usepackage{fancyhdr}
-    fontsize: 10pt
-    margin-top: .8in
-    margin-bottom: .5in
+subtitle: "PS"
+format: stat20handout-pdf
 ---
 
-\thispagestyle{empty}
+@. In the notes, one of the examples is about dice, and sets up a box model for the process of rolling a pair of fair six sided dice and summing the spots. In the notes we make 2 draws at random with replacement from the following box, and sum the draws:
 
-\begin{center}
-\textsc{Stat 20: PS 3.2} \\
-\noindent\rule{12cm}{0.4pt}
-\end{center}
+   $$\fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}  \fbox{5}  \fbox{6}}$$
 
-#### Question 1
-In the notes, one of the examples is about dice, and sets up a box model for the process of rolling a pair of fair six sided dice and summing the spots. In the notes we make 2 draws at random with replacement from the following box, and sum the draws:
+   Why not make one draw from the following box instead? (The tickets are the possible sums when we roll a pair of six sided dice.)
 
-$$\fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}  \fbox{5}  \fbox{6}}$$
+   $$\fbox{ \fbox{2} \fbox{3} \fbox{4}  \fbox{5}  \fbox{6}  \fbox{7}  \fbox{8}  \fbox{9}  \fbox{10}  \fbox{11}  \fbox{12}}$$
 
-Why not make one draw from the following box instead? (The tickets are the possible sums when we roll a pair of six sided dice.)
-
-$$\fbox{ \fbox{2} \fbox{3} \fbox{4}  \fbox{5}  \fbox{6}  \fbox{7}  \fbox{8}  \fbox{9}  \fbox{10}  \fbox{11}  \fbox{12}}$$
-
-If we did indeed want to model the result of two die rolls with a box from which we would only draw once, what would the box be? (List all the tickets in the box, which numbers, and how many of each.)
+   If we did indeed want to model the result of two die rolls with a box from which we would only draw once, what would the box be? (List all the tickets in the box, which numbers, and how many of each.)
 
 \
 
 \
 
-#### Question 2
-
-If we are setting up a box for modeling the number of heads in three tosses of a fair coin, would either of the boxes below work? If not, why not?
+@. If we are setting up a box for modeling the number of heads in three tosses of a fair coin, would either of the boxes below work? If not, why not?
 
 (a) $\fbox{\fbox{0} \fbox{1}}$ - Draw three times at random with replacement, and sum the draws.
 (b) $\fbox{\fbox{0} \fbox{1} \fbox{2} \fbox{3}}$ -  Draw once, the result is the number of heads.
@@ -45,44 +29,38 @@ If we are setting up a box for modeling the number of heads in three tosses of a
 \
 
 
-#### Question 3
-
-A standard deck of cards has 52 cards, consisting of 4 "suits" (hearts  \textcolor{red}{$\heartsuit$}, diamonds \textcolor{red}{$\diamondsuit$}, spades $\spadesuit$, and clubs $\clubsuit$). Each suit has 13 cards (Ace, King, Queen, Jack, 2, 3, 4, 5, 6, 7, 8, 9, and 10). Half of the cards are red (hearts and diamonds) and half of the cards are black (spades and clubs). I would like to shuffle the cards, draw **five** cards with replacement, and count the number of **hearts** in these five cards. What would be the box model for this set up?
+@. A standard deck of cards has 52 cards, consisting of 4 "suits" (hearts  \textcolor{red}{$\heartsuit$}, diamonds \textcolor{red}{$\diamondsuit$}, spades $\spadesuit$, and clubs $\clubsuit$). Each suit has 13 cards (Ace, King, Queen, Jack, 2, 3, 4, 5, 6, 7, 8, 9, and 10). Half of the cards are red (hearts and diamonds) and half of the cards are black (spades and clubs). I would like to shuffle the cards, draw **five** cards with replacement, and count the number of **hearts** in these five cards. What would be the box model for this set up?
 
 
 \
 
 \
 
-#### Question 4
-
-One ticket will be drawn at random from each of the two boxes below:
+@. One ticket will be drawn at random from each of the two boxes below:
 
 $A: \fbox{\fbox{1} \fbox{2} \fbox{3}}$ 
 
 $B: \fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}}$
 
-(a) What is the chance the number drawn from $A$ is greater than the one drawn from $B$?
+   (a) What is the chance the number drawn from $A$ is greater than the one drawn from $B$?
 
-\
+   \
 
-(b) What is the chance that the number drawn from $A$ is equal to the one drawn from $B$?
+   (b) What is the chance that the number drawn from $A$ is equal to the one drawn from $B$?
 
-\
+   \
 
-(c) What is the chance the number drawn from $A$ is smaller than the one drawn from $B$?
+   (c) What is the chance the number drawn from $A$ is smaller than the one drawn from $B$?
 
-\
+   \
 
-#### Question 5
+@. I want to estimate the proportion of people in Berkeley who speak at least two languages. I stand at the corner of University and Shattuck and ask each person who goes by how many languages they speak, and keep a count of how many speak at least two. Can I set this up as a box model? If so, how? If not, why not? 
 
-I want to estimate the proportion of people in Berkeley who speak at least two languages. I stand at the corner of University and Shattuck and ask each person who goes by how many languages they speak, and keep a count of how many speak at least two. Can I set this up as a box model? If so, how? If not, why not? 
+   \
 
-\
+   \
 
-\
-
-#### Question 6
+@.  
 
 (a) Consider the box $\fbox{ \fbox{1} \fbox{2} \fbox{2} \fbox{3} \fbox{4}}$. I draw two tickets at random **with** replacement. If my first draw is a 2, what is the chance that my second draw is a 3?
 

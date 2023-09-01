@@ -1,23 +1,10 @@
 ---
 title: "Summarizing Numerical Data"
-format:
-  pdf:
-    include-in-header: 
-      text: |
-        \usepackage{fancyhdr}
-    fontsize: 10pt
-    margin-top: .8in
-    margin-bottom: .5in
+subtitle: "PS"
+format: stat20handout-pdf
 ---
 
-\thispagestyle{empty}
-
-\begin{center}
-\textsc{{{< meta title>}}} \\
-\noindent\rule{12cm}{0.4pt}
-\end{center}
-
-1. In the space below, outline a procedure to take a data set like the following and return a single statistic that fulfills the desiderata:
+@. In the space below, outline a procedure to take a data set like the following and return a single statistic that fulfills the desiderata:
    a. The statistic will increase in magnitude as variability increases
    b. The statistic will decrease in magnitude as the variability decreases
    c. The statistic is zero when there is no variability
@@ -41,7 +28,7 @@ $$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11
 \
 \
 
-2. The small data set above was measured in meters, but what would have happened if it had been measured in decimeters (10 decimeters to a meter)? Provide reasoning for would happen to the measures of center - mean, median, mode - if it had instead been measured in centimeters. Repeat the exercise for three measures of spread: standard deviation and IQR. Which measures remain the same after a multiplicative change in units?
+@. The small data set above was measured in meters, but what would have happened if it had been measured in decimeters (10 decimeters to a meter)? Provide reasoning for would happen to the measures of center - mean, median, mode - if it had instead been measured in centimeters. Repeat the exercise for three measures of spread: standard deviation and IQR. Which measures remain the same after a multiplicative change in units?
 
 \
 \
@@ -53,13 +40,13 @@ $$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11
 \
 \
 
-3. Repeat exercise two, but consider a circumstance where the data set was recorded using a faulty measuring device that added .1 to each observation (instead of multiplying by 10). Which measures of center and spread remain the same after an additive change?
+@. Repeat exercise two, but consider a circumstance where the data set was recorded using a faulty measuring device that added .1 to each observation (instead of multiplying by 10). Which measures of center and spread remain the same after an additive change?
 
 
 
 {{< pagebreak >}}
 
-4. Sketch your best sense of the distribution of the following variable(s). For each, please: 
+@. Sketch your best sense of the distribution of the following variable(s). For each, please: 
 
   i. Use a form of statistical graphic that emphasizes the important elements of the distribution.
   ii. Label the axes and provide plausible values for the tick marks.
