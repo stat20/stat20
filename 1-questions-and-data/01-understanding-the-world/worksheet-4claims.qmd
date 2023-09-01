@@ -1,16 +1,19 @@
 ---
-title: ""
-format: pdf
+title: "Making Claims with Data"
+subtitle: "Extra Practice"
+format: stat20handout-pdf
 ---
 
-# Making Claims with Data
-
-For each of the following scenarios, identify which type of claim is being made: a Summary, a Generalization, a Causal Claim, or a Prediction.
+For each of the following scenarios, identify which type(s) of claim is being made: a *Summary*, a *Generalization*, a *Causal Claim*, or a *Prediction*. Some scenarios may have more than one.
+\
 
 @. NASA has published a data set containing total volume of each of the 8 planets of our solar system (Mercury is the smallest, Jupiter is the largest) and whether or not they are gaseous or rocky. Based on this data, an astronomer writes that, on average, gaseous planets are larger than rocky planets.
 
 <!-- Summary or Generalization depending on whether it's implied that we're talking about just our solar system. -->
 
+\
+\
+\
 \
 \
 \
@@ -22,11 +25,17 @@ For each of the following scenarios, identify which type of claim is being made:
 \
 \
 \
+\
+\
+\
 
 @. The group *Morning Consult* conducted a poll of a representative sample of registered 1,256 Republican voters on August 24, 2023, asking them who they planned to vote for in the primary election. 58% of respondents replied "Trump" and 14% replied "DeSantis". A major news outlet ran a headline, "Trump leads DeSantis by 44 points among registered Republican voters.
 
 <!-- Generalization -->
 
+\
+\
+\
 \
 \
 \
@@ -38,11 +47,21 @@ For each of the following scenarios, identify which type of claim is being made:
 \
 \
 \
+\
+\
+\
+
+{{< pagebreak >}}
 
 @. A 2020 study conducted in Sydney, Australia wanted to characterize the working arrangements of medical research scientists and support staff in Australia during the COVID‐19 pandemic, and to evaluate factors (in particular: wearing pyjamas) that influence the self‐assessed productivity and mental health of medical institute staff working from home. A newspaper article opened its article on the study with "Academics who are tempted to remain in pajamas during the working day should think again, says an Australian study that has linked the practice to a deterioration in mental health."
 
 <!---Causal, but justified? See https://www.everydayresearchmethods.com/current-affairs/ maybe can talk about which comes first, the not getting out of pyjamas or the (self-reported) poorer mental health--->
 
+\
+\
+\
+\
+\
 \
 \
 
@@ -54,11 +73,20 @@ For each of the following scenarios, identify which type of claim is being made:
 
 \
 \
+\
+\
+\
+\
+\
 
 @. Eli Lilly is a pharmaceutical company that is constantly on the hunt for new and effective drugs. They maintain an internal website called the Discovery Dashboard that allows researchers within the company to, at a glance, get a sense of the progress of various clinic trials. Pointing to a time-series line plot, a researcher exclaims, "Wow, I didn't realize how many phase II trials we had running back in January!"
 
 <!---Summary. The company will have the comprehensive list of how many trial they were engaged in in January.-->
 
+\
+\
+\
+\
 \
 \
 
