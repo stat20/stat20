@@ -60,8 +60,8 @@ is_not_live <- function(x, live_date, timezone, buffer) { # load utility functio
   if (file_date > (live_date - buffer)) {x} else {NULL}
 }
 
-buffer = lubridate::days(2)
-
+#buffer = lubridate::days(2)
+buffer = 0
 next_notes <- purrr::map(notes_list, 
                          is_not_live, 
                          live_date = live_date,
