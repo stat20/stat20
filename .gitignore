@@ -11,6 +11,7 @@
 *.aux
 *.log
 *.tex
+!_extensions/*/*/*.tex
 
 # Quarto render by-products
 *_files
