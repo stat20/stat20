@@ -12,9 +12,9 @@ listing:
       - image
     categories: false
   - id: ps-listing
-    template: assets/ejs-templates/assignments-ps.ejs
+    template: assets/listings/assignments-ps.ejs
     contents:
-      - "*ps.qmd"
+      - "*/ps.qmd"
     sort: "date desc"
     type: table
     fields:
