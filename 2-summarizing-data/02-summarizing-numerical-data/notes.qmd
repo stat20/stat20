@@ -12,7 +12,7 @@ format:
 - A tragedy written by the English playwright around 1600. 
 - 29,551 words on a page.
 
-You may recognize each of these as summaries of the play, "Hamlet". None of these are wrong, per se, but they do focus on very different aspects of the work. Summarizing something as rich and complex as Hamlet invariably involves a large degree of omission; we're reducing a document of 29,551 words down to a single sentence, after all. But summarization also involves important choices around what to include.
+You may recognize each of these as summaries of the play, "Hamlet". None of these are wrong, per se, but they do focus on very different aspects of the work. Summarizing something as rich and complex as Hamlet invariably involves a large degree of omission; we're reducing a document of 29,551 words down to a single sentence or phrase, after all. But summarization also involves important choices around what to include.
 
 The same considerations of omission and inclusion come into play when developing a numerical or graphical summary of a data set. Some guidance to bear in mind:
 
@@ -102,7 +102,7 @@ bill_16 %>%
 
 At first glance, a histogram looks like deceptively like bar chart. There are bars  arranged along the x-axis according to their values with heights that correspond to the count of each value found in the data set. So how is this not a bar chart?
 
-A histogram involves *aggregation*. The first step in creating a histogram is to divide the range of x into bins of equal size. The second step is to count up the number of observations that occur in each bin. In this way, some observations will have their own bar (every bar with a count of one) but others will be aggregated into the same bar: the tallest bar, with a count of 3, corresponds to all observations from 39.09 to 39.30: 39.1, 39.2, and 39.3.
+A histogram involves *aggregation*. The first step in creating a histogram is to divide the range of the variable into bins of equal size. The second step is to count up the number of observations that occur in each bin. In this way, some observations will have their own bar (every bar with a count of one) but other observations will be aggregated into the same bar: the tallest bar, with a count of 3, corresponds to all observations from 39.09 to 39.30: 39.1, 39.2, and 39.3.
 
 The degree of aggregation performed by the histogram is determined by the *binwidth*. Most software will automatically select the binwidth[^bw], but it can be useful to tinker with different values to see the distribution at different levels of aggregation. Here are four histograms of the same data that use four different binwidths.
 
@@ -225,7 +225,7 @@ penguins %>%
   geom_boxplot()
 ```
 
-The box plot conveys a similar story to the violin plot: Adelies have shorter bills than Chinstraps and Gentoos. Box plots have the advantage of requiring very little computation to construct[^boxplot], but in a world of powerful computers, that is no longer remarkable. What they lack is a "smootness-knob" that you can turn to perform more or less smoothing. For this reason, violins tend to be a more flexible alternative to box plots.
+The box plot conveys a similar story to the violin plot: Adelies have shorter bills than Chinstraps and Gentoos. Box plots have the advantage of requiring very little computation to construct[^boxplot], but in a world of powerful computers, that is no longer remarkable. What they lack is a "smootness-knob" that you can turn to perform more or less smoothing. For this reason, violin plots are a more flexible alternative to box plots.
 
 [^boxplot]: To read more about one common way to construct a box plot, see the [`ggplot2` documentation](https://ggplot2.tidyverse.org/reference/geom_boxplot.html#summary-statistics).
 
@@ -259,7 +259,7 @@ The other important characteristic of the shape of a distribution is its skew.
 
 ![](images/skew.png){width="500px" fig-align=center}
 
-The skew of a distribution describes the behavior of its tails: whether the right trail stretches out (right skew), the left tail stretches out (left skew), or if both tails are of similar length (symmetric). An example of a persistently right skewed distribution is household income in the United States:
+The skew of a distribution describes the behavior of its tails: whether the right tail stretches out (right skew), the left tail stretches out (left skew), or if both tails are of similar length (symmetric). An example of a persistently right skewed distribution is household income in the United States:
 
 ![](images/income-dist.png){fig-align=center width="400px"}
 
@@ -267,7 +267,7 @@ In the US, the richest households have much much higher incomes than most, while
 
 When translating a graphical summary of a distribution into words, some degree of judgement must be used. When is a second peak a mode and when is it just a bump in the distribution? When is one of the tails of a distribution long enough to tip the description from being symmetric to being right skewed? You'll hone your judgement in part through repeated practice: looking at lots of distributions and readings lots of descriptions. You can also let the questions of inclusion and omission be your guide. Is the feature a characteristic relevant to the question you're answering and the phenomenon you're studying? Or is it just a distraction from the bigger picture?
 
-Modality and skew capture the shape of the distribution, but how do we describe its center and spread? "Eyeballing it" each of these by looking at a graphic is an option. A more precise option, though, is to calculate a statistic.
+Modality and skew capture the shape of the distribution, but how do we describe its center and spread? "Eyeballing it" by looking at a graphic is an option. A more precise option, though, is to calculate a statistic.
 
 ## Constructing Numerical Summaries
 
@@ -291,7 +291,7 @@ $$8, 11, 7, 7, 8, 11,  9,  6,  10,  7,  9$$
 
 The mean, the median, and the mode are the three standard statistics used to measure the center of a distribution. Despite their ubiquity, these three are not carved somewhere on a stone tablet. They're common because they're useful and they're useful because they were constructed very thoughtfully.
 
-Let's start by layout some possible criteria for a measure of center.
+Let's start by laying out some possible criteria for a measure of center.
 
 :::{.callout-warning appearance="simple" icon=false}
 
@@ -301,7 +301,7 @@ Let's start by layout some possible criteria for a measure of center.
 - As close as possible to all of the observations.
 :::
 
-The (arithmetic) **mean** fulfills all three of these needs.
+The (arithmetic) **mean** fulfills all of these needs.
 
 :::{.column-margin}
 The function in R: `mean()`
@@ -366,7 +366,7 @@ That leads us to the measure of the **mode**, or the most common observation. Fo
 
 $$ 6 \quad {\Large 7 \quad 7 \quad  7} \quad 8 \quad 8 \quad 9 \quad 9 \quad 10 \quad 11  \quad 11$$
 
-While using the mode for this data set is sensible, it is common in numerical data for each value to be unique[^agg]. Is that case, there are no repeated values, and no identifiable mode. For that reason, it is unusual to calculate the mode to describe the center of a numerical variable.
+While using the mode for this data set is sensible, it is common in numerical data for each value to be unique[^agg]. In that case, there are no repeated values, and no identifiable mode. For that reason, it is unusual to calculate the mode to describe the center of a numerical variable.
 
 For categorical data, however, the mode is very useful. The mode of the species variable among  the Palmer penguins is "Adelie". Trying to compute the mean or the median species will leave you empty-handed. This is one of the lingering lessons of the Taxonomy of Data: the type of variable guides how it is analyzed.
 
