@@ -1,4 +1,5 @@
 # Provide pdf of notes on homepage for preview
+cli::cli_alert_info("Running {.path {'assets/scripts/preview-pdfs.r'}}")
 
 #=================================#
 # extract auto-publish parameters #
