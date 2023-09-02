@@ -126,7 +126,7 @@ schedule:
 auto-publish:
   timezone: "America/Los_Angeles"
   live-as-of: "Sys.time()"
-  preview-notes:
+  preview-pdfs:
       - day-of-notes: "Tue"                     # Use Mon, Tue, Wed, Thu, Fri, Sat, Sun
         on-homepage-from: "3 days, 8 hours"     # *before* 00:00 on day-of-notes
         on-homepage-to: "3 days, 15 hours"      # *after* 00:00 on day-of-notes

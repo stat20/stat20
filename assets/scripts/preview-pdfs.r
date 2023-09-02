@@ -107,7 +107,7 @@ if (length(notes_to_preview) > 0) {
 }
 
 #===============================#
-# write preview-notes-items.yml #
+# write preview-pdf-items.yml #
 #===============================#
 
 make_title <- function(x) {
@@ -136,7 +136,7 @@ reading_list <- notes_to_preview |>
   purrr::map(update_href)
 
 # write file
-yaml::write_yaml(reading_list, "assets/preview-notes-items.yml")
+yaml::write_yaml(reading_list, "assets/preview-pdf-items.yml")
 
 cli::cli_alert_success("PDFs of {unlist(purrr::map(reading_list, 'title'))} now available on home page.")
 
