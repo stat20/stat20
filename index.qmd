@@ -2,9 +2,9 @@
 toc: false
 page-layout: custom
 listing:
-  id: preview-notes
-  template: assets/preview-notes.ejs
-  contents: assets/preview-notes-items.yml
+  id: preview-pdfs
+  template: assets/preview-pdfs.ejs
+  contents: assets/preview-pdfs-items.yml
 ---
 
 :::::{.content-block}
@@ -22,7 +22,7 @@ Introduction to Probability and Statistics
 For information about the course, please [see the syllabus](syllabus.qmd).
 
 
-::: {#preview-notes}
+::: {#preview-pdfs}
 :::
 
 
