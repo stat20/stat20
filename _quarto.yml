@@ -21,7 +21,7 @@ website:
   page-navigation: true
   reader-mode: true
   navbar:
-    title: " "
+    title: false
     logo: assets/stat20-hex-small.png
     logo-alt: "Stat 20 logo"
     background: white
@@ -36,16 +36,17 @@ website:
         href: notes.qmd
       - text: Assignments
         href: assignments.qmd
-    right:
-      - text: "{{< fa comments >}}"
+    tools:
+      - icon: chat-fill
         href: https://edstem.org/us/courses/42631
         aria-label: Ed Discussion Forum
-      - text: "{{< fa chart-column >}}"
+      - icon: bar-chart-fill
         href: https://www.gradescope.com/courses/571644
         aria-label: Gradescope
-      - text: "{{< fa brands r-project >}}"
+      - icon: r-circle-fill
         href: https://stat20.datahub.berkeley.edu/
         aria-label: RStudio
+        
   page-footer: 
     background: white
     foreground: "gray-800"
