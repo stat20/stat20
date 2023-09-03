@@ -27,9 +27,10 @@ website:
       style: floating
       align: left
       contents:
-        - section: Guide
+        - section: Documention
           href: docs/index.qmd
           contents:
             - docs/website.qmd
+            - docs/slides.qmd
         
         
