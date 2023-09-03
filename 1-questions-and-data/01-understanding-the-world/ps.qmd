@@ -1,0 +1,14 @@
+---
+title: "Course Surveys"
+subtitle: "PS"
+format: stat20handout-pdf
+---
+
+Welcome to Stat 20!
+
+Please fill out the following two surveys:
+
+1. [Welcome Survey](https://forms.gle/rQJ2bGTA95WAv2St7)
+1. [Data Collection](https://forms.gle/mcC7n91dMAj6w9Kh7)
+
+Once you've completed them, please go to corresponding assignment on Gradescope to attest having completed them.

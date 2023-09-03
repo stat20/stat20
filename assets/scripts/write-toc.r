@@ -39,10 +39,10 @@ notes_menu <- notes_menu |>
 toc_yaml <- list(website = list(sidebar = list(list(title = "Notes",
                                                     style = "floating",
                                                     align = "left",
-                                                    "collapse-level" = 1L,
+                                                    "collapse-level" = 2L,
                                                     contents = notes_menu))))
 
 # write file
 yaml::write_yaml(toc_yaml, "_quarto-toc.yml")
 
-cli::cli_alert_success("Table of contents has been updated using the schedule of notes in {.path _course-settings.yml}.")
+cli::cli_alert_success("Table of contents has been updated by writing a new {.path _quarto-toc.yml} using the schedule of notes in {.path _course-settings.yml}.")

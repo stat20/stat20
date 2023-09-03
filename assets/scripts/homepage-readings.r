@@ -1,5 +1,5 @@
 # Provide pdf of notes on homepage for preview
-cli::cli_alert_info("Running {.path {'assets/scripts/preview-pdfs.r'}}")
+cli::cli_alert_info("Running {.path {'assets/scripts/homepage-readings.r'}}")
 
 #=================================#
 # extract auto-publish parameters #
@@ -66,9 +66,9 @@ add_preview_window <- function(x, preview_pdf_list, timezone) {
 notes_list <- notes_list |>
   purrr::map(\(x) add_preview_window(x, preview_pdf_list, timezone))
 
-#=====================#
-# find upcoming notes #
-#=====================#
+#=======================#
+# find notes to preview #
+#=======================#
 
 in_preview_window <- function(x, live_date) {
   if (live_date > x$on_homepage_from & live_date < x$on_homepage_to) {
@@ -125,7 +125,7 @@ update_title <- function(x) {
 
 repath_href <- function(x) {
   out <- stringr::str_replace(x, ".qmd", ".pdf")
-  paste0("on-deck/", out)
+  paste0("homepage-readings/", out)
 }
 
 update_href <- function(x) {
@@ -137,7 +137,7 @@ reading_list <- notes_to_preview |>
   purrr::map(update_href)
 
 # write file
-yaml::write_yaml(reading_list, "assets/preview-pdfs-items.yml")
+yaml::write_yaml(reading_list, "assets/listings/homepage-readings-items.yml")
 
 cli::cli_alert_success("PDFs of {unlist(purrr::map(reading_list, 'title'))} now available on home page.")
 

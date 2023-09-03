@@ -1,20 +1,8 @@
 ---
-format:
-  pdf:
-    include-in-header: 
-      text: |
-        \usepackage{fancyhdr}
-    fontsize: 10pt
-    margin-top: .8in
-    margin-bottom: .5in
+title: "Expectation and Variance"
+subtitle: "PS"
+format: stat20handout-pdf
 ---
-
-\thispagestyle{empty}
-
-\begin{center}
-\textsc{Stat 20: PS 4.2: Expected value and variance} \\
-\noindent\rule{12cm}{0.4pt}
-\end{center}
 
 #### Question 1  expected value from cdf of $X$
 Given the cdf of the random variable $X$ below, compute $E(X)$ and $Var(X)$.

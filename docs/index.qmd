@@ -1,0 +1,5 @@
+---
+title: "Documentation"
+---
+
+Welcome to the technical documentation of the Stat 20 curriculum and website.

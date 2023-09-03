@@ -11,6 +11,7 @@
 *.aux
 *.log
 *.tex
+!_extensions/*/*/*.tex
 
 # Quarto render by-products
 *_files
@@ -22,10 +23,11 @@ _freeze/
 /.quarto/
 _site
 
-# Files derived from _course-settings.yml
+# Files derived from _course-settings.yml and scripts
 **/images/tmp
 _quarto-toc.yml
 *items.yml
+homepage-readings/
 
 # PDFs not generated from qmds
 !3-generalization/labs/05-peoples-park/references/background-methods.pdf

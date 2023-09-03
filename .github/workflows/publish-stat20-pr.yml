@@ -32,7 +32,7 @@ jobs:
             
             # run pre-render scripts
             Rscript ./assets/scripts/propagate-dates.r
-            Rscript ./assets/scripts/preview-pdfs.r
+            Rscript ./assets/scripts/homepage-readings.r
             Rscript ./assets/scripts/ignore-future-docs.r
             Rscript ./assets/scripts/write-toc.r
             
