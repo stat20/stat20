@@ -1,22 +1,35 @@
 
 # Modify aesthetics and add Guide to navbar
 website:
-  title: "Stat 20 Staff Guide"
+  title: "Stat 20 Staff Site"
   open-graph:
-    site-name: "Stat 20 Staff Guide"
+    site-name: "Stat 20 Staff Site"
   navbar:
-    title: false
     background: warning
-    left:
-      - text: Guide
+    right:
+      - text: "Staff Guide"
         href: staff-guide/index.qmd
+      - text: "docs"
+        href: docs/index.qmd
   sidebar:
-    - title: "Guide"
+    - id: staff-guide
+      title: "Staff Guide"
       style: floating
       align: left
       contents:
         - staff-guide/index.qmd
         - staff-guide/roles-and-expectations.qmd
         - staff-guide/grading.qmd
-        - staff-guide/website.qmd
         - staff-guide/pre-semester-checklist.qmd
+        
+    - id: docs
+      title: "Docs"
+      style: floating
+      align: left
+      contents:
+        - section: Guide
+          href: docs/index.qmd
+          contents:
+            - docs/website.qmd
+        
+        
