@@ -97,19 +97,19 @@ if (length(notes_to_preview) > 0) {
   
   # quarto_render moves them to _site, where they'll
   # get deleted during project render. copy them
-  # to on-deck dir, which is in the project site resources
+  # to homepage-readings dir, which is in the project site resources
   
   pdfs <- list.files("_site", "notes\\.pdf$", recursive = TRUE)
   from <- fs::path(paste0("_site/", pdfs))
-  to <- fs::path(paste0("on-deck/", pdfs)) |>
+  to <- fs::path(paste0("homepage-readings/", pdfs)) |>
     stringr::str_remove("\\/notes.pdf")
   fs::dir_create(to)
   fs::file_move(from, to)
 }
 
-#===============================#
+#=============================#
 # write preview-pdf-items.yml #
-#===============================#
+#=============================#
 
 make_title <- function(x) {
   if(!exists("title", where = x)) {
