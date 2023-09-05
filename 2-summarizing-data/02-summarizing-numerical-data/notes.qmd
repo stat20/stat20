@@ -108,6 +108,7 @@ The degree of aggregation performed by the histogram is determined by the *binwi
 
 [^bw]: The `ggplot2` package in R defaults to 30 bins across the range of the data. That's a very rough rule-of-thumb, so tinkering is always a good idea.
 
+:::{.content-visible when-format="html"}
 ```{r}
 #| fig-align: center
 #| fig-height: 7
@@ -135,6 +136,39 @@ p4 <- bill_16 %>%
   lims(x = c(32.5, 42.5))
 p1 / p2 / p3 / p4
 ```
+:::
+
+:::{.content-hidden when-format="html"}
+```{r}
+#| fig-align: center
+#| fig-height: 7
+#| fig-width: 5
+#| code-fold: false
+#| echo: false
+library(patchwork)
+p1 <- bill_16 %>%
+  ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(binwidth = .2) +
+  labs(title = "binwidth = .2") +
+  lims(x = c(32.5, 42.5))
+p2 <- bill_16 %>%
+  ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(binwidth = .5) +
+  labs(title = "binwidth = .5") +
+  lims(x = c(32.5, 42.5))
+p3 <- bill_16 %>%
+  ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(binwidth = 1.5) +
+  labs(title = "binwidth = 1.5") +
+  lims(x = c(32.5, 42.5))
+p4 <- bill_16 %>%
+  ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(binwidth = 5) +
+  labs(title = "binwidth = 5") +
+  lims(x = c(32.5, 42.5))
+p1 / p2 / p3 / p4
+```
+:::
 
 If you are interested in only the coarsest structure in the distribution, best to use the larger binwidths. If you want to see more detailed structure, a smaller binwidth is better.
 
@@ -158,6 +192,7 @@ Besides the shift from bars to a smooth line, the density plot also changes the 
 
 The density plot, like the histogram, offers the ability to balance fidelity to the individual observations against a more general shape of the distribution. You can tip the balance to feature what you find most interesting but adjusting the *bandwidth* of the density plot.
 
+:::{.content-visible when-format="html"}
 ```{r}
 #| fig-align: center
 #| fig-height: 7
@@ -184,6 +219,39 @@ p4 <- bill_16 %>%
   lims(x = c(32.5, 42.5))
 p1 / p2 / p3 / p4
 ```
+:::
+
+:::{.content-hidden when-format="html"}
+```{r}
+#| fig-align: center
+#| fig-height: 7
+#| fig-width: 5
+#| code-fold: false
+#| echo: false
+
+p1 <- bill_16 %>%
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(bw = .2) +
+  labs(title = "bandwidth = .2") +
+  lims(x = c(32.5, 42.5))
+p2 <- bill_16 %>%
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(bw = .5) +
+  labs(title = "bandwidth = .5") +
+  lims(x = c(32.5, 42.5))
+p3 <- bill_16 %>%
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(bw = 1.5) +
+  labs(title = "bandwidth = 1.5") +
+  lims(x = c(32.5, 42.5))
+p4 <- bill_16 %>%
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(bw = 5) +
+  labs(title = "bandwidth = 5") +
+  lims(x = c(32.5, 42.5))
+p1 / p2 / p3 / p4
+```
+:::
 
 A density curve tends to convey the overall shape of a distribution more quickly than does a histogram, but be sure to experiment with different bandwidths. Strange but important features of a distribution can be hidden behind a density curve that is too smooth.
 
