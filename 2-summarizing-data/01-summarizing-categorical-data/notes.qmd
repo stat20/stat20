@@ -120,7 +120,6 @@ We can also opt to present these counts in graphical form by constructing a **ba
 ```{r}
 #| echo: false
 #| layout-ncol: 2
-#| code-fold: true
 #| fig-cap: [Stacked bar chart, Dodged bar chart]
 ggplot(penguins, aes(x = species,
                     fill = island)) +
