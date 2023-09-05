@@ -126,8 +126,13 @@ schedule:
 auto-publish:
   timezone: "America/Los_Angeles"
   live-as-of: "Sys.time()"
-  notes-1-release: "Friday, 17:00" # for Tu/Weds notes
-  notes-2-release: "Friday, 17:00" # for Thu/Fri notes
+  preview-pdfs:
+      - day-of-notes: "Tue"                     # Use Mon, Tue, Wed, Thu, Fri, Sat, Sun
+        on-homepage-from: "3 days, 8 hours"     # *before* 00:00 on day-of-notes
+        on-homepage-to: "3 days, 15 hours"      # *after* 00:00 on day-of-notes
+      - day-of-notes: "Thu"
+        on-homepage-from: "5 days, 8 hours"
+        on-homepage-to:  "1 day, 15 hours"
 
 instructors:
   - name: Andrew Bray

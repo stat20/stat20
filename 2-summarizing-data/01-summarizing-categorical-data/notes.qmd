@@ -39,14 +39,14 @@ In spring of 2022, the New York Times ran the following story[^nyt].
 
 Look carefully at the line plot. Which of the following four claims does it support?
 
-1. The CPI rose 8.3% in April.
-2. The CPI will likely rise throughout the summer.
-3. The global consumer price index rose in April.
+1. The CPI rose 8.3% in April, 2022.
+2. The CPI will likely rise throughout the summer of 2022.
+3. The global consumer price index rose in April, 2022.
 4. The CPI rose 8.3% because of the war in Ukraine.
 
 In truth, this plot could be consistent with all these claims. They are, in turn, a summary, a prediction, a generalization, and a causal claim. This newspaper headline falls squarely in the first category, a **summary**, which seeks only to describe the data set that is on hand.
 
-Although 8.3% seems like a simple enough number, is it actually *summarizing* a vast data set of thousands of prices. The process of describing a data set invariably involves summarizing it, either with **numerical summaries** like 8.3% or with **graphical summaries** like the line plot show above. 
+Although 8.3% seems like a simple enough number, it is actually *summarizing* a vast data set of thousands of prices. The process of describing a data set invariably involves summarizing it, either with **numerical summaries** like 8.3% or with **graphical summaries** like the line plot show above. 
 
 In this unit, we will learn to critique and construct descriptive claims made with data. Although they sound elementary, descriptive claims are the most common form of claim made using data. They have the power to move, if not mountains, at least markets.
 
@@ -217,7 +217,7 @@ df %>%
 ```
 :::
 
-The table on the right contains two different types of proportions that can be found in the middle and margins of the table, respectively.
+The second table contains two different types of proportions that can be found in the middle and margins of the table, respectively.
 
 **Joint Proportion**
 :    The proportion of observations of multiple variables that appear in a combination of levels of those variables. E.g. 44 / 333 = .132, the proportion of all 333 penguins that were Adelie and from Biscoe.

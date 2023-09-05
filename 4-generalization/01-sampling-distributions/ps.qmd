@@ -1,20 +1,7 @@
 ---
-format:
-  pdf:
-    include-in-header: 
-      text: |
-        \usepackage{fancyhdr}
-    fontsize: 10pt
-    margin-top: .8in
-    margin-bottom: .5in
+title: "Sampling Distributions"
+format: stat20handout-pdf
 ---
-
-\thispagestyle{empty}
-
-\begin{center}
-\textsc{Stat 20: PS 5.1 From Samples to Populations} \\
-\noindent\rule{12cm}{0.4pt}
-\end{center}
 
 ## Case Study 1: World Health Organization
 

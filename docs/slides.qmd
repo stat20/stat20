@@ -1,0 +1,51 @@
+# Slides
+
+![](images/slides-diagram.png)
+
+## Modifying your own slides
+
+1. Be sure your personal fork of the `course-materials` is up to date by syncing it to the one on `github.com/stat20`.
+
+2. Pull the most recent changes from your fork to your local machine.
+
+3. Make changes to `slides.qmd` and save.
+
+## Publishing your own slides
+
+Quarto Pub is a free service for publishing quarto documents, including slides, online. Start by setting up an account at <https://quartopub.com/>.
+
+1. Once you are set up with an account, in the terminal, navigate to the directory that contains your slides, for example: `cd summarizing-numerical-data`.
+
+2. Open `slides.qmd` and, ensure that under `revealjs:` that you add the option `self-contained: true`. (read more [here](https://quarto.org/docs/output-formats/html-basics.html#self-contained))
+
+3.   In that directory run:
+
+   ```{.bash filename="Terminal"}
+   quarto publish quarto-pub slides.qmd
+   ```
+   
+4. You may be prompted to answer a few questions at the terminal. If it successfully published, it will provide a link to your published document
+
+5. At this point, you're all set!
+
+If you'd like to learn more about publishing with Quarto Pub, see the [official documentation](https://quarto.org/docs/publishing/quarto-pub.html).
+
+## Test it out!
+
+Test it out by working in a much simpler directory than `course-materials`, one called `practice-repo`. Since you won't be pushing any commits back up to GitHub, you don't need a create your own fork.
+
+1. Create a new project in Rstudio from a version control repository and paste in `https://github.com/stat20/practice-repo` for the url.
+
+2. Modify `slides.qmd` in the `summarizing-numerical-data` directory by, say, replacing `"Instructor"` with your name in the header.
+
+3. In the terminal, navigate into the sub-directory with the slides: `cd summarizing-numerical-data`
+
+4. Still at the terminal, publish your slides:
+
+   ```{.bash filename="Terminal"}
+   quarto publish quarto-pub slides.qmd
+   ```
+   
+   Click through any prompts you might see at the terminal.
+
+5. If it publishes successfully, the terminal will print a link to your published document. Visit that site and check the link at the top that it says that it has been "Published at ...". It should appear as `<user_name>.quarto.pub/summarizing-categorical-data/`.
