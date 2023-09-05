@@ -374,13 +374,15 @@ For categorical data, however, the mode is very useful. The mode of the species 
 
 ### Measures of Spread
 
-There are many different ways to capture spread or dispersion of data. Two commonly-used statistics are the (sample) **variance**, $s^2$, and the (sample) **standard deviation**, *s*.
 
-$$ s^2 = \frac{1}{n - 1} \sum_{i=1}^{n} \left( x_i - \bar{x}\right)^2 $$
+There are many different ways to capture spread or dispersion of data.
+For example, the (sample) **variance** denoted by, $s^2$, is defined as
 
-$$ s = \sqrt{\frac{1}{n - 1} \sum_{i=1}^{n} \left( x_i - \bar{x}\right)^2} $$
+$$ s^2 = \frac{1}{n} \sum_{i=1}^{n} \left( x_i - \bar{x}\right)^2 = \text{average}\left( (x_1 - \bar{x})^2,  (x_2 - \bar{x})^2, \dots,  (x_n - \bar{x})^2 \right).$$
 
-Although the formulations might look dense, there are good reasons for each decision that was made in constructing these statistics. We will discuss those decisions, as well as several other ways one could measure spread, next class.
+Notice the variance is built out of the sample **deviations**, $x_1 - \bar{x}, x_2 - \bar{x}, \dots$; the variance is the average of the squared deviations! 
+
+There are a few variants of the variance you may come across. The first is the sample **standard deviation** $s = \sqrt{s^2}$, which is the square root of the variance. The nice thing about the standard deviation is that it has the same units as the original samples. Sometimes  you will see an $\frac{1}{n - 1}$ instead of the $\frac{1}{n}$. R uses this $n-1$ version!
 
 ## Summary
 
