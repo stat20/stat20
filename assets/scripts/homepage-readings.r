@@ -88,9 +88,7 @@ if (length(notes_to_preview) > 0) {
   notes_to_preview_href <- unlist(purrr::map(notes_to_preview, "href"))
   
   render_pdf <- function(x) {
-    quarto::quarto_render(x, 
-                          output_format = "pdf",
-                          debug = TRUE)
+    quarto::quarto_render(x, output_format = "pdf")
   }
   
   purrr::walk(notes_to_preview_href, render_pdf)
