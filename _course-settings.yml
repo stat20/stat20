@@ -125,7 +125,7 @@ schedule:
         
 auto-publish:
   timezone: "America/Los_Angeles"
-  live-as-of: "9/9/23" # Either Sys.time() or a date parseable by lubridate::mdy()
+  live-as-of: "9/13/23" # Either Sys.time() or a date parseable by lubridate::mdy()
   preview-pdfs:
       - day-of-notes: "Tue"                     # Use Mon, Tue, Wed, Thu, Fri, Sat, Sun
         on-homepage-from: "3 days, 8 hours"     # *before* 00:00 on day-of-notes
