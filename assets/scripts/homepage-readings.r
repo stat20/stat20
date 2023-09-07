@@ -98,10 +98,12 @@ if (length(notes_to_preview) > 0) {
   # quarto_render moves them to _site, where they'll
   # get deleted during project render. copy them
   # to homepage-readings dir, which is in the project site resources
+  # and give them a generic file name to not disrupt _ignore-future-docs.r
   
   pdfs <- list.files("_site", "notes\\.pdf$", recursive = TRUE)
   from <- fs::path(paste0("_site/", pdfs))
-  to <- fs::path(paste0("homepage-readings/", pdfs)) |>
+  temp_file_names <- paste0("reading-", seq_along(pdfs), ".pdf")
+  to <- fs::path(paste0("homepage-readings/", temp_file_names)) |>
     stringr::str_remove("\\/notes.pdf")
   fs::dir_create(to)
   fs::file_move(from, to)
@@ -124,18 +126,17 @@ update_title <- function(x) {
   purrr::list_modify(x, title = make_title(x))
 }
 
-repath_href <- function(x) {
-  out <- stringr::str_replace(x, ".qmd", ".pdf")
-  paste0("homepage-readings/", out)
+repath_href <- function(idx) {
+  paste0("homepage-readings/reading-", idx, ".pdf")
 }
 
-update_href <- function(x) {
-  purrr::list_modify(x, href = repath_href(x$href))
+update_href <- function(x, idx) {
+  purrr::list_modify(x, href = repath_href(idx))
 }
 
 reading_list <- notes_to_preview |>
   purrr::map(update_title) |>
-  purrr::map(update_href)
+  purrr::imap(\(x, idx) update_href(x, idx))
 
 # write file
 yaml::write_yaml(reading_list, "assets/listings/homepage-readings-items.yml")
