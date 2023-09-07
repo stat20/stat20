@@ -1,7 +1,7 @@
 project:
   type: website
   resources:
-    - "on-deck"
+    - "homepage-readings"
 
 # Website Configuration and Layout
 website:
