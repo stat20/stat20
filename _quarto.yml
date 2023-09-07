@@ -1,7 +1,7 @@
 project:
   type: website
   resources:
-    - "on-deck"
+    - "homepage-readings"
 
 # Website Configuration and Layout
 website:
@@ -74,7 +74,7 @@ format:
 
 # General Metadata
 execute:
-  freeze: auto
+  freeze: false
   message: false
   warning: false
   fig-align: center
