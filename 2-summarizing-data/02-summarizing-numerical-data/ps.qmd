@@ -28,7 +28,7 @@ $$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11
 \
 \
 
-@. The small data set above was measured in meters, but what would have happened if it had been measured in decimeters (10 decimeters to a meter)? Provide reasoning for would happen to the measures of center - mean, median, mode - if it had instead been measured in centimeters. Repeat the exercise for three measures of spread: standard deviation and IQR. Which measures remain the same after a multiplicative change in units?
+@. The small data set above was measured in meters, but what would have happened if it had been measured in decimeters (10 decimeters to a meter)? Provide reasoning for would happen to the measures of center - mean, median, mode - if it had instead been measured in decimeters. Repeat the exercise for three measures of spread: range, standard deviation, and IQR. Which measures remain the same after a multiplicative change in units?
 
 \
 \
