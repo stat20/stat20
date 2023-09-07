@@ -74,7 +74,7 @@ format:
 
 # General Metadata
 execute:
-  freeze: auto
+  freeze: false
   message: false
   warning: false
   fig-align: center
