@@ -105,7 +105,7 @@ if (length(notes_to_preview) > 0) {
   temp_file_names <- paste0("reading-", seq_along(pdfs), ".pdf")
   to <- fs::path(paste0("homepage-readings/", temp_file_names)) |>
     stringr::str_remove("\\/notes.pdf")
-  fs::dir_create(to)
+  fs::dir_create("homepage-readings")
   fs::file_move(from, to)
   fs::dir_delete("_site")
 }
