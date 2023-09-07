@@ -105,6 +105,7 @@ if (length(notes_to_preview) > 0) {
     stringr::str_remove("\\/notes.pdf")
   fs::dir_create(to)
   fs::file_move(from, to)
+  fs::dir_delete("_site")
 }
 
 #=============================#
