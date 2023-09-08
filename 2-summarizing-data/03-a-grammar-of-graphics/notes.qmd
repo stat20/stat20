@@ -264,7 +264,7 @@ Now that you have a sense of how to build a ggplot, scroll back up to the plots 
 
 ## Summary
 
-The Grammar of Graphics is a framework to express a great variety of statistical graphics in terms of their shared elements. In this framework, the core features of the plot are the data, the aesthetic mapping between aesthetic attributions and variables in the data frame, and the geometry that is used to express the observation. There are a wide range of geometries and aesthetic attributes that can be drawn from and recombined in powerful ways. These notes cover just the fundamentals of the framework, so if you are unsatisfied with the resulting plots, that's good. In the next set of notes, we will polish up these plots to make thoughtful graphics that focus on effectively conveying a single message.
+The Grammar of Graphics is a framework to express a great variety of statistical graphics in terms of their shared elements. In this framework, the core features of the plot are the data, the aesthetic mapping between aesthetic attributions and variables in the data frame, and the geometry that is used to express the observation. There are a wide range of geometries and aesthetic attributes that can be drawn from and recombined in powerful ways. These notes cover just the fundamentals of the framework, so if you are unsatisfied with the resulting plots, that's good. In the coming notes, we will polish up these plots to make thoughtful graphics that focus on effectively conveying a single message.
 
 
 {{< include images/tmp/_date-meta.md >}}
