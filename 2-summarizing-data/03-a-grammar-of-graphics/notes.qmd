@@ -21,7 +21,7 @@ Consider the manner in which variability in the data is being conveyed used diff
 
 Finally, how are the observations finding their way onto the plot? Three of the plots above share the same data variable, utilize the same visual cues, and differ only in the shape used to encode the observations.
 
-By asking these questions, we begin to find recurring structures in a wide range of plots types. These recurring structures have been compiled into a widely-used framework called the Grammar of Graphics.
+By asking these questions, we begin to find recurring structures in a wide range of plot types. These recurring structures have been compiled into a widely-used framework called the Grammar of Graphics.
 
 ## The Grammar of Graphics
 
@@ -61,7 +61,7 @@ ggplot(penguins, aes(x = bill_length_mm,
 
 ### Data
 
-What variables are needed to construct the penguins plot above?
+What variables are needed to construct the penguin plot above?
 
 We see `bill_length_mm` and `bill_depth_mm`; those are labeled clearly on the x and y axes. We must also know the `species` of each of these penguins in order to know which color to label each point. In other words, there are three columns of a data frame that we need to have on hand.
 
@@ -82,9 +82,9 @@ More fundamentally, be sure the data you're using is well-suited to the message 
 
 ### Aesthetics
 
-The most impactful decision that you'll make when constructing a plot using the grammar of graphics is deciding how to encode *variables in a data frame* into *visual variation in your plot*.
+The most impactful decision that you'll make when constructing a plot using the grammar of graphics is deciding how to encode variables in a data frame into visual variation in your plot.
 
-The penguins plot relies upon three forms of visual variation. The first is the location along the x-axis. Penguins with longer bills are placed on the right side of the plot and those with shorter bills are placed on the left. Variation in bill depth is captured by variation in the location along the y-axis, which is the second form. The third form is color: each of the three species is designated one of three colors.
+The penguin plot relies upon three forms of visual variation. The first is the location along the x-axis. Penguins with longer bills are placed on the right side of the plot and those with shorter bills are placed on the left. Variation in bill depth is captured by variation in the location along the y-axis, which is the second form. The third form is color: each of the three species is designated by one of three colors.
 
 ![](images/mapping.png){fig-align=center}
 
@@ -106,7 +106,7 @@ These are three of many different techniques for visually encoding variability. 
 
 ### Geometries
 
-With the data set in place and the aesthetic mappings selected, the final choice in making our plot is to decide how to graphically express the observations themselves. For the penguins plot above, each observation in represented by a point, so it is said to use a "point" geometry. That is just one of many options.
+With the data set in place and the aesthetic mappings selected, the final choice in making our plot is to decide how to graphically express the observations themselves. For the penguin plot above, each observation in represented by a point, so it is said to use a "point" geometry. That is just one of many options. Other options are listed below.
 
 - `point`
 - `bar`
@@ -216,7 +216,7 @@ ggplot(penguins)
 
 The `ggplot()` function takes as its first argument a data frame. By itself, there's not much to look at; it just creates our blank canvas.
 
-Let's indicate how we want to map our aesthetic attributes to variables in that data frame by including them inside the `aes()` function as the second argument to `ggplot()`.
+Let's now indicate how we want to map our aesthetic attributes to variables in that data frame by including them inside the `aes()` function as the second argument to `ggplot()`.
 
 ```{r}
 #| fig-width: 5.2
@@ -241,7 +241,7 @@ ggplot(penguins, aes(x = bill_length_mm,
     geom_point()
 ```
 
-Here is something that is recognizable as a scatter plot. This is a good choice of plot for visualizing the relationship between two numerical variables. The original penguins plot, though, visualizes the relationship between *three* variables. To complete our plot, let's add in that third variable by mapping species to the color aesthetic attribute.
+Here is something that you may recognize as a scatter plot. This is a good choice of plot for visualizing the relationship between two numerical variables. The original penguin plot, though, visualizes the relationship between *three* variables. To complete our plot, let's add in that third variable by mapping species to the color aesthetic attribute.
 
 ```{r}
 #| fig-width: 5.2
@@ -264,7 +264,7 @@ Now that you have a sense of how to build a ggplot, scroll back up to the plots 
 
 ## Summary
 
-The Grammar of Graphics is a framework to express a great variety of statistical graphics in terms of their shared elements. In this framework, the core features of the plot are the data, the aesthetic mapping between aesthetic attributions and variables in the data frame, and the geometry that is used to express the observation. There are a wide range of geometries and aesthetic attributes that can be drawn from and recombined in powerful ways. These notes cover just the fundamentals of the framework, so if you are unsatisfied with the resulting plots, that's good. In the next set of notes, we will polish up these plots to make thoughtful graphics that focus on effectively conveying a single message.
+The Grammar of Graphics is a framework to express a great variety of statistical graphics in terms of their shared elements. In this framework, the core features of the plot are the data, the aesthetic mapping between aesthetic attributions and variables in the data frame, and the geometry that is used to express the observation. There are a wide range of geometries and aesthetic attributes that can be drawn from and recombined in powerful ways. These notes cover just the fundamentals of the framework, so if you are unsatisfied with the resulting plots, that's good. In the coming notes, we will polish up these plots to make thoughtful graphics that focus on effectively conveying a single message.
 
 
 {{< include images/tmp/_date-meta.md >}}
