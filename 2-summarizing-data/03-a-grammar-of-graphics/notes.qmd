@@ -84,7 +84,7 @@ More fundamentally, be sure the data you're using is well-suited to the message 
 
 The most impactful decision that you'll make when constructing a plot using the grammar of graphics is deciding how to encode variables in a data frame into visual variation in your plot.
 
-The penguins plot relies upon three forms of visual variation. The first is the location along the x-axis. Penguins with longer bills are placed on the right side of the plot and those with shorter bills are placed on the left. Variation in bill depth is captured by variation in the location along the y-axis, which is the second form. The third form is color: each of the three species is designated by one of three colors.
+The penguin plot relies upon three forms of visual variation. The first is the location along the x-axis. Penguins with longer bills are placed on the right side of the plot and those with shorter bills are placed on the left. Variation in bill depth is captured by variation in the location along the y-axis, which is the second form. The third form is color: each of the three species is designated by one of three colors.
 
 ![](images/mapping.png){fig-align=center}
 
