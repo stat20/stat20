@@ -19,7 +19,7 @@ $$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11
 \
 \
 \
-\
+\ 
 \
 \
 \
