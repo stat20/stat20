@@ -7,6 +7,27 @@ format:
   pdf: default
 ---
 
+
+:::{.lo .content-hidden unless-profile="staff-site"}
+
+#### Concept Acquisition
+
+1. Wilkinson's Grammar of Graphic provides a unifying framework to describe a wide range of statistical graphics.
+2. A plot can be decomposed into a series of layers that include the data, the aesthetic mappings, the geometry, and more.
+3. Aesthetic mappings link the variability in a data variable to the variablity in an aesthetic / visual cue.
+4. The geometry describes the manner in which the obserbations will be represented on the plot.
+5. Facets allow for multiple subplots for subsets of the data.
+
+#### Tool Acquisition
+
+Todo
+
+
+#### Concept Application
+
+Todo
+:::
+
 [I]{.dropcap}n the last set of notes, we saw that there is a side to the discipline of Statistics that looks like engineering. Summary statistics - medians, standard deviations, etc. - are carefully crafted tools that capture different characteristics of a data set for use in very specific situations. There is another practice in statistics that looks more like a science; that is, a field that seeks to take many different phenomena and explain them using a systematic overarching theory. That practice is data visualization.
 
 At this point in the course, you've seen several several examples of data visualizations.
@@ -29,13 +50,13 @@ In 1999, a statistician named Leland Wilkinson published the first edition of wh
 
 [^gofg]: Wilkinson, Leland. *The grammar of graphics*. Springer Science & Business Media, 2005.
 
+![](images/grammar-of-graphics.png){.column-margin}
+
 Nearly every current software tool used to build plots has been informed by this book[^vishist]. Its influence can be found in Tableau, Plotly, and the Python libraries bokeh, altair, seaborn, and plotnine. The most complete implementation of the grammar is found in an R package called ggplot2 by Hadley Wickham[^ggplot].
 
 [^vishist]: For more context around The Grammar of Graphics and the development of modern visualization tools, read the brief *Three Waves of Data Visualization* by Elijah Meeks, Senior Data Visualization Engineer at Netflix: <https://www.tableau.com/about/blog/2019/2/three-waves-data-visualization-brief-history-and-predictions-future-100830>.
 
 [^ggplot]: The `ggplot2` package is described in the manuscript, [*A layered grammar of graphics*](https://vita.had.co.nz/papers/layered-grammar.pdf), by Hadley Wickham in the Journal of Computational and Graphical Statistics in 2010.
-
-![](images/grammar-of-graphics.png){fig-align=center width="600px"}
 
 In Wickham's adaptation of the grammar of graphics, a plot can be decomposed into three primary elements:
 
