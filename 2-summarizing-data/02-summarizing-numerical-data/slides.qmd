@@ -236,11 +236,7 @@ $$ {\Large 6} \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10
 
 $$\textrm{range:} \quad max - min$$
 
-. . .
-
 $$ 11 - 6 = 5$$
-
-. . .
 
 **Characteristics**
 
@@ -259,11 +255,7 @@ The difference between the median of the larger half of the sorted data set, $Q_
 
 $$\textrm{IQR:} \quad Q_3 - Q_1$$
 
-. . .
-
 $$ 9.5 - 7 = 2.5 $$
-
-. . .
 
 **Characteristics**
 
@@ -282,16 +274,12 @@ Take the differences from each observation, $x_i$, to the sample mean, $\bar{x}$
 
 $$MAD: \quad \frac{1}{n}\sum_{i = 1}^n |x_i - \bar{x}| $$
 
-. . .
-
 ```{r eval = FALSE}
 x <- c(6, 7, 7, 7, 8, 8, 9, 9, 10, 11, 11)
 sum(abs(x - mean(x)))/11
 ```
 
 $$ MAD = 1.4 $$
-
-. . .
 
 **Characteristics**
 
@@ -311,8 +299,6 @@ Take the differences from each observation, $x_i$, to the sample mean, $\bar{x}$
 
 $$s^2: \quad \frac{1}{n - 1}\sum_{i = 1}^n (x_i - \bar{x})^2 $$
 
-. . .
-
 ```{r eval = FALSE}
 x <- c(6, 7, 7, 7, 8, 8, 9, 9, 10, 11, 11)
 sum((x - mean(x))^2)/(11-1)
@@ -320,8 +306,6 @@ var(x)
 ```
 
 $$ s^2 = 2.87 $$
-
-. . .
 
 :::: {.columns}
 
@@ -351,8 +335,6 @@ Take the differences from each observation, $x_i$, to the sample mean, $\bar{x}$
 
 $$s: \quad \sqrt{\frac{1}{n - 1}\sum_{i = 1}^n (x_i - \bar{x})^2} $$
 
-. . .
-
 ```{r eval = FALSE}
 x <- c(6, 7, 7, 7, 8, 8, 9, 9, 10, 11, 11)
 sqrt(sum((x - mean(x))^2)/(11-1))
@@ -360,8 +342,6 @@ sd(x)
 ```
 
 $$ s = 1.70 $$
-
-. . .
 
 :::: {.columns}
 

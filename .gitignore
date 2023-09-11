@@ -18,6 +18,7 @@
 *.html
 *.pdf
 _freeze/
+*notes.md
 
 # Quarto projects specific
 /.quarto/

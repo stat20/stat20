@@ -10,7 +10,7 @@ format:
 
 [I]{.dropcap}n the world of data, bigger is not always better. Sometimes there are real benefits to working with a subset of your observations that meet some particular condition. One use of conditioning is to add specificity to a claim. Another use of conditioning is to illuminate the relationship between variables.
 
-To practice with conditioning, let's turn to a data set that begins with a very general focus. In 2007, Savage and West published *A qualitative, theoretical framework for understanding mammalian sleep*[^msleep], wherein they "develop a general, quantitative theory for mammalian sleep that relates many of its fundamental parameters to metabolic rate and body size". Characterizing the sleep patterns of *all* mammals is a broad task and their data set is corresponding diverse.
+To gain practice with conditioning, let's turn to a data set that begins with a very general focus. In 2007, Savage and West published *A qualitative, theoretical framework for understanding mammalian sleep*[^msleep], wherein they "develop a general, quantitative theory for mammalian sleep that relates many of its fundamental parameters to metabolic rate and body size". Characterizing the sleep patterns of *all* mammals is a broad task and their data set is corresponding diverse. Take a look at the first ten rows of their data below.
 
 ```{r}
 library(tidyverse)
@@ -54,7 +54,7 @@ The mammals vary from the wee brown bat, slumbering for nearly 20 hours a day, t
 
 If you think about the shape of a data frame, there are two basic ways you might go about slicing and dicing it into smaller subsets.
 
-One way is to go at it column-by-column. The act of selecting a subset of the columns of a data frame is called, well, *selecting*. When you select a column, you can do so either by its name or by its column number (or index). Selecting columns by name is more useful because their order tends to be arbitrary and might change over the course of an analysis.
+One way is to go at it is column-by-column. The act of selecting a subset of the columns of a data frame is called, well, *selecting*. When you select a column, you can do so either by its name or by its column number (or index). Selecting columns by name is more useful because their order tends to be arbitrary and might change over the course of an analysis.
 
 The other way to go at it is row-by-row. The act of subsetting the rows of the data frame based on their row number is called *slicing*. As with columns, the order of the rows is also often arbitrary, so this is of limited use. Much more useful is *filtering*.
 
@@ -66,7 +66,7 @@ In the tidyverse, these functions are named `select()`, `slice()`, and `filter()
 
 :   The act of subsetting the rows of a data frame based on the values of one or more variables to extract the observations of interest.
 
-Filters are powerful because they are they comb through the values of the data frame, which is where most of the information is. The key part of any filter is the condition that you assert for the rows that are retained in your data frame. Let's set up a filter to return only the little brown bat.
+Filters are powerful because they comb through the values of the data frame, which is where most of the information is. The key part of any filter is the condition that you assert for the rows that are retained in your data frame. Let's set up a filter to return only the little brown bat.
 
 ```{r}
 #| code-fold: false
@@ -74,7 +74,7 @@ Filters are powerful because they are they comb through the values of the data f
 filter(msleep, name == "Little brown bat")
 ```
 
-Here `name == "Little brown bat"` is the condition that must be met by any row in the data set that is returned. The syntax used to set up the condition is a comparison between a column in the data frame on the left and a possible value of that column on the right.
+Here `name == "Little brown bat"` is the condition that must be met by any row in the data set to be retained. The syntax used to set up the condition is a comparison between a column in the data frame on the left and a possible value of that column on the right.
 
 ### Comparison Operators
 
@@ -101,7 +101,7 @@ The filter above uses the most direct condition: it retains the rows that have a
 
 ::::
 
-At first, the `==` operator looks like a typo. Why doesn't we use `=`? The reason is that a single equals sign is already busy at work in R: it sets the values of arguments inside a function. Here, it is determinining whether the thing on the left holds the same value as the thing on the right. It might help you keep things straight if you read it in your head as "is exactly equal to".
+At first, the `==` operator looks like a typo. Why doesn't we use `=`? The reason is that a single equals sign is already busy at work in R: it sets the values of arguments inside a function. Instead of assignment, we want to determine whether the thing on the left holds the same value as the thing on the right, so we use `==`. It might help you keep things straight if you read it in your head as "is exactly equal to".
 
 Let's return only the rows with large animals, defined as those with a log body weight greater than 12.
 
@@ -111,7 +111,7 @@ Let's return only the rows with large animals, defined as those with a log body 
 filter(msleep, log_bodywt > 12)
 ```
 
-There were 9 such animals and all of them large.
+There were 9 such animals and you can see all of them are large.
 
 ### Logical Operators
 
@@ -125,7 +125,7 @@ This filter returns the creatures who are large and who sleep little.
 filter(msleep, log_bodywt > 12 & sleep_total < 5)
 ```
 
-This can be read as "filter the msleep data frame to return the rows where both the log body weight is greater than 12 and the sleep total is less than 5". We see that there are 8 such creatures, one fewer than the data frame with only the body weight filter (bottle-nosed dolphins sleep, on average, 5.2 hrs).
+This can be read as "filter the `msleep` data frame to return the rows where both the log body weight is greater than 12 and the sleep total is less than 5". We see that there are 8 such creatures, one fewer than the data frame with only the body weight filter (bottle-nosed dolphins sleep, on average, 5.2 hrs).
 
 Using `&` to represent "and" is common across most computer languages but you can alternatively use the somewhat more compact syntax of simply adding the second filter after a comma.
 
@@ -190,7 +190,7 @@ filter(msleep, name %in% c("Little brown bat", "African elephant"))
 
 ### Taxonomy of Data: Logicals
 
-It is useful to pause here to look under the hood of this code. Once you get accustomed to the comparison operators and the syntax, the R code reads very similarly to the equivalent english command. But how are those comparisons being represented in terms of data?
+It is useful to pause here to look under the hood of this code. Once you get accustomed to the comparison operators and the syntax, the R code reads very similarly to the equivalent English command. But how are those comparisons being represented in terms of data?
 
 To answer this question, consider a simple numeric vector of four integers.
 
@@ -234,7 +234,7 @@ This dual representation is very useful because it allows us to compute a propor
 mean(a < 5)
 ```
 
-`a < 5` results in a vector with two 1s and two 0. When you take the mean like this, you're really finding the proportion of the elements that meet the condition that you laid out in your comparison. This is a very handy trick. We'll use it more in a moment.
+`a < 5` results in a vector with two 1s and two 0s. When you take the mean like this, you're really finding the proportion of the elements that meet the condition that you laid out in your comparison. This is a very handy trick. We'll use it more in a moment.
 
 <!-- ## Missing Data -->
 
@@ -296,7 +296,7 @@ msleep %>%
     arrange(desc(log_bodywt))
 ```
 
-This code results in same output as the first version, but it now reads a bit like a poem: "Take the msleep data frame then filter it such that the log body weight is greater than twelve then arrange it in descending order by log body weight".
+This code results in the same output as the first version, but it now reads a bit like a poem: "Take the `msleep` data frame then filter it such that the log body weight is greater than twelve then arrange it in descending order by log body weight".
 
 :::{.column-margin}
 This poem is admittedly not particularly poetic.
@@ -371,9 +371,9 @@ msleep %>%
     group_by(vore)
 ```
 
-This look . . . exactly like the original data frame.
+This looks . . . exactly like the original data frame.
 
-Well, not *exactly* like it: there is now a note at the top that the data frame now has the notion of groups based on `vore`. In effect, `group_by()` has taken the generic data frame and turned it into the one in the middle below: the same data frame but with rows now flagged as belonging to one group or another. When we pipe this grouped data frame into `summarize()`, which collapses that data frame down into a single row for each group and creates a new column for each new summary statistic.
+Well, not *exactly* like it: there is now a note at the top that the data frame now has the notion of groups based on `vore`. In effect, `group_by()` has taken the generic data frame and turned it into the one in the middle below: the same data frame but with rows now flagged as belonging to one group or another. When we pipe this grouped data frame into `summarize()`, `summarize()` collapses that data frame down into a single row for each group and creates a new column for each new summary statistic.
 
 ![](images/group-by.png){fig-align=center width="500px"}
 
@@ -381,7 +381,7 @@ Well, not *exactly* like it: there is now a note at the top that the data frame 
 
 ## Summary
 
-There are several ways to subset a data frame but the most important for data analysis is filtering: subsetting the rows according to a condition. In R, that condition is framed in terms of a comparison between a vector and a value (or set of values). Comparisons and take many forms and can be combined using logical operators. The result is a logical vector that can be used for filtering or computing summary statistics. You can perform simulataneous analyses on multiple subsets by doing groupwise operations with `group_by()`.
+There are several ways to subset a data frame but the most important for data analysis is filtering: subsetting the rows according to a condition. In R, that condition is framed in terms of a comparison between a variable and a value (or set of values). Comparisons take many forms and can be combined using logical operators. The result is a logical vector that can be used for filtering or computing summary statistics. You can perform simulataneous analyses on multiple subsets by doing groupwise operations with `group_by()`.
 
 As we begin to do analyses that require multiple operations, the pipe operator, `%>%`, can be used to stitch the functions together into a single pipeline.
 
