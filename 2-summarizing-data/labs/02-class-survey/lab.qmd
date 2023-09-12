@@ -17,19 +17,6 @@ To answer this worksheet, consult the printout of the original survey found [her
 
 ## Part II: Computing on the Data
 
-The easiest way to create your qmd will be to run the following line of code at the console in RStudio. It will download the questions found below into a new qmd and put it into an RStudio project to help keep your code organized.
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-fold: false
-usethis::use_course("https://tinyurl.com/lab-2-class-survey")
-```
-
-And answer yes to both questions that appear in the console.
-
-* * *
-
 The real data from your surveys is available in the `stat20data` package as `class_survey`.
 
 Using this data, i. construct the plots that you proposed in Part I, and ii. calculate for the first three a measure of a typical observation (mean, median, or mode, as appropriate). Use these summaries to answer the original question in a sentence or two, noting, where appropriate, the shape of the distribution and what a "typical" observation is.
@@ -51,7 +38,7 @@ What is the relationship between students' optimism for cryptocurrency and their
 
 Six variables appear in the survey data frame that were derived from the original `title` question: `artist`, `humanist`, `natural_scientist`, `social_scientist`, `comp_scientist` and `entrepreneur`. The `artist` variable is `TRUE` for those students who most identified as an artist and `FALSE` otherwise. The other five variables are defined similarly.
 
-For the following three questions, please answer with a plot and a sentence or two written response given the structure in the plot.
+For the following four questions, please answer with a plot and a sentence or two written response given the structure in the plot.
 
 #### Question 5  
 Is there an association between students most identifying as an entrepreneur and their optimism for cryptocurrency?
