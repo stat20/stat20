@@ -356,7 +356,8 @@ It's good practice to understand the output of each line of code by *breaking th
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r 
+
+```{r}
 #| echo: true
 #| eval: true
 #| error: true
