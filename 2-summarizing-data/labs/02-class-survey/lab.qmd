@@ -8,7 +8,7 @@ sidebar: false
 
 ## Part I: Understanding the Context of the Data
 
-Please record your answers on the worksheet below and upload it to Gradescope as Lab 1.1.
+Please record your answers on the worksheet below and upload it to Gradescope.
 
 - [Part 1: Understanding the Context of the Data](lab-context.qmd)
 
