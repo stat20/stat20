@@ -413,7 +413,8 @@ Here, the first argument, `arbuthnot`, is piped to `mutate()` and the second arg
 ```{r}
 #| code-fold: false
 arbuthnot %>%
-    mutate(total = boys + girls, girl_proportion = girls / total) %>%
+    mutate(total = boys + girls,
+           girl_proportion = girls / total) %>%
     arrange(desc(total)) %>%
     select(year, total, girl_proportion)
 ```
@@ -427,14 +428,15 @@ This function is defined above as "selecting a subset of the columns of a data f
 ```{r}
 #| code-fold: false
 arbuthnot %>%
-    mutate(total = boys + girls, girl_proportion = girls / total) %>%
+    mutate(total = boys + girls,
+           girl_proportion = girls / total) %>%
     arrange(desc(total)) %>%
     select(-c(boys, girls))
 ```
 
 #### `arrange()`
 
-This function arranges the rows of a dataframe according to some logical ordering of a column. This ordering is straightforward when talking about numeric columns; the smallest numbers are placed first and ascend to the larger ones. That is, unless you wrap the column in `desc()` (which stands for descending). 
+This function arranges the rows of a data frame according to some logical ordering of a column. This ordering is straightforward when talking about numeric columns; the smallest numbers are placed first and ascend to the larger ones. That is, unless you wrap the column in `desc()` (which stands for descending). 
 
 But what if you pass a column of characters to `arrange()`? Let's take a look:
 
