@@ -15,6 +15,7 @@ listing:
     template: assets/listings/assignments-ps.ejs
     contents:
       - "*/ps.qmd"
+      - "*/_ps.qmd"
     sort: "date desc"
     type: table
     fields:
