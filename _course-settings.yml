@@ -28,9 +28,9 @@ schedule:
         date: 09/12/23
       - href: 2-summarizing-data/04-conditioning/notes.qmd
         date: 09/14/23
-      - href: 2-summarizing-data/labs/03-flights/lab.qmd
-        date: 09/14/23
       - href: 2-summarizing-data/05-communicating-with-graphics/notes.qmd
+        date: 09/19/23
+      - href: 2-summarizing-data/labs/03-flights/lab.qmd
         date: 09/19/23
       - href: 2-summarizing-data/06-summarizing-associations/notes.qmd
         date: 09/21/23
