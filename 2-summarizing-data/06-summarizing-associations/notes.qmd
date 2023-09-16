@@ -10,6 +10,7 @@ format:
 
 [W]{.dropcap}hich of the following plots do you think depicts the relationship between the high school graduation rate and the poverty rate among the 50 US states?
 
+:::{.content-visible when-format="html"}
 ```{r}
 #| fig-height: 3
 #| fig-width: 6.2
@@ -45,6 +46,46 @@ pB <- ggplot(poverty_shuffled, aes(x = Poverty,
 library(patchwork)
 pA + pB
 ```
+:::
+
+:::{.content-visible when-format="pdf"}
+```{r}
+#| fig-height: 3
+#| fig-width: 6.2
+#| fig-align: center
+#| echo: false
+library(tidyverse)
+poverty <- read_delim("https://www.dropbox.com/s/0z45xgms0sie7l9/poverty.csv?dl=1")
+
+poverty <- poverty %>%
+  mutate(group = case_when(
+    Poverty < 9 ~ "low",
+    Poverty >= 9 & Poverty <= 13 ~ "med",
+    Poverty > 13 ~ "hi"
+  )) 
+
+pA <- ggplot(poverty, aes(x = Poverty, 
+                    y = Graduates)) +
+  geom_point() +
+  labs(x = "Poverty Rate",
+       y = "Graduation Rate") +
+  theme_bw()
+
+set.seed(50)
+poverty_shuffled <- poverty
+poverty_shuffled$Graduates <- sample(poverty$Graduates)
+
+pB <- ggplot(poverty_shuffled, aes(x = Poverty, 
+                    y = Graduates)) +
+  geom_point() +
+  labs(x = "Poverty Rate",
+       y = "Graduation Rate") +
+  theme_bw()
+
+library(patchwork)
+pA + pB
+```
+:::
 
 If you guessed the plot on the left, you are correct :tada:.
 
@@ -59,6 +100,7 @@ You can detect associations in scatter plots by scanning from left to right alon
 These density curves are conditional distributions because we've set a condition on the data we're visualizing. When focusing on the data that's in the blue box, for example, we've in effect set up a filter where Poverty < 9.
 :::
 
+:::{.content-visible when-format="html"}
 ```{r}
 #| fig-height: 3
 #| fig-width: 7.5
@@ -122,6 +164,74 @@ p_real_scatter + p_real_densities +
   p_shuf_scatter + p_shuf_densities + 
   plot_layout(widths = c(4, 1, 4, 1))
 ```
+:::
+
+:::{.content-visible when-format="pdf"}
+```{r}
+#| fig-height: 3
+#| fig-width: 7.5
+#| fig-align: center
+#| echo: false
+
+# Prepare plot on the left
+poverty_2 <- poverty %>%
+  filter(group != "med")
+
+p_real_densities <-  poverty_2 %>%
+  ggplot(aes(y = Graduates, fill = group)) +
+  geom_density(alpha = .5) +
+  theme_void() + 
+  theme(legend.position = "none") +
+  lims(y = c(77, 92.5))
+
+p_real_scatter <- poverty %>%
+  ggplot(aes(x = Poverty, 
+             y = Graduates)) +
+  annotate("rect", xmin = 5, xmax = 9,
+           ymin = 77, ymax = 92.5, alpha = .35,
+           color = "#00BFC4", fill = NA) +
+  annotate("rect", xmin = 13, xmax = 18,
+           ymin = 77, ymax = 92.5, alpha = .35,
+           color = "#F8766D", fill = NA) +
+  geom_point() +
+  geom_rug(data = poverty_2,
+           aes(color = group), 
+           alpha = .8, sides = "r") +
+  theme_bw() +
+  theme(legend.position = "none")
+
+# Prepare plot on the right
+poverty_shuffled_2 <- poverty_shuffled %>%
+  filter(group != "med")
+
+p_shuf_densities <-  poverty_shuffled_2 %>%
+  ggplot(aes(y = Graduates, fill = group)) +
+  geom_density(alpha = .5) +
+  theme_void() + 
+  theme(legend.position = "none") +
+  lims(y = c(77, 92.5))
+
+p_shuf_scatter <- poverty_shuffled_2 %>%
+  ggplot(aes(x = Poverty, 
+             y = Graduates)) +
+  annotate("rect", xmin = 5, xmax = 9,
+           ymin = 77, ymax = 92.5, alpha = .35,
+           color = "#00BFC4", fill = NA) +
+  annotate("rect", xmin = 13, xmax = 18,
+           ymin = 77, ymax = 92.5, alpha = .35,
+           color = "#F8766D", fill = NA) +
+  geom_point() +
+  geom_rug(data = poverty_shuffled_2,
+           aes(color = group), 
+           alpha = .8, sides = "r") +
+  theme_bw() +
+  theme(legend.position = "none")
+
+p_real_scatter + p_real_densities + 
+  p_shuf_scatter + p_shuf_densities + 
+  plot_layout(widths = c(4, 1, 4, 1))
+```
+:::
 
 The plot on the right, by contrast, exhibits no association between poverty rate and graduation rate. When we compare the low poverty states with the high poverty states, their conditional distributions of Graduation rate are essentially the same.
 
@@ -287,6 +397,7 @@ This residual tells us that California is actually a bit of an underachiever. Am
 
 The calculation of the residual can be seen in the plot below.
 
+:::{.content-visible when-format="html"}
 ```{r}
 #| fig-width: 4
 #| fig-height: 4
@@ -315,7 +426,39 @@ poverty %>%
        y = "Graduation Rate") +
   theme_bw()
 ```
+:::
 
+:::{.content-visible when-format="pdf"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+#| fig-align: center
+#| echo: false
+library(ggrepel)
+poverty <- poverty %>%
+  mutate(is_ca = case_when(
+    State == "California" ~ "California (12.8, 81.1)", 
+    TRUE ~ ""))
+ca_pred <- m1$fitted.values[poverty$State == "California"]
+poverty %>%
+  ggplot(aes(x = Poverty, 
+             y = Graduates)) +
+  annotate("segment", x = 12.8, xend = 12.8, 
+           y = 81.1, yend = ca_pred,
+           lty = 2, color = "tomato") +
+  annotate("segment", x = 5.2, xend = 12.8, 
+           y = ca_pred, yend = ca_pred,
+           lty = 2, color = "darkgray") +
+  geom_point() +
+  geom_text_repel(aes(label = is_ca)) +
+  geom_abline(slope = coef(m1)[2],
+              intercept = coef(m1)[1],
+              color = "blue") +
+  labs(x = "Poverty Rate",
+       y = "Graduation Rate") +
+  theme_bw()
+```
+:::
 The horizontal dashed line represents $\hat{y} = 84.7$, the y-value of the least squares line when it passes through $x = 12.8$. The vertical red dashed line is the residual: the distance between the line and the observation in the y direction.
 
 Residuals open up a new avenue for numerical statistics. While the slope and intercept are two statistics that tell us about the *overall* linear relationship between the two variables, each residual is a statistic that tells us whether an *individual* observation's y-value is higher or lower than we'd expect based on its x-value.
