@@ -7,6 +7,9 @@ format:
   pdf: default
 ---
 
+<!-- hack a margin on the right side -->
+[ ]{.aside}
+
 [A]{.dropcap}t this point in the course, you have a bevy of different types of statistical graphics under your belt: scatterplots, histograms, dot plots, violin plots, box plots, density curves, and bar plots of several kinds. You also have a broad framework to explain how these graphics are composed: the Grammar of Graphics. But to what purpose? Why plot data? For whom?
 
 Every time you build a plot, you do so with one of two audiences in mind.
