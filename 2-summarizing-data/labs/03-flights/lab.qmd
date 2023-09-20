@@ -26,15 +26,6 @@ For the questions on the handout, consult the image of the data frame found in t
 
 The data for this lab can be found in the `flights` data frame in the `stat20data` package. Run `?flights` at the console to learn more about the columns.
 
-You can pull down these questions in RStudio by running the following command at the console:
-
-```{r}
-#| echo: true
-#| eval: false
-
-usethis::use_course("https://tinyurl.com/lab-3-flights")
-```
-
 
 #### Question 1
 
