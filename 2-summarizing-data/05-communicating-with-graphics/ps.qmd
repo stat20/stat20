@@ -1,5 +1,5 @@
 ---
-title: "Practice: Communicating with Data"
+title: "Practice: Communicating with Graphics"
 ---
 
 #### Question 1

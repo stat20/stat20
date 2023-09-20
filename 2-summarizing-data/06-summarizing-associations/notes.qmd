@@ -255,7 +255,7 @@ Several different statistics have been proposed for measuring association. This 
 
 ### Example: Poverty and Graduation rate
 
-The data frame used to create the scatter plot above left looks like this.
+The data frame used to create the scatter plot above on the left looks like this.
 
 ```{r}
 select(poverty, Graduates, Poverty)
@@ -291,7 +291,7 @@ Another approach to summarizing the linear association is to just ... draw a lin
 
 ![](images/handdrawn-line.png){width=300 fig-align="center"}
 
-This line serves both a graphical summary and *also* as a numerical summary. After all, every line that you draw on a scatter plot is defined by two numbers: the slope and the y-intercept. This line is called a *simple linear model*.
+This line serves both as a graphical summary and *also* as a numerical summary. After all, every line that you draw on a scatter plot is defined by two numbers: the slope and the y-intercept. This line is called a *simple linear model*.
 
 **Simple Linear Model**
 :    An expression for a possible value of the $y$ variable, $\hat{y}$, as a linear function of the $x$ variable with slope $b_1$ and y-intercept $b_0$.
@@ -350,13 +350,13 @@ The syntax for `lm()` uses what's called "formula notation" in R. The first argu
 
 So if the correlation coefficient measures the strength of the linear relationship between two variables, what exactly are the slope and intercept measuring? The slope captures the expected change in the $y$ associated with the $x$ changing by 1 unit. In this example, states that are separated by 1 percentage point in their poverty rate tend to be separated by about -.89 in their graduation rate. This is distinct from what the correlation tells us because while $r$ will stay the same regardless of the units in which the data is measured, $b_1$ is expressly designed to tell us how those units of measurement relate to one another.
 
-What about the intercept? It tells us the value that we'd expect the $y$ to take when the $x$ takes a value of zero. Sometimes that's an informative statistics, sometime it is not. In this setting, do you really expect the graduation rate of rates to be around 96% when their poverty rate is zero? What would it even look like for a state to have a poverty rate of zero? The abstraction of the linear model allows us to ponder such a world, but the reality of economics in the US is that we would never actually observe poverty rates of zero.
+What about the intercept? It tells us the value that we'd expect the $y$ to take when the $x$ takes a value of zero. Sometimes that's an informative statistic, sometime it is not. In this setting, do you really expect the graduation rate to be around 96% when their poverty rate is zero? What would it even look like for a state to have a poverty rate of zero? The abstraction of the linear model allows us to ponder such a world, but the reality of economics in the US is that we would never actually observe poverty rates of zero.
 
 So what good is the intercept? Well, it's useful in helping us calculate a residual.
 
 ### Residuals
 
-One of the benefits of explaining the association between two variables with a line instead of just the correlation coefficient is that it allows us to calculate what we would *expect* an observation's y-value to be if it behaved like a typical observation, so that we can see how far our expectation is from reality. That gap between expectation and reality is called a *residual*.
+One of the benefits of explaining the association between two variables with a line instead of just the correlation coefficient is that it allows us to calculate what we would *expect* an observation's y-value to be based on the general trend of the data, so that we can see how far our expectation is from reality. That gap between expectation and reality is called a *residual*.
 
 **Residual** ($\hat{e}_i$)
 :   The difference between the observed value of a data point, $y_i$, and the value that we would expect according to a linear model, $\hat{y}_i$.
@@ -469,9 +469,9 @@ If you have $n$ data points, you can calculate $n$ residuals.
 
 ## Summary
 
-In these notes we considered the question of how to capture the association between two variables with numerical summary statistics. The correlation coefficient is one of the most common: it captures the strength and direction of the linear trend. This statistic can be used, along with other simple summary statistics, to calculate the slope and intercept of the least squares line. The least squares line is an alternative approach to summarizing the linear relationship between two numerical variables. It has the advantage of providing an expectation for the y-value of every observation, which allows us to calculate residuals, and expression of whether each observation is higher or lower than we'd expect.
+In these notes we considered the question of how to capture the association between two variables with numerical summary statistics. The correlation coefficient is one of the most common: it captures the strength and direction of the linear trend. This statistic can be used, along with other simple summary statistics, to calculate the slope and intercept of the least squares line. The least squares line is an alternative approach to summarizing the linear relationship between two numerical variables. It has the advantage of providing an expectation for the y-value of every observation, which allows us to calculate residuals which are expressions of whether each observation is higher or lower than we'd expect.
 
-We'll spend time practicing calculating these statistics - and looking at lots of scatter plots - in class tomorrow.
+We'll spend time practicing calculating these statistics - and looking at lots of scatter plots - in class.
 
 {{< include images/tmp/_date-meta.md >}}
 

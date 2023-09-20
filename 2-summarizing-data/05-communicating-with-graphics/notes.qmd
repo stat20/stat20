@@ -19,7 +19,7 @@ Every time you build a plot, you do so with one of two audiences in mind.
 
 The process of building understanding from a data set is one that should be driven by curiosity, skepticism, and thoughtfulness. As a data scientist, you'll find yourself in conversation with your data: asking questions of it, probing it for structure, and seeing how it responds. This thoughtful conversation is called *exploratory data analysis* (or EDA).
 
-During EDA, the aim to uncover the shape and structure of your data and to uncover unexpected features. It's an informal iterative process where you are your own audience. In this setting, you should construct graphics that work best for you.
+During EDA, the aim is to uncover the shape and structure of your data and to uncover unexpected features. It's an informal iterative process where you are your own audience. In this setting, you should construct graphics that work best for you.
 
 At some point, you'll find yourself confident in the claim that can be supported by your data and the focus changes to communicating that claim as effectively as possible with a graphic. Here, your audience shifts from yourself to someone else: other scientists, customers, co-workers in a different part of your company, or casual readers. You must consider the context in which they'll be viewing your graphic: what they know, what they expect, what they want.
 
@@ -299,7 +299,7 @@ ggplot(class_survey, aes(x = tech,
 
 The eye is immediately drawn to the eerie geometric regularity of this data. Isn't real data messier than this? What's going on?
 
-A hint is in the sample size. The number of observations in the data set was 707 and yet the number of points shown here is just a bit under 100. Where did those other observations go?
+A hint is in the sample size. The number of observations in the data set was over 600 and yet the number of points shown here is just a bit under 100. Where did those other observations go?
 
 It turns out they are in this plot, they're just piled on on top of the other. Since there are only 10 possible values for each question, many students ended up selecting the same values for both, leading their points to be drawn on top of one another.
 
@@ -321,7 +321,7 @@ ggplot(class_survey, aes(x = tech,
          title = "No association between opinions on technology and \n cryptocurrency")
 ```
 
-Ahh . . . there are those other 600 students. Interestingly, the title on the first plot still holds true: even when we're looking at all 707 students, there doesn't appear to be much of a pattern. There is certainly not the case in all overplotted data sets! Often overplotting will obscure a pattern that jumps out after the overplotting has been attended to.
+Ahh . . . there are those previously hidden students. Interestingly, the title on the first plot still holds true: even when we're looking at *all* of the students, there doesn't appear to be much of a pattern. There is certainly not the case in all overplotted data sets! Often overplotting will obscure a pattern that jumps out after the overplotting has been attended to.
 
 The second technique is to make the points transparent by changing an aestheric attribute called the *alpha* value. Let's combine tranparency with jittering to understand the effect.
 
