@@ -13,7 +13,7 @@ $$ \hat{y} = 96.2 + -0.89 x $$
 
 While the idea is simple enough, there is a sea of terminology that floats around this method. A *linear model* is any model that explains the $y$, often called the *response variable* or *dependent variable*, as a linear function of the $x$, often called the *explanatory variable* or *independent variable*. There are many different methods that can be used to decide which line to draw through a scatter plot. The most commonly-used approach is called the *method of least squares*, a method we'll look at closely when we turn to prediction. If we zoom out, a linear model fit by least squares is an example of a *regression model*, which refers to any model (linear or non-linear) used to explain a numerical response variable.
 
-The reason for all of this jargon isn't purely to infuriate students of statistics. Linear models are one of the most widely used statistical tools; you can find them in used in diverse fields like biology, business, and political science. Each field tends to adapt the tool and the language around them to their specific needs.
+The reason for all of this jargon isn't purely to infuriate students of statistics. Linear models are one of the most widely used statistical tools; you can find them in use in diverse fields like biology, business, and political science. Each field tends to adapt the tool and the language around them to their specific needs.
 
 A reality of practicing statistics in these field, however, is that most data sets are more complex than the example that we saw in the last notes, where there were only two variables. Most phenomena have many different variables that relate to one another in complex ways. We need a more more powerful tool to help guide us into these higher dimensions.
 
@@ -80,7 +80,7 @@ m1
 
 It worked . . . or did it? If extend our reasoning from the last notes, we should write this model as
 
-$$\widehat{price} = -15.97 + 2.87 \times food - 1.45 \times geowest$$
+$$\widehat{price} = -15.97 + 2.87 \times food - 1.45 \times geo$$
 
 What does it mean to put a categorical variable, `geo`, into a linear model? And how do three three numbers translate into the two lines shown above?
 
@@ -102,7 +102,7 @@ zagat %>%
 
 The new dummy variable `geowest` is a *logical* variable, so it has a dual representation as TRUE/FALSE as well as 1/0. Previously, this allowed us to do Boolean algebra. Here, it allows us to include a dummy variable in a linear model.
 
-While you can create dummy variables by hand using `mutate`, they are created automatically whenever you put a categorical variable into `lm()`. Let's revisit the linear model that we fit above.
+While you can create dummy variables by hand using `mutate`, they are created automatically whenever you put a categorical variable into `lm()`. Let's revisit the linear model that we fit above with `geowest` in the place of `geo`.
 
 $$\widehat{price} = -15.97 + 2.87 \times food - 1.45 \times geowest$$
 
@@ -161,7 +161,7 @@ The model that we fit that explains the price of a meal in terms the food rating
      $$ \hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \ldots b_p x_p $$
      Each of the $b_i$ are called *coefficients*.
      
-To fit a muliple linear regression model using least squares in R, you can use the `lm()` function, which each additional explanatory variable separated by a `+`.
+To fit a muliple linear regression model using least squares in R, you can use the `lm()` function, with each additional explanatory variable separated by a `+`.
 
 ```{r}
 #| code-fold: false
@@ -173,7 +173,7 @@ lm(y ~ x_1 + x_2 + x_3 ... x_p, data)
 
 Multiple linear regression is powerful because it has no limit to the number of variables that we can include in the model. While Hans Rosling was able to fit 5 variables into a single graphic, what if we had 10 variables? Multiple linear regression allows us to understand high dimensional linear relationships beyond whats possible using our visual system.
 
-To build intuition around how to interpret these higher dimensional models, let's look at a model that we can visualize: one with two numerical explanatory variables.
+To build intuition around how to interpret these higher dimensional models, let's look at a model that we can visualize: one with two explanatory numerical variables.
 
 ### Three numerical
 
@@ -285,7 +285,7 @@ $$\widehat{price} = -15.97 + 2.87 \times food - 1.45 \times geowest$$
 
 For two restaurants both on the same side of Manhattan, a one point increase in food score is associated with a \$2.87 increase in the price of a meal. Also, for two restaurants with the exact same quality of food, the restaurant on the west side is expected to be \$1.45 cheaper than the restaurant on the east side. This is a useful bit of insight - it gives a sense of what the premium is of being on the eastside. 
 
-It is also visible in the geometry of the model. When we're looking at restaurants with the same food quality, we're looking at a vertical slice of the scatter plot. Here the vertical line gray line is indicating restaurants where the food quality gets a score of 18. The difference in expected price of meals on the east side and west side is the vertical distance between the red line and the blue line, which is exactly 1.45.
+It is also visible in the geometry of the model. When we're looking at restaurants with the same food quality, we're looking at a vertical slice of the scatter plot. Here the vertical  gray line is indicating restaurants where the food quality gets a score of 18. The difference in expected price of meals on the east side and west side is the vertical distance between the red line and the blue line, which is exactly 1.45. We could draw this vertical line anywhere on the graph and the distance between the red line and the blue will still be exactly 1.45.
 
 ```{r}
 #| fig-width: 5
@@ -303,7 +303,7 @@ p_parallel +
 
 ## Summary
 
-We began this unit on Summarizing Data with graphical and numerical summaries of just a single variable: histograms and bar charts, means and standard deviations. In the last set of notes we introduced our first bivariate numerical summaries: the correlation coefficient, and the linear model. In these notes, we introduced multiple linear regression, a method that can numerically describe the linear relationships between an unlimited number of variables. The types of variables that can be included in these models is similarly vast. Numerical variables can be included directly, generalizing the geometry of a line into a plane in higher dimension. Categorical variables can be included using the trick of dummy variables, logical variables that take a value of 1 where a particular condition is true. The interpretation of all of the coefficients that result from a multiple regression is challenging but rewarding: it allows us to answer questions about the relationship between two variables after controlling for the values of other variables.
+We began this unit on Summarizing Data with graphical and numerical summaries of just a single variable: histograms and bar charts, means and standard deviations. In the last set of notes we introduced our first bivariate numerical summaries: the correlation coefficient, and the linear model. In these notes, we introduced multiple linear regression, a method that can numerically describe the linear relationships between an unlimited number of variables. The types of variables that can be included in these models is similarly vast. Numerical variables can be included directly, generalizing the geometry of a line into a plane in a higher dimension. Categorical variables can be included using the trick of dummy variables, logical variables that take a value of 1 where a particular condition is true. The interpretation of all of the coefficients that result from a multiple regression is challenging but rewarding: it allows us to answer questions about the relationship between two variables after controlling for the values of other variables.
 
 If this felt like a deep dive into a multiple linear regression, don't worry. Linear models are one of the most commonly used statistical tools, so we'll be revisiting them throughout the course: investigating their use in making generalizations, causal claims, and predictions.
 
