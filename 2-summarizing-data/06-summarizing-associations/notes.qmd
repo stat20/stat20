@@ -356,7 +356,7 @@ So what good is the intercept? Well, it's useful in helping us calculate a resid
 
 ### Residuals
 
-One of the benefits of explaining the association between two variables with a line instead of just the correlation coefficient is that it allows us to calculate what we would *expect* an observation's y-value to be based on the general trend of the data, so that we can see how far our expectation is from reality. That gap between expectation and reality is called a *residual*.
+One of the benefits of explaining the association between two variables with a line instead of just the correlation coefficient is that it allows us to calculate what we would *expect* an observation's y-value to be based on its x value, so that we can see how far our expectation is from reality. That gap between expectation and reality is called a *residual*.
 
 **Residual** ($\hat{e}_i$)
 :   The difference between the observed value of a data point, $y_i$, and the value that we would expect according to a linear model, $\hat{y}_i$.
