@@ -7,24 +7,16 @@ format:
   pdf: default
 ---
 
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-
-library(tidyverse)
-library(stat20data)
-library(infer)
-library(patchwork)
-```
 
 :::{.lo .content-hidden unless-profile="staff-site"}
+
+
 #### Concept Acquisition
 
-1. Definition of probability, outcome space, events, null event
-2. Relations to sets, unions, intersections, Venn diagrams
-3. Definition of equally likely outcomes
-4. Definition of mutually exclusive events and the addition rule
+1. Definition of equally likely outcomes, outcome space, events, impossible event
+2. Definition of probability of an event and first two rules of probability
+3. Unions, intersections, Venn diagrams
+4. Mutually exclusive events and the addition rule
 
 #### Tool Acquisition
 
@@ -42,6 +34,17 @@ library(patchwork)
 ----------------------------------------------------
 
 :::
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(stat20data)
+library(infer)
+library(patchwork)
+```
 
 [I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0000034%. As he writes, this is either depressing or cheering news, depending on what you had estimated your chance to be *before* reading the paper.[^Backus]
 
@@ -158,7 +161,7 @@ Outcome space
 Event
 : A collection of outcomes as a result of the experiment being performed, perhaps more than once. For example, we could toss a coin twice, and consider the *event* of both tosses landing heads. We usually denote events by upper case letters from the beginning of the alphabet: $A, B, C, \ldots$. An event is a subset of the outcome space, and we denote this by writing $A \subset \Omega$.
 
-##### Example 1: Tossing a fair coin 
+#### Example: Tossing a fair coin 
 
 ![](images/us-quarter.png){width="100" fig-align="center"}
 
@@ -238,7 +241,7 @@ $P(A) = 1/6$, and $P(B) = 3/6$. Since $A \cap B =\emptyset$, that is, $A$ and $B
 An important consequence of rule 3: Let $A$ be an event in $\Omega$. The *complement* of $A$, written as $A^C$  consists of all those outcomes in $\Omega$ that are *not* in $A$. Note that $A  \cup A^C = \Omega$, so $P(A) + P(A^C) =  1$.
 
 
-## Examples using the rules
+## Example of using the rules
 
 #### Penguins
 
@@ -274,21 +277,52 @@ Here is a Venn diagram showing two mutually exclusive events (no overlap):
 ![](images/venn-disjoint.png){fig-align=center width="500"}
 
 
+## Examples
+
+#### Tossing a fair coin 
+
+Suppose we toss a coin twice and record the *equally likely* outcomes. What is $\Omega$?
+What is the chance of at least one head?
+
+**Solution**:
+$\Omega = \{HH, HT, TH, TT\}$, where $H$ represents the coin landing heads, and $T$ represents the coin landing tails. Note that since we can get exactly one head and one tail in **two** ways, we have to write out both ways so that all the outcomes are equally likely. 
+
+Now, let $A$ be the event of getting at least one head in two tosses. We can do this by listing the outcomes in $A$: $A = \{HH, HT, TH\}$ and so $P(A) = 3/4$. 
+
+Alternatively, we can consider $A^C$ which is the event of *no* heads, so $A^C = \{TT\}$ and $P(A^C) = 1/4$.
+
+In this case, $P(A) = 1- P(A^C) = 1-1/4 = 3/4$.
+
+Now you try: Let $\Omega$ be the outcome space of tossing a coin *three* times. What is the probability of at least one head? What about exactly one head?
+
+<details><summary>Check your answer</summary>
+
+$\Omega = \{HHH, HHT, HTH, THH, HTT, THT, TTH, TTT \}$. 
+
+Let $A$ be the event of at least one head. Then $A^C$ is the event of no heads, so $A^C = \{TTT\}$, and $P(A^C) = 1/8$. Therefore $P(A) = 1-1/8 = 7/8$. Note that this is much quicker than listing and counting the outcomes in $A$.
+
+If $B$ is the event of *exactly* one head, then $B = \{HTT, THT, TTH\}$ and $P(B) = 3/8$.
+
+</details>
 
 
-## Example: The Box Model
-
-One of the simplest ways of understanding probability, and later, variations resulting from sampling, is through a *box model*[^fppbox]. We visualize our outcome space as a box, and the *equally likely* outcomes as tickets that we draw from the box.
-To specify a box model, we have to say what tickets go in the box (that is, what are the numbers on the tickets, and how many of each) , and whether the tickets will be drawn *with or without replacement* (after drawing a ticket from the box, do we put it back in the box or not, before we draw another ticket).
-
-### A box of tickets
+#### A box of tickets
 
 ![](images/box-1.jpeg){fig-align=center width="400"}
 
-Consider the box above which has five almost identical tickets. The only difference is the value written on them. Imagine that we shake the box to mix the tickets up, and then draw one ticket without looking. This is to ensure that all the tickets are *equally likely* to be drawn[^uar]. 
-For example, the chance of drawing a ticket labeled "4" is one in five, as there are five tickets to choose from and only one is labeled "4" etc.
+Consider the box above which has five almost identical tickets. The only difference is the value written on them. Imagine that we shake the box to mix the tickets up, and then draw *one* ticket without looking so that all the tickets are *equally likely* to be drawn[^uar]. 
 
-Here is the probability histogram of the value of the drawn ticket, and you see that the bar over 2 is twice as tall. This is because there are twice as many tickets marked 2 as any other numbers. The counts or frequencies of the tickets in the box is called the *population distribution* or the *box distribution*, and you can see that this gives us the probability distribution for the value of the ticket drawn at random from the box. 
+What is the chance of drawing an even number?
+
+<details><summary>Check your answer</summary>
+
+Let $A$ be the event of drawing an even number, then $A = \{2, 2, 4\}$: we list 2 twice because there are two tickets marked 2, making it twice as likely as any other number. 
+$P(A) = 3/5$
+
+</details> 
+
+We can represent the probabilities visually with bars, and we call this a *probability histogram*.
+Here is the probability histogram of the value of the drawn ticket, and you see that the bar over 2 is twice as tall. This is because there are twice as many tickets marked 2 as any other numbers. We can call this graph the *distribution* of the ticket values and it is a visual representation of the table we drew earlier. 
 
 ```{r}
 #| fig.width: 5
@@ -323,9 +357,10 @@ Notice that the only difference between these two plots is the vertical scale. W
 How about if we draw 50 times at random with replacement from this box and see what our sample looks like (we will explore the code later in the notes). That is, we will see what proportion of the draws are 1's, 2's etc.
 
 ```{r}
-#| fig.width: 3
-#| fig.height: 3
+#| fig.width: 2
+#| fig.height: 2
 #| fig.align: center
+#| warning: false
 
 set.seed(12345)
 box <- c(1,2,2,3,4)
@@ -353,39 +388,31 @@ We can see that the (blue) *sample proportions* look similar to the (gold) *popu
 </div>
 </center>
 
-What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*.
+What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*. This is called an *empirical* histogram, that is, a histogram derived from data.
 
 
-**The Box Model**
+#### Tossing a biased coin
 
-The purpose of creating a box model is to understand the variability in a *chance process* such as tossing a coin over and over and counting the number of heads, or sampling voters to ask them if they will vote for President Biden in the 2024 elections. We do this by having the tickets represent the possible outcomes associated with the chance process, and using the variability in the tickets that are drawn to understand the variability of the chance process.
+Suppose I have a coin that is twice as likely to land heads as it is to land tails. This means that I cannot represent $\Omega$ as $\{H, T\}$ since heads and tails are not equally likely. How should I write $\Omega$ so that the outcomes are equally likely?
 
-In order to create a box model that will model a process in which we have a repeated action (such as tossing a coin or drawing a ticket from a box), we must specify:
+In this case, we want to represent equally likely outcomes, and want $H$ to be twice as likely as $T$. We can therefore represent $\Omega$ as $\{H, H, T \}$. Now the chance of the coin landing $H$ can be written as $P(A)$ where $A$ is the event the coin lands $H$ is given by 2/3. 
 
-1. The box and tickets (what tickets go in the box, and the numbers written on them)
-2. The number of draws
-3. Whether or not we replace tickets between draws
-4. How we will summarize the values on the drawn tickets (we will sum the draws or compute their average)
+Suppose we toss the coin twice. How would we list the outcomes so that they are equally likely?
+Now we have to be careful, and think about all the things that can happen on the second toss if we have $H$ on the first toss.
 
-Note that these tickets should be identical in every way, except the value written on them, and  assume that the tickets in the box are *equally likely* to be drawn (we draw without looking into the box).
+This is much easier to imagine if we imagine drawing *twice* from a box of tickets, but putting the first ticket back before drawing the second (to represent the fact that the probabilities of landing $H$ or $T$ stay the same on the second toss.)
 
-### Setting up a box model: examples
-Let's practice creating boxes to model coin tosses and die rolls. For each of the cases below, specify the four items above.
+Now, imagine the box of tickets that represents $\Omega$ to be $\fbox{H, H, T}$. 
+We draw one ticket at first, which could be one of three tickets (there are two tickets that could be $H$, and one $T$). We can represent it using the following picture:
 
-##### Example 1: Tossing a coin
 
-**Tossing a fair coin once**
+![](images/biased-coin.png){fig-align=center width="600"}
 
-What box and which tickets would you use to simulate one coin toss? 
 
-<details><summary>Check your answer</summary>
-We could draw one ticket from the box
-![](images/coin_ht.jpeg){fig-align=center width="100"} but these are not numbered.
+From this picture, where we use color to distinguish the two different outcomes of heads and one outcome of tails, we can see that there are 9 possible outcomes that are equally likely, and we get the following probabilities (where $HT$, for example,  represents the event that the first toss is heads, followed by the second toss being tails.)
 
-Or we could draw one ticket from the box
-![](images/coin.jpeg){width="100"}
-with the ticket $\fbox{1}$ representing the coin landing heads, and $\fbox{0}$ representing the coin landing tails. This change of numbering the ticket representing the outcome we are counting with a 1 and all other tickets with a 0 is very important, since we are *classifying* the outcomes into two categories, and counting the instances of one of them (in this case, the coin landing heads).
-</details>
+$P(HH) = 4/9,\; P(HT) = P(TH) = 2/9, P(TT) = 1/9$ (Check that the probabilities sum to 1!)
+
 
 :::{.callout-warning icon=false}
 
@@ -394,121 +421,22 @@ What box would we use if the coin is not a fair coin, but lands heads $5$ out of
 
 :::
 
-**Tossing a fair coin twice**
 
-<details><summary>Check your answer</summary>
-We could use the same box as above:
 
-![](images/coin.jpeg){width="100"}
-
-Remember that the ticket $\fbox{1}$ represents the outcome of a toss landing heads and  $\fbox{0}$ represents a toss landing tails (because we are counting the number of heads). We let the box be as above, and draw two tickets at random *with replacement* from this box. To count the number of heads in two tosses, we add the draws.
-</details>
-
-**Tossing an unfair coin**
-
-Set up the box model for tossing a coin which has chance of 5/6 landing heads, and counting the number of heads.
-
-<details><summary>Check your answer</summary>
-
-We do the same trick, of representing the outcome of heads with $\fbox{1}$, and tails with $\fbox{0}$. Since the coin lands heads 5 times out of 6, the box is given by:
-
-![](images/unfair-coin.jpeg){fig-align=center width="500"}
-
-We draw as many times as the number of tosses, and sum up the values on the tickets drawn.
-</details>
-
-##### Example 2: Rolling a fair die and summing the spots
-![](images/dice.png){width="100"}[^unsplash]
-
-**Rolling a fair die once** 
-
-<details><summary>Check your answer</summary>
-The box will have six tickets as shown below, and we would draw one ticket from this box. The chance of any one of the tickets is $1/6$.
-
-![](images/die.jpeg){width="200"}
-</details>
-
-**Rolling a fair die twice**
-
-<details><summary>Check your answer</summary>
-We would use the same box as in the previous example, draw *twice* at random with replacement from this box, then add the draws.
-
-![](images/two-dice.jpeg){width="450"}
-
-</details>
-
-##### Example 3: Betting on red in roulette 
+#### Betting on red in roulette 
 
 ![](images/roulette-us.jpg){fig-align="center" width="200"}[^unsplash]
 
 <details><summary> Expand to read this example</summary>
-An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is thrown on the wheel so that it is equally likely to land in any of the 38 pockets. Players bet on which colored or numbered pocket the ball will come to rest in. If you bet one dollar that the ball will land on red, and it does, you get your dollar back, and you win one more dollar, so your *net gain* is \$1. If it doesn't, and lands on a black or green number, you lose your dollar, and your *net "gain"* is -\$1. What would be the box model for your net gain from a single spin? 
+An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is thrown on the wheel so that it is equally likely to land in any of the 38 pockets. Players bet on which colored or numbered pocket the ball will come to rest in. If you bet one dollar that the ball will land on red, and it does, you get your dollar back, and you win one more dollar, so your *net gain* is \$1. If it doesn't, and lands on a black or green number, you lose your dollar, and your *net "gain"* is -\$1. 
 
-**Net gain from a single spin**
+What is the chance that we will win one dollar on a single spin of the wheel?
 
-<details><summary>Check your answer</summary>
-We would use the box shown below marked "Gain". In the top box, there are 38 tickets, each representing a numbered pocket on the wheel. Draw one ticket to represent the ball landing in a particular pocket. In the second row each ticket represents a colored pocket, and we see that there are 18 red pockets, 18 black, and 2 green. We only care about the outcome *ball lands in red pocket*, and our gain from this. We would draw once from it, with the ticket marked $\fbox{+1}$ representing our gain if the ball lands on a red pocket, and the ticket $\fbox{-1}$ representing our loss if the ball doesn't land on red. We can see that the chance of drawing a  $\fbox{+1}$ is 18 out of 38.
-
-![](images/roulette-bet.jpeg){fig-align="center" width="300"}
-
-</details>
-
-**Net gain from 10 spins**
-
-How would we model our *net gain* or winnings from 10 spins (we bet \$1 on each spin, and either lose it or get it back plus \$1)?
-
-<details><summary>Check your answer</summary>
-Use the same box as above, with 18 tickets marked $\fbox{+1}$ and 20 marked $\fbox{-1}$, draw 10 times at random with replacement, and sum the draws.  
-</details>
-
-</details>
-
-##### Example 4: Donkeys in Kenya
-![](images/kenyan-donkey.jpeg){fig-align=center width="200"}[^donkey-pic]
-
-<details><summary> Expand to read this example</summary>
-Donkeys play important roles in rural Kenya. People need donkeys for moving crops and water, for personal transportation, and for plowing fields. When a donkey gets sick, the vet needs to figure out how much the donkey weighs in order to prescribe the right amount of medicine. But, many vets in rural Kenya don’t have a scale big enough to weigh a donkey. Too little medicine can cause a sickness to re-emerge, and too much medicine can cause a harmful overdose. There are over 1.8 million donkeys in Kenya, so it’s important to have a simple, accurate way to estimate the weight of a donkey. The question is: how can we accurately estimate the weight of a donkey using other easy to get measurements?  To address this question, The UK Donkey Sanctuary carried out a study at 17 mobile de-worming sites in rural Kenya. All 544 donkeys brought to these sites between July 23 and August 11, 2010, that were not pregnant or visibly diseased, were entered into the study.[^donkey].
-
-Four body measurements were made for each donkey: liveweight (kg), heart girth (cm), height (cm), and length (cm), and in addition, sex and body condition score were recorded (the body condition score categorized the donkeys according to their condition, ranging from "emaciated" to "obese"). Suppose I want to sample 50 donkeys from this dataset, to compute their average weight and average girth (girth or heart girth  is the circumference of the body, measured just behind the front legs.)
-
-Set up the box model for this process (sampling donkeys).
-
-<details><summary>Check your answer</summary>
-
-The box has 544 tickets, one for each donkey. The ticket has information from all 8 variables recorded (3 categorical and 5 numerical). We only need 2 variables, so the tickets will have those two variables recorded.
-We draw 50 tickets from this box at random *without* replacement, and compute 2 averages from the draws.
-
-![](images/donkey-tkt.jpeg){fig-align=center width="300"}
+*Hint* Write out the chance of the ball landing in a red pocket, and not landing in a red pocket.
 
 
-</details>
 
-[^donkey]: K. Milner and J.C. Rougier, 2014. *How to weigh a donkey in the
-Kenyan countryside*. Significance, 11(4), 40–43. 74, 115
-<https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2014.00768.x>
-
-[^donkey-pic]: <https://people.maths.bris.ac.uk/~mazjcr/#donkeys>
-
-</details>
-
-##### Example 5: Penguins!
-
-![](images/penguins.png){fig-align=center width="300"}
-
-<details><summary> Expand to read this example</summary>
-
-You have seen the penguins data, which measured `r ncol(penguins)` variables on a sample of `r nrow(penguins)`. Here the box will contain 344 tickets, and we will draw 50 tickets at random without replacement. Note that each ticket in the box represents one penguin in the sample, and has information for multiple variables measured on that penguin. We would consider only the information we are interested in. Suppose we wanted sex, species, and flipper length, to compare the flipper lengths of males and females, grouped by species.
-Set up the box model.
-
-<details><summary>Check your answer</summary>
-
-The box would have 344 tickets, one for each penguin. Each ticket would have 3 things written on it: the species, sex, and flipper length in mm of the penguin.
-We would draw 50 tickets at random without replacement, and 
-![](images/penguin-ticket.jpeg){fig-align=center width="300"}
-
-</details>
-
-## Simulating the box model
+## Simulations
 
 :::{.callout-tip}
 
@@ -517,9 +445,18 @@ We would draw 50 tickets at random without replacement, and
 As you read through these notes, keep RStudio open in another window to code along at the console.
 :::
 
+
+Drawing from a box of tickets is easily simulated in R, since there is a convenient function that does exactly what we need: draw tickets from a "box" (a vector). We will use the function `sample(x, size = n, replace = FALSE)`, where `x` is the vector you want to sample from, `size` is the number of draws (with the default value being the length of `x`), and `replace` specifies whether the draws are with or without replacement. The default in `sample()` is to draw _without_ replacement. (Note: The `set.seed()` function below ensures that we will get the same random sample each time we run the code.)[^setseed]
+
+[^setseed]: The random number generator in R is called a "Pseudo Random Number Generator", because the process can be controlled by a "seed". These are algorithmic random number generators, which means that if you provide the same seed (a starting number), R will generate the same sequence of random numbers. This makes it easier to debug your code, and reproduce your results if needed.
+
 Let's simulate rolling a die and counting how many times we see each face. 
 
 If we roll it 6 times, we don't really expect to see each face once, and as you can see below, in this particular instance of rolling the die six times, we didn't see the face with one spot, but saw two spots twice. 
+
+
+
+
 ```{r}
 set.seed(12345)
 die <- 1:6
@@ -624,11 +561,6 @@ p4 <- data.frame(roll_600) %>%
 The important takeaway here is that we have a *theoretical* probability distribution of the outcomes, and we have what actually happens when we perform the experiment over and over. Eventually, the empirical distribution begins to look like the theoretical distribution. 
 
 
-The box model is easily simulated in R, since there is a convenient function that does exactly what we need: draw tickets from a "box" (a vector). We will use the function `sample(x, size = n, replace = FALSE)`, where `x` is the vector you want to sample from, `size` is the number of draws (with the default value being the length of `x`), and `replace` specifies whether the draws are with or without replacement. The default in `sample()` is to draw _without_ replacement. (Note: The `set.seed()` function below ensures that we will get the same random sample each time we run the code.)[^setseed]
-
-[^setseed]: The random number generator in R is called a "Pseudo Random Number Generator", because the process can be controlled by a "seed". These are algorithmic random number generators, which means that if you provide the same seed (a starting number), R will generate the same sequence of random numbers. This makes it easier to debug your code, and reproduce your results if needed.
-
-
 ```{r}
 #| code-fold: false
 set.seed(12345)
@@ -730,79 +662,16 @@ We know all the possible outcomes of summing a pair of dice (between $2$ and $12
 :::
 
 
-#### Sampling donkeys
-
-In the donkeys dataset, the box has 544 tickets, with each ticket representing one of the donkeys that was measured at the mobile de-worming sites. Each ticket contains the values of 8 variables, of which we are interested in 2. We set up the box model for drawing 50 tickets at random without replacement, and we wanted to compute the average girth and the average weight.
-
-We will use a function called `slice_sample`. The function `slice` was introduced in the notes on conditioning, and `slice_sample` is similar, except that it selects a random sample from the rows of a data frame. We will compute the average girth and the average weight for the donkeys in this sample. 
-
-```{r}
-#| code-fold: false
-
-# read in the donkey data
-donkeys <- read.csv('donkeys.csv')
-
-# take a quick look at the dataset
-glimpse(donkeys)
-
-# draw a sample of 50 donkeys and compute their mean girth and weight
-donkeys %>%
-  select(Girth, Weight) %>% #changing tickets to include variables of interest
-  slice_sample(n = 50) %>% #drawing 50 times without replacement
-  summarise(average_girth_cm = mean(Girth), average_weight_kg = mean(Weight))
-```
-
-
-
-
-#### Sampling penguins
-
-Recall that in the penguins example, when the box has 344 tickets, with each ticket representing one of the observations that we have access to from the Palmer penguins data, each ticket contains the values of multiple variables. We set up the box model for sampling 50 penguins without replacement, and we wanted to compare flipper lengths.
-
-
-```{r}
-#| code-fold: false
-
-# one sample
-drop_na(penguins,sex) %>%
-  select(species, sex, flipper_length_mm) %>% #changing tickets
-  slice_sample(n = 50) %>% #drawing 50 times without replacement
-  group_by(species, sex) %>%
-  summarise(mean_flipper_length_mm = mean(flipper_length_mm))
-```
-
-### Drawing with replacement and without replacement
-#### What's the difference? 
-
-Consider our first box again, the one with five tickets. 
-When we draw at random *with* replacement, we draw one ticket, and put it back before drawing another ticket. For the box in this section, if we draw twice with replacement, both times we will draw from the following box:
-
-![](images/box.jpeg){fig-align=center width="200"}
-
-If we draw twice at random *without* replacement, then our second draw is from a *different* box, with an example illustrated below:
-
-![](images/no-replace-box.jpeg){fig-align=center width="300"}
-
-In the next set of notes, we are going to use R to simulate what happens when we draw twice from this box, once with replacement, and once without. We are also going to talk about the vocabulary of sampling.
-
 
 ## Summary
 
-- In this lecture, we introduced the ideas of probability via the frequentist theory of probability. We used this to justify the notion of equally likely outcomes, and defined the outcome space of an experiment. 
+- In this lecture, we introduced equally likely outcomes,and defined the outcome space of an experiment. 
 - Then, using equally likely outcomes, we defined the probability of an event as the ratio of the number of outcomes in the event to the number of total outcomes in the outcome space. 
-
-- After defining the probability of an event, we wrote down the mathematical rules of probability and introduced Venn diagrams.
-
-- The box model was introduced as a way to represent a process in which we *repeat* an experiment, recording the outcomes each time. Because the experiments have an element of chance (such as a coin toss), we call them chance processes. Later, we will look at statistics computed from the samples and use the box model to understand the variability of the statistics. Box models are helpful to help us understand chance processes, and to generalize from samples that have been collected using methods that use probability, to the populations that the samples were drawn from. We saw that the draws from a box give us a *representative* sample of the tickets in the box. 
-
-- Finally, we simulated drawing from the box and computing summary statistics in R. 
-
- [^freq]: This is known as the *frequentist* theory of probability: the chance of something is the relative frequency with which it occurs in repeated trials (that are assumed to be independent).
+- We wrote down the rules of probability, after defining unions, intersections, and mutually exclusive events.
+- We introduced Venn diagrams.
 
 [^fppbox]: The box model was introduced by Freedman, Pisani, and
-Purves in their textbook
-
-[*Statistics*](https://wwnorton.com/books/9780393929720)
+Purves in their textbook [*Statistics*](https://wwnorton.com/books/9780393929720)
 
 [^uar]: We call the tickets equally likely when each ticket has the same chance of being drawn. That is, if there are $n$ tickets in the box, each has a chance of $1/n$ to be drawn. We also refer to this as drawing a ticket *uniformly at random*, because the chance of drawing the tickets are the same, or *uniform*.
 
@@ -835,7 +704,7 @@ pair_dice
 ```
 
 
-We used a new function here called $\texttt{rep(x, n)}$. This function has two arguments, the first $\texttt{x}$ is a vector of any type, and the second $\texttt{n}$ is an integer. It returns an object creates a vector of the same type as $\texttt{x}$ by repeating $\texttt{x}$ $\texttt{n}$ times. For example $\texttt{rep(2,5)}$ gives `r rep(2,5)`, $\texttt{rep(2:4,5)}$ gives `r rep(2:4,5)`.
+We used a new function here called `rep(x, n)`. This function has two arguments, the first `x` is a vector of any type, and the second `n` is an integer. It returns an object creates a vector of the same type as`x` by repeating `x`, `n` times. For example`rep(2,5)` gives `r rep(2,5)`, `rep(2:4,5)` gives `r rep(2:4,5)`.
 
 Now let's set up the first game, and repeat it 1000 times. You can change the number of simulations below. The first line has another new function called $\texttt{set.seed()}$. We write this with an integer argument that can be any integer you like, this integer is called the *seed*. Using this function ensures that any time you are using a random number generator (which you do when you sample at random), you will be able to reproduce your results as long as you use the same seed.
 
