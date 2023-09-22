@@ -178,7 +178,7 @@ Equally likely outcomes
 : When all the possible outcomes in a finite outcome space of size $n$ happen with the same probability, which is $\displaystyle \frac{1}{n}$. To find the probability of an event $A$, just count how many outcomes are in $A$ and divide that by $n$.
 
 
-##### Example 2: Tossing a fair six-sided die[^dice] 
+##### Example: Tossing a fair six-sided die[^dice] 
 
 [^dice]: The singular is *die* and the plural is *dice*. If we use the word "die" without any qualifiers, we will mean a fair, six-sided die. 
 
@@ -667,8 +667,8 @@ We know all the possible outcomes of summing a pair of dice (between $2$ and $12
 
 - In this lecture, we introduced equally likely outcomes,and defined the outcome space of an experiment. 
 - Then, using equally likely outcomes, we defined the probability of an event as the ratio of the number of outcomes in the event to the number of total outcomes in the outcome space. 
-- We wrote down the rules of probability, after defining unions, intersections, and mutually exclusive events.
-- We introduced Venn diagrams.
+- We wrote down the rules of probability, after defining unions, intersections, and mutually exclusive events and Venn diagrams
+- We saw how to simulate probabilities using `sample()` and `replicate()`
 
 [^fppbox]: The box model was introduced by Freedman, Pisani, and
 Purves in their textbook [*Statistics*](https://wwnorton.com/books/9780393929720)
