@@ -1,7 +1,7 @@
 ---
 title: "Introducing Probability"
 subtitle: "Definitions, examples, and axioms"
-image: images/kerrich.png
+image: images/dice-players-painting.jpeg
 format:
   html: default
   pdf: default
@@ -18,117 +18,115 @@ library(infer)
 library(patchwork)
 ```
 
-[I]{.dropcap}n this new unit of generalization, we are changing gear. After exploring datasets by creating graphical and numerical summaries, now we want to generalize from the data to the world. To do this, we need an understanding of the language and notation of probability.
+:::{.lo .content-hidden unless-profile="staff-site"}
+#### Concept Acquisition
+
+1. Definition of probability, outcome space, events, null event
+2. Relations to sets, unions, intersections, Venn diagrams
+3. Definition of equally likely outcomes
+4. Definition of mutually exclusive events and the addition rule
+
+#### Tool Acquisition
+
+1. Rules of probability
+2. Using a box of tickets to model equally likely outcomes
+3. New functions: **sample()** and **replicate**
+4. Using simulations to estimate probabilities with functions listed above
+
+#### Concept Application
+
+1. Computing probabilities in various scenarios 
+2. Using R to simulate probabilities
+
+
+----------------------------------------------------
+
+:::
+
+[I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0000034%. As he writes, this is either depressing or cheering news, depending on what you had estimated your chance to be *before* reading the paper.[^Backus]
+
+[^Backus]: <https://www.astro.sunysb.edu/fwalter/AST248/why_i_dont_have_a_girlfriend.pdf>
+
+We all have some notion of chance or probability, and ask questions like:
+
+- What is the chance you will get an A in Stat 20? (About 32%, based on last fall.)[^stat-20-A]
+- What is the chance the 49ers will win the Super Bowl this year? (About 1 in 7, higher than any other team, as of September 21.)[^49ers]
+- What is the chance you will roll a double on your next turn to get out of jail while playing Monopoly? (One in six.)
+- What is the chance that the next President of the United States will be Joe Biden? (A little under 40%) [^biden-odds]
+
+[^49ers]: <https://www.foxsports.com/articles/nfl/2023-24-san-francisco-49ers-odds-odds-to-win-super-bowl-nfl-playoffs-division>
+[^stat-20-A]: <https://berkeleytime.com/grades/0-7077-all-all&1-7077-fall-2022-all>
+[^biden-odds]: <https://www.thelines.com/odds/election/>
+
+To answer such questions, we need to quantify uncertainty and randomness, and that is the focus of this new unit: Generalization.
 
 ![](images/andrew-gen-focus.jpeg){fig-align=center width="400"}
 
-For example, if the data are from a clinical trial for a new Covid-19 treatment, the design of the trial will decide who gets the treatment, and who doesn't. Or perhaps we want to poll voters to estimate the support for decriminalizing
-marijuana possession federally (President Biden took a first step
-towards this goal by pardoning all Americans  convicted of simple
-marijuana possession under federal law). Who is selected for such an opinion poll can make a big difference in the estimate of the proportion of voters who support decriminalization of marijuana. 
+So far, we have examined datasets, and summarized them, both numerically and visually.  We have looked at data distributions, and associations between variables. Can we extend the conclusions that we make about the datasets to larger populations? If we notice that bill length and flipper length have a strong linear relationship for the penguins in our data, can we say this is true about all penguins? How do we draw **valid** conclusions about the population our data was drawn from? These are the kinds of questions we we will study, using tools from probability theory. 
 
-You may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently they are taken more seriously. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538]. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''
+In order to be taken seriously, we need to be careful about how we collect data, and then how we generalize our findings. For example, you may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently people pay attention to them. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538]. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''.
 
 [^538]: This website was begun as poll aggregation site, by the statistician Nate Silver.
 
 ![](images/538-pollster-ranking-snippet.png){fig-align=center width="500"}
 
-In order to make estimates as these polling organizations are doing, or understand the results of a clinical trial or such questions in which we *generalize* from our data sample to a larger group, we have to understand the *variations* in data introduced by randomness in our sampling methods. It is very important when we estimate a quantity (such as the proportion of voters who support a particular policy), that we compute the error of our estimate. The error is determined by the variability of the estimate. (Each time we poll a different group of voters, for example, we will get a different estimate of the proportion of voters that support decriminalizing marijuana possession.) To understand variation, we first have to understand how probability was used to collect the data. Before we do this, let's make sure we understand what we mean by *probability* or *chance*, with two simple examples.
+In order to make estimates as these polling organizations are doing, or understand the results of a clinical trial or such questions in which we *generalize* from our data sample to a larger group, we have to understand the *variations* in data introduced by randomness in our sampling methods. Each time we poll a different group of voters, for example, we will get a different estimate of the proportion of voters that will vote for Joseph Biden in the next election. To understand variation, we first have to understand how probability was used to collect the data. 
 
-## Coins and Dice
+Since classical probability came out of gambling games played with dice and coins, we can begin our study by thinking about those.
 
-##### Example 1: Tossing a fair coin and counting the number of heads
+## De Méré's Paradox
 
-![](images/us-quarter.png){width="100" fig-align="center"}
+![](images/dice-players-painting.jpeg){fig-align=center width="400"}
 
-Suppose I told you that I am going to toss a fair coin, and ask you what is the chance of the coin landing heads. Like most people, you reply 50%. Where does this number come from?
-Try tossing a coin twice and see how it lands. You might have it land heads once and tails once, or you may get two heads, or two tails. Is this surprising? Okay, let’s toss it ten times and count the number of heads and tails. I am going to simulate this in R (we will explore the code later in the notes): 
-
-```{r}
-set.seed(12345)
-# this ensures that each time we sample, we will get the same result
-coin1 <- c("Heads", "Tails")
-
-tosses <- sample(coin1, 10, replace = TRUE)
-
-data.frame(tosses) %>%
-  group_by(tosses) %>% 
-  summarise(n = n())
-  
-
-```
+[^dice-players]: Georges de La Tour, Public domain, via Wikimedia Commons
 
 
-What about if I toss it fifty times?
-
-```{r}
-set.seed(12345)
-
-tosses <- sample(coin1, 50, replace = TRUE)
-
-data.frame(tosses) %>%
-  group_by(tosses) %>% 
-  summarise(n = n())
-
-```
-
-This doesn't look so good... Maybe tossing one hundred times will improve the split:
-
-```{r}
-set.seed(12345)
-
-tosses <- sample(coin1, 100, replace = TRUE)
-
-data.frame(tosses) %>%
-  group_by(tosses) %>% 
-  summarise(n = n())
-```
+In 17th century France, gamblers would bet on anything. In particular, they would bet on a die landing 6 at least once in four rolls of a six-sided fair die. Antoine Gombaud, called the Chevalier de Méré, was a gambler who also considered himself something of a mathematician. He computed the chance of a getting at least one six in four rolls as 2/3 $4 \times (1/6) = 4/6$. He won quite often by betting on this outcome.
 
 
-We see that as the number of tosses increases, the distribution of tosses begins to look closer to 50 heads and 50 tails.
+What do you think is the chance of this? Start with one roll: what is the chance of landing 6 **at least once** in one roll? How about 4 rolls? How about 6 rolls?
 
-Now, instead of counting the number of heads and tails, let's look at the *proportion* of tosses that land heads when we toss a coin $n$ times, where $n$ varies from $1$ to $1000$. We can plot the proportion of the tosses that land heads against the number of tosses:
+We will see later how to compute this probability, but for now we can guess the value by simulating the game over and over and looking at the fraction of times we see at least one six in four rolls of a fair die. 
 
-```{r}
-#| fig-align: center
-set.seed(12345)
-coin1 <- c("H", "T")
-toss_num <- 1000 # total number of tosses 
-tosses <- sample(coin1, size = toss_num, replace = TRUE) 
-# # simulating tossing a coin 1000 times
+SHINY GOES HERE!!!!!!!!!
 
-prop_heads <- cumsum(tosses == "H") / 1:toss_num
-prop_heads <- data.frame(cbind(prop_heads, 1:toss_num))
-prop_heads <- rename(prop_heads, toss_num = V2)
-#  computing the fraction of tosses that land heads for each n and 
-#  making the resultant vector into a data frame and renaming the columns
+## Basics
 
-prop_heads %>% 
-  ggplot(aes(y = prop_heads, x = toss_num)) +
-  geom_line() + 
-  annotate("segment", x = 0, xend = max(toss_num) + 50, y = 0.5, yend = 0.5,
-           color = "red", linetype = 2, size = 0.9) + 
-  xlab("Number of tosses") +
-  ylab("Proportion of tosses that land heads") +
-  ggtitle("As we increase the number of tosses,
-           the proportion of heads settles at about 50% ")
-```
-
-We see that at the beginning, for a small number of tosses, the proportion of times that the coin lands heads is all over the place, but it eventually settles down to be around 0.5. This verifies our intuition that if we toss a fair coin, the proportion of times that the coin lands heads should be about 0.5. This idea of the probability of a particular outcome as a long run proportion of times that we see that outcome is called the *frequentist theory of probability*, and we will be using this theory in our class. (A different theory of probability uses a *subjective* notion of probability, but we won’t get into that at this time.) We will think about the probability of heads as the long-run relative frequency, or the proportion of times the coin will land heads if we toss it many, many times. This fits with our intuition that if we have a *fair* coin, that means that each of the two possible outcomes will occur roughly the same number of times when we toss it over and over again. We can then call the two outcomes *equally likely* and can define the probability of heads to be 1/2.
-
-## Definitions
+Before we get going with examples, let's establish some terminology: 
 
 Experiment
 : An action, involving chance, that can result in a finite number of possible *outcomes* (results of the experiment). For example, a coin toss is an experiment, and the possible outcomes are the coin landing heads or tails.
 
 Outcome space
-: The collection of all the possible outcomes of an experiment is called an outcome space, and we denote it by $\Omega$. For example, if we toss a coin, then the corresponding $\Omega = \{\text{Heads, Tails}\}$. If we roll a die, then the corresponding $\Omega = \{1, 2, 3, 4, 5, 6\}$
-
-Probability
-: The chance or probability of a particular outcome is the fraction of times that this outcome is expected to occur, when the experiment that results in the outcome is repeated over and over again (long run relative frequency).
+: This is just a set. It is the collection of all the possible outcomes of an experiment is called an outcome space or *sample* space, and we denote it by the upper case Greek letter $\Omega$ ("Omega"). For example, if we toss a coin, then the corresponding $\Omega = \{\text{Heads, Tails}\}$. If we roll a die, then the corresponding $\Omega = \{1, 2, 3, 4, 5, 6\}$. We will denote a set by enclosing the elements of the set in braces: $\{ \}$.
 
 Event
 : A collection of outcomes as a result of the experiment being performed, perhaps more than once. For example, we could toss a coin twice, and consider the *event* of both tosses landing heads. We usually denote events by upper case letters from the beginning of the alphabet: $A, B, C, \ldots$
+
+##### Example 1: Tossing a fair coin 
+
+![](images/us-quarter.png){width="100" fig-align="center"}
+
+Suppose we toss a fair coin, and I ask you what is the chance of the coin landing heads. Like most people, you reply 50%. Why? Well... (you reply) there are two possible things that can happen, and if the coin is fair, then they are both equally likely, so the probability of heads is 1/2 or 50%. 
+
+Here, we have thought about an event (the coin landing heads), seen that there is one outcome in that event, and two outcomes in the outcome space, so we say the probability of the event is 1/2. We can generalize this:
+
+
+
+Equally likely outcomes
+: When all the possible outcomes in an outcome space happen with the same probability.
+
+
+Probability
+: The chance or probability of a particular outcome is the fraction of times that this outcome is expected to occur, when the experiment that results in the outcome is repeated over and over again. This is called the long run relative frequency.
+
+Probability of equally likely outcomes
+: If all the outcomes of an experiment with $n$ possible outcomes are equally likely, then the probability or chance of each outcome is $\displaystyle \frac{1}{n}$.
+
+
+
+
+
 
 
 ##### Example 2: Tossing a fair six-sided die[^dice] 
@@ -143,8 +141,7 @@ Consider rolling a fair six-sided die: six outcomes are possible, and since the 
 
 
 
-Probability of equally likely outcomes
-: If all the outcomes of an experiment with $n$ possible outcomes are equally likely, then the probability or chance of each outcome is $\displaystyle \frac{1}{n}$.
+
 
 Probability distribution
 : A listing of all the possible outcomes of an experiment and their probabilities.
