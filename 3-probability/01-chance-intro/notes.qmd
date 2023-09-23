@@ -46,12 +46,12 @@ library(infer)
 library(patchwork)
 ```
 
-[I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0000034%. As he writes, this is either depressing or cheering news, depending on what you had estimated your chance to be *before* reading the paper.[^Backus]
+[I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0.0000034%. As he writes, this is either depressing or cheering news, depending on what you had estimated your chance to be *before* reading the paper.[^Backus] The interesting point in the paper was using a probabilistic argument (originally developed by the astronomer and astrophysicist Frank Drake to estimate the probability of extra-terrestrial civilizations) to think about his dating problems. Anyone can follow the arguments put forward by Backus, including his statements that use probability.
 
 
 [^Backus]: paper is at <https://www.astro.sunysb.edu/fwalter/AST248/why_i_dont_have_a_girlfriend.pdf> and a talk by Backus at <https://www.youtube.com/watch?v=ClPPSry8bBw>
 
-We all have some notion of chance or probability, and ask questions like:
+To reiterate, we all have some notion of chance or probability, and ask questions like:
 
 - What is the chance you will get an A in Stat 20? (About 32%, based on last fall.)[^stat-20-A]
 - What is the chance the 49ers will win the Super Bowl this year? (About 1 in 7, higher than any other team, as of September 21.)[^49ers]
@@ -68,7 +68,7 @@ To answer such questions, we need to quantify uncertainty and randomness, and th
 
 So far, we have examined datasets, and summarized them, both numerically and visually.  We have looked at data distributions, and associations between variables. Can we extend the conclusions that we make about the datasets to larger populations? If we notice that bill length and flipper length have a strong linear relationship for the penguins in our data, can we say this is true about all penguins? How do we draw **valid** conclusions about the population our data was drawn from? These are the kinds of questions we we will study, using tools from probability theory. 
 
-In order to be taken seriously, we need to be careful about how we collect data, and then how we generalize our findings. For example, you may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently people pay attention to them. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538]. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''.
+In order to be taken seriously, we need to be careful about how we collect data, and then how we generalize our findings. For example, you may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently people pay attention to them. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538], and one can imagine that no one pays much attention to the polling done by the firms with C or worse grades. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''.
 
 [^538]: This website was begun as poll aggregation site, by the statistician Nate Silver.
 
@@ -85,11 +85,11 @@ Since classical probability came out of gambling games played with dice and coin
 [^dice-players]: Georges de La Tour, Public domain, via Wikimedia Commons
 
 
-In 17th century France, gamblers would bet on anything. In particular, they would bet on a fair six-sided die landing 6 at least once in four rolls. Antoine Gombaud, aka the Chevalier de Méré, was a gambler who also considered himself something of a mathematician. He computed the chance of a getting at least one six in four rolls as 2/3 $4 \times (1/6) = 4/6$. He won quite often by betting on this event, and was convinced his computation was correct. Was it? 
+In 17th century France, gamblers would bet on anything. In particular, they would bet on a fair six-sided die landing 6 at least once in four rolls. Antoine Gombaud, aka the Chevalier de Méré, was a gambler who also considered himself something of a mathematician. He computed the chance of a getting at least one six in four rolls as 2/3 $(4 \times (1/6) = 4/6)$. He won quite often by betting on this event, and was convinced his computation was correct. Was it? 
 
-The next popular dice game was betting on at least one double six in twenty-four rolls of a pair of dice. De Méré knew that there were 36 possible outcomes when rolling a pair of dice, and therefore the chance of a double six was 1/36. Using this he concluded that the chance of at least one double six in 24 rolls was the same as at least one six in four rolls, that is, 2/3 ($24 \times 1/36$). He happily bet on this event (at least one double six in 24 rolls) but to his shock, lost more often than he won! What was going on?
+The next popular dice game was betting on at least one double six in twenty-four rolls of a pair of dice. De Méré knew that there were 36 possible outcomes when rolling a pair of dice, and therefore the chance of a double six was 1/36. Using this he concluded that the chance of at least one double six in 24 rolls was the same as that of at least one six in four rolls, that is, 2/3 ($24 \times 1/36$). He happily bet on this event (at least one double six in 24 rolls) but to his shock, lost more often than he won! What was going on?
 
-We will see later how to compute this probability, but for now we can guess the value by simulating the game 1000 times and looking at the proportion of times we see at least one six in 4 rolls of a fair die, and do the same with at least one double six in 24 rolls.
+We will see later how to compute this probability, but for now we can estimate the value by simulating the game 1000 times and looking at the proportion of times we see at least one six in 4 rolls of a fair die, and do the same with at least one double six in 24 rolls.
 
 ```{r}
 #| echo: false
@@ -280,7 +280,7 @@ Here is a Venn diagram showing two mutually exclusive events (no overlap):
 
 ## Examples
 
-#### Tossing a fair coin 
+#### 1. Tossing a fair coin 
 
 Suppose we toss a coin twice and record the *equally likely* outcomes. What is $\Omega$?
 What is the chance of at least one head?
@@ -294,7 +294,7 @@ Alternatively, we can consider $A^C$ which is the event of *no* heads, so $A^C =
 
 In this case, $P(A) = 1- P(A^C) = 1-1/4 = 3/4$.
 
-Now you try: Let $\Omega$ be the outcome space of tossing a coin *three* times. What is the probability of at least one head? What about exactly one head?
+**Now you try**: Let $\Omega$ be the outcome space of tossing a coin *three* times. What is the probability of at least one head? What about exactly one head?
 
 <details><summary>Check your answer</summary>
 
@@ -307,7 +307,7 @@ If $B$ is the event of *exactly* one head, then $B = \{HTT, THT, TTH\}$ and $P(B
 </details>
 
 
-#### A box of tickets
+#### 2. A box of tickets
 
 ![](images/box-1.jpeg){fig-align=center width="400"}
 
@@ -316,6 +316,8 @@ Consider the box above which has five almost identical tickets. The only differe
 What is the chance of drawing an even number?
 
 <details><summary>Check your answer</summary>
+
+**Solution**:
 
 Let $A$ be the event of drawing an even number, then $A = \{2, 2, 4\}$: we list 2 twice because there are two tickets marked 2, making it twice as likely as any other number. 
 $P(A) = 3/5$
@@ -392,9 +394,11 @@ We can see that the (blue) *sample proportions* look similar to the (gold) *popu
 What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*. This is called an *empirical* histogram, that is, a histogram derived from data.
 
 
-#### Tossing a biased coin
+#### 3. Tossing a biased coin
 
 Suppose I have a coin that is twice as likely to land heads as it is to land tails. This means that I cannot represent $\Omega$ as $\{H, T\}$ since heads and tails are not equally likely. How should I write $\Omega$ so that the outcomes are equally likely?
+
+**Solution**:
 
 In this case, we want to represent equally likely outcomes, and want $H$ to be twice as likely as $T$. We can therefore represent $\Omega$ as $\{H, H, T \}$. Now the chance of the coin landing $H$ can be written as $P(A)$ where $A$ is the event the coin lands $H$ is given by 2/3. 
 
@@ -424,7 +428,7 @@ What box would we use if the coin is not a fair coin, but lands heads $5$ out of
 
 
 
-#### Betting on red in roulette 
+#### 4. Betting on red in roulette 
 
 ![](images/roulette-us.jpg){fig-align="center" width="200"}[^unsplash]
 
