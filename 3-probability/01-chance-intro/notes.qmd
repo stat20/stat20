@@ -203,7 +203,7 @@ Rule 2
 
 Note that the set with no outcomes in it is called the *impossible event* and denoted by the symbol for the empty set $\emptyset$. The probability of the impossible event is $0$.
 
-Before we write the third rule, we need a definition and some notation:
+Before we write the third rule, we need some more definitions and some notation:
 
 Union of events
 : Given events $A$, $B$, we can define a new event called $A$ *or* $B$, which consists of all the outcomes that are *either* in $A$ *or* in $B$ or in both.  This is also written as $A \cup B$, read as ``$A$ union $B$''.
@@ -482,7 +482,7 @@ data.frame(die_rolls) %>%
   summarise(n = n())
 ```
 
-Not so great, but recalling the fair coin, let's roll the die 600 times:
+Not so great, but let's try rolling the die 600 times:
 ```{r}
 set.seed(12345)
 
