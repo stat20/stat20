@@ -2,9 +2,13 @@
 title: "Introducing Probability"
 subtitle: "Definitions, examples, and axioms"
 image: images/dice-players-painting.jpeg
-format:
-  html: default
-  pdf: default
+output:
+  quarto::pdf_document:
+    execute:
+      echo: false
+  quarto::html_document:
+    execute:
+      code-fold: true
 ---
 
 
