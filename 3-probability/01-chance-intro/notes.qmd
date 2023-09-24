@@ -46,12 +46,12 @@ library(infer)
 library(patchwork)
 ```
 
-[I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0.0000034%. As he writes, this is either depressing or cheering news, depending on what you had estimated your chance to be *before* reading the paper.[^Backus] The interesting point in the paper was using a probabilistic argument (originally developed by the astronomer and astrophysicist Frank Drake to estimate the probability of extra-terrestrial civilizations) to think about his dating problems. Anyone can follow the arguments put forward by Backus, including his statements that use probability.
+[I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0.0000034%. As he writes, this is either depressing or cheering news, depending on what you had estimated your chance to be *before* reading the paper.[^Backus] This paper is interesting for us because it uses a probabilistic argument (originally developed by the astronomer and astrophysicist Frank Drake to estimate the probability of extra-terrestrial civilizations) to think about his dating problems. Anyone can follow the arguments put forward by Backus, including his statements that use probability.
 
 
-[^Backus]: paper is at <https://www.astro.sunysb.edu/fwalter/AST248/why_i_dont_have_a_girlfriend.pdf> and a talk by Backus at <https://www.youtube.com/watch?v=ClPPSry8bBw>
+[^Backus]: Paper is at <https://www.astro.sunysb.edu/fwalter/AST248/why_i_dont_have_a_girlfriend.pdf> and a talk by Backus at <https://www.youtube.com/watch?v=ClPPSry8bBw>
 
-To reiterate, we all have some notion of chance or probability, and ask questions like:
+We all have some notion of chance or probability, and can ask questions like:
 
 - What is the chance you will get an A in Stat 20? (About 32%, based on last fall.)[^stat-20-A]
 - What is the chance the 49ers will win the Super Bowl this year? (About 1 in 7, higher than any other team, as of September 21.)[^49ers]
@@ -66,15 +66,15 @@ To answer such questions, we need to quantify uncertainty and randomness, and th
 
 ![](images/andrew-gen-focus.jpeg){fig-align=center width="400"}
 
-So far, we have examined datasets, and summarized them, both numerically and visually.  We have looked at data distributions, and associations between variables. Can we extend the conclusions that we make about the datasets to larger populations? If we notice that bill length and flipper length have a strong linear relationship for the penguins in our data, can we say this is true about all penguins? How do we draw **valid** conclusions about the population our data was drawn from? These are the kinds of questions we we will study, using tools from probability theory. 
+So far, we have examined data sets and summarized them, both numerically and visually.  We have looked at data distributions, and associations between variables. Can we extend the conclusions that we make about the data sets to larger populations? If we notice that bill length and flipper length have a strong linear relationship for the penguins in our data, can we say this is true about all penguins? How do we draw **valid** conclusions about the population our data was drawn from? These are the kinds of questions we we will study using tools from probability theory. 
 
-In order to be taken seriously, we need to be careful about how we collect data, and then how we generalize our findings. For example, you may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently people pay attention to them. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538], and one can imagine that not many take heed of the polling done by the firms with C or worse grades. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''.
+In order to be taken seriously, we need to be careful about how we collect data, and then how we generalize our findings. For example, you may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently people pay more attention to them. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538], and one can imagine that not many take heed of the polling done by the firms with C or worse grades. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology".
 
 [^538]: This website was begun as poll aggregation site, by the statistician Nate Silver.
 
 ![](images/538-pollster-ranking-snippet.png){fig-align=center width="500"}
 
-In order to make estimates as these polling organizations are doing, or understand the results of a clinical trial or such questions in which we *generalize* from our data sample to a larger group, we have to understand the *variations* in data introduced by randomness in our sampling methods. Each time we poll a different group of voters, for example, we will get a different estimate of the proportion of voters that will vote for Joseph Biden in the next election. To understand variation, we first have to understand how probability was used to collect the data. 
+In order to make estimates as these polling organizations are doing, or understand the results of a clinical trial, or other such questions in which we *generalize* from our data sample to a larger group, we have to understand the *variations* in data introduced by randomness in our sampling methods. Each time we poll a different group of voters, for example, we will get a different estimate of the proportion of voters that will vote for Joe Biden in the next election. To understand variation, we first have to understand how probability was used to collect the data. 
 
 Since classical probability came out of gambling games played with dice and coins, we can begin our study by thinking about those.
 
@@ -147,7 +147,7 @@ dice_24_df %>%
 ```
 
 
-You can see here that the poor Chevalier wasn't as good a mathematician as he imagined himself to be, and didn't compute the chances correctly.  `r emo::ji("monocle")` You can play with this simulation in the ``Ideas in Code'' section below.
+You can see here that the poor Chevalier wasn't as good a mathematician as he imagined himself to be, and didn't compute the chances correctly.  `r emo::ji("monocle")` You can play with this simulation in the ``Ideas in Code" section below.
 
 
 ## Basics
@@ -158,7 +158,7 @@ Experiment
 : An action, involving chance, that can result in a finite number of possible *outcomes* (results of the experiment). For example, a coin toss is an experiment, and the possible outcomes are the coin landing heads or tails.
 
 Outcome space
-: This is just a set. It is the collection of all the possible outcomes of an experiment is called an outcome space or *sample* space, and we denote it by the upper case Greek letter $\Omega$ (``Omega''). For example, if we toss a coin, then the corresponding $\Omega = \{\text{Heads, Tails}\}$. If we roll a die, then the corresponding $\Omega = \{1, 2, 3, 4, 5, 6\}$. We will denote a set by enclosing the elements of the set in braces: $\{ \}$. 
+: This is just a set. It is the collection of all the possible outcomes of an experiment is called an outcome space or *sample* space, and we denote it by the upper case Greek letter $\Omega$ (``Omega"). For example, if we toss a coin, then the corresponding outcome space is $\Omega = \{\text{Heads, Tails}\}$. If we roll a die, then the corresponding outcome space $\Omega = \{1, 2, 3, 4, 5, 6\}$. We will denote a set by enclosing the elements of the set in braces: $\{ \}$. 
 
 Event
 : A collection of outcomes as a result of the experiment being performed, perhaps more than once. For example, we could toss a coin twice, and consider the *event* of both tosses landing heads. We usually denote events by upper case letters from the beginning of the alphabet: $A, B, C, \ldots$. An event is a subset of the outcome space, and we denote this by writing $A \subset \Omega$.
@@ -197,10 +197,10 @@ In order to compute the probabilities of events, we need to set some rules.
 The probability (or chance - we use these words interchangebly) of an event needs to satisfy some basic mathematical rules called _axioms_ (which are intuitively clear if you think of the probability of an event as the proportion of the outcomes that are in it). There are three basic rules that will help us compute probabilities:
 
 Rule 1
-: The chance of any event is at least $0$ ($P(A) \ge 0$ for any event $A$). 
+: The chance of any event is at least $0$: $P(A) \ge 0$ for any event $A$. 
 
 Rule 2
-: The chance of an outcome being in $\Omega$ is $1$ ($P(\Omega) = 1$). This is true because we can consider that the probability of $\Omega$ is the number of outcomes in $\Omega$ divided by $n$, which is $n/n = 1$.
+: The chance of an outcome being in $\Omega$ is $1$: $P(\Omega) = 1$. This is true because we can consider that the probability of $\Omega$ is the number of outcomes in $\Omega$ divided by $n$, which is $n/n = 1$.
 
 Before we write the third rule, we need some more definitions and notation:
 
@@ -218,14 +218,13 @@ Now we consider events that *don't* intersect or overlap at all, that is, they a
 Mutually exclusive events
 : If two events $A$ and $B$ do not overlap, that is, they have **no outcomes in common**, we say that the events are *mutually exclusive*. Note that if $A$ and $B$ are mutually exclusive, then we know that if one of them happens, the other one **cannot**. We denote this by writing $A \cap B = \emptyset$ and read this as $A$ *intersect* $B$ is empty. Therefore, we have that $P(A \cap B) = P(\emptyset) = 0$. 
 
-For example, if we are playing De Méré's second game, the event that we roll a pair of sixes and the event that we roll a pair of twos cannot happen on the same roll. These are mutually exclusive. 
-Another example: the events that President Biden is re-elected and the event that Donald Trump is elected as President cannot both happen, therefore they are mutually exclusive events. 
+For example, if we are playing De Méré's second game, the event that we roll a pair of sixes and the event that we roll a pair of twos cannot happen on the same roll. These are mutually exclusive. Another example: the events that President Biden is re-elected and the event that Donald Trump is elected as President cannot both happen, therefore they are mutually exclusive events. 
 
 <details><summary>More examples:</summary>
 If we roll a die, the events that we roll an *even* number and the event that we roll an *odd* number are mutually exclusive, but the events that we roll an *even* number and the event that we roll a *prime* number are **not** mutually exclusive, since the number 2 is both even and prime.
 
 
-The event that Manchester City wins the English Premier League in 2024, and the event that Arsenal wins the EPL in 2024 are mutually exclusive, but the events that Manchester City are EPL champions in 2024 and Manchester City are EPL champions in 2023 are *not* mutually exclusive. 
+The event that Manchester City wins the English Premier League (EPL) in 2024, and the event that Arsenal wins the EPL in 2024 are mutually exclusive, but the events that Manchester City are EPL champions in 2024 and Manchester City are EPL champions in 2023 are *not* mutually exclusive. 
 </details>
 
 Now for the third axiom:
