@@ -46,12 +46,12 @@ library(infer)
 library(patchwork)
 ```
 
-[I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0.0000034%. As he writes, this is either depressing or cheering news, depending on what you had estimated your chance to be *before* reading the paper.[^Backus] The interesting point in the paper was using a probabilistic argument (originally developed by the astronomer and astrophysicist Frank Drake to estimate the probability of extra-terrestrial civilizations) to think about his dating problems. Anyone can follow the arguments put forward by Backus, including his statements that use probability.
+[I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0.0000034%. As he writes, this is either depressing or cheering news, depending on what you had estimated your chance to be *before* reading the paper.[^Backus] This paper is interesting for us because it uses a probabilistic argument (originally developed by the astronomer and astrophysicist Frank Drake to estimate the probability of extra-terrestrial civilizations) to think about his dating problems. Anyone can follow the arguments put forward by Backus, including his statements that use probability.
 
 
-[^Backus]: paper is at <https://www.astro.sunysb.edu/fwalter/AST248/why_i_dont_have_a_girlfriend.pdf> and a talk by Backus at <https://www.youtube.com/watch?v=ClPPSry8bBw>
+[^Backus]: Paper is at <https://www.astro.sunysb.edu/fwalter/AST248/why_i_dont_have_a_girlfriend.pdf> and a talk by Backus at <https://www.youtube.com/watch?v=ClPPSry8bBw>
 
-To reiterate, we all have some notion of chance or probability, and ask questions like:
+We all have some notion of chance or probability, and can ask questions like:
 
 - What is the chance you will get an A in Stat 20? (About 32%, based on last fall.)[^stat-20-A]
 - What is the chance the 49ers will win the Super Bowl this year? (About 1 in 7, higher than any other team, as of September 21.)[^49ers]
@@ -66,15 +66,15 @@ To answer such questions, we need to quantify uncertainty and randomness, and th
 
 ![](images/andrew-gen-focus.jpeg){fig-align=center width="400"}
 
-So far, we have examined datasets, and summarized them, both numerically and visually.  We have looked at data distributions, and associations between variables. Can we extend the conclusions that we make about the datasets to larger populations? If we notice that bill length and flipper length have a strong linear relationship for the penguins in our data, can we say this is true about all penguins? How do we draw **valid** conclusions about the population our data was drawn from? These are the kinds of questions we we will study, using tools from probability theory. 
+So far, we have examined data sets and summarized them, both numerically and visually.  We have looked at data distributions, and associations between variables. Can we extend the conclusions that we make about the data sets to larger populations? If we notice that bill length and flipper length have a strong linear relationship for the penguins in our data, can we say this is true about all penguins? How do we draw **valid** conclusions about the population our data was drawn from? These are the kinds of questions we we will study using tools from probability theory. 
 
-In order to be taken seriously, we need to be careful about how we collect data, and then how we generalize our findings. For example, you may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently people pay attention to them. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538], and one can imagine that no one pays much attention to the polling done by the firms with C or worse grades. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology''.
+In order to be taken seriously, we need to be careful about how we collect data, and then how we generalize our findings. For example, you may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently people pay more attention to them. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538], and one can imagine that not many take heed of the polling done by the firms with C or worse grades. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology".
 
 [^538]: This website was begun as poll aggregation site, by the statistician Nate Silver.
 
 ![](images/538-pollster-ranking-snippet.png){fig-align=center width="500"}
 
-In order to make estimates as these polling organizations are doing, or understand the results of a clinical trial or such questions in which we *generalize* from our data sample to a larger group, we have to understand the *variations* in data introduced by randomness in our sampling methods. Each time we poll a different group of voters, for example, we will get a different estimate of the proportion of voters that will vote for Joseph Biden in the next election. To understand variation, we first have to understand how probability was used to collect the data. 
+In order to make estimates as these polling organizations are doing, or understand the results of a clinical trial, or other such questions in which we *generalize* from our data sample to a larger group, we have to understand the *variations* in data introduced by randomness in our sampling methods. Each time we poll a different group of voters, for example, we will get a different estimate of the proportion of voters that will vote for Joe Biden in the next election. To understand variation, we first have to understand how probability was used to collect the data. 
 
 Since classical probability came out of gambling games played with dice and coins, we can begin our study by thinking about those.
 
@@ -89,13 +89,14 @@ In 17th century France, gamblers would bet on anything. In particular, they woul
 
 The next popular dice game was betting on at least one double six in twenty-four rolls of a pair of dice. De Méré knew that there were 36 possible outcomes when rolling a pair of dice, and therefore the chance of a double six was 1/36. Using this he concluded that the chance of at least one double six in 24 rolls was the same as that of at least one six in four rolls, that is, 2/3 ($24 \times 1/36$). He happily bet on this event (at least one double six in 24 rolls) but to his shock, lost more often than he won! What was going on?
 
-We will see later how to compute this probability, but for now we can estimate the value by simulating the game 1000 times and looking at the proportion of times we see at least one six in 4 rolls of a fair die, and do the same with at least one double six in 24 rolls.
+We will see later how to compute this probability, but for now we can estimate the value by simulating the game many times and looking at the proportion of times we see at least one six in 4 rolls of a fair die, and do the same with at least one double six in 24 rolls.
 
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
 
+set.seed(123)
 #### de Mere - first game
 
 die <- 1:6
@@ -146,7 +147,7 @@ dice_24_df %>%
 ```
 
 
-You can see here that the poor Chevalier didn't compute the chance correctly.  `r emo::ji("monocle")` You can play with this simulation in the ``Ideas in Code'' section below.
+You can see here that the poor Chevalier wasn't as good a mathematician as he imagined himself to be, and didn't compute the chances correctly.  `r emo::ji("monocle")` You can play with this simulation in the ``Ideas in Code" section below.
 
 
 ## Basics
@@ -157,7 +158,7 @@ Experiment
 : An action, involving chance, that can result in a finite number of possible *outcomes* (results of the experiment). For example, a coin toss is an experiment, and the possible outcomes are the coin landing heads or tails.
 
 Outcome space
-: This is just a set. It is the collection of all the possible outcomes of an experiment is called an outcome space or *sample* space, and we denote it by the upper case Greek letter $\Omega$ (``Omega''). For example, if we toss a coin, then the corresponding $\Omega = \{\text{Heads, Tails}\}$. If we roll a die, then the corresponding $\Omega = \{1, 2, 3, 4, 5, 6\}$. We will denote a set by enclosing the elements of the set in braces: $\{ \}$. 
+: This is just a set. It is the collection of all the possible outcomes of an experiment is called an outcome space or *sample* space, and we denote it by the upper case Greek letter $\Omega$ (``Omega"). For example, if we toss a coin, then the corresponding outcome space is $\Omega = \{\text{Heads, Tails}\}$. If we roll a die, then the corresponding outcome space $\Omega = \{1, 2, 3, 4, 5, 6\}$. We will denote a set by enclosing the elements of the set in braces: $\{ \}$. 
 
 Event
 : A collection of outcomes as a result of the experiment being performed, perhaps more than once. For example, we could toss a coin twice, and consider the *event* of both tosses landing heads. We usually denote events by upper case letters from the beginning of the alphabet: $A, B, C, \ldots$. An event is a subset of the outcome space, and we denote this by writing $A \subset \Omega$.
@@ -196,14 +197,15 @@ In order to compute the probabilities of events, we need to set some rules.
 The probability (or chance - we use these words interchangebly) of an event needs to satisfy some basic mathematical rules called _axioms_ (which are intuitively clear if you think of the probability of an event as the proportion of the outcomes that are in it). There are three basic rules that will help us compute probabilities:
 
 Rule 1
-: The chance of any event is at least $0$ ($P(A) \ge 0$ for any event $A$). 
+: The chance of any event is at least $0$: $P(A) \ge 0$ for any event $A$. 
 
 Rule 2
-: The chance of an outcome being in $\Omega$ is $1$ ($P(\Omega) = 1$). This is true because we can consider that the probability of $\Omega$ is the number of outcomes in $\Omega$ divided by $n$, which is $n/n = 1$.
+: The chance of an outcome being in $\Omega$ is $1$: $P(\Omega) = 1$. This is true because we can consider that the probability of $\Omega$ is the number of outcomes in $\Omega$ divided by $n$, which is $n/n = 1$.
 
-Note that the set with no outcomes in it is called the *impossible event* and denoted by the symbol for the empty set $\emptyset$. The probability of the impossible event is $0$.
+Before we write the third rule, we need some more definitions and notation:
 
-Before we write the third rule, we need some more definitions and some notation:
+Impossible event
+: An event with no outcomes in it. Denoted by either empty braces $\{\}$ or the symbol for the empty set  $\emptyset$. The probability of the impossible event is $0$.
 
 Union of events
 : Given events $A$, $B$, we can define a new event called $A$ *or* $B$, which consists of all the outcomes that are *either* in $A$ *or* in $B$ or in both.  This is also written as $A \cup B$, read as ``$A$ union $B$''.
@@ -216,15 +218,13 @@ Now we consider events that *don't* intersect or overlap at all, that is, they a
 Mutually exclusive events
 : If two events $A$ and $B$ do not overlap, that is, they have **no outcomes in common**, we say that the events are *mutually exclusive*. Note that if $A$ and $B$ are mutually exclusive, then we know that if one of them happens, the other one **cannot**. We denote this by writing $A \cap B = \emptyset$ and read this as $A$ *intersect* $B$ is empty. Therefore, we have that $P(A \cap B) = P(\emptyset) = 0$. 
 
-For example, if we are playing De Méré's second game, the event that we roll a pair of sixes and the event that we roll a pair of twos cannot happen on the same roll. These are mutually exclusive. 
-Another example: the events that President Biden is re-elected and the event that Donald Trump is elected as President cannot both happen, therefore they are mutually exclusive events. 
+For example, if we are playing De Méré's second game, the event that we roll a pair of sixes and the event that we roll a pair of twos cannot happen on the same roll. These are mutually exclusive. Another example: the events that President Biden is re-elected and the event that Donald Trump is elected as President cannot both happen, therefore they are mutually exclusive events. 
 
 <details><summary>More examples:</summary>
 If we roll a die, the events that we roll an *even* number and the event that we roll an *odd* number are mutually exclusive, but the events that we roll an *even* number and the event that we roll a *prime* number are **not** mutually exclusive, since the number 2 is both even and prime.
 
-<br>
 
-The event that Manchester City wins the English Premier League in 2024, and the event that Arsenal wins the EPL in 2024 are mutually exclusive, but the events that Manchester City are EPL champions in 2024 and Manchester City are EPL champions in 2023 are *not* mutually exclusive. 
+The event that Manchester City wins the English Premier League (EPL) in 2024, and the event that Arsenal wins the EPL in 2024 are mutually exclusive, but the events that Manchester City are EPL champions in 2024 and Manchester City are EPL champions in 2023 are *not* mutually exclusive. 
 </details>
 
 Now for the third axiom:
@@ -324,9 +324,13 @@ $P(A) = 3/5$
 
 </details> 
 
-We can represent the probabilities visually with bars, and we call this a *probability histogram*.
+##### Empirical histograms vs probability histograms
+
+The histograms we have seen so far have been visualizations of data, and so are called *empirical* histograms. We can represent the probabilities visually with bars, and we call this a *probability histogram*. Note that we do not need to collect data for this type of graph since the heights of the bars represent probabilities, and are *theoretical*.
+
 Here is the probability histogram of the value of the drawn ticket, and you see that the bar over 2 is twice as tall. This is because there are twice as many tickets marked 2 as any other numbers. We can call this graph the *distribution* of the ticket values and it is a visual representation of the table we drew earlier. 
 
+:::{.content-visible when-format="html"}
 ```{r}
 #| fig.width: 5
 #| fig.height: 5
@@ -351,17 +355,48 @@ p2 <- data.frame(tkts_box) %>%
 
 p1+p2
 ```
+:::
+
+:::{.content-hidden when-format="html"}
+```{r}
+#| fig.width: 5
+#| fig.height: 5
+#| fig.align: center
+#| #| code-fold: false
+#| echo: false
+
+tkts_box <- c(1, 2, 3, 4)
+prob_box <- c(1/5, 2/5, 1/5, 1/5)
+
+box <- c(1, 2, 2, 3, 4)
+
+p1 <- data.frame(box) %>% 
+  ggplot(aes(x=box)) +
+  geom_bar(width = 0.98, fill = "darkorchid") +
+  xlab("ticket value")  +
+  ggtitle("Ticket distribution")
+
+p2 <- data.frame(tkts_box) %>% 
+  ggplot(aes(x=tkts_box, y=prob_box)) +
+  geom_col(width = 0.98, fill = "goldenrod2") +
+  xlab("ticket value") +
+  ylab("probability")
+
+p1+p2
+```
+:::
 
 Notice that the only difference between these two plots is the vertical scale. When the tickets are equally likely, the box distribution (the purple plot) completely determines the probability distribution (the golden plot).
 
 
 <!-- Since the tickets are drawn according to their chance, we could compute what a draw would be, on average, by computing a weighted (by their chance) average of the possible values. We would get, for a single draw: $1\times \frac{1}{5} + 2 \times \frac{2}{5} + 3 \times \frac{1}{5} + 4 \times \frac{1}{5} = 2.4$. (Note that this exactly matches the average of the tickets in the box $= \displaystyle \frac{1 + 2 + 2 + 3 + 4}{5}$). -->
 
-How about if we draw 50 times at random with replacement from this box and see what our sample looks like (we will explore the code later in the notes). That is, we will see what proportion of the draws are 1's, 2's etc.
+How about if we draw 50 times at random with replacement from this box and see what our sample looks like. That is, we will see what proportion of the draws are 1's, 2's etc.
 
+:::{.content-visible when-format="html"}
 ```{r}
-#| fig.width: 2
-#| fig.height: 2
+#| fig.width: 4
+#| fig.height: 4
 #| fig.align: center
 #| warning: false
 
@@ -375,6 +410,28 @@ data.frame(sample_box) %>%
   xlab("values of draws") + 
   ylab("proportion of draws")
 ```
+:::
+
+:::{.content-hidden when-format="html"}
+```{r}
+#| fig.width: 4
+#| fig.height: 4
+#| fig.align: center
+#| warning: false
+#| code-fold: false
+#| echo: false
+
+set.seed(12345)
+box <- c(1,2,2,3,4)
+sample_size <- 50
+sample_box <- sample(box, size = sample_size, replace = TRUE)
+data.frame(sample_box) %>%
+  ggplot(aes(sample_box)) + 
+  geom_bar(aes(y = ..prop..), width = 0.98, fill = "blue") +
+  xlab("values of draws") + 
+  ylab("proportion of draws")
+```
+:::
 
 We can see that the (blue) *sample proportions* look similar to the (gold) *population (box) proportions* (the probability distribution above), but are somewhat different. It turns out that the counts of the drawn tickets are:
 
@@ -391,7 +448,7 @@ We can see that the (blue) *sample proportions* look similar to the (gold) *popu
 </div>
 </center>
 
-What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*. This is called an *empirical* histogram, that is, a histogram derived from data.
+What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*. This is the *empirical* histogram, that is, a histogram derived from data.
 
 
 #### 3. Tossing a biased coin
@@ -497,10 +554,14 @@ data.frame(die_rolls) %>%
   summarise(n = n())
 ```
 
-It might be better to visualize it. We will draw the *probability histogram*, which shows the probabilities of each possible outcome (the probability distribution), and compare it to the *empirical* histograms (plotting the data distribution, *not* the probability distribution) of the results of rolling the die $6, 60$, and $600$ times. Note that the probability histogram is a *theoretical* histogram, where the area of the bars represent probabilities, and the total area of the histogram is $1$.
+It might be better to visualize it. We will draw the *probability histogram* in gold, which shows the probabilities of each possible outcome (the probability distribution), and compare it to the *empirical* histograms in blue (plotting the *data* distribution, not the probability distribution) of the results of rolling the die $6, 60$, and $600$ times. Note that the probability histogram is a *theoretical* histogram, where the area of the bars represent probabilities, and the total area of the histogram is $1$.
 
-
+:::{.content-visible when-format="html"}
 ```{r}
+#| fig-align: center
+#| fig-height: 6
+#| fig-width: 6
+
 prob_die <- rep(1/6, 6)
 set.seed(12345)
 
@@ -562,6 +623,78 @@ p4 <- data.frame(roll_600) %>%
 
 (p1 + p2)/(p3+p4)
 ```
+:::
+
+:::{.content-hidden when-format="html"}
+```{r}
+#| fig-align: center
+#| fig-height: 6
+#| fig-width: 6
+#| code-fold: false
+#| echo: false
+
+prob_die <- rep(1/6, 6)
+set.seed(12345)
+
+p1 <- data.frame(die) %>% 
+  ggplot(aes(x = factor(die), y=prob_die)) +
+  geom_col(width = 0.98, fill = "goldenrod2") +
+  xlab("number of spots") +
+  ylab("probability") +
+  ggtitle("Probability distribution of the \n outcome of a die roll") +
+  lims(y = c(0, .35))
+
+roll_6 <- sample(die, 6, replace = TRUE)
+roll_6 <- data.frame(table(roll_6)) %>%
+  add_row(roll_6 = factor(1), Freq = 0, .before = 1) %>%
+  mutate(spots = factor(1:6),
+         prop_rolls = Freq/6)
+# adding in a new row at the top that lists the number of times
+# 1 was rolled in 6 rolls
+# then adding in the values for the x-axis
+
+p2 <- roll_6 %>%
+  ggplot(aes(x = spots, y= prop_rolls)) +
+  geom_col(width = 0.98, fill = "blue") +
+  xlab("number of spots") +
+  ylab("proportion of rolls") +
+  ggtitle("Empirical distribution for 6 rolls") +
+  lims(y = c(0, .35))
+
+
+roll_60 <- sample(die, 60, replace = TRUE)
+
+roll_60 <- data.frame(table(roll_60)) %>%
+    mutate(spots = factor(1:6),
+         prop_rolls = Freq/60)
+
+p3 <- roll_60 %>%
+  ggplot(aes(x = spots, y= prop_rolls)) +
+  geom_col(width = 0.98, fill = "blue") +
+  xlab("number of spots") +
+  ylab("proportion of rolls") +
+  ggtitle("Empirical distribution for 60 rolls") +
+  lims(y = c(0, .35))
+  
+
+roll_600 <- sample(die, 600, replace = TRUE)
+
+roll_600 <- data.frame(table(roll_600)) %>%
+    mutate(spots = factor(1:6),
+         prop_rolls = Freq/600)
+
+
+p4 <- data.frame(roll_600) %>%
+  ggplot(aes(x = spots, y=prop_rolls)) +
+  geom_col(width = 0.98, fill = "blue") +
+  xlab("number of spots") +
+  ylab("proportion of rolls") +
+  ggtitle("Empirical distribution for 600 rolls") +
+  lims(y = c(0, .35))
+
+(p1 + p2)/(p3+p4)
+```
+:::
 
 The important takeaway here is that we have a *theoretical* probability distribution of the outcomes, and we have what actually happens when we perform the experiment over and over. Eventually, the empirical distribution begins to look like the theoretical distribution. 
 
@@ -595,8 +728,9 @@ We see that the *estimated* chance of drawing a $\fbox{2}$ is about 0.4, and thi
 
 What if we wanted to wanted to draw _five_ tickets with replacement from this box, and sum the draws? What would be the possible values that we would get? What could their chances be? We can visualize this in R:
 
+
+:::{.content-visible when-format="html"}
 ```{r}
-#| code-fold: false
 #| fig-width: 4
 #| fig-height: 3
 #| fig-align: center
@@ -609,6 +743,25 @@ ggplot(data.frame(draws), aes(x=draws)) +
   xlab("sum of draws") + 
   scale_x_continuous(breaks = seq(min(draws), max(draws), by = 1))
 ```
+:::
+
+:::{.content-hidden when-format="html"}
+```{r}
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: center
+#| code-fold: false
+#| echo: false
+
+box <- c(1, 2, 2, 3, 4)
+draws <- replicate(5000, sum(sample(box, size = 5, replace = TRUE)))
+ggplot(data.frame(draws), aes(x=draws)) + 
+  geom_bar(aes(y=..prop..), fill="blue", width = 0.98) + 
+  ylab("proportion") + 
+  xlab("sum of draws") + 
+  scale_x_continuous(breaks = seq(min(draws), max(draws), by = 1))
+```
+:::
 
 We can see that there is a lot more variation in the values taken by the sum of 5 draws.
 
@@ -643,6 +796,7 @@ sum(draws)
 
 We could also repeat it many times and estimate the chance of each of the possible outcomes.
 
+:::{.content-visible when-format="html"}
 ```{r}
 #| fig-width: 4
 #| fig-height: 3
@@ -657,7 +811,26 @@ ggplot(data.frame(many_draws), aes(x=many_draws)) +
                                   max(many_draws), by = 1))
 
 ```
+:::
 
+:::{.content-hidden when-format="html"}
+```{r}
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: center
+#| code-fold: false
+#| echo: false
+
+many_draws <- replicate(5000, sum(sample(die, size = 2, replace = TRUE)))
+ggplot(data.frame(many_draws), aes(x=many_draws)) + 
+  geom_bar(aes(y=..prop..), fill="blue", width = 0.98) + 
+  ylab("proportion") + 
+  xlab("sum of two draws") + 
+  scale_x_continuous(breaks = seq(min(many_draws), 
+                                  max(many_draws), by = 1))
+
+```
+:::
 
 :::{.callout-warning icon=false}
 
@@ -688,7 +861,7 @@ Purves in their textbook [*Statistics*](https://wwnorton.com/books/9780393929720
 {{< include ../../assets/includes/_links-to-materials.qmd >}}
 
 
-## The Ideas in Code
+## Ideas in Code
 
 You can run the simulations yourself using the code below. Copy and paste it into RStudio and play around with it.
 
@@ -718,9 +891,11 @@ Now let's set up the first game, and repeat it 1000 times. You can change the nu
 
 ##### de mere first game ############
 
-set.seed(123123) # This ensures that each time we run this code, we will get the same results.
+set.seed(123123) 
+# This ensures that each time we run this code, we will get the same results.
 
-num_simulations <- 1000 # specifying the number of simulations, or the number of times we will play
+num_simulations <- 1000 
+# specifying the number of simulations, or the number of times we will play
 
 # now we will play the game of rolling the die 4 times num_simulations times
 die_4 <- replicate(num_simulations, sample(die, 4, replace = TRUE)) 
