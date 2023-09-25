@@ -4,7 +4,7 @@ subtitle: "PS"
 format: stat20handout-pdf
 ---
 
-@. In the notes, one of the examples is about dice, and sets up a box model for the process of rolling a pair of fair six sided dice and summing the spots. In the notes we make 2 draws at random with replacement from the following box, and sum the draws:
+@. In the notes, we simulate rolling a pair of dice and summing the spots. We set it up by defining a vector called `die` and simulate in R drawing two tickets from the following box (and putting *back* the first ticket before drawing the second), and summing the values on the drawn tickets.
 
    $$\fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}  \fbox{5}  \fbox{6}}$$
 
@@ -18,7 +18,7 @@ format: stat20handout-pdf
 
 \
 
-@. If we are setting up a box for modeling the number of heads in three tosses of a fair coin, would either of the boxes below work? If not, why not?
+@. If we are defining a box to simulate tossing a fair coin three times and counting the **number** of heads, would either of the boxes below work? If not, why not? (Note that, for example, the box  $\fbox{\fbox{0} \fbox{1}}$  would be represented by the vector `(0, 1)` in R.
 
 (a) $\fbox{\fbox{0} \fbox{1}}$ - Draw three times at random with replacement, and sum the draws.
 (b) $\fbox{\fbox{0} \fbox{1} \fbox{2} \fbox{3}}$ -  Draw once, the result is the number of heads.
@@ -29,12 +29,6 @@ format: stat20handout-pdf
 \
 
 
-@. A standard deck of cards has 52 cards, consisting of 4 "suits" (hearts  \textcolor{red}{$\heartsuit$}, diamonds \textcolor{red}{$\diamondsuit$}, spades $\spadesuit$, and clubs $\clubsuit$). Each suit has 13 cards (Ace, King, Queen, Jack, 2, 3, 4, 5, 6, 7, 8, 9, and 10). Half of the cards are red (hearts and diamonds) and half of the cards are black (spades and clubs). I would like to shuffle the cards, draw **five** cards with replacement, and count the number of **hearts** in these five cards. What would be the box model for this set up?
-
-
-\
-
-\
 
 @. One ticket will be drawn at random from each of the two boxes below:
 
@@ -42,19 +36,19 @@ $A: \fbox{\fbox{1} \fbox{2} \fbox{3}}$
 
 $B: \fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}}$
 
-   (a) What is the chance the number drawn from $A$ is greater than the one drawn from $B$?
+   (a) What is the probability the number drawn from $A$ is greater than the one drawn from $B$?
 
    \
 
-   (b) What is the chance that the number drawn from $A$ is equal to the one drawn from $B$?
+   (b) What is the probability that the number drawn from $A$ is equal to the one drawn from $B$?
 
    \
 
-   (c) What is the chance the number drawn from $A$ is smaller than the one drawn from $B$?
+   (c) What is the probability the number drawn from $A$ is smaller than the one drawn from $B$?
 
    \
 
-@. I want to estimate the proportion of people in Berkeley who speak at least two languages. I stand at the corner of University and Shattuck and ask each person who goes by how many languages they speak, and keep a count of how many speak at least two. Can I set this up as a box model? If so, how? If not, why not? 
+@. I want to estimate the proportion of people in Berkeley who speak at least two languages. I stand at the corner of University and Shattuck and ask each person who goes by how many languages they speak, and keep a count of how many speak at least two. Is this a good way to estimate the proportion I am looking for? 
 
    \
 
@@ -62,15 +56,39 @@ $B: \fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}}$
 
 @.  
 
-(a) Consider the box $\fbox{ \fbox{1} \fbox{2} \fbox{2} \fbox{3} \fbox{4}}$. I draw two tickets at random **with** replacement. If my first draw is a 2, what is the chance that my second draw is a 3?
+(a) Consider the box $\fbox{ \fbox{1} \fbox{2} \fbox{2} \fbox{3} \fbox{4}}$. I draw two tickets at random **with** replacement. If my first draw is a 2, what is the probability that my second draw is a 3?
 
 \
 
-(b) Consider the box $\fbox{ \fbox{1} \fbox{2} \fbox{2} \fbox{3} \fbox{4}}$. I draw two tickets at random **without** replacement. If my first draw is a 2, what is the chance that my second draw is a 3?
+(b) Consider the box $\fbox{ \fbox{1} \fbox{2} \fbox{2} \fbox{3} \fbox{4}}$. I draw two tickets at random **without** replacement. If my first draw is a 2, what is the probability that my second draw is a 3?
 
 \
 
 
+@. A standard deck of cards has 52 cards, consisting of 4 "suits" (hearts  \textcolor{red}{$\heartsuit$}, diamonds \textcolor{red}{$\diamondsuit$}, spades $\spadesuit$, and clubs $\clubsuit$). Each suit has 13 cards (Ace, King, Queen, Jack, 2, 3, 4, 5, 6, 7, 8, 9, and 10). Half of the cards are red (hearts and diamonds) and half of the cards are black (spades and clubs).
+
+(a) Suppose I shuffle the cards well, and deal one card from the top. What is the chance that it is a queen? What about the chance that it is the queen of \textcolor{red}{$\heartsuit$}? 
+
+\
+
+(b) I shuffle the deck again, and deal the top two cards. What is the chance that there is at least 1 queen in these two cards? (Hint: figure out how many outcomes there are in total and how many outcomes in $A$, where $A$ is the event of at least one queen in the two top cards.)
+
+\
+
+@. Suppose I roll a fair six-sided die four times. What is the probability that
+(1) All the rolls are 6
+ 
+ \ 
+ 
+(2) At least one roll is a 6
+
+\
+
+(3) Not all the rolls are 6
+
+\
+
+(4) None of the rolls are 6
 
 
  
