@@ -157,7 +157,7 @@ This one assess their ability to use a conditional interpretation of a regressio
 
 ## Concept Question 4
 
-Consider the following linear regression output where the variable school is categorical and the variable hours_studied is numerical.
+Consider the following linear regression output where the variable `school` is categorical and the variable `hours_studied` is numerical.
 
 ```{r, out.width = "60%"}
 #| eval: false
