@@ -155,6 +155,48 @@ Which is the correct interpretation of the coefficient in front of Gentoo?
 This one assess their ability to use a conditional interpretation of a regression coefficient (controlling for the other variables in the model...)
 :::
 
+## Concept Question 4
+
+Consider the following linear regression output where the variable `school` is categorical and the variable `hours_studied` is numerical.
+
+```{r, out.width = "60%"}
+#| eval: false
+#| echo: true
+#| fig-align: center
+lm(GPA ~ hours_studied + school, data = edu)
+```
+
+\   
+\   
+
+| Coefficients     | Estimate |
+| ----------- | ----------- |
+| `(Intercept)`      | 2.5       |
+| `hours_studied`        | .2        |
+| `schoolCal`      | 1       |
+| `schoolStanford`        | -1      |
+
+. . . 
+
+## Concept Question 4 (cont.)
+
+-   Say I wanted to create a data frame from the original `edu` dataframe which contains the minimum, median, and IQR for `hours_studied` among each school. In order to do this, I make use of `group_by()` followed by `summarize()`. I save this data frame into an object called `GPA_summary`.
+
+
+:::poll
+What are the dimensions of `GPA_summary`?
+:::
+
+
+:::notes
+The correct answer in the poll should be 3x3. The three columns are for each of the statistics calculated; the three rows are for the three levels in the school category (there *is* an additional level beyond `"Cal"` and `"Stanford"`, regardless if it is not stated). 
+
+This was a former final question.
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
 
 <!-- ## MLR Geometry -->
 
