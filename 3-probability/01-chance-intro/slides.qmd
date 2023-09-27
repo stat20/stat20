@@ -20,13 +20,21 @@ format:
       data-background-size: contain
 ---
 
-## Venn diagram from xkcd
+## Probability of two events...{.smaller}
 
 ```{r}
 #| fig-align: center
-knitr::include_graphics("https://imgs.xkcd.com/comics/university_website.png")
+knitr::include_graphics("https://imgs.xkcd.com/comics/prediction.png")
 ```
 
+###### Title text: You'd think it'd be easy to just bet money against these people, but you have to consider the probability of them paying up.
+
+###### <https://imgs.xkcd.com/comics/prediction.png>
+
+:::{.notes}
+A bit of discussion here about situations in which two things can happen, but 
+what do they think about the chance of each eg. coin toss, even/odd number on a die roll, winning the lottery vs not winning, getting an A in stat 20 vs not etc.
+:::
 
 ```{r}
 #| echo: false
