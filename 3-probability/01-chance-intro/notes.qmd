@@ -246,7 +246,7 @@ An important consequence of rule 3: Let $A$ be an event in $\Omega$. The *comple
 
 #### Penguins
 
-Consider the penguins data, which has 344 observations, of which 152 are Adelie penguins, and 68 are Chinstrap penguins. Suppose we pick a penguin at random, what is the probability that we would pick an Adelie penguin? What about a Gentoo penguin?
+Consider the penguins data, which has 344 observations, of which 152 are Adelie penguins and 68 are Chinstrap penguins. Suppose we pick a penguin at random, what is the probability that we would pick an Adelie penguin? What about a Gentoo penguin?
 
 <details> <summary> Check your answer </summary>
 Let $A$ be the event of picking an Adelie penguin, $C$ be the event of picking a Chinstrap penguin, and $G$ be the event of picking a Gentoo penguin. 
@@ -259,7 +259,7 @@ Finally, the complement rule tells us that $P(G) = 1 - P(G^C) = 1 - 220/344 = 12
 :::{.callout-important icon=false}
 
 ## WARNING!!
-We use $A$ to denote an *event* or a set, while *P(A)* is a *number* - you can think of $P(A)$ as representing the relative size of $A$. This means that the following types of statements don't make sense as we can't add sets and we can't union numbers:
+We use $A$ to denote an *event* or a set, while *P(A)* is a *number* - you can think of $P(A)$ as representing the relative size of $A$. This means that the following types of statements don't make sense as we haven't defined what it means to add sets or union numbers etc.:
 
 - $P(A) \cup P(B)$ or $P(A) \cap P(B)$
 - $A + B$, or $A - B$, or $A \times B$ etc
@@ -324,11 +324,11 @@ $P(A) = 3/5$
 
 </details> 
 
-##### Empirical histograms vs probability histograms
+##### Probability distributions vs empirical distributions
 
-The histograms we have seen so far have been visualizations of data, and so are called *empirical* histograms. We can represent the probabilities visually with bars, and we call this a *probability histogram*. Note that we do not need to collect data for this type of graph since the heights of the bars represent probabilities, and are *theoretical*.
+The plots of distributions that we have seen so far have been visualizations of data, and so are called *empirical* distributions. We can represent the *theoretical* probabilities visually with bars, and we call this a *probability distribution*. Note that we do not need to collect data for this type of graph.
 
-Here is the probability histogram of the value of the drawn ticket, and you see that the bar over 2 is twice as tall. This is because there are twice as many tickets marked 2 as any other numbers. We can call this graph the *distribution* of the ticket values and it is a visual representation of the table we drew earlier. 
+Here is a plot of the probability distribution of the value of the drawn ticket. It is a visual representation of the table we drew earlier, and you can see that the bar over 2 is twice as tall. This is because there are twice as many tickets marked 2 as any other numbers. 
 
 :::{.content-visible when-format="html"}
 ```{r}
@@ -391,7 +391,7 @@ Notice that the only difference between these two plots is the vertical scale. W
 
 <!-- Since the tickets are drawn according to their chance, we could compute what a draw would be, on average, by computing a weighted (by their chance) average of the possible values. We would get, for a single draw: $1\times \frac{1}{5} + 2 \times \frac{2}{5} + 3 \times \frac{1}{5} + 4 \times \frac{1}{5} = 2.4$. (Note that this exactly matches the average of the tickets in the box $= \displaystyle \frac{1 + 2 + 2 + 3 + 4}{5}$). -->
 
-How about if we draw 50 times at random with replacement from this box and see what our sample looks like. That is, we will see what proportion of the draws are 1's, 2's etc.
+How about if we draw 50 times at random with replacement from this box (that is, each time we draw a ticket, we put the ticket back before we draw another ticket, so that the box we draw from always has the same number of tickets), and see what our sample looks like. That is, we will see what proportion of the draws are 1's, 2's etc.
 
 :::{.content-visible when-format="html"}
 ```{r}
@@ -448,7 +448,7 @@ We can see that the (blue) *sample proportions* look similar to the (gold) *popu
 </div>
 </center>
 
-What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*. This is the *empirical* histogram, that is, a histogram derived from data.
+What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*. This is a plot of the *empirical* distribution, that is, a distribution that is obtained from data.
 
 
 #### 3. Tossing a biased coin
@@ -514,7 +514,7 @@ Drawing from a box of tickets is easily simulated in R, since there is a conveni
 
 Let's simulate rolling a die and counting how many times we see each face. 
 
-If we roll it 6 times, we don't really expect to see each face once, and as you can see below, in this particular instance of rolling the die six times, we didn't see the face with one spot, but saw two spots twice. 
+If we roll it 6 times, we don't really expect to see each face exactly once, and as you can see below, in this particular instance of rolling the die six times, we didn't see the face with one spot, but saw two spots twice. 
 
 
 
@@ -531,7 +531,7 @@ data.frame(die_rolls) %>%
 ```
 
 
-What about if we roll the die 60 times? We should see each face about ten times:
+What about if we roll the die 60 times? We should see each face *about* ten times:
 
 ```{r}
 set.seed(12345)
@@ -554,7 +554,7 @@ data.frame(die_rolls) %>%
   summarise(n = n())
 ```
 
-It might be better to visualize it. We will draw the *probability histogram* in gold, which shows the probabilities of each possible outcome (the probability distribution), and compare it to the *empirical* histograms in blue (plotting the *data* distribution, not the probability distribution) of the results of rolling the die $6, 60$, and $600$ times. Note that the probability histogram is a *theoretical* histogram, where the area of the bars represent probabilities, and the total area of the histogram is $1$.
+It might be better to visualize it. We will draw the *probability distribution* in gold, which shows the probabilities of each possible outcome (the probability distribution), and compare it to the *empirical* distributions in blue (plotting the *data* distribution, not the probability distribution) of the results of rolling the die $60, 600$, and $6000$ times. Note that the probability distribution is *theoretical*, where the area of the bars represent probabilities, and the total area of the bars is $1$.
 
 :::{.content-visible when-format="html"}
 ```{r}
@@ -573,52 +573,46 @@ p1 <- data.frame(die) %>%
   ggtitle("Probability distribution of the \n outcome of a die roll") +
   lims(y = c(0, .35))
 
-roll_6 <- sample(die, 6, replace = TRUE)
-roll_6 <- data.frame(table(roll_6)) %>%
-  add_row(roll_6 = factor(1), Freq = 0, .before = 1) %>%
-  mutate(spots = factor(1:6),
-         prop_rolls = Freq/6)
-# adding in a new row at the top that lists the number of times
-# 1 was rolled in 6 rolls
-# then adding in the values for the x-axis
-
-p2 <- roll_6 %>%
-  ggplot(aes(x = spots, y= prop_rolls)) +
-  geom_col(width = 0.98, fill = "blue") +
-  xlab("number of spots") +
-  ylab("proportion of rolls") +
-  ggtitle("Empirical distribution for 6 rolls") +
-  lims(y = c(0, .35))
-
-
 roll_60 <- sample(die, 60, replace = TRUE)
+roll_60 <- data.frame(table(roll_60)) %>% 
+  mutate(prop_rolls = Freq/60)
 
-roll_60 <- data.frame(table(roll_60)) %>%
-    mutate(spots = factor(1:6),
-         prop_rolls = Freq/60)
 
-p3 <- roll_60 %>%
-  ggplot(aes(x = spots, y= prop_rolls)) +
+p2 <- roll_60 %>%
+  ggplot(aes(x = factor(die), y= prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
   ylab("proportion of rolls") +
-  ggtitle("Empirical distribution for 60 rolls") +
+  ggtitle("Empirical distribution for \n 60 rolls") +
   lims(y = c(0, .35))
-  
+
 
 roll_600 <- sample(die, 600, replace = TRUE)
 
 roll_600 <- data.frame(table(roll_600)) %>%
-    mutate(spots = factor(1:6),
-         prop_rolls = Freq/600)
+    mutate(prop_rolls = Freq/600)
 
-
-p4 <- data.frame(roll_600) %>%
-  ggplot(aes(x = spots, y=prop_rolls)) +
+p3 <- roll_600 %>%
+  ggplot(aes(x = factor(die), y= prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
   ylab("proportion of rolls") +
-  ggtitle("Empirical distribution for 600 rolls") +
+  ggtitle("Empirical distribution for \n 600 rolls") +
+  lims(y = c(0, .35))
+  
+
+roll_6000 <- sample(die, 6000, replace = TRUE)
+
+roll_6000 <- data.frame(table(roll_6000)) %>%
+    mutate(prop_rolls = Freq/6000)
+
+
+p4 <- data.frame(roll_6000) %>%
+  ggplot(aes(x = factor(die), y=prop_rolls)) +
+  geom_col(width = 0.98, fill = "blue") +
+  xlab("number of spots") +
+  ylab("proportion of rolls") +
+  ggtitle("Empirical distribution for \n 6000 rolls") +
   lims(y = c(0, .35))
 
 (p1 + p2)/(p3+p4)
@@ -644,52 +638,46 @@ p1 <- data.frame(die) %>%
   ggtitle("Probability distribution of the \n outcome of a die roll") +
   lims(y = c(0, .35))
 
-roll_6 <- sample(die, 6, replace = TRUE)
-roll_6 <- data.frame(table(roll_6)) %>%
-  add_row(roll_6 = factor(1), Freq = 0, .before = 1) %>%
-  mutate(spots = factor(1:6),
-         prop_rolls = Freq/6)
-# adding in a new row at the top that lists the number of times
-# 1 was rolled in 6 rolls
-# then adding in the values for the x-axis
-
-p2 <- roll_6 %>%
-  ggplot(aes(x = spots, y= prop_rolls)) +
-  geom_col(width = 0.98, fill = "blue") +
-  xlab("number of spots") +
-  ylab("proportion of rolls") +
-  ggtitle("Empirical distribution for 6 rolls") +
-  lims(y = c(0, .35))
-
-
 roll_60 <- sample(die, 60, replace = TRUE)
+roll_60 <- data.frame(table(roll_60)) %>% 
+  mutate(prop_rolls = Freq/60)
 
-roll_60 <- data.frame(table(roll_60)) %>%
-    mutate(spots = factor(1:6),
-         prop_rolls = Freq/60)
 
-p3 <- roll_60 %>%
-  ggplot(aes(x = spots, y= prop_rolls)) +
+p2 <- roll_60 %>%
+  ggplot(aes(x = factor(die), y= prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
   ylab("proportion of rolls") +
-  ggtitle("Empirical distribution for 60 rolls") +
+  ggtitle("Empirical distribution for \n 60 rolls") +
   lims(y = c(0, .35))
-  
+
 
 roll_600 <- sample(die, 600, replace = TRUE)
 
 roll_600 <- data.frame(table(roll_600)) %>%
-    mutate(spots = factor(1:6),
-         prop_rolls = Freq/600)
+    mutate(prop_rolls = Freq/600)
 
-
-p4 <- data.frame(roll_600) %>%
-  ggplot(aes(x = spots, y=prop_rolls)) +
+p3 <- roll_600 %>%
+  ggplot(aes(x = factor(die), y= prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
   ylab("proportion of rolls") +
-  ggtitle("Empirical distribution for 600 rolls") +
+  ggtitle("Empirical distribution for \n 600 rolls") +
+  lims(y = c(0, .35))
+  
+
+roll_6000 <- sample(die, 6000, replace = TRUE)
+
+roll_6000 <- data.frame(table(roll_6000)) %>%
+    mutate(prop_rolls = Freq/6000)
+
+
+p4 <- data.frame(roll_6000) %>%
+  ggplot(aes(x = factor(die), y=prop_rolls)) +
+  geom_col(width = 0.98, fill = "blue") +
+  xlab("number of spots") +
+  ylab("proportion of rolls") +
+  ggtitle("Empirical distribution for \n 6000 rolls") +
   lims(y = c(0, .35))
 
 (p1 + p2)/(p3+p4)
