@@ -58,7 +58,8 @@ ggplot(data.frame(t(flips)), aes(x=n_switches + 1, y = longest_run)) +
 ```{r}
 ##| eval: false
 ### adding points
-### annotating with their values
+### annotating with their values 
+### green for real and red for fake
 ggplot(data.frame(t(flips)), aes(x=n_switches + 1, y = longest_run)) + 
   geom_jitter(alpha =0.3) + 
   xlab("number of runs") +
