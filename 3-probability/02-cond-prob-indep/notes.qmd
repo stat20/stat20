@@ -6,6 +6,34 @@ format:
   html: default
   pdf: default
 ---
+:::{.lo .content-hidden unless-profile="staff-site"}
+
+
+#### Concept Acquisition
+
+1. Probability distributions and histograms
+2. Reiterate connections between boxes, distribution tables, and prob histograms
+3. Sampling with and without replacement: what's the difference
+4. Conditional probability & multiplication rule
+5. Independence 
+6. Mutually exclusive events vs independent events
+7. Bayes' Rule ??
+
+#### Tool Acquisition
+
+1. Using multiplication and addition rule to compute probabilities
+2. Estimating probabilities of dependent events using box/sample
+3. `slice_sample()`
+
+#### Concept Application
+
+1. Computing probabilities in various scenarios 
+2. Using R to simulate probabilities
+
+
+----------------------------------------------------
+
+:::
 
 ```{r}
 #| echo: false

@@ -20,13 +20,20 @@ format:
       data-background-size: contain
 ---
 
-## Venn diagram from xkcd
+## Probability of two events...{.smaller}
 
 ```{r}
 #| fig-align: center
-knitr::include_graphics("https://imgs.xkcd.com/comics/university_website.png")
+knitr::include_graphics("https://imgs.xkcd.com/comics/prediction.png")
 ```
 
+###### Title text: You'd think it'd be easy to just bet money against these people, but you have to consider the probability of them paying up.
+
+###### <https://imgs.xkcd.com/comics/prediction.png>
+
+:::{.notes}
+Maybe a bit of discussion here about situations in which two things can happen, but what do they think about the chance of each eg. coin toss, even/odd number on a die roll, winning the lottery vs not winning, getting an A in stat 20 vs not etc.
+:::
 
 ```{r}
 #| echo: false
@@ -40,12 +47,165 @@ library(patchwork)
 
 ## Agenda
 
+- Review of ideas in notes 
 - Concept Questions
 - Activity: coin tosses
-- Handout
+- PS 7: Introduction to chance
 
+# Concept review: Rules
+
+## Rules of probability {.incremental}
+
+Let $\Omega$ be the outcome space, and let $P(A)$ denote the probability of the event $A$. Then we have:
+
+1. $P(A) \ge 0$
+2. $P(\Omega) = 1$
+3. If $A$ and $B$ are mutually exclusive ($A \cap B = \{\}$), then $P(A \cup B) = P(A) + P(B)$
+
+:::{.notes}
+Concepts to review: 
+- The first two rules of probability 
+- unions and intersections
+- mutually exclusive events and the addition rule
+- good idea to draw Venn diagrams here
+- Use rule 3 to write down the complement rule, and show what A^C means
+:::
 
 # Concept Question 1
+
+## The Linda Problem  {.scrollable}
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+The Linda problem is from a very famous experiment conducted by Daniel Kahneman and Amos Tversky in 1983 (The version below is from the book *Thinking, Fast and Slow* by Kahneman, page 156):
+
+Linda is thirty-one years old, single, outspoken, and very bright. She majored in philosophy. As a student, she was deeply concerned with issues of discrimination and social justice, and also participated in antinuclear demonstrations.
+
+:::{.poll}
+Which alternative is more probable? 
+:::
+
+(a) Linda is a bank teller. 
+
+(b) Linda is a bank teller and is active in the feminist movement.
+
+:::{.notes}
+Correct answer: (a)
+Depending on the response, you can discuss how even though (b) is clearly contained in (a) and therefore has lower probability, an overwhelming majority of their respondents ranked (b) as more likely. "About 85% to 90% of undergraduates at several major universities chose the second option, contrary to logic", and talk about why this is so. Probability can be tricky and counterintuitive. If they do well, congratulate them and say that they are among the rare people who understand that $P(A \textbf{ and } B)$ *must* be lower than $P(A)$.
+:::
+
+Kahneman, Daniel. Thinking, Fast and Slow (p. 158). Farrar, Straus and Giroux. 
+
+# Concept review: Simulation, empirical distributions
+
+## Rolling a die 
+
+Recall the following picture from the notes:
+
+![](images/die-emp-prob-dsn.png){fig-align=center} 
+
+:::{.notes}
+Show the picture, and then explain the what the golden and blue distributions are, and the difference. Show them, as you repeat an action over and over again, and take the proportion of the outcomes, these proportions settle down, in the "long run", to the probabilities of the outcomes.
+:::
+
+## Coin tosses {.scrollable}
+
+:::{.notes}
+We can do the same thing with coin tosses and in fact, this justifies our earlier, intuitive understanding of what happens when we toss a fair coin.
+Can also go over code to make sure they understand `sample()`
+:::
+
+Let's simulate tossing a coin ten times:
+
+```{r}
+#| echo: true
+set.seed(12345)
+
+
+coin1 <- c("Heads", "Tails")
+
+tosses <- sample(coin1, 10, replace = TRUE)
+
+data.frame(tosses) %>%
+  group_by(tosses) %>% 
+  summarise(n = n())
+  
+
+```
+
+## Coin tosses {.scrollable}
+
+:::{.notes}
+DON'T FORGET TO SCROLL DOWN!!
+:::
+
+What about if I toss it fifty times?
+
+```{r}
+#| echo: true
+
+set.seed(12345)
+
+tosses <- sample(coin1, 50, replace = TRUE)
+
+data.frame(tosses) %>%
+  group_by(tosses) %>% 
+  summarise(n = n())
+
+```
+
+This doesn't look so good... Maybe tossing five hundred times will improve the split:
+
+```{r}
+#| echo: true
+
+set.seed(12345)
+
+tosses <- sample(coin1, 500, replace = TRUE)
+
+data.frame(tosses) %>%
+  group_by(tosses) %>% 
+  summarise(n = n())
+```
+
+We see that as the number of tosses increases, the distribution of tosses begins to look closer to 50% heads and 50% tails.
+
+## Looking at proportions: 
+
+Here is a plot of the *proportion* of tosses that land heads when we toss a coin $n$ times, where $n$ varies from $1$ to $1000$. 
+
+:::{.notes}
+Be sure to explain what they are looking at. We see that at the beginning, for a small number of tosses, the proportion of times that the coin lands heads is all over the place, but it eventually settles down to be around 0.5. This verifies our intuition that if we toss a fair coin, the proportion of times that the coin lands heads should be about 0.5. This idea of the probability of a particular outcome as a long run proportion of times that we see that outcome is called the *frequentist theory of probability*, and we will be using this theory in our class. (A different theory of probability uses a *subjective* notion of probability, but we won’t get into that at this time.) We will think about the probability of heads as the long-run relative frequency, or the proportion of times the coin will land heads if we toss it many, many times. This fits with our intuition that if we have a *fair* coin, that means that each of the two possible outcomes will occur roughly the same number of times when we toss it over and over again. This is the justification for calling the two outcomes *equally likely* and allowing us to define the probability of heads to be 1/2.
+:::
+
+```{r}
+#| fig-align: center
+set.seed(12345)
+coin1 <- c("H", "T")
+toss_num <- 1000 # total number of tosses 
+tosses <- sample(coin1, size = toss_num, replace = TRUE) 
+# # simulating tossing a coin 1000 times
+
+prop_heads <- cumsum(tosses == "H") / 1:toss_num
+prop_heads <- data.frame(cbind(prop_heads, 1:toss_num))
+prop_heads <- rename(prop_heads, toss_num = V2)
+#  computing the fraction of tosses that land heads for each n and 
+#  making the resultant vector into a data frame and renaming the columns
+
+prop_heads %>% 
+  ggplot(aes(y = prop_heads, x = toss_num)) +
+  geom_line() + 
+  annotate("segment", x = 0, xend = max(toss_num) + 50, y = 0.5, yend = 0.5,
+           color = "red", linetype = 2, linewidth = 0.9) + 
+  ylim(c(0,1)) +
+  xlab("Number of tosses") +
+  ylab("Proportion of tosses that land heads") +
+  ggtitle("As we increase the number of tosses, \n the proportion of heads settles at about 50% ")
+```
+
+# Concept Question 2
 
 ## 
 
@@ -54,8 +214,7 @@ countdown::countdown(1, bottom = 0)
 ```
 
  Suppose Ali and Bettina are playing a game, in which Ali tosses 
- a fair coin $n$ times, and Bettina wins one dollar from Ali if the proportion of heads 
- is less than 0.4. Ali lets Bettina decide if $n$ is 10 or 100.
+ a fair coin $n$ times, and Bettina wins one dollar from Ali if the proportion of heads is less than 0.4. Ali lets Bettina decide if $n$ is 10 or 100.
 
 
 :::{.poll}
@@ -64,13 +223,12 @@ countdown::countdown(1, bottom = 0)
 
 :::{.notes}
 This ties into the plot of proportions of heads as the number of coin tosses
-increases. Hopefully Bettina realizes she has a better chance of getting the number 
-of heads far away from 0.5 with fewer tosses.
+increases. Hopefully Bettina realizes she has a better chance of getting the number of heads far away from 0.5 with fewer tosses.
 :::
 
 
 
-# Concept Question 2
+# Concept Question 3
 
 ## {.scrollable} 
 
@@ -158,13 +316,15 @@ Identify which is which by matching the letters to the numbers.
 :::
 
 :::{.notes}
-B is the prob dsn of tickets
-C is emp dsn of 10 draws
-D is emp dsn of 100 draws
-A is emp dsn from different box
+Scroll to see graphs
+
+- B-1 the prob dsn of tickets
+- C-2  emp dsn of 10 draws
+- D-3 emp dsn of 100 draws
+- A-4 emp dsn from different box
 :::
 
-# Concept Question 3
+# Concept Question 4
 
 ## {.scrollable} 
 
@@ -189,11 +349,11 @@ countdown::countdown(2, bottom = 0)
 
 
 :::{.notes}
-Both parts are false since we are using the addition rule on events that are not mutually exclusive. It is important that you do not talk about what the actual probability is since that uses the multiplication rule and we have not discussed that in the notes. This is more an exercise in when *not* to use the addition rule. I plan to add a bit about this in Friday's notes. 
+Both parts are false since we are using the addition rule on events that are not mutually exclusive. It is important that you do NOT talk about what the actual probability is since that uses the multiplication rule and we have not discussed that in the notes. This is more an exercise in when *not* to use the addition rule. 
 :::
 
 
-# Concept Question 4
+# Concept Question 5
 
 ##
 
@@ -208,8 +368,12 @@ Consider the Venn diagram below, which has 20 possible outcomes in $\Omega$, dep
 
 # Activity: Coin tossing 
 
+:::{.notes}
+details in coin-flipping-activity.qmd
+:::
+
 ```{r}
 countdown::countdown(25, top = 0)
 ```
 
-# Handout (PS 3.2) 
+# Problem Set 7

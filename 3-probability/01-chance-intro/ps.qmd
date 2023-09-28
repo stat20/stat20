@@ -4,21 +4,24 @@ subtitle: "PS"
 format: stat20handout-pdf
 ---
 
-@. In the notes, one of the examples is about dice, and sets up a box model for the process of rolling a pair of fair six sided dice and summing the spots. In the notes we make 2 draws at random with replacement from the following box, and sum the draws:
+@. If we want to simulate rolling a pair of dice and summing the spots (for say, playing Monopoly), will the following code do this correctly? Explain.
 
-   $$\fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}  \fbox{5}  \fbox{6}}$$
+```{r}
+#| eval: false
+# first create a vector with the possible sums of a pair of dice
+dice <- c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+# then sample once from dice
+sample(dice, 1)
 
-   Why not make one draw from the following box instead? (The tickets are the possible sums when we roll a pair of six sided dice.)
+```
 
-   $$\fbox{ \fbox{2} \fbox{3} \fbox{4}  \fbox{5}  \fbox{6}  \fbox{7}  \fbox{8}  \fbox{9}  \fbox{10}  \fbox{11}  \fbox{12}}$$
-
-   If we did indeed want to model the result of two die rolls with a box from which we would only draw once, what would the box be? (List all the tickets in the box, which numbers, and how many of each.)
+\ 
 
 \
 
 \
 
-@. If we are setting up a box for modeling the number of heads in three tosses of a fair coin, would either of the boxes below work? If not, why not?
+@. If we are defining a box to simulate tossing a fair coin three times and counting the **number** of heads, would either of the methods below work? If not, why not? (Note that, for example, the box  $\fbox{\fbox{0} \fbox{1}}$  would be represented by the `(0, 1)` in R, and we would then use the function `sample()`.
 
 (a) $\fbox{\fbox{0} \fbox{1}}$ - Draw three times at random with replacement, and sum the draws.
 (b) $\fbox{\fbox{0} \fbox{1} \fbox{2} \fbox{3}}$ -  Draw once, the result is the number of heads.
@@ -28,33 +31,33 @@ format: stat20handout-pdf
 
 \
 
-
-@. A standard deck of cards has 52 cards, consisting of 4 "suits" (hearts  \textcolor{red}{$\heartsuit$}, diamonds \textcolor{red}{$\diamondsuit$}, spades $\spadesuit$, and clubs $\clubsuit$). Each suit has 13 cards (Ace, King, Queen, Jack, 2, 3, 4, 5, 6, 7, 8, 9, and 10). Half of the cards are red (hearts and diamonds) and half of the cards are black (spades and clubs). I would like to shuffle the cards, draw **five** cards with replacement, and count the number of **hearts** in these five cards. What would be the box model for this set up?
-
-
-\
-
 \
 
 @. One ticket will be drawn at random from each of the two boxes below:
 
-$A: \fbox{\fbox{1} \fbox{2} \fbox{3}}$ 
+\begin{center}
+$A: \fbox{\fbox{1} \fbox{2} \fbox{3}}$ $\hspace{1cm}$ $B: \fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}}$
+\end{center}
 
-$B: \fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}}$
-
-   (a) What is the chance the number drawn from $A$ is greater than the one drawn from $B$?
-
-   \
-
-   (b) What is the chance that the number drawn from $A$ is equal to the one drawn from $B$?
+   (a) What is the probability the number drawn from $A$ is greater than the one drawn from $B$?
 
    \
-
-   (c) What is the chance the number drawn from $A$ is smaller than the one drawn from $B$?
-
+   
    \
 
-@. I want to estimate the proportion of people in Berkeley who speak at least two languages. I stand at the corner of University and Shattuck and ask each person who goes by how many languages they speak, and keep a count of how many speak at least two. Can I set this up as a box model? If so, how? If not, why not? 
+   (b) What is the probability that the number drawn from $A$ is equal to the one drawn from $B$?
+
+   \
+   
+   \
+
+   (c) What is the probability the number drawn from $A$ is smaller than the one drawn from $B$?
+
+   \
+   
+   \
+
+@. I want to estimate the proportion of people in Berkeley who speak at least two languages. I stand at the corner of University and Shattuck and ask each person who goes by how many languages they speak, and keep a count of how many speak at least two. Is this a good way to estimate the proportion I am looking for? 
 
    \
 
@@ -62,15 +65,42 @@ $B: \fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}}$
 
 @.  
 
-(a) Consider the box $\fbox{ \fbox{1} \fbox{2} \fbox{2} \fbox{3} \fbox{4}}$. I draw two tickets at random **with** replacement. If my first draw is a 2, what is the chance that my second draw is a 3?
+(a) Consider the box $\fbox{ \fbox{1} \fbox{2} \fbox{2} \fbox{3} \fbox{4}}$. I draw two tickets at random **with** replacement. If my first draw is a 2, what is the probability that my second draw is a 3?
 
 \
 
-(b) Consider the box $\fbox{ \fbox{1} \fbox{2} \fbox{2} \fbox{3} \fbox{4}}$. I draw two tickets at random **without** replacement. If my first draw is a 2, what is the chance that my second draw is a 3?
+\
+
+(b) Consider the box $\fbox{ \fbox{1} \fbox{2} \fbox{2} \fbox{3} \fbox{4}}$. I draw two tickets at random **without** replacement. If my first draw is a 2, what is the probability that my second draw is a 3?
+
+\
 
 \
 
 
+@. Consider an outcome space $\Omega$ and events $A, B, C$ with $P(A) = 0.6$, $P(B) = 0.7$.
+
+(a) What is the smallest possible value of $P(A \cap B) = P(A \textbf{ and } B)$
+
+\
+\
+
+(b) What is the largest possible value of $P(A \cap B)$?
+
+\
+\
+
+(c) What is the smallest possible value of $P(A \cup B)$? 
+
+\
+\
+
+(d) What is the largest possible value of $P(A \cup B)$? 
+
+\
+\
+
+@. Think about the two types of plots you saw in the notes: the empirical distributions and the actual probability distribution for the outcomes of rolling a fair six-sided die. Suppose we play a game now: we roll a die $n$ times, and you get 5 dollars if the proportion of times you roll a 6 is greater than 20%. You get to choose $n$ to be either 10 or 1000. Which one would you choose? Why?
 
 
  
