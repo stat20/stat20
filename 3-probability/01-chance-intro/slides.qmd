@@ -32,8 +32,7 @@ knitr::include_graphics("https://imgs.xkcd.com/comics/prediction.png")
 ###### <https://imgs.xkcd.com/comics/prediction.png>
 
 :::{.notes}
-A bit of discussion here about situations in which two things can happen, but 
-what do they think about the chance of each eg. coin toss, even/odd number on a die roll, winning the lottery vs not winning, getting an A in stat 20 vs not etc.
+Maybe a bit of discussion here about situations in which two things can happen, but what do they think about the chance of each eg. coin toss, even/odd number on a die roll, winning the lottery vs not winning, getting an A in stat 20 vs not etc.
 :::
 
 ```{r}
@@ -48,13 +47,65 @@ library(patchwork)
 
 ## Agenda
 
+- Review of ideas in notes 
 - Concept Questions
 - Activity: coin tosses
-- Handout
+- PS 7: Introduction to chance
 
+# Concept review: Rules
+
+## Rules of probability {.incremental}
+
+Let $\Omega$ be the outcome space, and let $P(A)$ denote the probability of the event $A$. Then we have:
+
+1. $P(A) \ge 0$
+2. $P(\Omega) = 1$
+3. If $A$ and $B$ are mutually exclusive ($A \cap B = \{\}$), then $P(A \cup B) = P(A) + P(B)$
+
+:::{.notes}
+Concepts to review: 
+- The first two rules of probability 
+- unions and intersections
+- mutually exclusive events and the addition rule
+- good idea to draw Venn diagram here
+- the idea that if we repeat an action such as tossing a coin, the proportion of a particular outcome will settle down and get very close to its probability.
+- Use rule 3 to write down the complement rule, and show what A^C means
+:::
 
 # Concept Question 1
 
+## The Linda Problem  {.scrollable}
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+The Linda problem is from a very famous experiment conducted by Daniel Kahneman and Amos Tversky in 1983 (The version below is from the book *Thinking, Fast and Slow* by Kahneman, page 156):
+
+Linda is thirty-one years old, single, outspoken, and very bright. She majored in philosophy. As a student, she was deeply concerned with issues of discrimination and social justice, and also participated in antinuclear demonstrations.
+
+:::{.poll}
+Which alternative is more probable? 
+:::
+
+(a) Linda is a bank teller. 
+
+(b) Linda is a bank teller and is active in the feminist movement.
+
+:::{.notes}
+Correct answer: (a)
+Depending on the response, you can discuss how even though (b) is clearly contained in (a) and therefore has lower probability, an overwhelming majority of their respondents ranked (b) as more likely. "About 85% to 90% of undergraduates at several major universities chose the second option, contrary to logic", and talk about why this is so. Probability can be tricky and counterintuitive. If they do well, congratulate them and say that they are among the rare people who understand that $P(A \textbf{ and } B)$ *must* be lower than $P(A)$.
+:::
+
+Kahneman, Daniel. Thinking, Fast and Slow (p. 158). Farrar, Straus and Giroux. Kindle Edition. 
+
+# Concept review: Simulation, empirical distributions
+
+
+
+
+
+# Concept Question 2
 ## 
 
 ```{r}
