@@ -27,7 +27,7 @@ The demonstration to be done in class is as follows: -
 
 -   Then you can hand out copies of the plot I showed you yesterday of the simulated flips showing the distribution of these pairs of numbers, or display it. Get each group to come and tell you their values of the quantity (number of runs, longest run ). 
 -   It should not take too long to annotate with the at most 20 points. 
--   I will add the pages from Deb's book so you can read it. 
+
 
 Good luck! I am worried that we will have too many groups and make mistakes, which will reduce the dramatic impact.
 
