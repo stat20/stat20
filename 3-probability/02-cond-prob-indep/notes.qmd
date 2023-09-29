@@ -8,7 +8,6 @@ format:
 ---
 :::{.lo .content-hidden unless-profile="staff-site"}
 
-
 #### Concept Acquisition
 
 1. Probability distributions and histograms
@@ -58,15 +57,156 @@ library(patchwork)
 
 [^3]: The thumbnail image of the headline from the Manchester Evening News and some details of the case are from <http://www.inference.org.uk/sallyclark>
 
-We will revisit this case at the end of these notes. Now, let's talk about the *conditional probability* of an event.
+We will revisit this case at the end of these notes. 
+
+## Simulating De Méré's dice games. 
+
+Recall that De Méré wanted to bet on at least one six in four rolls of a fair die, and also at least one double six in twenty-four rolls of a pair of dice.
+
+In the last notes we simulated these games to estimate the probability of De Méré winning his bet. The simulation uses the idea presented in lecture: we can think of the probability of an event as the **long-run relative frequency**, or the proportion of times we observe that particular event (or the outcomes in the event) if we repeat the action that can result in the event over and over again. Let's do that again - that is, we estimate the probabilities using the long-run proportions. We will simulate playing the game over and over again and count the number of times we see at least one six in four rolls, and similarly for the second game. (De Méré did this by betting many times, and noticed that the number of times he won wasn't matching the probability he had computed. Long-run relative frequency in real life!)
+
+
+:::{.content-visible when-format="html"}
+```{r}
+#| message: false
+#| warning: false
+
+set.seed(123)
+#### de Mere - first game
+
+die <- 1:6
+
+num_simulations <- 1000
+# to print the number of simulations
+cat("Number of simulations for game 1 with 4 rolls of a die =", sep = " ", num_simulations)
+
+die_4 <- replicate(num_simulations, sample(die, 4, replace = TRUE))
+
+
+die_4_df <- data.frame(t(die_4))
+
+colnames(die_4_df) <- paste("roll", sep = " ", 1:4)
+
+rownames(die_4_df) <- paste("simulation", sep = " ", 1:num_simulations)
+
+#head(die_4_df)
+
+prop_wins_game_1 <- die_4_df %>% 
+  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) %>%
+  summarise(prop_wins_game_1 = mean(at_least_one_six))
+
+# Now we print the proportion
+# The tidyverse function pull() pulls the last column out of the data frame that was created using summarise.
+cat("The chance of at least one six in 4 rolls of a die is about", sep = " ", pull(prop_wins_game_1))
+
+
+######## de mere second game
+
+num_simulations <- 1000
+# to print the number of simulations
+cat("Number of simulations for game 2 with 24 rolls of a pair of dice =", sep = " ", num_simulations)
+
+pair_dice <- c( 2, 3, 3, rep(4,3), rep(5,4), rep(6, 5), rep(7,6), 
+                rep(8,5), rep(9,4), rep(10,3), rep(11,2), 12)
+
+## note, not ideal because if see 7 don't know how we got it
+
+dice_24 <- replicate(num_simulations, sample(pair_dice, 24, replace = TRUE) )
+
+
+dice_24_df <-  data.frame(t(dice_24)) 
+
+colnames(dice_24_df) <- paste("roll", sep = " ", 1:24)
+
+rownames(dice_24_df) <- paste("simulation", sep = " ", 1:num_simulations)
+
+#head(dice_24_df)
+
+prop_wins_game_2 <- dice_24_df %>% 
+  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) %>%
+  summarise(prop_wins_game_2 = mean(at_least_one_boxcars))
+
+cat("The chance of at least one double six in 24 rolls of a  pair of dice is about", sep = " ", pull(prop_wins_game_2))
+
+
+##########
+
+```
+:::
+
+:::{.content-hidden when-format="html"}
+```{r}
+#|code-fold: false
+#| echo: false
+#| message: false
+#| warning: false
+
+set.seed(123)
+#### de Mere - first game
+
+die <- 1:6
+
+num_simulations <- 1000
+cat("Number of simulations for game 1 with 4 rolls of a die =", sep = " ", num_simulations)
+
+die_4 <- replicate(num_simulations, sample(die, 4, replace = TRUE))
+
+
+die_4_df <- data.frame(t(die_4))
+
+colnames(die_4_df) <- paste("roll", sep = " ", 1:4)
+
+rownames(die_4_df) <- paste("simulation", sep = " ", 1:num_simulations)
+
+#head(die_4_df)
+
+prop_wins_game_1 <- die_4_df %>% 
+  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) %>%
+  summarise(prop_wins_game_1 = mean(at_least_one_six))
+
+# Now we print the proportion
+# The tidyverse function pull() pulls the last column out of the data frame that was created using summarise.
+cat("The chance of at least one six in 4 rolls of a die is about", sep = " ", pull(prop_wins_game_1))
+
+######## de mere second game
+
+pair_dice <- c( 2, 3, 3, rep(4,3), rep(5,4), rep(6, 5), rep(7,6), 
+                rep(8,5), rep(9,4), rep(10,3), rep(11,2), 12)
+
+## note, not ideal because if see 7 don't know how we got it
+
+dice_24 <- replicate(num_simulations, sample(pair_dice, 24, replace = TRUE) )
+
+
+dice_24_df <-  data.frame(t(dice_24)) 
+
+colnames(dice_24_df) <- paste("roll", sep = " ", 1:24)
+
+rownames(dice_24_df) <- paste("simulation", sep = " ", 1:num_simulations)
+
+#head(dice_24_df)
+
+prop_wins_game_2 <- dice_24_df %>% 
+  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) %>%
+  summarise(prop_wins_game_2 = mean(at_least_one_boxcars))
+
+cat("The chance of at least one double six in 24 rolls of a  pair of dice is about", sep = " ", pull(prop_wins_game_2))
+
+
+##########
+
+```
+:::
+
+We cannot use the rules we know so far to compute these probabilities, since rolling a six on the first roll and rolling a six on the second roll (for example) are not mutually exclusive.  So how do we compute them? Read on...
 
 ## Computing probabilities
 
 In the previous set of notes, we learned about outcome spaces, events, and their probabilities. If two events are mutually exclusive $P(A \cap B) = \emptyset$, we can compute the probability of *at least one* of the events occurring ($A\cup B$) using the addition rule $P(A \cup B) = P(A) + P(B)$. These notes are about how we compute probabilities when two events are *not* mutually exclusive. 
 
-#### Example 1: Drawing red and blue tickets from a box
+### Example: Drawing red and blue tickets from a box
 
-Consider a box with four tickets in it, two colored red and two blue. Except for their color, they are identical: ![](images/box-red-blue.jpeg){width="100"}. Suppose we draw three times at random from this box, with replacement. List all the possible outcomes. What is the probability of seeing exactly 2 red cards among our draws?
+Consider a box with four tickets in it, two colored red and two blue. Except for their color, they are identical: ![](images/box-red-blue.jpeg){width="100"}. Suppose we draw three times at random from this box, with replacement, that is, every time we draw a ticket from the box, we put it back before drawing the next ticket. List all the possible outcomes. What is the probability of seeing *exactly* 2 red cards among our draws?
 
 <details>
 
@@ -78,7 +218,7 @@ Note that since each of the cards is equally likely to be drawn, therefore all t
 
 </details>
 
-Now suppose we repeat the procedure, but draw *without* replacement. What is the probability of exactly 2 red cards in 3 draws?
+Now suppose we repeat the procedure, but draw *without* replacement (we don't put any tickets back). What is the probability of exactly 2 red cards in 3 draws?
 
 <details>
 
@@ -113,52 +253,41 @@ Why are the numbers different? What is going on?
 
 </details>
 
-Below you see an illustration of what happens to the box when we draw *without* replacement.
+Below you see an illustration of what happens to the box when we draw *without* replacement, with the box at each stage being shown with one less ticket.
 
 ![](images/without-repl-1.jpeg){fig-align="center" width="600"}
 
-We see that the box (our access frame) reduces after each draw. After two draws, if the first 2 draws are red (as on the left most sequence) you can't get another red ticket, whereas if you are drawing *with* replacement, you can keep on drawing red tickets. (Note that the outcomes in the bottom row are not equally likely, since on the left branch of the tree, blue is twice as likely as red to be the second card, so the outcome RB is twice as likely as RR, and the outcome BR on the right branch of the tree is twice as likely as BB.)
+We see that the box reduces after each draw. After two draws, if the first 2 draws are red (as on the left most sequence) you can't get another red ticket, whereas if you are drawing *with* replacement, you can keep on drawing red tickets. (Note that the outcomes in the bottom row are not equally likely, since on the left branch of the tree, blue is twice as likely as red to be the second card, so the outcome **RB** is twice as likely as **RR**, and the outcome **BR** on the right branch of the tree is twice as likely as BB.)
 
 ### Rules of probability (recap)
-
-Recall the rules of probability and the terms we have seen so far. Suppose we have some action such as tossing a coin, drawing from a box etc. for which we know all the *possible* results from this action, but we don't know *which* particular one will occur on any instance of the action. This action is called a random *experiment*.  All the possible things that can happen are called outcomes, and the collection of all the outcomes is called the *sample space* or *outcome space*  $\Omega$. If $A$ is a subset of $\Omega$, we call $A$ an *event*. What can we say about $A$ and $\Omega$?
 
 1. $\Omega$ is the set of all possible outcomes. <details> <summary> What is the probability of $\Omega$? </summary> 
 The probability of $\Omega$ is 1. It is called the *certain* event. 
 </details>
 
 2. When an event has **no** outcomes in it, it is called the *impossible* event, and denoted by 
-$\emptyset$. <details> <summary> What is the probability of the impossible event?</summary> 
-The probability of $\emptyset$ is 0.
+$\emptyset$ or $\{\}$. <details> <summary> What is the probability of the impossible event?</summary> 
+The probability of the impossible event is 0.
 </details>
 
 3. Let $A$ be a collection of outcomes (for example, from the example above, $A$ could be the event of two red tickets in 3 draws with replacement). 
 <details> <summary>Then the probability of $A$ has to be ______ (fill in the blank with a suitable phrase) </summary> 
- between 0 and 1.
+ between $0$ and $1$ (inclusive of $0$ and $1$).
  </details>
  
-4. If $A$ and $B$ are two events with no outcomes in common, <details> <summary> then they are called ______ (fill in the blank with a suitable phrase) .</summary> 
- mutually exclusive.
+4. If $A$ and $B$ are two events with no outcomes in common, <details> <summary> then they are called ______. (fill in the blanks with suitable phrases)</summary> 
+ mutually exclusive
   </details>
   
-5. Consider an event $A$. The probability of an outcome *not* being in $A$ is 1 minus the probability of $A$, since the total probability is $1$. $A^C$ denotes the event of not being in $A$.
+5. If $A$ and $B$ have no outcomes in common, that is, $A \cap B =  \{\}$, then $P(A \cup B) = P(A) + P(B)$.
   
-#### Example 2: Drawing tickets from a box to represent the number of heads in 3 tosses
-
-If we are setting up a box for modeling the number of heads in three tosses of a fair coin, would either of the boxes below work? If not, say why not, and correct the box.
-
-(a) ![](images/coin.jpeg){width="100"} - Draw three times at random with replacement, and sum the draws.
-(b) ![](images/coin-wrong.jpeg){width="150"}-  Draw once, the result is the number of heads.
-
-<details> <summary> Check your answer </summary> 
-The first box is correct and represents a box model for this situation. The second box doesn't work because the tickets do not represent equally likely events. If you toss a fair coin 3 times and count the number of heads, the probability distribution of the number of heads is the same as when you draw a ticket three times at random with replacement from a box with 2 red tickets and 2 blue, and count the number of red tickets (the probability distribution above, in Example 1). If we wanted to use this example, we would have to create a different box that reflects the probability distribution of the number of heads in 3 tosses with equally likely tickets:
-
-![](images/coin-3-tosses.jpeg){width="300"}
+6. Consider an event $A$. The *complement* of $A$ is *not* $A$, and denoted by $A^C$. The complement of $A$ consists of all outcomes in $\Omega$ that are not in $A$ and $P(A^C) = 1-P(A)$. (Why?)
   
-### Conditional probabilities 
 
-In Example 1 above, we saw that the probability of a red ticket on a draw changes if we sample without replacement. If we get a blue ticket on the first draw, the probability of a red ticket on the second draw is 2/3 (since there are 3 tickets left, of which 2 are blue). 
-If we get a red ticket on the first draw, the probability of a red ticket on the second draw is 1/3. These probabilities that *depend* on what happened on the first draw are called *conditional probabilities*. If $A$ is the event of a blue ticket on the first draw, and $B$ is the event of a red ticket on the second draw, we say that the probability of $B$ *given* $A$ is 2/3, which is a *conditional* probability, because we put a condition on the first card, that it had to be blue. 
+## Conditional probabilities
+
+In the first example above, we saw that the probability of a red ticket on a draw changes if we sample without replacement. If we get a blue ticket on the first draw, the probability of a red ticket on the second draw is 2/3 (since there are 3 tickets left, of which 2 are blue). 
+If we get a red ticket on the first draw, the probability of a red ticket on the second draw is 1/3. These probabilities, that *depend* on what has happened on the first draw, are called *conditional* probabilities. If $A$ is the event of a blue ticket on the first draw, and $B$ is the event of a red ticket on the second draw, we say that the probability of $B$ *given* $A$ is 2/3, which is a conditional probability, because we put a *condition* on the first card, that it had to be blue. 
 
 What about if we don't put a condition on the first card? What is the probability that the second card is red? 
 <details> <summary> Check your answer </summary> 
@@ -170,14 +299,17 @@ This kind of probability, where we put no condition on the first card, is called
 ##  The Multiplication Rule: computing the probability of an intersection
 
 We often want to know the probability that two (or more) events will *both* happen: What is the probability if we roll a pair of dice, that both will show six spots; or if we deal two cards from a standard 52 card deck, that both would be kings, or in a family with two babies, both would suffer SIDS. 
-What do we know? Recall what the Venn diagram of intersecting events looks like:
+What do we know? We can draw a Venn diagram to represent intersecting events:
 
 ![](images/venn-diagram-intersection.png){fig-align=center width="300"}
 
-This picture tells us that $A\cap B$ is contained in both $A$ and $B$, so its probability should be less than both the probabilities of $A$ and $B$: $P(A\cap B) \le P(A), P(B)$. In fact, we write the probability of the intersection as:
+This picture tells us that $A\cap B$ (the purple shaded part) is inside both $A$ and $B$, so its probability should be less than each of $P(A)$ and $P(B)$: $P(A\cap B) \le P(A), P(B)$. In fact, we write the probability of the intersection as:
 
 $$P(A \cap B) = P(A) \times P(B|A)$$
-The second probability on the right-hand side of the equation is called the *conditional* probability of $B$ *given* $A$. For example, in the first example with the box with two red and two blue cards, if $A$ is the event of drawing a red card on the first draw, and $B$ is the event of drawing a blue card on the second draw, when we draw two cards *without* replacement, then 
+We read the second probability on the right-hand side of the equation as the *conditional* probability of $B$ *given* $A$. Note that $B\vert A$ is *not* an event, but we use $P(B\vert A)$ as a shorthand for the conditional probability of $B$ given $A$. 
+
+
+For example, in the first example with the box with two red and two blue cards, if $A$ is the event of drawing a red card on the first draw, and $B$ is the event of drawing a blue card on the second draw, when we draw two cards *without* replacement, then 
 we have that $P(A) = \displaystyle \frac{2}{4}$, $P(B | A) =  \displaystyle \frac{2}{3}$ (the denominator reduces by one, since there are only 3 cards left in the box, of which 2 are blue). Therefore: 
 
 $$P(A \cap B) = P(A) \times P(B|A) = \frac{2}{4} \times \frac{2}{3} = \frac{1}{3}$$
@@ -186,22 +318,36 @@ This becomes more clear if we think about the frequentist theory. We draw a red 
 Note that the roles of $A$ and $B$ could be reversed in the expression above:
 
 $$ P(A \cap B) = P(A) \times P(B | A) = P(B) \times P(A | B)$$
-This gives us a way to compute the conditional probability:
+This gives us a way to define the conditional probability, as long as we are not dividing by $0$:
 
-$$  P(B | A) = \frac{ P(A \cap B)}{P(A)}, \; \; P(A) > 0 $$
+Conditional probability of $B$ given $A$ 
+: This is defined to be the probability of the intersection of $A$ and $B$, normalized by dividing by $P(A)$:
+
+$$  P(B | A) = \frac{ P(A \cap B)}{P(A)} $$
+
+The idea here is that we know that $A$ happened, therefore the only outcomes we are concerned about are the ones in $A$ - this is our new outcome space. We compute the relative size of the part of $B$ that happen ($A\cap B$) to the size of the new outcome space.
+
 
 :::{.callout-important icon=false}
 Note that $P(A | B)$ and $P(B | A)$ can be very different.
 Consider the scenario shown in the Venn diagram here:
 ![](images/cond-prob-warning.png)
 :::
+
 ## Independence
 
-We say that two events are *independent* if the probabilities for the second remain the *same* even if you know that the first has happened, no matter how the first event turns out. Otherwise, the events are *dependent*. That is, if $A$ and $B$ are independent, then we have that $P(A | B) = P(A)$ and $P(B |A) = P(B)$. This means that the multiplication rule reduces to:
+Independent events
+: We say that two events are *independent* if the probabilities for the second event remain the *same* even if you know that the first event has happened, no matter how the first event turns out. Otherwise, the events are said to be *dependent*. 
+
+If $A$ and $B$ are independent, $P(B\vert A) = P(B)$. 
+
+Consequently, the multiplication rule reduces to:
 
 $$ P(A \cap B) = P(A) \times P(B | A) = P(A) \times P(B) $$
 
-You can check for independence by computing $P(A \cap B)$ and $P(A)\times P(B)$ and seeing if they are equal.
+Computational check for independence
+: Check if $P(A \cap B) = P(A)\times P(B)$ 
+
 
 For example, consider our box of red and blue tickets. When we draw *with* replacement, the probability of a red ticket on the second draw given a blue ticket on the first draw remains at 1/2. If we had a red ticket on the first draw, the probability of the second ticket being red is *still* 1/2. The probability doesn't change because it does not *depend* on the outcome of the first draw, since we put the ticket back. 
 
