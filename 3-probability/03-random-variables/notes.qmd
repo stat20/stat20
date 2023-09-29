@@ -48,19 +48,21 @@ library(patchwork)
 Suppose we want to simulate tossing a coin $10$ times, and compute the proportion of times that the coin lands heads. We might use the function `sample()` to sample from `(0, 1)`, where the outcome "Heads" is represented by the number `1` and the outcome "Tails" is represented by the number `0`. We can save the result as `tosses_10`. Our code might be `tosses_10 <- sample(c(0,1), 10, replace = TRUE)`.  `tosses_10`  might look like `0 0 1 1 0 1 1 1 1 0`, and if we compute its mean (`mean(tosses_10)`), we would get the proportion of times the coin landed heads (in this example it is 0.6). 
 
 
-When we were only interested in a particular outcome, such as a die roll resulting in the face with six spots, or the coin landing heads - we could model it as a box with tickets marked $0$ or $1$. We did not need tickets with other values, since we were just counting the number of times we rolled a six, or the number of heads when we tossed a coin. We saw that in our simulation of the Chevalier de Méré's game, we only needed to define the appropriate $0$-$1$ vector from which we would sample. We associated each outcome with a real number.
-
 ## Random variables
 
-What we did, in fact, was define a function that assigned a real number to each possible outcome in $\Omega$. In our simulation, if $\Omega$ was all possible outcomes when we roll a fair six-sided die, we assigned the outcome "six spots" to the real number $1$, and all other outcomes to the number $0$. By sampling over and over again from this box, we got a sequence of $0$'s and $1$'s that was *randomly generated* by our sampling, and then we could do arithmetic on this sequence, such as compute the proportion of times we sampled $1$. To put it in mathematical notation:
+What we did, in fact, was define a **function** that assigned a real number to each possible outcome in $\Omega$. In our simulation above, if $\Omega$ is the set of outcomes $\{\text{``Heads'', ``Tails''}\}$,  we assigned the outcome  $\text{``Heads''}$ to the real number $1$, and the outcome  $\text{``Tails''}$ to the real number $0$. By sampling over and over again from `(0,1)`, we got a sequence of $0$'s and $1$'s that was *randomly generated* by our sampling, and then we could do arithmetic on this sequence, such as compute the proportion of times we sampled $1$. To put it in mathematical notation:
 
 $$ X : \Omega \rightarrow \mathbb{R}$$
 
-$X$ is called a *random variable*: variable, because it takes different values on the real line, and random, because it inherits the randomness from the generating process. In the example above, the process is drawing from the box ![](images/de-mere-die-1.png){width="150"}.
+$X$ is called a *random variable*: variable, because it takes different values on the real line, and random, because it inherits the randomness from the generating process (in this case, the process is tossing a coin).
 
 Random variable
-: A random variable is a function that associates real numbers with outcomes from a random experiment, which are in an outcome space $\Omega$. These numbers have probabilities coming from the probability distribution on $\Omega$. The range of the random variable, usually denoted by $X, Y, \ldots$ is the set of all the possible values that $X$ can take. 
-The set of possible values of $X$, along with their associated probabilities, is called the *probability distribution* for the random variable $X$. We write statements about the values $X$ takes, such as $X = 1$ or $X = 0$. Note that $X = 1$ is an *event* and it may be true or not. The probability of such events is written as $P(X = x)$, where $x$ is a real number.
+: A random variable is a function that associates real numbers with outcomes from a random experiment which are in an outcome space $\Omega$. 
+
+These assigned numbers have probabilities coming from the probability distribution on $\Omega$. The range of the random variable is the set of all the possible values that $X$ can take. We usually denote random by $X, Y, \ldots$.  We write statements about the values $X$ takes, such as $X = 1$ or $X = 0$. Note that $X = 1$ is an *event* and it may be true or not. The probability of such events is written as $P(X = x)$, where $x$ is a real number.
+
+Probability distribution of a random variable $X$
+: The set of possible values of $X$, along with the associated probabilities, is called the *probability distribution* for the random variable $X$.
 
 
 ![](images/rv-picture.png){fig-align="center" width="600"}
@@ -69,13 +71,16 @@ The set of possible values of $X$, along with their associated probabilities, is
 Discrete and continuous random variables
 : Discrete random variables are restricted to take *particular* values in an interval, they cannot take just any value, as opposed to continuous random variables which can take any value in some specified interval. Note the similarity to discrete and continuous quantitative data types. 
 
-Examples of discrete random variables 
-: - The number of heads in $3$ tosses of a fair coin
-- The number of tosses until the coin lands heads for the first time
-- The number of people that arrive at an ATM in a day
+#### Examples of discrete random variables 
+- The number of heads in $3$ tosses of a fair coin: The assignment is similar to the outcomes from a single toss, except now we have the possible outcome from tossing a coin three times. For example, the outcome $\texttt{HHH}$ is assigned the number 3, the outcomes $\texttt{HHT, HTH, THH}$ are all assigned the number 2 etc. Note that even though we should write $X(\texttt{HHH}) = 3$, it is common to write just $X = 3$.
+- The number of tosses until the coin lands heads for the first time: If $X$ is the random variable representing the number of tosses until a coin lands heads, the smallest value $X$ can take is 1 (you need at least 1 toss), and there is no upper bound, since in theory, one could keep tossing the coin forever and it could land tails every single time.
+- The number of people that arrive at an ATM in a day: This is also a counting random variable, as described.
 
-Examples of continuous random variables 
-: - Time between consecutive people arriving at an ATM
+#### Examples of continuous random variables 
+
+In all of the following, we do not restrict the value taken by the random variable.
+
+- Time between consecutive people arriving at an ATM
 - Price of a stock
 - Height of a randomly selected stat 20 student
 
@@ -84,7 +89,7 @@ Examples of continuous random variables
 
 ![](images/roulette-us.jpg){fig-align="center" width="400"}
 
-The roulette wheels used in Las Vegas have 38 numbered slots, numbered from $1$ to $36$, of which 18 are colored red, and 18 black. There are two green slots numbered with zero and a double zero. As the wheel spins, a ball is sent spinning in the opposite direction. When the wheel slows the ball will land in one of the numbered slots. Players can make various bets on where the ball lands, among them is betting on red or black. If a player bets one dollar on red, and ball lands on red, then they win a dollar, in addition to getting their stake back. If the ball does not land on red, then they loses their dollar to the casino. Suppose a player bets six times on six consecutive spins, betting on red each time. Their *net gain* can be defined as the amount they won minus the amount they lost. Is net gain a random variable? What are its possible values (write down how much the player can win or lose in one spin of the wheel, then two, and so on)? 
+The roulette wheels used in Las Vegas have 38 numbered slots, numbered from $1$ to $36$, of which 18 are colored red, and 18 black. There are two green slots numbered with zero and a double zero. As the wheel spins, a ball is sent spinning in the opposite direction. When the wheel slows the ball will land in one of the numbered slots. Players can make various bets on where the ball lands, such as betting on whether the ball will land in a red slot or a black slot. If a player bets one dollar on red, and the ball lands on red, then they win a dollar, in addition to getting their stake of one dollar back. If the ball does not land on red, then they lose their dollar to the casino. Suppose a player bets six times on six consecutive spins, betting on red each time. Their *net gain* can be defined as the amount they won minus the amount they lost. Is net gain a random variable? What are its possible values (write down how much the player can win or lose in one spin of the wheel, then two, and so on)? 
 
 <details> <summary> Check your answer </summary>
 
@@ -95,13 +100,7 @@ Yes, net gain *is* a random variable, and its possible values are: $-6, -4, -2, 
 
 ### The probability distribution of a random variable $X$
 
-We can list the values taken by a random variable, along with the probability that the variable takes a particular value in a table. This table is called the distribution table of the random variable. For example, let $X$ be the number of heads in $3$ tosses of a fair coin. Fill out the values and probabilities for the probability distribution table for $X$. The first column should have the possible values that $X$ can take, denoted by $x$, and the second column should have $P(X = x)$. Make sure that the probabilities add up to 1: $\displaystyle \sum_x P(X = x) = 1$.
-
-
-<details> <summary> Check your answer </summary>
-
-<center>
-
+We can list the values taken by a random variable in a table, along with the probability that the variable takes a particular value. This table is called the *distribution table* of the random variable. For example, let $X$ be the number of heads in $3$ tosses of a fair coin. The probability distribution table for $X$ is shown below. The first column should have the possible values that $X$ can take, denoted by $x$, and the second column should have $P(X = x)$. We should make sure that the probabilities add up to 1: $\displaystyle \sum_x P(X = x) = 1$.
 
 | $x$ |  $P(X = x)$  |
 |:------:|:---------:|
@@ -110,9 +109,8 @@ We can list the values taken by a random variable, along with the probability th
 |  $2$  | $\displaystyle \frac{3}{8}$ |   
 |  $3$  | $\displaystyle \frac{1}{8}$ |   
 
-</center>
 
-</details>
+### The probability mass function or pmf of a discrete random variable
  
 The probability mass function (pmf) of a discrete random variable $X$
 : The **pmf** of a discrete random variable $X$ is defined to be the function $f(x) = P(X = x)$.
@@ -121,8 +119,7 @@ We can write down the definition of the function $f(x)$ and it gives the same in
  $$f(x) = \begin{cases}
           \frac{1}{8}, \; x = 0, 3 \\
           \frac{3}{8}, \; x = 1, 2 
-  \end{cases} 
-$$  
+  \end{cases} $$
 
 We see here that $f(x) > 0$ for only $4$ real numbers, and is $0$ otherwise. We can think of the total probability mass as $1$, and $f(x)$ describes how this mass of $1$ is distributed among the real numbers. It is often easier and more compact to define the probability distribution of $X$ using $f$ rather than the table. 
 
@@ -131,7 +128,7 @@ We see here that $f(x) > 0$ for only $4$ real numbers, and is $0$ otherwise. We 
 
 ### Bernoulli distribution
 
-This is the simplest discrete distribution: $X$ be a random variable that takes the value $1$ with probability $p$ and the value $0$ with probability $1-p$, then $X$ is called a *Bernoulli* random variable. We say that $X$ is Bernoulli with parameter $p$, because if we know $p$, we can calculate the probabilities associated with $X$. We can visualize the distribution and the pmf using the probability histogram.
+This is the simplest discrete distribution: $X$ be a random variable that takes the value $1$ with probability $p$ and the value $0$ with probability $1-p$, then $X$ is called a *Bernoulli* random variable. We say that $X$ is Bernoulli with parameter $p$, because if we know $p$, we can calculate the probabilities associated with $X$. We can visualize the distribution and the pmf using a probability histogram. This is similar to the plots of distributions that we have seen before. It is called ``histogram'' for a couple of reasons. Firstly, we want to think about areas, with the total area of the bins being 1. Secondly, we will use the same type of plot for continuous random variables, and it can easily generalize. 
 
 ![](images/bernoulli.png){fig-align="center" width="500"}
 
@@ -142,7 +139,7 @@ Parameter of a probability distribution
 
 ### Discrete uniform random distribution
 
-Let's suppose $X$ takes the values $1, 2, 3, \ldots, n$ with $P(X = k) = \displaystyle \frac{1}{n}$ for each of the $k$ from $1$ to $n$. We call $X$ a *discrete uniform* random variable, and the probability distribution is called the discrete uniform probability distribution: $P(X = k) = \displaystyle \frac{1}{n}$ for $1 \le k \le n$. (Think of die rolls.) If $X$ is the outcome when we roll a die, then $X$ is called the discrete uniform random variable with $n = 6$. In fact, the only thing we need to know, in order to compute the probability that $X$ will take a particular value is $n$. We call $n$ the *parameter* of the discrete uniform distribution.
+Let's suppose $X$ takes the values $1, 2, 3, \ldots, n$ with $P(X = k) = \displaystyle \frac{1}{n}$ for each of the $k$ from $1$ to $n$. We call $X$ a *discrete uniform* random variable, and the probability distribution is called the discrete uniform probability distribution: $P(X = k) = \displaystyle \frac{1}{n}$ for $1 \le k \le n$. Think of die rolls, where $n = 6$ for a standard die. If $X$ is the outcome when we roll a die, then $X$ is called the discrete uniform random variable with $n = 6$. In fact, the only thing we need to know, in order to compute the probability that $X$ will take a particular value is $n$. We call $n$ the *parameter* of the discrete uniform distribution.
 
 
 ##### Rolling a pair of dice and summing the spots
@@ -150,13 +147,13 @@ Suppose we roll a pair of dice and sum the spots, and let $X$ be the sum. Is $X$
 
 <details> <summary> Check your answer </summary>
 
-No. $X$ takes discrete values: $2, 3, 4, \ldots, 12$, but these are not equally likely.
+No. $X$ takes discrete values: $2, 3, 4, \ldots, 12$, but these are **not** equally likely. Can you compute their probabilities?
 
 </details>
 
 ### Binomial distribution
 
-Suppose a particular random experiment has two possible outcomes which we designate as a "success" or a "failure", where the probability of a success on any trial is $p$, regardless of what happens on any other trial. Suppose we repeat this experiment $n$ times, and let $X$ count the number of successes in $n$ trials of this random experiment (think tossing a coin $n$ times, and counting the number of heads). Then 
+Suppose a particular random experiment has two possible outcomes which we designate as a ``success'' or a ``failure'', where the probability of a success on any trial is $p$, regardless of what happens on any other trial. Suppose we repeat this experiment $n$ times, and let $X$ count the number of successes in $n$ trials of this random experiment (think tossing a coin $n$ times, and counting the number of heads). Then 
 $$P(X = k ) = \binom{n}{k} p^k (1-p)^{n-k} $$
 where $k$ takes the values $0, 1, 2, \ldots, n$, and $\displaystyle \binom{n}{k} = \frac{n!}{k!(n-k)!}$ and is read as "$n$ *choose* $k$". These are called the binomial coefficients.[^binom]
 
@@ -164,7 +161,7 @@ We say that $X$ has the *binomial* distribution with parameters $n$ and $p$ and 
 
 
 #### Example: Proportion of Californians that have had at least one positive COVID test.
-Based on the December 2022 report "State of the COVID-19 Pandemic"[^covid], about 35% of Americans reported having at least one positive COVID test. Suppose we survey 10 California residents, sampling them *with* replacement from a voters database, what is the probability that more than $3$ of the individuals in our sample would have had at least one positive COVID test?
+Based on the December 2022 report "State of the COVID-19 Pandemic"[^covid], about 35% of Americans reported having at least one positive COVID test. Suppose we survey 10 California residents, sampling them *with* replacement from a database of voters, what is the probability that more than $3$ of the individuals in our sample would have had at least one positive COVID test?
 
 
 In this example, since we are counting the number of individuals in our sample that have had at least one positive COVID test, such an individual would count as a "success", because a success is whatever outcome we are counting. We can now set up our random variable $X$: Let $X$ be the number of individuals in our sample who have had at least one positive COVID test. Then $X \sim Bin(10, p = 0.35)$, and $P(X > 3) = 1 - P(X \le 3) = 1 - \left(P(X = 0) + P(X = 1) + P(X = 2)\right)$. Note that since these events are mutually exclusive, we can use the addition rule. This gives us:
