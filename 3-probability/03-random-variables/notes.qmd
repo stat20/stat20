@@ -398,7 +398,7 @@ p1 <- data.frame(die_10) %>%
 
 p2 <- data.frame(rolls) %>% 
   ggplot(aes(x=factor(rolls))) + 
-  geom_bar(aes(y=..prop..), fill="blue", width = 0.98) + 
+  geom_bar(aes(y = (..count..)/sum(..count..)), fill="blue", width = 0.98) + 
   ylab("proportion of draws") + 
   xlab("ticket drawn") + 
   ggtitle("Outcomes from rolling a ten sided die:\n empirical distribution") 
@@ -437,7 +437,7 @@ p1 <- data.frame(die_10) %>%
 
 p2 <- data.frame(rolls) %>% 
   ggplot(aes(x=factor(rolls))) + 
-  geom_bar(aes(y=..prop..), fill="blue", width = 0.98) + 
+  geom_bar(aes(y = (..count..)/sum(..count..)), fill="blue", width = 0.98) + 
   ylab("proportion of draws") + 
   xlab("ticket drawn") + 
   ggtitle("Outcomes from rolling a ten sided die:\n empirical distribution") 
