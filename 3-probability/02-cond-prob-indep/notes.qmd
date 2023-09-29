@@ -128,9 +128,6 @@ prop_wins_game_2 <- dice_24_df %>%
 
 cat("The chance of at least one double six in 24 rolls of a pair of dice is about", sep = " ", pull(prop_wins_game_2))
 
-
-##########
-
 ```
 :::
 
