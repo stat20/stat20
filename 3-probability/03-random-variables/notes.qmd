@@ -19,6 +19,7 @@ format:
 #### Tool Acquisition
 
 1. How to recognize binomial distribution
+2. `dbinom(), pbinom(), dhyper()`
 2. connections to boxes of tickets
 3. How to compute probabilities
 
@@ -153,7 +154,7 @@ No. $X$ takes discrete values: $2, 3, 4, \ldots, 12$, but these are **not** equa
 
 ### Binomial distribution
 
-Suppose a particular random experiment has two possible outcomes which we designate as a ``success'' or a ``failure'', where the probability of a success on any trial is $p$, regardless of what happens on any other trial. Suppose we repeat this experiment $n$ times, and let $X$ count the number of successes in $n$ trials of this random experiment (think tossing a coin $n$ times, and counting the number of heads). Then 
+Suppose a particular random experiment has two possible outcomes which we designate as a ''success'' or a ``failure'', where the probability of a success on any trial is $p$, regardless of what happens on any other trial. Suppose we repeat this experiment $n$ times, and let $X$ count the number of successes in $n$ **independent** trials of this random experiment (think tossing a coin $n$ times, and counting the number of heads). The independence of the trials is a consequence of the probability of success $p$ staying the same for every trial. Then 
 $$P(X = k ) = \binom{n}{k} p^k (1-p)^{n-k} $$
 where $k$ takes the values $0, 1, 2, \ldots, n$, and $\displaystyle \binom{n}{k} = \frac{n!}{k!(n-k)!}$ and is read as "$n$ *choose* $k$". These are called the binomial coefficients.[^binom]
 
@@ -164,19 +165,30 @@ We say that $X$ has the *binomial* distribution with parameters $n$ and $p$ and 
 Based on the December 2022 report "State of the COVID-19 Pandemic"[^covid], about 35% of Americans reported having at least one positive COVID test. Suppose we survey 10 California residents, sampling them *with* replacement from a database of voters, what is the probability that more than $3$ of the individuals in our sample would have had at least one positive COVID test?
 
 
-In this example, since we are counting the number of individuals in our sample that have had at least one positive COVID test, such an individual would count as a "success", because a success is whatever outcome we are counting. We can now set up our random variable $X$: Let $X$ be the number of individuals in our sample who have had at least one positive COVID test. Then $X \sim Bin(10, p = 0.35)$, and $P(X > 3) = 1 - P(X \le 3) = 1 - \left(P(X = 0) + P(X = 1) + P(X = 2)\right)$. Note that since these events are mutually exclusive, we can use the addition rule. This gives us:
+In this example, since we are counting the number of individuals in our sample that have had at least one positive COVID test, such an individual would count as a "success", because a success is whatever outcome we are counting. We can now set up our random variable $X$:
+
+Let $X$ be the number of individuals in our sample who have had at least one positive COVID test.
+
+Then $X \sim Bin(10, p = 0.35)$. (Why are these the parameters?)
+Using the complement rule, 
+
+$P(X > 3) = 1 - P(X \le 3) = 1 - \left(P(X = 0) + P(X = 1) + P(X = 2)\right)$. 
+
+Note that since these events are mutually exclusive, we can use the addition rule. This gives us:
 $$ P(X > 3) = 1 - \left(\binom{10}{0}(0.35)^0 (0.65)^{10} + \binom{10}{1}(0.35)^1 (0.65)^9 + \binom{10}{2}(0.35)^2 (0.65)^8\right) \approx 0.74$$
-In `R` we can use a special function to compute the binomial probabilities $f(k) = P(X=k)$. It is called `dbinom(x, size, prob)` and takes as input the $k$ that we want (`x`), the number of trials $n$ (`size`), and $p$ (`prob`):
+In `R` we can use a special function to compute the binomial probabilities $f(k) = P(X=k)$. It is called `dbinom(x, size, prob)` and takes as input the $k$ that we want (`x`), the number of trials $n$ (`size`), and $p$ (`prob`). In this example, `x` are the values of interest, or 0, 1, 2; `size` is the parameter $n$, which is 10, and `prob` is the probability of a success.
 
 ```{r}
 #| code-fold: false
 
-1 - dbinom(0, size = 10, prob = 0.35) - dbinom(1, size = 10, prob = 0.35) - 
+1 - dbinom(0, size = 10, prob = 0.35) - 
+  dbinom(1, size = 10, prob = 0.35) - 
   dbinom(2, size = 10, prob = 0.35)
 ```
 
-As stated abov, we can define *events* by the values of random variables.
-For example, let $X = Bin(10,0.4)$ What does this mean in words? What is $X$? Given this $X$, what are the following events in words?
+As stated above, we can define *events* by the values of random variables.
+For example, let $X = Bin(10,0.4)$. In words $X$ counts the number of successes in 10 trials.
+ Given this $X$, what are the following events in words?
 
 - $X = 5$
 - $X \le 5$
@@ -185,7 +197,7 @@ For example, let $X = Bin(10,0.4)$ What does this mean in words? What is $X$? Gi
 What are these events in words? What are their probabilities?
 
 <details> <summary> Check your answer </summary>
-- $X$ is the number of successes in ten trials, where the probability of success in each trial is 40%. $X = 5$ is the event that we see exactly five successes in the ten trial, while $X \le 5$ is the event of seeing at most five successes in ten trials. The last event, $3 \le X \le 8$ is the event of at least three successes, but not more than eight, in ten trials.
+- $X$ is the number of successes in ten trials, where the probability of success in each trial is 40%. $X = 5$ is the event that we see exactly five successes in the ten trials, while $X \le 5$ is the event of seeing *at most* five successes in ten trials. The last event, $3 \le X \le 8$ is the event of at least three successes, but not more than eight, in ten trials.
 We will use `dbinom()` to compute the probabilities.
 ```{r}
 #| code-fold: false
@@ -228,7 +240,7 @@ of Wal-Mart, in that it rejected the effort to sue Wal-Mart.)[^wm] If we set thi
 Since there are 1,000 employees, and half are women, we have $G = N-G = 500$. Of the 10 picked, none are women. We are picking a sample of size 10 without replacment, therefore we have that:
 $$P(X = 0) = \frac{\binom{500}{0} \times \binom{500}{10}}{\binom{1000}{10}} \approx 0.0009$$
 
-The function that we can use in `R` to compute hypergeometric probabilities is called `dhyper(x, m, n, k)`, where `x` is the number of successes in the sample that we are counting (what we call $k$), `m` is $G$ or the number of successes in the population, and $n$ is $N-G$. $k$ is the sample size, $n$.
+The function that we can use in `R` to compute hypergeometric probabilities is called `dhyper(x, m, n, k)`, where `x` is the number of successes in the sample that we are counting (what we call $k$), `m` is $G$ or the number of successes in the population, and $n$ is $N-G$. $k$ is the sample size.
 
 ```{r}
 #| code-fold: false
@@ -247,15 +259,31 @@ choose(500, 0)*choose(500, 10)/choose(1000, 10)
 
 ### Binomial vs Hypergeometric distributions
 
-Both these distributions deal with the counting the number of successes in a *fixed* number of *trials* (where each instance of the random experiment that generates a success or a failure is called a trial, for example each toss of a coin, or each card dealt from a deck, and we count a heart to be a success). The difference is that for a binomial random variable, the probability of a success stays the *same* for each trial, and for a hypergeometric random variable, the probability *changes* with each trial. If we use the box model, both distributions can be modeled by sampling from $0$-$1$ boxes, but for the binomial distribution, we sample $n$ times *with* replacement and count the number of successes by summing the draws; and for the hypergeometric distribution, we sample $n$ times *without* replacement, and count the number of successes by summing the draws.
+Both these distributions deal with the counting the number of successes in a *fixed* number of *trials* (where each instance of the random experiment that generates a success or a failure is called a trial, for example each toss of a coin, or each card dealt from a deck, and we count a heart to be a success). The difference is that for a binomial random variable, the probability of a success stays the *same* for each trial, and for a hypergeometric random variable, the probability *changes* with each trial. If we use a box of tickets to describe these random variables, both distributions can be modeled by sampling from boxes with each ticket marked with $0$ or $1$, but for the binomial distribution, we sample $n$ times *with* replacement and count the number of successes by summing the draws; and for the hypergeometric distribution, we sample $n$ times *without* replacement, and count the number of successes by summing the draws.
 
+Note that when the sample size is small relative to the population size, there is not much difference between the probabilities if we use a binomial distribution vs using a hypergeometric distribution. Let's pretend in the gender discrimination example above that we are sampling *with* replacement. Now suppose we sample 10 times with replacement, let's use the binomial distribution to compute the chance of never picking a woman. 
+
+```{r}
+#| code-fold: false
+
+# n = 10
+# p = 0.5
+
+dbinom(0, 10, 0.5)
+
+```
+
+
+You can see that the values are very close to each other. (Recall that the probability using the hypergeometric distribution was `0.0009331878`.
 
 
 ## The cumulative distribution function $F(x)$
 
 The cumulative distribution function (cdf) $F(x)$
-: of a random variable $X$ is defined for *every* real number, and gives, for each $x$, the amount of probability or mass that has been *accumulated* up to (and including) the point $x$, that is, it is the probability that the value of $X$ is at most $x$: 
-$F(x) = P(X \le x)$
+: of a random variable $X$ is defined for *every* real number, and gives, for each $x$, the amount of probability or mass that has been *accumulated* up to (and including) the point $x$, that is, 
+$F(x) = P(X \le x)$.
+
+We usually abbreviate this function to cdf. It is a very important function since it also describes the probability distribution of $X$.
 
 For example, if $X$ is the number of heads in $3$ tosses of a fair coin, recall that:
 
@@ -333,11 +361,11 @@ $F(8) = P(X\le 8) $ is all the probability up to $8$, including any probability 
 </details>
 
 
-## Connections to the box model and simulations in `R`.
+## Connections between discrete random variables and draws from a box of tickets
 
 #### Example: the discrete uniform random variable
 
-Say we have a ten sided die. How can we set up a box model to model for rolling this die once?
+Say we have a ten sided die. How can we set up a simulation to model for rolling this die once? (We can simulate it using a box of tickets, or in R).
 
 <details><summary> Check your answer </summary>
 
@@ -345,10 +373,10 @@ A box with ten tickets, marked $\fbox{1}, \fbox{2}, \ldots \fbox{10}$; and draw 
 
 We can also simulate the probability distribution by drawing over and over again, and looking at the empirical distribution. You can see below that it closely matches the actual probability distribution.
 
+:::{.content-visible when-format="html"}
 ```{r}
 #| fig-width: 10
 #| fig-height: 5
-
 
 die_10 <- seq(from = 1, to = 10, by = 1)
 prob_10 <- rep(0.1, 10)
@@ -379,15 +407,104 @@ p2 <- data.frame(rolls) %>%
 p1 + p2
 
 ```
+:::
+
+:::{.content-visible when-format="pdf"}
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+#| echo: false
+#| message: false
+#| warning: false
+
+die_10 <- seq(from = 1, to = 10, by = 1)
+prob_10 <- rep(0.1, 10)
+
+set.seed(12345)
+
+n_rolls <- 10^5
+
+rolls <- sample(die_10, n_rolls, replace = TRUE)
+
+p1 <- data.frame(die_10) %>% 
+  mutate(prob_10 = prob_10) %>%
+  ggplot(aes(x = factor(die_10), y = prob_10)) +
+  geom_col(fill = "goldenrod2", width = 0.98) + 
+   ylab("probability") + 
+   xlab(" number of spots") + 
+  ggtitle("Outcomes from rolling a ten sided die:\n probability distribution")
+  
+
+p2 <- data.frame(rolls) %>% 
+  ggplot(aes(x=factor(rolls))) + 
+  geom_bar(aes(y=..prop..), fill="blue", width = 0.98) + 
+  ylab("proportion of draws") + 
+  xlab("ticket drawn") + 
+  ggtitle("Outcomes from rolling a ten sided die:\n empirical distribution") 
+ 
+
+p1 + p2
+
+```
+:::
 
 #### Example: the binomial(*n*, *p*) random variable
 
 Let $X \sim Bin(30, 0.5)$. We can simulate the values of this random variable by drawing from the box ![](images/binom-box.jpeg){width="80"} $30$ times, and summing the draws. This will simulate counting the number of successes in $n$ trials. As in the example above, we will plot the probability distribution of $X$ on the left, and the empirical distribution on the right. 
 
-
+:::{.content-visible when-format="html"}
 ```{r}
 #| fig-width: 10
 #| fig-height: 5
+
+
+
+box <- c(0,1)
+binom_30 <- seq(from = 0, to = 30, by = 1)
+prob_30 <- round(dbinom(binom_30, size = 30, prob = 0.5), 3)
+
+set.seed(12345)
+
+n_sims <- 10^6
+
+draws <- replicate(n_sims, sum(sample(box, 30, replace = TRUE)))
+
+p1 <- data.frame(binom_30) %>% 
+  mutate(prob_30 = prob_30) %>%
+  ggplot(aes(x = factor(binom_30), y = prob_30)) +
+  geom_col(fill = "goldenrod2", width = 0.98, color = "white") + 
+   ylab("probability") + 
+   xlab(" number of successes") + 
+  ggtitle("Probabilities for the binomial random variable \n n = 30, p = 0.5") +
+  theme_bw()
+  
+
+fac_30 <- factor(binom_30, levels = 0:30)
+
+p2 <- data.frame(draws) %>% 
+  ggplot(aes(x=draws)) + 
+  geom_bar(aes(y=..prop..), fill="blue", width = 0.98, color = "white") + 
+  ylab("proportion of draws") + 
+  xlab("sum of draws") + 
+  ggtitle("Empirical distribution for random numbers generated \n
+          from the Bin(30, 0.5) distribution")  +
+  theme_bw() +
+  scale_x_discrete(limits = factor(seq(0,30)), labels = fac_30, drop = FALSE)
+  
+
+p1 + p2
+
+```
+:::
+
+:::{.content-visible when-format="pdf"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 5
+
 
 
 box <- c(0,1)
@@ -426,7 +543,7 @@ p2 <- data.frame(draws) %>%
 p1 + p2
 
 ```
-
+:::
 
 [^covid]: <https://www.covidstates.org/reports/state-of-the-covid-19-pandemic>
 [^wm]:<https://www.latimes.com/world/la-xpm-2011-jun-20-la-naw-wal-mart-court-20110621-story.html>
