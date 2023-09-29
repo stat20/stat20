@@ -554,7 +554,7 @@ p1 + p2
 - In these notes, we defined random variables, and described discrete and continuous random variables.
 - For any random variable, there is an associated probability distribution, and this is described by the probability mass function or pmf $f(x)$. We also defined a function that, for a random variable $X$, and any real number $x$, describes all the probability that is to the left of $x$. This function is called the cumulative distribution function (cdf) of $X$ and is denoted $F(x)$.
 - We looked at some special distributions (Bernoulli, binomial, discrete uniform, and hypergeometric)
-- Finally, we looked at connections between random variables and box models, and saw how to simulate some empirical distributions.
+- Finally, we looked at connections between random variables and boxes with tickets, and saw how to simulate some empirical distributions.
 
 
 {{< include images/tmp/_date-meta.md >}}
