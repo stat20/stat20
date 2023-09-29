@@ -6,6 +6,33 @@ format:
   html: default
   pdf: default
 ---
+:::{.lo .content-hidden unless-profile="staff-site"}
+
+#### Concept Acquisition
+
+1. Discrete random variables
+2. Distribution tables
+3. Probability mass functions
+4. Cumulative distribution functions
+5. Bernoulli, binomial & hypergeometric distributions
+
+#### Tool Acquisition
+
+1. How to recognize binomial distribution
+2. connections to boxes of tickets
+3. How to compute probabilities
+
+
+#### Concept Application
+
+1. Defining random variables
+2. Computing probabilities for random variables
+3. Using R to simulate probabilities
+
+
+----------------------------------------------------
+
+:::
 
 ```{r}
 #| echo: false
@@ -18,7 +45,10 @@ library(infer)
 library(patchwork)
 ```
 
-In the last set of notes, we defined boxes for modeling coin tosses and die rolls. When we were only interested in a particular outcome, such as a die roll resulting in the face with six spots, or the coin landing heads - we could model it as a box with tickets marked $0$ or $1$. We did not need tickets with other values, since we were just counting the number of times we rolled a six, or the number of heads when we tossed a coin. We saw that in our simulation of the Chevalier de Méré's game, we only needed to define the appropriate $0$-$1$ vector from which we would sample. We associated each outcome with a real number.
+Suppose we want to simulate tossing a coin $10$ times, and compute the proportion of times that the coin lands heads. We might use the function `sample()` to sample from `(0, 1)`, where the outcome "Heads" is represented by the number `1` and the outcome "Tails" is represented by the number `0`. We can save the result as `tosses_10`. Our code might be `tosses_10 <- sample(c(0,1), 10, replace = TRUE)`.  `tosses_10`  might look like `0 0 1 1 0 1 1 1 1 0`, and if we compute its mean (`mean(tosses_10)`), we would get the proportion of times the coin landed heads (in this example it is 0.6). 
+
+
+When we were only interested in a particular outcome, such as a die roll resulting in the face with six spots, or the coin landing heads - we could model it as a box with tickets marked $0$ or $1$. We did not need tickets with other values, since we were just counting the number of times we rolled a six, or the number of heads when we tossed a coin. We saw that in our simulation of the Chevalier de Méré's game, we only needed to define the appropriate $0$-$1$ vector from which we would sample. We associated each outcome with a real number.
 
 ## Random variables
 
