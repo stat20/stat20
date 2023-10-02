@@ -3,8 +3,9 @@ title: "Multiple Linear Regression"
 subtitle: "Summarizing linear relationships in high dimensions"
 image: images/3d-scatterplot.png
 format:
-  html: default
+  #html: default
   pdf: default
+prefer-html: true
 ---
 
 [I]{.dropcap}n the last lecture we built our first linear model: an equation of a line drawn through the scatter plot.
@@ -181,10 +182,8 @@ While the standard scatter plot allows us to understand the association between 
 
 [^plotly]: While `ggplot2` is the best package for static statistical graphics, it does not have any interactive functionality. This plot was made using a system called `plotly`, which can be used both in R and Python. Read more about how it works at <https://plotly.com/r/>.
 
+:::{.content-visible when-format="html"}
 ```{r}
-#| code-fold: false
-#| echo: false
-#| eval: false
 library(plotly)
 library(reshape2)
 
@@ -207,6 +206,14 @@ p <- plot_ly(zagat, x = ~food, y = ~decor, z = ~price, showlegend=FALSE) %>%
                             color = "steelblue"),
               name = ~restaurant) %>%
   config(displayModeBar = FALSE) 
+p
+```
+:::
+
+:::{.content-visible when-format="pdf"}
+```{r}
+#| echo: false
+#| eval: false
 p %>%
     htmlwidgets::saveWidget(
     "images/plotly-3d.html",
@@ -214,15 +221,8 @@ p %>%
   )
 ```
 
-<!-- ```{=html} -->
-<!-- <center> -->
-<!-- <iframe width="500" height="500" -->
-<!--   src="images/plotly-3d.html" -->
-<!-- ></iframe> -->
-<!-- </center> -->
-<!-- ``` -->
-
 ![](images/3d-points.png){width="450" fig-align="center"}
+:::
 
 Take a moment to explore this scatter plot[^error]. Can you find the name of the restaurant with very bad decor but pretty good food and a price to match? (It's Gennaro.) What about the restaurant that equally bad decor but has rock bottom prices that's surprising given it's food quality isn't actually somewhat respectable? (It's Lamarca.)
 
@@ -244,31 +244,33 @@ To understand the geometry of this model, we can't use the trick that we did wit
 
 Indeed this linear model is describing a *plane*.
 
+:::{.content-visible when-format="html"}
 ```{r}
-#| code-fold: false
-#| echo: false
-#| eval: false
-p %>%
+p2 <- p %>%
   add_surface(x = axis_x,
               y = axis_y,
               z = z, showscale=FALSE,
               colorscale = list(c(0, 1), c("tan", "tan")),
-              name = "Linear Model") %>%
+              name = "Linear Model")
+p2
+```
+:::
+
+:::{.content-visible when-format="pdf"}
+```{r}
+#| echo: false
+#| eval: false
+
+p2 %>%
     htmlwidgets::saveWidget(
     "images/plotly-3d-plane.html",
     selfcontained = TRUE
   )
 ```
 
-<!-- ```{=html} -->
-<!-- <center> -->
-<!-- <iframe width="500" height="500" -->
-<!--   src="images/plotly-3d-plane.html" -->
-<!-- ></iframe> -->
-<!-- </center> -->
-<!-- ``` -->
 
 ![](images/3d-plane.png){width="450" fig-align="center"}
+:::
 
 If you inspect this plane carefully you're realize that the tilt of the plane is not quite the same in every dimension. The tilt in the decor dimension is just a little bit steeper than that in the food dimension, a geometric expression of the fact that the coefficient in front of decor, 1.88, is just a bit higher than the coefficient in front of food, 1.64.
 
