@@ -184,7 +184,7 @@ Equally likely outcomes
 
 [^dice]: The singular is *die* and the plural is *dice*. If we use the word "die" without any qualifiers, we will mean a fair, six-sided die. 
 
-Consider rolling a fair six-sided die: six outcomes are possible so $\Omega = \{1, 2, 3, 4, 5, 6\}$. Since the die is fair, each outcome is equally likely, with probability $= \displaystyle {1}{6}$. We can list the outcomes and their probabilities in a table. 
+Consider rolling a fair six-sided die: six outcomes are possible so $\Omega = \{1, 2, 3, 4, 5, 6\}$. Since the die is fair, each outcome is equally likely, with probability $= \displaystyle \frac{1}{6}$. We can list the outcomes and their probabilities in a table. 
 
 |**Outcome** | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ |
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|
