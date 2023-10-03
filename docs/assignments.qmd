@@ -1,0 +1,61 @@
+---
+title: Adding Assignments
+---
+
+## Problem Sets
+
+#### PDF handouts
+
+1. Create a file called `ps.qmd` alongside the notes for a given day's materials. Your directory should look like this:
+
+   ```markdown
+   intro-to-probability
+   ├── notes.qmd
+   ├── ps.qmd
+   ```
+2. At least two YAML options should be specified in the front-matter, `title` and the custom handout `format`:
+
+   ```yaml
+   ---
+   title: Calculating Chances
+   format: stat20handout-pdf
+   ---
+   ```
+3. Upon rendering the site, this assignment should appear on the assignments page. The format of the assignment list is controlled by the [assignments template](https://github.com/stat20/stat20/blob/main/assets/listings/assignments-ps.ejs#L4), which will automatically assign numbers to the problem sets based on their order in the directory.
+
+
+#### Qmd handouts
+
+1. Just like with pdfs, create a file called `ps.qmd` alongside the notes for a given day's materials. Your directory should look like this:
+
+   ```markdown
+   intro-to-probability
+   ├── notes.qmd
+   ├── ps.qmd
+   ```
+2. Just one option needs to be specified in the front-matter, `title`:
+
+   ```yaml
+   ---
+   title: Simulation
+   ---
+   ```
+3. Open up the [`_quarto.yml`](https://github.com/stat20/stat20/blob/main/_quarto.yml) file and add the path to this file under the `project: render:` list preprended with a `!`. It should look something like this.
+
+   ```yaml
+   project:
+     type: website
+     resources:
+       - "homepage-readings"
+     render:
+       - "*.qmd"
+       - "!3-probability/intro-to-probability/ps.qmd"
+   ```
+   This will ignore that file during rendering.
+4. Upon rendering the site, your `ps.qmd` will be ignored from the render process, making it available as an ordinary qmd file. This has the current side-effect of not propagating the title of the qmd into the assignment listings but that's ok.
+
+## Labs
+
+::: callout-warning
+Under Construction
+:::
