@@ -57,20 +57,25 @@ $$ X : \Omega \rightarrow \mathbb{R}$$
 
 $X$ is called a *random variable*: variable, because it takes different values on the real line, and random, because it inherits the randomness from the generating process (in this case, the process is tossing a coin).
 
-Random variable
-: A random variable is a function that associates real numbers with outcomes from a random experiment which are in an outcome space $\Omega$. 
+:::{.def}
+**Random variable**
+ ~ A random variable is a function that associates real numbers with outcomes from a random experiment which are in an outcome space $\Omega$.
+::: 
 
 These assigned numbers have probabilities coming from the probability distribution on $\Omega$. The range of the random variable is the set of all the possible values that $X$ can take. We usually denote random by $X, Y, \ldots$.  We write statements about the values $X$ takes, such as $X = 1$ or $X = 0$. Note that $X = 1$ is an *event* and it may be true or not. The probability of such events is written as $P(X = x)$, where $x$ is a real number.
 
-Probability distribution of a random variable $X$
-: The set of possible values of $X$, along with the associated probabilities, is called the *probability distribution* for the random variable $X$.
-
+:::{.def}
+**Probability distribution of a random variable $X$**
+ ~ The set of possible values of $X$, along with the associated probabilities, is called the *probability distribution* for the random variable $X$.
+:::
 
 ![](images/rv-picture.png){fig-align="center" width="600"}
 
 
-Discrete and continuous random variables
-: Discrete random variables are restricted to take *particular* values in an interval, they cannot take just any value, as opposed to continuous random variables which can take any value in some specified interval. Note the similarity to discrete and continuous quantitative data types. 
+:::{.def}
+**Discrete and continuous random variables**
+ ~ Discrete random variables are restricted to take *particular* values in an interval, they cannot take just any value, as opposed to continuous random variables which can take any value in some specified interval. Note the similarity to discrete and continuous quantitative data types. 
+:::
 
 #### Examples of discrete random variables 
 - The number of heads in $3$ tosses of a fair coin: The assignment is similar to the outcomes from a single toss, except now we have the possible outcome from tossing a coin three times. For example, the outcome $\texttt{HHH}$ is assigned the number 3, the outcomes $\texttt{HHT, HTH, THH}$ are all assigned the number 2 etc. Note that even though we should write $X(\texttt{HHH}) = 3$, it is common to write just $X = 3$.
@@ -113,8 +118,10 @@ We can list the values taken by a random variable in a table, along with the pro
 
 ### The probability mass function or pmf of a discrete random variable
  
-The probability mass function (pmf) of a discrete random variable $X$
-: The **pmf** of a discrete random variable $X$ is defined to be the function $f(x) = P(X = x)$.
+:::{.def}
+**Probability mass function (pmf) of a discrete random variable $X$**
+ ~ The **pmf** of a discrete random variable $X$ is defined to be the function $f(x) = P(X = x)$.
+:::
 
 We can write down the definition of the function $f(x)$ and it gives the same information as in the table:
  $$f(x) = \begin{cases}
@@ -134,9 +141,10 @@ This is the simplest discrete distribution: $X$ be a random variable that takes 
 ![](images/bernoulli.png){fig-align="center" width="500"}
 
 
-Parameter of a probability distribution
-: A constant(s) associated with the distribution. If you know the parameters of a probability distribution, then you can compute all the values of $f(x)$.
-
+:::{.def}
+**Parameter of a probability distribution**
+ ~ A constant(s) associated with the distribution. If you know the parameters of a probability distribution, then you can compute all the values of $f(x)$.
+:::
 
 ### Discrete uniform random distribution
 
@@ -198,7 +206,7 @@ What are these events in words? What are their probabilities?
 
 <details> <summary> Check your answer </summary>
 - $X$ is the number of successes in ten trials, where the probability of success in each trial is 40%. $X = 5$ is the event that we see exactly five successes in the ten trials, while $X \le 5$ is the event of seeing *at most* five successes in ten trials. The last event, $3 \le X \le 8$ is the event of at least three successes, but not more than eight, in ten trials.
-We will use `dbinom()` to compute the probabilities.
+We will use `dbinom()` to compute the probabilities $P(X = x)$ or the pmf values.
 ```{r}
 #| code-fold: false
 
@@ -279,9 +287,11 @@ You can see that the values are very close to each other. (Recall that the proba
 
 ## The cumulative distribution function $F(x)$
 
-The cumulative distribution function (cdf) $F(x)$
-: of a random variable $X$ is defined for *every* real number, and gives, for each $x$, the amount of probability or mass that has been *accumulated* up to (and including) the point $x$, that is, 
+:::{.def}
+**Cumulative distribution function (cdf) $F(x)$**
+ ~ The cumulative distribution function of a random variable $X$ is defined for *every* real number, and gives, for each $x$, the amount of probability or mass that has been *accumulated* up to (and including) the point $x$, that is, 
 $F(x) = P(X \le x)$.
+:::
 
 We usually abbreviate this function to cdf. It is a very important function since it also describes the probability distribution of $X$.
 
@@ -554,6 +564,7 @@ p1 + p2
 - In these notes, we defined random variables, and described discrete and continuous random variables.
 - For any random variable, there is an associated probability distribution, and this is described by the probability mass function or pmf $f(x)$. We also defined a function that, for a random variable $X$, and any real number $x$, describes all the probability that is to the left of $x$. This function is called the cumulative distribution function (cdf) of $X$ and is denoted $F(x)$.
 - We looked at some special distributions (Bernoulli, binomial, discrete uniform, and hypergeometric)
+- We defined functions in `R` that can compute the pmf and cdf for special distributions.
 - Finally, we looked at connections between random variables and boxes with tickets, and saw how to simulate some empirical distributions.
 
 

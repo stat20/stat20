@@ -315,10 +315,12 @@ Note that the roles of $A$ and $B$ could be reversed in the expression above:
 $$ P(A \cap B) = P(A) \times P(B | A) = P(B) \times P(A | B)$$
 This gives us a way to define the conditional probability, as long as we are not dividing by $0$:
 
-Conditional probability of $B$ given $A$ 
-: This is defined to be the probability of the intersection of $A$ and $B$, normalized by dividing by $P(A)$:
+:::{.def}
+**Conditional probability of $B$ given $A$**
+ ~ This is defined to be the probability of the intersection of $A$ and $B$, normalized by dividing by $P(A)$:
 
 $$  P(B | A) = \frac{ P(A \cap B)}{P(A)} $$
+:::
 
 The idea here is that we know that $A$ happened, therefore the only outcomes we are concerned about are the ones in $A$ - this is our new outcome space. We compute the relative size of the part of $B$ that happen ($A\cap B$) to the size of the new outcome space.
 
@@ -331,8 +333,10 @@ Consider the scenario shown in the Venn diagram here:
 
 ## Independence
 
-Independent events
-: We say that two events are *independent* if the probabilities for the second event remain the *same* even if you know that the first event has happened, no matter how the first event turns out. Otherwise, the events are said to be *dependent*. 
+:::{.def}
+**Independent events**
+ ~ We say that two events are *independent* if the probabilities for the second event remain the *same* even if you know that the first event has happened, no matter how the first event turns out. Otherwise, the events are said to be *dependent*. 
+::: 
 
 If $A$ and $B$ are independent, $P(B\vert A) = P(B)$. 
 
