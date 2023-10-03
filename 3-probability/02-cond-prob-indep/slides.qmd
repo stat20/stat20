@@ -20,34 +20,126 @@ format:
       data-background-size: contain
 ---
 
+## Do you want a car or do you want a goat?
+
+```{r}
+#| fig-align: center
+knitr::include_graphics("https://imgs.xkcd.com/comics/monty_hall.png")
+```
+
+:::{.notes}
+Of course, this is the Monty Hall problem. The text for this comic is "A few minutes later, the goat behind door C drives away in the car.
+Can have some fun and ask them to if they chose door A and door B had a goat, would they stay with A or would they switch to C? (pollev)
+Setup: There are three doors A, B, C. Car behind one of them, goats behind other two. You pick a door at random (say you pick A), host opens one of the doors you didn't pick (say they open B), and shows you a goat. Now should you stick with your original choice of A or should you switch to C.
+Will be fun to see what they input. The right answer is that they should switch. Waving hands, the total mass of 1 was split 1/3 to 2/3 (win to not win) with the choice of A. A is kept aside, and B is opened.Now the P(A doesn't win) = 2/3 is moved to C.Therefore better to switch. To do with conditional prob, need to do it after Bayes. 
+:::
+
 ## Agenda
 
-- Concept Questions
+- PS 7 
+- Concept Review
+- Concept Questions 
 - Break
-- Handout: PS 3.3a (computing probabilities)
+- PS 8 (computing probabilities)
 - Break
-- Two useful R functions
-- Digital worksheet: PS 3.3b (simulating probabilities)
 
 
-# Concept Questions
+:::{.notes}
+- PS 7 ~ 20/25 minutes: time for them to work, and to review the PS
+(If you have already given enough time, do the coin flipping activity)
+- Lecture on conditional probability and independence
+- Concept Review
+- Concept questions
+- Break ~3 mins
+- Handout: PS 8 (computing probabilities)
+:::
 
-##
+# Concept questions & review
+
+## Rules 
+
+- Multiplication rule
+
+For two events $A$ and $B$, $P(A \text{ and } B) = P(A \vert B) P(B)$
+
+- Complement rule
+
+$P(A^C) = 1 - P(A)$
+
+:::{.notes}
+You can tell them here that $A^C$ is "not A", and then maybe use dice or coin toss examples. Review mutually exclusive vs independent events, emphasizing that these are very different ideas, though both apply to pairs of events. 
+
+- Mutually exclusive events means that the occurrence of one event prevents the occurrence of the other. (that is, it reduces the chance of the other occurring to 0.)
+
+Independent events means that the occurrence of one event does not change the chance of the other occurring.
+:::
+
+## 
 
 ```{r}
 countdown::countdown(1, bottom = 0)
 ```
 
+Flip 3 coins, one at a time. Define the following events:
 
+$A$ is the event that the first coin flipped shows a head
+
+$B$ is the event that the first two coins flipped both show heads
+
+$C$ is the event that the last two coins flipped both show tails
 
 :::{.poll}
-I have a box with 12 cards in it.  Four of the cards are [red]{style="color:#FF3342"}, four are [blue]{style="color:#3F33FF"}, and four are [green]{style="color:#0EB220"}. I shuffle the cards in the box, and draw one out at random. The outcome of the card being green and the outcome of the card being red are _____.
+The events A and B are: ________
 :::
 
 :::{.notes}
-The outcomes are mutually exclusive and so can't be independent, since they are non-zero probability events.
+After they do this and next, write out the outcome space for the results of flipping 3 coins. And go through what are A, B, and C.
 :::
 
+## 
+
+```{r}
+countdown::countdown(1, bottom = 0)
+```
+
+Flip 3 coins, one at a time. Define the following events:
+
+$A$ is the event that the first coin flipped shows a head
+
+$B$ is the event that the first two coins flipped both show heads
+
+$C$ is the event that the last two coins flipped both show tails
+
+:::{.poll}
+The events $A$ and $C$ are: ________
+:::
+
+:::{.notes}
+After they do this and next, write out the outcome space for the results of flipping 3 coins. And go through what are A, B, and C.
+:::
+
+
+## 
+
+Suppose we draw 2 tickets at random without replacement from a box with tickets marked {1, 2, 3, . . . , 9}. Let A be the event that at least one of the tickets drawn is labeled with an even number, let B be the event that at least one of the tickets drawn is labeled with a prime number (recall that the number 1 is not regarded as a prime number). Suppose the numbers on the tickets drawn are **3** and **9**. 
+
+:::{.poll}
+Which of the following events occur?
+
+(i)  $A$
+
+(ii)  $B$
+
+(iii)  $A$ and $B$ ($A \cap B$)
+
+(iv)  $A$ and $B^C$
+
+(v)  $A^C$ and $B$
+:::
+
+```{r}
+countdown::countdown(3, bottom = 0)
+```
 
 ##
 
@@ -95,13 +187,14 @@ if 5 games are played it means one of the teams is leading 3-2. Therefore there 
 countdown::countdown(3, bottom = 0)
 ```
 
-:::{.poll}
-On each turn of a game, I toss a coin as many times as the number of spots I get when I roll a die.
-On a turn what is the probability that all my tosses land heads? Is it true that it is $\left(\frac{1}{2}\right)^k$, where $k$ is the number of spots from the die I just rolled? (Be careful! are you being asked for a conditional probability?)
-:::
+
+On each turn of a game, I first roll a fair six-sided die, and then toss a coin as many times as the number of spots I rolled.
+
+What is the probability that all my tosses land heads on a particular turn?
 
 :::{.notes}
-False, the probability of coin landing heads on all tosses is (1/2)*(1/6) + (1/4)*(1/6) + ...+ (1/64)*(1/6). The point is using the multiplication rule for dependent events.
+
+No pollev, as this question is confusing, better to go through it. The probability of coin landing heads on all tosses is P(all H & 1 toss) + P(all H & 2 tosses ) + etc = P(all H | k = 1)*P(k =1) + ... =  (1/2)*(1/6) + (1/4)*(1/6) + ...+ (1/64)*(1/6). The point is using the multiplication rule for dependent events.
 :::
 
 
@@ -112,15 +205,32 @@ False, the probability of coin landing heads on all tosses is (1/2)*(1/6) + (1/4
 countdown::countdown(3, bottom = 0)
 ```
 
-:::{.poll}
+
 A rare condition affects **0.2%** of the population. A test for this condition is 99% accurate: this means that the probability that a person *with* the condition tests positive is 99% and the probability that a person *without* the condition tests negative is 99%. What is the probability that a person who tests positive has the condition? 
 
-:::
 
 :::{.notes}
-Important NOT to use Bayes' theorem, but show them how to think about the chances, and where the positive tests come from. We can think about the number of cases in 100,000, then the numbers are nice and whole.
+First, don't do Bayes' theorem (next slide is Bayes) but show them how to think about the chances, and where the positive tests come from. We can think about the number of cases in 100,000, then the numbers are nice and whole.
 
 Since prevalence is 0.2%, then  0.2% of 100,000 is 0.002*100000 = 200 people will have the condition. Out of the remaining (100000-200 = 99800) people who do not have the condition, 1% will test positive, which is 998 people, so the total number of positive tests is 998+200 = 1198. The proportion of true positives is 200/1198 = about 16.67% cases or about between 16% and 17% of the positives are true positives (if we use Bayes' rule, it works out to be 16.55%)
+:::
+
+## Bayes' theorem
+
+Let $A$ and $B$ be events with positive probability. Then:
+
+(i) $B$ can be written as $B = (B\cap A) \cup (B \cap A^C)$
+
+(ii)$$ \begin{align} 
+    P(A|B) &= \displaystyle \frac{P(A \cap B)}{P(B)}  \\
+          &=  \frac{P(A \cap B)}{P(B\cap A) + P(B \cap A^C)} \\
+          &= \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|A^C)P(A^C)}
+    \end{align}$$
+
+
+
+:::{.notes}
+Draw a picture here to show how we can write B like this
 :::
 
 # Break 
@@ -129,73 +239,12 @@ Since prevalence is 0.2%, then  0.2% of 100,000 is 0.002*100000 = 200 people wil
 countdown::countdown(5)
 ```
 
-# PS 3.3a (paper handout) 
+# PS 8
 
 ```{r}
 countdown::countdown(25)
 ```
 
-# Two useful R functions
-
-##  `seq()`
-
-\
-
-Creates a sequence of numbers that can be defined by their first and last number and the space between each number (or the total numbers in the sequence):
-`seq(from, to, by)`
-
-\
-
-:::poll
-**Code Along**
-
-How can you use `seq()` to generate the following sequence: 1, 1.25, 1.5, 1.75, 2 and call it `a`?
+:::{.notes}
+Then review PS 8. If you have time, go over coin flipping code
 :::
-
-```{r}
-countdown::countdown(1)
-```
-
-
-
-## `sample()` 
-
-
-\
-
-Used to take a random sample of a vector with or without replacement: 
-`sample(x, size, replace = FALSE)`
-
-
-:::poll
-**Code Along**
-
-How can you use `sample()` to create the following vector from `a`: 1.25, 1.25, 1.50.
-
-```{r}
-#| echo: true
-a <- seq(from = 1, to = 2, by = .25)
-```
-
-:::
-
-. . . 
-
-When we want a specific sample, or want the same sample every time we run our code, we use the function `set.seed()`. This initializes R's pseudorandom number generator, so that when you are running simulations or code that requires random sampling, you can reproduce your results. 
-
-:::notes
-A good time to mention setting the seed again.
-This sample is obtained using the seed 12
-:::
-
-# Break 
-
-```{r}
-countdown::countdown(5)
-```
-
-# PS 3.3b (digital handout)
-
-```{r}
-countdown::countdown(30)
-```
