@@ -31,7 +31,7 @@ knitr::include_graphics("https://imgs.xkcd.com/comics/monty_hall.png")
 Of course, this is the Monty Hall problem. The text for this comic is "A few minutes later, the goat behind door C drives away in the car.
 Can have some fun and ask them to if they chose door A and door B had a goat, would they stay with A or would they switch to C? (pollev)
 Setup: There are three doors A, B, C. Car behind one of them, goats behind other two. You pick a door at random (say you pick A), host opens one of the doors you didn't pick (say they open B), and shows you a goat. Now should you stick with your original choice of A or should you switch to C.
-Will be fun to see what they input. The right answer is that they should switch. Waving hands, the total mass of 1 was split 1/3 to 2/3 (win to not win) with the choice of A. A is kept aside, and B is opened.Now the P(A doesn't win) = 2/3 is moved to C.Therefore better to switch. To do with conditional prob, need to do it after Bayes. 
+Will be fun to see what they input. The right answer is that they should switch. Waving hands, the total mass of 1 was split 1/3 to 2/3 (win to not win) with the choice of A. A is kept aside, and B is opened.Now the P(A doesn't win) = 2/3 is moved to C.Therefore better to switch. Not worth doing it with formal notation even after going over Bayes 
 :::
 
 ## Agenda
@@ -230,7 +230,7 @@ Let $A$ and $B$ be events with positive probability. Then:
 
 
 :::{.notes}
-Draw a picture here to show how we can write B like this
+Draw a picture here to show how we can write B like this. Now can go over problem on previous slide using Bayes
 :::
 
 # Break 
