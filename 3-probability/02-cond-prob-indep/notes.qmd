@@ -386,6 +386,8 @@ For box 1, color and number are dependent, since the probability of 3 given that
 
 Even though the probability for 1 or 2 given the ticket is red is the same as the probability for 1 or 2 given the ticket is blue, we say that color and number are *dependent* because of the tickets marked 3 or 4.
 
+Now you work it out for box 2.
+
 </details>
 
 #### Example: Tickets with more than one number on them
