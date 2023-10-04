@@ -94,6 +94,7 @@ The events A and B are: ________
 
 :::{.notes}
 After they do this and next, write out the outcome space for the results of flipping 3 coins. And go through what are A, B, and C.
+A and B are neither independent nor mutually exclusive.
 :::
 
 ## 
@@ -116,6 +117,7 @@ The events $A$ and $C$ are: ________
 
 :::{.notes}
 After they do this and next, write out the outcome space for the results of flipping 3 coins. And go through what are A, B, and C.
+A and C are independent. Show that P(A & C ) = 1/8 = P(A)P(C) = 1/4 * 1/2
 :::
 
 
@@ -135,6 +137,10 @@ Which of the following events occur?
 (iv)  $A$ and $B^C$
 
 (v)  $A^C$ and $B$
+:::
+
+:::{.notes}
+ii and v, I told them they can immediately see that A^C is true since no even number, so definitely (v) and then we do have a prime number and both are odd so (ii) is true.
 :::
 
 ```{r}
