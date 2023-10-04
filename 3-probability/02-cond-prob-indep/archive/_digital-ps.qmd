@@ -1,5 +1,5 @@
 ---
-title: "PS 9: Simulations"
+title: "Simulations"
 ---
 
 ```{r}
