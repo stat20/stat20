@@ -231,7 +231,7 @@ A rare condition affects **0.2%** of the population. A test for this condition i
 :::{.notes}
 First, don't do Bayes' theorem (next slide is Bayes) but show them how to think about the chances, and where the positive tests come from. We can think about the number of cases in 100,000, then the numbers are nice and whole.
 
-Since prevalence is 0.2%, then  0.2% of 100,000 is 0.002*100000 = 200 people will have the condition. Out of the remaining (100000-200 = 99800) people who do not have the condition, 1% will test positive, which is 998 people, so the total number of positive tests is 998+200 = 1198. The proportion of true positives is 200/1198 = about 16.67% cases or about between 16% and 17% of the positives are true positives (if we use Bayes' rule, it works out to be 16.55%)
+Since prevalence is 0.2%, then  0.2% of 100,000 is 0.002*100000 = 200 people will have the condition, and 99% or 198 of them are expected to test positive. Out of the remaining (100000-200 = 99800) people who do not have the condition, 1% will test positive, which is 998 people, so the total number of positive tests is 998+198 = 1198. The proportion of true positives is 198/1198 = about 16.55% cases or about between 16% and 17% of the positives are true positives (if we use Bayes' rule formally, it works out to be 16.55%).
 :::
 
 ## Bayes' theorem
