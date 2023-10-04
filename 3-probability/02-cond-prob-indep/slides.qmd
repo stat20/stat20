@@ -184,17 +184,30 @@ if 5 games are played it means one of the teams is leading 3-2. Therefore there 
 ## 
 
 ```{r}
+countdown::countdown(1, bottom = 0)
+```
+
+Let's play a game where I first roll a fair six-sided die, and then toss a coin as many times as the number of spots I rolled.
+
+:::{.poll}
+Given I roll a k what is the probability that I get flip all heads? 
+:::
+
+## 
+
+```{r}
 countdown::countdown(3, bottom = 0)
 ```
 
+Let's play a game where I first roll a fair six-sided die, and then toss a coin as many times as the number of spots I rolled.
 
-On each turn of a game, I first roll a fair six-sided die, and then toss a coin as many times as the number of spots I rolled.
-
-What is the probability that all my tosses land heads on a particular turn?
+:::{.poll}
+What is the probability I win the game?
+:::
 
 :::{.notes}
 
-No pollev, as this question is confusing, better to go through it. The probability of coin landing heads on all tosses is P(all H & 1 toss) + P(all H & 2 tosses ) + etc = P(all H | k = 1)*P(k =1) + ... =  (1/2)*(1/6) + (1/4)*(1/6) + ...+ (1/64)*(1/6). The point is using the multiplication rule for dependent events.
+P(win) = P(roll 1 and all H) + P(roll 2 and all H) + ... = P(all H | roll = 1)*P(roll =1) + ... =  (1/2)*(1/6) + (1/4)*(1/6) + ...+ (1/64)*(1/6). The point is to illustrate the 3 steps used to solve this problem 1) partition the win event into 6 mutually exclusive sets 2) apply the addition rule for ME events then 3) the multiplication rule for dependent events.
 :::
 
 
