@@ -187,7 +187,7 @@ if 5 games are played it means one of the teams is leading 3-2. Therefore there 
 countdown::countdown(1, bottom = 0)
 ```
 
-Let's play a game where I first roll a fair six-sided die, and then toss a coin as many times as the number of spots I rolled.
+Let's play a game where I first roll a fair six-sided die, and then toss a coin as many times as the number of spots I rolled. I win the game if I get all heads.
 
 :::{.poll}
 Given I roll a k what is the probability that I get flip all heads? 
@@ -199,7 +199,7 @@ Given I roll a k what is the probability that I get flip all heads?
 countdown::countdown(3, bottom = 0)
 ```
 
-Let's play a game where I first roll a fair six-sided die, and then toss a coin as many times as the number of spots I rolled.
+Let's play a game where I first roll a fair six-sided die, and then toss a coin as many times as the number of spots I rolled. I win the game if I get all heads.
 
 :::{.poll}
 What is the probability I win the game?
