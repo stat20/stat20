@@ -31,6 +31,7 @@ website:
           href: docs/index.qmd
           contents:
             - docs/website.qmd
+            - docs/assignments.qmd
             - docs/slides.qmd
         
         
