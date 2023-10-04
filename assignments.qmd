@@ -14,7 +14,7 @@ listing:
   - id: ps-listing
     template: assets/listings/assignments-ps.ejs
     contents:
-      - "*/ps?([[:digits:]]).qmd"
+      - "*/ps?(-)?([[:alnum:]]).qmd"
     sort: "date desc"
     type: table
     fields:
