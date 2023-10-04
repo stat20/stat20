@@ -3,16 +3,17 @@ title: "Conditional Probability"
 format: stat20handout-pdf
 ---
 
-#### Question 1 Chegg's survey
+#### Question 1 Rolling a die
 
-The company Chegg wants to justify its business model and decides to conduct an opinion poll. It sends out a survey to its 7.8 million subscribers (as of 2021) asking if they have ever cheated on an assignment using Chegg. It gets back 1.5 million responses of which 87% of the respondents say that they have never used Chegg to cheat on an assignment. 
-
-(a) Could this survey be set up as a box model? If so, what tickets would go in the box and how many would we draw? If not, why not?
+(a) I roll a fair **eight-sided** die twice. What is the probability that the rolls are **different**? 
 
 \
 
-(b) Is this sample of 1.5 million a representative sample of high school and college students?
+\
 
+(b) Now I roll the same die 4 times. What is the probability that I roll the **same** number on all 4 rolls? 
+
+\
 \
 
 #### Question 2 Independent? Mutually exclusive?
@@ -26,13 +27,27 @@ The company Chegg wants to justify its business model and decides to conduct an 
 
 \
 
+\
 
-#### Question 3
+#### Question 3 Bella and her toys
 
-Is it possible for two non-empty events to be *both* mutually exclusive *and* independent?
+My dog Bella has three toys that she loves: A stuffed and squeaky octopus, an orange ball, and a thick rope. One day we hid the octopus (too squeaky!) so she had to pick the ball or the rope. Each time she picks a toy, she chooses it independently of all the other times (like a coin toss). That day, she was busy, so went to her toys three times. 
+
+Define the events $A$ and $B$ where $A$ is the event that she picked the rope *at most* one time, and $B$ is the event that the toys she picked that day included *both* the rope and the ball.
+
+Are $A$ and $B$ independent?
+
 \
 
 \
+
+\
+
+\
+
+\
+
+
 
 #### Question 4
 
@@ -43,26 +58,15 @@ Suppose $A$ and $B$ are non-empty events such that $P(A) = 0.5$ and $P(B) = 0.7$
 
 \
 
-
-#### Question 5
-
- It was established that the H1N1 (swine flu) pandemic of 2009 originated in pigs from a very small region in central Mexico. Early cases in the US were associated with recent travel to Mexico. Say at that time, a college student went to Mexico and let’s assume that at the time, the rate of infection for travelers to Mexico was 1 in 1,000. Let’s suppose that the test for H1N1 has 99% accuracy. That is the chance of a false positive is 1% and the chance of a false negative is also 1%. If a person has a positive test result, what is the approximate chance that they truly have H1N1? 
-(Please do **not** do complicated probability computations, but do a rough computation, as done in the slides.)
-
-\ 
-
 \
 
-\
+#### Question 5 The Paradox of Chevalier de Méré
+
+Antoine Gombaud, the self-styled Chevalier, lived in the 17th century and liked to gamble on the outcomes of die rolls. One game that he was fond of involved betting money on getting at least one six in 4 rolls of a fair six-sided die. We know that he computed this probability as $\displaystyle \frac{1}{6} +  \frac{1}{6} +  \frac{1}{6} +  \frac{1}{6} =  \frac{2}{3}$. 
+
+(a) We discussed how this is incorrect, but what is the *correct* probability of getting at least one six in 4 rolls of a fair die?
 
 \
-
-
-#### Question 6 The Paradox of Chevalier de Méré
-
-Antoine Gombaud, the self-styled Chevalier, lived in the 17th century and liked to gamble on the outcomes of die rolls. One game that he was fond of involved betting money on getting at least one six in 4 rolls of a fair six-sided die. You saw how he computed this probability in the last class as $\displaystyle \frac{1}{6} +  \frac{1}{6} +  \frac{1}{6} +  \frac{1}{6} =  \frac{2}{3}$. 
-
-(a) We discussed how this is incorrect, but what is the correct probability of getting at least one six in 4 rolls of a fair die?
 
 \
 
@@ -70,4 +74,12 @@ Antoine Gombaud, the self-styled Chevalier, lived in the 17th century and liked 
 \
 
 \
+
+
+#### Question 6 Chance of having H1N1
+
+ It was established that the H1N1 (swine flu) pandemic of 2009 originated in pigs from a very small region in central Mexico. Early cases in the US were associated with recent travel to Mexico. Say at that time, a college student went to Mexico and let’s assume that at the time, the rate of infection for travelers to Mexico was 1 in 1,000. Let’s suppose that the test for H1N1 has 99% accuracy. That is the chance of a false positive  is 1% and the chance of a false negative is also 1%. If a person has a positive test result, what is the chance that they truly have H1N1? You can work it out using conditional probabilities and Bayes' rule, or just approximate this probability using a heuristic argument as in the slides.
+
+
+
 

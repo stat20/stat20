@@ -154,14 +154,20 @@ You can see here that the poor Chevalier wasn't as good a mathematician as he im
 
 Before we get going with examples, let's establish some terminology: 
 
-Experiment
-: An action, involving chance, that can result in a finite number of possible *outcomes* (results of the experiment). For example, a coin toss is an experiment, and the possible outcomes are the coin landing heads or tails.
+:::{.def}
+**Experiment**
+ ~ An action, involving chance, that can result in a finite number of possible *outcomes* (results of the experiment). For example, a coin toss is an experiment, and the possible outcomes are the coin landing heads or tails.
+:::
 
-Outcome space
-: This is just a set. It is the collection of all the possible outcomes of an experiment is called an outcome space or *sample* space, and we denote it by the upper case Greek letter $\Omega$ (``Omega"). For example, if we toss a coin, then the corresponding outcome space is $\Omega = \{\text{Heads, Tails}\}$. If we roll a die, then the corresponding outcome space $\Omega = \{1, 2, 3, 4, 5, 6\}$. We will denote a set by enclosing the elements of the set in braces: $\{ \}$. 
+:::{.def}
+**Outcome space**
+ ~ This is just a set. It is the collection of all the possible outcomes of an experiment is called an outcome space or *sample* space, and we denote it by the upper case Greek letter $\Omega$ (``Omega"). For example, if we toss a coin, then the corresponding outcome space is $\Omega = \{\text{Heads, Tails}\}$. If we roll a die, then the corresponding outcome space $\Omega = \{1, 2, 3, 4, 5, 6\}$. We will denote a set by enclosing the elements of the set in braces: $\{ \}$. 
+:::
 
+:::{.def}
 Event
-: A collection of outcomes as a result of the experiment being performed, perhaps more than once. For example, we could toss a coin twice, and consider the *event* of both tosses landing heads. We usually denote events by upper case letters from the beginning of the alphabet: $A, B, C, \ldots$. An event is a subset of the outcome space, and we denote this by writing $A \subset \Omega$.
+ ~ A collection of outcomes as a result of the experiment being performed, perhaps more than once. For example, we could toss a coin twice, and consider the *event* of both tosses landing heads. We usually denote events by upper case letters from the beginning of the alphabet: $A, B, C, \ldots$. An event is a subset of the outcome space, and we denote this by writing $A \subset \Omega$.
+:::
 
 #### Example: Tossing a fair coin 
 
@@ -176,9 +182,11 @@ $$
 
 For a fair coin, we can say $P(\text{Heads}) = \displaystyle \frac{1}{2}$.
 
-Equally likely outcomes
-: When all the possible outcomes in a finite outcome space of size $n$ happen with the same probability, which is $\displaystyle \frac{1}{n}$. To find the probability of an event $A$, just count how many outcomes are in $A$ and divide that by $n$.
 
+:::{.def}
+**Equally likely outcomes**
+ ~ When all the possible outcomes in a finite outcome space of size $n$ happen with the same probability, which is $\displaystyle \frac{1}{n}$. To find the probability of an event $A$, just count how many outcomes are in $A$ and divide that by $n$.
+:::
 
 ##### Example: Tossing a fair six-sided die[^dice] 
 
@@ -204,19 +212,27 @@ Rule 2
 
 Before we write the third rule, we need some more definitions and notation:
 
-Impossible event
-: An event with no outcomes in it. Denoted by either empty braces $\{\}$ or the symbol for the empty set  $\emptyset$. The probability of the impossible event is $0$.
+:::{.def}
+**Impossible event**
+ ~ An event with no outcomes in it. Denoted by either empty braces $\{\}$ or the symbol for the empty set  $\emptyset$. The probability of the impossible event is $0$.
+:::
 
-Union of events
-: Given events $A$, $B$, we can define a new event called $A$ *or* $B$, which consists of all the outcomes that are *either* in $A$ *or* in $B$ or in both.  This is also written as $A \cup B$, read as ``$A$ union $B$''.
+:::{.def}
+**Union of events**
+ ~ Given events $A$, $B$, we can define a new event called $A$ *or* $B$, which consists of all the outcomes that are *either* in $A$ *or* in $B$ or in both.  This is also written as $A \cup B$, read as ``$A$ union $B$''.
+:::
 
-Intersection of events
-:  Given events $A$, $B$, we can define a new event called $A$ *and* $B$, which consists of all the outcomes that are *both* in $A$ *and* in $B$. This is also written as $A \cap B$, read as ``$A$ intersect $B$''.
+:::{.def}
+**Intersection of events**
+ ~ Given events $A$, $B$, we can define a new event called $A$ *and* $B$, which consists of all the outcomes that are *both* in $A$ *and* in $B$. This is also written as $A \cap B$, read as ``$A$ intersect $B$''.
+::: 
 
 Now we consider events that *don't* intersect or overlap at all, that is, they are *disjoint* from each other, or mutually exclusive:
 
-Mutually exclusive events
-: If two events $A$ and $B$ do not overlap, that is, they have **no outcomes in common**, we say that the events are *mutually exclusive*. Note that if $A$ and $B$ are mutually exclusive, then we know that if one of them happens, the other one **cannot**. We denote this by writing $A \cap B = \emptyset$ and read this as $A$ *intersect* $B$ is empty. Therefore, we have that $P(A \cap B) = P(\emptyset) = 0$. 
+:::{.def}
+**Mutually exclusive events**
+ ~ If two events $A$ and $B$ do not overlap, that is, they have **no outcomes in common**, we say that the events are *mutually exclusive*. Note that if $A$ and $B$ are mutually exclusive, then we know that if one of them happens, the other one **cannot**. We denote this by writing $A \cap B = \emptyset$ and read this as $A$ *intersect* $B$ is empty. Therefore, we have that $P(A \cap B) = P(\emptyset) = 0$. 
+::: 
 
 For example, if we are playing De Méré's second game, the event that we roll a pair of sixes and the event that we roll a pair of twos cannot happen on the same roll. These are mutually exclusive. Another example: the events that President Biden is re-elected and the event that Donald Trump is elected as President cannot both happen, therefore they are mutually exclusive events. 
 
@@ -239,7 +255,15 @@ The only outcome in $A$ is $\{5\}$, while $B$ consists of $\{2, 4, 6\}$.
 $P(A) = 1/6$, and $P(B) = 3/6$. Since $A \cap B =\emptyset$, that is, $A$ and $B$ have no outcomes in common, $P(A \cup B) = P(A) + P(B) = 1/6 + 3/6 = 4/6$.
 </details>
 
-An important consequence of rule 3: Let $A$ be an event in $\Omega$. The *complement* of $A$, written as $A^C$  consists of all those outcomes in $\Omega$ that are *not* in $A$. Note that $A  \cup A^C = \Omega$, so $P(A) + P(A^C) =  1$.
+An important consequence of rule 3 is the *complement rule* below. First, we need a definition.
+
+:::{.def}
+**Complement of a set $A$**
+ ~ Let $A$ be an event in $\Omega$. The *complement* of $A$, written as $A^C$  consists of all those outcomes in $\Omega$ that are *not* in $A$. 
+:::
+
+The complement rule
+: $P(A) + P(A^C) =  1$ (since $A  \cup A^C = \Omega$)
 
 
 ## Example of using the rules
