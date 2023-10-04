@@ -3,11 +3,13 @@ title: Adding and Removing Assignments
 toc-depth: 4
 ---
 
-Assignments are hosted on the [Assignments](assignments.qmd) page and include a list of Labs and a list of Problem Sets. These lists build automatically if the assignment files are named and place according to a set structure. Below we discuss how to add assignments to the lists. They can be removed by renaming the files or removing them entirely from the repository.
+Assignments are hosted on the [Assignments](assignments.qmd) page and include a list of Labs and a list of Problem Sets. These lists build automatically if the assignment files follow a particular naming scheme. Below we discuss how to add assignments to the list. They can be removed by renaming the files or removing them entirely from the repository.
 
 For further reading on how these lists are made, see the Quarto documentation on [document listings](https://quarto.org/docs/websites/website-listings.html).
 
 ## Problem Sets
+
+Problem sets are sets of drill-style problems that provide practice with the concepts and skills of a particular day's lesson. They are stored within the subdirectory containing all of the materials for that day.
 
 #### PDF handouts
 
