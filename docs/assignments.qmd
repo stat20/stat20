@@ -1,6 +1,11 @@
 ---
-title: Adding Assignments
+title: Adding and Removing Assignments
+toc-depth: 4
 ---
+
+Assignments are hosted on the [Assignments](assignments.qmd) page and include a list of Labs and a list of Problem Sets. These lists build automatically if the assignment files are named and place according to a set structure. Below we discuss how to add assignments to the lists. They can be removed by renaming the files or removing them entirely from the repository.
+
+For further reading on how these lists are made, see the Quarto documentation on [document listings](https://quarto.org/docs/websites/website-listings.html).
 
 ## Problem Sets
 
@@ -23,6 +28,7 @@ title: Adding Assignments
    ```
 3. Upon rendering the site, this assignment should appear on the assignments page. The format of the assignment list is controlled by the [assignments template](https://github.com/stat20/stat20/blob/main/assets/listings/assignments-ps.ejs#L4), which will automatically assign numbers to the problem sets based on their order in the directory.
 
+The pdf notes use the `stat20handout` custom pdf format. See [Custom Formats](docs/custom-formats.qmd) for more information on its use.
 
 #### Qmd handouts
 
@@ -53,6 +59,9 @@ title: Adding Assignments
    ```
    This will ignore that file during rendering.
 4. Upon rendering the site, your `ps.qmd` will be ignored from the render process, making it available as an ordinary qmd file. This has the current side-effect of not propagating the title of the qmd into the assignment listings but that's ok.
+
+If you have multiple problem set files on a single day, you can differentiate them using `ps1.qmd`, `ps2.qmd`, etc. For a reference, see the source for the [assignment page](https://github.com/stat20/stat20/blob/main/assignments.qmd) for the rule that determines which files show up in the listing.
+
 
 ## Labs
 
