@@ -24,7 +24,7 @@ In the following examples,
 \vspace{4cm}
 
 
-(c) The chance that there are exactly three diamonds among the first ten cards dealt off the top of a shuffled deck.
+(c) The chance that there are exactly three diamonds among the first ten cards dealt off the top of a shuffled deck (note that cards are dealt without replacement).
 
 \vspace{4cm}
 
@@ -36,13 +36,13 @@ In the following examples,
 
 A test consists of $20$ multiple-choice questions. Each question has $4$ answer choices, of which only one is correct and three are incorrect. You answer each question by picking one of the four options at random, so how you answer one question has no bearing on the others (they are independent). Let $X$ be the number of questions you answer correctly. What is the chance that you answer more than 2 questions correctly?
 
-\vspace{2cm}
+\vspace{2.5cm}
 
 #### Question 3: Committees
 
 A committee of two is to be selected from among the five teachers and ten students attending a meeting. Let $X$ be the number of teachers selected for the committee. Write down the probability mass function for $X$.
 
-\vspace{3cm}
+\vspace{4cm}
 
 
 #### Question 5: Box models and random variables
