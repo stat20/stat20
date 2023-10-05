@@ -3,9 +3,8 @@ title: "Multiple Linear Regression"
 subtitle: "Summarizing linear relationships in high dimensions"
 image: images/3d-scatterplot.png
 format:
-  #html: default
+  html: default
   pdf: default
-prefer-html: true
 ---
 
 [I]{.dropcap}n the last lecture we built our first linear model: an equation of a line drawn through the scatter plot.
@@ -184,6 +183,8 @@ While the standard scatter plot allows us to understand the association between 
 
 :::{.content-visible when-format="html"}
 ```{r}
+#| echo: false
+#| eval: false
 library(plotly)
 library(reshape2)
 
@@ -206,14 +207,7 @@ p <- plot_ly(zagat, x = ~food, y = ~decor, z = ~price, showlegend=FALSE) %>%
                             color = "steelblue"),
               name = ~restaurant) %>%
   config(displayModeBar = FALSE) 
-p
-```
-:::
 
-:::{.content-visible when-format="pdf"}
-```{r}
-#| echo: false
-#| eval: false
 p %>%
     htmlwidgets::saveWidget(
     "images/plotly-3d.html",
@@ -221,6 +215,20 @@ p %>%
   )
 ```
 
+```{r}
+#| message: false
+#| echo: false
+htmltools::tags$iframe(
+  src = "images/plotly-3d.html", 
+  scrolling = "no", 
+  seamless = "seamless",
+  frameBorder = "0"
+)
+```
+
+:::
+
+:::{.content-visible when-format="pdf"}
 ![](images/3d-points.png){width="450" fig-align="center"}
 :::
 
@@ -246,29 +254,35 @@ Indeed this linear model is describing a *plane*.
 
 :::{.content-visible when-format="html"}
 ```{r}
+#| echo: false
+#| eval: false
 p2 <- p %>%
   add_surface(x = axis_x,
               y = axis_y,
               z = z, showscale=FALSE,
               colorscale = list(c(0, 1), c("tan", "tan")),
               name = "Linear Model")
-p2
-```
-:::
-
-:::{.content-visible when-format="pdf"}
-```{r}
-#| echo: false
-#| eval: false
-
 p2 %>%
     htmlwidgets::saveWidget(
-    "images/plotly-3d-plane.html",
+    "images/plotly-3d-surface.html",
     selfcontained = TRUE
   )
 ```
 
+```{r}
+#| message: false
+#| echo: false
+htmltools::tags$iframe(
+  src = "images/plotly-3d-surface.html", 
+  scrolling = "no", 
+  seamless = "seamless",
+  frameBorder = "0"
+)
+```
 
+:::
+
+:::{.content-visible when-format="pdf"}
 ![](images/3d-plane.png){width="450" fig-align="center"}
 :::
 
