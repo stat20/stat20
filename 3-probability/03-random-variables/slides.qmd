@@ -22,19 +22,61 @@ format:
 
 ## Agenda
 
-- Brief lecture on probability distributions and random variables
-- Review quiz 3
-- Concept questions
+- PS 8: time to work on it and then review
+- Brief lecture and CQs on Random Variables
 - Break
-- Handout: PS 4.1 (random variables)
+- PS 9 (random variables)
+- if time, coin flipping graph
 
 
-# Probability and quiz review
+# PS 8 
 
+```{r}
+countdown::countdown(25, bottom = 0)
+```
+
+# Lecture
+
+## Random variables 
+
+
+:::{.incremental}
+- Let $X$ be the number of heads in three tosses of a fair coin.
+
+- What about if $X$ is the number of heads in 3 tosses of a biased coin, where the chance of heads is $\frac{2}{3}$?
+
+- Now suppose we toss a fair coin until the first time it lands heads, and let $X$ be the number of tosses. What is the pmf of $X$? Is it binomial?
+
+- Finally, let's consider a deck of cards, and we are interested in the number of hearts dealt in a hand of five. Call this number $X$. What is the pmf of $X$?
+:::
+
+:::{.notes}
+Write out outcome space of 3 coin flips of a fair coin and use this to define rv X = number of heads. Write out the pmf and cdf, and draw the cdf. Show why $X$ is binomial and what are $n$ ad $p$
+
+Show what happens if coin is unfair. How the probabilities change.
+
+Demo dbinom and pbinom and connection to pmf and cdf.
+
+:::
+
+## $f(x)$ and $F(x)$
+
+
+:::{.incremental}
+
+- $f(x)$ is the probability mass function of $X$. What does that mean? What is the connection to the distribution table? The probability histogram?
+
+- $F(x)$ is the cumulative distribution function. 
+
+- What is the connection between $f$ and $F$?
+
+:::
+
+:::{.notes}
+Draw an example on the board. Maybe box of tickets { 0, 0, 0 , 1, 1, 2, 2, 2} draw one ticket, and let $X$ be the value of the ticket.
+:::
 
 # Concept Questions
-
-
 
 ##
 
@@ -69,7 +111,7 @@ Is the following random variable binomial (if so, what are $n$ and $p$?), hyperg
 \
 
 
-Poll 1,000 Chicago residents and ask them if they voted for Lori Lightfoot in the mayoral election. Let $X$ be the number of people who respond "Yes". The population of Chicago is about 2.7 million. 
+YouGov surveyed about 1,900 adults and asked them if they thought that Kevin Mcarthy should be ousted from his role as speaker. Let $X$ be the number of people who responded "Yes". The population of the US is about 335 million.
 
 
 :::{.poll}
@@ -77,7 +119,7 @@ Binomial, hypergeometric, or neither?
 :::
 
 :::{.notes}
-Hypergeometric($N = 2.7$ mill,  $n = 1000$, G), where G is not known, being the number of people who voted for Ms. Lightfoot. Can remark that we could use Bin to model this rather than HG, and that we will discuss samples next week.
+Hypergeometric($N = 335$ mill,  $n = 1900$, G), where G is not known, being the number of people who approve of McCarthy's ouster  . Can remark that we could use Bin to model this rather than HG, and that we will discuss samples next week.
 :::
 
 ##
@@ -174,5 +216,5 @@ The chance that $X = 1$ can be broken up into six mutually exclusive situations,
 countdown::countdown(5, top = 0)
 ```
 
-# PS 4.1 (paper handout) 
+# PS 9
 
