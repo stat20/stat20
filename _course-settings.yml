@@ -58,9 +58,9 @@ schedule:
   - unit: "Generalization"
     materials:
       - href: 4-generalization/01-sampling-distributions/notes.qmd
-        date: 10/12/23
+        date: 10/17/23
       - href: 4-generalization/labs/05-peoples-park/lab.qmd
-        date: 10/12/23
+        date: 10/17/23
       - href: 4-generalization/02-confidence-intervals/notes.qmd
         date: 10/17/23
       - href: 4-generalization/03-bootstrapping/notes.qmd
