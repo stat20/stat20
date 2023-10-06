@@ -49,17 +49,6 @@ Are $A$ and $B$ independent?
 
 
 
-#### Question 4
-
-Suppose $A$ and $B$ are non-empty events such that $P(A) = 0.5$ and $P(B) = 0.7$.  What is the smallest and biggest that their union, $P(A \cup B)$, and their intersection, $P(A \cap B)$, can be?
-
-\
-
-
-\
-
-\
-
 #### Question 5 The Paradox of Chevalier de Méré
 
 Antoine Gombaud, the self-styled Chevalier, lived in the 17th century and liked to gamble on the outcomes of die rolls. One game that he was fond of involved betting money on getting at least one six in 4 rolls of a fair six-sided die. We know that he computed this probability as $\displaystyle \frac{1}{6} +  \frac{1}{6} +  \frac{1}{6} +  \frac{1}{6} =  \frac{2}{3}$. 
