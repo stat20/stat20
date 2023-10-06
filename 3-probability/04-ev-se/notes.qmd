@@ -21,9 +21,11 @@ library(patchwork)
 [W]{.dropcap}e are often interested in the *average* value of a random variable. We might 
 repeat the action that generates a value of a random variable over and over again, and consider the long term average. For example, we might bet on red in roulette, and think about what our average gain would be if we play hundreds of games. Maybe we roll a die four times, record a success if we see at least one six, and repeat this process and take the average - note that we did this last week when we computed the proportion of times we rolled at least 1 6 in 4 rolls, while simulating de Méré's paradox. The proportion is just a special case of an average, when the random variable takes only the values $0$ or $1$. So you can see that we can think of the average as the value we would predict for the random variable - some sort of *typical* or  *expected* value.
 
+## Expectation of a random variable
+
 :::{.def}
 **Expected value of a random variable**
- ~ The expected value or expectation of a random variable $X$ with pmf $f(x)$ is denoted by $E(X)$. It is a *constant* associated with the distribution, and is defined by 
+ ~ The expectation or expected value of a random variable $X$ with pmf $f(x)$ is denoted by $E(X)$. It is a *constant* associated with the distribution, and is defined by 
 $$
 E(X) = \sum_x x \times P(X = x) = \sum_x x \times f(x)
 $$
@@ -76,17 +78,17 @@ Notice that the expected value was the *same* for both dice - the fair as well a
 
 #### Example: Bernoulli random variables
 
-Consider a Bernoulli($p$) random variable which takes the value $1$ with probability $p$ and $0$ with probability $1-p$. Then:
+Recall that a Bernoulli ($p$) random variable is the special case of a binomial random variable when the parameter $n=1$. This random variable takes the value $1$ with probability $p$ and $0$ with probability $1-p$. Then:
 $$ E(X) = 1 \times p + 0 \times (1-p) = p$$
-The expected value of a Bernoulli($p$) random variable is therefore just $p$.
+The expected value of a Bernoulli($p$) random variable is therefore just $p$. In particular, if we toss a coin and define $X$ to be the number of heads, then the expected value of $X$ is the probability that the coin lands heads.
 
 ![](images/bernoulli-ev.png){fig-aligned="center" width="800"}
 
-In all the figures above, note the red triangle marking the expected value. If you imagine the probability histogram to be a thin lamina - like a thin sheet of cardboard, you can imagine the expected value as a "balancing point", or the point where the lamina would balance. It is the "center of mass" for the probability distribution. The expected value for a random variable is analogous to the average for data, and if you look at equally likely values, it is the same. Other terms that we use for the expected value of a random variable are *expectation* and *mean*. These can be used interchangeably.
+In all the figures above, note the red triangle marking the expected value. If you imagine the probability histogram to be a thin lamina - like a thin sheet of metal cut in the shape of the probability histogram, you can imagine the expected value as a ``balancing point'' -  the point where the lamina would balance. It is the ``center of mass'' for the probability distribution. The expected value for a random variable is analogous to the average for sample data. Other terms that we use for the expected value of a random variable are *expectation* and *mean*. These can be used interchangeably.
 
 \
 
-#### Example: Computing expectation in two ways
+#### Exercise: Compute the expectation of the random variable whose distribution is shown below:
 
 Let $X$ be a random variable such that 
 
@@ -99,9 +101,6 @@ X = \begin{cases}
 \end{cases}
 $$
 
-Find the expected value of $X$ in two ways:
-
-(i) use the formula for expected value of $X$
 
 <details><summary> Check your answer </summary>
 
@@ -114,22 +113,11 @@ E(X) &= 1 \times \frac{4}{15} + 2 \times \frac{7}{30} +  0 \times \frac{1}{3} + 
 \end{aligned}
 $$
  
-</details>
-
-(ii) make the box of equally likely tickets that corresponds to $X$ and find the average of the tickets in the box.
-
-<details><summary> Check your answer </summary>
-
-The box will have $30$ tickets: $8$ $\fbox{1}$, $7$ $\fbox{2}$, $10$ $\fbox{0}$, and $5$ $\fbox{-1}$. The average of these tickets is `r mean(c(rep(1,8), rep(2,7), rep(0,10), rep(-1, 5)))`.
-
-
-\
-
 
 ## Properties of expectation
 
 1. Expected value of a constant
-: The expected value of a constant is just the constant. 
+: The expected value of a constant is just the constant itself.
 Let $c$ be any constant. The probability mass function can be considered to be $f(c) = 1$. Then 
 $$E(c) = c \cdot f(c) = c $$
 2. Constant multiple of a random variable
@@ -147,7 +135,7 @@ $$ E(aX + bY) = E(aX) + E(bY) = a\cdot E(X) +b \cdot E(Y)$$
 5. Expectation of a function of a random variable
 : Suppose $Y = g(X)$ is a function of the random variable $X$. Then $Y$ is also a random variable taking values $y = g(x)$, and the probabilities are just the probabilities associated with $x$. Then the expected value of $Y$ is given by:
 $$
-E(Y) = E(g(X)) = \sum_x g(x)f(x) = \sum_x g(x)P(X=x)
+E(Y) = E(g(X)) = \sum_x g(x) \times f(x) = \sum_x g(x) \times P(X=x)
 $$
 
 \
@@ -164,9 +152,9 @@ Let $X$ be a random variable with the following probability distribution:
 |  $1$   | $0.3$ |   
 |  $3$  |  $0.2$ |  
 
-Let's first compute $E(X)$ by adding a column with the product $x\cdot P(X=x)$:
+Let's first add a column with the product $x\times P(X=x)$:
 
-| $x$ |  $P(X = x)$  |  $x\cdot P(X=x)$ |
+| $x$ |  $P(X = x)$  |  $x\times P(X=x)$ |
 |:------:|:---------:|:---------:|
 |  $-2$  |  $0.2$ |  $-0.4$ |
 |  $-1$  |  $0.1$ | $-0.1$ |
@@ -178,7 +166,7 @@ Then we sum the third column to get $E(X) = -0.4 -0.1 + 0 + 0.3 + 0.6 =$ `r -0.4
 
 Let's do the same for the random variable $Y = g(X) = X^2$. Add two columns to the original table, one with the values of $y = g(x)$, and one with $g(x)f(x) = g(x)P(X=x)$:
 
-| $x$ |  $P(X = x)$  |  $y = x^2$  |  $g(x)\cdot P(X=x)$ | 
+| $x$ |  $P(X = x)$  |  $y = x^2$  |  $g(x)\times P(X=x)$ | 
 |:------:|:---------:|:---------:|:---------:|
 |  $-2$  |  $0.2$ | $4$  | $0.8$ |
 |  $-1$  |  $0.1$ | $1$  |  $0.1$ |
@@ -196,7 +184,7 @@ Do **not** apply the function to $f(x)$! The probability distribution remains th
 
 #### Example: Binomial random variables
 
-Let $X\sim Bin(n, p)$. Recall that $X$ counts the number of successes in $n$ trials, where the probability of success on each trial is $p$. We can define $n$ Bernoulli($p$) random variables $X_1, X_2, \ldots, X_n$ where $X_k = 1$ with probability $p$, that is, $X_k$ is 1 if the $k$th trial is a success. We see that our binomial random variable $X$ can be written as a sum of these random variables: 
+Let $X\sim Bin(n, p)$. Recall that $X$ counts the number of successes in $n$ trials, where the probability of success on each trial is $p$. We can define $n$ Bernoulli ($p$) random variables $X_1, X_2, \ldots, X_n$ where $X_k = 1$ with probability $p$, that is, $X_k$ is 1 if the $k$th trial is a success. We see that the binomial random variable $X$ can be written as a sum of these $n$ Bernoulli random variables: 
 
 $$
 X = X_1 + X_2 + \ldots + X_n
