@@ -31,7 +31,7 @@ format: stat20handout-pdf
 
 #### Question 3 Bella and her toys
 
-My dog Bella has three toys that she loves: A stuffed and squeaky octopus, an orange ball, and a thick rope. One day we hid the octopus (too squeaky!) so she had to pick the ball or the rope. Each time she picks a toy, she chooses it independently of all the other times (like a coin toss). That day, she was busy, so went to her toys three times. 
+My dog Bella has three toys that she loves: A stuffed and squeaky octopus, an orange ball, and a thick rope. One day we hid the octopus (too squeaky!) so she had to pick the ball or the rope and she was equally likely to choose each of them. Each time she picks a toy, she chooses it independently of all the other times (like a coin toss). That day, she was busy, so went to her toys three times. 
 
 Define the events $A$ and $B$ where $A$ is the event that she picked the rope *at most* one time, and $B$ is the event that the toys she picked that day included *both* the rope and the ball.
 
