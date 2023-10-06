@@ -57,13 +57,11 @@ $$
 
 Using the definition,
 
-$$
 \begin{align*}
 E(X) &= \sum_x x \times f(x) \\
      &= 1 \times 0.1 + 2 \times 0.3 +  3 \times 0.1 +  4 \times 0.2 +  5 \times 0.1 + 6 \times 0.2\\
      &= 3.5 \\
 \end{align*}     
-$$
 
 
 
