@@ -240,9 +240,10 @@ P(X=x) = f(x) = \begin{cases}
 0.3, \: \text{for}\, x = 2
 \end{cases}
 $$
-We had computed $E(X)$ to be 3.5. What about $Var(X)$? Let's write out the table, and add a column for $g(x) = (x-3.5)^2$.
 
-| $x$ |  $P(X = x)$  |  $g(x) = (x - 3.5)^2$  |  $g(x)\cdot P(X=x)$ | 
+We had computed $E(X)=\mu = 3.5$. What about $Var(X)$? Let's write out the table, and add a column for $g(x) = (x-3.5)^2$.
+
+| $x$ |  $P(X = x)$  |  $g(x) = (x - 3.5)^2$  |  $g(x)\times P(X=x)$ | 
 |:------:|:---------:|:---------:|:---------:|
 |  $1$  |  $0.1$  | $6.25$ |$0.625$ |
 |  $2$  |  $0.3$ |  $2.25$ | $0.675$ |
