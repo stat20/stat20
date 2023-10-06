@@ -19,12 +19,32 @@ library(patchwork)
 ```
 
 [W]{.dropcap}e are often interested in the *average* value of a random variable. We might 
-repeat the action that generates a value of a random variable over and over again, and consider the long term average. For example, we might bet on red in roulette, and think about what our average gain would be if we play hundreds of games. Maybe we roll a die four times, record a success if we see at least one six, and repeat this process and take the average - note that we did this last week when we computed the proportion of times we had a success in this game (while investigating de Méré's paradox). The proportion is just a special case of an average, when a random variable takes the values $0$ or $1$. The average can be thought of the value we would predict for the random variable - some sort of *typical* or  *expected* value.
+repeat the action that generates a value of a random variable over and over again, and consider the long term average. For example, we might bet on red in roulette, and think about what our average gain would be if we play hundreds of games. Maybe we roll a die four times, record a success if we see at least one six, and repeat this process and take the average - note that we did this last week when we computed the proportion of times we rolled at least 1 6 in 4 rolls, while simulating de Méré's paradox. The proportion is just a special case of an average, when the random variable takes only the values $0$ or $1$. So you can see that we can think of the average as the value we would predict for the random variable - some sort of *typical* or  *expected* value.
 
-We have seen the correspondence between discrete random variables and boxes of tickets, where the tickets in the box describing the random variable $X$ are in the proportions specified by the probability distribution of $X$. We will see that we can use the associated box to compute the average value of a random variable.
+:::{.def}
+**Expected value of a random variable**
+ ~ The expected value or expectation of a random variable $X$ with pmf $f(x)$ is denoted by $E(X)$. It is a *constant* associated with the distribution, and is defined by 
+$$
+E(X) = \sum_x x \times P(X = x) = \sum_x x \times f(x)
+$$
+:::
 
-#### Example: Rolls of a weighted die 
- Let $X$ be the face observed when we roll a six-sided die, where the probabilities are as follows:
+Note that $E(X)$ is a *weighted* average of the possible values taken by the random variable, where each possible value is weighted by its probability.
+
+
+#### Example: Rolls of a fair die
+
+If $X$ is the spots when we roll a fair six-sided die, then $f(x) = P(x = x) = 1/6$ for $x = 1, 2, \ldots, 6$. In this case, $E(X) = \displaystyle \frac{1 + 2 + 3 + 4 + 5 + 6}{6} = 3.5$.
+
+In general, if we have a discrete uniform random variable on the values $1, 2, 3, \ldots, n$, if we had to predict $X$, we would predict the middle of the distribution, since all the values are equally likely:  ($f(x) =\displaystyle 1/n$ for all $x = 1, 2, 3, \ldots, n$). Therefore the expected value of a discrete uniform random variable is $E(X) = \displaystyle\frac{n+1}{2},$ or just the usual average of $1, 2, 3, \ldots, n$.
+
+![](images/disc-unif-ev.png){fig-aligned="center" width="400"}
+
+\
+
+#### Example: Rolls of an *unfair* die 
+ What happens if all the faces are *not* equally likely? Consider the following scenario: let $X$ be the result of rolling a weird six-sided die, which has the probability of rolling a 4 or 6 is double that of rolling an odd number, and the probability of rolling a 2 is three times that of rolling an odd number. The probability mass function of $X$ is as shown below:
+ 
 $$
 P(X=x) = f(x) = \begin{cases}
 0.1,\: \text{for}\, x = 1, 3, 5 \\
@@ -33,44 +53,26 @@ P(X=x) = f(x) = \begin{cases}
 \end{cases}
 $$
 
+Using the definition,
 
-The box for this random variable (when $X$ is the value of a ticket drawn) has the following tickets:
-$\fbox{1},\, \fbox{2}, \, \fbox{2},\,  \fbox{2},\,  \fbox{3}, \, \fbox{4},\, \fbox{4}, \, \fbox{5}, \, \fbox{6},\, \fbox{6}$
-
-When we make a box, the tickets reflect the pmf of the random variable. Now we can compute the average of the tickets in the box:
 $$
-\frac{1}{10}(1 + 2 + 2 + 2 + 3 + 4 + 4 + 5 + 6 + 6) = 3.5
-$$
-Rewriting the expression above, we get:
-$$
-1 \times \frac{1}{10} + 2 \times  \frac{3}{10} + 3 \times  \frac{1}{10} + 4 \times  \frac{2}{10} + 5 \times  \frac{1}{10} + 6 \times  \frac{2}{10} = 3.5
+\begin{align*}
+E(X) &= \sum_x x \times f(x) \\
+     &= 1 \times 0.1 + 2 \times 0.3 +  3 \times 0.1 +  4 \times 0.2 +  5 \times 0.1 + 6 \times 0.2\\
+     &= 3.5 \\
+\end{align*}     
 $$
 
-As you can see, the box average is nothing but a *weighted* average of the possible values of $X$, weighted by their probability.
+
+
 
 ![](images/weighted-die-ev.png){fig-aligned="center" width="500"}
 
 \
 
-## Expected value of a random variable
+Notice that the expected value was the *same* for both dice - the fair as well as unfair dice. This illustrates an important way in which the expected value of a random variable is just like the average of a list of numbers. It gives us *some* information about the distribution since we see the ``typical'' value, but not that much information. Two random variables with very different distributions can have the same expected value.
 
-The expected value or expectation of a random variable $X$ with pmf $f(x)$ is denoted by $E(X)$. It is a *constant* associated with the distribution, and is defined by 
-$$
-E(X) = \sum_x x \cdot P(X = x) = \sum_x x \cdot f(x)
-$$
-$E(X)$ is a weighted average of the values taken by the random variable.
 
-\
-
-#### Example: Rolls of a fair die
-
-If $X$ is the spots when we roll a fair six-sided die, then $f(x) = P(x = x) = 1/6$ for $x = 1, 2, \ldots, 6$. In this case, $E(X) = \displaystyle \frac{1 + 2 + 3 + 4 + 5 + 6}{6} = 3.5$.
-
-In general, if we have a discrete uniform random variable on the values $1, 2, 3, \ldots, n$, we expect to be in the middle, since all the values are equally likely ($f(x) = 1/n$ for all $x$). Therefore the expected value of a discrete uniform random variable is $E(X) = \frac{n+1}{2}$.
-
-![](images/disc-unif-ev.png){fig-aligned="center" width="400"}
-
-\
 
 #### Example: Bernoulli random variables
 
