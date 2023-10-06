@@ -205,18 +205,34 @@ Therefore, if $X\sim Bin(n, p)$, then $E(X) = np$. This intuitively makes sense:
 
 ## Variance and standard deviation of a random variable
 
-When we looked at averages of data, we realized that computing measures of center was insufficient to give us a picture of the distribution. We needed to know how the data distribution spread out about its center, and this idea holds true for probability distributions as well.We want a number that describes how far from $E(X)$ the values of $X$ typically fall. We will look at the *variance* of the random variable $X$, which is its expected squared deviation from the mean, and the square root of variance of $X$, which is called the *standard deviation* of $X$.
+When we looked at averages of data, we realized that computing measures of center was insufficient to give us a picture of the distribution. We needed to know how the data distribution spread out about its center, and this idea holds true for probability distributions as well. We want a number that describes how far from $E(X)$ the values of $X$ typically fall, similar to the standard deviation for a list of numbers.
 
-### Variance and standard deviation of $X$
+:::{.def}
+**Variance of a random variable** 
+ ~ Define $\mu = E(X)$, and define the function $g(X) = (X-\mu)^2$, which describes the square of the distance of each value of $X$ from its mean, or the *squared deviation* of $X$ from its mean. Then the **variance** of $X$, written as $Var(X)$ is given by:
+ $$
+ Var(X) = E(g(X)) = E\left[(X-\mu)^2\right]
+ $$
+::: 
+ 
+ The problem with $Var(X)$ is that the units are squared, so just as we did for the sample variance, we will take the square root of the variance.
+ 
+:::{def} 
+**Standard deviation of a random variable**
+ ~ The square root of $Var(X)$ is called the *standard deviation* of $X$:
+ 
+$$
+  SD(X) = \sqrt{Var(X)}
+$$  
+:::
 
-Let's give the expected value of $X$ a name - we will call it $\mu$. From now on, if we say $\mu$, we mean $E(X)$. Note that $\mu$ is a *constant* related to the probability distribution of $X$.
-Consider the function $g(X) = (X-\mu)^2$, which describes the square of the distance of each value of $X$ from its mean. The expected value of $g(X)$, that is, $E(g(X)) = E\left((X-\mu)^2\right)$ is called the variance of $X$ and denoted by $Var(X)$. The problem with using $Var(X)$ is that the units are squared, so as we did for data, we will take the square root of the variance: $\sqrt{Var(X)}$. This is called the *standard deviation* of $X$, and is a "give or take" number attached to the mean, so we can say that a "typical" value of $X$ is about $\mu$, give or take one standard deviation.
-
+$SD(X)$ is a "give or take" number attached to the mean $E(X)$, so we can say that a ``typical'' value of $X$ is about $\mu$, give or take one standard deviation (the value of $SD(X)$). Note that $SD(X)$ is a non-negative number. 
+ 
 \
 
 #### Example: Rolls of a weighted die 
 
-Recall our first example, where the probability mass function $f$ is given by:
+Recall the example in which we roll an unfair die, and the probability mass function $f$ was given by:
 $$
 P(X=x) = f(x) = \begin{cases}
 0.1,\: \text{for}\, x = 1, 3, 5 \\
