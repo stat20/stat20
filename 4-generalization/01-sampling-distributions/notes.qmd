@@ -8,7 +8,7 @@ format:
 
 [G]{.dropcap}eneralization is the process of using a subset of information to draw conclusions about some broader set or phenomenon. It is powerful - it allows us to draw conclusions about things we have not observed - but it is tricky to do well. In these notes, you will learn the sources of error that can creep in when making a generalization.
 
-![](images/generalization.png){width="200" fig-align="center"}
+![](images/generalization.png){width="200" fig-align="center" .column-margin}
 
 There are four terms that you will see come up again and again as we discuss generalization. They are familiar terms that have tightly coupled meanings, so we present them together.
 
