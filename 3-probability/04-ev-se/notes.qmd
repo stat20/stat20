@@ -83,7 +83,7 @@ Recall that a Bernoulli ($p$) random variable is the special case of a binomial 
 $$ E(X) = 1 \times p + 0 \times (1-p) = p$$
 The expected value of a Bernoulli($p$) random variable is therefore just $p$. In particular, if we toss a coin and define $X$ to be the number of heads, then the expected value of $X$ is the probability that the coin lands heads.
 
-![](images/bernoulli-ev.png){fig-aligned="center" width="800"}
+![](images/bernoulli-ev.png){fig-aligned="center" width="700"}
 
 In all the figures above, note the red triangle marking the expected value. If you imagine the probability histogram to be a thin lamina - like a thin sheet of metal cut in the shape of the probability histogram, you can imagine the expected value as a ``balancing point'' -  the point where the lamina would balance. It is the ``center of mass'' for the probability distribution. The expected value for a random variable is analogous to the average for sample data. Other terms that we use for the expected value of a random variable are *expectation* and *mean*. These can be used interchangeably.
 
@@ -325,24 +325,34 @@ Note that in this case, $Var(X + Y) = Var(X) + Var(Y)$ implies that $SD(X +Y) = 
 
 \
 
-### Relationship with the box model
-If a random variable $X$ is represented as the value of a ticket drawn at random from a box, we know that $E(X)$ is the average of the ticket values in the box. It turns out that $Var(X)$ is the variance of the numbers in the box: Let $x_1, x_2, \ldots, x_n$ be the numbers on the tickets in the box, then the average of these is $E(X)$, and $Var(X)$ is given by ($\bar{x}$ is the box average):
+#### Example: Box of tickets
+
+Consider the box with the following $30$ tickets:
+
+$8$ tickets marked $\fbox{1}$, $7$ tickets marked $\fbox{2}$, $10$ tickets marked $\fbox{0}$, and $5$ tickets marked $\fbox{-1}$.
+
+Let $X$ be the value of a single draw from this box, if we shuffle the tickets and draw one ticket at random. What is the probability distribution of $X$? What is $E(X)$, rounded to 3 decimal places?
+
+Notice that the average of the tickets in the box is `r round(mean(c(rep(1,8), rep(2,7), rep(0,10), rep(-1, 5))),3)` which is the same as $E(X)$! 
+
+What about the variance of $X$? 
+
 $$
-Var(X) = \frac{1}{n} \left((x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + \ldots + (x_n - \bar{x})^2\right)
+\begin{aligned}
+Var(x) &= E\left[ ( X - \mu)^2 \right] \\
+  &= \frac{8}{30}\times \left( (1-0.567)^2  + \frac{7}{30} \times (2-0.567)^2 + \frac{10}{30} \times (0-0.567)^2 + \frac{5}{30} \times (-1 - 0.567)^2 \right) \\
+  &\approx 1.045\\
+\end{aligned}  
 $$
+The sample variance of the tickets in the box is a bit more than 1.045. This is because we use $n-1$ in the denominator of sample variance and sample sd, rather than $n$. 
 
+The standard deviation $SD(X) = \sqrt{Var(X)} =$ `r round(sqrt(1.045556), 3)`.
 
-#### Example: Box model
-
-Consider the box with the following $30$ tickets: $8$ $\fbox{1}$, $7$ $\fbox{2}$, $10$ $\fbox{0}$, and $5$ $\fbox{-1}$. The average of these tickets, $\bar{x} =$ `r round(mean(c(rep(1,8), rep(2,7), rep(0,10), rep(-1, 5))),3)`. Let's compute the variance of the random variable $X$ using the formula above:
-
-$$Var(x) = \frac{1}{30}\left(8 \times (1-0.567)^2  + 7 \times (2-0.567)^2 + 10 \times (0-0.567)^2 + 5 \times (-1 - 0.567)^2 \right) = 1.045.$$
-The standard deviation is `r round(sqrt(1.045556), 3)`.
 
 
 #### Example: Bernoulli random variables
 
-Let $X$ be a Bernoulli($p$) random variable. We know that $E(X) = \mu = p$. If we compute $E(X^2)$, we get that $E(X^2) = p$. (Make sure you can compute $E(X^2)$.) Therefore we have that:
+Let $X$ be a Bernoulli ($p$) random variable. We know that $E(X) = \mu = p$. If we compute $E(X^2)$, we get that $E(X^2) = p$. (Make sure you know how to compute $E(X^2)$.) Therefore we have that:
 $$
 Var(X) = E(X^2) - \mu^2 = p - p^2 = p(1-p).
 $$
@@ -359,9 +369,15 @@ Therefore, $SD(X) = \sqrt{np(1-p)}$
 
 ## Independent and identically distributed random variables
 
-Suppose we have $n$ independent random variables $X_1, X_2, \ldots, X_n$ such that they all have the same pmf $f(x)$ and the same cdf $F(x)$, we call the random variables $X_1, X_2, \ldots, X_n$ independent and identically distributed, usually abbreviated i.i.d or iid. This is a very important concept that we have already used when we computed the expected value and variance of a binomial random variable by writing it as a sum of iid Bernoulli random variables. A common example is when we toss a coin $n$ times and count the number of heads - each coin toss can be considered a Bernoulli random variable, and the total number of heads is a sum of $n$ iid Bernoulli random variables. 
+:::{.def}
+**IID random variables**
+ ~ If we have $n$ independent random variables $X_1, X_2, \ldots, X_n$ such that they all have the same pmf $f(x)$ and the same cdf $F(x)$, we call the random variables $X_1, X_2, \ldots, X_n$ independent and identically distributed random variables. We usually use the abbreviation i.i.d or iid for ``independent and identically distributed''.
+::: 
+ 
+This is a very important concept that we have already used to compute the expected value and variance of a binomial random variable by writing it as a sum of iid Bernoulli random variables.
 
-\
+A common example is when we toss a coin $n$ times and count the number of heads - each coin toss can be considered a Bernoulli random variable, and the total number of heads is a sum of $n$ iid Bernoulli random variables. 
+
 
 #### Example: iid random variables 
 
@@ -369,7 +385,7 @@ Consider the box shown below:
 
 ![](images/box-1.png){fig-aligned="center" width="400"}
 
-Say I draw $25$ tickets with replacement from this box, and let $X_k$ be the value of the $k$th ticket. Then each of the $X_k$ has the same distribution, and they are independent since we draw the tickets with replacement. Therefore $X_1, X_2, \ldots, X_{25}$ are iid random variables with pmf given by:
+Say I draw $25$ tickets with replacement from this box, and let $X_k$ be the value of the $k$th ticket. Then each of the $X_k$ has the same distribution, and they are independent since we draw the tickets with replacement. Therefore $X_1, X_2, \ldots, X_{25}$ are iid random variables, and they *each* have a distribution defined by the following pmf:
 $$
 f(x) = \begin{cases}
       0.2, \; x = 0, 3, 4 \\
@@ -384,34 +400,65 @@ $$
 
 ### Sums
 
-Suppose we make $n$ draws at random (each ticket is equally likely) from the box above, with replacement, and sum the drawn tickets. The sum $S_n = X_1, X_2, \ldots, X_{n}$ is also a random variable.
-Let's check this by letting $n=25$ and we will draw $25$ tickets with replacement and sum them, and then repeat that a few times. Note that the smallest sum we can get is $S_n = 0$ and the largest is $100$. (How?)
+Suppose we make $n$ draws at random with replacement from the box above, and sum the drawn tickets. The sum $S_n = X_1, X_2, \ldots, X_{n}$ is also a random variable.
+Let's simulate this by letting $n=25$ and we will sample $25$ tickets with replacement, sum them, and then repeat this process. Note that the smallest sum we can get is $S_n = 0$ and the largest is $100$. (Why?)
 
+:::{.content-visible when-format="html"}
 ```{r}
 set.seed(12345)
 box = c(0,0,1,1,1,2,3,3,4,4)
 s1 <- sum(sample(box, size = 25, replace = TRUE))
-s1
+paste("The sum of 25 draws is", sep = " ", s1)
 ```
+:::
 
-Now we will repeat this process a few times:
-
+:::{.content-visible when-format="pdf"}
 ```{r}
-replicate(10, sum(sample(box, size = 25, replace = TRUE)))
+#| echo: false
+#| message: false
+#| warning: false
+
+set.seed(12345)
+box <-  c(0,0,1,1,1,2,3,3,4,4)
+s1 <- sum(sample(box, size = 25, replace = TRUE))
+paste("The sum of 25 draws is", sep = " ", s1)
 ```
+:::
+
+Now we will repeat this process 10 times:
+
+:::{.content-visible when-format="html"}
+```{r}
+set.seed(12345)
+replicate(10, sum(sample(box, size = 25, replace = TRUE)))
+
+```
+:::
+
+:::{.content-visible when-format="pdf"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
 
 
-It is clear that the sum is random (because the $X_k$ are random), and it keeps changing. 
-Since we know the distribution of the $X_k$, we can compute $E(X_k)$ and $Var(X_k)$. Note that since the $X_1, X_2, \ldots, X_{n}$ are iid, all the $X_k$ have the same mean and variance. What about $S$?
+set.seed(12345)
+replicate(10, sum(sample(box, size = 25, replace = TRUE)))
+
+```
+:::
+It is clear that the sum  $S_n$ is random (because the $X_k$ are random), and we can see that the sum of the draws changes with each iteration of the process.
+
+Since we know the distribution of the $X_k$, we can compute $E(X_k)$ and $Var(X_k)$. Note that since the $X_1, X_2, \ldots, X_{n}$ are iid, all the $X_k$ have the same mean and variance. What about their sum $S_n$?
 What are $E(S_n)$ and $Var(S_n)$, when $n = 25$?
 
 $E(X_k) = 0.2\times 0 + 0.3 \times 1 + 0.1 \times 2 + 0.2 \times 3 + 0.2 \times 4 = 1.9$ (Note that you could also have just computed the average of the tickets in the box.)
 
-$Var(X_k) = \sum_x (x-1.9)^2 P(X=x) = 2.09$
+$Var(X_k) = \sum_x (x-1.9)^2 \times P(X=x) = 2.09$
 
-$E(S_{25}) = E(X_1 + X_2 + \ldots +X_{25}) = 25 \times E(X_1) = 25 \times 1.9$
+$E(S_{25}) = E(X_1 + X_2 + \ldots +X_{25}) = 25 \times E(X_1) = 25 \times 1.9$.
 
-We can use $X_1$ since all the $X_k$ have the same distribution.
+(We just use $X_1$ since all the $X_k$ have the same distribution.)
 
 Since the $X_k$ are independent, we can write that 
 
@@ -423,49 +470,65 @@ Var(S_{25}) &= Var(X_1 + X_2 + \ldots +X_{25})\\
 \end{aligned}
 $$
 
-We can see that the expectation and variance of the sum scale with $n$, and the expected value of the sum of $n$ i.i.d random variables is $n$ times the expected value of any one of them, and the variance of the sum is also $n$ times the variance of any one of the iid random variables. This gives rise to the following "law" for the standard deviation of the sum.
+We can see that the expectation and variance of the sum *scale* with $n$, so that if $S_n$ is the sum of $n$ iid random variables $X_1, X_2, \ldots, X_n$, then:
+
+$$
+\begin{aligned}
+E(S_n) &= n \times E(X_1) \\
+Var(S_n) &= n \times Var(X_1)\\
+\end{aligned}
+$$
+This does not hold for $SD(S_n)$, though. For the SD, we have the following ``law'' for the standard deviation of the sum.
 
 Square root law for sums of iid random variables
 : The standard deviation of the sum of $n$ iid random variables is given by:
 $$
-SD(S_n) = \sqrt{n}SD(X_1)
+SD(S_n) = \sqrt{n} \times SD(X_1)
 $$
 
-Since all the $X_k$ have the same distribution, we can use $X_1$ to compute the mean and SD. This law says that if the sample size increases as $n$, the expected value scales as number of random variables, but the standard deviation of the sum increases more slowly, scaling as $\sqrt{n}$. In other words, if you increase the number of random variables you are summing, the spread of your sum about its expected value increases, but not as fast as the expectation of the sum.
+Since all the $X_k$ have the same distribution, we can use $X_1$ to compute the mean and SD of the sum. This law says that if the sample size increases as $n$, the expected value scales as the *number* of random variables, but the standard deviation of the sum increases more slowly, scaling as $\sqrt{n}$. In other words, if you increase the number of random variables you are summing, the spread of your sum about its expected value increases, but not as fast as the expectation of the sum.
 
 
 ### Averages
 
-We denote the average of the random variables $X_1, X_2, \ldots, X_n$ by $\displaystyle \overline{X} =\frac{S_n}{n}$.
+We denote the average of the random variables $X_1, X_2, \ldots, X_n$ by $\displaystyle \bar{X} =\frac{S_n}{n}$.
 
-$\displaystyle \overline{X}$ is called the *sample mean* (where the "sample" consists of $X_1, X_2, \ldots, X_n$).
+$\displaystyle \bar{X}$ is called the *sample mean* (where the ``sample'' consists of $X_1, X_2, \ldots, X_n$).
 
-$$ E(\overline{X}) = E(\frac{S_n}{n}) = \frac{1}{n} E(S_n) = E(X_1) $$
+$$ E(\bar{X}) = E(\frac{S_n}{n}) = \frac{1}{n} E(S_n) = E(X_1) $$
 
-This means that the expected value of an average does *not* scale as $n$, but is the same as the expected value of a single random variable. Let's check the variance now:
+This means that the expected value of an average does *not* scale as $n$, but $E(\bar{X})$ is the *same* as the expected value of a single random variable. Let's check the variance now:
 
-$$ Var(\overline{X}) = Var(\frac{S_n}{n}) = \frac{1}{n^2} Var(S_n) =  \frac{n}{n^2} Var(X_1)$$
+$$ 
+Var(\bar{X}) = Var(\frac{S_n}{n}) = \frac{1}{n^2} Var(S_n) =  \frac{n}{n^2} Var(X_1)
+$$
 
-Therefore $Var(\overline{X}) =  \displaystyle \frac{1}{n} Var(X_1)$
+Therefore $Var(\bar{X}) =  \displaystyle \frac{1}{n} Var(X_1)$
 
-Note that, just like the sample sum $S_n$, the sample mean $\displaystyle \overline{X}$ is a random variable, and its variance scales as $\frac{1}{n}$, which implies that $SD(\overline{X})$ will scale as $\displaystyle \frac{1}{\sqrt{n}}$.
+Note that, just like the sample sum $S_n$, the sample mean $\displaystyle \bar{X}$ is a random variable, and its variance scales as $\displaystyle \frac{1}{n}$, which implies that $SD(\bar{X})$ will scale as $\displaystyle \frac{1}{\sqrt{n}}$.
 
 Square root law for averages of iid random variables
 : The standard deviation of the average of $n$ iid random variables is given by:
 $$
-SD(\overline{X}) = \frac{1}{\sqrt{n}}SD(X_1)
+SD(\bar{X}) = \frac{1}{\sqrt{n}}SD(X_1)
 $$
 
-Standard error
-: Since $S_n$ and $\overline{X}$ are numbers computed from the sample $X_1, X_2, \ldots, X_n$, they are called *statistics*. We use the term *standard error* to denote the standard deviation of a statistic: $SE(S_n)$ and $SE(\overline{X})$ to distinguish it from the standard deviation of the ticket values in the box.
+
+:::{.def}
+**Standard error**
+ ~ Since $S_n$ and $\bar{X}$ are numbers computed from the sample $X_1, X_2, \ldots, X_n$, they are called *statistics*. We use the term *standard error* to denote the standard deviation of a *statistic*: $SE(S_n)$ and $SE(\bar{X})$ to distinguish it from the standard deviations of random variables that do not arise as statistics that are computed from $X_1, X_2, \ldots, X_n$.
+::: 
 
 #### Example: Probability distributions for sums and averages
 
 Let's go back to the box of colored tickets, draw from this box $n$ times, and then compute the sum and average of the draws. We will simulate the distribution of the sum and the average of 25 draws to see what the distribution of the statistics looks like. Note that when $n=25$, $E(S_n) = 25\times 1.9 = 47.5$ and $SE(S_n) = \sqrt{n} \times SD(X_1) = 5 \times 1.45 = 7.25$
+
+:::{.content-visible when-format="html"}
 ```{r}
 #| message: false
 #| fig-width: 10
 #| fig-height: 8
+
 set.seed(12345)
 box = c(0,0,1,1,1,2,3,3,4,4)
 s1 <- sum(sample(box, size = 25, replace = TRUE))
@@ -474,7 +537,7 @@ sum_draws_25 = replicate(1000, sum(sample(box, size = 25, replace = TRUE)))
 
 p1 <- data.frame(sum_draws_25) %>%
   ggplot(aes(x = sum_draws_25, y=..density..)) + 
-  geom_histogram(fill = "deeppink3", color = "white") + 
+  geom_histogram(fill = "darkolivegreen2", color = "white") + 
   xlab("sample sum") +
   ylab("density") +
   ggtitle("Empirical distribution of the sample sum, n = 25") + 
@@ -485,7 +548,7 @@ sum_draws_100 = replicate(1000, sum(sample(box, size = 100, replace = TRUE)))
 
 p2 <- data.frame(sum_draws_100) %>%
   ggplot(aes(x = sum_draws_100, y=..density..)) + 
-  geom_histogram(fill = "deeppink3", color = "white") + 
+  geom_histogram(fill = "darkolivegreen3", color = "white") + 
   xlab("sample sum") +
   ylab("density") +
   ggtitle("Empirical distribution of the sample sum, n = 100") + 
@@ -495,7 +558,7 @@ mean_draws_25 = replicate(1000, mean(sample(box, size = 25, replace = TRUE)))
 
 p3 <- data.frame(mean_draws_25) %>%
   ggplot(aes(x = mean_draws_25, y=..density..)) + 
-  geom_histogram(fill = "cadetblue3", color = "white") + 
+  geom_histogram(fill = "cadetblue2", color = "white") + 
   xlab("sample mean") +
   ylab("density") +
   ggtitle("Empirical distribution of the sample mean, n = 25")  + 
@@ -506,7 +569,7 @@ mean_draws_100 = replicate(1000, mean(sample(box, size = 100, replace = TRUE)))
 
 p4 <- data.frame(mean_draws_100) %>%
   ggplot(aes(x = mean_draws_100, y=..density..)) + 
-  geom_histogram(fill = "cadetblue3", color = "white") + 
+  geom_histogram(fill = "deepskyblue", color = "white") + 
   xlab("sample mean") +
   ylab("density") +
   ggtitle("Empirical distribution of the sample mean, n = 100") +
@@ -516,36 +579,119 @@ p4 <- data.frame(mean_draws_100) %>%
 (p1+p2)/(p3+p4)
 
 ```
+:::
 
-What do we notice in these figures? The black line is the expected value. We see that the center of the distribution for the sample sum grows as the sample size increases, but this does not happen for the distribution of the sample mean. You can also see that the spread of the data for the sample sum is much greater when n = 100, but this does not happen for the distribution of the sample mean. We will explore the sample sum and sample mean next week. Now, the $y$ axis has neither counts nor proportion, but it has "density". This makes the histogram have a total area of one, similar to a probability histogram. Now we can think of this density histogram as an approximation of the probability histogram.
+:::{.content-visible when-format="pdf"}
+```{r}
+#| echo: false
+#| message: false
+#| fig-width: 10
+#| fig-height: 8
+
+set.seed(12345)
+box = c(0,0,1,1,1,2,3,3,4,4)
+s1 <- sum(sample(box, size = 25, replace = TRUE))
+
+sum_draws_25 = replicate(1000, sum(sample(box, size = 25, replace = TRUE)))
+
+p1 <- data.frame(sum_draws_25) %>%
+  ggplot(aes(x = sum_draws_25, y=..density..)) + 
+  geom_histogram(fill = "darkolivegreen2", color = "white") + 
+  xlab("sample sum") +
+  ylab("density") +
+  ggtitle("Empirical distribution of the sample sum, n = 25") + 
+  geom_vline(xintercept = 47.5, color = "black", lwd = 1.1)
+
+
+sum_draws_100 = replicate(1000, sum(sample(box, size = 100, replace = TRUE)))
+
+p2 <- data.frame(sum_draws_100) %>%
+  ggplot(aes(x = sum_draws_100, y=..density..)) + 
+  geom_histogram(fill = "darkolivegreen3", color = "white") + 
+  xlab("sample sum") +
+  ylab("density") +
+  ggtitle("Empirical distribution of the sample sum, n = 100") + 
+  geom_vline(xintercept = 190, color = "black", lwd = 1.1)
+
+mean_draws_25 = replicate(1000, mean(sample(box, size = 25, replace = TRUE)))
+
+p3 <- data.frame(mean_draws_25) %>%
+  ggplot(aes(x = mean_draws_25, y=..density..)) + 
+  geom_histogram(fill = "cadetblue2", color = "white") + 
+  xlab("sample mean") +
+  ylab("density") +
+  ggtitle("Empirical distribution of the sample mean, n = 25")  + 
+  geom_vline(xintercept = 1.9, color = "black", lwd = 1.1)
+
+
+mean_draws_100 = replicate(1000, mean(sample(box, size = 100, replace = TRUE)))
+
+p4 <- data.frame(mean_draws_100) %>%
+  ggplot(aes(x = mean_draws_100, y=..density..)) + 
+  geom_histogram(fill = "deepskyblue", color = "white") + 
+  xlab("sample mean") +
+  ylab("density") +
+  ggtitle("Empirical distribution of the sample mean, n = 100") +
+  geom_vline(xintercept = 1.9, color = "black", lwd = 1.1)
+
+
+(p1+p2)/(p3+p4)
+
+```
+:::
+
+What do we notice in these figures? The black line is the expected value. We see that the center of the distribution for the sample sum grows as the sample size increases (look at the x-axis), but this does not happen for the distribution of the sample mean. You can also see that the spread of the data for the sample sum is much greater when n = 100, but this does not happen for the distribution of the sample mean. We will explore the sample sum and sample mean next week. Now, the $y$ axis has neither counts nor proportion, but it has "density". This makes the histogram have a total area of one, similar to a probability histogram. Now we can think of this density histogram as an *approximation* of the probability histogram.
 
 ## Continuous distributions
 
-So far, we have talked about discrete distributions, and the pmf for such distributions. If we have a random variable that takes any value in a given interval, then we call such random variables *continuous*. In this situation, we cannot think about discrete bits of probability mass, but rather we imagine that our total probability mass of $1$ is *smeared* over the interval, giving us a smooth density curve, rather than a histogram. To define the probabilities associated with a continuous random variable, we define a probability *density* function (pdf) rather than a probability mass function. 
+So far, we have talked about discrete distributions, and the probability mass functions for such distributions. Consider a random variable that takes *any* value in a given interval. Recall that  we call such random variables *continuous*. In this situation, we cannot think about discrete bits of probability mass which are non-zero for certain numbers, but rather we imagine that our total probability mass of $1$ is *smeared* over the interval, giving us a smooth density curve, rather than a histogram. To define the probabilities associated with a continuous random variable, we define a probability *density* function (pdf) rather than a probability mass function. 
 
-Probability density function $f(x)$
-: This is a function $f(x)$ that satisfies two conditions:
+### Probability density function of a distribution
+
+:::{.def}
+**Probability density function**
+ ~ This is a function $f(x)$ that satisfies two conditions:
 
 - (1) it is non-negative ($f(x) \ge 0$) and 
 - (2) the total area under the curve $y = f(x)$ is 1. That is, 
 $$ \int_{-\infty}^\infty f(x) dx = 1 $$
-Now we don't talk about $P(X = x$), but rather that probability that $X$ lies in an interval around $x$. Since there are infinitely many outcomes in any interval on the real line, no single outcome can have positive probability, so $P(X=x) =0$ for any $x$ in the interval where $X$ takes values. To find the probability that $X$ lies in an interval $(a,b)$, we integrate $f(x)$ over the interval $(a,b)$. That is, we find the area under the curve $f(x)$ over the interval $(a, b)$.
+:::
+
+If $X$ is a continuous random variable, we don't talk about $P(X = x$), that is, the probability that $X$ takes a particular value. Rather, we ask what is the probability that $X$ lies in an interval around $x$. Since there are infinitely many outcomes in any interval on the real line, no single outcome can have positive probability, so $P(X=x) =0$ for any particular $x$ in the interval where $X$ is defined. To find the probability that $X$ lies in an interval $(a,b)$, we integrate $f(x)$ over the interval $(a,b)$. That is, we find the area under the curve $f(x)$ over the interval $(a, b)$.
+
+:::{.def}
+**The probability that a continuous random variable lies in an interval**
+ ~ The probability that $X$ is in the interval $(a,b)$ is given by
+$$
+P(a < X < b) = P(X \text{ is in the interval }(a,b)) =  \int_{a}^b f(x) dx
+$$
+:::
+
+
 
 
 #### Example: Uniform(0,1) distribution
 
-If $X$ is a random variable taking values in the interval $(0,1)$ with probability density function 
-$f(x) = 1$ for $x$ in $(0,1)$ and $f(x) = 0$ outside of this interval. Because $f(x)$ is flat, all intervals of the same length will have the same area under the curve, so the distribution defined by $f$ is called the *Uniform*$(0,1)$ distribution. If a random variable $X$ has this distribution, we say that $X \sim U(0,1)$. The probability that $X$ is in any interval $(a, b)$ which is a subinterval of $(0,1)$ is given by the area of the rectangle formed by the interval and $y=f(x)$, and so is just the width of the interval.
+Let $X$ be a random variable that takes values in the interval $(0,1)$ with probability density function $f(x) = 1$ for $x$ in $(0,1)$ and $f(x) = 0$ outside of this interval. 
+
+Because $f(x)$ is flat, all intervals of the same length will have the *same area*, so the distribution defined by $f$ is called the *Uniform*$(0,1)$ distribution. If a random variable $X$ has this distribution, we denote this by $X \sim U(0,1)$. The probability that $X$ is in any interval $(a, b)$ which is a subinterval of $(0,1)$ is given by the area of the rectangle formed by the interval and $y=f(x)$, and so is just the width of the interval.
 
 ![](images/unif-1.png){fig-aligned="center" width="600"}
 
-Cumulative distribution function $F(x)$
-: The cdf is still defined as before: $F(x) = P(X \le x)$. The difference is in how we compute it. There are no discrete bits of mass for $F(x)$ to collect. Now we have that $F(x)$ is the area under the curve upto the point $x$. 
+### Cumulative distribution function $F(x)$
+
+:::{.def}
+**Cumulative distribution function (cdf)**
+ ~ The cdf is defined the same way as for discrete random variables:
 $$
 F(x) = P(X \le x) = \int_{-\infty}^x f(t) dt
 $$
+:::
 
-#### Cdf for the Uniform(0,1) distribution
+The difference is in how we compute $P(X \le x)$. There are no discrete bits of probability mass for $F(x)$ to collect. Instead we have that $F(x)$ is the area under the curve $y = f(x)$ all the way up to the point $x$. 
+
+
+#### Example: cdf for the Uniform (0,1) distribution
 
 Let $X \sim U(0,1)$. What is $F(0.3)$?
 
@@ -560,15 +706,15 @@ In general, for the $U(0,1)$ distribution, $F(x) = x$.
 
 ## Summary
 
-We defined the expected value or the mean of a discrete random variable, and related it to the average of the tickets in a box model that corresponds to the random variable. We listed the properties of expectation including linearity and additivity. 
+We defined the expected value or the mean of a discrete random variable and listed the properties of expectation including linearity and additivity. 
 
-We also defined the variance and standard deviation of a random  variable. All these are constants of the distribution. The variance is more convenient for computation because it doesn't have square roots. However, the units are squared, so you have to be careful while interpreting the variance. We discussed the properties of variance and standard deviation. 
+We defined the variance and standard deviation of a random  variable. Both expectation and variance (and therefore standard deviation) are constants associated to the distribution of the random variable. The variance is more convenient than the sd for computation because it doesn't have square roots. However, the units are squared, so you have to be careful while interpreting the variance. We discussed the properties of variance and standard deviation. 
 
 We defined the expectation and variance of sums and averages of an iid sample of random variables, and introduced the term *standard error*. We recognized how the mean and variance scale with $n$ and defined the square root law for the standard error of the sum or mean of an iid sample. 
 
 We considered the probability distributions of sums and averages. 
 
-Finally, we introduced continuous distributions. Next time we will introduce the most celebrated continuous distribution, the normal distribution. 
+Finally, we introduced continuous distributions. In subsequent notes, we will introduce the most celebrated continuous distribution, the normal distribution. 
 
 {{< include images/tmp/_date-meta.md >}}
 
