@@ -83,7 +83,7 @@ Recall that a Bernoulli ($p$) random variable is the special case of a binomial 
 $$ E(X) = 1 \times p + 0 \times (1-p) = p$$
 The expected value of a Bernoulli($p$) random variable is therefore just $p$. In particular, if we toss a coin and define $X$ to be the number of heads, then the expected value of $X$ is the probability that the coin lands heads.
 
-![](images/bernoulli-ev.png){fig-aligned="center" width="800"}
+![](images/bernoulli-ev.png){fig-aligned="center" width="700"}
 
 In all the figures above, note the red triangle marking the expected value. If you imagine the probability histogram to be a thin lamina - like a thin sheet of metal cut in the shape of the probability histogram, you can imagine the expected value as a ``balancing point'' -  the point where the lamina would balance. It is the ``center of mass'' for the probability distribution. The expected value for a random variable is analogous to the average for sample data. Other terms that we use for the expected value of a random variable are *expectation* and *mean*. These can be used interchangeably.
 
