@@ -57,11 +57,14 @@ $$
 
 Using the definition,
 
-\begin{align*}
+$$
+\begin{aligned}
 E(X) &= \sum_x x \times f(x) \\
      &= 1 \times 0.1 + 2 \times 0.3 +  3 \times 0.1 +  4 \times 0.2 +  5 \times 0.1 + 6 \times 0.2\\
      &= 3.5 \\
-\end{align*}     
+\end{aligned}
+$$
+##
 
 
 
@@ -112,7 +115,7 @@ E(X) &= 1 \times \frac{4}{15} + 2 \times \frac{7}{30} +  0 \times \frac{1}{3} + 
 $$
  
 
-## Properties of expectation
+### Properties of expectation
 
 1. Expected value of a constant
 : The expected value of a constant is just the constant itself.
@@ -213,7 +216,7 @@ When we looked at averages of data, we realized that computing measures of cente
  $$
 ::: 
  
- The problem with $Var(X)$ is that the units are squared, so just as we did for the sample variance, we will take the square root of the variance.
+The problem with $Var(X)$ is that the units are squared, so just as we did for the sample variance, we will take the square root of the variance.
  
 :::{def} 
 **Standard deviation of a random variable**
@@ -265,27 +268,29 @@ We have already computed that the expected value of the random variable $X = 3.5
 $Var(X) = \sum_x (x-3.5)^2 \cdot P(X=x) =$ `r round(sum(c(6.25, 2.25, 0.25, 0.25, 2.25, 6.25)*rep(1/6, 6)),3)`.
 $SD(X) =$ `r round(sqrt(sum(c(6.25, 2.25, 0.25, 0.25, 2.25, 6.25)*rep(1/6, 6))),3)`.
 
-Why do you think that the variance and sd are greater for the fair die than the weighted die? (Hint: think about the probability distributions.)
+Why do you think that $Var(X)$ and $SD(X)$ are greater when $X$ is the result of rolling the fair die than when $X$ is the result of rolling the unfair die? (Hint: think about the probability distributions.)
 
 
 </details>
 
 
-### Computational formula
+### Computational formula for $Var(X)$
 
-When we want to compute variance, there is a nice shortcut formula that you can use:
-$$Var(X) = E(X^2) - \mu^2$$
+To compute variance, we usually use a nice shortcut formula:
+$$Var(X) = E\left(X^2\right) - \mu^2$$
 
-## Properties of variance and standard deviation
+### Properties of variance and standard deviation
 
 1. The variance of a constant is 0 
-: Remember that the variance measures how spread out the values of $X$ are about the mean. A constant doesn't spread out at all, so it makes sense that the variance is $0$. Let's confirm this. Let $X$ be a random variable such that $X = c$ with $f(c) = 1$ for some real number $c$.
+: Remember that the variance measures how spread out the values of $X$ are about the mean. A constant doesn't spread out at all, so it makes sense that the variance is $0$. 
+
+Let's confirm this. Let $X$ be a random variable such that $X = c$ with $f(c) = 1$ for some real number $c$. (This means that $X$ takes the value $c$ with probability 1, that is, with certainty.)
 
 $$ Var(X) = E(X^2) - \mu^2 = E(c^2) - c^2 = c^2 - c^2 = 0$$.
 Note that $E(c^2) = c^2$ as $c^2$ is a constant. Thus we have that $SD(c) = 0$.
 
 
-2. The variance of a constant multiple of a random variable $Var(cX)$
+2. The variance of a constant multiple of $X$: $Var(cX) = c^2 Var(X)$
 : Note that $E(cX) = c\mu$ by the properties of expectation. Thus we have (using the short cut formula):
 
 $$
@@ -310,13 +315,13 @@ $$
 
 
 4. Additivity of variance
-: In certain situations (when we know that $X$ and $Y$ are independent random variables - the events $X = x$ and $Y = y$ are independent for all values of $x$ and $y$), we have that:
+: If $X$ and $Y$ are **independent** random variables, that is the events $X = x$ and $Y = y$ are independent for all values of $x$ and $y$, we have that:
 
 $$
 Var(X + Y) = Var(X) + Var(Y) \text{ and } Var(X - Y) = Var(X) + Var(Y)
 $$
 
-If we have that  $Var(X + Y) = Var(X) + Var(Y)$, then $SD(X +Y) = \sqrt{Var(X) + Var(Y)}$.
+Note that in this case, $Var(X + Y) = Var(X) + Var(Y)$ implies that $SD(X +Y) = \sqrt{Var(X) + Var(Y)}$ - square roots and therefore SD's are *not* additive.
 
 \
 
