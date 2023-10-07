@@ -491,30 +491,32 @@ Since all the $X_k$ have the same distribution, we can use $X_1$ to compute the 
 
 ### Averages
 
-We denote the average of the random variables $X_1, X_2, \ldots, X_n$ by $\displaystyle \overline{X} =\frac{S_n}{n}$.
+We denote the average of the random variables $X_1, X_2, \ldots, X_n$ by $\displaystyle \bar{X} =\frac{S_n}{n}$.
 
-$\displaystyle \overline{X}$ is called the *sample mean* (where the "sample" consists of $X_1, X_2, \ldots, X_n$).
+$\displaystyle \bar{X}$ is called the *sample mean* (where the ``sample'' consists of $X_1, X_2, \ldots, X_n$).
 
-$$ E(\overline{X}) = E(\frac{S_n}{n}) = \frac{1}{n} E(S_n) = E(X_1) $$
+$$ E(\bar{X}) = E(\frac{S_n}{n}) = \frac{1}{n} E(S_n) = E(X_1) $$
 
-This means that the expected value of an average does *not* scale as $n$, but $ E(\overline{X})$ is the *same* as the expected value of a single random variable. Let's check the variance now:
+This means that the expected value of an average does *not* scale as $n$, but $E(\bar{X})$ is the *same* as the expected value of a single random variable. Let's check the variance now:
 
-$$ Var(\overline{X}) = Var(\frac{S_n}{n}) = \frac{1}{n^2} Var(S_n) =  \frac{n}{n^2} Var(X_1)$$
+$$ 
+Var(\bar{X}) = Var(\frac{S_n}{n}) = \frac{1}{n^2} Var(S_n) =  \frac{n}{n^2} Var(X_1)
+$$
 
-Therefore $Var(\overline{X}) =  \displaystyle \frac{1}{n} Var(X_1)$
+Therefore $Var(\bar{X}) =  \displaystyle \frac{1}{n} Var(X_1)$
 
-Note that, just like the sample sum $S_n$, the sample mean $\displaystyle \overline{X}$ is a random variable, and its variance scales as $\displaystyle \frac{1}{n}$, which implies that $SD(\overline{X})$ will scale as $\displaystyle \frac{1}{\sqrt{n}}$.
+Note that, just like the sample sum $S_n$, the sample mean $\displaystyle \bar{X}$ is a random variable, and its variance scales as $\displaystyle \frac{1}{n}$, which implies that $SD(\bar{X})$ will scale as $\displaystyle \frac{1}{\sqrt{n}}$.
 
 Square root law for averages of iid random variables
 : The standard deviation of the average of $n$ iid random variables is given by:
 $$
-SD(\overline{X}) = \frac{1}{\sqrt{n}}SD(X_1)
+SD(\bar{X}) = \frac{1}{\sqrt{n}}SD(X_1)
 $$
 
 
 :::{.def}
 **Standard error**
- ~ Since $S_n$ and $\overline{X}$ are numbers computed from the sample $X_1, X_2, \ldots, X_n$, they are called *statistics*. We use the term *standard error* to denote the standard deviation of a *statistic*: $SE(S_n)$ and $SE(\overline{X})$ to distinguish it from the standard deviations of random variables that do not arise as statistics that are computed from $X_1, X_2, \ldots, X_n$.
+ ~ Since $S_n$ and $\bar{X}$ are numbers computed from the sample $X_1, X_2, \ldots, X_n$, they are called *statistics*. We use the term *standard error* to denote the standard deviation of a *statistic*: $SE(S_n)$ and $SE(\bar{X})$ to distinguish it from the standard deviations of random variables that do not arise as statistics that are computed from $X_1, X_2, \ldots, X_n$.
 ::: 
 
 #### Example: Probability distributions for sums and averages
