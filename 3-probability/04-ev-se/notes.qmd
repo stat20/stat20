@@ -325,24 +325,34 @@ Note that in this case, $Var(X + Y) = Var(X) + Var(Y)$ implies that $SD(X +Y) = 
 
 \
 
-### Relationship with the box model
-If a random variable $X$ is represented as the value of a ticket drawn at random from a box, we know that $E(X)$ is the average of the ticket values in the box. It turns out that $Var(X)$ is the variance of the numbers in the box: Let $x_1, x_2, \ldots, x_n$ be the numbers on the tickets in the box, then the average of these is $E(X)$, and $Var(X)$ is given by ($\bar{x}$ is the box average):
+#### Example: Box of tickets
+
+Consider the box with the following $30$ tickets:
+
+$8$ tickets marked $\fbox{1}$, $7$ tickets marked $\fbox{2}$, $10$ tickets marked $\fbox{0}$, and $5$ tickets marked $\fbox{-1}$.
+
+Let $X$ be the value of a single draw from this box, if we shuffle the tickets and draw one ticket at random. What is the probability distribution of $X$? What is $E(X)$, rounded to 3 decimal places?
+
+Notice that the average of the tickets in the box is `r round(mean(c(rep(1,8), rep(2,7), rep(0,10), rep(-1, 5))),3)` which is the same as $E(X)$! 
+
+What about the variance of $X$? 
+
 $$
-Var(X) = \frac{1}{n} \left((x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + \ldots + (x_n - \bar{x})^2\right)
+\begin{aligned}
+Var(x) &= E\left[ ( X - \mu)^2 \right] \\
+  &= \frac{8}{30}\times \left( (1-0.567)^2  + \frac{7}{30} \times (2-0.567)^2 + \frac{10}{30} \times (0-0.567)^2 + \frac{5}{30} \times (-1 - 0.567)^2 \right) \\
+  &\approx 1.045\\
+\end{aligned}  
 $$
+The sample variance of the tickets in the box is a bit more than 1.045. This is because we use $n-1$ in the denominator of sample variance and sample sd, rather than $n$. 
 
+The standard deviation $SD(X) = \sqrt{Var(X)} =$ `r round(sqrt(1.045556), 3)`.
 
-#### Example: Box model
-
-Consider the box with the following $30$ tickets: $8$ $\fbox{1}$, $7$ $\fbox{2}$, $10$ $\fbox{0}$, and $5$ $\fbox{-1}$. The average of these tickets, $\bar{x} =$ `r round(mean(c(rep(1,8), rep(2,7), rep(0,10), rep(-1, 5))),3)`. Let's compute the variance of the random variable $X$ using the formula above:
-
-$$Var(x) = \frac{1}{30}\left(8 \times (1-0.567)^2  + 7 \times (2-0.567)^2 + 10 \times (0-0.567)^2 + 5 \times (-1 - 0.567)^2 \right) = 1.045.$$
-The standard deviation is `r round(sqrt(1.045556), 3)`.
 
 
 #### Example: Bernoulli random variables
 
-Let $X$ be a Bernoulli($p$) random variable. We know that $E(X) = \mu = p$. If we compute $E(X^2)$, we get that $E(X^2) = p$. (Make sure you can compute $E(X^2)$.) Therefore we have that:
+Let $X$ be a Bernoulli ($p$) random variable. We know that $E(X) = \mu = p$. If we compute $E(X^2)$, we get that $E(X^2) = p$. (Make sure you know how to compute $E(X^2)$.) Therefore we have that:
 $$
 Var(X) = E(X^2) - \mu^2 = p - p^2 = p(1-p).
 $$
@@ -359,9 +369,15 @@ Therefore, $SD(X) = \sqrt{np(1-p)}$
 
 ## Independent and identically distributed random variables
 
-Suppose we have $n$ independent random variables $X_1, X_2, \ldots, X_n$ such that they all have the same pmf $f(x)$ and the same cdf $F(x)$, we call the random variables $X_1, X_2, \ldots, X_n$ independent and identically distributed, usually abbreviated i.i.d or iid. This is a very important concept that we have already used when we computed the expected value and variance of a binomial random variable by writing it as a sum of iid Bernoulli random variables. A common example is when we toss a coin $n$ times and count the number of heads - each coin toss can be considered a Bernoulli random variable, and the total number of heads is a sum of $n$ iid Bernoulli random variables. 
+:::{.def}
+**IID random variables**
+ ~ If we have $n$ independent random variables $X_1, X_2, \ldots, X_n$ such that they all have the same pmf $f(x)$ and the same cdf $F(x)$, we call the random variables $X_1, X_2, \ldots, X_n$ independent and identically distributed random variables. We usually use the abbreviation i.i.d or iid for ``independent and identically distributed''.
+::: 
+ 
+This is a very important concept that we have already used to compute the expected value and variance of a binomial random variable by writing it as a sum of iid Bernoulli random variables.
 
-\
+A common example is when we toss a coin $n$ times and count the number of heads - each coin toss can be considered a Bernoulli random variable, and the total number of heads is a sum of $n$ iid Bernoulli random variables. 
+
 
 #### Example: iid random variables 
 
@@ -369,7 +385,7 @@ Consider the box shown below:
 
 ![](images/box-1.png){fig-aligned="center" width="400"}
 
-Say I draw $25$ tickets with replacement from this box, and let $X_k$ be the value of the $k$th ticket. Then each of the $X_k$ has the same distribution, and they are independent since we draw the tickets with replacement. Therefore $X_1, X_2, \ldots, X_{25}$ are iid random variables with pmf given by:
+Say I draw $25$ tickets with replacement from this box, and let $X_k$ be the value of the $k$th ticket. Then each of the $X_k$ has the same distribution, and they are independent since we draw the tickets with replacement. Therefore $X_1, X_2, \ldots, X_{25}$ are iid random variables, and they *each* have a distribution defined by the following pmf:
 $$
 f(x) = \begin{cases}
       0.2, \; x = 0, 3, 4 \\
