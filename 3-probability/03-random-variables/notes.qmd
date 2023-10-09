@@ -180,7 +180,7 @@ Let $X$ be the number of individuals in our sample who have had at least one pos
 Then $X \sim Bin(10, p = 0.35)$. (Why are these the parameters?)
 Using the complement rule, 
 
-$P(X > 3) = 1 - P(X \le 3) = 1 - \left(P(X = 0) + P(X = 1) + P(X = 2)\right)$. 
+$P(X > 3) = 1 - P(X \le 3) = 1 - \left(P(X = 0) + P(X = 1) + P(X = 2) + P(X = 2)\right)$.
 
 Note that since these events are mutually exclusive, we can use the addition rule. This gives us:
 $$ P(X > 3) = 1 - \left(\binom{10}{0}(0.35)^0 (0.65)^{10} + \binom{10}{1}(0.35)^1 (0.65)^9 + \binom{10}{2}(0.35)^2 (0.65)^8\right) \approx 0.74$$
