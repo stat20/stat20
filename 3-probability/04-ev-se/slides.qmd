@@ -245,9 +245,9 @@ ggplot(penguins, aes(x = species)) + geom_bar(fill = "steelblue4") + theme_minim
 ```
 ## 
 
-What about if we don't want to *count* but want to plot probabilities? 
+What about if we don't want to count instances but want to *plot* probabilities? 
 
-Let's look at our favorite example, the number of heads when we toss a coin three times. We know that:
+Let $X$ be the number of heads when we toss a fair coin three times. We know that:
 
 $$
 X = \begin{cases}
@@ -257,7 +257,7 @@ X = \begin{cases}
             3, & \text{ with probability } 1/8 \\
 		 \end{cases}
 $$
-To plot this, we use a special kind of bar chart, plotted using `geom_col()`, in which the bar heights represent *values* supplied by the data. We have to specify a `y` aesthetic.
+To plot this, we use a special kind of bar chart, plotted using `geom_col()`, in which the bar heights represent *values* supplied by the data. We have to specify a `y` aesthetic, a column from the data. The values from this column will be the heights of the bars.
 
 ##
 
@@ -286,4 +286,4 @@ geom_col(fill = "goldenrod2") + labs(x = "Values taken by X", y = "P(X = x)") +
 
 ## 
 
-# Lab 4
+# Lab 4 (Slides)
