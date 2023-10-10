@@ -97,6 +97,11 @@ The expected value of $X$ is ____ the expected value of $Y$.
 Note that the pmf implied by the box is not the same as the given pmf. In the box, 4 has a higher probability, so the average is higher. They do not need to actually do the computation
 :::
 
+##
+
+Evgeni bakes a cake and invites two friends to join him in eating it. The cake will be evenly split between whoever shows up and Evgeni. His friends know that Evgeni is an erratic baker at best, and independently each toss a coin to decide whether they will go or not. Let $X$ be the **fraction** of the cake that Evgeni gets to eat. For example if 1 friend shows up, Evgeni gets half the cake, if 2 show up, he gets one-third of the cake. What is $E(X)$?
+
+
 
 ##
 
