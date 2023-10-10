@@ -4,31 +4,44 @@ subtitle: "PS"
 format: stat20handout-pdf
 ---
 
-#### Question 1  expected value from cdf of $X$
-Given the cdf of the random variable $X$ below, compute $E(X)$ and $Var(X)$.
+#### Question 1:  Expected value from cdf of $X$
+Given the cdf of the random variable $X$ below, compute $E(X)$ and $Var(X)$. Note that:
 
-![](images/question-1-cdf.png){fig-align="center" width="500"}
-\vspace{6cm}
-
-
-#### Question 2: sums of random variables
-
-A discrete random variable $X$ takes values from $-5$ to $5$ and has expectation $0$ ($E(X) = 0$). You have two choices: 
-(i) Consider $S_{100}$, the sum of $100$ random variables $X_1, X_2, \ldots, X_{100}$ which are independent and have the same distribution as $X$. You will win a prize if $-15 \le S_{100} \le 15$. 
-(ii) Consider $S_{200}$, the sum of $200$ random variables $X_1, X_2, \ldots, X_{200}$ which are independent and have the same distribution as $X$. You will win a prize if $-30 \le S_{200} \le 30$.
-
-Does option (i) give a better chance of winning a prize or option (ii)? Or are they the same? Is it even possible to answer this question without knowing $SD(X)$?
-
-\vspace{5cm}
+$$
+F(x) = \begin{cases}
+			0, & \text{$x < -1$}\\
+            0.4, & -1 \le x < 1 \\
+            0.8, & 1 \le x < 2 \\
+            1, & 2 \le x \\
+		 \end{cases}
+$$		 
 
 
-#### Question 3: expectations of linear transformations
+![](images/question-1-cdf.png){fig-align="center" width="400"}
+
+\vspace{2.5cm}
+
+
+#### Question 2: How many red tickets 
+
+A box of 100 tickets contains 45 red tickets, 50 blue tickets,
+  and 5 yellow tickets. Twenty tickets will be drawn from this box at
+  random, with replacement. What is the expected number of red tickets in the sample?
+
+
+\vspace{2cm}
+
+
+#### Question 3: Expectations of linear transformations
 
 Let $X$ be a random variable such that $E(X) = 4$. Let $Y = 2 + 3X$. What is $E(Y)$?
 
 \vspace{3cm}
 
-#### Question 4: continuous random variables
+
+
+
+#### Question 4: Continuous random variables
 
 Consider the function $f(x)$ where:
 $$
@@ -40,15 +53,32 @@ x+1, \: -1 \le x \le 0\\
 $$
 
 (a) Does $f$ satisfy the criteria to be a probability density function? (It should be non-negative and integrate to 1, that is, the total area under the curve is 1.)    
+
+\vspace{5cm}
+
+
 (b) What is your guess for $E(X)$, without doing any integration or summation?
 
 
-\vspace{6cm}
+\vspace{3cm}
 
-#### Question 5 red tickets 
 
-A box of 100 tickets contains 45 red tickets, 50 blue tickets,
-  and 5 yellow tickets. Twenty tickets will be drawn from this box at
-  random, \textit{without} replacement. What is the expected number of red tickets in the sample?
+#### Question 5: Sums of random variables
+
+A discrete random variable $X$ takes values from $-5$ to $5$ with $E(X) = 0$ and $SD(X) = 3$. Define $X_1, X_2, \ldots, X_n$ to be independent random variables with the same distribution as $X$. 
+
+(i) Does this mean (for example) that if we know that $X = 1$, we know that $X_k = 1$ for all of $X_1, X_2, \ldots, X_n$? Why or why not?
+
+\vspace{2cm}
+
+(ii) Let $n = 100$ and consider $S_{100} = X_1 + X_2 + \ldots + X_{100}$. What is the expected value and SD of $S_{100}$?
+
+\vspace{3cm}
+
+(iii) Now, let $n = 200$, so $S_{200} =  X_1 + X_2 + \ldots + X_{200}$. Is $SD(S_{200}) = 2 S_{100}$? Explain your answer.
+
+\vspace{3cm}
+
+
 
 
