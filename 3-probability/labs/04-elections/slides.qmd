@@ -252,7 +252,7 @@ So where to find the link to the raw data?
 - Go to the 2020 folder. Some states may include several election results (Texas includes both general and primary elections). Find and open a csv file with "general_precinct". Click the button that says “Raw” at the top right of the data frame on GitHub or click the link that says “View Raw Data”.
 - This may be the first time for some students to see a raw csv file. You may point out that each pair of commas creates a cell, and each header corresponds to one comma-separated field although they might not appear aligned on the raw data.
 - Copy the url of the raw data page. In RStudio, demonstrate using read_csv() to load the data frame and save it to an object. 
-- Visually inspect the data frame and go over the data taxonomy (unit of observation, dimension, type of variable, etc.). It may be worth showing data from two different states, which might use different fields and formats. For instance, North Carolina includes the names of both the candidate and the running mate under the candidate field. Student will adjust their code based on each state's data set.
+- Visually inspect the data frame and go over the data taxonomy (unit of observation, dimension, type of variable, etc.). It may be worth showing data from two different states, which might use different fields and formats. For instance, North Carolina includes the names of both the candidate and the running mate under the candidate field. Student will adjust their code based on each state's data set. 
 :::
 
 ##
