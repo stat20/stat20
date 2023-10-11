@@ -186,7 +186,7 @@ Note that since these events are mutually exclusive, we can use the addition rul
 $$ 
 \begin{aligned}
 P(X > 3) &= 1 - \left(\binom{10}{0}(0.35)^0 (0.65)^{10} + \binom{10}{1}(0.35)^1 (0.65)^9 + \binom{10}{2}(0.35)^2 (0.65)^8 + \binom{10}{3}(0.35)^3 (0.65)^7 \right)\\
-\approx 0.486
+& \approx 0.486\\
 \end{aligned}
 $$
 In `R` we can use a special function to compute the binomial probabilities $f(k) = P(X=k)$. It is called `dbinom(x, size, prob)` and takes as input the $k$ that we want (`x`), the number of trials $n$ (`size`), and $p$ (`prob`). In this example, `x` are the values of interest, or 0, 1, 2; `size` is the parameter $n$, which is 10, and `prob` is the probability of a success.
