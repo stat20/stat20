@@ -9,15 +9,6 @@ sidebar: false
 
 This week's lab is a *mini-lab* containing only one part and done in a qmd file. The data for this lab can be found in the `iran` data frame in the `stat20data` package. Run `?iran` at the console to learn more about the columns.
 
-You can pull down these questions in RStudio by running the following command at the console:
-
-```{r}
-#| echo: true
-#| eval: false
-
-usethis::use_course("https://tinyurl.com/lab-4-elections")
-```
-
 On June 12 2009, the Republic of Iran held an election where President Mahmoud Ahmadinejad sought re-election against three challengers. One of the challengers, Mir-Hossein Mousavi. When it was announced that Ahmadinejad had won handily, there were widespread allegations of election fraud. There are many methods, both quantitative and qualitative, to detect election fraud. In this lab we will explore just one proposed method.
 
 #### Question 1
