@@ -87,7 +87,7 @@ The National Youth Tobacco Survey (NYTS) is a complex survey carried out by the 
 \
 \
 
-6. On a separate sheet of paper, make two sketches: 1. an empirical distribution of the data and 2. what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Add a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be.
+6. On a separate sheet of paper (a third page to your submission), make two sketches: 1. an empirical distribution of the data and 2. what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Add a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be.
 
 {{< pagebreak >}}
 
@@ -134,7 +134,12 @@ Substantial global progress has been made in reducing childhood mortality since 
 \
 \
 
-6. On a separate sheet of paper, make two sketches: 1. an empirical distribution of the data and 2. what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Add a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be.
+6. Add to your third page two more sketches: 1. an empirical distribution of the data and 2. what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Add a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be.
+
+{{< pagebreak >}}
+
+
+\
 
 <!-- ## Case Study 4: Baseball -->
 
