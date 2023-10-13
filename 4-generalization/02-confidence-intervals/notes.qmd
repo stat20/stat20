@@ -22,6 +22,7 @@ library(patchwork)
 
 [T]{.dropcap}he process of generalizing from a statistic of a sample to a parameter of a population is known as *statistical inference*. The parameter of interest could be a mean, median, proportion, correlation coefficient, the coefficient of a linear model . . . the list goes on. In the scenario that unfolded in Pimentel Hall, the parameter was the mean year of the 527 students in the class. The process of estimating that parameter by calculating the sample mean of the 18 students who decided to sit in the front row that day induces a sampling distribution.
 
+
 ```{r}
 #| fig-height: 2
 #| fig-width: 5
@@ -71,19 +72,20 @@ xlims_from_pop <- ggplot_build(p_pop)$layout$panel_scales_x[[1]]$range$range
 
 p_samp_dist <- many_xbars %>%
   ggplot(aes(x = xbar)) +
-  geom_bar(fill = "steelblue") +
+  geom_bar(fill = "purple") +
   lims(x = c(0, 4)) +
   labs(title = "Sampling Distribution",
        y = "",
        x = expression(paste(bar(x), " (mean year)"))) +
-  annotate("point", x = mu, y = -10, shape = 17, size = 5, color = "goldenrod2") +
+  geom_vline(xintercept = mu, color = "tomato") + 
+  annotate("point", x = mean(many_xbars$xbar), y = -10, shape = 17, size = 5, color = "goldenrod2") +
   theme_gray(base_size = 10) +
   theme(plot.title = element_text(size=10)) +
   lims(x = xlims_from_pop)
 p_samp_dist
 ```
 
-This sampling distribution captures the two sources of error that creep in while generalizing. The horizontal offset from the middle of the sampling distribution to the population parameter (the gold triangle) represents the bias. The spread of the sampling distribution represents the variation. In these lecture notes you'll how to quantify sampling variability using two common tools.
+This sampling distribution captures the two sources of error that creep in while generalizing. The horizontal offset from true population parameter (the red line) to the mean of the sampling distribution (the gold triangle) represents the bias. The spread of the sampling distribution represents the variation. In these lecture notes you'll learn how to quantify sampling variability using two common tools.
 
 **Standard Error (SE)**
 : The standard deviation of the sampling distribution of a statistic.
@@ -111,15 +113,16 @@ Our population consists of the restaurants in San Francisco. Since the data are 
 
 ```{r}
 #| warning: false
-#| fig-width: 5
-#| fig-height: 3
+#| fig-width: 4
+#| fig-height: 2.5
 #| fig-align: center
 
 load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
 
 pop_dist <- ggplot(as.data.frame(fs_scores), aes(x=fs_scores, y=..density..)) + 
       geom_histogram(breaks=seq(47.5, 100.5, by = 1), 
-                 color="black", fill="gray") + 
+                 color="black", fill="gray") +
+      geom_vline(xintercept = mean(fs_scores), color = "tomato") +
       xlab("Food Safety Scores") +
       ylab("Proportion") +
       ggtitle("Population Distribution")
@@ -131,8 +134,10 @@ The population distribution is skewed left with a long left tail. The highest po
 
 We can calculate two parameters of this population:
 
-- The *population mean* is `r round(mean(fs_scores), 2)`.
-- The *population SD* (aka the box SD) is `r round(sd(fs_scores), 1)`.
+[Population parameters, like the parameters of probability distributions, are usually given a Greek letter. The population mean is $\mu$, said "myoo", and the population standard deviation is $\sigma$, said "sigma".]{.column-margin}
+
+- The *population mean*, $\mu$, is `r round(mean(fs_scores), 2)`.
+- The *population SD*, $\sigma$, is `r round(sd(fs_scores), 1)`.
 
 #### The Empirical Distribution
 
@@ -143,8 +148,8 @@ The distribution of this sample (an empirical distribution) looks like:
 
 ```{r}
 #| warning: false
-#| fig-width: 5
-#| fig-height: 3
+#| fig-width: 4
+#| fig-height: 2.5
 #| fig-align: center
 
 set.seed(103122)
@@ -162,8 +167,10 @@ emp_dist
 
 The sample statistics here are:
 
-- The *sample mean* is `r round(mean(samp_scores), 2)`.
-- The *sample SD* is `r round(sd(samp_scores), 1)`.
+[While parameters are symbolized with Greek letters, statistics are usually symbolized with Latin letters.]{.column-margin}
+
+- The *sample mean*, $\bar{x}$, is `r round(mean(samp_scores), 2)`.
+- The *sample SD*, $s$, is `r round(sd(samp_scores), 1)`.
 
 Observe that the empirical distribution resembles the population distribution because we are using a sampling method without with selection bias. It's not a perfect match but the shape is similar. The sample average and the sample SD are also close to but not the same as the population average and SD.
 
@@ -514,18 +521,8 @@ There are times when we are unwilling to make the assumption of normality. This 
 
 {{< include ../../assets/includes/_links-to-materials.qmd >}}
 
-:::{.content-hidden unless-profile="staff-guide"}
-## Learning Objectives
+[ ]{.column-margin}
 
-#### Concept Acquisition
-
-#### Tool Acquisition
-
-#### Concept Application
-
-#### Key Terms
-
-:::
 
 <!-- [I]{.dropcap}n the last set of notes, we used a thought experiment to understand the ways in which the professor calling on students from the front row could yield estimates that are in error. In this thought experiment, we had access to the population, the set of all 527 students in the class, whose distribution is shown in the top row of the plot below. The population parameter that the professor sought to learn was the mean year of those 527 students, 1.72, indicated by a gold triangle. -->
 
