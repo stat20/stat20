@@ -7,7 +7,8 @@ format:
     code-fold: true
     code-link: true
     code-summary: "."
-  pdf: default
+  pdf:
+    echo: false
 execute: 
   warning: false
   message: false
@@ -97,11 +98,14 @@ Next, to approximate the bootstrap sampling distribution, we proceed with a simu
 
 The *bootstrap sampling distribution* looks like the following.
 
+[This approach to bootstrapping uses the `infer` R package. Details of its use can be found in the Ideas in Code section at the end of these notes.]{.column-margin}
+
 ```{r}
 #| warning: false
 #| fig-width: 5
 #| fig-height: 3
 #| fig-align: center
+#| echo: true
 
 library(infer)
 boot <- food_scores %>%
@@ -374,6 +378,8 @@ df %>%
 df %>%
   drop_na()
 ```
+
+[ ]{.column-margin}
 
 {{< include images/tmp/_date-meta.md >}}
 
