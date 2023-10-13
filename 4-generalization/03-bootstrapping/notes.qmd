@@ -292,6 +292,7 @@ For a comprehensive list of templates that you can use to form intervals, see th
 The specify function allows you to specify which column of a data frame you are using as your response variable (your variable of interest). When looking at the relationship between two variables you will specify both the response and the explanatory variables. As such, the main arguments are `response` and `explanatory`.
 
 ```{r}
+#| echo: true
 #| code-fold: false
 penguins %>%
   specify(response = bill_length_mm)
@@ -309,6 +310,7 @@ Useful functions include:
 - `type`: the mechanism used to generate new data. Either `"bootstrap"`, `"draw"`, or `"permute"`.
 
 ```{r}
+#| echo: true
 #| code-fold: false
 penguins %>%
   specify(response = bill_length_mm) %>%
@@ -325,6 +327,7 @@ Observe:
 The third link in an `infer` pipeline is the calculate function, which calculates a single summary statistic for each replicate data frame. The main argument is `stat`, which can take values `"mean"`, `"median"`, `"proportion"`, `"diff in means"`, `"diff in props"` and a few more.
 
 ```{r}
+#| echo: true
 #| code-fold: false
 penguins %>%
   specify(response = bill_length_mm) %>%
@@ -348,6 +351,7 @@ Observe:
 If you would like to create bootstrapped coefficients for a linear model, you'll have to do something a bit different since there is a more than 1 summary statistic involved for each replicate data set. This is the role of `fit()`. There are no arguments to fill-in; it inherits the formula for the linear model from `specify()`.
 
 ```{r}
+#| echo: true
 #| code-fold: false
 penguins_adelie <- penguins %>%
   filter(species == "Adelie")
@@ -368,6 +372,7 @@ Observe:
 This function drops rows that have missing values (`NA`s). Add as arguments any variables you would like it to look to for missing values. If no arguments are given it will drop a row if there is a missing value in *any* column (Be ware of this behavior. It might lead you to drop more rows that you mean to).
 
 ```{r}
+#| echo: true
 #| code-fold: false
 df <- data.frame(rank = c(2, 3, 1, 4, NA),
                  letter = c(NA, NA, NA, "d", "e"))
