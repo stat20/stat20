@@ -178,7 +178,7 @@ many_xbars <- many_samps %>%
 
 p4 <- many_xbars %>%
   ggplot(aes(x = xbar)) +
-  geom_bar(fill = "purple") +
+  geom_histogram(fill = "purple") +
   geom_vline(xintercept = mean(as.numeric(pop_eager$year)),
              col = "blue", lwd = 1.5) +
   lims(x = c(0, 4)) +
@@ -276,7 +276,7 @@ many_xbars <- many_samps %>%
 
 p4 <- many_xbars %>%
   ggplot(aes(x = xbar)) +
-  geom_bar(fill = "purple") +
+  geom_histogram(fill = "purple") +
   geom_vline(xintercept = mean(as.numeric(pop_eager$year)),
              col = "blue", lwd = 1.5) +
   lims(x = c(0, 4)) +
