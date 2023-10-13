@@ -91,7 +91,7 @@ This sampling distribution captures the two sources of error that creep in while
 : The standard deviation of the sampling distribution of a statistic.
 
 **Confidence Interval**
-: An interval of two values that represent lower and upper bounds on the statistic that capture most of the sampling distribution.
+: An interval of two values that represent lower and upper bounds on the statistic that captures most of the sampling distribution.
 
 To focus on the variation, let's introduce a second example, one in which we will not need to worry about bias.
 
@@ -176,7 +176,7 @@ Observe that the empirical distribution resembles the population distribution be
 
 #### The Sampling Distribution
 
-If you compared your sample to that of another inspector who took visited 100 restaurants, their sample would not be identical to yours, but it would still resemble the population distribution, and its mean and SD would be close to those of all the restaurants in the city. 
+If you compared your sample to that of another inspector who visited 100 restaurants, their sample would not be identical to yours, but it would still resemble the population distribution, and its mean and SD would be close to those of all the restaurants in the city. 
 
 The distribution of the possible values of the sample mean of a simple random sample of 100 restaurants is the sampling distribution of the mean (of the sample). We can use it to, for example, find the chance that the sample mean will be over 88, or the chance that the sample mean will be between 85 and 95. 
 
@@ -207,7 +207,7 @@ We can consider numerical summaries of this distribution:
 - The mean of the sampling distribution is `r round(mean(samp_means), 2)`.
 - The SD of the sampling distribution, which is called the *Standard Error (SE)*, is `r round(sd(samp_means), 1)`. This convention of using a different name for the SD for the distribution of a statistic helps keep straight which kind of standard deviation we're talking about.   
 
-Observe that the sampling distribution of the sample mean doesn't look anything like the population or sample. Instead, it's roughly symmetric in shape with a center that matches the population mean, and a small SE. The size of the SE reflects the fact that the sample mean tends to be quite close to the population.
+Observe that the sampling distribution of the sample mean doesn't look anything like the population or sample. Instead, it's roughly symmetric in shape with a center that matches the population mean, and a small SE. The small size of the SE reflects the fact that the sample mean tends to be quite close to the population.
 
 Again, the sampling distribution provides the distribution for the possible values of the sample mean. From this distribution, we find that the chance the sample mean is over 88 is about `r round(sum(samp_means > 88)/length(samp_means), 2)`, and the chance the sample mean is between 85 and 95 is roughly, `r round(sum(samp_means >= 85 & samp_means <=95)/length(samp_means), 2)`. 
 
@@ -295,7 +295,7 @@ Suppose someone took a sample of 25 restaurants and provided an estimate of the 
 
 Suppose someone took a sample of 100 restaurants in New York City where there are 50,000 restaurants (this is a made up number). Is their estimate only 1/10 a accurate because the number of units in the population is 10 times yours?
 
-We can use the formula for the SE to answer these questions. In the table below, we have calculated these SEs for a generic value of $SD(pop)$ and various choices of the population size and sample size.
+We can use the formula for the SE to answer these questions. In the table below, we have calculated SEs for a generic value of $SD(pop)$ and various choices of the population size and sample size.
 
 | Population Size ($N$) |  | Sample Size ($n$)|  | 
 | --- | --- | --- | --- |
@@ -411,7 +411,7 @@ As we look up the graph through the remaining intervals, we see that `r sum(CIs$
 
 ## Inference for a Population Proportion
 
-To gain practice with making confidence intervals, we turn to another example. This time we sample from a populations where the values are 0s and 1s (0-1 box). You will see that the process is very much the same, although there are a few simplifications that arise due to the nature of the box.
+To gain practice with making confidence intervals, we turn to another example. This time we sample from a population where the values are 0s and 1s. You will see that the process is very much the same, although there are a few simplifications that arise due to the nature of the box.
 
 ```{r}
 #| echo: false
