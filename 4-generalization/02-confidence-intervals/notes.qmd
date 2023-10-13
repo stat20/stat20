@@ -379,7 +379,7 @@ For the particular interval that you have created, you don't know if it contains
 
 To be more precise about what is meant by "confidence", let's take 100 samples of size 25 from the restaurant scores, and calculate a 95% confidence interval for each of our 100 samples. How many of these 100 confidence intervals do you think will include the population mean? 
 
-Let's simulate it! In the plot below, the horizontal line at the $y = 1$ indicates the coverage of the confidence interval from the first sample. It stretches from roughly 84 to 91. The line above it at $y = 2$ indicates the coverage of the confidence interval that resulted from the second sample, from roughly 85 to 92.5. Both of these confidence intervals happened to cover the true population parameter, indicated by the black vertical line.
+Let's simulate it! At the bottom of the plot below, the horizontal line at the $y = 1$ indicates the coverage of the confidence interval from the first sample. It stretches from roughly 84 to 91. The line above it at $y = 2$ indicates the coverage of the confidence interval that resulted from the second sample, from roughly 85 to 92.5. Both of these confidence intervals happened to cover the true population parameter, indicated by the black vertical line.
 
 ```{r}
 #| warning: false
