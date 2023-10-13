@@ -4,7 +4,8 @@ subtitle: "Quantifying the sampling variability of a statistic."
 toc-depth: 4
 format:
   html: default
-  pdf: default
+  pdf:
+    echo: false
 ---
 
 ```{r}
@@ -20,6 +21,7 @@ library(patchwork)
 ```
 
 [T]{.dropcap}he process of generalizing from a statistic of a sample to a parameter of a population is known as *statistical inference*. The parameter of interest could be a mean, median, proportion, correlation coefficient, the coefficient of a linear model . . . the list goes on. In the scenario that unfolded in Pimentel Hall, the parameter was the mean year of the 527 students in the class. The process of estimating that parameter by calculating the sample mean of the 18 students who decided to sit in the front row that day induces a sampling distribution.
+
 
 ```{r}
 #| fig-height: 2
@@ -70,25 +72,26 @@ xlims_from_pop <- ggplot_build(p_pop)$layout$panel_scales_x[[1]]$range$range
 
 p_samp_dist <- many_xbars %>%
   ggplot(aes(x = xbar)) +
-  geom_bar(fill = "steelblue") +
+  geom_bar(fill = "purple") +
   lims(x = c(0, 4)) +
   labs(title = "Sampling Distribution",
        y = "",
        x = expression(paste(bar(x), " (mean year)"))) +
-  annotate("point", x = mu, y = -10, shape = 17, size = 5, color = "goldenrod2") +
+  geom_vline(xintercept = mu, color = "tomato") + 
+  annotate("point", x = mean(many_xbars$xbar), y = -10, shape = 17, size = 5, color = "goldenrod2") +
   theme_gray(base_size = 10) +
   theme(plot.title = element_text(size=10)) +
   lims(x = xlims_from_pop)
 p_samp_dist
 ```
 
-This sampling distribution captures the two sources of error that creep in while generalizing. The horizontal offset from the middle of the sampling distribution to the population parameter (the gold triangle) represents the bias. The spread of the sampling distribution represents the variation. In these lecture notes you'll how to quantify sampling variability using two common tools.
+This sampling distribution captures the two sources of error that creep in while generalizing. The horizontal offset from true population parameter (the red line) to the mean of the sampling distribution (the gold triangle) represents the bias. The spread of the sampling distribution represents the variation. In these lecture notes you'll learn how to quantify sampling variability using two common tools.
 
 **Standard Error (SE)**
 : The standard deviation of the sampling distribution of a statistic.
 
 **Confidence Interval**
-: An interval of two values that represent lower and upper bounds on the statistic that capture most of the sampling distribution.
+: An interval of two values that represent lower and upper bounds on the statistic that captures most of the sampling distribution.
 
 To focus on the variation, let's introduce a second example, one in which we will not need to worry about bias.
 
@@ -110,15 +113,16 @@ Our population consists of the restaurants in San Francisco. Since the data are 
 
 ```{r}
 #| warning: false
-#| fig-width: 5
-#| fig-height: 3
+#| fig-width: 4
+#| fig-height: 2.5
 #| fig-align: center
 
 load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
 
 pop_dist <- ggplot(as.data.frame(fs_scores), aes(x=fs_scores, y=..density..)) + 
       geom_histogram(breaks=seq(47.5, 100.5, by = 1), 
-                 color="black", fill="gray") + 
+                 color="black", fill="gray") +
+      geom_vline(xintercept = mean(fs_scores), color = "tomato") +
       xlab("Food Safety Scores") +
       ylab("Proportion") +
       ggtitle("Population Distribution")
@@ -130,8 +134,10 @@ The population distribution is skewed left with a long left tail. The highest po
 
 We can calculate two parameters of this population:
 
-- The *population mean* is `r round(mean(fs_scores), 2)`.
-- The *population SD* (aka the box SD) is `r round(sd(fs_scores), 1)`.
+[Population parameters, like the parameters of probability distributions, are usually given a Greek letter. The population mean is $\mu$, said "myoo", and the population standard deviation is $\sigma$, said "sigma".]{.column-margin}
+
+- The *population mean*, $\mu$, is `r round(mean(fs_scores), 2)`.
+- The *population SD*, $\sigma$, is `r round(sd(fs_scores), 1)`.
 
 #### The Empirical Distribution
 
@@ -142,8 +148,8 @@ The distribution of this sample (an empirical distribution) looks like:
 
 ```{r}
 #| warning: false
-#| fig-width: 5
-#| fig-height: 3
+#| fig-width: 4
+#| fig-height: 2.5
 #| fig-align: center
 
 set.seed(103122)
@@ -161,23 +167,25 @@ emp_dist
 
 The sample statistics here are:
 
-- The *sample mean* is `r round(mean(samp_scores), 2)`.
-- The *sample SD* is `r round(sd(samp_scores), 1)`.
+[While parameters are symbolized with Greek letters, statistics are usually symbolized with Latin letters.]{.column-margin}
 
-Observe that the empirical distribution resembles the population distribution because we are using a sampling method without with selection bias. It's not a perfect match but the shape is similar. The sample average and the sample SD are also close to but not the same as the population average and SD.
+- The *sample mean*, $\bar{x}$, is `r round(mean(samp_scores), 2)`.
+- The *sample SD*, $s$, is `r round(sd(samp_scores), 1)`.
+
+Observe that the empirical distribution resembles the population distribution because we are using a sampling method without with selection bias. It's not a perfect match but the shape is similar. The sample average ($\bar{x}$) and the sample SD ($s$) are also close to but not the same as the population average ($\mu$) and SD ($\sigma$).
 
 #### The Sampling Distribution
 
-If you compared your sample to that of another inspector who took visited 100 restaurants, their sample would not be identical to yours, but it would still resemble the population distribution, and its mean and SD would be close to those of all the restaurants in the city. 
+If you compared your sample to that of another inspector who visited 100 restaurants, their sample would not be identical to yours, but it would still resemble the population distribution, and its $\bar{x}$ and $s$ would be close to those of all the restaurants in the city. 
 
-The distribution of the possible values of the sample mean of a simple random sample of 100 restaurants is the sampling distribution of the mean (of the sample). We can use it to, for example, find the chance that the sample mean will be over 88, or the chance that the sample mean will be between 85 and 95. 
+The distribution of the possible values of the $\bar{x}$ of a simple random sample of 100 restaurants is the sampling distribution of the mean (of the sample). We can use it to, for example, find the chance that the sample mean will be over 88, or the chance that the sample mean will be between 85 and 95. 
 
-We use simulation to approximate this distribution. We repeat 100,000 times the process of drawing a simple random sample of 100 restaurants.  The full distribution looks like: 
+Ordinarily this distribution takes some work to create, but in this thought-experiment have have access to the full population, so we can simply use the computer to simulate the process. We repeat 100,000 times the process of drawing a simple random sample of 100 restaurants.  The full distribution looks like: 
 
 ```{r}
 #| warning: false
-#| fig-width: 5
-#| fig-height: 3
+#| fig-width: 4
+#| fig-height: 2.5
 #| fig-align: center
 
 set.seed(10312022)
@@ -196,12 +204,12 @@ sampling_dist
 
 We can consider numerical summaries of this distribution:
 
-- The *sampling distribution mean* is `r round(mean(samp_means), 2)`.
-- The sampling distribution SD, which is called the *Standard Error*, is `r round(sd(samp_means), 1)`. This convention of using a different name for the SD for the distribution of a statistic helps keep straight which kind of standard deviation we're talking about.   
+- The mean of the sampling distribution is `r round(mean(samp_means), 2)`.
+- The SD of the sampling distribution, which is called the *Standard Error (SE)*, is `r round(sd(samp_means), 1)`. This convention of using a different name for the SD for the distribution of a statistic helps keep straight which kind of standard deviation we're talking about.   
 
-Observe that the sampling distribution of the sample mean doesn't look anything like the population or sample. Instead, it's roughly symmetric in shape with a center that matches the population mean, and a small SE. The size of the SE reflects the fact that the sample mean tends to be quite close to the population.
+Observe that the sampling distribution of $\bar{x}$ doesn't look anything like the population or sample. Instead, it's roughly symmetric in shape with a center that matches $\mu$, and a small SE. The small size of the SE reflects the fact that the $\bar{x}$ tends to be quite close to $\mu$.
 
-Again, the sampling distribution provides the distribution for the possible values of the sample mean. From this distribution, we find that the chance the sample mean is over 88 is about `r round(sum(samp_means > 88)/length(samp_means), 2)`, and the chance the sample mean is between 85 and 95 is roughly, `r round(sum(samp_means >= 85 & samp_means <=95)/length(samp_means), 2)`. 
+Again, the sampling distribution provides the distribution for the possible values of $\bar{x}$. From this distribution, we find that the chance $\bar{x}$ is over 88 is about `r round(sum(samp_means > 88)/length(samp_means), 2)`, and the chance $\bar{x}$ is between 85 and 95 is roughly, `r round(sum(samp_means >= 85 & samp_means <=95)/length(samp_means), 2)`. 
 
 #### Putting the Three Panels Together
 
@@ -218,17 +226,17 @@ pop_dist + emp_dist + sampling_dist
 |             | Population | Empirical   | Sampling
 | ----------- | ----------- | ----------- | ----------- |
 | Shape | left skew | left skew | bell-shaped / normal | 
-| Mean | `r round(mean(fs_scores), 2)`      | `r mean(samp_scores)`  | `r round(mean(samp_means), 2)`      | 
-| SD | `r round(sd(fs_scores), 1)`      | `r round(sd(samp_scores), 1)`  | `r round(sd(samp_means), 2)`      | 
+| Mean | $\mu$ = `r round(mean(fs_scores), 2)`      | $\bar{x}$ = `r mean(samp_scores)`  | `r round(mean(samp_means), 2)`      | 
+| SD | $\sigma$ = `r round(sd(fs_scores), 1)`      | $s$ = `r round(sd(samp_scores), 1)`  | `r round(sd(samp_means), 2)`      | 
 
 Observe that:
 
-1. The population mean and the expected sample mean are roughly the same.
-2. The SD of the population and the SE of the sample averages are related in the following way[^finite]:
+1. $\mu$ and the mean of the sampling distribution are roughly the same.
+2.$\sigma$ and the SE of the sample averages are related in the following way[^finite]:
 
-$$SE(sample~mean) \approx SD(pop)/\sqrt{n}$$
+$$SE(\bar{x}) \approx \frac{\sigma}{\sqrt{n}}$$
 
-3. The histogram of the sample averages is not skewed like the histogram of the box, on the contrary, it is symmetric about the middle and bell-shaped, like the normal curve.
+3. The histogram of the sample averages is not skewed like the histogram of the population, on the contrary, it is symmetric and bell-shaped, like the normal curve.
 
 4. The histogram of our sample of 100 resembles the population histogram. 
 
@@ -236,12 +244,12 @@ $$SE(sample~mean) \approx SD(pop)/\sqrt{n}$$
 
 $$
 \begin{aligned}
-mean(pop) &\approx mean(sample) \\
-SD(pop) &\approx SD(sample) \\
+\mu &\approx \bar{x} \\
+\sigma &\approx s \\
 \end{aligned}
 $$
 
-[^finite]: This approximation becomes equality for a random sample *with replacement*. When we have a SRS, the exact formula is $SE(sample~mean) = \sqrt{\frac{N-n}{N-1}} SD(pop)/\sqrt{n}$.
+[^finite]: This approximation becomes equality for a random sample *with replacement*. When we have a SRS, the exact formula is $SE(\bar{x}) = \sqrt{\frac{N-n}{N-1}} \sigma/\sqrt{n}$.
 
     This additional term, called the *finite population correction factor*, adjusts for the fact that we are drawing without replacement. Here $N$ is the number of tickets in the box (the size of the population) and $n$ is the number of tickets drawn from the box (the size of the sample).
 
@@ -257,7 +265,7 @@ $$
     In the second case, since you take only one draw from the box, it doesn't matter if you replace it or not. So the SE for a SRS should match the SE when sampling with replacement in this special case. In settings when $N$ is large relative to $n$, it effectively behaves as if you are sampling with replacement.
 
 
-Now we're ready to make inferences in a setting where we *don't* know the population.
+Up until this point, we've worked through this thought experiment with the unrealistic assumption that we know the population. Now we're ready to make inferences in a setting where we *don't* know the population.
 
 ## Inference for a Population Average
 
@@ -269,16 +277,16 @@ We have serious gaps in our procedure for learning about the sampling distributi
 
 ![](images/triptych-sample-only.jpg){fig-align=center width=400}
 
-To start, we know we can use the sample average to infer the population average. This is called a *point estimate* for the population parameter. 
+To start, we know we can use the sample average, $\bar{x}$, to infer the population average, $\mu$. This is called a *point estimate* for the population parameter. 
 
 But can we do better than that? Can we bring in more of the information that we have learned from the thought-experiment?
-For example, can we accompany our point estimate with a sense of its accuracy? Ideally, this would be the SE of the sample mean. Unfortunately, we don't know the SE because it depends on the population SD. So now what do we do?
+For example, can we accompany our point estimate with a sense of its accuracy? Ideally, this would be the SE of the sample mean. Unfortunately, we don't know the SE because it depends on $\sigma$. So now what do we do?
 
 ### Standard Error
 
-The thought-experiment tells us that the sample SD is close to the population SD (when you have a SRS). So we can substitute the sample SD into the formula for the SE.
+The thought-experiment tells us that $s$ is close to the $\sigma$ (when you have a SRS). So we can substitute the $s$ into the formula for the SE.
 
-$$ SE(sample~mean) \approx \frac{SD(sample)}{\sqrt{n}}$$
+$$ SE(\bar{x}) \approx \frac{s}{\sqrt{n}}$$
 
 When presenting our findings, you might say, that based on a SRS of 100 restaurants in San Francisco, the average food safety score is estimated to be `r round(mean(samp_scores), 0)` with a standard error of about
 `r round(sd(samp_scores)/sqrt(length(samp_scores)),1)`.
@@ -287,20 +295,20 @@ Suppose someone took a sample of 25 restaurants and provided an estimate of the 
 
 Suppose someone took a sample of 100 restaurants in New York City where there are 50,000 restaurants (this is a made up number). Is their estimate only 1/10 a accurate because the number of units in the population is 10 times yours?
 
-We can use the formula for the SE to answer these questions. In the table below, we have calculated these SEs for a generic value of $SD(pop)$ and various choices of the population size and sample size.
+We can use the formula for the SE to answer these questions. In the table below, we have calculated SEs for a generic value of $\sigma$ and various choices of the population size and sample size.
 
-| Population Size |  | Sample Size|  | 
+| Population Size ($N$) |  | Sample Size ($n$)|  | 
 | --- | --- | --- | --- |
 |  | 25 | 100 | 400 |
-| 500        | $SE = SD(pop)/5$ | $SE = SD(pop)/10$ | $SE = SD(pop)/20$ |
-| 5,000      | $SE = SD(pop)/5$ | $SE = SD(pop)/10$ | $SE = SD(pop)/20$ | 
-| 50,000     | $SE = SD(pop)/5$ | $SE = SD(pop)/ 10$ | $SE = SD(pop)/ 20$ | 
+| 500        | $SE = \sigma/5$ | $SE = \sigma/10$ | $SE = \sigma/20$ |
+| 5,000      | $SE = \sigma/5$ | $SE = \sigma/10$ | $SE = \sigma/20$ | 
+| 50,000     | $SE = \sigma/5$ | $SE = \sigma/ 10$ | $SE = \sigma/ 20$ | 
 
 
 What do you notice about the relationship between sample size and population size and SE?
 
 - The absolute size of the population doesn't enter into the accuracy of the estimate, as long as the sample size is small relative to the population.
-- A sample of 400 is twice as accurate as a sample of 100, which in turn is twice as accurate as a sample of 25 (assuming the population is relatively much larger than the sample). The accuracy improves according to the square root of the sample size. 
+- A sample of 400 is twice as accurate as a sample of 100, which in turn is twice as accurate as a sample of 25 (assuming the population is relatively much larger than the sample). The precision of estimating the population mean improves according to the square root of the sample size.
 
 
 ### Confidence Intervals
@@ -308,7 +316,7 @@ What do you notice about the relationship between sample size and population siz
 Confidence intervals bring in more information from the thought-experiment.
 The confidence interval provides an interval estimate, instead of a point estimate, that is based on spread of the sampling distribution of the statistic.
 
-We have seen that the sampling distribution is takes a familiar shape: that of the normal curve (also called the bell curve)[^normalassump]. Therefore we can fill in some of the holes in the thought-experiment with approximations.
+We have seen that the sampling distribution takes a familiar shape: that of the normal curve (also called the bell curve)[^normalassump]. Therefore we can fill in some of the holes in the thought-experiment with approximations.
 
 [^normalassump]: This is not always the case. We'll come back to this point later. 
 
@@ -361,27 +369,22 @@ When the sampling distribution is roughly normal in shape, then we can construct
 
 $$[\bar{x} - 1.96 SE, \bar{x} + 1.96SE]$$
 
-<!-- So for a sample where the sample mean is `r `round(mean(samp_scores))`, the 95% confidence interval is:  -->
-<!-- [`r round(mean(samp_scores) - 1.96*sd(samp_scores)/10, 1)`, -->
-<!-- `r round(mean(samp_scores) + 1.96*sd(samp_scores)/10, 1)` ] -->
-<!-- and you would say,  -->
+So for a sample where the sample mean is `r round(mean(samp_scores))` and the 95% confidence interval is [`r round(mean(samp_scores) - 1.96*sd(samp_scores)/10, 1)`, `r round(mean(samp_scores) + 1.96*sd(samp_scores)/10, 1)` ], you would say,
 
-<!-- I am 95% confident that the population mean is between `r round(mean(samp_scores) - 1.96*sd(samp_scores)/10, 1)` and  -->
-<!-- `r round(mean(samp_scores) + 1.96*sd(samp_scores)/10, 1)`. -->
+> I am 95% confident that the population mean is between `r round(mean(samp_scores) - 1.96*sd(samp_scores)/10, 1)` and `r round(mean(samp_scores) + 1.96*sd(samp_scores)/10, 1)`.
 
-We call this a confidence interval because 95% of the time, an interval constructed in this way will contain the population mean. 
 For the particular interval that you have created, you don't know if it contains the population mean or not. This is why we use the term *confidence* to describe it instead of probability. Probability comes into play when taking the sample, after that our confidence interval is a known observed value with nothing left to chance.
 
 ##### Confidence not Probability
 
 To be more precise about what is meant by "confidence", let's take 100 samples of size 25 from the restaurant scores, and calculate a 95% confidence interval for each of our 100 samples. How many of these 100 confidence intervals do you think will include the population mean? 
 
-Let's simulate it!
+Let's simulate it! At the bottom of the plot below, the horizontal line at the $y = 1$ indicates the coverage of the confidence interval from the first sample. It stretches from roughly 84 to 91. The line above it at $y = 2$ indicates the coverage of the confidence interval that resulted from the second sample, from roughly 85 to 92.5. Both of these confidence intervals happened to cover the true population parameter, indicated by the black vertical line.
 
 ```{r}
 #| warning: false
-#| fig-width: 5
-#| fig-height: 6
+#| fig-width: 4
+#| fig-height: 5
 #| fig-align: center
 
 set.seed(10312022)
@@ -404,23 +407,23 @@ ci100 <- ggplot(CIs, aes(y = trial)) +
 ci100
 ```
 
-We have found that `r sum(CIs$cover)` of the 100 confidence intervals cover the population parameter. This is by design. If we simulate another 100 times, we may get a different number, but it is likely to be close to 95.
+As we look up the graph through the remaining intervals, we see that `r sum(CIs$cover)` of the 100 confidence intervals cover the population parameter. This is by design. If we simulate another 100 times, we may get a different number, but it is likely to be close to 95.
 
 ## Inference for a Population Proportion
 
-To gain practice with making confidence intervals, we turn to another example. This time we sample from a populations where the values are 0s and 1s (0-1 box). You will see that the process is very much the same, although there are a few simplifications that arise due to the nature of the box.
+To gain practice with making confidence intervals, we turn to another example. This time we sample from a population where the values are 0s and 1s. You will see that the process is very much the same, although there are a few simplifications that arise due to the nature of the population.
 
 ```{r}
 #| echo: false
 hi_scores <- 0 + (fs_scores >= 95)
-set.seed(10312022)
+set.seed(10312)
 hi_score_samp <- sample(hi_scores, 25)
 hi_score_means <- replicate(100000, mean(sample(hi_scores, 25)))
 ```
 
 Suppose we only want to eat at restaurants with food safety scores above 95. Let's make a confidence interval for the proportion of restaurants in San Francisco with scores that are "excellent" (scores over 95). 
-To tackle this problem, we can modify our box. Since we need only to keep track of whether a score is excellent, we can replace the scores on the tickets with 0s and 1s, where 1 indicates an excellent score. Of the `r length(fs_scores)` 
-restaurants in San Francisco, `r sum(fs_scores >= 95)` are excellent. So our box has `r length(fs_scores)` tickets in it, and `r sum(fs_scores >= 95)` are marked 1, and `r sum(fs_scores < 95)` are marked 0. This time let's take a SRS of 25.
+To tackle this problem, we can modify our population. Since we need only to keep track of whether a score is excellent, we can replace the scores on the tickets with 0s and 1s, where 1 indicates an excellent score. Of the `r length(fs_scores)` 
+restaurants in San Francisco, `r sum(fs_scores >= 95)` are excellent. We can think of our population as a box with `r length(fs_scores)` tickets in it, and `r sum(fs_scores >= 95)` are marked 1, and `r sum(fs_scores < 95)` are marked 0. This time let's take a SRS of 25.
 
 The thought-experiment appears as 
 
@@ -459,13 +462,13 @@ hi_score_dist + hi_samp_dist + hi_sampling_dist
 |             | Population  | Empirical   | Sampling | 
 | ----------- | ----------- | ----------- | ----------- |
 | Shape | left skew | left skew | bell-shaped / normal |
-| Mean | `r round(mean(hi_scores), 2)`      |  `r mean(hi_score_samp)`  | `r round(mean(hi_score_means), 2)`      |
-| SD | `r round(sd(hi_scores), 1)`      | `r round(sd(hi_score_samp), 1)`  | `r round(sd(hi_score_means), 2)`      |
+| Mean | $p$ = `r round(mean(hi_scores), 2)`      |  $\hat{p}$ = `r mean(hi_score_samp)`  | `r round(mean(hi_score_means), 2)`      |
+| SD | $\sigma = \sqrt{p(1-p)}$ = `r round(sd(hi_scores), 2)`      | $s$ = `r round(sd(hi_score_samp), 2)`  | `r round(sd(hi_score_means), 2)`      |
 
 In the special case of a 0-1 box:
 
 + The population average is the proportion of 1s in the box, let's call this parameter $p$. 
-+ The taking a draw from the population distribution taking a draw from a Bernoulli random variable, so $SD(pop) = \sqrt{p(1-p)}$.
++ The taking a draw from the population distribution taking a draw from a Bernoulli random variable, so $\sigma = \sqrt{p(1-p)}$.
 + The sampling distribution has mean $p$.
 + The sampling proportion, $\hat{p}$, is similar to $p$.
 + The SE of the sample proportion[^sdp] is approximately $SE(\hat{p}) = \frac{\sqrt{\hat{p}(1-\hat{p})}}{\sqrt{n}}$.
@@ -513,18 +516,8 @@ There are times when we are unwilling to make the assumption of normality. This 
 
 {{< include ../../assets/includes/_links-to-materials.qmd >}}
 
-:::{.content-hidden unless-profile="staff-guide"}
-## Learning Objectives
+[ ]{.column-margin}
 
-#### Concept Acquisition
-
-#### Tool Acquisition
-
-#### Concept Application
-
-#### Key Terms
-
-:::
 
 <!-- [I]{.dropcap}n the last set of notes, we used a thought experiment to understand the ways in which the professor calling on students from the front row could yield estimates that are in error. In this thought experiment, we had access to the population, the set of all 527 students in the class, whose distribution is shown in the top row of the plot below. The population parameter that the professor sought to learn was the mean year of those 527 students, 1.72, indicated by a gold triangle. -->
 

@@ -7,7 +7,8 @@ format:
     code-fold: true
     code-link: true
     code-summary: "."
-  pdf: default
+  pdf:
+    echo: false
 execute: 
   warning: false
   message: false
@@ -57,7 +58,7 @@ To illustrate this procedure, consider the toy example below, where we aim to es
 
 On the left is the data frame containing the original sample containing one column of the names that identify each unit and a second column with the variable of interest, a variable generically called $X$ that takes values 1 and 0. The observed statistic in this data frame is $\hat{p}=2/5$. This original sample will serve as the bootstrap population.
 
-In step two of the algorithm, we draw a sample of size $n=5$ from the bootstrap population, *with replacement*. This first bootstrap sample in shown at the top and features Ida, Gus, Abe, Gus again, and Ola. This is an important feature of sampling with replacement: some units might be drawn multiple times (Gus) and others might not be drawn at all (Luz). From this first bootstrap sample, we can compute the first bootstrap statistic $\hat{p}_{b1} = 1/5$. This is step three.
+In step two of the algorithm, we draw a sample of size $n=5$ from the bootstrap population, *with replacement*. This first bootstrap sample is shown at the top and features Ida, Gus, Abe, Gus again, and Ola. This is an important feature of sampling with replacement: some units might be drawn multiple times (Gus) and others might not be drawn at all (Luz). From this first bootstrap sample, we can compute the first bootstrap statistic $\hat{p}_{b1} = 1/5$. This is step three.
 
 For step four we repeat this process of drawing a bootstrap sample and calculating another bootstrap statistic. In the diagram, two additional statistics are calculated, but in practice this process will be repeated many many times. The result of this procedure is the bootstrap distribution, on the right, which is the collection of all of the statistics you observed across the different bootstrap samples.
 
@@ -97,11 +98,14 @@ Next, to approximate the bootstrap sampling distribution, we proceed with a simu
 
 The *bootstrap sampling distribution* looks like the following.
 
+[This approach to bootstrapping uses the `infer` R package. Details of its use can be found in the Ideas in Code section at the end of these notes.]{.column-margin}
+
 ```{r}
 #| warning: false
 #| fig-width: 5
 #| fig-height: 3
 #| fig-align: center
+#| echo: true
 
 library(infer)
 boot <- food_scores %>%
@@ -198,7 +202,7 @@ Let's return to the box model and the associated thought-experiment. We would de
 
 + one ticket for every Adelie penguin in Antarctica
 + each ticket has the penguin's body mass, flipper length, and sex written on it (we are ignoring the other measurements)
-+ the number of tickets in the box is also unknown, but it is known to be a large number that is thought to be over 100,000.
++ the number of tickets in the box is unknown, but it is known to be a large number that is thought to be over 100,000.
 + the population distribution of each variable (body mass, flipper length, and sex) is unknown
 + the joint population distribution of how these three measurements vary together is also unknown
 
@@ -288,6 +292,7 @@ For a comprehensive list of templates that you can use to form intervals, see th
 The specify function allows you to specify which column of a data frame you are using as your response variable (your variable of interest). When looking at the relationship between two variables you will specify both the response and the explanatory variables. As such, the main arguments are `response` and `explanatory`.
 
 ```{r}
+#| echo: true
 #| code-fold: false
 penguins %>%
   specify(response = bill_length_mm)
@@ -305,6 +310,7 @@ Useful functions include:
 - `type`: the mechanism used to generate new data. Either `"bootstrap"`, `"draw"`, or `"permute"`.
 
 ```{r}
+#| echo: true
 #| code-fold: false
 penguins %>%
   specify(response = bill_length_mm) %>%
@@ -321,6 +327,7 @@ Observe:
 The third link in an `infer` pipeline is the calculate function, which calculates a single summary statistic for each replicate data frame. The main argument is `stat`, which can take values `"mean"`, `"median"`, `"proportion"`, `"diff in means"`, `"diff in props"` and a few more.
 
 ```{r}
+#| echo: true
 #| code-fold: false
 penguins %>%
   specify(response = bill_length_mm) %>%
@@ -344,6 +351,7 @@ Observe:
 If you would like to create bootstrapped coefficients for a linear model, you'll have to do something a bit different since there is a more than 1 summary statistic involved for each replicate data set. This is the role of `fit()`. There are no arguments to fill-in; it inherits the formula for the linear model from `specify()`.
 
 ```{r}
+#| echo: true
 #| code-fold: false
 penguins_adelie <- penguins %>%
   filter(species == "Adelie")
@@ -364,6 +372,7 @@ Observe:
 This function drops rows that have missing values (`NA`s). Add as arguments any variables you would like it to look to for missing values. If no arguments are given it will drop a row if there is a missing value in *any* column (Be ware of this behavior. It might lead you to drop more rows that you mean to).
 
 ```{r}
+#| echo: true
 #| code-fold: false
 df <- data.frame(rank = c(2, 3, 1, 4, NA),
                  letter = c(NA, NA, NA, "d", "e"))
@@ -374,6 +383,8 @@ df %>%
 df %>%
   drop_na()
 ```
+
+[ ]{.column-margin}
 
 {{< include images/tmp/_date-meta.md >}}
 
