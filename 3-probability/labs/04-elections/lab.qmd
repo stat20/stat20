@@ -47,7 +47,7 @@ What is the variance of $X \sim Unif(1, 9)$? Answer this question by again mutat
 
 A second model for the probability distribution of first digits is Benford's Law.
 
-$$X ~ Benford()$$
+$$X \sim Benford()$$
 
 Benford's Law is a distribution without any parameters: it always takes values on the integers from 1 to 9 and the probability of each is $\log_{10} \left(1 + 1/x\right)$ where $x$ is the integer.
 
