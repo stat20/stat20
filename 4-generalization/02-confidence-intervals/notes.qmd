@@ -236,7 +236,7 @@ Observe that:
 
 $$SE(\bar{x}) \approx \frac{\sigma}{\sqrt{n}}$$
 
-3. The histogram of the sample averages is not skewed like the histogram of the box, on the contrary, it is symmetric and bell-shaped, like the normal curve.
+3. The histogram of the sample averages is not skewed like the histogram of the population, on the contrary, it is symmetric and bell-shaped, like the normal curve.
 
 4. The histogram of our sample of 100 resembles the population histogram. 
 
@@ -411,7 +411,7 @@ As we look up the graph through the remaining intervals, we see that `r sum(CIs$
 
 ## Inference for a Population Proportion
 
-To gain practice with making confidence intervals, we turn to another example. This time we sample from a population where the values are 0s and 1s. You will see that the process is very much the same, although there are a few simplifications that arise due to the nature of the box.
+To gain practice with making confidence intervals, we turn to another example. This time we sample from a population where the values are 0s and 1s. You will see that the process is very much the same, although there are a few simplifications that arise due to the nature of the population.
 
 ```{r}
 #| echo: false
@@ -422,8 +422,8 @@ hi_score_means <- replicate(100000, mean(sample(hi_scores, 25)))
 ```
 
 Suppose we only want to eat at restaurants with food safety scores above 95. Let's make a confidence interval for the proportion of restaurants in San Francisco with scores that are "excellent" (scores over 95). 
-To tackle this problem, we can modify our box. Since we need only to keep track of whether a score is excellent, we can replace the scores on the tickets with 0s and 1s, where 1 indicates an excellent score. Of the `r length(fs_scores)` 
-restaurants in San Francisco, `r sum(fs_scores >= 95)` are excellent. So our box has `r length(fs_scores)` tickets in it, and `r sum(fs_scores >= 95)` are marked 1, and `r sum(fs_scores < 95)` are marked 0. This time let's take a SRS of 25.
+To tackle this problem, we can modify our population. Since we need only to keep track of whether a score is excellent, we can replace the scores on the tickets with 0s and 1s, where 1 indicates an excellent score. Of the `r length(fs_scores)` 
+restaurants in San Francisco, `r sum(fs_scores >= 95)` are excellent. We can think of our population as a box with `r length(fs_scores)` tickets in it, and `r sum(fs_scores >= 95)` are marked 1, and `r sum(fs_scores < 95)` are marked 0. This time let's take a SRS of 25.
 
 The thought-experiment appears as 
 
