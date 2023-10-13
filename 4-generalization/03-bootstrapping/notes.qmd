@@ -58,7 +58,7 @@ To illustrate this procedure, consider the toy example below, where we aim to es
 
 On the left is the data frame containing the original sample containing one column of the names that identify each unit and a second column with the variable of interest, a variable generically called $X$ that takes values 1 and 0. The observed statistic in this data frame is $\hat{p}=2/5$. This original sample will serve as the bootstrap population.
 
-In step two of the algorithm, we draw a sample of size $n=5$ from the bootstrap population, *with replacement*. This first bootstrap sample in shown at the top and features Ida, Gus, Abe, Gus again, and Ola. This is an important feature of sampling with replacement: some units might be drawn multiple times (Gus) and others might not be drawn at all (Luz). From this first bootstrap sample, we can compute the first bootstrap statistic $\hat{p}_{b1} = 1/5$. This is step three.
+In step two of the algorithm, we draw a sample of size $n=5$ from the bootstrap population, *with replacement*. This first bootstrap sample is shown at the top and features Ida, Gus, Abe, Gus again, and Ola. This is an important feature of sampling with replacement: some units might be drawn multiple times (Gus) and others might not be drawn at all (Luz). From this first bootstrap sample, we can compute the first bootstrap statistic $\hat{p}_{b1} = 1/5$. This is step three.
 
 For step four we repeat this process of drawing a bootstrap sample and calculating another bootstrap statistic. In the diagram, two additional statistics are calculated, but in practice this process will be repeated many many times. The result of this procedure is the bootstrap distribution, on the right, which is the collection of all of the statistics you observed across the different bootstrap samples.
 
@@ -202,7 +202,7 @@ Let's return to the box model and the associated thought-experiment. We would de
 
 + one ticket for every Adelie penguin in Antarctica
 + each ticket has the penguin's body mass, flipper length, and sex written on it (we are ignoring the other measurements)
-+ the number of tickets in the box is also unknown, but it is known to be a large number that is thought to be over 100,000.
++ the number of tickets in the box is unknown, but it is known to be a large number that is thought to be over 100,000.
 + the population distribution of each variable (body mass, flipper length, and sex) is unknown
 + the joint population distribution of how these three measurements vary together is also unknown
 
