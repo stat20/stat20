@@ -49,6 +49,43 @@ This assesses the 1/sqrt(n) relationship between the SE of a mean and the SD of 
 countdown::countdown(1)
 ```
 
+
+
+##
+
+```{r}
+#| echo: true
+#| fig-align: center
+
+library(stat20data)
+
+set.seed(5)
+flights %>%
+  slice_sample(n = 30) %>%
+  summarize(xbar = mean(air_time),
+            sx = sd(air_time),
+            n = n())
+```
+
+:::poll
+What is an approximate 95% confidence interval for the mean air time in `flights` using the normal curve?
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+
+:::notes
+A. 30 +/- 1.96 * 81.5 * sqrt(118)
+B. 118 +/- 1.68 * 81.5 / sqrt(30)
+C. 118 +/- 1.96 * 81.5 / sqrt(30)
+D. 30 +/- 1.68 * 118 / sqrt(81.5)
+
+Answer: C. This is a simple application of the formula for a CI based on the normal approximation.
+:::
+
+
 ##
 
 An economist aims to estimate the average weekly cost of groceries per household in two cites: **Oakland**, CA (population ~400,000) and **Fremont**, CA (population ~200,000). Both of these populations of households are presumed to have a similar standard deviation of weekly grocery costs. The economist takes a simple random sample (without replacement) of 100 households from each city, records their costs, and computes a 95% confidence interval for the average weekly cost.
@@ -215,39 +252,4 @@ D. It will more closely resemble the population dist.
 E. It will more closely resemble the sampling dist.
 
 The answer is A but note here the SD of the sampling dist is called the SE.
-:::
-
-
-##
-
-```{r}
-#| echo: true
-#| fig-align: center
-
-library(stat20data)
-
-set.seed(5)
-flights %>%
-  slice_sample(n = 30) %>%
-  summarize(xbar = mean(air_time),
-            sx = sd(air_time),
-            n = n())
-```
-
-:::poll
-What is an approximate 95% confidence interval for the mean air time in `flights` using the normal curve?
-:::
-
-```{r}
-countdown::countdown(1, top = 0)
-```
-
-
-:::notes
-A. 30 +/- 1.96 * 81.5 * sqrt(118)
-B. 118 +/- 1.68 * 81.5 / sqrt(30)
-C. 118 +/- 1.96 * 81.5 / sqrt(30)
-D. 30 +/- 1.68 * 118 / sqrt(81.5)
-
-Answer: C. This is a simple application of the formula for a CI based on the normal approximation.
 :::
