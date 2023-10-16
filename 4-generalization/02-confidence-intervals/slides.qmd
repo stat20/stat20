@@ -253,3 +253,10 @@ E. It will more closely resemble the sampling dist.
 
 The answer is A but note here the SD of the sampling dist is called the SE.
 :::
+
+# Lab: People's Park
+
+```{r}
+countdown::countdown(25)
+```
+
