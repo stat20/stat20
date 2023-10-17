@@ -31,9 +31,9 @@ _quarto-toc.yml
 homepage-readings/
 
 # PDFs not generated from qmds
-!3-generalization/labs/05-peoples-park/references/background-methods.pdf
-!3-generalization/labs/05-peoples-park/references/chancellors-email.pdf
-!3-generalization/labs/05-peoples-park/references/questionnaire.pdf
+!4-generalization/labs/05-peoples-park/references/background-methods.pdf
+!4-generalization/labs/05-peoples-park/references/chancellors-email.pdf
+!4-generalization/labs/05-peoples-park/references/questionnaire.pdf
 
 # docker-compose run-time environment
 .env
