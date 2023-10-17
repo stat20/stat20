@@ -33,13 +33,13 @@ In answering the following questions, it will be helpful to consult
 - [Lab 5.1: People's Park](lab-context.pdf)
 
 
-<!-- ## Part II: Computing on the Data -->
+<!-- ## Part II: Computing on the Data  -->
 
 <!-- The data collected by the Chancellor's Office on Cal students can be found as `ppk` in the `stat20data` package. -->
 
 <!-- The `ppk` data set represents a subset of questions that were asked in the questionnaire and have had random noise added to them. The results, in aggregate, share similar statistical properties to the raw data, but a given row no longer reflects an individual student's response completely. -->
 
-<!-- <!-- 9. Print the first few rows with the columns that correspond to the responses to survey questions 1, 7, and 8. Note: we have changed the data back from all numerical data, as suggested by lab question 7, to a mix of numerical and categorical data. Please comment on whether your encoding of the data from Q7 on the questionnaire matches the encoding in `ppk`. --> -->
+<!-- 9. Print the first few rows with the columns that correspond to the responses to survey questions 1, 7, and 8. Note: we have changed the data back from all numerical data, as suggested by lab question 7, to a mix of numerical and categorical data. Please comment on whether your encoding of the data from Q7 on the questionnaire matches the encoding in `ppk`. -->
 
 <!-- #### Question 9 -->
 
