@@ -2,7 +2,9 @@ project:
   type: website
   resources:
     - "homepage-readings"
-    - "4-generalization/labs/05-peoples-park/references"
+    - "4-generalization/labs/05-peoples-park/references/background-methods.pdf"
+    - "4-generalization/labs/05-peoples-park/references/chancellors-email.pdf"
+    - "4-generalization/labs/05-peoples-park/references/questionnaire.pdf"
   render:
     - "*.qmd"
     - "!2-summarizing-data/04-conditioning/ps.qmd"
