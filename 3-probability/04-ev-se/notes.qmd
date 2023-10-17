@@ -340,7 +340,7 @@ What about the variance of $X$?
 $$
 \begin{aligned}
 Var(x) &= E\left[ ( X - \mu)^2 \right] \\
-  &= \frac{8}{30}\times \left( (1-0.567)^2  + \frac{7}{30} \times (2-0.567)^2 + \frac{10}{30} \times (0-0.567)^2 + \frac{5}{30} \times (-1 - 0.567)^2 \right) \\
+  &=  \left( \frac{8}{30}\times (1-0.567)^2  + \frac{7}{30} \times (2-0.567)^2 + \frac{10}{30} \times (0-0.567)^2 + \frac{5}{30} \times (-1 - 0.567)^2 \right) \\
   &\approx 1.045\\
 \end{aligned}  
 $$
