@@ -56,7 +56,7 @@ countdown::countdown(1)
 ```{r}
 #| echo: true
 #| fig-align: center
-
+library(tidyverse)
 library(stat20data)
 
 set.seed(5)
