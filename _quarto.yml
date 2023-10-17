@@ -2,7 +2,7 @@ project:
   type: website
   resources:
     - "homepage-readings"
-    - "4-generalization/labs/05-peoples-park/references"
+    - "*/references"
   render:
     - "*.qmd"
     - "!2-summarizing-data/04-conditioning/ps.qmd"
