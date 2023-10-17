@@ -2,6 +2,7 @@ project:
   type: website
   resources:
     - "homepage-readings"
+    - "*references/"
   render:
     - "*.qmd"
     - "!2-summarizing-data/04-conditioning/ps.qmd"
