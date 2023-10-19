@@ -71,8 +71,10 @@ notes_list <- notes_list |>
 #=======================#
 
 in_preview_window <- function(x, live_date) {
-  if (live_date > x$on_homepage_from & live_date < x$on_homepage_to) {
-    x
+  if(!is.null(x$on_homepage_from) && !is.null(x$on_homepage_to)) {
+    if (live_date > x$on_homepage_from & live_date < x$on_homepage_to) {
+      x
+    } else {NULL}
   } else {NULL}
 }
 
