@@ -5,6 +5,8 @@ listing:
   id: homepage-readings
   template: assets/listings/homepage-readings.ejs
   contents: assets/listings/homepage-readings-items.yml
+resources:
+  - "homepage-readings"
 ---
 
 :::::{.content-block}

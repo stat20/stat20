@@ -39,7 +39,7 @@ What was initial sample size of students selected to take the survey? What was t
 
 #### Question 5
 
-Identify possible sources of bias and whether they are selection or measurement bias. How do you expect this will effect the estimate of the parameter?
+Identify possible sources of bias and whether they are selection, measurement, or nonresponse bias. How do you expect this will effect the estimate of the parameter?
 
 \
 \

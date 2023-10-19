@@ -3,6 +3,8 @@ title: "Lab 5: People's Park"
 image: images/ppk.png
 code-fold: false
 sidebar: false
+resources:
+  - "references"
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}
