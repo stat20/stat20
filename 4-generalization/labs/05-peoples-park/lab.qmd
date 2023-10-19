@@ -61,7 +61,7 @@ What is the mean and median rating of the condition of People's Park (question 1
 
 #### Question 5
 
-Create a new column called `change_in_support` that measures the change in support from question 18 to 21. What is the mean change in support of the survey participants in each class (freshman, sophomore, etc) for the People's Park Project after reading the information? What assumption must to make about the values that this type of variable is measured on this scale in order for the statistic to be informative?
+Create a new column called `change_in_support` that measures the change in support from question 18 to 21. What is the mean change in support of the survey participants in each class (freshman, sophomore, etc) for the People's Park Project after reading the information? What assumption must you make about the values of the Likert scale in order for these statistics to be informative?
 
 #### Question 6
 
@@ -75,13 +75,13 @@ Create two 95% confidence intervals for the mean rating of the condition of Peop
 
 #### Question 8
 
-Create two 95% confidence intervals for the overall proportion of students that support the People's Park Project without having been exposed to the information on page 14 using both the bootstrap and the normal curve. Interpret the interval in the context of the problem in a clear sentence.
+Create two 95% confidence intervals for the overall proportion of students that support the People's Park Project without having been exposed to the information on page 14 using both the bootstrap and the normal curve. Interpret the interval in the context of the problem in a clear sentence. Do your point estimates approximately match those reported in the Chancellor's email?
 
 <!-- Which method for making the CI, if any, would you expect to be more accurate? -->
 
 #### Question 9
 
-Create a 95% confidence intervals for the mean change in support the Project before and after being exposed to the information on page 14 using just the bootstrap.
+Create a 95% confidence intervals for the mean change in support the Project after being exposed to the information on page 14 using just the bootstrap.
 
 #### Question 10
 
