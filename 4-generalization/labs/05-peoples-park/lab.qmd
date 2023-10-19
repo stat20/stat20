@@ -87,5 +87,5 @@ Create a 95% confidence intervals for the mean change in support the Project aft
 
 #### Question 10
 
-Does your interval from Question 16 contain 0? What are the implications of that for those working in the Chancellor's Office on the People's Park Project?
+Does your interval from the previous question contain 0? What are the implications of that for those working in the Chancellor's Office on the People's Park Project?
 
