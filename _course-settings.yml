@@ -3,7 +3,7 @@ schedule:
   - unit: "Questions and Data"
     materials:
       - href: 1-questions-and-data/01-understanding-the-world/notes.qmd
-        date: 01/18/23
+        date: 01/18/24
       - href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
         date: 08/29/23
       - href: 1-questions-and-data/03-a-tool-for-computing-with-data/notes.qmd
