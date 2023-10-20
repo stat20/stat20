@@ -83,7 +83,7 @@ Create two 95% confidence intervals for the overall proportion of students that 
 
 #### Question 9
 
-Create a 95% confidence intervals for the mean change in support the Project after being exposed to the information on page 14 using just the bootstrap.
+Using just the bootstrap, create a 95% confidence intervals for the mean change in support for the Project across the entire population after being exposed to the information on page 14.
 
 #### Question 10
 
