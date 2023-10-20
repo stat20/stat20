@@ -85,7 +85,7 @@ The expected value of a Bernoulli($p$) random variable is therefore just $p$. In
 
 ![](images/bernoulli-ev.png){fig-aligned="center" width="700"}
 
-In all the figures above, note the red triangle marking the expected value. If you imagine the probability histogram to be a thin lamina - like a thin sheet of metal cut in the shape of the probability histogram, you can imagine the expected value as a ``balancing point'' -  the point where the lamina would balance. It is the ``center of mass'' for the probability distribution. The expected value for a random variable is analogous to the average for sample data. Other terms that we use for the expected value of a random variable are *expectation* and *mean*. These can be used interchangeably.
+In all the figures above, note the red triangle marking the expected value. If you imagine the probability histogram to be a thin lamina - like a thin sheet of metal cut in the shape of the probability histogram, you can imagine the expected value as a "balancing point" -  the point where the lamina would balance. It is the center of mass for the probability distribution. The expected value for a random variable is analogous to the average for sample data. Other terms that we use for the expected value of a random variable are *expectation* and *mean*. These can be used interchangeably.
 
 \
 
