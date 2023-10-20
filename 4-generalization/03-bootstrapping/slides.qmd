@@ -361,9 +361,9 @@ penguins %>%
 ```
 
 
-## `infer` Documentation
+## Documentation: `infer.tidymodels.org`
 
-![](images/infer-docs.png)
+![](images/infer-documentation.png){width=1100 fig-align="center"}
 
 ## Your Turn
 
