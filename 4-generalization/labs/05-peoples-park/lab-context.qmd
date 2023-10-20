@@ -65,7 +65,7 @@ Identify possible sources of variation and whether they are sampling or measurem
 
 #### Question 7
 
-Consider the type of data collected in question 8, which is measured using the Likert Scale. Review the Wikipedia article on the Likert Scale (particularly the Scoring and Analysis section) to determine: do you find it more useful to think of is variable as numerical discrete or categorical ordinal? What is your reasoning?
+Consider the type of data collected in question 8 of the survey, which is measured using the Likert Scale. Review the Wikipedia article on the Likert Scale (particularly the Scoring and Analysis section) to determine: do you find it more useful to think of is variable as numerical discrete or categorical ordinal? What is your reasoning?
 
 \
 \
