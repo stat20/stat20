@@ -43,11 +43,11 @@ The `ppk` data set represents a subset of questions that were asked in the quest
 
 #### Question 1
 
-Print the first few rows with the columns that correspond to the responses to survey questions 1, 7, and 8. Note: we have changed the data back from all numerical data, as suggested by lab question 7, to a mix of numerical and categorical data. Please comment on whether your encoding of the data from Q7 on the questionnaire matches the encoding in `ppk`.
+Print the first few rows with the columns that correspond to the responses to survey questions 1, 7, and 8. Note: we have changed the data back from all numerical data, as suggested by lab question 8, to a mix of numerical and categorical data. Please comment on whether your encoding of the data from Q7 on the questionnaire matches the encoding in `ppk`.
 
 #### Question 2
 
-Return to your sketches from question 7 here in the lab. Create those visualizations (or more appropriate analogues) using the questionnaire data. For each, add a title and axis labels to make it clear what they are showing, and describe the distribution in words. If your visualization is of ordinal data, the bars should be ordered accordingly. For question 9 you're welcome to select just three of the priorities to visualize.
+Return to your sketches from question 9 here in the lab. Create those visualizations (or more appropriate analogues) using the questionnaire data. For each, add a title and axis labels to make it clear what they are showing, and describe the distribution in words. If your visualization is of ordinal data, the bars should be ordered accordingly. For part a here, you're welcome to select just three of the priorities to visualize.
 
 a. Question 9
 b. Question 10
@@ -63,7 +63,7 @@ What is the mean and median rating of the condition of People's Park (question 1
 
 #### Question 5
 
-Create a new column called `change_in_support` that measures the change in support from question 18 to 21. What is the mean change in support of the survey participants in each class (freshman, sophomore, etc) for the People's Park Project after reading the information? What assumption must you make about the values of the Likert scale in order for these statistics to be informative?
+Create a new column called `change_in_support` that measures the change in support from question 18 to 21 of the survey. What is the mean change in support of the survey participants in each class (freshman, sophomore, etc) for the People's Park Project after reading the information? What assumption must you make about the values of the Likert scale in order for these statistics to be informative?
 
 #### Question 6
 
