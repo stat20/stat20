@@ -128,6 +128,7 @@ countdown::countdown(1, bottom = 0)
 # Problem Set: Is Yawning Contagious?
 
 ```{r}
+#| echo: false
 countdown::countdown(20)
 ```
 
