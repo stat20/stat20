@@ -25,8 +25,8 @@ execute:
 ## Agenda
 
 - Concept Questions
-- Hypothesis Testing with `infer`
-- Practice Problems
+- Problem Set: Is Yawning Contagious
+- Appendix: Hypothesis Testing with `infer`
 
 :::notes
 Pick a Card Activity
@@ -125,6 +125,14 @@ E. The alternative hypothesis is 10 times more likely the null.
 countdown::countdown(1, bottom = 0)
 ```
 
+# Problem Set: Is Yawning Contagious?
+
+```{r}
+#| echo: false
+countdown::countdown(20)
+```
+
+
 # Hypothesis Testing with `infer`
 
 
@@ -144,6 +152,7 @@ countdown::countdown(1, bottom = 0)
 
 ## {background-image="images/pic-12.jpg" background-size="contain"}
 
+# Appendix
 
 # Example: Class Survey
 
@@ -356,9 +365,9 @@ class_survey %>%
                direction = "both")  
 ```
 
-## Your turn
+<!-- ## Your turn -->
 
-We want to 
+<!-- We want to  -->
 
-Using the `class_survey` data, create a plot of the distribution of thoughts on climate change separated out by whether or not a student is an econ major. Also compute a statistic that 
+<!-- Using the `class_survey` data, create a plot of the distribution of thoughts on climate change separated out by whether or not a student is an econ major. Also compute a statistic that  -->
 
