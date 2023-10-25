@@ -1,5 +1,11 @@
 ---
-title: "Practice: Communicating with Graphics"
+title: "Communicating with Graphics"
+format:
+  html:
+    code-tools: 
+      source: true
+      toggle: false
+sidebar: false
 ---
 
 #### Question 1
