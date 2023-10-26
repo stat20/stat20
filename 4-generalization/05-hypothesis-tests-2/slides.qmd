@@ -194,15 +194,13 @@ What is the proper interpretation of this p-value?
 
 :::
 
-## Problem Set: Hypothesis Testing II
+## The Bouba / Kiki Effect
+
+<iframe src="https://en.wikipedia.org/wiki/Bouba/kiki_effect" height=600 width=1500>
+</iframe>
+
+# Problem Set: Hypothesis Testing II
 
 ```{r}
 countdown::countdown(25)
-```
-
-
-# Unstructured time on Lab 5
-
-```{r}
-countdown::countdown(minutes = 30)
 ```
