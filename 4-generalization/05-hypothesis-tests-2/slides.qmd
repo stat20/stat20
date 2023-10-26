@@ -24,24 +24,14 @@ execute:
 
 ## Agenda
 
-```{r}
-#| echo: false
-#| message: false
-library(stat20data)
-library(tidyverse)
-library(infer)
-```
-
 -   Time to fill out the *Mid-Semester Feedback* form
--   Concept Questions - *Hypothesis Tests II*
+-   Concept Questions: Hypothesis Tests II
 -   *Break* 
--   Unstructured work time on Lab 5 (time permitting)
+-   PS: Hypothesis Testing with `infer`
 
 # Time to fill out the *Mid-Semester Feedback* form
 
-- Click [here](https://forms.gle/DycRj75gwNywMZxV9) to fill out this form if you haven't already. 
-
-. . .
+- Click [here](https://forms.gle/RZhyfvhX7TWpq9k96) to fill out this form.
 
 ```{r}
 countdown::countdown(minutes = 10)
@@ -49,122 +39,170 @@ countdown::countdown(minutes = 10)
 
 # Concept Questions
 
-## Concept Questions: `infer` Exercises
+## An In-class Experiment
 
--   Today's CQ's will work like exercises. You will be practicing using the `infer` library to perform hypothesis tests. The tests we will perform are:
+In order to demonstrate how to conduct a hypothesis test through simulation, we will be collecting data from this class using a poll.
 
-    - A test using an "independence" null hypothesis
-    - A test using a "point" null hypothesis
-  
-## Concept Question 1
+\
+\
 
-> In order to study gender bias in promotion decisions, researchers took 48 resumes and randomly assigned them to 48 bank managers who were asked whether they would promote this candidate or not. The resumes were identical except the name: 24 of them had names generally associated with women, 24 of them had names generally associated with men.
+You will have only 15 seconds to answer the following multiple choice question, so please get ready at `pollev.com`...
 
-. . . 
+::: notes
+This sets up a discussion of how to set up a hypothesis test that p = .5.
 
-The data from this study can be found in the `promote` data frame. Use this data to determine whether gender played a role in promotion decisions.
+This is based on a series of experiments that show a link between sounds and shapes in people's minds - sharper shapes correspond to sharper sounds (k, t) and rounder shapes to rounder sounds (m, b). Read more about it here: https://en.wikipedia.org/wiki/Bouba/kiki_effect.
 
-## Concept Question 1 - Steps
+You conduct the experiment on the students using a poll question, then you calculate a proportion, then entertain the notion that linking names to shapes is meaningless, so people were choosing randomly, then use that to motivate the hypothesis test that p = .5.
+:::
 
-a. Write the null and alternative hypothesis.
+## 
 
-. . . 
+![](images/booba-kiki.svg){fig-align="center"}
 
-b. Compute the observed test statistic.
+::: poll
+The two shapes above have simple first names:
 
-. . . 
+- Booba
+- Kiki
 
-c. Visualize the observed data using an appropriate plot.
+Which of the two names belongs to the shape on the **left**?
+:::
 
-. . . 
+::: notes
+This poll everywhere question is set up to record the counts of each category and display the total number of responses in the upper right. This allows you to discuss the results either in terms of a binomial or in terms of a proportion.
+:::
 
-d. Construct a plot featuring 9 subplots, each one featuring a visualization of a data set generated under the null hypothesis. Does your visualization of the observed data from the previous part look like it be one of these plots? (Hint: Go up through the `generate()` step and then make the plot). 
+## Steps of a Hypothesis Test
 
-## Concept Question 1 - Steps (cont.)
+1. Assert a model for how the data was generated (the null hypothesis)
+2. Select a test statistic that bears on that null hypothesis (a mean, a proportion, a difference in means, a difference in proportions, etc).
+3. Approximate the sampling distribution of that statistic under the null hypothesis (aka the null distribution)
+4. Assess the degree of consistency between that distribution and the test statistic that was actually observed (either visually or by calculating a p-value)
 
-e. Construct and save the null distribution of statistics.
+## 1. The Null Hypothesis
 
-. . . 
+- Let $p_k$ be the probability that a person selects Kiki for the shape on the left.
+- Let $\hat{p}_k$ be the sample proportion of people that selected Kiki for the shape on the left.
 
-f. Visualize the null distribution. 
-
-. . . 
-
-g. Compute the p-value. 
-
-. . . 
-
-h. Interpret the p-value. What does it say about the consistency between the null hypothesis and the observed data?
-
-# Concept Question 1 - Work Time
+::: poll
+What is a statement of the null hypothesis that corresponds to the notion the link between names and shapes is arbitrary?
+:::
 
 ```{r}
-countdown::countdown(minutes = 15, top = 1)
+countdown::countdown(1)
 ```
 
-# Concept Question 1 - Discussion
+## 2. Select a test statistic
 
-# Concept Question 2
-
-## Concept Question 2
-
-> In the 2016 NBA season, it was noted that professional basketball player Steph Curry had a remarkable basket-shooting performance beyond 30 feet. The `curry` data frame contains his long range shooting performance across 27 attempts. By comparison, the long range shooting percentage of NBA players that season was 7.5%. 
-
-. . . 
-
--   Assess whether this data is consistent with the notion that Steph Curry has a long range shooting percentage that is no different from the average NBA player. Said another way, assess just how remarkable Curry's shooting performance was in 2016.
-
-## Concept Question 2 - Steps (cont.)
-
-a. Write the null and alternative hypothesis.
-
-. . . 
-
-b. Compute the observed test statistic.
-
-. . . 
-
-c. Visualize the observed data using an appropriate plot.
-
-. . . 
-
-d. Construct a plot featuring 9 subplots, each one featuring a visualization of a data set generated under the null hypothesis. Does your visualization of the observed data from the previous part look like it be one of these plots?
-
-## Concept Question 2 - Steps (cont.)
-
-e. Construct and save the null distribution of statistics.
-
-. . . 
-
-f. Visualize the null distribution.
+$$\hat{p}_k = \frac{\textrm{Number who chose "Kiki"}}{\textrm{Total number of people}}$$
 
 . . .
 
-g. Compute the p-value.
+\
 
-. . . 
+Note: you could also simply $n_k$, the number of people who chose "Kiki".
 
-h. Interpret the p-value. What does it say about the consistency between the null hypothesis and the observed data?
+::: notes
+A follow-up question to ask: "For our class, what would we expect this number to be if $p_k = .5$?"
+
+It should be half the number of students who responded to the poll.
+:::
 
 
-# Concept Question 2 - Work Time
+## 3. Approximate the null distribution
+
+Our technique: simulate data from a world in which the null is true, then calculate the test statistic on the simulated data.
+
+::: poll
+Which simulation method(s) align with the null hypothesis and our data collection process?
+:::
 
 ```{r}
-countdown::countdown(minutes = 15)
+countdown::countdown(1)
 ```
 
-# Concept Question 2 - Discussion
+::: notes
+A, C, and E all work.
+:::
 
-# *Break*
+
+## Simulating the null using `infer`
 
 ```{r}
-countdown::countdown(minutes = 5)
+#| echo: true
+#| eval: false
+
+library(tidyverse)
+library(infer)
+
+# update these based on the poll
+n_k <- 40
+n_b <- 20
+
+shapes <- data.frame(name = c(rep("Kiki", n_k),
+                              rep("Booba", n_b)))
+
+shapes %>%
+  specify(response = name,
+          success = "Kiki") %>%
+  hypothesize(null = "point", p = .5) %>%
+  generate(reps = 1, type = "draw") %>%
+  calculate(stat = "prop")
 ```
+
+::: notes
+1. copy and paste the code cell from the slides into RStudio
+2. replace n_k and n_b with the values from your poll.
+3. "break the pipe" to show what happens at every stage.
+4. run several pipelines with reps = 1 to show it changing.
+5. set reps to 500 to show the full collection of p-hats.
+:::
+
+## 4. Assess the consistency of the data and the null
+
+```{r}
+#| echo: true
+#| eval: false
+
+null <- shapes %>%
+  specify(response = name,
+          success = "Kiki") %>%
+  hypothesize(null = "point", p = .5) %>%
+  generate(reps = 500, type = "draw") %>%
+  calculate(stat = "prop")
+
+obs_p_hat <- shapes %>%
+  specify(response = name,
+          success = "Kiki") %>%
+  # hypothesize(null = "point", p = .5) %>%
+  # generate(reps = 500, type = "simulate") %>%
+  calculate(stat = "prop")
+
+null %>%
+  visualise() +
+  shade_pvalue(obs_p_hat, direction = "both")
+```
+
+## The p-value
+
+::: poll
+What is the proper interpretation of this p-value?
+:::
+
+::: notes
+
+:::
+
+## Problem Set: Hypothesis Testing II
+
+```{r}
+countdown::countdown(25)
+```
+
 
 # Unstructured time on Lab 5
 
 ```{r}
 countdown::countdown(minutes = 30)
 ```
-
-# End of Lecture 19
