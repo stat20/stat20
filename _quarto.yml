@@ -1,11 +1,5 @@
 project:
   type: website
-  render:
-    - "*.qmd"
-    - "!2-summarizing-data/04-conditioning/ps.qmd"
-    - "!2-summarizing-data/05-communicating-with-graphics/ps.qmd"
-    - "!2-summarizing-data/06-summarizing-associations/ps.qmd"
-    - "!3-probability/03-random-variables/ps-2.qmd"
 
 # Website Configuration and Layout
 website:

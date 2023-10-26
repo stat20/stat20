@@ -1,5 +1,11 @@
 ---
-title: "Practice: Summarizing Associations"
+title: "Summarizing Associations"
+format:
+  html:
+    code-tools: 
+      source: true
+      toggle: false
+sidebar: false
 ---
 
 There is a data set built into R called `mtcars` that includes several measures on different types of cars. Learn more about the data set using `?mtcars`.
