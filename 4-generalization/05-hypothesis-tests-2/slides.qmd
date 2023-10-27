@@ -70,7 +70,7 @@ Which of the two names belongs to the shape on the **left**?
 :::
 
 ```{r}
-countdown::countdown(1)
+countdown::countdown(minutes = 0, seconds = 15)
 ```
 
 ::: notes
