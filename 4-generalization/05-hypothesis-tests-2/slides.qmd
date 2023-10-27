@@ -69,6 +69,10 @@ The two shapes above have simple first names:
 Which of the two names belongs to the shape on the **left**?
 :::
 
+```{r}
+countdown::countdown(minutes = 0, seconds = 15)
+```
+
 ::: notes
 This poll everywhere question is set up to record the counts of each category and display the total number of responses in the upper right. This allows you to discuss the results either in terms of a binomial or in terms of a proportion.
 :::
@@ -190,9 +194,9 @@ null %>%
 What is the proper interpretation of this p-value?
 :::
 
-::: notes
-
-:::
+```{r}
+countdown::countdown(1)
+```
 
 ## The Bouba / Kiki Effect
 
