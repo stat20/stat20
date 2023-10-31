@@ -101,21 +101,15 @@ Please get into groups of 3 (4 is ok too). Take turns introducing yourselves.
 :::
 ::::
 
-
-## Group Members
-
-![](images/members.png)
-
 :::notes
-The main reason for the roles here is to dedicate just one person to handling the materials for health safety. There will also be sanitizer.
-:::
 
-## Claim and Hypotheses
+At this point, go over to the pdf of the handout and project each section / question in turn:
 
-![](images/claim.png)
+1. The main reason for the roles here is to dedicate just one person to handling the materials for health safety.
 
-:::notes
-Prompt them to think carefully about their wording here in the claim. How ambitious and general do they want to be?
+2. Prompt them to think carefully about their wording here in the claim. How ambitious and general do they want to be? Encourage a clear causal mechanism using wording like A causes an increase in B.
+
+3. It will be helpful in formulating their hypotheses 
 :::
 
 
