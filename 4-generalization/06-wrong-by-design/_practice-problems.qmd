@@ -1,0 +1,50 @@
+---
+title: "Practice Problems"
+subtitle: "Statistical Errors"
+---
+
+## Question 1
+
+For each of the following sets of hypotheses, determine whether committing a Type I error or a Type II error has greater real-world consequences. Explain your decision.
+
+### part a
+
+Imagine that the San Francisco Giants hold a book donation promotion for one of their games where every individual who brings a used book to the stadium is allowed free entry. 
+
+$H_0$: The number of individuals who wish attend the game will be no more than the capacity of the stadium.
+
+$H_A$: The number of individuals who wish to attend the game will exceed the capacity of the stadium.
+
+### part b
+
+$H_0$: A new operating system is **no more effective** for Carbon Health to use on the computers at its clinics than the old operating system.
+
+$H_A$: A new operating system is **more effective** for Carbon Health to use on the computers at its clinics than the old operating system.
+
+### part c
+
+$H_0$: The results of the 2020 United States presidential election were **legitimate** (the right candidate won).
+
+$H_A$: The results of the 2020 United States presidential election were **fraudulent** (the wrong candidate won).
+
+## Question 2
+
+A food safety inspector is called upon to investigate a restaurant with a few customer reports of poor sanitation practices. The food safety inspector uses a hypothesis testing framework to evaluate whether regulations are not being met. If he decides the restaurant is in gross violation, its license to serve food will be revoked.
+
+### part a
+Write the hypotheses in words.
+
+### part b
+What is a Type 1 Error in this context?
+
+### part c
+What is a Type 2 Error in this context?
+
+### part d
+Which error is more problematic for the restaurant owner? Why?
+
+### part e
+Which error is more problematic for the diners? Why?
+
+### part f
+As a diner, would you prefer that the food safety inspector requires strong evidence or very strong evidence of health concerns before revoking a restaurant’s license? Explain your reasoning.
