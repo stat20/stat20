@@ -1,6 +1,6 @@
 ---
-title: "Practice Problems"
-subtitle: "Statistical Errors"
+title: "Wrong by Design"
+format: stat20handout-pdf
 ---
 
 ## Question 1
