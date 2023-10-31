@@ -30,7 +30,8 @@ Suggested timeline
 General Advice
 - The students have seen *nothing* about experimental design yet in class. The idea is to have them use their own mental models to solve this problem, then later review and revise them. That's to say: coach them only to be precise in their protocol, not to be using best practices in experimental design. Errors made here are great learning opportunities later.
 - The first phase of the lab can all be done with paper and pencil, so you can ask that students stow their laptops.
-- This can be a bit of a jolt for students: from working with ggplot2 code to suddenly thinking about experiments without having seen them in class.
+- It might be helpful to guide students to start at the end, what they expect their data and plots to look like, then work back towards the hypothesies and claims.
+- As written, most null hypotheses will suggest the use of a difference in proportions as the test statistic.
 :::
 
 
@@ -80,7 +81,7 @@ Please get into groups of 3 (4 is ok too). Take turns introducing yourselves.
 
 ## A Matter of Taste
 
-**Your challenge**: Determine whether or not one of your group members can distinguish between two different types of bubble water (or a similar claim of your choosing).
+**Your challenge**: Determine whether you can manipulate the environment of one of your group members to effect their ability to distinguish between two flavors of bubble water. Consider smell, sight, touch, sound, taste, etc.
 
 :::: {.columns}
 
@@ -91,11 +92,12 @@ Please get into groups of 3 (4 is ok too). Take turns introducing yourselves.
 ::: {.column width="50%"}
 ### Each team will have access to
 
-- 50 minutes (lab Thursday)
+- 50 minutes (half of next class)
 - 2 cans of soda water, each one from a different flavor
-- small cups
+- small paper cups
 - straws
 - saltine crackers
+- other materials welcome
 :::
 ::::
 
@@ -105,7 +107,7 @@ Please get into groups of 3 (4 is ok too). Take turns introducing yourselves.
 ![](images/members.png)
 
 :::notes
-The main reason for the roles here is to dedicate just one person to handling the materials for covid safety. There will also be sanitizer.
+The main reason for the roles here is to dedicate just one person to handling the materials for health safety. There will also be sanitizer.
 :::
 
 ## Claim and Hypotheses
