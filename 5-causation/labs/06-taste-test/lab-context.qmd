@@ -11,9 +11,9 @@ Write to the right of each role the first and last name of the group member fill
 - *Materials*: Handles the materials (water et. al) for the experiment.________________
 - *Facilitator(s)*: Carries out the experiment, keeps track of time, records data.__________
 
-### Causal Claim
+### Causal Question
 
-In one sentence, write the _causal claim_ you intend to test. This claim should be that some manipulation of the tasters environment (consider sight, sound, smell, touch) will affect their ability to correctly identify a flavor of bubble water. 
+In one sentence, write the causal question you intend to test. It should be composed of a *response* variable having to do with perception of bubble water and whether it is effected by a given intervention / *explanatory* variable.
 
 \
 
