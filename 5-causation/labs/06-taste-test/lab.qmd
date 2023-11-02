@@ -12,35 +12,35 @@ sidebar: false
 - [Lab 6.1: A Matter of Taste](lab-context.pdf)
 
 
-## Part II: Computing on the Data
+<!-- ## Part II: Computing on the Data -->
 
-```{r}
-#| echo: true
-#| eval: false
-#| code-fold: false
-usethis::use_course("https://tinyurl.com/lab-6-a-matter-of-taste")
-```
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| eval: false -->
+<!-- #| code-fold: false -->
+<!-- usethis::use_course("https://tinyurl.com/lab-6-a-matter-of-taste") -->
+<!-- ``` -->
 
-Be sure to tag your group mates when you submit this to Gradescope!
-
-
-1. List any changes that you made to your experimental protocol from when you formulated it on Wednesday and when you executed it Friday.
+<!-- Be sure to tag your group mates when you submit this to Gradescope! -->
 
 
-2. Create a data frame based of the data you collected and print it out into your lab report. You can print all rows your data frame using `print(my_df, n = nrow(my_df))`. Consult the notes "A Tool for Computing with Data" for a refresher of how to make a data frame.
-
-Does the data frame differ at all from the one that you sketched into your experimental protocol? If so, how?
+<!-- 1. List any changes that you made to your experimental protocol from when you formulated it on Wednesday and when you executed it Friday. -->
 
 
-3. Create a visualization of the data you collected (not the null distribution) similar to the one you sketched in the handout. Does it look clearly in support of your claim or contrary to your claim or somewhere in between?
+<!-- 2. Create a data frame based of the data you collected and print it out into your lab report. You can print all rows your data frame using `print(my_df, n = nrow(my_df))`. Consult the notes "A Tool for Computing with Data" for a refresher of how to make a data frame. -->
+
+<!-- Does the data frame differ at all from the one that you sketched into your experimental protocol? If so, how? -->
 
 
-4. Conduct a hypothesis test to determine whether your data is consistent with the null hypothesis. Be sure to provide.
+<!-- 3. Create a visualization of the data you collected (not the null distribution) similar to the one you sketched in the handout. Does it look clearly in support of your claim or contrary to your claim or somewhere in between? -->
 
-    a. The null and alternative hypotheses.
-    b. The value of the observed test statistic.
-    c. A visualization of the null distribution and observed test statistic with the p-value shaded in.
-    d. The p-value and your conclusion (use $\alpha = .05$) regarding null hypothesis and original claim.
-    
-    
-5. A thought experiment: if you did not find a significant effect, speculate as to what you could change about your protocol to increase the chance that you find an effect. If you did find a significant effect, speculate as to what you would change about your protocol if you wanted to decrease the chance that you'd find an effect if you were to repeat the experiment.
+
+<!-- 4. Conduct a hypothesis test to determine whether your data is consistent with the null hypothesis. Be sure to provide. -->
+
+<!--     a. The null and alternative hypotheses. -->
+<!--     b. The value of the observed test statistic. -->
+<!--     c. A visualization of the null distribution and observed test statistic with the p-value shaded in. -->
+<!--     d. The p-value and your conclusion (use $\alpha = .05$) regarding null hypothesis and original claim. -->
+
+
+<!-- 5. A thought experiment: if you did not find a significant effect, speculate as to what you could change about your protocol to increase the chance that you find an effect. If you did find a significant effect, speculate as to what you would change about your protocol if you wanted to decrease the chance that you'd find an effect if you were to repeat the experiment. -->
