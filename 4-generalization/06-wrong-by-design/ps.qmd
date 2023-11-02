@@ -3,6 +3,8 @@ title: "Wrong by Design"
 format: stat20handout-pdf
 ---
 
+<!-- Revise these to be settings where a hypothesis test makes sense (where there is a source of randomness in the data collection.) -->
+
 ## Question 1
 
 For each of the following sets of hypotheses, determine whether committing a Type I error or a Type II error has greater real-world consequences. Explain your decision.
