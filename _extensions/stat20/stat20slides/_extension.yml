@@ -7,7 +7,8 @@ contributes:
     revealjs:
       author: "STAT 20: Introduction to Probability and Statistics"
       theme: [slides.scss]
-      logo: stat20-hex-vsmall.png
+      header-logo: stat20-hex-vsmall.png
+      #logo: stat20-hex-vsmall.png
       height: 900
       width: 1600
       multiplex: false
@@ -19,6 +20,8 @@ contributes:
       highlight-style: github
       progress: false
       code-overflow: wrap
+      filters:
+        - reveal-header
       title-slide-attributes:
         data-background-image: stat20-hex-bg.png
         data-background-size: contain
@@ -26,25 +29,36 @@ contributes:
         - text: |
             <script type="text/javascript">
               window.addEventListener('load', function() {
-                var logo = document.querySelector('.slide-logo');
+                var logo = document.querySelector('.header-logo');
                 var url = 'https://stat20.org';
                 logo.addEventListener('click', function() {
-                  window.open(url, '_blank');
+                  // Get the referrer URL
+                  var referrer = document.referrer;
+
+                  // Check if the referrer is from the same origin for security purposes
+                  if (referrer && new URL(referrer).origin === window.location.origin) {
+                  // Redirect to the referrer URL
+                  window.location.href = referrer;
+                  } else {
+                    // Fallback action if there's no referrer or it's from a different origin
+                    // For example, redirect to a home page or show a message
+                    window.location.href = '/'; // Redirecting to the home page
+                  }
                 });
               });
               Reveal.on('ready', event => {
                 if (event.indexh === 0) {
-                  document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+                  document.querySelector("div.has-logo > img.header-logo").style.display = "none";
                 }
               });
               Reveal.addEventListener('slidechanged', (event) => {
                 if (event.indexh === 0) {
                   Reveal.configure({ slideNumber: null });
-                  document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+                  document.querySelector("div.has-logo > img.header-logo").style.display = "none";
                 }
                 if (event.indexh === 1) { 
                   Reveal.configure({ slideNumber: 'c' });
-                  document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+                  document.querySelector("div.has-logo > img.header-logo").style.display = null;
                 }
               });
             </script>
