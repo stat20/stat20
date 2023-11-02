@@ -3,22 +3,19 @@ schedule:
   - unit: "Questions and Data"
     materials:
       - href: 1-questions-and-data/01-understanding-the-world/notes.qmd
-        date: 01/18/24
+        date: 01/16/24
       - href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
-        date: 08/29/23
+        date: 01/18/24
       - href: 1-questions-and-data/03-a-tool-for-computing-with-data/notes.qmd
-        date: 08/31/23
+        date: 01/23/24
   - unit: "Summarizing Data"
     materials:
       - href: 2-summarizing-data/labs/01-arbuthnot/lab.qmd
-        date: 08/31/23
-      - title: "No Class"
-        date: 09/4/23
-        calendar-color: "#20c997"
+        date: 01/25/24
       - href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
-        date: 09/5/23
+        date: 01/30/24
       - href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
-        date: 09/7/23
+        date: 02/1/24
       - title: "Quiz 1"
         date: 09/11/23
         calendar-color: "#c5b3e6"
@@ -125,7 +122,7 @@ schedule:
         
 auto-publish:
   timezone: "America/Los_Angeles"
-  live-as-of: "Sys.time()" # Either Sys.time() or a date parseable by lubridate::mdy()
+  live-as-of: "01/28/24" # Either Sys.time() or a date parseable by lubridate::mdy()
   preview-pdfs:
       - day-of-notes: "Tue"                     # Use Mon, Tue, Wed, Thu, Fri, Sat, Sun
         on-homepage-from: "3 days, 8 hours"     # *before* 00:00 on day-of-notes
