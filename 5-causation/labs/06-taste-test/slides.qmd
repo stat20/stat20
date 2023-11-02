@@ -109,33 +109,13 @@ At this point, go over to the pdf of the handout and project each section / ques
 
 2. Prompt them to think carefully about their wording here in the claim. How ambitious and general do they want to be? Encourage a clear causal mechanism using wording like A causes an increase in B.
 
-3. It will be helpful in formulating their hypotheses 
-:::
+3. It will be helpful in formulating their hypotheses if they formulate them both in words (i.e. removing a sense of a smell will lead to a drop in ability to detect the difference in two flavors) and also in terms of proportions.
 
+4. The protocols must be very precise. Use the language of reproducibile analyses to encourage careful work. They must be able to pass this protocol off to another group, and they should be able to carry out the intended experiment with no ambiguity.
 
-## Protocol
+5. The dataframe is intended to be a blank table with n rows and at least 1 column. They may plan to record either several extraneous variables or not enough to draw the conclusions they intend. As before, don't correct them. They may discover mid-experiment that they did this part wrong, and that's great.
 
-![](images/protocol.png)
-
-:::notes
-Here they must be very precise. We're spoken about reproducible science in class, so use that language to encourage careful work. They must be able to pass this protocol off to another group, and they should be able to carry out the intended experiment with no ambiguity.
-:::
-
-
-## Data
-
-
-![](images/data.png)
-
-:::notes
-This is intended to be a blank table with n rows and at least 1 column. They may plan to record either several extraneous variables or not enough to draw the conclusions they intend. As before, don't correct them. They may discover mid-experiment that they did this part wrong, and that's great.
-:::
-
-
-## Graphics
-
-![](images/eda.png)
-
+5. Encourage them to check that their viz is possible given their data frame and their data frame is possible give their protocol, and that their viz bears directly on their hypotheses.
 
 ## Things to remember
 
