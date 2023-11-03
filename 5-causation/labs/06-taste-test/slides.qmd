@@ -116,6 +116,7 @@ At this point, go over to the pdf of the handout and project each section / ques
 5. The dataframe is intended to be a blank table with n rows and at least 1 column. They may plan to record either several extraneous variables or not enough to draw the conclusions they intend. As before, don't correct them. They may discover mid-experiment that they did this part wrong, and that's great.
 
 5. Encourage them to check that their viz is possible given their data frame and their data frame is possible give their protocol, and that their viz bears directly on their hypotheses.
+:::
 
 ## Things to remember
 
