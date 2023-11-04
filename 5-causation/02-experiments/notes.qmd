@@ -113,7 +113,7 @@ By broadening our focus to the average treatment effect across groups, we're abl
 
 An experiment is generally characterized as being a setting where the researcher actively assigns subjects or units to one particular condition or another. The most potent design of an experiment to determine whether one variable, the *treatment*, affects the outcome at the group level is the aptly named *Randomized Controlled Trial (RCT)*. 
 
-As a running example, consider an immediately relevant question: will reading these course notes as a pdf that you annotate result in a deeper understanding and a correspondingly better score on the final exam? Let's run through each term one-by-one to think through how to design an RCT and effectively answers this question.
+As a running example, consider an immediately relevant question: would reading these notes as a webpage (and maybe copying and pasting code cells into RStudio) lead to a deeper understanding and a correspondingly better score on the final exam? Let's run through each term one-by-one to think through how to design an RCT and effectively answers this question.
 
 ### Control
 
@@ -122,49 +122,47 @@ As a running example, consider an immediately relevant question: will reading th
 
 :    (verb) Actions taken to eliminate other possible causal factors and ensure that the only difference between the treatment and control group is the factor of interest.
 
-When designing an RCT, an essential decision is the nature of your control group. Our research question is: will reading these notes as a pdf result in a deeper understanding? Deeper . . . than what? Deeper than if you didn't read the notes at all? Deeper than if you read them aloud?
+When designing an RCT, an essential decision is the nature of your control group. Our research question is: will reading these notes as a webpage result in a deeper understanding? Deeper . . . than what? Deeper than if you didn't read the notes at all? Deeper than if you read them aloud?
 
-If we're most interested in any difference between reading a pdf and reading a webpage, we would declare those who read the pdf part of the treatment group and those who read the webpage as part of the control group. Small changes to the control group can make an important difference in the precise question that you'll be answering.
+If we're most interested in the difference between reading the notes as a webpage and reading them as a pdf, we could declare those who read the pdf part of the control group and those who read the pdf as part of the treatment group[^control]. Small changes to the control group can make an important difference in the precise question that you'll be answering.
 
-<!-- We can visualize the distinction between the two groups in a small example with three people in the treatment group (pdf, in yellow) and three people in the control group (website, in blue). -->
+We can visualize the distinction between the two groups in a small example with three people in the control group (pdf) and three people in the treatment group (website).
 
-<!-- # ```{r} -->
-<!-- # #| echo: false -->
-<!-- # library(gt) -->
-<!-- #  -->
-<!-- # df <- data.frame(name = c("Evelyn", "Grace", "Juan", "Alex", "Monica", "Sriya"), -->
-<!-- #                  group = c("pdf", "pdf", "pdf", "website", "website", "website"), -->
-<!-- #                  understanding = c("deep", "shallow", "deep", "deep", "shallow", "shallow")) -->
-<!-- #  -->
-<!-- # df %>% -->
-<!-- #   gt() %>% -->
-<!-- #   cols_width( -->
-<!-- #     vars(name) ~ px(70), -->
-<!-- #     vars(group) ~ px(70), -->
-<!-- #     vars(understanding) ~ px(110), -->
-<!-- #   ) %>% -->
-<!-- #   tab_options(data_row.padding = px(4)) %>% -->
-<!-- #   tab_style( -->
-<!-- #     style = list( -->
-<!-- #       cell_fill(color = "lightgoldenrodyellow") -->
-<!-- #     ), -->
-<!-- #     locations = cells_body( -->
-<!-- #       columns = everything(), -->
-<!-- #       rows = group == "pdf" -->
-<!-- #     ) -->
-<!-- #   )  %>% -->
-<!-- #   tab_style( -->
-<!-- #     style = list( -->
-<!-- #       cell_fill(color = "lightcyan") -->
-<!-- #     ), -->
-<!-- #     locations = cells_body( -->
-<!-- #       columns = everything(), -->
-<!-- #       rows = group == "website" -->
-<!-- #     ) -->
-<!-- #   )  -->
-<!-- # ``` -->
+```{r}
+#| echo: false
+library(gt)
+df <- data.frame(name = c("Evelyn", "Grace", "Juan", "Alex", "Monica", "Sriya"),
+                 group = c("pdf", "pdf", "pdf", "website", "website", "website"),
+                 understanding = c("deep", "shallow", "deep", "deep", "shallow", "shallow"))
+df %>%
+  gt() %>%
+  cols_width(
+    vars(name) ~ px(70),
+    vars(group) ~ px(70),
+    vars(understanding) ~ px(110),
+  ) %>%
+  tab_options(data_row.padding = px(4)) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgoldenrodyellow")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = group == "pdf"
+    )
+  )  %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightcyan")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = group == "website"
+    )
+  )
+```
 
-We also speak of "controlling for" other variables that might provide alternate explanations for any effect that is found. Imagine that the pdfs were consistently posted 3 hours later than the website (😬). To rule timing out as a potential cause, we would want to control for time by ensuring that the two versions were released at the same time.
+We also speak of "controlling for" other variables that might provide alternate explanations for any effect that is found. Based on the schedule of assignments, it is not possible to access the notes on the website before the reading questions are due, so everyone in the treatment group would have to do their work out of order. To rule timing out as a potential cause of different levels of understanding, we would want to control for time by ensuring that the two versions of the notes were released at the same time.
 
 ### Random Assignment
 
@@ -204,6 +202,8 @@ The patients are not the only ones who should be blinded: doctors and researcher
 ## Summary
 
 You may heard the phrase "Correlation does not imply causation ... unless it's seen in data from a randomized control trial." While this statement is misleading - there is a rich set of methods that, when used correctly, can make compelling causal claims from correlations found in data - it does highlight the particular strength of RCTs. RCTs are able to isolate the effect of interest by creating a carefully selected control group and then assigning subjects to groups at random. When the number of replicates is large enough, we can be confident that our control group on average serves as a close counterfactual to our treatment group.
+
+[ ]{.column-margin}
 
 <!-- [^scurvy]: This tale is recounted in full in "Scurvy, sailors, and science", Duncan P. Thomas in the Journal of the Royal Society of Medicine 1997; 90:50-54. -->
 
