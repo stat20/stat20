@@ -81,8 +81,7 @@ schedule:
       - href: 5-causation/labs/06-taste-test/lab.qmd
         date: 11/02/23
       - title: "Quiz 5"
-        href: assets/quiz-slides.qmd
-        date: 11/5/23
+        date: 11/6/23
         calendar-color: "#c5b3e6"
       - href: 5-causation/02-experiments/notes.qmd
         date: 11/07/23
