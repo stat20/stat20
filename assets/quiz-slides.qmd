@@ -1,0 +1,56 @@
+---
+title: "Quiz"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Individual Quiz
+
+:::columns
+:::{.column width="60%"}
+#### Before the quiz begins
+
+1. 🧹 Clear your desk of everything except a pen/pencil and your cheat sheet.
+2. 🧢 Remove hats, hoods, and sunglasses.
+2. 📱 All electronic devices (laptop, phone, airbuds, smart watch) should be remain in your bag for the entire class period.
+3. Spread out as much as possible: one 1 student to a triangle desk, 2 to a tall desk.
+4. When you get a quiz, cover it with your cheat sheet and do not begin.
+:::
+:::{.column width="40%"}
+#### During the quiz
+
+1. 👀 Keep your eyes on your own quiz.
+2. If you need to use the bathroom, bring your phone and quiz to the front of the class.
+3. ⌛If you finish early, please hold on to your quiz and wait.
+4. 🍀 Good luck!
+
+:::
+:::
+
+```{r}
+countdown::countdown(25)
+```
+
+
+## Group Quiz {.smaller}
+
+```{r}
+countdown::countdown(15)
+```
+
