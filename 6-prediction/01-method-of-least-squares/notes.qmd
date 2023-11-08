@@ -98,7 +98,7 @@ The least squares linear model is so-called because it defines a line that has a
 
 So how can we use this definition to decide precisely which slope and intercept to use? Please watch the following 19 minute video to find out.
 
-[![](images/method-of-least-squares-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1521247/external_tools/78985)
+[![](images/method-of-least-squares-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1527632/external_tools/78985)
 
 
 ## Summary
