@@ -7,7 +7,9 @@ format:
     code-fold: true
     code-link: true
     code-summary: "."
-  pdf: default
+  pdf:
+    echo: false
+    code-fold: false
 execute: 
   warning: false
   message: false
@@ -384,6 +386,7 @@ biology <- tibble(hours = runif(n = n_samples_big,
 
 ```{r}
 #| code-fold: false
+#| echo: true
 
 # fix the random seed so we get the same train/test split every time
 set.seed(13)
@@ -424,6 +427,7 @@ Next let's split the original data frame into a training data frame and test dat
 
 ```{r}
 #| code-fold: false
+#| echo: true
 biology_train <- biology %>% 
     filter(set_type == 'train')
 
@@ -435,6 +439,7 @@ Now fit two models on the training data.
 
 ```{r}
 #| code-fold: false
+#| echo: true
 
 # notice we use the training data to fit the model!
 lm_slr <- lm(score ~ hours, data = biology_train)
@@ -472,6 +477,7 @@ Which model do you expect to have a better *training* set $R^2$ value?
 
 ```{r}
 #| code-fold: false
+#| echo: true
 
 # this calculates the training r^2
 glance(lm_slr) %>%
@@ -486,6 +492,7 @@ Next let's evaluate these models on the *test* set.
 
 ```{r}
 #| code-fold: false
+#| echo: true
 
 # get predictions on test set
 score_pred_linear <- predict(lm_slr, newdata = biology_test)
@@ -493,6 +500,8 @@ score_pred_poly <- predict(lm_poly, newdata = biology_test)
 ```
 
 ```{r}
+#| code-fold: false
+#| echo: true
 # calculate R squared for test set
 biology_test %>%
     mutate(score_pred_linear = score_pred_linear,
@@ -666,6 +675,8 @@ So which is the better predictive model: Model 1 or Model 2? In terms of trainin
 This lecture is about overfitting: what happens when your model takes the particular data set it was built on too seriously. The more complex a model is, the more prone to overfitting it is. Polynomial models are able to create very complex functions thus high-degree polynomial models can easily overfit. Fitting a model and evaluating it on the same data set can be problematic; if the model is overfitted the evaluation metric (e.g. $R^2$) might be very good, but the model might be lousy on predictions on new data.
 
 A better way to approach predictive modeling is to fit the model to a training set then evaluate it with a separate testing set.
+
+[ ]{.column-margin}
 
 {{< include images/tmp/_date-meta.md >}}
 
