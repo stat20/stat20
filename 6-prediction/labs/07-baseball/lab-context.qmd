@@ -26,7 +26,7 @@ knitr::kable(head(Batting %>%
 \
 \
 
-2. Write out two questions about baseball that could answered purely through summary statistics on these data sets (numerical summaries or plots).
+2. Write out two questions about baseball that could answered purely through *summaries* of these data sets (numerical summaries or plots).
 
 
 \
@@ -35,7 +35,7 @@ knitr::kable(head(Batting %>%
 \
 \
 
-3. Write out predictive questions (two classification and two regression) that you could answer about your sport using the variables in your `Teams` data set. Identify a response variable for each.
+3. Write out *predictive* questions (two classification and two regression) that you could answer about your sport using the variables the data sets above. Identify a response variable for each.
 
 {{< pagebreak >}}
 
