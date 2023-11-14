@@ -1,5 +1,5 @@
 ---
-title: "Lab 7: Sports"
+title: "Lab 7: Baseball"
 image: images/box_score.jpeg
 code-fold: false
 sidebar: false
@@ -9,7 +9,7 @@ sidebar: false
 
 ## Part I: Understanding the Context of the Data
 
-- [Lab 7.1 (Paper Worksheet)](lab-context.pdf)
+- [Lab 7.1: Baseball](lab-context.pdf)
 
 
 <!-- ## Part II: Computing on the Data -->
