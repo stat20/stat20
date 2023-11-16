@@ -23,8 +23,8 @@ format:
 ## Agenda
 
 - Concept Questions
-- Problem Set 7.1
-- Lab 7.2
+- Problem Set: Overfitting
+- Lab: Baseball
 
 # Concept Questions
 
@@ -94,7 +94,13 @@ plot_A + plot_B
 ```
 
 
-# Problem Set 7.1 
+# Problem Set: Overfitting
+
+```{r}
+countdown::countdown(25)
+```
+
+# Lab: Baseball
 
 ```{r}
 countdown::countdown(25)
