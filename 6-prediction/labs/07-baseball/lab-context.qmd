@@ -35,7 +35,7 @@ knitr::kable(head(Batting %>%
 \
 \
 
-3. Write out *predictive* questions (two classification and two regression) that you could answer about your sport using the variables the data sets above. Identify a response variable for each.
+3. Write out *predictive* questions (two classification and two regression) that you could answer about baseball using the data sets above. Identify a response variable for each.
 
 {{< pagebreak >}}
 
