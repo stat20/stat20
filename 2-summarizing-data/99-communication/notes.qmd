@@ -239,7 +239,7 @@ Humans tend to process hierarchical information better than sequential informati
 ::: {layout-nrow=2 fig-align="center" fig-width=500}
 ![Flat/sequential organization](images/flat.png)
 
-![Hierarchical organization](images/Hierarchical.png)
+![Hierarchical organization](images/hierarchical.png)
 :::
 
 
