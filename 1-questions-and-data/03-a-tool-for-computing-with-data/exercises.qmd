@@ -1,0 +1,12 @@
+---
+title: "Exercises"
+filters:
+  - webr
+---
+
+Practice fitting a linear model!
+
+```{webr-r}
+fit = lm(mpg ~ am, data = mtcars)
+summary(fit)
+```
