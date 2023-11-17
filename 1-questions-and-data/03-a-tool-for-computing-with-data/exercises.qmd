@@ -1,7 +1,12 @@
 ---
 title: "Exercises"
+resources:
+  - webr-serviceworker.js
+  - webr-worker.js
 filters:
   - webr
+webr:
+  show-startup-message: false 
 ---
 
 Practice fitting a linear model!
