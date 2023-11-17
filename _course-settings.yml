@@ -97,6 +97,8 @@ schedule:
         date: 11/16/23
       - title: "Quiz 6"
         date: 11/20/23
+      - href: 2-summarizing-data/_archive/99-communication/notes.qmd
+        date: 11/21/23
         calendar-color: "#c5b3e6"
       - href: 6-prediction/04-case-study-home-prices/notes.qmd
         date: 11/28/23
