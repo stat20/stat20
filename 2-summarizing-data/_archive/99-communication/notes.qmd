@@ -1,20 +1,12 @@
 ---
 title: "Effective Communication"
-subtitle: "Principles and strategies to write, speak, make figures, and program better"
-date: "11/18/2022"
+subtitle: "Principles and strategies to write, speak, make figures, program, and ask for things better"
 image: images/duck-small.png
 format:
-  html:
-    code-fold: true
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
-editor: 
-  markdown: 
-    wrap: sentence
+  html: default
+  pdf: default
 ---
+
 
 <!-- [[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/2446905) [[PDF]{.btn .btn-primary}](notes.pdf) -->
 
