@@ -11,7 +11,6 @@
 *.aux
 *.log
 *.tex
-!_extensions/*/*/*.tex
 
 # Quarto render by-products
 *_files
@@ -23,6 +22,10 @@ _freeze/
 # Quarto projects specific
 /.quarto/
 _site
+
+# Add exceptions for extensions
+!_extensions/*/*/*.tex
+!_extensions/*/*/*.html
 
 # Files derived from _course-settings.yml and scripts
 **/images/tmp
