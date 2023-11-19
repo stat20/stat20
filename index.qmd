@@ -60,32 +60,29 @@ A home base for course staff with:
 ::::
 :::::
 
-<!-- :::::{.content-block} -->
+:::::{.content-block}
 
-<!-- #### Current Material -->
+#### Current Material
 
-<!-- ::::{.grid} -->
-<!-- :::{.g-col-12 .g-col-md-4} -->
+::::{.grid}
+:::{.g-col-12 .g-col-md-4}
 
-<!-- :::{#recent-notes} -->
-<!-- ::: -->
+Monday
 
-<!-- ::: -->
+:::
 
-<!-- :::{.g-col-12 .g-col-md-4} -->
+:::{.g-col-12 .g-col-md-4}
 
-<!-- :::{#recent-labs} -->
-<!-- ::: -->
+Wednesday
 
-<!-- ::: -->
+:::
 
-<!-- :::{.g-col-12 .g-col-md-4} -->
+:::{.g-col-12 .g-col-md-4}
 
-<!-- :::{#recent-ps} -->
-<!-- ::: -->
+Friday
 
-<!-- ::: -->
+:::
 
-<!-- :::: -->
-<!-- ::::: -->
+::::
+:::::
 
