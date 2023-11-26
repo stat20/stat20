@@ -86,7 +86,7 @@ h2 {
     color: $primary;
     font-size: clamp(1.8em, 6vw, 4em);
     line-height: .9;
-    padding-top: 1.1em;
+    padding-top: .6em;
 }
 
 @media (min-width: 900px) {
@@ -115,6 +115,6 @@ h2 {
 }
 #hex {
   order: 1;
-  padding: 1.5em 3em 0em 3em;
+  //padding: 1.5em 3em 0em 3em;
 }
 }
