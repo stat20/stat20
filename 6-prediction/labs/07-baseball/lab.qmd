@@ -21,6 +21,11 @@ Use the following code to load in the Teams dataset from the Lahman database. Re
 ```{r, echo = T}
 library(Lahman)
 data(Teams)
+
+# Convert the Teams object from a base R data frame to a tibble data frame. This improves the formatting for printing the dataframe.
+library(tidyverse)
+Teams <- as.tibble(Teams)
+Teams
 ```
 
 1. Subset the Teams data set to only include years from 2000 to present day (this is the data set that you'll use for the remainder of this lab). What are the dimensions of this filtered data set?
