@@ -64,7 +64,7 @@ coef(m1)
 
 
 :::poll
-What is the predicted probability that probability that a penguin that weighs 4000 g is a female?
+What is the predicted probability that a penguin that weighs 4000 g is a female?
 
 (As a bonus, try sketching this function on a scatterplot!)
 :::
