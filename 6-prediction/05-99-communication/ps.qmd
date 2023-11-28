@@ -1,0 +1,53 @@
+---
+title: "Communication critique"
+format: html
+---
+
+Hand in a single PDF containing your answers to the below.
+
+# Question 1: Critique a piece of communication
+
+Pick some piece of communication and discuss how it uses the ideas in the effective communication notes. This can be anything -- a data visualization, something in our course, or anything you want. Here are some suggestions\
+
+
+- Data visualizations in [Flowing data](https://flowingdata.com/made-by-flowingdata/)
+
+- [AirBnB's pitch deck to venture capitalists](https://www.slideshare.net/PitchDeckCoach/airbnb-first-pitch-deck-editable)
+
+- [stat20 website](https://www.stat20.org/)
+
+- TikTok
+
+
+Answer the following questions
+
+1.   Who is the target audience? What is the communication medium? What is the goal the communication is trying to accomplish?
+
+2.   Discuss how each of the four principles for effective communication are or are not used.
+
+3.   Discuss how each of the strategies for effective communication are or are not used.
+
+4.   Are there ways to improve how the content was communicated?
+
+
+# Question 2: Make a pitch
+
+Write a short pitch about something. Some suggestions
+
+- Pitch a prospective student on taking stat20
+
+- The best topic in Stat20
+
+- Why someone should go to Berkeley instead of Stanford
+
+- Sell investors on funding your startup.
+
+In particular you should include the following:
+
+1. The pitch: make a few slides (e.g. 3-5) or write a short blurb. 
+
+2. Discuss who is your target audience and what are you trying to convince them of?
+
+3. Comment on how you have used a few of the principles and strategies for effective communication.
+
+
