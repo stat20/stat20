@@ -1,7 +1,6 @@
 ---
 title: "Communication critique"
 format: html
-editor: visual
 ---
 
 For each question below do the following:
