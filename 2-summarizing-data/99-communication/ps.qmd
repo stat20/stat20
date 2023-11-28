@@ -3,35 +3,51 @@ title: "Communication critique"
 format: html
 ---
 
-For each question below do the following:
+Hand in a single PDF containing your answers to the below.
 
--   Who is the target audience? What is the communication medium? What is the goal the communication is trying to accomplish?
+# Question 1: Critique a piece of communication
 
--   Discuss how each of the four principles for effective communication are or are not used.
+Pick some piece of communication and discuss how it uses the ideas in the effective communication notes. This can be anything -- a data visualization, something in our course, or anything you want. Here are some suggestions\
 
--   Discuss how each of the strategies for effective communication are or are not used.
 
--   Are there ways to improve how the content was communicated?
+- Data visualizations in [Flowing data](https://flowingdata.com/made-by-flowingdata/)
 
-# Question 1: stat20 website
+- [AirBnB's pitch deck to venture capitalists](https://www.slideshare.net/PitchDeckCoach/airbnb-first-pitch-deck-editable)
 
-Critique our course website, [www.stat20.org/](https://www.stat20.org/) (either the whole website or a specific part e.g. one set of notes/slides, etc).
+- [stat20 website](https://www.stat20.org/)
 
-# Question 2: a data visualization
+- TikTok
 
-Any data visualization. Could be something in our course or anywhere else. Some suggestions\
-\
 
--   Check out [Flowing data](https://flowingdata.com/made-by-flowingdata/), for example
+Answer the following questions
 
-    -   [Where bars out number grocery stores](https://flowingdata.com/2014/05/29/bars-versus-grocery-stores-around-the-world/)
+1.   Who is the target audience? What is the communication medium? What is the goal the communication is trying to accomplish?
 
-    -   [Commonnness of Divorce in America](https://flowingdata.com/2022/06/07/commonness-of-divorce-in-america/)
+2.   Discuss how each of the four principles for effective communication are or are not used.
 
-    -   [Life satisfaction and age](https://flowingdata.com/2022/11/10/life-satisfaction-and-age/)
+3.   Discuss how each of the strategies for effective communication are or are not used.
 
-    -   [Rhythm of food](https://rhythm-of-food.net/)
+4.   Are there ways to improve how the content was communicated?
 
-# Question 3: something else
 
-Choose a piece of public communication. This could be anything e.g. a news article, a website, a visualization, etc. Post a link to the piece so we can see what you are talking about. For example, you could pick [AirBnB's pitch deck to venture capitalists](https://www.slideshare.net/PitchDeckCoach/airbnb-first-pitch-deck-editable).
+# Question 2: Make a pitch
+
+Write a short pitch about something. Some suggestions
+
+- Pitch a prospective student on taking stat20
+
+- The best topic in Stat20
+
+- Why someone should go to Berkeley instead of Stanford
+
+- Sell investors on funding your startup.
+
+In particular you should include the following:
+
+1. The pitch: make a few slides (e.g. 3-5) or write a short blurb. 
+
+2. Discuss who is your target audience and what are you trying to convince them of?
+
+3. Comment on how you have used a few of the principles and strategies for effective communication.
+
+
