@@ -27,18 +27,18 @@ We used this process to build our first simple linear regression model to predic
 
 These are also the same four steps that we will use as we shift in these notes to the task of classification. In a classification task, we seek to predict a response variable that is categorical, very often a two-level categorical variable. Classification models are everywhere: they help doctors determine whether or not a patient has a disease, whether or not an image contains a particular object (say, a person or a cat), and whether or not customer will purchase an item.
 
-The last time you checked your email inbox, you observed the results of another yet very useful classification model: a spam filter. There are many different types classification classification model that we could be used as a spam filter but in this class we'll focus on one of the most common, called logistic regression.
+The last time you checked your email inbox, you observed the results of yet another very useful classification model: a spam filter. There are many different types of classification models that we could use as a spam filter but in this class we'll focus on one of the most common, called logistic regression.
 
 
 ## Example: Spam filters
 
-Email spam, also referred to as junk email or simply spam, is unsolicited messages sent in bulk by email (spamming). The name comes from a Monty Python sketch in which the name of the canned pork product Spam is ubiquitous, unavoidable, and repetitive[^spam]. A *spam filter* is a classification model that determines whether or not a message is spam or not based on properties of that message. Every mainstream email client, including Gmail, has built into it a spam filter to ensure that the messages that get through to the user are genuine messages.
+Email spam, also referred to as junk email or simply spam, is unsolicited messages sent in bulk by email (spamming). The name comes from a Monty Python sketch in which the name of the canned pork product Spam is ubiquitous, unavoidable, and repetitive[^spam]. A *spam filter* is a classification model that determines whether or not a message is spam based on properties of that message. Every mainstream email client, including Gmail, has a spam filter built in to ensure that the messages that get through to the user are genuine messages.
 
 [^spam]:  Definition from Wikipedia, along with the image, by freezelight/flickr.
 
 ### The Data
 
-In order to build a spam filter, we'll need a data set to train our model upon. This data set must have as the unit of observation a single email message, record whether or not the message was spam (the response), and record various features of the message that are associated with being spam (the predictors). Such a data set, with nearly 4000 observations, can be found in the `email` data frame in the `openintro` library.
+In order to build a spam filter, we'll need a data set to train our model on. This data set must have as the unit of observation a single email message, record whether or not the message was spam (the response), and record various features of the message that are associated with being spam (the predictors). Such a data set, with nearly 4000 observations, can be found in the `email` data frame in the `openintro` library.
 
 ```{r}
 #| code-fold: false
@@ -50,7 +50,7 @@ We see in the left most column the response variable, `spam`, coded as 0 when a 
 
 These variables seem like they might be useful in predicting whether or not an email is spam, but take a moment to consider: how were we able to get our hands on data like this?
 
-This particular data set arose from selecting a single email account, saving every single messages that comes in to that address over the course of a month, processing each message to create values for the predictor variables, then visually classifying whether or not the message is spam. That's to say: this data represents a humans' best effort to classify as spam or not[^grad]. Can we build a model that will be able to identify the features that mark a message as spam to be able to automatically classify future messages?
+This particular data set arose from selecting a single email account, saving every single messages that comes in to that address over the course of a month, processing each message to create values for the predictor variables, then visually classifying whether or not the message is spam. That's to say: this data represents a human's best effort to classify spam[^grad]. Can we build a model that will be able to identify the features that mark a message as spam to be able to automatically classify future messages?
 
 [^grad]: This data collection and manual processing was done by a graduate student in statistics at UCLA. One of the many humdrum but valuable tasks asked of graduates students . . .
 
@@ -104,7 +104,7 @@ What we need is a more general framework to fold the strength of these two varia
 
 ## From Linear to Logistic Regression
 
-Let's start taking our existing simple linear regression model from the past few notes and applying it in this classification setting. We can visualize the relationship between `log_num_char` and `spam` using an ordinary scatter plot.
+Let's start by taking our existing simple linear regression model from the past few notes and applying it in this classification setting. We can visualize the relationship between `log_num_char` and `spam` using an ordinary scatter plot.
 
 ![](images/log-1.png){width="300" fig-align="center"}
 
