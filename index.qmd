@@ -46,67 +46,53 @@ A home base for course staff with:
 
 :::::{.content-block}
 
-#### This Week
+#### Week 1
 
-::::{.grid style="--bs-columns: 12"}
+::::{.week-x-box}
 
-:::{.g-col-12 .g-col-md-8 style="grid-gap: 10px; border: 2px solid #000000; border-radius: 10px; padding: 10px"}
+::::{.daily-sched}
 
-:::{.grid style="--bs-columns: 12"}
-
-:::{.g-col-12 .g-col-sm-3}
+:::{.date-col}
 
 Mon Nov. 20
 
 :::
 
-:::{.g-col-12 .g-col-sm-9}
-#### Quiz 1
-:::
-:::
-
----------------------------
-
-:::{.grid style="--bs-columns: 12; align-items: center"}
-:::{.g-col-12 .g-col-sm-3}
-
-Wed\
-Nov. 22
-
+:::{.daily-materials}
+[Quiz 1]{style="font-size: 1.3em"}
 :::
 
-:::{.g-col-12 .g-col-sm-9}
+:::{.date-col}
+Wed Nov. 22
+:::
+
+:::{.daily-materials}
 [Understanding the World]{style="font-size: 1.3em"}
 
 [Notes]{.btn .btn-outline-primary} [PS]{.btn .btn-outline-secondary} [Slides]{.btn .btn-outline-success}
 :::
-:::
 
----------------------------
-
-:::{.grid style="--bs-columns: 12;"}
-:::{.g-col-12 .g-col-sm-3 style="align-self: center"}
-
+:::{.date-col}
 Fri Nov. 24
-
 :::
 
-:::{.g-col-12 .g-col-sm-9}
-#### Taxonomy of Data
+:::{.daily-materials}
+[Taxonomy of Data]{style="font-size: 1.3em"}
 
 [Notes]{.btn .btn-outline-primary} [PS]{.btn .btn-outline-secondary} [Slides]{.btn .btn-outline-success}
 :::
-:::
-:::
 
-:::{.g-col-12 .g-col-md-4 style="grid-gap: 10px; border-radius: 10px; padding: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);"}
-#### Resources
+::::
+
+:::{.resources}
+[Resources]{style="font-size: 1.3em"}
 
 - The first
 - The second
 - The third
 :::
 ::::
+
 :::::
 
 

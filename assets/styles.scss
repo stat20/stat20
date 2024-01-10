@@ -89,6 +89,45 @@ h2 {
     padding-top: .6em;
 }
 
+.week-x-box {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 2fr 1fr;
+  border: 1px solid grey;
+  
+  .daily-sched {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    //row-gap: 1px; 
+    padding: 3px;
+    
+    .date-col {
+      border-bottom: 1px solid grey;
+      padding: 2px;
+    }
+    
+    .daily-materials {
+      border-bottom: 1px solid grey;
+      padding: 2px;
+    }
+    
+    .date-col:nth-last-child(-n+2) {
+      border-bottom: none; /* Removes the border from the last two items (the last row) */
+    }
+
+    .daily-materials:nth-last-child(-n+2) {
+      border-bottom: none; /* Removes the border from the last two items (the last row) */
+    }
+  }
+  
+  .resources {
+    border-left: 1px solid gray;
+    padding: 3px;
+  }
+  
+}
+
+
 @media (min-width: 900px) {
 .content-block {
   margin-left: 50px;
@@ -116,5 +155,22 @@ h2 {
 #hex {
   order: 1;
   //padding: 1.5em 3em 0em 3em;
+}
+
+.week-x-box {
+  grid-template-columns: 1fr;
+  
+  .daily-sched {
+    grid-template-columns: 1fr;
+    
+    .date-col {
+      border-bottom: none
+    }
+  }
+  
+  .resources {
+    border-left: none;
+    border-top: 1px solid gray;
+  }
 }
 }
