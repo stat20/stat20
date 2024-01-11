@@ -45,6 +45,12 @@ $body-color:                $gray-800 !default;
 $font-family-sans-serif: 'Avenir', sans-serif;
 $headings-font-weight:        400 !default;
 
+// Buttons
+
+$btn-padding-y-sm: .25rem;
+$btn-padding-x-sm: .5rem;
+$btn-font-size-sm: .75rem;
+
 
 /* css styles */
 
@@ -93,7 +99,9 @@ h2 {
   display: grid;
   gap: 8px;
   grid-template-columns: 2fr 1fr;
-  border: 1px solid grey;
+  border-radius: 3px;
+  box-shadow: 0 0 0.5rem $gray-300;
+  //filter: drop-shadow(0 0 0.75rem crimson);
   
   .daily-sched {
     display: grid;
@@ -101,27 +109,35 @@ h2 {
     //row-gap: 1px; 
     padding: 3px;
     
-    .date-col {
-      border-bottom: 1px solid grey;
+    .date-cell {
+      border-bottom: 1px solid $gray-300;
       padding: 2px;
     }
     
-    .daily-materials {
-      border-bottom: 1px solid grey;
+    .materials-cell {
+      border-bottom: 1px solid $gray-300;
       padding: 2px;
+      
+      .daily-topic {
+        font-size: 1em;
+      }
+      
+      .PS-btn {
+        
+      }
     }
     
-    .date-col:nth-last-child(-n+2) {
+    .date-cell:nth-last-child(-n+2) {
       border-bottom: none; /* Removes the border from the last two items (the last row) */
     }
 
-    .daily-materials:nth-last-child(-n+2) {
+    .materials-cell:nth-last-child(-n+2) {
       border-bottom: none; /* Removes the border from the last two items (the last row) */
     }
   }
   
   .resources {
-    border-left: 1px solid gray;
+    border-left: 1px solid $gray-300;
     padding: 3px;
   }
   
