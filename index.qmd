@@ -1,12 +1,13 @@
 ---
 toc: false
 page-layout: custom
-listing:
-  id: homepage-readings
-  template: assets/listings/homepage-readings.ejs
-  contents: assets/listings/homepage-readings-items.yml
+theme: ["assets/styles.scss", "assets/_cards.scss"]
 resources:
   - "homepage-readings"
+listing:
+  id: schedule-listing
+  contents: schedule.yml
+  template: assets/listings/schedule.ejs
 ---
 
 :::::{.content-block}
@@ -20,13 +21,6 @@ Introduction to Probability and Statistics
 :::
 
 [Stat 20 UC Berkeley]{.smallcaps}
-
-For information about the course, please [see the syllabus](syllabus.qmd).
-
-
-::: {#homepage-readings}
-:::
-
 
 :::
 
@@ -43,49 +37,22 @@ A home base for course staff with:
 - [Documentation](docs/index.qmd) of the structure of the curriculum and website.
 
 :::
-
-
-<!-- This page features a data visualization that is building itself piece by piece each day until the Plenary Lecture on Tuesday 9/27 at 7 pm. When you have a good guess of what the visualization is depicting, enter your guess [here](https://docs.google.com/forms/d/e/1FAIpQLSck6zeezgVXRjO1WpDaS0rQ5kOHKyfhiK5wiRNbEjqeSWnhHg/viewform?usp=sf_link). Each person may submit only one guess and the first to guess correctly wins the puzzle. The winner will be announced at the start of the Plenary Lecture. -->
-
-<!-- Each day, more information will be added to the visualization. The longer you wait, the better your guess will be, but the greater the risk that someone else has already guessed the correct answer. Good luck! -->
-
 :::
 
-:::{#hex .g-col-12 .g-col-md-6 style="margin: 0em 1em 0em 1em"}
+:::{#hex .g-col-12 .g-col-md-6 .text-center style="margin: 0em 1em 0em 1em"}
 
 \
 
-![](assets/stat20-hex.png){fig-alt="Hex logo of Stat 20 showing a golden bear."}
+![](assets/stat20-hex.png){fig-alt="Hex logo of Stat 20 showing a golden bear." .img-fluid width=250}
 :::
 ::::
 :::::
 
-<!-- :::::{.content-block} -->
+:::::{.content-block}
 
-<!-- #### Current Material -->
+:::{#schedule-listing}
+:::
 
-<!-- ::::{.grid} -->
-<!-- :::{.g-col-12 .g-col-md-4} -->
+:::::
 
-<!-- :::{#recent-notes} -->
-<!-- ::: -->
-
-<!-- ::: -->
-
-<!-- :::{.g-col-12 .g-col-md-4} -->
-
-<!-- :::{#recent-labs} -->
-<!-- ::: -->
-
-<!-- ::: -->
-
-<!-- :::{.g-col-12 .g-col-md-4} -->
-
-<!-- :::{#recent-ps} -->
-<!-- ::: -->
-
-<!-- ::: -->
-
-<!-- :::: -->
-<!-- ::::: -->
 
