@@ -96,7 +96,7 @@ The software that we'll be using for our data analysis is the free and open-sour
 
 #### bCourses
 
-We will use bCourses to disseminate announcements for the entire class, such as exact dates for your final exam. 
+We will use bCourses to disseminate announcements for the entire class, such as final exam information. 
 
 #### Discussion forum
 
@@ -154,7 +154,7 @@ The *individual* component will last ~25 minutes. You are allowed one, A4, one-s
 
 #### Exam
 
-The final exam will be held in person during finals week. The current time and date is to be determined.  
+The final exam will be held in person during finals week. The time and date is **Thursday, May 9 from 7-10pm** (apologies).
 
 #### Grading
 
@@ -210,7 +210,7 @@ The following examples are **not** allowed:
 - Accessing and submitting solutions to assignments from other students distributed as above. This includes copying written answers from other students and slightly modifying the language to differentiate it.
 - Googling for complete problem solutions.
 - Working on the reading questions or individual quizzes in collaboration with other people or resources. These assignments must reflect individual work.
-- Submitting work on an exam that reflects consultation with outside resources or other people. Exams must reflect individual work.
+- Submitting work on an quiz or final that reflects consultation with outside resources or other people. These assessments must reflect individual work.
 
 If you have questions about the boundaries of the policy, please ask. We’re always happy to clarify.
 
@@ -235,9 +235,15 @@ And again, if you have questions about the boundaries of the collaboration polic
 
 3. Is attendance required?
    
-   No, but it is difficult to succeed in this course if you are not regularly attending class. Class sessions are designed to be an effective and efficient format to make progress on important assignments. Plus, it's a great way to meet your fellow students and learn from one another!
+   No, but it is difficult to succeed in this course if you are not regularly attending class. Class sessions are designed to be an effective and efficient format to make progress on important assignments. Plus, it's a great way to meet your fellow students and learn from one another. This class is very unique in that regard. 
    
-4. What if I join the class late?
+   If you can't attend due to a religious observance,  athletic competition, or something similarly important, don't worry. Just reach out to us via a private Ed post, and we can let you know what to keep tabs on during the time you're away.
+   
+4. Are time conflicts allowed? 
+
+  Stat 20 does not allow students to enroll with time conflicts. 
+   
+5. What if I join the class late?
 
    If you join the class within the first two weeks, read the syllabus and lecture notes, take a look at Gradescope to get a sense of any assignments that may have already passed, and visit office hours to check that you're up to date with things. The first two weeks of material are very important so you must be able to make up assignments.
    
@@ -245,7 +251,7 @@ And again, if you have questions about the boundaries of the collaboration polic
    
 ### Campus Resources
 
-If you ever need someone to talk to about anything that you're going through on campus, please feel to reach out to the instructors. For some topics, the tutors might be an even better resource because they are students just like you. Tutors can also tell you what being an Academic Student Employee (ASE) is like. 
+If you ever need someone to talk to about anything that you're going through, please feel to reach out to the instructors. For some topics, the tutors might be an even better resource because they are students just like you. Tutors can also tell you what being an Academic Student Employee (ASE) is like. 
 
 With regards to reports of sexual misconduct/violence/assault, you may speak with us as well, but know that we will need to report our discussion to the Title IX officer. This is detailed below.
 
