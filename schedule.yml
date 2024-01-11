@@ -1,6 +1,7 @@
 - week: 1
   days:
     - display-date: "Aug 1"
+      date: 8/1/23
       topic: "Understanding the World"
       items:
         - type: Notes
@@ -10,6 +11,7 @@
         - type: PS
           href: foo/ps.qmd
     - display-date: "Aug 3"
+      date: 8/3/23
       topic: "Taxonomy of Data"
       items:
         - type: Notes
@@ -21,6 +23,7 @@
 - week: 2
   days:
     - display-date: "Aug 4"
+      date: 8/4/23
       topic: "A Tool for Computing with Data"
       items:
         - type: Notes
@@ -30,6 +33,7 @@
         - type: PS
           href: foo/ps.qmd
     - display-date: "Aug 6"
+      date: 8/6/23
       topic: "Summarizing Categorical Data"
       items:
         - type: Notes
@@ -41,6 +45,7 @@
 - week: 3
   days:
     - display-date: "Aug 8"
+      date: 8/8/23
       topic: "Summarizing Numerical Data"
       items:
         - type: Notes
@@ -50,6 +55,7 @@
         - type: PS
           href: foo/ps.qmd
     - display-date: "Aug 10"
+      date: 8/10/23
       topic: "A Grammar of Graphics"
       items:
         - type: Notes
