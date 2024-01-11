@@ -20,6 +20,10 @@
           href: foo2/slides.qmd
         - type: PS
           href: foo2/ps.qmd
+    resources:
+      - Welcome to class!
+      - Check out this blog post on X
+      - More practice with ggplot!
 - week: 2
   days:
     - display-date: "Aug 4"
