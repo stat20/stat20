@@ -1,0 +1,37 @@
+
+```{=html}
+
+<% for (const week of items) { %>
+  <h4>Week <%= week.week %></h4>
+  <div class="week-x-box">
+  <div class="daily-sched">
+
+  <% for (const day of week.days) { %>
+    <div class="date-cell">
+    <p><%= day['display-date'] %></p>
+    </div>
+    <div class="materials-cell">
+    <p><span class="daily-topic"><%= day.topic %></span>
+    <br>
+    
+    <% for (const item of day.items) { %>
+      <span class="btn btn-primary btn-sm"><%= item.type %></span>
+    <% } %>
+    
+    </p>
+    </div>
+    
+  <% } %>
+  
+  </div>
+  <div class="resources">
+  <p><span style="font-size: 1.3em">Resources</span></p>
+  <ul>
+  <li>The first</li>
+  <li>The second</li>
+  <li>The third</li>
+  </ul>
+  </div>
+  </div>
+<% } %>
+```
