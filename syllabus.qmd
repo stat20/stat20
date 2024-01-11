@@ -28,7 +28,7 @@ If you are concerned about classroom environment issues created by other student
 
 ### Mode of Instruction
 
-This course is structured as a flipped class, meaning that you'll first be encountering new concepts in statistics and data science *outside* of class. Class time is dedicated to expanding on the work you've done outside of class by working through questions solo, in groups, and as a class. 
+This course is structured as a flipped class, meaning that you will first be encountering new concepts in statistics and data science *outside* of class. Class time is dedicated to expanding on the work you've done outside of class by working through questions solo, in groups, and as a class. 
 
 <!--
 The reason that this course is structured in this manner is that applied data science is a complex field that unites scientific thinking, computing, mathematics, and an understanding of the context of the data. We will be able to tackle more interesting and challenging questions if we make room during class time to work on them while we're all in the same place.
