@@ -4,6 +4,10 @@ page-layout: custom
 theme: ["assets/styles.scss", "assets/_cards.scss"]
 resources:
   - "homepage-readings"
+listing:
+  id: schedule-listing
+  contents: schedule.yml
+  template: assets/listings/schedule.ejs
 ---
 
 :::::{.content-block}
@@ -46,52 +50,8 @@ A home base for course staff with:
 
 :::::{.content-block}
 
-#### Week 1
-
-::::{.week-x-box}
-
-::::{.daily-sched}
-
-:::{.date-col}
-
-Mon Nov. 20
-
+:::{#schedule-listing}
 :::
-
-:::{.daily-materials}
-[Quiz 1]{style="font-size: 1.3em"}
-:::
-
-:::{.date-col}
-Wed Nov. 22
-:::
-
-:::{.daily-materials}
-[Understanding the World]{style="font-size: 1.3em"}
-
-[Notes]{.btn .btn-outline-primary} [PS]{.btn .btn-outline-secondary} [Slides]{.btn .btn-outline-success}
-:::
-
-:::{.date-col}
-Fri Nov. 24
-:::
-
-:::{.daily-materials}
-[Taxonomy of Data]{style="font-size: 1.3em"}
-
-[Notes]{.btn .btn-outline-primary} [PS]{.btn .btn-outline-secondary} [Slides]{.btn .btn-outline-success}
-:::
-
-::::
-
-:::{.resources}
-[Resources]{style="font-size: 1.3em"}
-
-- The first
-- The second
-- The third
-:::
-::::
 
 :::::
 
