@@ -2,7 +2,7 @@
   days:
     - display-date: "Jan 16"
       date: 1/16/23
-      topic: "Intro and Syllabus; Types of Claims"
+      topic: "Intro, Syllabus and Types of Claims"
       items:
         - type: Notes
           href: foo/notes.qmd
