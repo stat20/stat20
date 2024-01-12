@@ -150,7 +150,7 @@ If you were to put the data from these (8 x 8 grayscale) images into a *data fra
 
 ## A note on variables
 
-There are three things that the word variable could be referring to:
+There are three things that "variable" could be referring to:
 
 :::incremental
 1. a *phenomenon*
