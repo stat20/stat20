@@ -1,8 +1,8 @@
 - week: 1
   days:
-    - display-date: "Aug 1"
-      date: 8/1/23
-      topic: "Understanding the World"
+    - display-date: "Jan 16"
+      date: 1/16/23
+      topic: "Intro and Syllabus; Types of Claims"
       items:
         - type: Notes
           href: foo/notes.qmd
@@ -10,8 +10,8 @@
           href: foo/slides.qmd
         - type: PS
           href: foo/ps.qmd
-    - display-date: "Aug 3"
-      date: 8/3/23
+    - display-date: "Jan 18"
+      date: 1/18/23
       topic: "Taxonomy of Data"
       items:
         - type: Notes
@@ -21,14 +21,14 @@
         - type: PS
           href: foo2/ps.qmd
   resources:
-    - Welcome to class!
-    - Check out this blog post on X
-    - More practice with ggplot!
+    - Taxonomy of Data Reading Notes
+    - PS1 Megathread
+    - PS2 Megathread
 - week: 2
   days:
-    - display-date: "Aug 4"
-      date: 8/4/23
-      topic: "A Tool for Computing with Data"
+    - display-date: "Jan 23"
+      date: 1/23/23
+      topic: "Summarizing Categorical Data"
       items:
         - type: Notes
           href: foo/notes.qmd
@@ -36,9 +36,9 @@
           href: foo/slides.qmd
         - type: PS
           href: foo/ps.qmd
-    - display-date: "Aug 6"
-      date: 8/6/23
-      topic: "Summarizing Categorical Data"
+    - display-date: "Jan 25"
+      date: 1/25/23
+      topic: "Summarizing Numerical Data"
       items:
         - type: Notes
           href: foo2/notes.qmd
@@ -48,9 +48,9 @@
           href: foo2/ps.qmd
 - week: 3
   days:
-    - display-date: "Aug 8"
-      date: 8/8/23
-      topic: "Summarizing Numerical Data"
+    - display-date: "Jan 30"
+      date: 1/30/23
+      topic: "Data Pipelines"
       items:
         - type: Notes
           href: foo/notes.qmd
@@ -58,13 +58,245 @@
           href: foo/slides.qmd
         - type: PS
           href: foo/ps.qmd
-    - display-date: "Aug 10"
-      date: 8/10/23
-      topic: "A Grammar of Graphics"
+    - display-date: "Feb 1"
+      date: 2/1/23
+      topic: "Grammar of Graphics"
       items:
         - type: Notes
           href: foo2/notes.qmd
         - type: Slides
           href: foo2/slides.qmd
         - type: PS
-          href: foo2/ps.qm
+          href: foo2/ps.qmd
+- week: 4
+  days:
+    - display-date: "Feb 6"
+      date: 2/6/23
+      topic: "Intro to Probability"
+      items:
+        - type: Notes
+          href: foo/notes.qmd
+        - type: Slides
+          href: foo/slides.qmd
+        - type: PS
+          href: foo/ps.qmd
+    - display-date: "Feb 8"
+      date: 2/8/23
+      topic: "Conditional Probability"
+      items:
+        - type: Notes
+          href: foo2/notes.qmd
+        - type: Slides
+          href: foo2/slides.qmd
+        - type: PS
+          href: foo2/ps.qmd
+- week: 5
+  days:
+    - display-date: "Feb 13"
+      date: 2/13/23
+      topic: "Probability Distributions; Random Variables"
+      items:
+        - type: Notes
+          href: foo/notes.qmd
+        - type: Slides
+          href: foo/slides.qmd
+        - type: PS
+          href: foo/ps.qmd
+    - display-date: "Feb 15"
+      date: 2/15/23
+      topic: "Expected Value and Variance"
+      items:
+        - type: Notes
+          href: foo2/notes.qmd
+        - type: Slides
+          href: foo2/slides.qmd
+        - type: PS
+          href: foo2/ps.qmd
+- week: 6
+  days:
+    - display-date: "Feb 20"
+      date: 2/20/23
+      topic: "Normal Approximation"
+      items:
+        - type: Notes
+          href: foo/notes.qmd
+        - type: Slides
+          href: foo/slides.qmd
+        - type: PS
+          href: foo/ps.qmd
+    - display-date: "Feb 22"
+      date: 2/22/23
+      topic: "Scope, Bias and Variability"
+      items:
+        - type: Notes
+          href: foo2/notes.qmd
+        - type: Slides
+          href: foo2/slides.qmd
+        - type: PS
+          href: foo2/ps.qmd
+- week: 7
+  days:
+    - display-date: "Feb 27"
+      date: 2/27/23
+      topic: "Confidence Intervals"
+      items:
+        - type: Notes
+          href: foo/notes.qmd
+        - type: Slides
+          href: foo/slides.qmd
+        - type: PS
+          href: foo/ps.qmd
+    - display-date: "Feb 29"
+      date: 2/29/23
+      topic: "Intro to Hypothesis Tests"
+      items:
+        - type: Notes
+          href: foo2/notes.qmd
+        - type: Slides
+          href: foo2/slides.qmd
+        - type: PS
+          href: foo2/ps.qmd
+- week: 8
+  days:
+    - display-date: "Mar 5"
+      date: 3/5/23
+      topic: "Types of Hypothesis Tests"
+      items:
+        - type: Notes
+          href: foo/notes.qmd
+        - type: Slides
+          href: foo/slides.qmd
+        - type: PS
+          href: foo/ps.qmd
+    - display-date: "Mar 7"
+      date: 3/7/23
+      topic: "Wrong By Design"
+      items:
+        - type: Notes
+          href: foo2/notes.qmd
+        - type: Slides
+          href: foo2/slides.qmd
+        - type: PS
+          href: foo2/ps.qmd
+- week: 9
+  days:
+    - display-date: "Mar 12"
+      date: 3/12/23
+      topic: "Simple Linear Regression"
+      items:
+        - type: Notes
+          href: foo/notes.qmd
+        - type: Slides
+          href: foo/slides.qmd
+        - type: PS
+          href: foo/ps.qmd
+    - display-date: "Mar 14"
+      date: 3/14/23
+      topic: "Multiple Linear Regression"
+      items:
+        - type: Notes
+          href: foo2/notes.qmd
+        - type: Slides
+          href: foo2/slides.qmd
+        - type: PS
+          href: foo2/ps.qmd
+- week: 10
+  days:
+    - display-date: "March 19"
+      date: 3/19/23
+      topic: "The Method of Least Squares"
+      items:
+        - type: Notes
+          href: foo/notes.qmd
+        - type: Slides
+          href: foo/slides.qmd
+        - type: PS
+          href: foo/ps.qmd
+- week: 11
+  days:
+    - display-date: "Apr 2"
+      date: 4/2/23
+      topic: "Evaluating and Improving Predictions"
+      items:
+        - type: Notes
+          href: foo/notes.qmd
+        - type: Slides
+          href: foo/slides.qmd
+        - type: PS
+          href: foo/ps.qmd
+    - display-date: "Apr 4"
+      date: 4/4/23
+      topic: "Overfitting"
+      items:
+        - type: Notes
+          href: foo2/notes.qmd
+        - type: Slides
+          href: foo2/slides.qmd
+        - type: PS
+          href: foo2/ps.qmd
+- week: 12
+  days:
+    - display-date: "Apr 9"
+      date: 4/9/23
+      topic: "Logistic Regression I"
+      items:
+        - type: Notes
+          href: foo/notes.qmd
+        - type: Slides
+          href: foo/slides.qmd
+        - type: PS
+          href: foo/ps.qmd
+    - display-date: "Apr 11"
+      date: 4/11/23
+      topic: "Logistic Regression II"
+      items:
+        - type: Notes
+          href: foo2/notes.qmd
+        - type: Slides
+          href: foo2/slides.qmd
+        - type: PS
+          href: foo2/ps.qmd
+- week: 13
+  days:
+    - display-date: "Apr 16"
+      date: 4/16/23
+      topic: "Causality I"
+      items:
+        - type: Notes
+          href: foo/notes.qmd
+        - type: Slides
+          href: foo/slides.qmd
+        - type: PS
+          href: foo/ps.qmd
+    - display-date: "Apr 18"
+      date: 4/18/23
+      topic: "Causality II"
+      items:
+        - type: Notes
+          href: foo2/notes.qmd
+        - type: Slides
+          href: foo2/slides.qmd
+        - type: PS
+          href: foo2/ps.qmd
+- week: 14
+  days:
+    - display-date: "Apr 23"
+      date: 4/23/23
+      topic: "Causality III"
+      items:
+        - type: Notes
+          href: foo/notes.qmd
+        - type: Slides
+          href: foo/slides.qmd
+        - type: PS
+          href: foo/ps.qmd
+    - display-date: "Apr 25"
+      date: 4/25/23
+      topic: "Causality IV"
+      items:
+        - type: Notes
+          href: foo2/notes.qmd
+        - type: Slides
+          href: foo2/slides.qmd
+        - type: PS
+          href: foo2/ps.qmd
