@@ -376,6 +376,13 @@ countdown::countdown(3, top = 0)
 
 [^1]: The positivity rate is the number of positive tests over the total number of tests.
 
+# Break
+
+```{r}
+countdown::countdown(5, top = 0)
+```
+
+
 # Course Structure
 
 ## {data-menu-title="Flipped Classroom 1" background-image="images/stat20-sketch-19.jpg" background-size="contain" transition="none"}
@@ -473,6 +480,106 @@ Visit [stat20.datahub.berkeley.edu](https://stat20.datahub.berkeley.edu)! We wil
 -   Demo the four parts of RStudio
 -   Show you how to work with a Quarto Document
 -   Walk through the first few questions of Lab 0
+
+## Components of RStudio
+
+1. Console
+
+2. Environment
+
+3. Editor
+
+4. File Directory
+
+> Now we are going to switch over to RStudio to understand these 4 components a bit better.
+
+## Components of RStudio
+
+1. **Console**: Where the live R session lives. Type commands into the prompt `>` and press enter/return to run them. The Console is in the lower-left pane.
+
+2. **Environment**: The space that keeps track of all of the data and objects that you have created or loaded and have access to. Found in the upper right pane.
+
+3. **Editor**: Used to compose and edit text (.qmd files) and R code (.r files). Found in the upper left pane.
+
+4. **File Directory**: Used to navigate between your files/folders on your Rstudio account. Can move, copy, rename, delete, etc. Found in the lower right pane.
+
+
+## R as a calculator
+
+R allows all of the standard arithmetic operations.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Addition**
+```{r}
+#| echo: true
+1 + 2
+```
+
+**Subtraction**
+```{r}
+#| echo: true
+1 - 2
+```
+:::
+
+::: {.column width="50%"}
+**Multiplication**
+```{r}
+#| echo: true
+1 * 2 
+```
+
+**Division**
+```{r}
+#| echo: true
+1 / 2
+```
+:::
+
+::::
+
+
+## R as a calculator, cont.
+
+R allows all of the standard arithmetic operations.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Exponents**
+```{r}
+#| echo: true
+2 ^ 3
+```
+:::
+
+::: {.column width="50%"}
+**Parentheses for Order of Ops.**
+```{r}
+#| echo: true
+2 ^ 3 + 1
+```
+
+```{r}
+#| echo: true
+2 ^ (3 + 1)
+```
+:::
+
+::::
+
+## Your turn
+
+:::{.poll}
+What is three times one point two raised to the quantity thirteen divided six?
+:::
+
+```{r}
+countdown::countdown(minutes = 1, top = 0)
+```
+
 
 ## Looking forward
 
