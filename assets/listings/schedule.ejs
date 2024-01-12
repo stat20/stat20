@@ -15,7 +15,12 @@
     <br>
     
     <% for (const item of day.items) { %>
-      <a href="<%= item.href %>" class="btn btn-primary btn-sm"><%= item.type %></a>
+      <% if (!item.ignore){ %>
+        <a href="<%= item.href %>" class="btn btn-success btn-sm"><%= item.type %></a>
+      <% } else{ %>  
+        <a href="<%= item.href %>" class="btn btn-secondary btn-sm disabled"><%= item.type %></a>
+      <% } %>
+      
     <% } %>
     
     </p>
@@ -25,7 +30,7 @@
   
   </div>
   <div class="resources">
-  <p><span style="font-size: 1.3em">Resources</span></p>
+  <p><span">Resources</span></p>
   <ul>
   <li>The first</li>
   <li>The second</li>
