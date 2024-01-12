@@ -1,0 +1,49 @@
+---
+title: "Lab 0: Getting Started with R, RStudio and Quarto"
+image: images/r-image.png
+format: html
+sidebar: false
+---
+
+Complete the following questions in a Quarto document (.qmd). Render this document to HTML, print the corresponding HTML to PDF, and then submit the final PDF to Gradescope by **Tuesday, Janaury 23rd at 9am**!
+
+## Question 1
+
+> Where are you from or where would you like to visit?
+
+### part a
+
+Tell us the county and state that you are from. If you are from outside the United States, provide the name of a county and state that you would like to visit. This text needs to show up as a header!
+
+### part b
+
+Copy 1-3 paragraphs about this place from its Wikipedia page, and cite the page using a hyperlink.
+
+### part c
+
+Write an enumerated list of your top three favorite things about this place.
+
+## Question 2
+
+### part a
+
+In an R chunk, perform any calculation that results in the number 20. Make sure the number 20 prints out to the screen. 
+
+### part b
+
+Create the data frame of **Problem Set 1, Question 3** using R code and save it into the object `my_classmates`. 
+
+## Question 3
+
+Survey respondents are often asked questions containing answer choices belonging to what is called *Likert Scale*. 
+
+### part a
+
+Visit the [Wikipedia page for the Likert Scale](https://en.wikipedia.org/wiki/Likert_scale) and create a vector containing the options within a typical, five-level Likert Scale. 
+
+### part b
+
+Then, use the `factor()` function to sort the levels of the vector you made in **part a** from decreasing to increasing.
+
+
+

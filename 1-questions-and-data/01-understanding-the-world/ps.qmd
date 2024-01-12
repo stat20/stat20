@@ -1,14 +1,34 @@
 ---
-title: "Course Surveys"
-subtitle: "PS"
-format: stat20handout-pdf
+title: ""
+format: pdf
 ---
 
-Welcome to Stat 20!
+\thispagestyle{empty} 
 
-Please fill out the following two surveys:
+Name:\
 
-1. [Welcome Survey](https://forms.gle/rQJ2bGTA95WAv2St7)
-1. [Data Collection](https://forms.gle/mcC7n91dMAj6w9Kh7)
+Contact info:\
 
-Once you've completed them, please go to corresponding assignment on Gradescope to attest having completed them.
+Hometown:\
+
+\# Siblings + Pets\
+
+\# Semesters in college:\
+
+Farthest distance from campus over the break:\
+
+\vspace{5cm}
+
+* * *
+
+Name:\
+
+Contact info:\
+
+Hometown:\
+
+\# Siblings + Pets\
+
+\# Semesters in college:\
+
+Farthest distance from campus over the break:\

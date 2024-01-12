@@ -1,5 +1,6 @@
 ---
-title: "Understanding the World with Data"
+title: "Types of Claims"
+subtitle: "with Introductions and Syllabus"
 format: 
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
@@ -22,22 +23,23 @@ format:
 
 ## Agenda
 
-1. Introductions
-2. Data Science Lifecycle
-   - What's going on here?
-3. Why we're here
-   - Types of Claims
-   - Data First vs Question First
-3. Course Structure
-   - Flipped Classroom
-   - Ed Discussion Forum
-   - Syllabus
+-   Introductions
+-   The Data Science Lifecycle
+-   Types of Claims with Practice
+-   Course Structure and Syllabus
+-   Intro to R and RStudio
+-   Looking forward
 
+# Introductions
+
+-   Let us first introduce ourselves!
+   
+   
 # {{< fa pen-to-square >}} Introductions {background-color="#00403d"}
 
-- In groups of 3,  take turns introducing yourselves to one another by providing the info listed on the handout (your name, hometown, etc).
+- In groups of 3, take turns introducing yourselves to one another by providing the info listed on the handout (your name, hometown, etc).
 
-- Each person should finish with a handout filled-in with info on their groupmates.
+- Each person should finish with a handout filled-in with info on their groupmates. *Make sure you save this for later this week!*
 
 ```{r}
 countdown::countdown(5, top = 0)
@@ -128,9 +130,37 @@ the World
 Data
 :::
 
-# Why we're here
+## Takeaways from this exercise
 
-## {data-menu-title="Claims 1" transition="none"}
+We can call the process of:
+
+-   having a question, 
+
+. . . 
+
+-   finding data to investigate that question,
+
+. . .
+
+-   reaching a conclusion, 
+
+. . . 
+
+-   and then thinking of a next step which starts everything over again
+
+. . . 
+
+
+-   the *data science lifecycle*.
+  
+
+This lifecycle involves **constructing and critiquing claims made using data**: which is the main goal of our course!
+
+# Types of Claims
+
+## Course Goal {data-menu-title="Claims 1" transition="none"}
+
+. . .
 
 :::{.bigadage style="text-align: center"}
 To learn to critique and construct\
@@ -179,181 +209,7 @@ To learn to [critique]{style="color: red"} and [construct]{style="color: red"}\
 claims made using data.
 :::
 
-
-## From Questions to Data
-
-. . .
-
-> Is the incidence of COVID on campus going up or down?
-
-. . .
-
-:::poll
-Will this question be answered by a summary, a prediction, a generalization, or a causal claim?
-:::
-
-. . . 
-
-\
-
-Also discuss: what type of *data* can help answer this question? Consider:
-
-- Which different people / institutions collect relevant data
-- Is certain data not available? Why not?
-
-```{r}
-countdown::countdown(6, top = 0)
-```
-
-
-## From Data to Claims
-
-One source of data:
-
-\
-
-![](images/ucb-dashboard.png){fig-align=center}
-
-. . .
-
-> "The following dashboard provides information on COVID-19 testing performed at University Health Services or through the PCR Home Test Vending Machines on campus. It does not capture self-reported positive tests. It provides a look at new cases and trends, at a glance."
-
-
-## {data-menu-title="Positivity Rates"}
-
-![](images/ucb-covid.png){width=1000 fig-align=center}
-
-:::{.poll}
-Formulate one claim that is supported by this data[^1].
-:::
-
-```{r}
-countdown::countdown(3, top = 0)
-```
-
-[^1]: The positivity rate is the number of positive tests over the total number of tests.
-
-# Course Structure
-
-## {data-menu-title="Flipped Classroom 1" background-image="images/stat20-sketch-19.jpg" background-size="contain" transition="none"}
-
-## {data-menu-title="Flipped Classroom 2" background-image="images/stat20-sketch-20.jpg" background-size="contain" transition="none"}
-
-## {data-menu-title="Flipped Classroom 3" background-image="images/stat20-sketch-21.jpg" background-size="contain" transition="none"}
-
-## {data-menu-title="Flipped Classroom 4" background-image="images/stat20-sketch-22.jpg" background-size="contain" transition="none"}
-
-## {data-menu-title="Flipped Classroom 5" background-image="images/stat20-sketch-23.jpg" background-size="contain" transition="none"}
-
-## {data-menu-title="Flipped Classroom 6" background-image="images/stat20-sketch-24.jpg" background-size="contain" transition="none"}
-
-\
-\
-
-:::: {.columns}
-
-::: {.column width="8%"}
-
-:::
-
-::: {.column width="37%" .fragment}
-- Read lecture notes
-- Work through reading questions
-:::
-
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="37%" .fragment}
-- Work through questions solo / in groups / as a class
-- Make progress on assignments
-:::
-
-::: {.column width="8%"}
-
-:::
-
-::::
-
-## {data-menu-title="Course Website"}
-
-:::{style="text-align: center"}
-All of the materials and links for the course can be found at:
-
-[[www.stat20.org](https://www.stat20.org)]{style="font-size: 1.5em"}
-:::
-
-![](images/website-screenshot.png){fig-align=center}
-
-
-# {{< fa pen-to-square >}} Syllabus {background-color="#00403d"}
-
-Take 4 minutes to read through the syllabus and jot down at least one question that you have.
-
-:::{style="font-size: 1.5em; text-align: center"}
-[www.stat20.org/syllabus.html](https://www.stat20.org/syllabus.html)
-:::
-
-![](images/syllabus-screenshot.png){fig-align=center width="1000"}
-
-```{r}
-#| echo: false
-countdown::countdown(4, top = 0)
-```
-
-## Ed Discussion Forum
-
-:::: {.columns}
-
-::: {.column width="50%"}
-![](images/ed.png)
-:::
-
-::: {.column width="50%" .fragment}
-- Forum to ask questions, answer questions, and course announcements
-- Please answer each other's questions!
-
-:::{.poll .fragment}
-Practice by asking/answering a question on the "Syllabus Discussion" thread on Ed via the link at the top right of <https://www.stat20.org>.
-:::
-:::
-
-::::
-
-## Looking forward
-
-:::: {.columns}
-
-::: {.column width="50%" .incremental}
-- Read the lecture notes for "Taxonomy of Data", posted Friday 5pm.
-- Leave a comment/question on "Taxonomy of Data" thread on Ed.
-- Answer the Reading Questions on Gradescope by 11:59 pm Monday
-- Problem Set 1, posted Friday 5pm, due next Tuesday 9 am
-  - Stay tuned for Ed post with links to survey
-:::
-
-::: {.column width=20%}
-:::
-
-::: {.column width="30%" .fragment}
-![](https://media.giphy.com/media/XVuBomL9gXMTC/giphy.gif){fig-alt="Animated gif of a shoebill bird."}
-:::
-
-::::
-
-:::{.notes}
-- Readings will be posted Weds night
-- 
-:::
-
-# Making Claims with Data
-
-##
-
-![](images/claims.png){width=550 fig-align="center"}
-
-##
+## 
 
 :::{.columns}
 
@@ -448,5 +304,199 @@ Data from a randomized controlled experiment shows that taking a new antibiotic 
 *Example*\
 Based on reading the news and the price of Uber's stock today, I predict that Uber's stock price will go up 1.2% tomorrow.
 
+# Practice Concept Questions
+
+## Practice Concept Questions
+
+We will now re-examine a few pathways in the *data science lifecycle*:
+
+-   Forming a question -> collecting data
+
+. . . 
+
+-   Collecting data -> making a claim
+
+. . . 
+
+:::poll
+Now, visit the PollEverywhere site provided by your instructor to answer the following questions.
+:::
 
 
+## From Questions to Data
+
+. . .
+
+> Is the incidence of COVID on campus going up or down?
+
+. . .
+
+:::poll
+Will this question be answered by a summary, a prediction, a generalization, or a causal claim?
+:::
+
+. . . 
+
+\
+
+Also discuss: what type of *data* can help answer this question? Consider:
+
+- Which different people / institutions collect relevant data
+- Is certain data not available? Why not?
+
+```{r}
+countdown::countdown(6, top = 0)
+```
+
+
+## From Data to Claims
+
+One source of data:
+
+\
+
+![](images/ucb-dashboard.png){fig-align=center}
+
+. . .
+
+> "The following dashboard provides information on COVID-19 testing performed at University Health Services or through the PCR Home Test Vending Machines on campus. It does not capture self-reported positive tests. It provides a look at new cases and trends, at a glance."
+
+
+## {data-menu-title="Positivity Rates"}
+
+![](images/ucb-covid.png){width=1000 fig-align=center}
+
+:::{.poll}
+Formulate one claim that is supported by this data[^1].
+:::
+
+```{r}
+countdown::countdown(3, top = 0)
+```
+
+[^1]: The positivity rate is the number of positive tests over the total number of tests.
+
+# Course Structure
+
+## {data-menu-title="Flipped Classroom 1" background-image="images/stat20-sketch-19.jpg" background-size="contain" transition="none"}
+
+## {data-menu-title="Flipped Classroom 2" background-image="images/stat20-sketch-20.jpg" background-size="contain" transition="none"}
+
+## {data-menu-title="Flipped Classroom 3" background-image="images/stat20-sketch-21.jpg" background-size="contain" transition="none"}
+
+## {data-menu-title="Flipped Classroom 4" background-image="images/stat20-sketch-22.jpg" background-size="contain" transition="none"}
+
+## {data-menu-title="Flipped Classroom 5" background-image="images/stat20-sketch-23.jpg" background-size="contain" transition="none"}
+
+## {data-menu-title="Flipped Classroom 6" background-image="images/stat20-sketch-24.jpg" background-size="contain" transition="none"}
+
+\
+\
+
+:::: {.columns}
+
+::: {.column width="8%"}
+
+:::
+
+::: {.column width="37%" .fragment}
+- Read lecture notes
+- Work through reading questions
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="37%" .fragment}
+- Work through concept questions solo / in groups / as a class
+- Make progress on assignments
+:::
+
+::: {.column width="8%"}
+
+:::
+
+::::
+
+## {data-menu-title="Course Website"}
+
+:::{style="text-align: center"}
+All of the materials and links for the course can be found at:
+
+[[www.stat20.org](https://www.stat20.org)]{style="font-size: 1.5em"}
+:::
+
+![](images/website-screenshot.png){fig-align=center}
+
+
+# {{< fa pen-to-square >}} Syllabus {background-color="#00403d"}
+
+Take 4 minutes to read through the syllabus and jot down at least one question that you have.
+
+:::{style="font-size: 1.5em; text-align: center"}
+[www.stat20.org/syllabus.html](https://www.stat20.org/syllabus.html)
+:::
+
+![](images/syllabus-screenshot.png){fig-align=center width="1000"}
+
+```{r}
+#| echo: false
+countdown::countdown(4, top = 0)
+```
+
+## Ed Discussion Forum
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](images/ed.png)
+:::
+
+::: {.column width="50%" .fragment}
+- Forum to ask questions, answer questions, and course announcements
+- Please answer each other's questions!
+
+:::{.poll .fragment}
+Practice by asking/answering a question on the "Syllabus Discussion" thread on Ed via the link at the top right of <https://www.stat20.org>.
+:::
+:::
+
+::::
+
+# Intro to R and RStudio
+
+Visit [stat20.datahub.berkeley.edu](https://stat20.datahub.berkeley.edu)! We will now:
+
+. . . 
+
+-   Demo the four parts of RStudio
+-   Show you how to work with a Quarto Document
+-   Walk through the first few questions of Lab 0
+
+## Looking forward
+
+:::: {.columns}
+
+::: {.column width="50%" .incremental}
+- Read the lecture notes for *Taxonomy of Data*. 
+- If you have any questions, you may leave a comment/question on the *Taxonomy of Data* thread on Ed.
+- Answer the Reading Questions for *Taxonomy of Data* on Gradescope by 11:59 pm on Wednesday. 
+- Problem Sets 1 (today) and 2 (Thursday/Friday) will be due **next Tuesday** at 9am!
+:::
+
+::: {.column width=20%}
+:::
+
+::: {.column width="30%" .fragment}
+![](https://media.giphy.com/media/XVuBomL9gXMTC/giphy.gif){fig-alt="Animated gif of a shoebill bird."}
+:::
+
+::::
+
+:::{.notes}
+- Readings will be posted Weds night
+- 
+:::
+
+# End of Lecture
