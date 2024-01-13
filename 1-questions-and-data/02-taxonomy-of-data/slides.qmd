@@ -318,7 +318,7 @@ countdown::countdown(1, top = 0)
 :::
 
 
-# Free time to work on Lab 1
+# Free time to work on Lab 0
 
 
 # End of Lecture
