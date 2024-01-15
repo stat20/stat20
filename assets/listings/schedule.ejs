@@ -11,8 +11,7 @@
     <p><%= day['display-date'] %></p>
     </div>
     <div class="materials-cell">
-    <p><span class="daily-topic"><%= day.topic %></span>
-    <br>
+    <p><span class="daily-topic"><%= day.topic %></span><br>
     <% if (day.items && day.items.length > 0) { %>
       <% for (const item of day.items) { %>
         <% if (item.publish){ %>
