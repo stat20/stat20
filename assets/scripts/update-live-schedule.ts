@@ -20,17 +20,27 @@ async function modifySchedule(schedulePath: string, thresholdDate: Date) {
 
     schedule = schedule.map(week => ({
         ...week,
-        days: week.days.map(day => ({
-            ...day,
-            items: day.items.map(item => ({
-                ...item,
-                publish: new Date(convertDateToISOFormat(day.date, "+00:00")) < thresholdDate
-            }))
-        }))
+        days: week.days.map(day => {
+            // Check if items exist
+            if (!day.items) {
+                return day; // Return the day as is if no items are present
+            }
+
+            // Process items if they exist
+            return {
+                ...day,
+                items: day.items.map(item => ({
+                    ...item,
+                    publish: new Date(convertDateToISOFormat(day.date, "+00:00")) < thresholdDate
+                }))
+            };
+        })
     }));
 
     await Deno.writeTextFile(schedulePath, stringify(schedule));
 }
+
+
 
 const schedulePath = 'schedule.yml'; // Path to your schedule YAML file
 const autoPublishPath = 'autopublish.yml'; // Path to your auto-publish YAML file
