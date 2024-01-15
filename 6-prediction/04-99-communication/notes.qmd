@@ -1,23 +1,14 @@
 ---
 title: "Effective Communication"
-subtitle: "Principles and strategies to write, speak, make figures, and program better"
-date: "11/18/2022"
+subtitle: "Principles and strategies to write, speak, make figures, program, and ask for things better"
 image: images/duck-small.png
-draft: true
 format:
-  html:
-    code-fold: true
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
-editor: 
-  markdown: 
-    wrap: sentence
+  html: default
+  pdf: default
 ---
 
-[[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/2446905) [[PDF]{.btn .btn-primary}](notes.pdf)
+
+<!-- [[Discuss]{.btn .btn-primary}](https://edstem.org) [[Reading Questions]{.btn .btn-primary}](https://www.gradescope.com/courses/2446905) [[PDF]{.btn .btn-primary}](notes.pdf) -->
 
 \
 
@@ -160,7 +151,7 @@ In the context of communication the biggest "cost" can be time spent preparing; 
 Tweaking a single graphic can take hours.
 Your goal is not perfection; your goal is "good enough" for the purpose at hand. 
 
-"Good enough" is context dependent. An email to your parents might get a quick glace over while an email to a potential employer likely takes multiple rounds of revision. 
+"Good enough" is context dependent. An email to your friend might get a quick glace over while an email to a potential employer likely takes multiple rounds of revision. 
 
 Other trade-offs might include:
 
@@ -196,7 +187,7 @@ If you are publishing something publicly you should want revise it several times
 
 ### State the message first and explicitly, *then* state the details
 
-It's usually a good idea to state the message *before* the details of the argument in a presentation/written document. The message is often more important than the details, and the structure of the document tends to reflect this imbalance. The audience may not appreciate the message without motivation so providing context should come before the message. 
+It's often a good idea to state the message *before* the details of the argument in a presentation/written document. The message tends to be more important than the details, and the structure of the document tends to reflect this imbalance. The audience may not appreciate the message without motivation so providing context should come before the message. 
 
 Many professional communications are structured as:
 
@@ -248,7 +239,7 @@ Humans tend to process hierarchical information better than sequential informati
 ::: {layout-nrow=2 fig-align="center" fig-width=500}
 ![Flat/sequential organization](images/flat.png)
 
-![Hierarchical organization](images/Hierarchical.png)
+![Hierarchical organization](images/hierarchical.png)
 :::
 
 
@@ -285,7 +276,7 @@ Textbooks are organized into: chapters, sections, subsections, paragraphs, sente
 <!-- The audience should be able to navigate easily around a document. Furthermore, the audience should know where they are at all times.  -->
 
 It's helpful for the audience to know where they are (e.g. what lecture notes are you reading?) and ideally be able to navigate easily around a document.
-Our notes have a floating table of contents at the top right. Textbooks provide a table of contents, number section headings, and provide page numbers at the bottom. Websites typically have a site map at the top. In oral presentations it can be helpful to show the outline at the beginning and periodically state where you are in the lecture.  
+Our notes have a floating table of contents. Textbooks provide a table of contents, number section headings, and provide page numbers at the bottom. Websites typically have a site map at the top. In oral presentations it can be helpful to show the outline at the beginning and periodically state where you are in the lecture.  
 
 
 <!-- ## Communicate at different levels -->
@@ -337,7 +328,7 @@ ggplot(bikes) +
     geom_point(aes(x=hr, y=cnt, color=factor(workingday)))
 ```
 
-This quick-and-dirty plot might be informative to an analyst familiar with this kind of data, but would be puzzling to the average viewer. Consider how much detail is present in this plot. Every observation in the data set is present in this plot - over 8,000 of them. With a careful eye, you can use the white grid lines to get a good sense of the precise x- and y-values of each observation. This is aided by the axes, which have many tick marks displaying the different values they can take.
+This quick-and-dirty plot might be informative to an analyst familiar with this kind of data, but would be puzzling to someone else. Consider how much detail is present in this plot. Every observation in the data set is present in this plot - over 8,000 of them. With a careful eye, you can use the white grid lines to get a good sense of the precise x- and y-values of each observation. This is aided by the axes, which have many tick marks displaying the different values they can take.
 
 This detail might be helpful to the seasoned analyst but could be confusing to the average viewer. Would they know what "factor(workingday)" means? Would they be able to come away with a single clear message of what the data show? Probably not. For that, we need a communicatory plot.
 
@@ -490,7 +481,7 @@ Asking questions in a more effective manner makes the question more likely to be
 A good question is 1) **complete**, 2) **minimal**, and 3) **reproducible.**[^questions]
 In other words, all of the relevant information needed to understand the issue is provided and all irrelevant information is stripped away.
 For example, you should send a snippet of R code instead of an entire qmd document with the little bit of relevant code buried in the middle.
-Ideally you should some example code that your colleague can run to reproduce the issue you're having.
+Ideally you should include some example code that your colleague can run to reproduce the issue you're having.
 
 
 [^questions]:  Here are three blog posts that go into more detail:
@@ -505,6 +496,26 @@ Often the act of asking a good question will cause you to figure out the problem
 [^duck]: [https://en.wikipedia.org/wiki/Rubber_duck_debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging)
 
 [^email]: I tend to draft an email asking my question to a busy colleague whose respect is important to me, which forces me to really think through the issue.
+
+## Making a pitch? Communicate a clear vision why someone should invest in you
+
+
+There are many times in life when you have to pitch someone on giving you resources to accomplish something; applying for a job or graduate school, convincing your boss to green-light a project, or asking investors for money for your start-up. To make a compelling pitch you want to communicate why your audience should care about what you are doing -- in particular, why they should spend their resources on your idea instead of on someone else's idea. Try using the [Heilmeier Catechism](https://www.darpa.mil/work-with-us/heilmeier-catechism) for inspiration when creating a pitch.[^heilmerier]
+
+[^heilmerier]: These are suggestions for how to formulate a compelling pitch to solicit a significant amount of funding from DARPA, which is the US Defense Department's agency for funding very ambitious research projects. [This document](https://arpa-h.gov/assets/files/Qs_behind_the_HQs.pdf) elaborates more on these questions in the context of pitching ambitious health projects.
+
+
+
+To pitch effectively you should think about what your audience wants to hear. If a department admits you to its PhD program, what great things will your research accomplish? If an investor funds you, how much money will you make them? It can be useful to lay out what you are doing and why it is important in *simple terms*. The audience you are pitching to often has limited bandwidth to understand details of your idea (they are busy, read many applications, may not be domain experts, etc). When you can only communicate a little bit of information, that information better be good! Simplifying your idea can be difficult[^twain] because you probably spend your time thinking about technical details instead of the big picture and you already understand the value of what you are doing.
+
+
+
+[^twain]: There is a famous Mark Twain quote "I didn't have time to write a short letter, so I wrote a long one instead." It's hard to be succinct! 
+
+
+<!-- Try using the [Heilmeier Catechism](https://arpa-h.gov/assets/files/Qs_behind_the_HQs.pdf) for inspiration when creating a pitch. These are suggestions[^heilmerier] for how to formulate a compelling pitch to solicit a significant amount of funding from DARPA, which is the US Defense Department's agency for funding very ambitious research projects. -->
+
+<!-- [^heilmerier]: https://www.darpa.mil/work-with-us/heilmeier-catechism -->
 
 ## Summary
 

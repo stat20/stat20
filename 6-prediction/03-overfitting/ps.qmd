@@ -1,10 +1,17 @@
 ---
-title: "Problem Set 7.1"
+title: "Overfitting"
+format:
+  html:
+    code-tools: 
+      source: true
+      toggle: false
+sidebar: false
 ---
 
 In this problem set you'll practice fitting and evaluating two different predictive models. You can load in the data with the following code.
 
 ```{r}
+#| echo: true
 library(tidyverse)
 train <- read_csv('https://raw.githubusercontent.com/idc9/course-materials/main/3-prediction/14-overfitting/train.csv')
 
