@@ -56,6 +56,9 @@
           publish: false
 - week: 3
   days:
+    - display-date: Jan 29
+      date: 1/29/24
+      topic: Quiz 1
     - display-date: Jan 30
       date: 1/30/24
       topic: Data Pipelines
