@@ -32,9 +32,13 @@
   <div class="resources">
   <p><span">Resources</span></p>
   <ul>
-  <li>The first</li>
-  <li>The second</li>
-  <li>The third</li>
+  <% if (week.resources && week.resources.length > 0) { %>
+    <% for (const item of week.resources) { %>
+      <li><%= item %></li>
+    <% } %>
+  <% } else { %>
+    <li>None this week</li>
+  <% } %>
   </ul>
   </div>
   </div>
