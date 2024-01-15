@@ -50,9 +50,6 @@
       topic: "Data Pipelines"
       items:
         - type: Notes
-<<<<<<< HEAD
-          href: foo3/notes.qmd
-=======
           href: foo/notes.qmd
         - type: Slides
           href: foo/slides.qmd
@@ -296,45 +293,7 @@
       items:
         - type: Notes
           href: foo2/notes.qmd
->>>>>>> next-semester
         - type: Slides
           href: foo3/slides.qmd
         - type: PS
-<<<<<<< HEAD
-          href: foo3/ps.qmd
-    # - display-date: "Aug 6"
-    #   date: 8/6/23
-    #   topic: "Summarizing Categorical Data"
-    #   items:
-    #     - type: Notes
-    #       href: foo2/notes.qmd
-    #     - type: Slides
-    #       href: foo2/slides.qmd
-    #     - type: PS
-    #       href: foo2/ps.qmd
-# - week: 3
-#   days:
-#     - display-date: "Aug 8"
-#       date: 8/8/23
-#       topic: "Summarizing Numerical Data"
-#       items:
-#         - type: Notes
-#           href: foo/notes.qmd
-#         - type: Slides
-#           href: foo/slides.qmd
-#         - type: PS
-#           href: foo/ps.qmd
-#     - display-date: "Aug 10"
-#       date: 8/10/23
-#       topic: "A Grammar of Graphics"
-#       items:
-#         - type: Notes
-#           href: foo2/notes.qmd
-#         - type: Slides
-#           href: foo2/slides.qmd
-#         - type: PS
-#           href: foo2/ps.qm
-#           
-=======
-          href: foo2/ps.qmd
->>>>>>> next-semester
+
