@@ -6,6 +6,7 @@
       items:
         - type: Lab
           href: 1-questions-and-data/labs/00-getting-started/lab.qmd
+          publish: true
     - display-date: Jan 16
       date: 1/16/24
       topic: Understanding the World with Data
@@ -39,6 +40,7 @@
       items:
         - type: Lab 1
           href: 2-summarizing-data/labs/03-flights/lab.qmd
+          publish: false
     - display-date: Jan 23
       date: 1/23/24
       topic: Summarizing Categorical Data
@@ -104,6 +106,7 @@
     items:
       - type: Lab 2
         href: 3-probability/labs/foo/lab.qmd
+        publish: false
   - display-date: Feb 6
     date: 2/6/24
     topic: Intro to Probability
@@ -194,6 +197,7 @@
       items:
         - type: Lab 3
           href: 4-generalization/labs/05-peoples-park/lab.qmd
+          publish: false
     - display-date: Feb 27
       date: 2/27/24
       topic: Confidence Intervals
@@ -256,6 +260,7 @@
       items:
         - type: Lab 4
           href: 1-summarizing-data/labs/foo/lab.qmd
+          publish: false
     - display-date: Mar 12
       date: 3/12/24
       topic: Simple Linear Regression
@@ -305,6 +310,7 @@
       items:
         - type: Lab 5
           href: 05-summarizing-data/labs/07-baseball/lab.qmd
+          publish: false
     - display-date: Apr 2
       date: 4/2/24
       topic: Evaluating and Improving Predictions
@@ -361,6 +367,7 @@
       items:
         - type: Lab 6
           href: 5-causation/labs/06-taste-test/lab.qmd
+          publish: false
     - display-date: Apr 16
       date: 4/16/24
       topic: Causality I
