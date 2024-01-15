@@ -28,8 +28,8 @@ website:
     left:
       - text: Syllabus
         href: syllabus.qmd
-      - text: Schedule
-        href: schedule.qmd
+      - text: Office Hours
+        href: office-hours.qmd
       - text: Notes
         href: notes.qmd
       - text: Assignments
