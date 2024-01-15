@@ -2,6 +2,12 @@
   days:
     - display-date: Jan 16
       date: 1/16/24
+      topic: Lab 0
+      items:
+        - type: Lab
+          href: 1-questions-and-data/labs/00-getting-started/lab.qmd
+    - display-date: Jan 16
+      date: 1/16/24
       topic: Understanding the World with Data
       items:
         - type: Notes
@@ -27,6 +33,12 @@
     - <a href="https://markdownlivepreview.com">Markdown Live Preview</a>
 - week: 2
   days:
+    - display-date: Jan 23
+      date: 1/23/24
+      topic: Lab 1
+      items:
+        - type: Lab 1
+          href: 2-summarizing-data/labs/03-flights/lab.qmd
     - display-date: Jan 23
       date: 1/23/24
       topic: Summarizing Categorical Data
@@ -86,32 +98,38 @@
           publish: false
 - week: 4
   days:
-    - display-date: Feb 6
-      date: 2/6/24
-      topic: Intro to Probability
-      items:
-        - type: Notes
-          href: 3-probability/01-chance-intro/notes.qmd
-          publish: false
-        - type: Slides
-          href: 3-probability/01-chance-intro/slides.qmd
-          publish: false
-        - type: PS
-          href: 3-probability/01-chance-intro/ps.qmd
-          publish: false
-    - display-date: Feb 8
-      date: 2/8/24
-      topic: Conditional Probability
-      items:
-        - type: Notes
-          href: 3-probability/02-cond-prob-indep/notes.qmd
-          publish: false
-        - type: Slides
-          href: 3-probability/02-cond-prob-indep/slides.qmd
-          publish: false
-        - type: PS
-          href: 3-probability/02-cond-prob-indep/ps.qmd
-          publish: false
+  - display-date: Feb 6
+    date: 2/6/24
+    topic: Lab 2
+    items:
+      - type: Lab 2
+        href: 3-probability/labs/foo/lab.qmd
+  - display-date: Feb 6
+    date: 2/6/24
+    topic: Intro to Probability
+    items:
+      - type: Notes
+        href: 3-probability/01-chance-intro/notes.qmd
+        publish: false
+      - type: Slides
+        href: 3-probability/01-chance-intro/slides.qmd
+        publish: false
+      - type: PS
+        href: 3-probability/01-chance-intro/ps.qmd
+        publish: false
+  - display-date: Feb 8
+    date: 2/8/24
+    topic: Conditional Probability
+    items:
+      - type: Notes
+        href: 3-probability/02-cond-prob-indep/notes.qmd
+        publish: false
+      - type: Slides
+        href: 3-probability/02-cond-prob-indep/slides.qmd
+        publish: false
+      - type: PS
+        href: 3-probability/02-cond-prob-indep/ps.qmd
+        publish: false
 - week: 5
   days:
     - display-date: Feb 13
@@ -167,6 +185,15 @@
           publish: false
 - week: 7
   days:
+    - display-date: Feb 26
+      date: 2/26/24
+      topic: Quiz 2
+    - display-date: Feb 27
+      date: 2/27/24
+      topic: Lab 3
+      items:
+        - type: Lab 3
+          href: 4-generalization/labs/05-peoples-park/lab.qmd
     - display-date: Feb 27
       date: 2/27/24
       topic: Confidence Intervals
@@ -220,6 +247,15 @@
           publish: false
 - week: 9
   days:
+    - display-date: Mar 11
+      date: 3/11/24
+      topic: Quiz 3
+    - display-date: Mar 12
+      date: 3/12/24
+      topic: Lab 4
+      items:
+        - type: Lab 4
+          href: 1-summarizing-data/labs/foo/lab.qmd
     - display-date: Mar 12
       date: 3/12/24
       topic: Simple Linear Regression
@@ -248,7 +284,7 @@
           publish: false
 - week: 10
   days:
-    - display-date: March 19
+    - display-date: Mar 19
       date: 3/19/24
       topic: The Method of Least Squares
       items:
@@ -258,8 +294,17 @@
         - type: Slides
           href: 6-prediction/01-method-of-least-squares/slides.qmd
           publish: false
+    - display-date: Mar 19
+      date: 3/21/24
+      topic: Quiz 4
 - week: 11
   days:
+    - display-date: Apr 2
+      date: 4/2/24
+      topic: Lab 5
+      items:
+        - type: Lab 5
+          href: 05-summarizing-data/labs/07-baseball/lab.qmd
     - display-date: Apr 2
       date: 4/2/24
       topic: Evaluating and Improving Predictions
@@ -307,6 +352,15 @@
           publish: false
 - week: 13
   days:
+    - display-date: Apr 15
+      date: 4/15/24
+      topic: Quiz 5
+    - display-date: Apr 16
+      date: 4/16/24
+      topic: Lab 6
+      items:
+        - type: Lab 6
+          href: 5-causation/labs/06-taste-test/lab.qmd
     - display-date: Apr 16
       date: 4/16/24
       topic: Causality I
