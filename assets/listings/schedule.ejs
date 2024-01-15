@@ -15,7 +15,7 @@
     <br>
     
     <% for (const item of day.items) { %>
-      <% if (!item.ignore){ %>
+      <% if (item.publish){ %>
         <a href="<%= item.href %>" class="btn btn-success btn-sm"><%= item.type %></a>
       <% } else{ %>  
         <a href="<%= item.href %>" class="btn btn-secondary btn-sm disabled"><%= item.type %></a>
