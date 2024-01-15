@@ -2,28 +2,25 @@
   days:
     - display-date: "Jan 16"
       date: 1/16/23
-      topic: "Intro and Syllabus; Types of Claims"
+      topic: "Understanding the World with Data"
       items:
         - type: Notes
-          href: foo/notes.qmd
+          href: 1-questions-and-data/01-understanding-the-world/notes.qmd
         - type: Slides
-          href: foo/slides.qmd
-        - type: PS
-          href: foo/ps.qmd
+          href: 1-questions-and-data/01-understanding-the-world/slides.qmd
     - display-date: "Jan 18"
       date: 1/18/23
       topic: "Taxonomy of Data"
       items:
         - type: Notes
-          href: foo2/notes.qmd
+          href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
         - type: Slides
-          href: foo2/slides.qmd
+          href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
         - type: PS
-          href: foo2/ps.qmd
+          href: 1-questions-and-data/02-taxonomy-of-data/ps.qmd
   resources:
-    - Taxonomy of Data Reading Notes
+    - Lab0 Megathread
     - PS1 Megathread
-    - PS2 Megathread
 - week: 2
   days:
     - display-date: "Jan 23"
