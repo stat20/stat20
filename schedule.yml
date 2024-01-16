@@ -2,6 +2,13 @@
   days:
     - display-date: Jan 16
       date: 1/16/24
+      topic: Lab 0
+      items:
+        - type: Lab
+          href: 1-questions-and-data/labs/00-getting-started/lab.qmd
+          publish: true
+    - display-date: Jan 16
+      date: 1/16/24
       topic: Understanding the World with Data
       items:
         - type: Notes
@@ -24,35 +31,41 @@
           href: 1-questions-and-data/02-taxonomy-of-data/ps.qmd
           publish: true
   resources:
-    - <a href="https://www.cnn.com/">Lab 0 Megathread</a>
-    - PS1 Megathread
+    - <a href="https://markdownlivepreview.com">Markdown Live Preview</a>
 - week: 2
   days:
+    - display-date: Jan 23
+      date: 1/23/24
+      topic: Lab 1
+      items:
+        - type: Lab 1
+          href: 2-summarizing-data/labs/03-flights/lab.qmd
+          publish: false
     - display-date: Jan 23
       date: 1/23/24
       topic: Summarizing Categorical Data
       items:
         - type: Notes
-          href: foo/notes.qmd
+          href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
           publish: false
         - type: Slides
-          href: foo/slides.qmd
+          href: 2-summarizing-data/01-summarizing-categorical-data/slides.qmd
           publish: false
         - type: PS
-          href: foo/ps.qmd
+          href: 2-summarizing-data/01-summarizing-categorical-data/ps.qmd
           publish: false
     - display-date: Jan 25
       date: 1/25/24
       topic: Summarizing Numerical Data
       items:
         - type: Notes
-          href: foo2/notes.qmd
+          href: 2-summarizing-data/01-summarizing-numerical-data/notes.qmd
           publish: false
         - type: Slides
-          href: foo2/slides.qmd
+          href: 2-summarizing-data/01-summarizing-numerical-data/slides.qmd
           publish: false
         - type: PS
-          href: foo2/ps.qmd
+          href: 2-summarizing-data/01-summarizing-numerical-data/ps.qmd
           publish: false
 - week: 3
   days:
@@ -64,55 +77,62 @@
       topic: Data Pipelines
       items:
         - type: Notes
-          href: foo/notes.qmd
+          href: 2-summarizing-data/04-conditioning/notes.qmd
           publish: false
         - type: Slides
-          href: foo/slides.qmd
+          href: 2-summarizing-data/04-conditioning/slides.qmd
           publish: false
         - type: PS
-          href: foo/ps.qmd
+          href: 2-summarizing-data/04-conditioning/ps.qmd
           publish: false
     - display-date: Feb 1
       date: 2/1/24
       topic: Grammar of Graphics
       items:
         - type: Notes
-          href: foo2/notes.qmd
+          href: 2-summarizing-data/04-conditioning/notes.qmd
           publish: false
         - type: Slides
-          href: foo2/slides.qmd
+          href: 2-summarizing-data/04-conditioning/slides.qmd
           publish: false
         - type: PS
-          href: foo2/ps.qmd
+          href: 2-summarizing-data/04-conditioning/ps.qmd
           publish: false
 - week: 4
   days:
-    - display-date: Feb 6
-      date: 2/6/24
-      topic: Intro to Probability
-      items:
-        - type: Notes
-          href: foo/notes.qmd
-          publish: false
-        - type: Slides
-          href: foo/slides.qmd
-          publish: false
-        - type: PS
-          href: foo/ps.qmd
-          publish: false
-    - display-date: Feb 8
-      date: 2/8/24
-      topic: Conditional Probability
-      items:
-        - type: Notes
-          href: foo2/notes.qmd
-          publish: false
-        - type: Slides
-          href: foo2/slides.qmd
-          publish: false
-        - type: PS
-          href: foo2/ps.qmd
-          publish: false
+  - display-date: Feb 6
+    date: 2/6/24
+    topic: Lab 2
+    items:
+      - type: Lab 2
+        href: 3-probability/labs/foo/lab.qmd
+        publish: false
+  - display-date: Feb 6
+    date: 2/6/24
+    topic: Intro to Probability
+    items:
+      - type: Notes
+        href: 3-probability/01-chance-intro/notes.qmd
+        publish: false
+      - type: Slides
+        href: 3-probability/01-chance-intro/slides.qmd
+        publish: false
+      - type: PS
+        href: 3-probability/01-chance-intro/ps.qmd
+        publish: false
+  - display-date: Feb 8
+    date: 2/8/24
+    topic: Conditional Probability
+    items:
+      - type: Notes
+        href: 3-probability/02-cond-prob-indep/notes.qmd
+        publish: false
+      - type: Slides
+        href: 3-probability/02-cond-prob-indep/slides.qmd
+        publish: false
+      - type: PS
+        href: 3-probability/02-cond-prob-indep/ps.qmd
+        publish: false
 - week: 5
   days:
     - display-date: Feb 13
@@ -120,26 +140,26 @@
       topic: Probability Distributions; Random Variables
       items:
         - type: Notes
-          href: foo/notes.qmd
+          href: 3-probability/03-random-variables/notes.qmd
           publish: false
         - type: Slides
-          href: foo/slides.qmd
+          href: 3-probability/03-random-variables/slides.qmd
           publish: false
         - type: PS
-          href: foo/ps.qmd
+          href: 3-probability/03-random-variables/ps.qmd
           publish: false
     - display-date: Feb 15
       date: 2/15/24
       topic: Expected Value and Variance
       items:
         - type: Notes
-          href: foo2/notes.qmd
+          href: 3-probability/04-ev-se/notes.qmd
           publish: false
         - type: Slides
-          href: foo2/slides.qmd
+          href: 3-probability/04-ev-se/slides.qmd
           publish: false
         - type: PS
-          href: foo2/ps.qmd
+          href: 3-probability/04-ev-se/ps.qmd
           publish: false
 - week: 6
   days:
@@ -148,54 +168,58 @@
       topic: Normal Approximation
       items:
         - type: Notes
-          href: foo/notes.qmd
+          href: 3-probability/foo/notes.qmd
           publish: false
         - type: Slides
-          href: foo/slides.qmd
-          publish: false
-        - type: PS
-          href: foo/ps.qmd
+          href: 3-probability/foo/slides.qmd
           publish: false
     - display-date: Feb 22
       date: 2/22/24
       topic: 'Scope, Bias and Variability'
       items:
         - type: Notes
-          href: foo2/notes.qmd
+          href: 4-generalization/01-sampling-distributions/notes.qmd
           publish: false
         - type: Slides
-          href: foo2/slides.qmd
+          href: 4-generalization/01-sampling-distributions/slides.qmd
           publish: false
         - type: PS
-          href: foo2/ps.qmd
+          href: 4-generalization/01-sampling-distributions/ps.qmd
           publish: false
 - week: 7
   days:
+    - display-date: Feb 26
+      date: 2/26/24
+      topic: Quiz 2
+    - display-date: Feb 27
+      date: 2/27/24
+      topic: Lab 3
+      items:
+        - type: Lab 3
+          href: 4-generalization/labs/05-peoples-park/lab.qmd
+          publish: false
     - display-date: Feb 27
       date: 2/27/24
       topic: Confidence Intervals
       items:
         - type: Notes
-          href: foo/notes.qmd
+          href: 4-generalization/02-confidence-intervals/notes.qmd
           publish: false
         - type: Slides
-          href: foo/slides.qmd
-          publish: false
-        - type: PS
-          href: foo/ps.qmd
+          href: 4-generalization/02-confidence-intervals/slides.qmd
           publish: false
     - display-date: Feb 29
       date: 2/29/24
       topic: Intro to Hypothesis Tests
       items:
         - type: Notes
-          href: foo2/notes.qmd
+          href: 4-generalization/04-hypothesis-tests/notes.qmd
           publish: false
         - type: Slides
-          href: foo2/slides.qmd
+          href: 4-generalization/04-hypothesis-tests/slides.qmd
           publish: false
         - type: PS
-          href: foo2/ps.qmd
+          href: 4-generalization/04-hypothesis-tests/ps.qmd
           publish: false
 - week: 8
   days:
@@ -204,97 +228,111 @@
       topic: Types of Hypothesis Tests
       items:
         - type: Notes
-          href: foo/notes.qmd
+          href: 4-generalization/05-hypothesis-tests-2/notes.qmd
           publish: false
         - type: Slides
-          href: foo/slides.qmd
+          href: 4-generalization/05-hypothesis-tests-2/slides.qmd
           publish: false
         - type: PS
-          href: foo/ps.qmd
+          href: 4-generalization/05-hypothesis-tests-2/ps.qmd
           publish: false
     - display-date: Mar 7
       date: 3/7/24
       topic: Wrong By Design
       items:
         - type: Notes
-          href: foo2/notes.qmd
+          href: 4-generalization/06-wrong-by-design/notes.qmd
           publish: false
         - type: Slides
-          href: foo2/slides.qmd
+          href: 4-generalization/06-wrong-by-design/slides.qmd
           publish: false
         - type: PS
-          href: foo2/ps.qmd
+          href: 4-generalization/06-wrong-by-design/ps.qmd
           publish: false
 - week: 9
   days:
+    - display-date: Mar 11
+      date: 3/11/24
+      topic: Quiz 3
+    - display-date: Mar 12
+      date: 3/12/24
+      topic: Lab 4
+      items:
+        - type: Lab 4
+          href: 1-summarizing-data/labs/foo/lab.qmd
+          publish: false
     - display-date: Mar 12
       date: 3/12/24
       topic: Simple Linear Regression
       items:
         - type: Notes
-          href: foo/notes.qmd
+          href: 2-summarizing-data/06-summarizing-associations/notes.qmd
           publish: false
         - type: Slides
-          href: foo/slides.qmd
+          href: 2-summarizing-data/06-summarizing-associations/slides.qmd
           publish: false
         - type: PS
-          href: foo/ps.qmd
+          href: 2-summarizing-data/06-summarizing-associations/ps.qmd
           publish: false
     - display-date: Mar 14
       date: 3/14/24
       topic: Multiple Linear Regression
       items:
         - type: Notes
-          href: foo2/notes.qmd
+          href: 2-summarizing-data/07-multiple-linear-regression/notes.qmd
           publish: false
         - type: Slides
-          href: foo2/slides.qmd
+          href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
           publish: false
         - type: PS
-          href: foo2/ps.qmd
+          href: 2-summarizing-data/07-multiple-linear-regression/ps.qmd
           publish: false
 - week: 10
   days:
-    - display-date: March 19
+    - display-date: Mar 19
       date: 3/19/24
       topic: The Method of Least Squares
       items:
         - type: Notes
-          href: foo/notes.qmd
+          href: 6-prediction/01-method-of-least-squares/notes.qmd
           publish: false
         - type: Slides
-          href: foo/slides.qmd
+          href: 6-prediction/01-method-of-least-squares/slides.qmd
           publish: false
-        - type: PS
-          href: foo/ps.qmd
-          publish: false
+    - display-date: Mar 19
+      date: 3/21/24
+      topic: Quiz 4
 - week: 11
   days:
+    - display-date: Apr 2
+      date: 4/2/24
+      topic: Lab 5
+      items:
+        - type: Lab 5
+          href: 05-summarizing-data/labs/07-baseball/lab.qmd
+          publish: false
     - display-date: Apr 2
       date: 4/2/24
       topic: Evaluating and Improving Predictions
       items:
         - type: Notes
-          href: foo/notes.qmd
+          href: 6-prediction/02-improving-predictions/notes.qmd
           publish: false
         - type: Slides
-          href: foo/slides.qmd
-          publish: false
-        - type: PS
-          href: foo/ps.qmd
+          href: 6-prediction/02-improving-predictions/slides.qmd
           publish: false
     - display-date: Apr 4
       date: 4/4/24
       topic: Overfitting
       items:
         - type: Notes
-          href: foo2/notes.qmd
+          href: 6-prediction/03-overfitting/notes.qmd
           publish: false
         - type: Slides
-          href: foo2/slides.qmd
+          href: 6-prediction/03-overfitting/slides.qmd
           publish: false
         - type: PS
-          href: foo2/ps.qmd
+          href: 6-prediction/03-overfitting/ps.qmd
           publish: false
 - week: 12
   days:
@@ -303,13 +341,10 @@
       topic: Logistic Regression I
       items:
         - type: Notes
-          href: foo/notes.qmd
+          href: 6-prediction/05-logistic-regression/notes.qmd
           publish: false
         - type: Slides
-          href: foo/slides.qmd
-          publish: false
-        - type: PS
-          href: foo/ps.qmd
+          href: 6-prediction/05-logistic-regression/notes.qmd
           publish: false
     - display-date: Apr 11
       date: 4/11/24
@@ -321,36 +356,37 @@
         - type: Slides
           href: foo2/slides.qmd
           publish: false
-        - type: PS
-          href: foo2/ps.qmd
-          publish: false
 - week: 13
   days:
+    - display-date: Apr 15
+      date: 4/15/24
+      topic: Quiz 5
+    - display-date: Apr 16
+      date: 4/16/24
+      topic: Lab 6
+      items:
+        - type: Lab 6
+          href: 5-causation/labs/06-taste-test/lab.qmd
+          publish: false
     - display-date: Apr 16
       date: 4/16/24
       topic: Causality I
       items:
         - type: Notes
-          href: foo/notes.qmd
+          href: 5-causation/01-defining-causality/notes.qmd
           publish: false
         - type: Slides
-          href: foo/slides.qmd
-          publish: false
-        - type: PS
-          href: foo/ps.qmd
+          href: 5-causation/01-defining-causality/slides.qmd
           publish: false
     - display-date: Apr 18
       date: 4/18/24
       topic: Causality II
       items:
         - type: Notes
-          href: foo2/notes.qmd
+          href: 5-causation/02-experiments/notes.qmd
           publish: false
         - type: Slides
-          href: foo2/slides.qmd
-          publish: false
-        - type: PS
-          href: foo2/ps.qmd
+          href: 5-causation/02-experiments/slides.qmd
           publish: false
 - week: 14
   days:
@@ -362,20 +398,17 @@
           href: foo/notes.qmd
           publish: false
         - type: Slides
-          href: foo/slides.qmd
-          publish: false
-        - type: PS
-          href: foo/ps.qmd
+          href: foo2/slides.qmd
           publish: false
     - display-date: Apr 25
       date: 4/25/24
       topic: Causality IV
       items:
         - type: Notes
-          href: foo2/notes.qmd
+          href: foo/notes.qmd
           publish: false
         - type: Slides
-          href: foo3/slides.qmd
+          href: foo2/slides.qmd
           publish: false
         - type: PS
           publish: false
