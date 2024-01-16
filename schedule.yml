@@ -281,7 +281,7 @@
           href: 6-prediction/02-improving-predictions/slides.qmd
           publish: true
         - type: Lab
-          href: 06-prediction/labs/07-baseball/lab.qmd
+          href: 6-prediction/labs/07-baseball/lab.qmd
           publish: true
     - display-date: Apr 4
       date: 4/4/24
