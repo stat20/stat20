@@ -353,6 +353,7 @@
     - display-date: Apr 23
       date: 4/24/24
       topic: Causality III
+      items: []
       # items:
       #   - type: Notes
       #     href: foo/notes.qmd
@@ -363,6 +364,7 @@
     - display-date: Apr 25
       date: 4/25/24
       topic: Causality IV
+      items: []
       # items:
       #   - type: Notes
       #     href: foo/notes.qmd
