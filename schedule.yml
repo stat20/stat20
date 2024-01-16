@@ -98,7 +98,7 @@
           href: 3-probability/01-chance-intro/ps.qmd
           publish: true
         - type: Lab
-          href: 3-probability/labs/foo/lab.qmd
+          href: 3-probability/labs/lab.qmd
           publish: true
     - display-date: Feb 8
       date: 2/8/24
@@ -148,10 +148,10 @@
       topic: Normal Approximation
       items:
         - type: Notes
-          href: 3-probability/foo/notes.qmd
+          href: 3-probability/notes.qmd
           publish: true
         - type: Slides
-          href: 3-probability/foo/slides.qmd
+          href: 3-probability/slides.qmd
           publish: true
     - display-date: Feb 22
       date: 2/22/24
@@ -246,7 +246,7 @@
         #   href: 2-summarizing-data/06-summarizing-associations/ps.qmd
         #   publish: true
         - type: Lab
-          href: 1-summarizing-data/labs/foo/lab.qmd
+          href: 1-summarizing-data/labs/lab.qmd
           publish: true
     - display-date: Mar 14
       date: 3/14/24
@@ -320,13 +320,13 @@
     - display-date: Apr 11
       date: 4/11/24
       topic: Logistic Regression II
-      items:
-        - type: Notes
-          href: foo2/notes.qmd
-          publish: true
-        - type: Slides
-          href: foo2/slides.qmd
-          publish: true
+      # items:
+      #   - type: Notes
+      #     href: foo2/notes.qmd
+      #     publish: true
+      #   - type: Slides
+      #     href: foo2/slides.qmd
+      #     publish: true
 - week: 13
   days:
     - display-date: Apr 15
@@ -361,22 +361,22 @@
     - display-date: Apr 23
       date: 4/24/24
       topic: Causality III
-      items:
-        - type: Notes
-          href: foo/notes.qmd
-          publish: true
-        - type: Slides
-          href: foo2/slides.qmd
-          publish: true
+      # items:
+      #   - type: Notes
+      #     href: foo/notes.qmd
+      #     publish: true
+      #   - type: Slides
+      #     href: foo2/slides.qmd
+      #     publish: true
     - display-date: Apr 25
       date: 4/25/24
       topic: Causality IV
-      items:
-        - type: Notes
-          href: foo/notes.qmd
-          publish: true
-        - type: Slides
-          href: foo2/slides.qmd
-          publish: true
+      # items:
+      #   - type: Notes
+      #     href: foo/notes.qmd
+      #     publish: true
+      #   - type: Slides
+      #     href: foo2/slides.qmd
+      #     publish: true
         # - type: PS
         #   publish: true
