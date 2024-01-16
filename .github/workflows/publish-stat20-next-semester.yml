@@ -16,6 +16,7 @@ jobs:
         uses: addnab/docker-run-action@v3
         env:
            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+           QUARTO_PROFILE: full-site
         with:
           image: stat20/stat20-docker:latest
           options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -26,15 +27,6 @@ jobs:
 
             # execute from the textbook
             cd /home/rstudio/stat20/
-
-            # _freeze should not exist
-            rm -rf ./_freeze
-            
-            # run pre-render scripts
-            Rscript ./assets/scripts/propagate-dates.r
-            Rscript ./assets/scripts/homepage-readings.r
-            Rscript ./assets/scripts/ignore-future-docs.r
-            Rscript ./assets/scripts/write-toc.r
             
             # render site and upload to stat20-next-semester.netlify.app
             quarto publish netlify --id 71793655-483e-4d50-aec7-de1381435888

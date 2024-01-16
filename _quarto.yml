@@ -76,6 +76,10 @@ execute:
   message: false
   warning: false
   fig-align: center
+
+metadata-files:
+  - "toc.yml"
   
 profile:
-  default: toc
+  group:
+    - ["full-site", "live-site"]
