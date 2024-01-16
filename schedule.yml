@@ -306,11 +306,12 @@
           href: 6-prediction/05-logistic-regression/notes.qmd
           publish: true
         - type: Slides
-          href: 6-prediction/05-logistic-regression/notes.qmd
+          href: 6-prediction/05-logistic-regression/slides.qmd
           publish: true
     - display-date: Apr 11
       date: 4/11/24
       topic: Logistic Regression II
+      items: []
       # items:
       #   - type: Notes
       #     href: foo2/notes.qmd
