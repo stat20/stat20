@@ -33,13 +33,17 @@ format:
 
 -   Problem Set 1 and Lab 0 both due **Tuesday, January 23rd** at 9am
 
-
 # Concept Questions: Conceptual
 
 ## Quick Refresher
 
+-   Head to PollEverywhere for a quick set of questions regarding *Taxonomy of Data*!
 
+. . . 
 
+```{r}
+countdown::countdown(minutes = 2)
+```
 
 ## {data-menu-title="Shoebill Pic 1" background-image="images/shoebill-1.png" background-size="contain"}
 
