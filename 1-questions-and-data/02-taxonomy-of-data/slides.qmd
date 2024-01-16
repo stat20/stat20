@@ -22,47 +22,31 @@ format:
 
 ## Agenda
 
-- Concept Questions: Taxonomy of Data
-- Reading Questions
-- Worksheet on Paper
+- Announcements
+- Concept Questions: Conceptual
+- Problem Set 1: *Taxonomy of Data*
 - *Break*
-- Worksheet via RStudio
+- Concept Questions: Coding
+- Free time to work on Lab 0
 
-# Concept Questions
+## Announcements
 
+-   Problem Set 1 and Lab 0 both due **Tuesday, January 23rd** at 9am
 
-## Types of Variables
+# Concept Questions: Conceptual
 
-There are three things a variable could be referring to
+## Quick Refresher
 
-:::incremental
-1. a *phenomenon*
-2. how the phenomenon is being *recorded or measured* into data
-   - what values can it take? (this is often an intent- or value-laden exercise!)
-   - for numerical units, what unit should we express it in?
-3. How the recorded data is being *analyzed*
-   - binning/discretizing income data
-   - if a barchart has too many bars, using a histogram.
-:::
+-   Head to PollEverywhere for a quick set of questions regarding *Taxonomy of Data*!
 
-##
-
-\
-\
-
-:::{.poll}
-What type of variable is *age*?
-
-\
-
-Answer at `pollev.com/<name>`
-:::
+. . . 
 
 ```{r}
-countdown::countdown(1, top = 0)
+countdown::countdown(minutes = 2)
 ```
 
 ## {data-menu-title="Shoebill Pic 1" background-image="images/shoebill-1.png" background-size="contain"}
+
 
 ## Images as data
 
@@ -165,23 +149,186 @@ Consider the following images which are our data:
 
 
 :::{.poll}
-If you were to put the data from these (8 x 8 grayscale) images into a *data frame*, what would the dimensions of that data frame be in rows x columns?
+If you were to put the data from these (8 x 8 grayscale) images into a *data frame*, what would the dimensions of that data frame be in rows x columns? Answer at `pollev.com`.
+:::
+
+## A note on variables
+
+There are three things that "variable" could be referring to:
+
+:::incremental
+1. a *phenomenon*
+2. how the phenomenon is being *recorded or measured* into data
+   - what values can it take? (this is often an intent- or value-laden exercise!)
+   - for numerical units, what unit should we express it in?
+3. How the recorded data is being *analyzed*
+   - might you bin/discretizing income data? what are the consequences of this?
+:::
+
+## What type of variable is age?
+
+For each of the following scenarios where age could be a variable, choose the most appropriate taxonomy according to the Taxonomy of Data.
+
+. . . 
+
+1. Ages of television audiences/demographics
+2. Ages of UC Berkeley students
+3. The age of a radioactive particle
+
+. . . 
+
+:::{.poll}
+Answer at `pollev.com`.
 :::
 
 ```{r}
-countdown::countdown(1, top = 0)
+countdown::countdown(3, top = 0)
 ```
 
 
-
-# Reading Questions
-
-# Worksheet on Paper
+# Problem Set 1: *Taxonomy of Data*
 
 ```{r}
 countdown::countdown(20, top = 0)
 ```
 
+# *Break*
+
+```{r}
+countdown::countdown(5, top = 0)
+```
+
+# Concept Questions: Coding
+
+# Concept Questions
+
+## Educated Guess 1
+
+:::{.poll}
+What will happen here?
+
+\
+
+Answer at `pollev.com/<name>`
+:::
+
+\
+
+```{r eval = FALSE, echo = TRUE, error = TRUE}
+1 + "one"
+```
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.notes}
+- "one" is a string with no link at all to the number 1
+- without that link, without two objects that are recognized for their numerical value, `+` doesn't work.
+:::
+
+## Educated Guess 2
+
+:::{.poll}
+What will happen here?
+
+\
+
+Answer at `pollev.com/<name>`
+:::
+
+\
+
+```{r}
+#| eval: false
+#| echo: true
+
+a <- c(1, 2, 3, 4)
+sqrt(log(a))
+```
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.notes}
+Talking points
+- a is a vector of length four
+- log and sqrt are functions that will return vectors of length four
+- they're nested and will be evaluated from the inside out
+:::
+
+
+## Educated Guess 3
+
+:::{.poll}
+What will happen here?
+
+\
+
+Answer at `pollev.com/<name>`
+:::
+
+\
+
+```{r}
+#| eval: false
+#| echo: true
+
+a <- 1 + 2
+a + 1
+```
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.notes}
+- a is a not a string, it's the name of an object that's a number
+- to overwrite a with `a + 1` requires re-assigning it to a: `a <- a + 1` (in some languages, `a + 1` would change the value of a)
+- `a <- a + 1` is a good time to mention that while `a = a + 1` works in R and they might see it online, its convention to use <- for many reasons including that mathematically the statement with = is confusing.
+:::
+
+## Educated Guess 4
+
+:::{.poll}
+What will happen here?
+
+\
+
+Answer at `pollev.com/<name>`
+:::
+
+\
+
+```{r}
+#| eval: false
+#| echo: true
+#| error: true
+
+a <- c(1, 3.14, "seven")
+class(a)
+```
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+:::{.notes}
+- the definition of a vector requires every element to be of the same type
+- based on their reading, there are three classes that they're familiar with: numeric, factor, and character
+- there's no way to translate "seven" into 7, so instead 1 and 3.14 must be translated into strings
+- they will likely encounter this when looking at a data set in R (or other languages) and finding that vectors with what looked like numbers are stored as strings. This usually happens because there's a single errant character that the language doesn't know how to parse as a number.
+:::
+
+
+# Free time to work on Lab 0
+
+
+# End of Lecture
+
+
+<!--
 # Writing in RStudio
 
 . . .
@@ -213,3 +360,4 @@ Goal: write a brief memo about your home county.
 ```{r}
 countdown::countdown(20, top = 0)
 ```
+-->

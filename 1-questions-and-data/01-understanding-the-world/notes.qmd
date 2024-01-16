@@ -1,5 +1,5 @@
 ---
-title: "Understanding the World through Data"
+title: "Understanding the World with Data"
 image: images/claims.png
 ---
 
@@ -25,6 +25,18 @@ image: images/claims.png
 ----------------------------------------------------
 
 :::
+
+## Intro and Syllabus
+
+**Welcome to Stat 20!** We are very excited to have you here this semester. There are no reading questions for today's content, but make sure that you have:
+
+-   gotten the name of your instructor and in-class tutors
+-   read the [syllabus](../../syllabus.qmd) and asked any questions you have about it on your lecture's corresponding [Ed](https://edstem.org/us/courses/51198/discussion/) thread
+-   taken a look at the first problem set.  
+
+The goal of our course is to *construct and critique claims made using data*. This raises the question: what type of claims can be made? Four of the five units in this course will center around a specific type of claim (the other unit being probability.) We provide definitions for each of the claims below!
+
+## Types of Claims
 
 ![](images/claims.png){width=550 fig-align="center"}
 
@@ -58,3 +70,66 @@ Example: Data from a randomized controlled experiment shows that taking a new an
 
 Example: Based on reading the news and the price of Uber's stock today, I predict that Uber's stock price will go up 1.2% tomorrow.
 
+
+## Intro to R and RStudio
+
+If our goal is to construct a claim with data, we need a tool to aid in the construction. Our tool must be able to do two things: it must be able to **store** the data and it must be able to perform **computations** on the data.
+
+In high school, you gained experience with one such tool: the graphing calculator. This fits our needs: you can enter a list of number into a graphing calculator like the Ti-84, it can store that list and it can execute computations on it, such as taking its sum. But the types of data that a calculator can store are very limited, as is the volume of data, as are the options for computation.
+
+In this class, we will use a tool that is far more powerful: the computer language called R. The Ti-84 is to R what a tricycle is to the space ship. One of these tools can bring you to the end of the block; the other to the moon.
+
+R is one of the most powerful languages for doing statistics and data science. One of the reasons for its power and popularity is that it is both free and open-source.  This turns languages like R into something that resembles Wikipedia: a collaborative effort that is constantly evolving. Extensions to the R language have been authored by professional programmers[^pro], people working in industry and government[^gov], professors[^prof], and students like you[^ug].
+
+[^pro]: The `googlesheets4` package, which reads spreadsheet data into R was authored by Jenny Bryan, a developer at Posit: :<https://googlesheets4.tidyverse.org/>.
+
+[^gov]: The statistics office of the province of British Columbia maintains a public R package with all of their data: <https://bcgov.github.io/bcdata/>
+
+[^prof]: Dr. Christopher Paciorek in the Department of Statistics at UC Berkeley maintains a package to fit a very broad class of statistical models called Bayesian Models: <https://r-nimble.org/>.
+
+[^ug]: Simon Couch wrote the `stacks` package for model ensembling while an undergraduate <https://stacks.tidymodels.org/index.html>.
+
+You'll be writing and running code through an app called RStudio. Beyond writing R code, RStudio allows you to manage your files and author polished documents that weave together code and text. RStudio can be run through a browser and we have set up an account for you that you can access by sending a browser tab to <https://stat20.datahub.berkeley.edu/> or clicking the {{< fa brands r-project >}} link in the upper right corner of the course website.
+
+When you log into RStudio, the place where you can type and run R code is called the **console** and it's located right here:
+
+![The R console in RStudio.](images/rstudio-console.png){#fig-console fig-alt="Screenshot showing RStudio in the browser with the console circled in green." fig-align=center}
+
+:::{.callout-tip}
+
+## Code along
+
+As you read through these notes, keep RStudio open in another window to code along at the console.
+:::
+
+## R as a Calculator
+
+Although R is like a space ship capable of going to the moon, it's also more than able to go to the end of the block. Type the sum `1 + 2` into the console (the area to the right of the `>`) and press Enter. What you should see is this:
+
+```{r}
+1 + 2
+```
+
+All of the arithmetic operations work in R.
+
+```{r}
+1 - 2
+1 * 2
+1 / 2
+```
+
+Each of these four lines of code is called a **command** and the response from R is the **output**. The `[1]` at the beginning of the output is there just to indicate that it is the first element of the output. This helps you keep track of things when the output spans many lines.
+
+Although it is easiest to read code when the numbers are separated from the operator by a single space, it's not necessary. R ignores all spaces when it runs your code, so each of the following also work.
+
+```{r}
+1/2
+1   /         2
+```
+
+You can add exponents by using `^`, but don't forget about the order of operations. If you want an alternative ordering, use parentheses.
+
+```{r}
+2 ^ 3 + 1
+2 ^ (3 + 1)
+```

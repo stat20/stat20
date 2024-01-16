@@ -2,6 +2,7 @@
 title: "The Taxonomy of Data"
 subtitle: "Types of variables and the data frame"
 image: images/taxonomy-small.png
+code-fold: false
 format:
   html: default 
   pdf: default
@@ -251,7 +252,300 @@ While this structure might well be called a "table" or possibly a "spreadsheet",
 
 [^cont-table]: An image from the Wikipedia article on contingency tables, <https://en.wikipedia.org/wiki/Contingency_table>.
 
+
+---------------------------
+---------------------------
+
+## The Ideas in Code
+
+[T]{.dropcap}he concepts of a *variable*, its *type*, and the structure of a *data frame* are useful because they help guide our thinking about the nature of a data. But we need more than definitions.  If our goal is to construct a claim with data, we need a tool to aid in the construction. Our tool must be able to do two things: it must be able to **store** the data and it must be able to perform **computations** on the data. This is where R comes in!
+
+First, we will discuss how R can store and perform computations on data. Then, we will relate these basics to the Taxonomy of Data we have just discussed. 
+
+## Saving Objects
+
+Whenever you want to save the output of an R command, add an assignment arrow `<-` (less than, minus) as well as a name, such as "answer" to the left of the command.
+
+```{r}
+answer <- 2 ^ (3 + 1)
+```
+
+When you run this command, there are two things to notice.
+
+1. The word `answer` appears in the upper right hand corner of RStudio, in the "Environment" tab.
+1. No output is returned at the console.
+
+Every time you run a command, you can ask yourself: do I want to just see the output at the console or do I want to save it for later? If the latter, you can always see the contents of what you saved by just typing its name at the console and pressing Enter.
+
+```{r}
+answer
+```
+
+There are a few rules around the names that R will allow for the objects that you're saving. First, while all letters are fair game, special characters like  `+`, `-`, `/`, `!`, `$`, are off-limits. Second, names can contain numbers, but not as the first character. That means names like `answer`, `a`, `a12`, `my_pony`, and `FOO` will all work. `12a` and `my_pony!` will not.
+
+But just because I've *told* you that those names won't work doesn't mean you shouldn't give it a try...
+
+```{r}
+#| error: true
+my_pony! <- 2 ^ (3 + 1)
+```
+
+This is an example of an **error message** and, though they can be alarming, they're also helpful in coaching you how to correct your code. Here, it's telling you that you had an "unexpected !" and then it points out where in your code that character popped up.
+
+## Creating Vectors
+
+While it is helpful to be able to store a single number as an R object, to store data sets we'll need to store a series of numbers. You can combine multiple values by putting them inside `c()` separated by commas.
+
+```{r}
+my_fav_numbers <- c(9, 11, 19, 28)
+my_fav_numbers
+```
+
+This is object is called a **vector.**
+
+**Vector (in R)**
+
+:    A set of contiguous data values that are of the same type.
+
+As the definition suggests, you can create vectors out of many different types of data. To store words as data, use the following:
+
+```{r}
+my_fav_colors <- c("green", "orange", "purple")
+my_fav_colors
+```
+
+As this example shows, R can store more than just numbers as data. `"green"`, `"orange`", and `"purple"` are each called character strings and when combined together with `c()` they form a character vector. You can identify a string because it is wrapped in quotation marks and gets highlighted a different color in RStudio.
+
+Vectors are often called *atomic* vectors because, like atoms, they are the simplest building blocks in the R language. Most of the objects in R are, at the end of the day, constructed from a series of vectors.
+
+## Functions
+
+While the **vector** will serve as our atomic method of *storing* data in R, how do we perform *computations* on it? That is the role of functions.
+
+Let's use a function to find the arithmetic mean of the vector `my_fav_numbers`.
+
+```{r}
+mean(my_fav_numbers)
+```
+
+A **function** in R operates in a very similar manner to functions that you're familiar with from mathematics.
+
+![A mathematical function as a box with inputs and outputs.](images/function-machine.png){#fig-fun fig-alt="A diagram with the input x pointing into a box labelled function f and then an arrow pointing out of the box to the output y." fig-align=center width="250px"}
+
+[^fun]: Source: Wvbailey, Public domain, via Wikimedia Commons.
+
+In math, you can think of a function, $f()$ as a black box that takes the input, $x$, and transforms it to the output, $y$. You can think of R functions in a very similar way. For our example above, we have:
+
+- *Input*: the vector of four numbers that serves as the input to the function, `my_fav_numbers`.
+- *Function*: the function name, `mean`, followed by parentheses.
+- *Output*: the number `r mean(my_fav_numbers)`.
+
+<!--
+### Help and Arguments
+
+Every function in R has a built-in help file that tells you about how it works. It can be accessed using `?`.
+
+```{r}
+?mean
+```
+
+This will pop up the help file in a tab next to your Files tab in the lower right hand corner of RStudio. In addition to describing what the function does, the help file lists out the function's **arguments**. Arguments are the separate pieces of input that you can supply to a function and they can be *named* or *unnamed*.
+
+In the command that we entered above, we used a single unnamed argument, `my_fav_numbers`. We could have alternatively written this with a named argument:
+
+```{r}
+mean(x = my_fav_numbers)
+```
+
+As the help file suggests, `x` is the R object (here a vector of numbers) that you want to take the mean of. You can always pass objects to a function as named arguments, or if you want to be more concise, you can pass it unnamed and R will rely on the *order* to figure things out.
+
+:::{.column-margin}
+![Help file for `mean()`.](images/mean-help.png){#fig-mean-help fig-alt="Screenshot of the helpfile from the mean function." fig-align=center width="300px"}
+:::
+
+To test how this actually works, let's add a second unnamed argument to our function. From reading the help file, you learn that you can supply it a `trim` argument to trim off some percent of the highest and lowest values before computing the mean. Let's trim off 25% from the lower end and 25% from the upper end.
+
+```{r}
+mean(my_fav_numbers, .25)
+```
+
+It worked! We trim off the 9 and the 28, then take $(11 + 19) / 2 = 15$. We can also write the command using named arguments. The code will be a bit more verbose but the answer will be the same.
+
+```{r}
+mean(x = my_fav_numbers, trim = .25)
+```
+
+What happens if we use unnamed arguments but change the order? Let's find out.
+
+```{r}
+#| error: true
+
+mean(.25, my_fav_numbers)
+```
+
+Since there are no names, R looks at the second argument and expects it to be the a proportion between 0 and .5 that it will use to trim. You have passed it a vector of three integers instead, so it's justified in complaining.
+-->
+
+## Functions on Vectors
+
+`mean()` is just one of thousands of different functions that are available in R. Most of them are sensibly named, like the following, which compute square roots and natural logarithms.
+
+:::{.aside .column-margin}
+By default, `log()` computes the natural log. To use other bases, see `?log`.
+:::
+
+```{r}
+sqrt(my_fav_numbers)
+log(my_fav_numbers)
+```
+
+Note that with these two functions, the input was a vector of length four and the output is a vector of length four. This is a distinctive aspect of the R language and it is helpful because it allows you to perform many separate operations (taking the square root of four numbers, one by one) with just a single command.
+
+## The Taxonomy of Data in R
+
+In the last lecture notes, we introduced the Taxonomy of Data as a broad system to classify the different types of variables on which we can collect data. If you recall, a *variable* is a characteristic of an object that you can measure and record. When Dr. Gorman walked up to her first penguin (the unit of observation) and measured its bill length, she collected a single observation of the variable `bill_length_mm`. You could record that in R using,
+
+```{r}
+bill_length_mm <- 50.7
+```
+
+She continued on to measure the next penguin, then the next, then the next... Instead of recording these as separate objects, it is more efficient to store them as a vector.
+
+```{r}
+bill_length_mm <- c(50.7, 48.5, 52.8, 44.5, 42.0, 46.9, 50.2, 37.9)
+```
+
+This example shows that
+
+> A **vector** in R is a natural way to store observations on a **variable**.
+
+so in the same way that we have asked, "what is the type of that variable?" we can now ask "what is the *class* of that variable in R?".
+
+**Class (R)**
+
+:    A collection of objects, often vectors, that share similar attributes and behaviors.
+
+While there are many classes in R, you can get a long way only knowing three. The first is represented by our vector `my_fav_numbers`. Let's check it's class using the `class()` function.
+
+```{r}
+class(my_fav_numbers)
+```
+
+Here we learn that `my_fav_numbers` is a *numeric vector*. Numeric vectors, as the name suggests, are composed only of numbers and can include measurements from both discrete and continuous numerical variables.
+
+What about `my_fav_colors`?
+
+```{r}
+class(my_fav_colors)
+```
+
+R stores that as a *character vector*. This is a very flexible class that can be used to store text as data. But what if there are only a few fixed values that a variable can take? In that case, you can do better than a character vector by usinggit a *factor*. Factor is a very useful class in R because it encodes the notion of levels discussed in the last notes.
+
+To illustrate the difference, let's make a character vector but then enrich it by turning it into a factor using `factor()`.
+
+```{r}
+char_vec <- c("cat", "cat", "dog")
+fac <- factor(char_vec)
+char_vec
+fac
+```
+
+The original character vector stores the same three strings that we used as input. The factor adds some additional information: the possible values that this vector can take.
+
+This is particularly useful when you want to let R know that these levels have a natural ordering. If you have strong opinions about the relative merit of dogs over cats, you could specify that using:
+
+```{r}
+ordered_fac <- factor(char_vec, levels = c("dog", "cat"))
+ordered_fac
+```
+
+:::{.column-margin}
+This example also demonstrates that you can create a (character) vector inside a function.
+:::
+
+While this doesn't change the way the levels are ordered in the vector itself, it will effect the way they behave when we use them to create plots, as we'll do in the next set of notes.
+
+These three vector classes do a good job of putting into flesh and bone (or at least silicon) the abstract types captured in the Taxonomy of Data.
+
+![The Taxonomy of Data with equivalent classes in R.](images/r-taxonomy-of-data.png){#fig-r-tax fig-alt="The taxonomy of data modified to show the R analogs of each of the data types." align=center}
+
+## Data Frames in R
+
+While vectors in R do a great job of capturing the notion of a variable, we will need more than that if we're going to represent something like a data frame. Conveniently enough, R has a structure well-suited to this task called...(drumroll...)
+
+**Dataframe (R)**
+:    A two dimensional data structure used to store vectors of the same length. A direct analog of the data frame defined previously[^df].
+
+[^df]: R is an unusual language in that the data frame has been for decades a core structure of the language. The analogous structure in Python is the data frame found in the Pandas library.
+
+Let's use R to recreate the penguins data frame collected by Dr. Gorman.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(stat20data)
+library(dplyr)
+library(kableExtra)
+options(kableExtra.html.bsTable = TRUE)
+set.seed(30)
+tab <- penguins %>%
+    select(bill_length_mm, bill_depth_mm, species) %>%
+    sample_n(8)
+```
+
+::: {.content-hidden unless-format="html"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kbl(escape = FALSE) %>%
+    kable_styling(bootstrap_options = c("hover", "striped"))
+```
+:::
+
+::: {.content-hidden unless-format="pdf"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kable(format = "latex")
+```
+:::
+
+### Creating a data frame
+
+In the data frame above, there are three variables; the first two numeric continuous, the last one categorical nominal. Since R stores variables as vectors, we'll need to create three vectors.
+
+```{r}
+bill_length_mm <- c(50.7, 48.5, 52.8, 44.5, 42.0, 46.9, 50.2, 37.9)
+bill_depth_mm <- c(19.7, 15.0, 20.0, 15.7, 20.2, 16.6, 18.7, 18.6)
+species <- factor(c("Chinstrap", "Gentoo", "Chinstrap", "Gentoo", "Adelie", 
+             "Chinstrap", "Chinstrap", "Adelie"))
+```
+
+:::{.column-margin}
+Check the class of these vectors by using the as input to `class()`.
+:::
+
+While `bill_length_mm` and `bill_depth_mm` are both being stored as numeric vectors, `species` was first collected into a character vector, then passed directly to the `factor()` function. This is an example of *nesting* one function inside of another and it combined two lines of code into one.
+
+With the three vectors stored in the Environment, all you need to do is staple them together with `data.frame()`.
+
+```{r}
+penguins_df <- data.frame(bill_length_mm, bill_depth_mm, species)
+penguins_df
+```
+
+
+
 ## Summary
 
-In this lecture note we have focused on the nature of the data that will serve as the currency from which we'll construct an improved understanding of the world. A first step is to identify the characteristics of the *variables* that are being measured and determine their *type* within the *Taxonomy of Data*. A second step is to organize them into a *data frame* to clearly associate the value that is measured for a variable with a particular observational unit. With these ideas in hand, we are prepared to bring data onto our computer and begin the process of identifying its structure and communicating that structure numerically and visually.
+In this lecture note we have focused on the nature of the data that will serve as the currency from which we'll construct an improved understanding of the world. A first step is to identify the characteristics of the *variables* that are being measured and determine their *type* within the *Taxonomy of Data*. A second step is to organize them into a *data frame* to clearly associate the value that is measured for a variable with a particular observational unit. 
+
+With these ideas in hand, we learned how to bring data onto our computer, so that in our next class, we can begin the process of identifying its structure and communicating that structure numerically and visually.
+
 
