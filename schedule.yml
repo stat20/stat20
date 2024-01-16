@@ -238,7 +238,7 @@
         #   publish: true
         # - type: Lab
         #   href: 1-summarizing-data/labs/lab.qmd
-          publish: true
+          # publish: true
     - display-date: Mar 14
       date: 3/14/24
       topic: Multiple Linear Regression
