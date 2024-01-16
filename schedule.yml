@@ -138,21 +138,11 @@
         - type: Slides
           href: 3-probability/04-ev-se/slides.qmd
           publish: true
-        # - type: PS
-        #   href: 3-probability/04-ev-se/ps.qmd
-        #   publish: true
 - week: 6
   days:
     - display-date: Feb 20
       date: 2/20/24
       topic: Normal Approximation
-      # items:
-      #   - type: Notes
-      #     href: 3-probability/notes.qmd
-      #     publish: true
-      #   - type: Slides
-      #     href: 3-probability/slides.qmd
-      #     publish: true
     - display-date: Feb 22
       date: 2/22/24
       topic: 'Scope, Bias and Variability'
