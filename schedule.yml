@@ -97,9 +97,9 @@
         - type: PS
           href: 3-probability/01-chance-intro/ps.qmd
           publish: true
-        - type: Lab
-          href: 3-probability/labs/lab.qmd
-          publish: true
+        # - type: Lab
+        #   href: 3-probability/labs/lab.qmd
+        #   publish: true
     - display-date: Feb 8
       date: 2/8/24
       topic: Conditional Probability
