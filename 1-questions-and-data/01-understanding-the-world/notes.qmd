@@ -58,7 +58,3 @@ Example: Data from a randomized controlled experiment shows that taking a new an
 
 Example: Based on reading the news and the price of Uber's stock today, I predict that Uber's stock price will go up 1.2% tomorrow.
 
-
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
