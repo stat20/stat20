@@ -40,9 +40,6 @@
         - type: Slides
           href: 2-summarizing-data/01-summarizing-categorical-data/slides.qmd
           publish: true
-        - type: PS
-          href: 2-summarizing-data/01-summarizing-categorical-data/ps.qmd
-          publish: true
         - type: Lab
           href: 2-summarizing-data/labs/03-flights/lab.qmd
           publish: true
@@ -74,9 +71,6 @@
           publish: true
         - type: Slides
           href: 2-summarizing-data/04-conditioning/slides.qmd
-          publish: true
-        - type: PS
-          href: 2-summarizing-data/04-conditioning/ps.qmd
           publish: true
     - display-date: Feb 1
       date: 2/1/24
@@ -134,9 +128,9 @@
         - type: Slides
           href: 3-probability/03-random-variables/slides.qmd
           publish: true
-        - type: PS
-          href: 3-probability/03-random-variables/ps.qmd
-          publish: true
+        # - type: PS
+        #   href: 3-probability/03-random-variables/ps.qmd
+        #   publish: true
     - display-date: Feb 15
       date: 2/15/24
       topic: Expected Value and Variance
@@ -147,9 +141,9 @@
         - type: Slides
           href: 3-probability/04-ev-se/slides.qmd
           publish: true
-        - type: PS
-          href: 3-probability/04-ev-se/ps.qmd
-          publish: true
+        # - type: PS
+        #   href: 3-probability/04-ev-se/ps.qmd
+        #   publish: true
 - week: 6
   days:
     - display-date: Feb 20
@@ -172,9 +166,9 @@
         - type: Slides
           href: 4-generalization/01-sampling-distributions/slides.qmd
           publish: true
-        - type: PS
-          href: 4-generalization/01-sampling-distributions/ps.qmd
-          publish: true
+        # - type: PS
+        #   href: 4-generalization/01-sampling-distributions/ps.qmd
+        #   publish: true
 - week: 7
   days:
     - display-date: Feb 26
@@ -219,9 +213,9 @@
         - type: Slides
           href: 4-generalization/05-hypothesis-tests-2/slides.qmd
           publish: true
-        - type: PS
-          href: 4-generalization/05-hypothesis-tests-2/ps.qmd
-          publish: true
+        # - type: PS
+        #   href: 4-generalization/05-hypothesis-tests-2/ps.qmd
+        #   publish: true
     - display-date: Mar 7
       date: 3/7/24
       topic: Wrong By Design
@@ -232,9 +226,9 @@
         - type: Slides
           href: 4-generalization/06-wrong-by-design/slides.qmd
           publish: true
-        - type: PS
-          href: 4-generalization/06-wrong-by-design/ps.qmd
-          publish: true
+        # - type: PS
+        #   href: 4-generalization/06-wrong-by-design/ps.qmd
+        #   publish: true
 - week: 9
   days:
     - display-date: Mar 11
@@ -251,9 +245,9 @@
         - type: Slides
           href: 2-summarizing-data/06-summarizing-associations/slides.qmd
           publish: true
-        - type: PS
-          href: 2-summarizing-data/06-summarizing-associations/ps.qmd
-          publish: true
+        # - type: PS
+        #   href: 2-summarizing-data/06-summarizing-associations/ps.qmd
+        #   publish: true
         - type: Lab
           href: 1-summarizing-data/labs/foo/lab.qmd
           publish: true
@@ -267,9 +261,9 @@
         - type: Slides
           href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
           publish: true
-        - type: PS
-          href: 2-summarizing-data/07-multiple-linear-regression/ps.qmd
-          publish: true
+        # - type: PS
+        #   href: 2-summarizing-data/07-multiple-linear-regression/ps.qmd
+        #   publish: true
 - week: 10
   days:
     - display-date: Mar 19
@@ -311,9 +305,9 @@
         - type: Slides
           href: 6-prediction/03-overfitting/slides.qmd
           publish: true
-        - type: PS
-          href: 6-prediction/03-overfitting/ps.qmd
-          publish: true
+        # - type: PS
+        #   href: 6-prediction/03-overfitting/ps.qmd
+        #   publish: true
 - week: 12
   days:
     - display-date: Apr 9
@@ -387,5 +381,5 @@
         - type: Slides
           href: foo2/slides.qmd
           publish: true
-        - type: PS
-          publish: true
+        # - type: PS
+        #   publish: true
