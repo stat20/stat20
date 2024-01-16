@@ -28,5 +28,8 @@ jobs:
             # execute from the textbook
             cd /home/rstudio/stat20/
             
+            # ignore future files from render list
+            quarto run asset/scripts/autopublish.ts
+            
             # render site and upload to stat20-next-semester.netlify.app
             quarto publish netlify --id 71793655-483e-4d50-aec7-de1381435888
