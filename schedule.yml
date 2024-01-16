@@ -48,13 +48,13 @@
       topic: Summarizing Numerical Data
       items:
         - type: Notes
-          href: 2-summarizing-data/01-summarizing-numerical-data/notes.qmd
+          href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
           publish: true
         - type: Slides
-          href: 2-summarizing-data/01-summarizing-numerical-data/slides.qmd
+          href: 2-summarizing-data/02-summarizing-numerical-data/slides.qmd
           publish: true
         - type: PS
-          href: 2-summarizing-data/01-summarizing-numerical-data/ps.qmd
+          href: 2-summarizing-data/02-summarizing-numerical-data/ps.qmd
           publish: true
 - week: 3
   days:
@@ -77,13 +77,13 @@
       topic: Grammar of Graphics
       items:
         - type: Notes
-          href: 2-summarizing-data/04-conditioning/notes.qmd
+          href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
           publish: true
         - type: Slides
-          href: 2-summarizing-data/04-conditioning/slides.qmd
+          href: 2-summarizing-data/03-a-grammar-of-graphics/slides.qmd
           publish: true
         - type: PS
-          href: 2-summarizing-data/04-conditioning/ps.qmd
+          href: 2-summarizing-data/03-a-grammar-of-graphics/ps.qmd
           publish: true
 - week: 4
   days:
