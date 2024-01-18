@@ -28,18 +28,18 @@ website:
     left:
       - text: Syllabus
         href: syllabus.qmd
-      - text: Schedule
-        href: schedule.qmd
+      - text: Office Hours
+        href: office-hours.qmd
       - text: Notes
         href: notes.qmd
       - text: Assignments
         href: assignments.qmd
     tools:
       - icon: chat-fill
-        href: https://edstem.org/us/courses/42631
+        href: https://edstem.org/us/courses/51198
         aria-label: Ed Discussion Forum
       - icon: bar-chart-fill
-        href: https://www.gradescope.com/courses/571644
+        href: https://www.gradescope.com/courses/693050
         aria-label: Gradescope
       - icon: r-circle-fill
         href: https://stat20.datahub.berkeley.edu/

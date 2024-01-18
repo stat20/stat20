@@ -1,0 +1,17 @@
+---
+toc: false
+sidebar: false
+---
+
+# Office Hours and Group Tutoring
+
+Please stop by introduce yourself! Stat 20 offers two types of session to ask chat about the course in person but outside of class. 
+
+**Instructor office hours** are useful for to discuss topics that come in the reading or broader questions about statistics and data science. They are also a fine place to ask questions about the assignments you're working on. Please attend only your instructor's office hours.
+
+**Group tutoring (GT)** sessions are held throughout the week on the 3rd floor of Evans Hall. They're a great place to work on your assignments with fellow students and seek the help of tutors whenever you get stuck. One thing to know: tutors will expect that you have done the reading and generally been attending class; this is not meant to replace class time.
+
+You're welcome to attend whichever GT sessions work best for your schedule.
+
+<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FLos_Angeles&mode=WEEK&showTitle=1&showPrint=0&showCalendars=0&showTz=0&src=Y183MzE1YjgyMmFjYzNiMmI0ZTZjNjA0NDRhMjI3MzZmYmE1MDE0YzZmMWExYjhjMzQzZGNkNjMzMzJjODdjZTg2QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23F09300" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+

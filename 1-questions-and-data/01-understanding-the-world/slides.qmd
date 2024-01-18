@@ -33,16 +33,7 @@ format:
 
 -   Let us first introduce ourselves!
 
-## Introductions
 
--   Instructor: Jeremy Eli Sanchez
--   Email: jeremysanchez@berkeley.edu
--   Office Hours: Tue 3-5pm, Wed 4-5pm in Evans 323
-
-. . . 
-
--   Tutors!
-   
    
 # {{< fa pen-to-square >}} Introductions {background-color="#00403d"}
 
