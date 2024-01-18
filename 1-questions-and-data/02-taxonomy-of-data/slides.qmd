@@ -31,7 +31,7 @@ format:
 
 ## Announcements
 
--   Problem Set 1 and Lab 0 both due **Tuesday, January 23rd** at 9am on Gradescope
+-   Problem Set 1 and Lab 0 are both due **Tuesday, January 23rd** at 9am on Gradescope
 
 . . . 
 
