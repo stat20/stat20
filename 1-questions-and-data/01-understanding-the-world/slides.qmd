@@ -588,7 +588,7 @@ countdown::countdown(minutes = 1, top = 0)
 - Read the lecture notes for *Taxonomy of Data*. 
 - If you have any questions, you may leave a comment/question on the *Taxonomy of Data* thread on Ed.
 - Answer the Reading Questions for *Taxonomy of Data* on Gradescope by 11:59 pm on Wednesday. 
-- Problem Sets 1 (today) and 2 (Thursday/Friday) will be due **next Tuesday** at 9am!
+- Lab 0 (today) and Problem Set 1 (Thursday/Friday) will be due **next Tuesday** at 9am!
 :::
 
 ::: {.column width=20%}
