@@ -1,0 +1,54 @@
+---
+title: "Final Exam"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## {.smaller}
+
+:::columns
+:::{.column width="57%"}
+#### Before the exam begins
+
+1. 🧹 Clear your desk of everything except a pen/pencil, your cheat sheet, and your ID.
+2. 🧢 Remove hats, hoods, and sunglasses.
+2. 📱 All electronic devices (laptop, phone, airbuds, smart watch) should be remain in your bag for the entire class period. All items should be on the floor not on nearby seats.
+3. Spread out as much as possible. We may reseat you to space people out.
+4. When you get an exam, do not begin.
+:::
+:::{.column width="43%"}
+#### During the exam
+
+1. ✅ All answers must be marked on the answer sheet.
+2. 👀 If a proctor sees your eyes wandering to other students' work, you will be reseated. If it happens again, it is considered academic misconduct.
+3. If you need to use the bathroom, bring phone and exam materials to the front of the class.
+4. ⌛ When you are done with this exam, please bring your exam, answer sheet, and cheat sheet to a proctor at the front of the class.
+
+:::
+:::
+
+[Good luck!]{.bigadage } 🍀
+
+```{r}
+countdown::countdown(90, font_size = "1.5em")
+```
+
+```{r}
+countdown::countdown(90, bottom = 35, font_size = "1.5em")
+```

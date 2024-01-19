@@ -62,7 +62,7 @@ $X$ is called a *random variable*: variable, because it takes different values o
  ~ A random variable is a function that associates real numbers with outcomes from a random experiment which are in an outcome space $\Omega$.
 ::: 
 
-These assigned numbers have probabilities coming from the probability distribution on $\Omega$. The range of the random variable is the set of all the possible values that $X$ can take. We usually denote random by $X, Y, \ldots$.  We write statements about the values $X$ takes, such as $X = 1$ or $X = 0$. Note that $X = 1$ is an *event* and it may be true or not. The probability of such events is written as $P(X = x)$, where $x$ is a real number.
+These assigned numbers have probabilities coming from the probability distribution on $\Omega$. The range of the random variable is the set of all the possible values that $X$ can take. We usually denote random variables by $X, Y, \ldots$ or capital letters towards the end of the alphabet.  We write statements about the values $X$ takes, such as $X = 1$ or $X = 0$. Note that $X = 1$ is an *event* and it may be true or not. The probability of such events is written as $P(X = x)$, where $x$ is a real number.
 
 :::{.def}
 **Probability distribution of a random variable $X$**
@@ -79,7 +79,7 @@ These assigned numbers have probabilities coming from the probability distributi
 
 #### Examples of discrete random variables 
 - The number of heads in $3$ tosses of a fair coin: The assignment is similar to the outcomes from a single toss, except now we have the possible outcome from tossing a coin three times. For example, the outcome $\texttt{HHH}$ is assigned the number 3, the outcomes $\texttt{HHT, HTH, THH}$ are all assigned the number 2 etc. Note that even though we should write $X(\texttt{HHH}) = 3$, it is common to write just $X = 3$.
-- The number of tosses until the coin lands heads for the first time: If $X$ is the random variable representing the number of tosses until a coin lands heads, the smallest value $X$ can take is 1 (you need at least 1 toss), and there is no upper bound, since in theory, one could keep tossing the coin forever and it could land tails every single time.
+- The number of tosses until the coin lands heads for the first time: If $X$ is the random variable representing the number of tosses until a coin lands heads, the smallest value $X$ can take is 1 (you need at least 1 toss), and there is no upper bound, since in theory, one could keep tossing the coin forever and it could land tails every single time. For this reason, the number of tosses until the coin lands heads for the first time is called a counting random variable.
 - The number of people that arrive at an ATM in a day: This is also a counting random variable, as described.
 
 #### Examples of continuous random variables 
@@ -136,10 +136,9 @@ We see here that $f(x) > 0$ for only $4$ real numbers, and is $0$ otherwise. We 
 
 ### Bernoulli distribution
 
-This is the simplest discrete distribution: $X$ be a random variable that takes the value $1$ with probability $p$ and the value $0$ with probability $1-p$, then $X$ is called a *Bernoulli* random variable. We say that $X$ is Bernoulli with parameter $p$, because if we know $p$, we can calculate the probabilities associated with $X$. We can visualize the distribution and the pmf using a probability histogram. This is similar to the plots of distributions that we have seen before. It is called ``histogram'' for a couple of reasons. Firstly, we want to think about areas, with the total area of the bins being 1. Secondly, we will use the same type of plot for continuous random variables, and it can easily generalize. 
+This is the simplest discrete distribution: $X$ be a random variable that takes the value $1$ with probability $p$ and the value $0$ with probability $1-p$, then $X$ is called a *Bernoulli* random variable. We say that $X$ is Bernoulli with parameter $p$, because if we know $p$, we can calculate the probabilities associated with $X$. We can visualize the distribution and the pmf using a probability histogram. This is similar to the plots of distributions that we have seen before. It is called a ``histogram'' for a couple of reasons. Firstly, we want to think about areas, with the total area of the bins being 1. Secondly, we will use the same type of plot for continuous random variables, and it can easily generalize. 
 
 ![](images/bernoulli.png){fig-align="center" width="500"}
-
 
 :::{.def}
 **Parameter of a probability distribution**
@@ -164,7 +163,7 @@ No. $X$ takes discrete values: $2, 3, 4, \ldots, 12$, but these are **not** equa
 
 Suppose a particular random experiment has two possible outcomes which we designate as a ''success'' or a ``failure'', where the probability of a success on any trial is $p$, regardless of what happens on any other trial. Suppose we repeat this experiment $n$ times, and let $X$ count the number of successes in $n$ **independent** trials of this random experiment (think tossing a coin $n$ times, and counting the number of heads). The independence of the trials is a consequence of the probability of success $p$ staying the same for every trial. Then 
 $$P(X = k ) = \binom{n}{k} p^k (1-p)^{n-k} $$
-where $k$ takes the values $0, 1, 2, \ldots, n$, and $\displaystyle \binom{n}{k} = \frac{n!}{k!(n-k)!}$ and is read as "$n$ *choose* $k$". These are called the binomial coefficients.[^binom]
+where $k$ takes the values $0, 1, 2, \ldots, n$, and $\displaystyle \binom{n}{k} = \frac{n!}{k!(n-k)!}$ and is read as "$n$ *choose* $k$". $\displaystyle \binom{n}{k}$ is called the binomial coefficient.[^binom]
 
 We say that $X$ has the *binomial* distribution with parameters $n$ and $p$ and write this as $X \sim Bin(n, p)$. Note that the Bernoulli distribution is a special case of the binomial, with $n = 1$.
 
@@ -177,7 +176,7 @@ In this example, since we are counting the number of individuals in our sample t
 
 Let $X$ be the number of individuals in our sample who have had at least one positive COVID test.
 
-Then $X \sim Bin(10, p = 0.35)$. (Why are these the parameters?)
+Then $X \sim Bin(10, p = 0.35)$. (Consider why these are the parameters.s)
 Using the complement rule, 
 
 $P(X > 3) = 1 - P(X \le 3) = 1 - \left(P(X = 0) + P(X = 1) + P(X = 2) + P(X = 3)\right)$. 
@@ -241,7 +240,7 @@ $$ P(X = k) = \frac{\binom{G}{k} \times \binom{N-G}{n-k}}{\binom{N}{n}} $$
 where $N$ is the size of the population, $G$ is the total number of successes in the population, and $n$ is the sample size (so $k$ can take the values $0, 1, \ldots, n$ or $0, 1, \ldots, G$, if the number of successes in the population is smaller than the sample size.)
 
 #### Example: Gender discrimination at large supermarket?
-A large (with 1,000 employees) supermarket chain in Florida occasionally selects employees
+A large supermarket chain in Florida (with 1,000 employees) occasionally selects employees
 to receive management training. A group of women there claimed that
 female employees were passed over for this training in favor of
 their male colleagues. The company denied this claim. 
@@ -272,7 +271,7 @@ choose(500, 0)*choose(500, 10)/choose(1000, 10)
 
 ### Binomial vs Hypergeometric distributions
 
-Both these distributions deal with the counting the number of successes in a *fixed* number of *trials* (where each instance of the random experiment that generates a success or a failure is called a trial, for example each toss of a coin, or each card dealt from a deck, and we count a heart to be a success). The difference is that for a binomial random variable, the probability of a success stays the *same* for each trial, and for a hypergeometric random variable, the probability *changes* with each trial. If we use a box of tickets to describe these random variables, both distributions can be modeled by sampling from boxes with each ticket marked with $0$ or $1$, but for the binomial distribution, we sample $n$ times *with* replacement and count the number of successes by summing the draws; and for the hypergeometric distribution, we sample $n$ times *without* replacement, and count the number of successes by summing the draws.
+Both these distributions deal with the counting the number of successes in a *fixed* number of trials (where each instance of the random experiment that generates a success or a failure is called a trial, for example each toss of a coin or each card dealt from a deck). The difference is that for a binomial random variable, the probability of a success stays the *same* for each trial, and for a hypergeometric random variable, the probability *changes* with each trial. If we use a box of tickets to describe these random variables, both distributions can be modeled by sampling from boxes with each ticket marked with $0$ or $1$, but for the binomial distribution, we sample $n$ times *with* replacement and count the number of successes by summing the draws; and for the hypergeometric distribution, we sample $n$ times *without* replacement, and count the number of successes by summing the draws.
 
 Note that when the sample size is small relative to the population size, there is not much difference between the probabilities if we use a binomial distribution vs using a hypergeometric distribution. Let's pretend in the gender discrimination example above that we are sampling *with* replacement. Now suppose we sample 10 times with replacement, let's use the binomial distribution to compute the chance of never picking a woman. 
 
