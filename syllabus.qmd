@@ -2,13 +2,13 @@
 title: "Syllabus"
 subtitle: "Stat 20: Introduction to Probability and Statistics"
 toc: true
-doi: "Fall 2023"
+doi: "Spring 2024"
 doi-title: Term
 author:
     - Andrew Bray
-    - Iain Carmichael
-    - Silas Gifford
-    - Jeremy Sanchez
+    - Andrea Massari
+    - Sam Pimentel
+    - Jeremy Eli Sanchez
     - Shobhana Murali Stoyanov
 author-title: Instructors
 abstract: "[Welcome to the Age of Data]{style=\"font-family: Cinzel, serif; font-size: 1.2em\"}, where claims made using data are all around us: in the news, in the pages of scientific journals, in the policies of government, and in the board rooms of companies across the world. In this course you will explore the forms of claims that are made using data. Some of these are subtle claims about the structure of the data at hand. Others are grand claims about scientific truths or predictions of what will happen in the future. This course will train your ability to critique and construct such arguments made using data."
@@ -28,9 +28,11 @@ If you are concerned about classroom environment issues created by other student
 
 ### Mode of Instruction
 
-This course is structured as a flipped class, meaning that you'll first be encountering new concepts in statistics and data science *outside* of class. Class time is dedicated to expanding on the work you've done outside of class by working through questions solo, in groups, and as a class. 
+This course is structured as a flipped class, meaning that you will first be encountering new concepts in statistics and data science *outside* of class. Class time is dedicated to expanding on the work you've done outside of class by working through questions solo, in groups, and as a class. 
 
+<!--
 The reason that this course is structured in this manner is that applied data science is a complex field that unites scientific thinking, computing, mathematics, and an understanding of the context of the data. We will be able to tackle more interesting and challenging questions if we make room during class time to work on them while we're all in the same place.
+-->
 
 #### Before class
 
@@ -47,15 +49,17 @@ Monday is shorter (1 hr) class that alternates between:
   - Workshops: less-structured class dedicated to finishing up work on your assignments
   - Quizzes: see information on quizzes below.
 
+<!--
 #### Plenary lectures
 
 Several times during the semester, the course will be hosting a special guest to give a lecture to all sections of Stat 20. These speakers are preeminent scientists and data scientists from academia or industry who will speak about how the ideas and tools from Stat 20 are used in and impact the real world. These plenary lectures will be held outside of class time in the evening and the schedule will be announced during the semester. 
 
 As a part of the graded assignments for the class **you will be asked to attend three lectures outside the class and hand in a small written assignment about each**. These lecture could be the Stat 20 plenary lectures or they could be from another event; the only restriction is that they have to be related to data science.
+-->
 
 #### Group tutoring
 
-Tutors will offer group tutoring sessions several times each week. This is an opportunity to finish up any assignments that you've started in class or review any topics that are muddy. Each group tutoring session will be staffed by 2-4 tutors. You're welcome to attend any session that works well for your schedule.
+Tutors will offer group tutoring sessions several times each week. This is an opportunity to finish up any assignments that you've started in class or review any topics that are confusing for you. Each group tutoring session will be staffed by 2-4 tutors. You're welcome to attend any session that works well for your schedule.
 
 Group tutoring is a great place to go to meet other students and collaborate on assignments with tutors on hand to help you get unstuck.
 
@@ -66,21 +70,23 @@ The instructors will offer office hours each week across a range of times. We as
 
 Office hours are an opportunity to chat one-on-one with your instructor. Please come to office hours! Coming to office hours does not send a signal that you are behind or need extra help. On the contrary, coming to office hours early and often tends to co-occur with success in the course. Instructors are happy to chat about the course material, statistics in general, careers in statistics, and whatever other statistics or data science topics are on your mind!
 
-#### COVID policy
+#### Don't come to class if you're sick! 
 
-Maintaining your health and that of the Berkeley community is of primary importance to course staff, so if you are feeling ill or have been exposed to illness, please do not come to class. All of the materials used in class will be posted to the course website. You're encouraged to reach out to fellow students to discuss the class materials or stop by group tutoring or office hours to chat with a tutor or the instructor.
+Maintaining your health and that of the Berkeley community is of primary importance to course staff, so if you are feeling ill or have been exposed to illness, whether it's COVID-19 or something else, please do not come to class. All of the materials used in class will be posted to the course website. You're encouraged to reach out to fellow students to discuss the class materials or stop by group tutoring or office hours to chat with a tutor or the instructor.
 
 ### Materials
 
-#### Textbook
+The primary materials for the course are the lecture notes, which will be posted to the course website in advance of class. We'll teach you everything you need to know! 
 
-The primary materials for the course are the lecture notes, which will be posted to the course website in advance of class. The following textbooks are useful supplementary texts but there is no need to purchase them:
+<!--
+The following textbooks are useful supplementary texts but there is no need to purchase them:
 
 - [Introduction to Modern Statistics](https://openintro-ims.netlify.app/) by &#199;etinkaya-Rundel and Hardin (freely available online)
 - [Statistics](https://wwnorton.com/books/9780393929720), Freedman, Pisani, and Purves
 - [Data Visualization: A Practical Introduction](https://socviz.co/), Healy (freely available online)
 - [Hands-on Programming with R](https://rstudio-education.github.io/hopr/), Grolemund (freely available online)
 - [R for Data Science](https://r4ds.had.co.nz/), Wickham and Grolemund (freely available online)
+-->
 
 #### RStudio
 
@@ -88,25 +94,31 @@ The software that we'll be using for our data analysis is the free and open-sour
 
 ### Course communication
 
+#### bCourses
+
+We will use bCourses to disseminate announcements for the entire class, such as final exam information. 
+
 #### Discussion forum
 
-Out-of-class communication for this course will be held on [Ed](https://www.edstem.org). This forum is a community space to ask and answer questions with your fellow students and course staff. It's an indispensable resource for staying up-to-date with the course and learning from your peers. It's also the primary method for communicating with staff. To ask a question for staff, create a new post and mark it as "private" and it will go only to course staff. If your question does not include personal information and can be answered by other students, please make your question public.
+The official discussion forum for the class will be hosted on [Ed](https://www.edstem.org). Ed is a forum to ask and answer questions with your fellow students and course staff. It's an indispensable resource for learning from your peers and seeking help from tutors and instructors.
 
-In a course this large, the instructors have a difficult time responding to individual emails, so please use the class forum or visit office hours.
+If you have a question for staff, create a new post and mark it as "private" and it will go only to course staff. This is the best option to contact us if you have a personal concern. If your question does not include personal information and can be answered by other students, make sure it is public.
+
+In a course this large, the instructors have a difficult time responding to individual emails, so please use the class forum or visit office hours if you wish to contact us!
 
 #### Course website
 
-All of the assignments will be posted to the course website at [https://stat20.org](https://stat20.org). This also holds the course notes, the syllabus, and links to Gradescope, Ed, and RStudio. Note that we will *not* be using bcourses except perhaps to occasionally post videos.
+All of the assignments will be posted to the course website at [https://stat20.org](https://stat20.org). This also holds the course notes, the syllabus, and links to Gradescope, Ed, and RStudio. 
 
 ### Assignments, Exams, and Grading
 
 #### Turning-in assignments
 
-You will be turning in your assignments on a platform called  [Gradescope](https://www.gradescope.com/). This is also the platform where your assignments will be graded, so you can return there to get feedback on your work. You are welcome to file a regrade request if you notice that we made an error in applying the rubric to your work, but be sure to do so **within a week** of the grades being posted. We will not accept regrade requests past that point.
+You will be turning in your assignments on a platform called  [Gradescope](https://www.gradescope.com/). This is also the platform where your assignments will be graded, so you can return there to get feedback on your work. You are welcome to file a regrade request if you notice that we made an error in applying the rubric to your work.
 
 #### Labs 
 
-Labs are long-form assignments designed to apply the concepts from the lecture notes in the cause of doing an analysis of real data. This will involve both writing code and communicating your thoughts and findings in English. We'll be working through the most challenging problems from the labs in class, but you may have to complete them on your own outside of class time. Most labs will be written-up and submitted individually but some will be group submissions.
+Labs are long-form assignments designed to apply the concepts from the lecture notes in the cause of doing an analysis of real data. This will involve both writing code and communicating your thoughts and findings in English. We'll be working through some problems from the labs in class, but you may have to complete them on your own outside of class time. Some labs will be turned in individually; some will be turned in as groups.
 
 Labs are to be submitted as PDF files. These PDFs will be generated by rendering Quarto Documents (.qmd files) to HTML and then exporting the HTML into a PDF. Don't worry if you're not familiar with the Quarto Document as we will teach you about it!
 
@@ -116,18 +128,21 @@ We will be assessing most questions on labs for correctness but for others we wi
 
 During class, we will give you a second engagement with the day's material in the form of a worksheet. These worksheets will run like traditional homework problems and drill the concepts in the reading notes rather than asking you to apply the concepts with a data set, like the lab does.
 
+<!--
 The problem sets will be procured completely from these in-class worksheets and released in one or two week intervals.
+-->
 
 #### Reading Questions
 
-Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per lecture note. These questions be a mix of multiple choice, short answer, and coding questions. You can answer them directly on Gradescope. Note that the reading questions will be due 11:59 pm on Monday (for the Tuesday/Wednesday lectures) and Wednesday (for the Thursday/Friday lectures).
+Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per lecture note. These questions be a mix of multiple choice, short answer, and coding questions. You can answer them directly on Gradescope. The reading questions will be **due 11:59 pm on Mondays (for the Tuesday/Wednesday lectures) and Wednesdays (for the Thursday/Friday lectures)**.
 
+<!--
 #### Plenary Lecture Reviews
 
 An important way to engage with new ideas and people at a University is to attend guest lectures. Stat 20 will host 3-5 such lectures over the course of semester and will also provide a list of guest lectures in other departments that focus on topics related to probability, statistics, and data science.
 
 A plenary lecture review is a written assignment that details the background of the speaker, the question they address, the tools, data, and methods they use, and their key findings. You will be asked to submit three such lecture reviews over the course of the semester based on the lectures that you have chosen to attend. These lecture reviews will be due at the end of the semester.
-
+-->
 
 #### Quizzes
 
@@ -139,28 +154,28 @@ The *individual* component will last ~25 minutes. You are allowed one, A4, one-s
 
 #### Exam
 
-The [final exam](assets/final-exam-slide.qmd) will be held in person during finals week. The current time and date is **Thursday, December 14 from 8am to 11am**,  *not* what you see on CalCentral. 
+The final exam will be held in person during finals week. The time and date is **Thursday, May 9 from 7-10pm** (apologies).
 
 #### Grading
 
-Your final grade in the course will be computed based on:
+Your final grade in the course will be computed as follows:
 
 - Labs 35%
-- Plenary Lecture Reviews: 3%
 - Reading Questions: 3%
 - Quizzes 25%
 - Problem sets 7%
-- Final 27%
+- Final 30%
 
-The goal of this course is to help you develop and demonstrate your mastery of the material. As such, the course will not be curved and standard cutoffs will be used to determine letter grades (> 90% is some kind of A, etc.). 
+The grades will not be curved (> 90% is some kind of A, etc.). 
 
 In order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone:
 
 -   one emergency drop for quizzes  
+-   one emergency drop for labs
+-   two emergency drops for problem sets
 -   two emergency drops for reading questions. 
 
-This means that we will drop your lowest quiz score (which would be a 0 if you were absent) before computing your quiz average. For reading questions, we will drop your two lowest.
-
+This means, for example, that we will drop your lowest quiz score before computing your average score across all quizzes. 
 
 ### Policies
 
@@ -170,8 +185,7 @@ Stat 20 is a course that is designed to allow all students to succeed. If you ha
 
 #### Late Work
 
-Unfortunately, with a class of this size, we are unable to keep track of and grade submissions of labs, reading questions, and problem sets that come in very late. If you narrowly miss the standard deadline, you will still be able to submit within an hour for a small penalty (5% reduction in score). If you don't submit within an hour you can still submit within a day for a larger penalty (30% reduction).
-
+Unfortunately, with a class of this size, we are unable to keep track of and grade submissions of labs, reading questions, and problem sets that come in very late. If you narrowly miss the standard deadline, you will still be able to submit within an hour for a small penalty (5% reduction in score). If you don't submit within an hour you can still submit for a larger penalty (30% reduction).
 
 ### Collaboration policy
 
@@ -196,7 +210,7 @@ The following examples are **not** allowed:
 - Accessing and submitting solutions to assignments from other students distributed as above. This includes copying written answers from other students and slightly modifying the language to differentiate it.
 - Googling for complete problem solutions.
 - Working on the reading questions or individual quizzes in collaboration with other people or resources. These assignments must reflect individual work.
-- Submitting work on an exam that reflects consultation with outside resources or other people. Exams must reflect individual work.
+- Submitting work on an quiz or final that reflects consultation with outside resources or other people. These assessments must reflect individual work.
 
 If you have questions about the boundaries of the policy, please ask. We’re always happy to clarify.
 
@@ -221,10 +235,41 @@ And again, if you have questions about the boundaries of the collaboration polic
 
 3. Is attendance required?
    
-   No, but it is difficult to succeed in this course if you are not regularly attending class. Class sessions are designed to be an effective and efficient format to make progress on important assignments. Plus, it's a great way to meet your fellow students and learn from one another!
+   No, but it is difficult to succeed in this course if you are not regularly attending class. Class sessions are designed to be an effective and efficient format to make progress on important assignments. Plus, it's a great way to meet your fellow students and learn from one another. This class is very unique in that regard. 
    
-4. What if I join the class late?
+   If you can't attend due to a religious observance,  athletic competition, or something similarly important, don't worry. Just reach out to us via a private Ed post, and we can let you know what to keep tabs on during the time you're away.
+   
+4. Are time conflicts allowed? 
 
-   If you join the class within the first two weeks, read this course syllabus very carefully, read the lecture notes, take a look at Gradescope to get a sense of any assignments that may have already passed, and visit office hours to check that you're up to date with things. The first two weeks of material are very important so you must be able to make up assignments.
+  Stat 20 does not allow students to enroll with time conflicts. 
+   
+5. What if I join the class late?
+
+   If you join the class within the first two weeks, read the syllabus and lecture notes, take a look at Gradescope to get a sense of any assignments that may have already passed, and visit office hours to check that you're up to date with things. The first two weeks of material are very important so you must be able to make up assignments.
    
    After two weeks into the semester, you'll have too much material that you'll need to make up, so you will have to wait to a subsequent semester to take Stat 20.
+   
+### Campus Resources
+
+If you ever need someone to talk to about anything that you're going through, please feel to reach out to the instructors. For some topics, the tutors might be an even better resource because they are students just like you. Tutors can also tell you what being an Academic Student Employee (ASE) is like. 
+
+With regards to reports of sexual misconduct/violence/assault, you may speak with us as well, but know that we will need to report our discussion to the Title IX officer. This is detailed below.
+
+> *As UC employees, the instructors (and tutors) are "Responsible Employees" and are therefore required to report incidents of sexual violence, sexual harassment, or other conduct prohibited by University policy to the Title IX officer. We cannot keep reports of sexual harassment or sexual violence confidential, but the Title IX officer will consider requests for confidentiality. Note that there are confidential resources available to you through UCB's PATH to Care Center, which serves survivors of sexual violence and sexual harassment; call their 24/7 Care Line at 510-643-2005.*
+
+Below are some campus resources that may be helpful for you:
+
+- [Berkeley Supportal- great place to start](https://supportal.berkeley.edu)
+- [Disabled Students' Program](https://dsp.berkeley.edu)
+- [University Health Services](https://uhs.berkeley.edu)
+- [UCB Path to Care](https://care.berkeley.edu)
+- [Student Learning Center](https://slc.berkeley.edu/home)
+- [Berkeley International Office](https://internationaloffice.berkeley.edu)
+- [Ombuds Office for Students and Postdoctoral Appointees](https://studentaffairs.berkeley.edu/ombuds-office-for-students-postdoctoral-appointees/)
+- [Gender Equity Resource Center](https://cejce.berkeley.edu/geneq)
+- [Center for Educational Justice & Community Engagement](https://cejce.berkeley.edu)
+- [UHS Counseling and Psychological Services (CAPS)](https://uhs.berkeley.edu/caps)
+- [Campus Academic Accommodations Hub](https://evcp.berkeley.edu/programs-resources/academic-accommodations-hub)
+- [ASUC Student Advocate’s Office](https://advocate.berkeley.edu)
+- [Basic Needs Center](https://basicneeds.berkeley.edu/home)
+- [ASUC Mental Health Resources Guide](https://asuc.org/wp-content/uploads/2018/02/Mental-Health-Resources.pdf)

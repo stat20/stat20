@@ -45,6 +45,12 @@ $body-color:                $gray-800 !default;
 $font-family-sans-serif: 'Avenir', sans-serif;
 $headings-font-weight:        400 !default;
 
+// Buttons
+
+$btn-padding-y-sm: .25rem;
+$btn-padding-x-sm: .5rem;
+$btn-font-size-sm: .75rem;
+
 
 /* css styles */
 
@@ -86,8 +92,57 @@ h2 {
     color: $primary;
     font-size: clamp(1.8em, 6vw, 4em);
     line-height: .9;
-    padding-top: 1.1em;
+    padding-top: .6em;
 }
+
+.week-x-box {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 2fr 1fr;
+  border-radius: 3px;
+  box-shadow: 0 0 0.5rem $gray-300;
+  //filter: drop-shadow(0 0 0.75rem crimson);
+  
+  .daily-sched {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    //row-gap: 1px; 
+    padding: 3px;
+    
+    .date-cell {
+      border-bottom: 1px solid $gray-300;
+      padding: 2px;
+    }
+    
+    .materials-cell {
+      border-bottom: 1px solid $gray-300;
+      padding: 2px;
+      
+      .daily-topic {
+        font-size: 1em;
+      }
+      
+      .PS-btn {
+        
+      }
+    }
+    
+    .date-cell:nth-last-child(-n+2) {
+      border-bottom: none; /* Removes the border from the last two items (the last row) */
+    }
+
+    .materials-cell:nth-last-child(-n+2) {
+      border-bottom: none; /* Removes the border from the last two items (the last row) */
+    }
+  }
+  
+  .resources {
+    border-left: 1px solid $gray-300;
+    padding: 3px;
+  }
+  
+}
+
 
 @media (min-width: 900px) {
 .content-block {
@@ -115,6 +170,23 @@ h2 {
 }
 #hex {
   order: 1;
-  padding: 1.5em 3em 0em 3em;
+  //padding: 1.5em 3em 0em 3em;
+}
+
+.week-x-box {
+  grid-template-columns: 1fr;
+  
+  .daily-sched {
+    grid-template-columns: 1fr;
+    
+    .date-col {
+      border-bottom: none
+    }
+  }
+  
+  .resources {
+    border-left: none;
+    border-top: 1px solid $gray-300;
+  }
 }
 }

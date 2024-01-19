@@ -1,0 +1,7 @@
+project: 
+  type: website
+  pre-render: 
+    - assets/scripts/update-live-schedule.ts
+    - assets/scripts/make-listings.ts
+    - assets/scripts/make-toc.ts
+    
