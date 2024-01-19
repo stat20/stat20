@@ -1,0 +1,306 @@
+---
+title: "Multiple Linear Regression"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+# Concept Questions
+
+## Estimate the coefficient
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+```{r}
+library(tidyverse)
+library(stat20data)
+```
+
+\
+\
+
+```{r}
+#| echo: true
+m1 <- lm(bill_depth_mm ~ bill_length_mm, data = penguins)
+```
+
+\
+\
+\
+
+:::{.poll}
+What will be the sign of the coefficient for  `bill_length_mm`?
+:::
+
+:::notes
+This one warms students up to the idea of working between the formula, the equation of the line, and a plot. It will also likely surprise them: without controlling for the species, there's actually a slight negative relationship here.
+:::
+
+
+## 
+
+```{r}
+#| echo: true
+m1
+```
+
+. . .
+
+```{r}
+#| fig-align: center
+penguins %>%
+  ggplot(aes(x = bill_length_mm,
+             y = bill_depth_mm)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_bw()
+```
+
+
+## Estimate the coefficient, take two
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+\
+
+```{r}
+#| echo: true
+m2 <- lm(bill_depth_mm ~ bill_length_mm + species, penguins)
+```
+
+\
+\
+\
+
+:::{.poll}
+What will be the sign of the coefficient for  `bill_length_mm`? How many coefficients will be in this linear model?
+:::
+
+:::notes
+After the first question, some should get the second one correct, but the fact that it can change may surprise some students. They haven't need an example of a categorical variable with more than k = 2 levels, so it will be challenging for them to think through how many coefficients are required (since there are k = 3 levels, there are k = 3-1 dummy variables required, for a total of 4 coefficients.)
+
+You may want to follow this question up by drawing on a board a data frame with `bill_length_mm` and `species` and show how you need to mutate two new dummy variables. You can also mention that by default, R leaves as the references level the one which comes first alphabetically.
+:::
+
+## 
+
+```{r}
+#| fig-align: center
+
+penguins <- mutate(penguins, yhat = fitted(m2))
+
+penguins %>%
+  ggplot(aes(x = bill_length_mm,
+             y = bill_depth_mm,
+             color = species)) +
+  geom_point() +
+  geom_line(aes(y = yhat, 
+                group = species,
+                color = species),
+            lwd = 1.5) +
+  theme_bw(base_size = 13)
+```
+
+##
+
+```{r}
+#| echo: true
+m2
+```
+
+. . .
+
+**Dummy Variable**
+
+A variable that is 1 if an observation takes a particular level of a categorical variable and 0 otherwise. A categorical variable with $k$ levels can be encoded using $k - 1$ dummy variables.
+
+
+## Interpreting coefficients
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+\
+
+```{r}
+#| echo: true
+m2
+```
+
+:::poll
+Which is the correct interpretation of the coefficient in front of Gentoo?
+:::
+
+:::notes
+This one assess their ability to use a conditional interpretation of a regression coefficient (controlling for the other variables in the model...)
+:::
+
+## Concept Question 4
+
+Consider the following linear regression output where the variable `school` is categorical and the variable `hours_studied` is numerical.
+
+```{r, out.width = "60%"}
+#| eval: false
+#| echo: true
+#| fig-align: center
+lm(GPA ~ hours_studied + school, data = edu)
+```
+
+\   
+\   
+
+| Coefficients     | Estimate |
+| ----------- | ----------- |
+| `(Intercept)`      | 2.5       |
+| `hours_studied`        | .2        |
+| `schoolCal`      | 1       |
+| `schoolStanford`        | -1      |
+
+. . . 
+
+## Concept Question 4 (cont.)
+
+-   Say I wanted to create a data frame from the original `edu` dataframe which contains the minimum, median, and IQR for `hours_studied` among each school. In order to do this, I make use of `group_by()` followed by `summarize()`. I save this data frame into an object called `GPA_summary`.
+
+
+:::poll
+What are the dimensions of `GPA_summary`?
+:::
+
+
+:::notes
+The correct answer in the poll should be 3x3. The three columns are for each of the statistics calculated; the three rows are for the three levels in the school category (there *is* an additional level beyond `"Cal"` and `"Stanford"`, regardless if it is not stated). 
+
+This was a former final question.
+:::
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+<!-- ## MLR Geometry -->
+
+<!-- . . . -->
+
+<!-- ```{r} -->
+<!-- countdown::countdown(1, top = 0) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- zagat <- read_csv("https://www.dropbox.com/s/c797oanmvdzjegt/zagat.csv?dl=1") -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- m3 <- lm(price ~ food + decor + geo, data = zagat) -->
+<!-- ``` -->
+
+<!-- :::poll -->
+<!-- What is the geometry described by this model? -->
+<!-- ::: -->
+
+<!-- ::: -->
+<!-- The answer is two parallel planes. -->
+
+<!-- This is to test their ability to extrapolate from the examples they've seen in the notes. It's also to have fun spinning a 3D scatter plot. -->
+
+<!-- Students might ask about higher dim, where these models describe "hyperplanes". -->
+<!-- ::: -->
+
+
+<!-- ## -->
+
+<!-- ```{r} -->
+<!-- #| code-fold: false -->
+<!-- #| echo: false -->
+<!-- #| eval: false -->
+<!-- library(plotly) -->
+<!-- library(reshape2) -->
+
+<!-- grid_points <- 30 -->
+<!-- axis_x <- seq(min(zagat$food), -->
+<!--               max(zagat$food), -->
+<!--               length.out = grid_points) -->
+<!-- axis_y <- seq(min(zagat$decor), -->
+<!--               max(zagat$decor), -->
+<!--               length.out = grid_points) -->
+<!-- zagat_plane <- expand.grid(food = axis_x, -->
+<!--                          decor = axis_y, -->
+<!--                          KEEP.OUT.ATTRS = F) -->
+<!-- zagat_plane$price <- predict.lm(m3, newdata = zagat_plane) -->
+<!-- z <- acast(zagat_plane, food ~ decor + geo, value.var = "price") -->
+<!-- p <- plot_ly(zagat, x = ~food, y = ~decor, z = ~price, showlegend=FALSE) %>% -->
+<!--   add_markers(marker = list(size = 5, -->
+<!--                             opacity = .6, -->
+<!--                             color = "steelblue"), -->
+<!--               name = ~restaurant) %>% -->
+<!--   config(displayModeBar = FALSE) -->
+<!-- p %>% -->
+<!--   add_surface(x = axis_x, -->
+<!--               y = axis_y, -->
+<!--               z = z, showscale=FALSE, -->
+<!--               colorscale = list(c(0, 1), c("tan", "tan")), -->
+<!--               name = "Linear Model") -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- library(plotly) -->
+<!-- library(reshape2) -->
+<!-- m1 <- lm(price ~ food + decor, data = zagat) -->
+<!-- grid_points <- 30 -->
+<!-- axis_x <- seq(min(zagat$food),  -->
+<!--               max(zagat$food), -->
+<!--               length.out = grid_points) -->
+<!-- axis_y <- seq(min(zagat$decor),  -->
+<!--               max(zagat$decor), -->
+<!--               length.out = grid_points) -->
+<!-- zagat_plane <- expand.grid(food = axis_x,  -->
+<!--                          decor = axis_y,  -->
+<!--                          KEEP.OUT.ATTRS = F) -->
+<!-- zagat_plane$price <- predict.lm(m1, newdata = zagat_plane) -->
+<!-- z <- acast(zagat_plane, food ~ decor, value.var = "price") -->
+
+<!-- m2 <- lm(price ~ food + decor + geo, data = zagat) -->
+
+<!-- zagat_plane_geo <- zagat_plane %>% -->
+<!--   mutate(geo = 1) -->
+<!-- zagat_plane_geo$price <- predict.lm(m2, newdata = zagat_plane_geo) -->
+<!-- z_geo <- acast(zagat_plane_geo, food ~ decor, value.var = "price") -->
+<!-- zagat_plane_west <- zagat_plane %>% -->
+<!--   mutate(geo = 0) -->
+<!-- zagat_plane_west$price <- predict.lm(m2, newdata = zagat_plane_west) -->
+<!-- z_west <- acast(zagat_plane_west, food ~ decor, value.var = "price") -->
+
+<!-- plot_ly(zagat, x = ~food, y = ~decor, z = ~price) %>% -->
+<!--   add_markers(marker = list(size = 5, -->
+<!--                             opacity = .6)) %>% -->
+<!--   add_surface(x = ~axis_x,  -->
+<!--               y = ~axis_y,  -->
+<!--               z = ~z_geo, -->
+<!--               showscale = FALSE) %>% -->
+<!--   add_surface(x = ~axis_x,  -->
+<!--               y = ~axis_y,  -->
+<!--               z = ~z_west, -->
+<!--               showscale = FALSE) -->
+<!-- ``` -->
+

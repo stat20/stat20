@@ -1,0 +1,38 @@
+---
+title: "Lab 5: People's Park"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+![](images/daily-cal-ppk.png){fig-align="center"}
+
+##
+
+<center>
+<iframe width="1120" height="730" src="https://www.youtube.com/embed/3mmIaFNAdeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</center>
+
+## Part I: Understanding the Context of the Data
+
+```{r}
+#| echo: false
+
+countdown::countdown(25)
+```
+

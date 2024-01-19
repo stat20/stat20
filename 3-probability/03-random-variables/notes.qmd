@@ -1,0 +1,578 @@
+---
+title: "Random Variables"
+subtitle: "Discrete random variables, probability mass functions, cumulative distribution functions"
+image: images/roulette-us.jpg
+format:
+  html: default
+  pdf: default
+---
+:::{.lo .content-hidden unless-profile="staff-site"}
+
+#### Concept Acquisition
+
+1. Discrete random variables
+2. Distribution tables
+3. Probability mass functions
+4. Cumulative distribution functions
+5. Bernoulli, binomial & hypergeometric distributions
+
+#### Tool Acquisition
+
+1. How to recognize binomial distribution
+2. `dbinom(), pbinom(), dhyper()`
+2. connections to boxes of tickets
+3. How to compute probabilities
+
+
+#### Concept Application
+
+1. Defining random variables
+2. Computing probabilities for random variables
+3. Using R to simulate probabilities
+
+
+----------------------------------------------------
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(stat20data)
+library(infer)
+library(patchwork)
+```
+
+Suppose we want to simulate tossing a coin $10$ times, and compute the proportion of times that the coin lands heads. We might use the function `sample()` to sample from `(0, 1)`, where the outcome "Heads" is represented by the number `1` and the outcome "Tails" is represented by the number `0`. We can save the result as `tosses_10`. Our code might be `tosses_10 <- sample(c(0,1), 10, replace = TRUE)`.  `tosses_10`  might look like `0 0 1 1 0 1 1 1 1 0`, and if we compute its mean (`mean(tosses_10)`), we would get the proportion of times the coin landed heads (in this example it is 0.6). 
+
+
+## Random variables
+
+What we did, in fact, was define a **function** that assigned a real number to each possible outcome in $\Omega$. In our simulation above, if $\Omega$ is the set of outcomes $\{\text{``Heads'', ``Tails''}\}$,  we assigned the outcome  $\text{``Heads''}$ to the real number $1$, and the outcome  $\text{``Tails''}$ to the real number $0$. By sampling over and over again from `(0,1)`, we got a sequence of $0$'s and $1$'s that was *randomly generated* by our sampling, and then we could do arithmetic on this sequence, such as compute the proportion of times we sampled $1$. To put it in mathematical notation:
+
+$$ X : \Omega \rightarrow \mathbb{R}$$
+
+$X$ is called a *random variable*: variable, because it takes different values on the real line, and random, because it inherits the randomness from the generating process (in this case, the process is tossing a coin).
+
+:::{.def}
+**Random variable**
+ ~ A random variable is a function that associates real numbers with outcomes from a random experiment which are in an outcome space $\Omega$.
+::: 
+
+These assigned numbers have probabilities coming from the probability distribution on $\Omega$. The range of the random variable is the set of all the possible values that $X$ can take. We usually denote random by $X, Y, \ldots$.  We write statements about the values $X$ takes, such as $X = 1$ or $X = 0$. Note that $X = 1$ is an *event* and it may be true or not. The probability of such events is written as $P(X = x)$, where $x$ is a real number.
+
+:::{.def}
+**Probability distribution of a random variable $X$**
+ ~ The set of possible values of $X$, along with the associated probabilities, is called the *probability distribution* for the random variable $X$.
+:::
+
+![](images/rv-picture.png){fig-align="center" width="600"}
+
+
+:::{.def}
+**Discrete and continuous random variables**
+ ~ Discrete random variables are restricted to take *particular* values in an interval, they cannot take just any value, as opposed to continuous random variables which can take any value in some specified interval. Note the similarity to discrete and continuous quantitative data types. 
+:::
+
+#### Examples of discrete random variables 
+- The number of heads in $3$ tosses of a fair coin: The assignment is similar to the outcomes from a single toss, except now we have the possible outcome from tossing a coin three times. For example, the outcome $\texttt{HHH}$ is assigned the number 3, the outcomes $\texttt{HHT, HTH, THH}$ are all assigned the number 2 etc. Note that even though we should write $X(\texttt{HHH}) = 3$, it is common to write just $X = 3$.
+- The number of tosses until the coin lands heads for the first time: If $X$ is the random variable representing the number of tosses until a coin lands heads, the smallest value $X$ can take is 1 (you need at least 1 toss), and there is no upper bound, since in theory, one could keep tossing the coin forever and it could land tails every single time.
+- The number of people that arrive at an ATM in a day: This is also a counting random variable, as described.
+
+#### Examples of continuous random variables 
+
+In all of the following, we do not restrict the value taken by the random variable.
+
+- Time between consecutive people arriving at an ATM
+- Price of a stock
+- Height of a randomly selected stat 20 student
+
+
+#### Example: Making bets on red in Roulette
+
+![](images/roulette-us.jpg){fig-align="center" width="400"}
+
+The roulette wheels used in Las Vegas have 38 numbered slots, numbered from $1$ to $36$, of which 18 are colored red, and 18 black. There are two green slots numbered with zero and a double zero. As the wheel spins, a ball is sent spinning in the opposite direction. When the wheel slows the ball will land in one of the numbered slots. Players can make various bets on where the ball lands, such as betting on whether the ball will land in a red slot or a black slot. If a player bets one dollar on red, and the ball lands on red, then they win a dollar, in addition to getting their stake of one dollar back. If the ball does not land on red, then they lose their dollar to the casino. Suppose a player bets six times on six consecutive spins, betting on red each time. Their *net gain* can be defined as the amount they won minus the amount they lost. Is net gain a random variable? What are its possible values (write down how much the player can win or lose in one spin of the wheel, then two, and so on)? 
+
+<details> <summary> Check your answer </summary>
+
+Yes, net gain *is* a random variable, and its possible values are: $-6, -4, -2, 0, 2, 4, 6$. (Why?)
+
+</details>
+
+
+### The probability distribution of a random variable $X$
+
+We can list the values taken by a random variable in a table, along with the probability that the variable takes a particular value. This table is called the *distribution table* of the random variable. For example, let $X$ be the number of heads in $3$ tosses of a fair coin. The probability distribution table for $X$ is shown below. The first column should have the possible values that $X$ can take, denoted by $x$, and the second column should have $P(X = x)$. We should make sure that the probabilities add up to 1: $\displaystyle \sum_x P(X = x) = 1$.
+
+| $x$ |  $P(X = x)$  |
+|:------:|:---------:|
+|  $0$  |  $\displaystyle \frac{1}{8}$ |
+|  $1$  | $\displaystyle \frac{3}{8}$ |
+|  $2$  | $\displaystyle \frac{3}{8}$ |   
+|  $3$  | $\displaystyle \frac{1}{8}$ |   
+
+
+### The probability mass function or pmf of a discrete random variable
+ 
+:::{.def}
+**Probability mass function (pmf) of a discrete random variable $X$**
+ ~ The **pmf** of a discrete random variable $X$ is defined to be the function $f(x) = P(X = x)$.
+:::
+
+We can write down the definition of the function $f(x)$ and it gives the same information as in the table:
+ $$f(x) = \begin{cases}
+          \frac{1}{8}, \; x = 0, 3 \\
+          \frac{3}{8}, \; x = 1, 2 
+  \end{cases} $$
+
+We see here that $f(x) > 0$ for only $4$ real numbers, and is $0$ otherwise. We can think of the total probability mass as $1$, and $f(x)$ describes how this mass of $1$ is distributed among the real numbers. It is often easier and more compact to define the probability distribution of $X$ using $f$ rather than the table. 
+
+
+## Special distributions
+
+### Bernoulli distribution
+
+This is the simplest discrete distribution: $X$ be a random variable that takes the value $1$ with probability $p$ and the value $0$ with probability $1-p$, then $X$ is called a *Bernoulli* random variable. We say that $X$ is Bernoulli with parameter $p$, because if we know $p$, we can calculate the probabilities associated with $X$. We can visualize the distribution and the pmf using a probability histogram. This is similar to the plots of distributions that we have seen before. It is called ``histogram'' for a couple of reasons. Firstly, we want to think about areas, with the total area of the bins being 1. Secondly, we will use the same type of plot for continuous random variables, and it can easily generalize. 
+
+![](images/bernoulli.png){fig-align="center" width="500"}
+
+
+:::{.def}
+**Parameter of a probability distribution**
+ ~ A constant(s) associated with the distribution. If you know the parameters of a probability distribution, then you can compute all the values of $f(x)$.
+:::
+
+### Discrete uniform random distribution
+
+Let's suppose $X$ takes the values $1, 2, 3, \ldots, n$ with $P(X = k) = \displaystyle \frac{1}{n}$ for each of the $k$ from $1$ to $n$. We call $X$ a *discrete uniform* random variable, and the probability distribution is called the discrete uniform probability distribution: $P(X = k) = \displaystyle \frac{1}{n}$ for $1 \le k \le n$. Think of die rolls, where $n = 6$ for a standard die. If $X$ is the outcome when we roll a die, then $X$ is called the discrete uniform random variable with $n = 6$. In fact, the only thing we need to know, in order to compute the probability that $X$ will take a particular value is $n$. We call $n$ the *parameter* of the discrete uniform distribution.
+
+
+##### Rolling a pair of dice and summing the spots
+Suppose we roll a pair of dice and sum the spots, and let $X$ be the sum. Is $X$ a discrete uniform random variable?
+
+<details> <summary> Check your answer </summary>
+
+No. $X$ takes discrete values: $2, 3, 4, \ldots, 12$, but these are **not** equally likely. Can you compute their probabilities?
+
+</details>
+
+### Binomial distribution
+
+Suppose a particular random experiment has two possible outcomes which we designate as a ''success'' or a ``failure'', where the probability of a success on any trial is $p$, regardless of what happens on any other trial. Suppose we repeat this experiment $n$ times, and let $X$ count the number of successes in $n$ **independent** trials of this random experiment (think tossing a coin $n$ times, and counting the number of heads). The independence of the trials is a consequence of the probability of success $p$ staying the same for every trial. Then 
+$$P(X = k ) = \binom{n}{k} p^k (1-p)^{n-k} $$
+where $k$ takes the values $0, 1, 2, \ldots, n$, and $\displaystyle \binom{n}{k} = \frac{n!}{k!(n-k)!}$ and is read as "$n$ *choose* $k$". These are called the binomial coefficients.[^binom]
+
+We say that $X$ has the *binomial* distribution with parameters $n$ and $p$ and write this as $X \sim Bin(n, p)$. Note that the Bernoulli distribution is a special case of the binomial, with $n = 1$.
+
+
+#### Example: Proportion of Californians that have had at least one positive COVID test.
+Based on the December 2022 report "State of the COVID-19 Pandemic"[^covid], about 35% of Americans reported having at least one positive COVID test. Suppose we survey 10 California residents, sampling them *with* replacement from a database of voters, what is the probability that more than $3$ of the individuals in our sample would have had at least one positive COVID test?
+
+
+In this example, since we are counting the number of individuals in our sample that have had at least one positive COVID test, such an individual would count as a "success", because a success is whatever outcome we are counting. We can now set up our random variable $X$:
+
+Let $X$ be the number of individuals in our sample who have had at least one positive COVID test.
+
+Then $X \sim Bin(10, p = 0.35)$. (Why are these the parameters?)
+Using the complement rule, 
+
+$P(X > 3) = 1 - P(X \le 3) = 1 - \left(P(X = 0) + P(X = 1) + P(X = 2) + P(X = 3)\right)$. 
+
+Note that since these events are mutually exclusive, we can use the addition rule. This gives us:
+$$ 
+\begin{aligned}
+P(X > 3) &= 1 - \left(\binom{10}{0}(0.35)^0 (0.65)^{10} + \binom{10}{1}(0.35)^1 (0.65)^9 + \binom{10}{2}(0.35)^2 (0.65)^8 + \binom{10}{3}(0.35)^3 (0.65)^7 \right)\\
+& \approx 0.486\\
+\end{aligned}
+$$
+In `R` we can use a special function to compute the binomial probabilities $f(k) = P(X=k)$. It is called `dbinom(x, size, prob)` and takes as input the $k$ that we want (`x`), the number of trials $n$ (`size`), and $p$ (`prob`). In this example, `x` are the values of interest, or 0, 1, 2; `size` is the parameter $n$, which is 10, and `prob` is the probability of a success.
+
+```{r}
+#| code-fold: false
+
+1 - dbinom(0, size = 10, prob = 0.35) - 
+  dbinom(1, size = 10, prob = 0.35) - 
+  dbinom(2, size = 10, prob = 0.35)
+```
+
+As stated above, we can define *events* by the values of random variables.
+For example, let $X = Bin(10,0.4)$. In words $X$ counts the number of successes in 10 trials.
+ Given this $X$, what are the following events in words?
+
+- $X = 5$
+- $X \le 5$
+- $3 \le X \le 8$
+
+What are these events in words? What are their probabilities?
+
+<details> <summary> Check your answer </summary>
+- $X$ is the number of successes in ten trials, where the probability of success in each trial is 40%. $X = 5$ is the event that we see exactly five successes in the ten trials, while $X \le 5$ is the event of seeing *at most* five successes in ten trials. The last event, $3 \le X \le 8$ is the event of at least three successes, but not more than eight, in ten trials.
+We will use `dbinom()` to compute the probabilities $P(X = x)$ or the pmf values.
+```{r}
+#| code-fold: false
+
+# P(X=5)
+dbinom(x = 5, size = 10, prob = 0.4)
+
+# P(X <= 5)
+dbinom(x = 0, size = 10, prob = 0.4) + dbinom(x = 1, size = 10, prob = 0.4) + 
+  dbinom(x = 2, size = 10, prob = 0.4) + dbinom(x = 3, size = 10, prob = 0.4) +
+  dbinom(x = 4, size = 10, prob = 0.4) + dbinom(x = 5, size = 10, prob = 0.4)
+
+# P(3 <= X <= 8)
+dbinom(x = 3, size = 10, prob = 0.4) + dbinom(x = 4, size = 10, prob = 0.4) + 
+  dbinom(x = 5, size = 10, prob = 0.4) + dbinom(x = 6, size = 10, prob = 0.4) +
+  dbinom(x = 7, size = 10, prob = 0.4) + dbinom(x = 8, size = 10, prob = 0.4)
+
+```
+
+
+</details>
+
+### Hypergeometric distribution
+
+In the example above, we sampled from the population of California *with* replacement. Usually we sample *without* replacement. Suppose our population consists of $N$ units. If, each time we draw a unit for our sample, all the units are equally likely to be drawn (just like in the box model), a sample drawn without replacement is called a *simple random sample*. Suppose our population consists of just two types of units that we call "successes" and "failures" (as usual, a "success" is whatever outcome we are interested in), and we draw a sample of size $n$ without replacement. Now, the probability of success will *not* stay the same on each draw. If we let $X$ be the number of successes in $n$ draws, then we have that 
+
+$$ P(X = k) = \frac{\binom{G}{k} \times \binom{N-G}{n-k}}{\binom{N}{n}} $$
+where $N$ is the size of the population, $G$ is the total number of successes in the population, and $n$ is the sample size (so $k$ can take the values $0, 1, \ldots, n$ or $0, 1, \ldots, G$, if the number of successes in the population is smaller than the sample size.)
+
+#### Example: Gender discrimination at large supermarket?
+A large (with 1,000 employees) supermarket chain in Florida occasionally selects employees
+to receive management training. A group of women there claimed that
+female employees were passed over for this training in favor of
+their male colleagues. The company denied this claim. 
+(A similar complaint of gender bias was made about promotions and pay
+for the 1.6 million women who work or who have worked for
+Wal-Mart. The Supreme Court heard the case in 2011 and ruled in favor
+of Wal-Mart, in that it rejected the effort to sue Wal-Mart.)[^wm] If we set this up as a probability problem, we might ask the question of how many women have been selected for executive training in the last 10 years. Suppose no women had ever been selected in 10 years of annually selecting one employee for training. Further suppose that the number of men and women were equal, and suppose the company claims that it draws employees at random for the training, from the 1,000 eligible employees. If $X$ is the number of women that have been picked for training in the past 10 years, what is $P(X = 0)$?
+
+Since there are 1,000 employees, and half are women, we have $G = N-G = 500$. Of the 10 picked, none are women. We are picking a sample of size 10 without replacment, therefore we have that:
+$$P(X = 0) = \frac{\binom{500}{0} \times \binom{500}{10}}{\binom{1000}{10}} \approx 0.0009$$
+
+The function that we can use in `R` to compute hypergeometric probabilities is called `dhyper(x, m, n, k)`, where `x` is the number of successes in the sample that we are counting (what we call $k$), `m` is $G$ or the number of successes in the population, and $n$ is $N-G$. $k$ is the sample size.
+
+```{r}
+#| code-fold: false
+dhyper(0, 500, 500, 10)
+```
+
+Note that the function used in `R` to compute the binomial coefficient $\binom{n}{k}$ is `choose(n,k)`.
+
+```{r}
+#| code-fold: false
+
+choose(500, 0)*choose(500, 10)/choose(1000, 10)
+
+```
+
+
+### Binomial vs Hypergeometric distributions
+
+Both these distributions deal with the counting the number of successes in a *fixed* number of *trials* (where each instance of the random experiment that generates a success or a failure is called a trial, for example each toss of a coin, or each card dealt from a deck, and we count a heart to be a success). The difference is that for a binomial random variable, the probability of a success stays the *same* for each trial, and for a hypergeometric random variable, the probability *changes* with each trial. If we use a box of tickets to describe these random variables, both distributions can be modeled by sampling from boxes with each ticket marked with $0$ or $1$, but for the binomial distribution, we sample $n$ times *with* replacement and count the number of successes by summing the draws; and for the hypergeometric distribution, we sample $n$ times *without* replacement, and count the number of successes by summing the draws.
+
+Note that when the sample size is small relative to the population size, there is not much difference between the probabilities if we use a binomial distribution vs using a hypergeometric distribution. Let's pretend in the gender discrimination example above that we are sampling *with* replacement. Now suppose we sample 10 times with replacement, let's use the binomial distribution to compute the chance of never picking a woman. 
+
+```{r}
+#| code-fold: false
+
+# n = 10
+# p = 0.5
+
+dbinom(0, 10, 0.5)
+
+```
+
+
+You can see that the values are very close to each other. (Recall that the probability using the hypergeometric distribution was `0.0009331878`.
+
+
+## The cumulative distribution function $F(x)$
+
+:::{.def}
+**Cumulative distribution function (cdf) $F(x)$**
+ ~ The cumulative distribution function of a random variable $X$ is defined for *every* real number, and gives, for each $x$, the amount of probability or mass that has been *accumulated* up to (and including) the point $x$, that is, 
+$F(x) = P(X \le x)$.
+:::
+
+We usually abbreviate this function to cdf. It is a very important function since it also describes the probability distribution of $X$.
+
+For example, if $X$ is the number of heads in $3$ tosses of a fair coin, recall that:
+
+$$ f(x) = \begin{cases}
+  \displaystyle \frac{1}{8}, \; x = 0, 3 \\
+  \displaystyle \frac{3}{8}, \; x = 1, 2 
+  \end{cases} $$
+
+In this case, $F(x) = P(X\le x) = 0$ for all $x < 0$ since the first positive probability is at $0$. Then, $F(0) = P(X \le 0) = 1/8$ after which it stays at $1/8$ until $x = 1$. Look at the graph below:
+
+![](images/cdf.png){fig-align="center" width="700"}
+Notice that $F(x)$ is a step function, and right continuous. The jumps are at exactly the values for which $f(x) > 0$. We can get $F(x)$ from $f(x)$ by adding the values of $f$ up to and including $x$, and we can get $f(x)$ from $F(x)$ by looking at the size of the jumps. 
+
+#### Example: Drawing the graph of the cdf
+
+Let $X$ be the random variable defined by the distribution table below. Find the cdf of $X$, and draw the graph, making sure to define $F(x)$ for all real numbers $x$. Before you do that, you will have to determine the value of $f(x)$ for $x = 4$.
+
+<center>
+
+
+| $x$ |  $P(X = x)$  |
+|:------:|:---------:|
+|  $-1$  |  $0.2$ |
+|  $1$  | $0.3$ |
+|  $2$  | $0.4$ |   
+|  $4$  | ??  |   
+
+</center>
+
+<details><summary> Check your answer </summary>
+
+Since $\displaystyle \sum_x P(X = x) = \sum_x f(x) = 1$, $f(4) = 1-(0.2+0.3+0.4) = 0.1.$ Therefore $F(x)$ is as shown below.
+
+![](images/cdf-2.png){fig-align="center" width="700"}
+</details>
+
+
+In `R`, we have functions that calculate $F(x)$ for some special distributions, including the binomial and hypergeometric distributions. For a binomial distribution, we use the function `pbinom(x, size, prob)` Similarly, for the hypergeometric distribution, we use `phyper(x, m, n, k)`.
+
+Going back to the example above, let's compute the probabilities using `pbinom(x, 10, 0.4)` and compare them to the probabilities computed earlier using `dbinom(x, size, prob)` 
+
+```{r}
+#| code-fold: false
+
+# P(X = 5)
+dbinom(x = 5, size = 10, prob = 0.4)
+
+# P(X = 5)
+pbinom(5, 10, 0.4) - pbinom(4, 10, 0.4)
+
+# P(X <= 5)
+dbinom(x = 0, size = 10, prob = 0.4) + dbinom(x = 1, size = 10, prob = 0.4) + 
+  dbinom(x = 2, size = 10, prob = 0.4) + dbinom(x = 3, size = 10, prob = 0.4) +
+  dbinom(x = 4, size = 10, prob = 0.4) + dbinom(x = 5, size = 10, prob = 0.4)
+
+# P(X <= 5)
+pbinom(5, 10, 0.4)
+
+# P(3 <= X <= 8)
+dbinom(x = 3, size = 10, prob = 0.4) + dbinom(x = 4, size = 10, prob = 0.4) + 
+  dbinom(x = 5, size = 10, prob = 0.4) + dbinom(x = 6, size = 10, prob = 0.4) +
+  dbinom(x = 7, size = 10, prob = 0.4) + dbinom(x = 8, size = 10, prob = 0.4)
+
+# P(3 <= X <= 8)
+pbinom(8, 10, 0.4) - pbinom(2, 10, 0.4)
+```
+
+What is going on in the last expression? Why is $P(3 <= X <= 8) = F(8) - F(2)$?
+
+<details><summary> Check your answer </summary>
+
+$P(3 <= X <= 8)$ consists of all the probability at the points $3, 4, 5, 6, 7, 8$. 
+$F(8) = P(X\le 8) $ is all the probability up to $8$, including any probability at $8$. We subtract off all the probability up to and including $2$ from $F(8)$ and are left with the probability at the values $3$ up to and including $8$, which is what we want.
+
+</details>
+
+
+## Connections between discrete random variables and draws from a box of tickets
+
+#### Example: the discrete uniform random variable
+
+Say we have a ten sided die. How can we set up a simulation to model for rolling this die once? (We can simulate it using a box of tickets, or in R).
+
+<details><summary> Check your answer </summary>
+
+A box with ten tickets, marked $\fbox{1}, \fbox{2}, \ldots \fbox{10}$; and draw once from this box. 
+
+We can also simulate the probability distribution by drawing over and over again, and looking at the empirical distribution. You can see below that it closely matches the actual probability distribution.
+
+:::{.content-visible when-format="html"}
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+die_10 <- seq(from = 1, to = 10, by = 1)
+prob_10 <- rep(0.1, 10)
+
+set.seed(12345)
+
+n_rolls <- 10^5
+
+rolls <- sample(die_10, n_rolls, replace = TRUE)
+
+p1 <- data.frame(die_10) %>% 
+  mutate(prob_10 = prob_10) %>%
+  ggplot(aes(x = factor(die_10), y = prob_10)) +
+  geom_col(fill = "goldenrod2", width = 0.98) + 
+   ylab("probability") + 
+   xlab(" number of spots") + 
+  ggtitle("Outcomes from rolling a ten sided die:\n probability distribution")
+  
+
+p2 <- data.frame(rolls) %>% 
+  ggplot(aes(x=factor(rolls))) + 
+  geom_bar(aes(y = (..count..)/sum(..count..)), fill="blue", width = 0.98) + 
+  ylab("proportion of draws") + 
+  xlab("ticket drawn") + 
+  ggtitle("Outcomes from rolling a ten sided die:\n empirical distribution") 
+ 
+
+p1 + p2
+
+```
+:::
+
+:::{.content-visible when-format="pdf"}
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+#| echo: false
+#| message: false
+#| warning: false
+
+die_10 <- seq(from = 1, to = 10, by = 1)
+prob_10 <- rep(0.1, 10)
+
+set.seed(12345)
+
+n_rolls <- 10^5
+
+rolls <- sample(die_10, n_rolls, replace = TRUE)
+
+p1 <- data.frame(die_10) %>% 
+  mutate(prob_10 = prob_10) %>%
+  ggplot(aes(x = factor(die_10), y = prob_10)) +
+  geom_col(fill = "goldenrod2", width = 0.98) + 
+   ylab("probability") + 
+   xlab(" number of spots") + 
+  ggtitle("Outcomes from rolling a ten sided die:\n probability distribution")
+  
+
+p2 <- data.frame(rolls) %>% 
+  ggplot(aes(x=factor(rolls))) + 
+  geom_bar(aes(y = (..count..)/sum(..count..)), fill="blue", width = 0.98) + 
+  ylab("proportion of draws") + 
+  xlab("ticket drawn") + 
+  ggtitle("Outcomes from rolling a ten sided die:\n empirical distribution") 
+ 
+
+p1 + p2
+
+```
+:::
+
+#### Example: the binomial(*n*, *p*) random variable
+
+Let $X \sim Bin(30, 0.5)$. We can simulate the values of this random variable by drawing from the box ![](images/binom-box.jpeg){width="80"} $30$ times, and summing the draws. This will simulate counting the number of successes in $n$ trials. As in the example above, we will plot the probability distribution of $X$ on the left, and the empirical distribution on the right. 
+
+:::{.content-visible when-format="html"}
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+
+
+box <- c(0,1)
+binom_30 <- seq(from = 0, to = 30, by = 1)
+prob_30 <- round(dbinom(binom_30, size = 30, prob = 0.5), 3)
+
+set.seed(12345)
+
+n_sims <- 10^6
+
+draws <- replicate(n_sims, sum(sample(box, 30, replace = TRUE)))
+
+p1 <- data.frame(binom_30) %>% 
+  mutate(prob_30 = prob_30) %>%
+  ggplot(aes(x = factor(binom_30), y = prob_30)) +
+  geom_col(fill = "goldenrod2", width = 0.98, color = "white") + 
+   ylab("probability") + 
+   xlab(" number of successes") + 
+  ggtitle("Probabilities for the binomial random variable \n n = 30, p = 0.5") +
+  theme_bw()
+  
+
+fac_30 <- factor(binom_30, levels = 0:30)
+
+p2 <- data.frame(draws) %>% 
+  ggplot(aes(x=draws)) + 
+  geom_bar(aes(y=..prop..), fill="blue", width = 0.98, color = "white") + 
+  ylab("proportion of draws") + 
+  xlab("sum of draws") + 
+  ggtitle("Empirical distribution for random numbers generated \n
+          from the Bin(30, 0.5) distribution")  +
+  theme_bw() +
+  scale_x_discrete(limits = factor(seq(0,30)), labels = fac_30, drop = FALSE)
+  
+
+p1 + p2
+
+```
+:::
+
+:::{.content-visible when-format="pdf"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 5
+
+
+
+box <- c(0,1)
+binom_30 <- seq(from = 0, to = 30, by = 1)
+prob_30 <- round(dbinom(binom_30, size = 30, prob = 0.5), 3)
+
+set.seed(12345)
+
+n_sims <- 10^6
+
+draws <- replicate(n_sims, sum(sample(box, 30, replace = TRUE)))
+
+p1 <- data.frame(binom_30) %>% 
+  mutate(prob_30 = prob_30) %>%
+  ggplot(aes(x = factor(binom_30), y = prob_30)) +
+  geom_col(fill = "goldenrod2", width = 0.98, color = "white") + 
+   ylab("probability") + 
+   xlab(" number of successes") + 
+  ggtitle("Probabilities for the binomial random variable \n n = 30, p = 0.5") +
+  theme_bw()
+  
+
+fac_30 <- factor(binom_30, levels = 0:30)
+
+p2 <- data.frame(draws) %>% 
+  ggplot(aes(x=draws)) + 
+  geom_bar(aes(y=..prop..), fill="blue", width = 0.98, color = "white") + 
+  ylab("proportion of draws") + 
+  xlab("sum of draws") + 
+  ggtitle("Empirical distribution for random numbers generated \n
+          from the (30, 0.5) distribution")  +
+  theme_bw() +
+  scale_x_discrete(limits = factor(seq(0,30)), labels = fac_30, drop = FALSE)
+  
+
+p1 + p2
+
+```
+:::
+
+[^covid]: <https://www.covidstates.org/reports/state-of-the-covid-19-pandemic>
+[^wm]:<https://www.latimes.com/world/la-xpm-2011-jun-20-la-naw-wal-mart-court-20110621-story.html>
+[^binom]: <https://en.wikipedia.org/wiki/Binomial_coefficient>
+
+## Summary
+
+- In these notes, we defined random variables, and described discrete and continuous random variables.
+- For any random variable, there is an associated probability distribution, and this is described by the probability mass function or pmf $f(x)$. We also defined a function that, for a random variable $X$, and any real number $x$, describes all the probability that is to the left of $x$. This function is called the cumulative distribution function (cdf) of $X$ and is denoted $F(x)$.
+- We looked at some special distributions (Bernoulli, binomial, discrete uniform, and hypergeometric)
+- We defined functions in `R` that can compute the pmf and cdf for special distributions.
+- Finally, we looked at connections between random variables and boxes with tickets, and saw how to simulate some empirical distributions.
+
+
+{{< include images/tmp/_date-meta.md >}}
+
+{{< include ../../assets/includes/_links-to-materials.qmd >}}

@@ -1,0 +1,124 @@
+---
+title: "Lab 4: Elections"
+image: images/iran_green2.jpg
+code-fold: false
+sidebar: false
+---
+
+{{< include ../../../assets/includes/_labs-header.qmd >}}
+
+This week's lab is a *mini-lab* containing only one part and done in a qmd file. The data for this lab can be found in the `iran` data frame in the `stat20data` package. Run `?iran` at the console to learn more about the columns.
+
+On June 12 2009, the Republic of Iran held an election where President Mahmoud Ahmadinejad sought re-election against three challengers. One of the challengers, Mir-Hossein Mousavi was thought to have a good chance at defeating the incumbent. When it was announced that Ahmadinejad had won handily, there were widespread allegations of election fraud. There are many methods, both quantitative and qualitative, to detect election fraud. In this lab we will critique just one proposed method.
+
+#### Question 1
+
+What is the unit of observation in the `iran` data frame?
+
+
+#### Question 2
+
+What is the empirical distribution of the vote counts for Ahmadinejad? Answer with a plot, numerical summaries of center and spread, and a written interpretation.
+
+#### Question 3
+
+One model for the probability distribution of first digits is the discrete uniform distribution. Let $X$ be the first digit of the vote count for Ahmadinejad in a randomly selected city.
+
+$$X \sim Uniform(1, 9)$$
+
+We've started creating the distribution table for $X$ as a data frame by creating a column containing the possible values $x$. Complete the table by mutating and saving a column called `prob` with the corresponding probabilities. Use that table to visualize the distribution and color the bars with gold to make clear this is a probability distribution, not an empirical distribution.
+
+```{r}
+#| echo: true
+#| eval: false
+fd_unif <- data.frame(first_digit = seq(1, 9))
+```
+
+#### Question 4
+
+What is the expected value of $X \sim Unif(1, 9)$? Answer this question by mutating a new column in `fd_unif` and taking its sum, as in the notes.
+
+
+#### Question 5
+
+What is the variance of $X \sim Unif(1, 9)$? Answer this question by again mutating a new column in `fd_unif` and taking its sum, as in the notes.
+
+#### Question 6
+
+A second model for the probability distribution of first digits is Benford's Law.
+
+$$X \sim Benford()$$
+
+Benford's Law is a distribution without any parameters: it always takes values on the integers from 1 to 9 and the probability of each is $\log_{10} \left(1 + 1/x\right)$ where $x$ is the integer.
+
+Repeat question 3 but using Benford's Law and the dataframe `fd_benford`. As a check that your table represents a valid probability distribution, verify that the sum of `prob` is 1. (Hint: read the documentation to `log()` carefully.)
+
+Will this distribution have a expected value that is higher, lower, or the same as the Uniform distribution?
+
+```{r}
+#| echo: true
+#| eval: false
+fd_benford <- data.frame(first_digit = seq(1, 9))
+```
+
+
+#### Question 7
+
+Using the methods from Questions 4 and 5, calculate the expected value and the variance of Benford's Law.
+
+#### Question 8
+
+What might a sample of 366 draws from $X \sim Benford()$ look like?
+
+To answer this, use `fd_benford` as your box with every row a ticket. You can simulate the process of drawing a ticket out of a box by sampling rows from the data frame with `slice_sample()`. To use this function you must specify the number of rows (`n`), whether or not to sample with replacement (`replace`), and which column contains the probability of each ticket (`weight_by`).
+
+Create a plot of the resulting empirical distribution of first digits.
+
+```{r}
+#| echo: true
+#| eval: false
+fd_benford %>%
+  slice_sample(n = ___,
+               replace = ___,
+               weight_by = ___)
+```
+
+
+#### Question 9
+
+What do the first digit empirical distributions look like for the four candidates in the Iranian presidential election?
+
+Inside the `stat20data` package there is a function called `get_first()` that pulls off the first digit of every element in a vector. Piece all four plots together into one single plot using the `patchwork` library (search for "patchwork" in the search bar at the top right of the course website for an example of its use).
+
+```{r}
+#| eval: false
+#| echo: true
+penguins %>%
+  mutate(first_digit = get_first(bill_length_mm)) %>%
+  select(bill_length_mm, first_digit)
+```
+
+
+#### Question 10
+
+How do the observed first digit distributions compare to those simulated from Benford's Law? Which candidate has a first-digit distribution most similar to and most different from the simulated ones?
+
+### US Elections
+
+The [OpenElections](http://www.openelections.net) project obtains and standardizes precinct-level results from US elections, including the 2020 US Presidential Election. To access the data, search OpenElections' GitHub page ([https://github.com/openelections](https://github.com/openelections)) and click on a link to a data repository for the state of your choosing. Select the `2020` folder and find a file that ends in `.csv`. Some notes:
+
+- Each state uses a different format, so click through a couple states' repositories until you find one that will allow you to study voting patterns at the precinct-level.
+- To read the csv file into R, you will need to point R to the raw version of the data set. To view the raw csv you will either click the button that says "Raw" at the top right of the data frame on GitHub or click the link that says "View Raw Data". When you are looking at the raw csv file, the url in your browser is the one you can use to access the file from within R.
+- There may be strange extra rows in your data, such as a row tallying total overall votes. Visually inspect the data to see if anything jumps out and be sure to take this into consideration when doing your analysis.
+
+#### Question 11
+
+What state did you choose to study? What is the unit of observation in your state's data frame? What are the dimensions?
+
+#### Question 12
+
+Use this data to create a plot of that state's first digit distribution by precinct. Use the number of votes cast for Joseph Biden in each precinct.
+
+#### Question 13
+
+Does the election you chose appear to fit Benford's distribution better or worse than the Iran election?

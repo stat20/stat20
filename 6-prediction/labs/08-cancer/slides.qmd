@@ -1,0 +1,113 @@
+---
+title: "Lab 8: Diagnosing Cancer"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+
+## Fine needle aspiration biopsy
+
+![](images/fine-needle-aspiration-biopsy.png){fig-align=center heigh=1000}
+
+:::{.notes}
+Often when someone is suspected to have cancer (e.g. a bump is found) a fine needle aspiration biopsy is taken to determine whether or not the growth is cancerous (malignant -- may grow dangerously out of control) or not (benign).
+:::
+
+
+<!-- https://www.medicinenet.com/fine-needle_aspiration_biopsy_of_the_thyroid/article.htm -->
+
+
+## Artificial intelligence in medicine
+
+- Automating certain diagnostic tasks can increase access to healthcare
+
+- Global shortage of pathologists, especially outside of wealthy healthcare systems
+    - Expert pathologists take years to be fully trained (4 year medical school + 4 year residency)
+
+
+:::{.notes}
+https://www.linkedin.com/pulse/how-ai-can-help-address-global-shortage-pathologists-colangelo/
+:::
+
+
+
+## Lab 6: breast cancer diagnosis  {.scrollable}
+
+- Samples are 568 biopsies
+    - Each biopsy has 30 features 
+- Goal: classify biopsy as **benign** or **malignant**
+
+
+::: {layout-ncol=2}
+
+![](images/benign_fna.png){}
+
+![](images/malignant_fna.png){}
+:::
+
+
+:::{.notes}
+The tissue is purple because it is stained with Hematoxylin and Eosin. These are purple and pink stains that make the tissue structure easier to see under a microscope.
+
+Most of the visible objects in these images are cell nuclei, not the full cell; the cytoplasm is mostly invisible on these images.
+
+(From https://stanfordhealthcare.org/medical-conditions/cancer/cancer.html): Tumors can be benign (noncancerous) or malignant (cancerous). Benign tumors tend to grow slowly and do not spread. Malignant tumors can grow rapidly, invade and destroy nearby normal tissues, and spread throughout the body.
+:::
+
+
+
+## Nuclear morphology
+
+
+- Morphology = what the cell looks like under a microscope
+    - size, shape, texture
+
+- Cells in malignant biopsies tend to
+    - be larger
+    - irregularly shaped
+    - highly variable
+
+- Only measure morphology of cell nucleus
+
+## 10 nuclear morphology features
+
+
+![](images/cell_features.png){fig-align=center height=800}
+
+:::{.notes}
+We compute 10 morphological features for each cell nucleus in the biopsy image.
+:::
+
+
+
+## 30 biopsy features
+
+![](images/biopsy_features.png){fig-align=center height=800}
+
+
+:::{.notes}
+Each biopsy has 30 features; these come from computing 3 summary statistics (mean, max, standard deviation) of each of the 10 cell features to summarize the population of cells in the biopsy.
+:::
+
+## Lab worktime
+
+```{r}
+countdown::countdown(25)
+```
+

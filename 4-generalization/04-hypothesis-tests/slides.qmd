@@ -1,0 +1,373 @@
+---
+title: "Hypothesis Testing"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+execute: 
+  echo: true
+---
+
+## Agenda
+
+- Concept Questions
+- Problem Set: Is Yawning Contagious
+- Appendix: Hypothesis Testing with `infer`
+
+:::notes
+Pick a Card Activity
+
+Goals:
+1. Identify a situation where people naturally reason like a hypothesis test
+2. Map the parts of that situation to the formalism of a hypothesis test
+3. Provide some intuition about why .05 is used as the standard threshold
+
+Take two decks of cards and mix them so that you have a single deck that is all of one color, say: black. Bring a prize to class and ham it up that the winner of this simple game will win the prize. All they have to do is pick a red card.
+
+Shuffle the deck, say that's its fair, then select a random student to be the first contestant. Fan the cards out for them and have them pick a card. When the lose, fein disappointment / surprise, replace the card and move on to the next student. Do this several times. You'll start hearing groans that the game is rigged. At the point where the groans become clearly articulated (usually around 4 or 5 draws), stop the game, admit to the scam, then go to the board.
+
+Walk through how students started with a previous notion that the deck was fair (null hypothesis: p(red) = .5). As they observed data, they assessed the degree of consistency with that notion by computing the probability of the data. Calculate a table of the binomial probabilities of one black, two blacks, three blacks, on the board. With 4 blacks, the probability is 1/2^4 = .0625 and with 5 blacks its 1/2^5 = .03125. Draw a line between these two probability and identify it as the alpha = .05 threshold that is generally used for "calling bullshit on the null".
+:::
+
+# Concept Questions
+
+## {.smaller}
+
+:::poll
+
+Which of the following statements below represents claims that correspond to a null hypothesis (as opposed to an alternative hypothesis)?
+
+Hint: try to write them using parameters (statements about means / proportions / etc)
+
+A. King cheetahs on average run the same speed as standard spotted cheetahs.
+
+B. For a particular student, the probability of correctly answering a 5-option multiple choice test is larger than 0.2 (i.e., better than guessing).
+
+C. The mean length of African elephant tusks has changed over the last 100 years.
+
+D. The risk of facial clefts is equal for babies born to mothers who take folic acid supplements compared with those from mothers who do not.
+
+E. Mean birth weight of newborns is dependent on caffeine intake during pregnancy.
+
+F. The probability of getting in a car accident is the same if using a cell phone than if not using a cell phone.
+:::
+
+```{r}
+#| echo: false
+countdown::countdown(1, bottom = 0)
+```
+
+
+:::notes
+Correct answers: A, D, F.
+
+Most of these they haven't seen examples of, so it will be worth laying out the null hypotheses.
+:::
+
+## 
+
+We want to understand whether blood thinners are helpful or harmful. We’ll consider both of these possibilities using a two-sided hypothesis test.
+
+:::{.smaller}
+*Null*: Blood thinners do not have an overall survival effect, i.e., the survival proportions are the same in each group. 
+
+*Alternative*: Blood thinners have an impact on survival, either positive or negative, but not zero.
+:::
+
+![](images/two-sided.png){fig-width="400" fig-align="center"}
+
+:::poll
+What is your guess at the p-value?
+:::
+
+```{r}
+#| echo: false
+countdown::countdown(1, bottom = 0)
+```
+
+:::notes
+.3 is probably the best answer but .2 is ok too.
+:::
+
+##
+
+A pharmaceutical company developed a new treatment for eczema and performed a
+hypothesis test to see if it worked better than the company's old treatment. The P-value for the test was $10\%$. Which of the following statements are true?
+
+\
+
+A. The probability that the null hypothesis is false is $10\%$.
+
+B. The probability that the null hypothesis is false is $90\%$.
+
+C. The P-value of about $10\%$ was computed assuming that the null hypothesis was true.
+
+D. The new drug is significantly better than the old. 
+
+E. The alternative hypothesis is 10 times more likely the null.
+
+```{r}
+#| echo: false
+countdown::countdown(1, bottom = 0)
+```
+
+# Problem Set: Is Yawning Contagious?
+
+```{r}
+#| echo: false
+countdown::countdown(20)
+```
+
+
+# Hypothesis Testing with `infer`
+
+
+## {background-image="images/pic-5.jpg" background-size="contain"}
+
+## {background-image="images/pic-6.jpg" background-size="contain"}
+
+## {background-image="images/pic-7.jpg" background-size="contain"}
+
+## {background-image="images/pic-8.jpg" background-size="contain"}
+
+## {background-image="images/pic-9.jpg" background-size="contain"}
+
+## {background-image="images/pic-10.jpg" background-size="contain"}
+
+## {background-image="images/pic-11.jpg" background-size="contain"}
+
+## {background-image="images/pic-12.jpg" background-size="contain"}
+
+# Appendix
+
+# Example: Class Survey
+
+## {menu-title="question"}
+
+> Question: Do beach lovers prefer the warm seasons more than mountain lovers?
+
+. . .
+
+Load packages and data.
+
+```{r}
+library(tidyverse)
+library(stat20data)
+```
+
+. . .
+
+Create new column with just two levels and drop NAs.
+
+```{r}
+class_survey <- class_survey %>%
+  mutate(warm_fav = season%in% c("Summer", "Fall")) %>%
+  drop_na(beach_or_mtns, warm_fav)
+```
+
+
+## Visualizing the data
+
+> What sort of visualization can we use to see the association between these two variables?
+
+. . .
+
+:::columns
+:::{.column width="50%"}
+```{r}
+class_survey %>%
+  select(beach_or_mtns, warm_fav)
+```
+:::
+
+:::{.column width="50%" .fragment}
+```{r, fig.height=4}
+ggplot(class_survey, aes(x = beach_or_mtns,
+                         fill = warm_fav)) +
+  geom_bar(position = "fill")
+```
+:::
+:::
+
+
+## Answering with a statistic
+
+> Question: Do beach lovers prefer the warm seasons more than mountain lovers?
+
+. . .
+
+```{r}
+library(infer)
+obs_stat <- class_survey %>%
+  specify(response = warm_fav,
+          explanatory = beach_or_mtns,
+          success = "TRUE") %>%
+  calculate(stat = "diff in props")
+obs_stat
+```
+
+. . .
+
+> We see the difference is non-zero, but could that just be a product of this particular small sample of data that we have?
+
+
+## Hypothesis Test Pipeline {auto-animate="true"}
+
+```{r}
+class_survey %>%
+  specify(response = warm_fav,  
+          explanatory = beach_or_mtns,  
+          success = "TRUE")  
+```
+
+
+## Hypothesis Test Pipeline {auto-animate="true"}
+
+```{r}
+class_survey %>%
+  specify(response = warm_fav,
+          explanatory = beach_or_mtns,
+          success = "TRUE") %>%
+  hypothesize(null = "independence")  
+```
+
+
+## Hypothesis Test Pipeline {auto-animate="true"}
+
+```{r}
+class_survey %>%
+  specify(response = warm_fav,
+          explanatory = beach_or_mtns,
+          success = "TRUE") %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 1,
+           type = "permute")
+```
+
+
+
+## Hypothesis Test Pipeline {auto-animate="true"}
+
+```{r}
+class_survey %>%
+  specify(response = warm_fav,
+          explanatory = beach_or_mtns,
+          success = "TRUE") %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 1,
+           type = "permute") # a second shuffle
+```
+
+
+## Hypothesis Test Pipeline {auto-animate="true"}
+
+```{r}
+class_survey %>%
+  specify(response = warm_fav,
+          explanatory = beach_or_mtns,
+          success = "TRUE") %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 1,
+           type = "permute") # a third shuffle
+```
+
+
+## Hypothesis Test Pipeline {auto-animate="true"}
+
+```{r}
+class_survey %>%
+  specify(response = warm_fav,
+          explanatory = beach_or_mtns,
+          success = "TRUE") %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 500,  
+           type = "permute")
+```
+
+
+## Hypothesis Test Pipeline {auto-animate="true"}
+
+```{r}
+class_survey %>%
+  specify(response = warm_fav,
+          explanatory = beach_or_mtns,
+          success = "TRUE") %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 500,
+           type = "permute") %>%
+  calculate(stat = "diff in props")  
+```
+
+
+## Hypothesis Test Pipeline {auto-animate="true"}
+
+```{r fig.height=4}
+class_survey %>%
+  specify(response = warm_fav,
+          explanatory = beach_or_mtns,
+          success = "TRUE") %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 500,
+           type = "permute") %>%
+  calculate(stat = "diff in props") %>%
+  visualize()  
+```
+
+
+## Hypothesis Test Pipeline {auto-animate="true"}
+
+```{r fig.height=4}
+class_survey %>%
+  specify(response = warm_fav,
+          explanatory = beach_or_mtns,
+          success = "TRUE") %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 500,
+           type = "permute") %>%
+  calculate(stat = "diff in props") %>%
+  visualize() +
+  shade_pvalue(obs_stat = obs_stat,  
+               direction = "both")  
+```
+
+
+## Hypothesis Test Pipeline {auto-animate="true"}
+
+```{r echo = FALSE}
+set.seed(30)
+```
+
+
+```{r fig.height=4}
+class_survey %>%
+  specify(response = warm_fav,
+          explanatory = beach_or_mtns,
+          success = "TRUE") %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 500,
+           type = "permute") %>%
+  calculate(stat = "diff in props") %>%
+  get_p_value(obs_stat = obs_stat,  
+               direction = "both")  
+```
+
+<!-- ## Your turn -->
+
+<!-- We want to  -->
+
+<!-- Using the `class_survey` data, create a plot of the distribution of thoughts on climate change separated out by whether or not a student is an econ major. Also compute a statistic that  -->
+

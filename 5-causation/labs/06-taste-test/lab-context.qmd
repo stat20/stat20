@@ -1,0 +1,70 @@
+---
+title: 'A Matter of Taste'
+subtitle: "Lab"
+format: stat20handout-pdf
+---
+
+### Group Members
+Write to the right of each role the first and last name of the group member filling that role (if there are groups of 4, two can serve as facilitators).
+
+- *Taster/Subject*: Undergoes the experiment, tastes soda water, provides data.__________
+- *Materials*: Handles the materials (water et. al) for the experiment.________________
+- *Facilitator(s)*: Carries out the experiment, keeps track of time, records data.__________
+
+### Causal Question
+
+In one sentence, write the causal question you intend to test. It should be composed of a *response* variable having to do with perception of bubble water and whether it is effected by a given intervention / *explanatory* variable.
+
+\
+
+### Null Hypothesis 
+
+Write down the corresponding _null hypothesis_ that you will gather evidence against, the _alternative hypothesis_, and the _significance level_, $\alpha$, that you intend to use. Also identify your _test statistic_.
+
+\
+\
+\
+
+### Protocol
+
+Record below the step-by-step protocol that you will use to collect data to bear on the claim above. Be precise. You should be able to hand this off to another group and have them conduct your experiment.
+
+{{< pagebreak >}}
+
+### Data
+
+In the space below, sketch out an empty data frame that identifies the important characteristics of your data. Create the data frame such that the number of rows reflect your sample size, $n$, and the number of columns represent the variables that you intend to collect. Label the columns with the names of those variables and note how you are defining your unit of observation.
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+### Exploratory Data Analysis
+
+Sketch a plot that you will use to use to determine how consistent your data are with your original claim. Please label the axes. Since you do not yet have data, create two sketches of what the plot *might* look like in two scenarios. Below each plot, write  the ggplot2 code that will create that graphic. Note: these are plots of data, not null distributions of statistics.
+
+\setlength{\tabcolsep}{35pt}
+\begin{table*}[h]
+  \centering
+  \begin{tabular}{lr}
+\emph{Scenario 1: Data supports claim} & \emph{Scenario 2: Data does not support claim}
+  \end{tabular}
+\end{table*}
+
+

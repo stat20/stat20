@@ -1,0 +1,198 @@
+---
+title: "A Grammar of Graphics"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+
+- Concept Questions
+- Lab 2: Class Survey
+  - Part I
+- *Break*
+- Lab 2: Class Survey
+  - Part II
+
+# Concept Questions
+
+##
+
+:::{.poll}
+What are the aesthetics and geometry of this plot?
+
+Answer at `pollev.com`
+:::
+
+```{r}
+#| fig-align: center
+#| fig-width: 11
+library(tidyverse)
+library(palmerpenguins)
+
+ggplot(penguins, aes(x = bill_length_mm,
+                     fill = species)) +
+    geom_density() +
+    theme_gray(base_size = 20)
+```
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+##
+
+:::{.poll}
+What has changed when moving from the left to the right?
+:::
+
+```{r}
+#| fig-align: center
+#| fig-width: 11
+library(patchwork)
+p1 <- ggplot(penguins, aes(x = bill_length_mm,
+                           y = bill_depth_mm,
+                           color = species)) +
+    geom_point(size=2) +
+    theme_gray(base_size = 20) +
+    theme(legend.position = "none")
+p2 <- ggplot(penguins, aes(x = bill_length_mm,
+                           y = bill_depth_mm,
+                           shape = species)) +
+    geom_point(size=2) +
+    theme_gray(base_size = 20) +
+    theme(legend.position = "none")
+p1 + p2
+```
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+
+## 
+
+You will be watching a 2.5 minute video of a presentation by a scientist, Hans Rosling, who studied global public health. He presents data visualizations depicting the change in life expectancy and family size over several decades in the 20th century.
+
+:::{.poll}
+On a piece of note paper:
+
+- Sketch out the data frame used to create the graphic and add the names of the variables.
+- List the aesthetic attributes used to encode the data in the graphic.
+- Identify the geometry used in the plot.
+:::
+
+## {data-menu-title="Hans Rosling's Gapminder"}
+
+<center>
+<iframe src="https://embed.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe>
+</center>
+
+##
+
+Please turn to your neighbors and...
+
+:::{.poll}
+Discuss what you came up with in terms of . . .
+
+- the variables present in the data frame
+- the aesthetic attributes used to encode that data in the plot
+- the geometry
+:::
+
+```{r}
+countdown::countdown(4, top = 0)
+```
+
+
+## What were the variables and aesthetic attributes?
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+#### Visual Cues / Aesthetics
+
+- Location along the x-axis
+- Location along the y-axis
+- Size of point
+- Color of point
+- Animation
+:::
+
+::: {.column width="50%"}
+#### Variables
+
+- Fertility rate
+- Life expectancy
+- Population
+- Region
+- Year
+:::
+
+::::
+
+
+## What did the data frame look like?
+
+
+What was the unit of observation? What were the variables? What were their type?
+
+. . . 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### Unit of observation
+
+- A country in a given year
+:::
+
+::: {.column width="50%"}
+#### Variables
+
+- Fertility rate (continuous)
+- Life expectancy (continuous)
+- Population (continuous)
+- Region (nominal)
+- Year (discrete)
+:::
+
+::::
+
+```{r echo = FALSE, eval = FALSE}
+## don't use the gapminder package data. Remake to have the original vars: life expectancy and fertility rate
+library(gapminder)
+gapminder %>%
+  slice(1, 10) %>%
+  kable() %>%
+  kable_styling(latex_options = "striped")
+```
+
+
+## What geometry is used to represent the observations?
+
+. . .
+
+- Points
+
+# Break
+
+# Lab 2: Class Survey

@@ -1,0 +1,129 @@
+---
+title: "Lab 6: A Matter of Taste"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../../assets/stat20-hex-bg.png
+      data-background-size: contain
+execute: 
+  echo: false
+---
+
+:::notes
+Suggested timeline
+- [10 min] Slides and making teams
+- [40 min] Working on the protocol
+
+General Advice
+- The students have seen *nothing* about experimental design yet in class. The idea is to have them use their own mental models to solve this problem, then later review and revise them. That's to say: coach them only to be precise in their protocol, not to be using best practices in experimental design. Errors made here are great learning opportunities later.
+- The first phase of the lab can all be done with paper and pencil, so you can ask that students stow their laptops.
+- It might be helpful to guide students to start at the end, what they expect their data and plots to look like, then work back towards the hypothesies and claims.
+- As written, most null hypotheses will suggest the use of a difference in proportions as the test statistic.
+:::
+
+
+## Making Claims with Data
+
+- **John Arbuthnot's Question**: What proportion of total births are of girls?
+
+. . .
+
+- **The Data**: Christening records from London churches.
+
+. . .
+
+- **The Analysis**: In all years studied, the proportion of girls was less than 50%.
+
+. . .
+
+```{r}
+#| echo: false
+#| fig-height: 3
+#| message: false
+#| fig-align: center
+
+library(tidyverse)
+library(stat20data)
+data(arbuthnot)
+arbuthnot <- arbuthnot %>%
+  mutate(p_girls = girls / (boys + girls))
+ggplot(arbuthnot, aes(x = year, y = p_girls)) +
+  geom_line() +
+  ylim(0, 1) +
+  theme_gray(base_size = 14)
+```
+
+- **Potential Claim**: At birth, humans are more likely to be genetically male than genetically female.
+
+:::notes
+First layout the arc of the Arbuthnot lab from the beginning of the semester. The general theme is: how can we construct claims and answer questions using data?
+
+This week students will work backwards: start with a claim that they think may be true, then decide how to collect data in a manner that will be most effective at determining whether or not the claim is true.
+:::
+
+## But first
+
+Please get into groups of 4. Take turns introducing yourselves.
+
+
+## A Matter of Taste
+
+**Your challenge**:  Determine whether you can affect one your teammates perception of bubble water by manipulating their experience of tasting.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](images/la-croix.png)
+:::
+
+::: {.column width="50%"}
+### Each team will have access to
+
+- 50 minutes (half of next class)
+- 2 cans of soda water, each one from a different flavor
+- small paper cups
+- straws
+- saltine crackers
+- other materials welcome
+:::
+::::
+
+:::notes
+
+At this point, go over to the pdf of the handout and project each section / question in turn:
+
+1. The main reason for the roles here is to dedicate just one person to handling the materials for health safety.
+
+2. Prompt them to think carefully about their wording here in the claim. How ambitious and general do they want to be? Encourage a clear causal mechanism using wording like A causes an increase in B.
+
+3. It will be helpful in formulating their hypotheses if they formulate them both in words (i.e. removing a sense of a smell will lead to a drop in ability to detect the difference in two flavors) and also in terms of proportions.
+
+4. The protocols must be very precise. Use the language of reproducibile analyses to encourage careful work. They must be able to pass this protocol off to another group, and they should be able to carry out the intended experiment with no ambiguity.
+
+5. The dataframe is intended to be a blank table with n rows and at least 1 column. They may plan to record either several extraneous variables or not enough to draw the conclusions they intend. As before, don't correct them. They may discover mid-experiment that they did this part wrong, and that's great.
+
+5. Encourage them to check that their viz is possible given their data frame and their data frame is possible give their protocol, and that their viz bears directly on their hypotheses.
+:::
+
+## Things to remember
+
+- Be precise in your protocol.
+- Be sure your claim corresponds to your protocol corresponds to your data corresponds to your plots.
+- Before leaving today, scan both sides of the handout with a scanner app and upload to Gradescope as Lab 6.1.
+
+```{r}
+countdown::countdown(50)
+```

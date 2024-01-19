@@ -1,0 +1,33 @@
+---
+title: "Overfitting"
+format:
+  html:
+    code-tools: 
+      source: true
+      toggle: false
+sidebar: false
+---
+
+In this problem set you'll practice fitting and evaluating two different predictive models. You can load in the data with the following code.
+
+```{r}
+#| echo: true
+library(tidyverse)
+train <- read_csv('https://raw.githubusercontent.com/idc9/course-materials/main/3-prediction/14-overfitting/train.csv')
+
+test <- read_csv('https://raw.githubusercontent.com/idc9/course-materials/main/3-prediction/14-overfitting/test.csv')
+```
+
+
+#### Question 1
+
+Fit a simple linear model to the training data that that predicts y as a function of x. Use this model to calculate a training and testing $R^2$.
+
+#### Question 2
+
+Fit a polynomial model to the training data that that predicts y as a function of x. Use this model to calculate a training and testing $R^2$. The choice of the degree of the polynomial is up to you.
+
+#### Question 3
+
+How did the testing and training $R^2$s compare between the linear and the polynomial models? What is driving the difference in these statistics between these two models?
+

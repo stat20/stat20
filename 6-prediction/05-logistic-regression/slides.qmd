@@ -1,0 +1,257 @@
+---
+title: "Logistic Regression"
+format:
+  revealjs:
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+## Agenda
+
+1. CQ
+2. Lecture: Misclassification
+3. Lab 8
+
+# Concept Questions
+
+##
+
+:::poll
+Which of the following is an example of a classification task?
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+:::notes
+The first three can be considered classification, the last one is description or generalization (depending on how much data they have).
+
+The first is a classic binary classification task and the second one multi-class (logistic won't work). The third could be thought of as a very complicated classification task: large language models treat all of the words in a query as the x's then predict the most likely word that would follow. So it can be thought of as an iterative multi-class classification task, at least as performed by the current models.
+
+The last one is trying to estimate a population parameter (the mode).
+:::
+
+## 
+
+```{r}
+library(tidyverse)
+library(stat20data)
+```
+
+```{r}
+#| echo: true
+m1 <- glm(sex ~ body_mass_g, data = penguins, family = "binomial")
+```
+
+```{r}
+coef(m1)
+```
+
+
+:::poll
+What is the predicted probability that a penguin that weighs 4000 g is a female?
+
+(As a bonus, try sketching this function on a scatterplot!)
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+:::notes
+To answer this one correctly, they'll need to know (or remember from the RQ) that the reference level is female, so this model is predicting the probability male.
+
+You can show that they can either use R as a calculator or use the predict function.
+
+1/(1 + exp(-(-5.15 + .00124 * 4000)))
+predict(m1, newdata = data.frame(body_mass_g = 4000), type = "response")
+
+The latter is more precise, which is useful here since p-hat (prob of male) is .449 therefore prob of female is .55.
+
+When sketching this, the positive slope means the s-curve goes up and to the right. The negative intercept shifts the whole curve a tiny bit to the left, reflecting the base rate of a couple more males than females (168 vs 165).
+:::
+
+##
+
+```{r}
+#| echo: true
+m2 <- glm(sex ~ body_mass_g + bill_length_mm, data = penguins, family = "binomial")
+```
+
+```{r}
+coef(m2)
+```
+
+:::poll
+What are the predicted sexes of these two penguins?
+
+A) body mass = 3900 g, bill length = 50
+B) body mass = 4100 g, bill length = 35
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+:::notes
+This one extends the task of the previous one by having them include another covariate and also to do the thresholding procedure to go from p-hat to y-hat. This doesn't specify the threshold, so using .5 is probably a good default.
+
+predict(m2, newdata = data.frame(body_mass_g = 3900, bill_length_mm = 50), type = "response") # male
+predict(m2, newdata = data.frame(body_mass_g = 4100, bill_length_mm = 35), type = "response") # female
+:::
+
+
+# Misclassification
+
+## Building a predictive model
+
+1. **Decide on the mathematical form of the model**: logistic linear regression
+
+. . .
+
+2. **Select a metric that defines the "best" fit**: the coefficients in logistic regression are the ones that minimize not the RSS function but a function called log-loss (which we don't have time to cover)
+
+. . .
+
+3. **Estimating the coefficients of the model that are best using the training data**: we know how to do this: test + train + `glm()`!
+
+. . .
+
+4. **Evaluating predictive accuracy using a test data set**:$R^2$ isn't relevant here. We need a new metric!
+
+
+## Example: penguins {auto-animate="true"}
+
+```{r}
+#| echo: true
+set.seed(132)
+
+# randomly sample train/test set split
+set_type <- sample(x = c('train', 'test'), 
+                   size = nrow(penguins), 
+                   replace = TRUE, 
+                   prob = c(0.8, 0.2))
+```
+
+## Example: penguins {auto-animate="true"}
+
+```{r}
+#| echo: true
+set.seed(132)
+
+# randomly sample train/test set split
+set_type <- sample(x = c('train', 'test'), 
+                   size = nrow(penguins), 
+                   replace = TRUE, 
+                   prob = c(0.8, 0.2))
+
+train <- penguins %>%
+  filter(set_type == "train")
+
+test <- penguins %>%
+  filter(set_type == "test")
+```
+
+
+## Predicting into test set {auto-animate="true"}
+
+```{r}
+#| echo: true
+m2 <- glm(sex ~ body_mass_g + bill_length_mm,
+          data = train, family = "binomial")
+p_hat <- predict(m2, test, type = "response")
+```
+
+## Predicting into test set {auto-animate="true"}
+
+```{r}
+#| echo: true
+m2 <- glm(sex ~ body_mass_g + bill_length_mm,
+          data = train, family = "binomial")
+p_hat <- predict(m2, test, type = "response")
+
+test %>%
+  select(sex)
+```
+
+## Predicting into test set {auto-animate="true"}
+
+```{r}
+#| echo: true
+m2 <- glm(sex ~ body_mass_g + bill_length_mm,
+          data = train, family = "binomial")
+p_hat <- predict(m2, test, type = "response")
+
+test %>%
+  select(sex) %>%
+  mutate(p_hat = p_hat)
+```
+
+
+## Predicting into test set {auto-animate="true"}
+
+```{r}
+#| echo: true
+m2 <- glm(sex ~ body_mass_g + bill_length_mm,
+          data = train, family = "binomial")
+p_hat <- predict(m2, test, type = "response")
+
+test %>%
+  select(sex) %>%
+  mutate(p_hat = p_hat,
+         y_hat = ifelse(p_hat > .5, "male", "female"))
+```
+
+## Classification errors
+
+**False Positives**: Predicting a 1 that is in fact a 0
+
+**False Negatives**: Predicting a 0 that is in fact a 1
+
+. . .
+
+**Misclassification Rate**:
+
+$$ \frac{FP + FN}{total \, number \, of \, predictions} $$
+
+## Classification errors {auto-animate="true"}
+
+```{r}
+#| echo: true
+test %>%
+  select(sex) %>%
+  mutate(p_hat = p_hat,
+         y_hat = ifelse(p_hat > .5, "male", "female"),
+         FP = sex == "female" & y_hat == "male",
+         FN = sex == "male" & y_hat == "female")
+```
+
+## Misclassification Rate {auto-animate="true"}
+
+```{r}
+#| echo: true
+test %>%
+  select(sex) %>%
+  mutate(p_hat = p_hat,
+         y_hat = ifelse(p_hat > .5, "male", "female")) %>%
+  summarize(misclas = mean(sex != y_hat))
+```
+
+
+# Lab
+

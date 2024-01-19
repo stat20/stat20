@@ -1,0 +1,74 @@
+---
+title: "Class Survey Data Frame"
+format: pdf
+---
+
+```{r}
+#| message: false
+#| echo: false
+library(tidyverse)
+library(stat20data)
+data(class_survey)
+glimpse(class_survey)
+```
+
+
+```{r eval = FALSE, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+df <- read_csv("https://www.dropbox.com/s/qjnk887d0p69shq/stat20-survey.csv?dl=1")
+df <- df %>%
+  select(-1, -25, -26)
+names(df) <- c("time_at_cal", "major", "coding_exp_words", "coding_exp_scale",
+               "languages", "favorite_cal", "piercings", "pets_and_sibs", 
+               "diet", "study_place", "olympics", "season", "mts_beach",
+               "coffee_tea", "boba", "tech_relationships", "climate", "crypto",
+               "more_remote", "remote_sem", "covid_fall", "hotdogs", "horse_duck")
+
+##Create Tech, Health, and Business variables
+#Create the Health variable with all No's
+df$health <- "No"
+#Find the row indices of health-related majors.
+ind_health <- which(stringr::str_detect(unlist(df$major), "[B|b]io|[H|h]ealth|[P|p]sycho|[C|c]og|[N|n]utrition|MEB|[M|m][C|c][B|b]"))
+#Update the Health variable to Yes for these rows.
+df$health[ind_health] <- "Yes"
+
+#Similarly create the variables for tech and business related majors.
+df$tech <- "No"
+ind_tech <- which(str_detect(unlist(df$major), "[S|s]tat|[C|c]omputer|CS|EECS|eecs|[E|e]ngineering|[D|d]ata|DS|[A|a]pplied [M|m]ath|Compsci"))
+df$tech[ind_tech] <- "Yes"
+
+#Business
+df$business <- "No"
+ind_business <- which(str_detect(unlist(df$major), "[E|e]con|[B|b]usiness|[H|h]aas | [M]management |Polecon"))
+df$business[ind_business] <- "Yes"
+
+
+##Clean up Covid probability related variables
+#Find row indices of all entries not between zero and one. 
+#Update them to zero.
+#Unlist the column and convert it to numeric.
+
+#Chance that we remain remote for more than two weeks.
+ind_cov1 <- which( between(unlist(df$more_remote),0,1) == FALSE | is.na(between(unlist(df$more_remote),0,1)) )
+df$more_remote[ind_cov1] <- "0"
+df$more_remote <- as.numeric(unlist(df$more_remote))
+
+#Chance that we remain remote for the entire semester.
+ind_cov2 <- which( between(unlist(df$remote_sem),0,1) == FALSE | is.na(between(unlist(df$remote_sem),0,1)) )
+df$remote_sem[ind_cov2] <- "0"
+df$remote_sem <- as.numeric(unlist(df$remote_sem))
+
+#Chance that Fall 2022 will be disrupted.
+ind_cov3 <- which( between(unlist(df$covid_fall),0,1) == FALSE | is.na(between(unlist(df$covid_fall),0,1)) )
+df$covid_fall[ind_cov3] <- "0"
+df$covid_fall <- as.numeric(unlist(df$covid_fall))
+```
+
+```{r eval = FALSE, message = FALSE, warning = FALSE, echo = FALSE}
+library(kableExtra)
+set.seed(35)
+df %>%
+  glimpse()
+```
+
+
