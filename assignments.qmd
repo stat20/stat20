@@ -3,7 +3,7 @@ title: Assignments
 listing:
   - id: lab-listing
     contents: 
-      - "*/labs/*/lab.qmd"
+      - lab-listing.yml
     sort: "date desc"
     type: grid
     fields: 
@@ -14,7 +14,7 @@ listing:
   - id: ps-listing
     template: assets/listings/assignments-ps.ejs
     contents:
-      - "*/ps?(-)?([[:alnum:]]).qmd"
+      - ps-listing.yml
     sort: "date desc"
     type: table
     fields:

@@ -1,6 +1,11 @@
 ---
 title: "Understanding the World with Data"
 image: images/claims.png
+format:
+  html:
+    code-fold: false
+  pdf:
+    code-fold: false
 ---
 
 :::{.lo .content-hidden unless-profile="staff-site"}
@@ -70,6 +75,7 @@ Example: Data from a randomized controlled experiment shows that taking a new an
 
 Example: Based on reading the news and the price of Uber's stock today, I predict that Uber's stock price will go up 1.2% tomorrow.
 
+
 ## Intro to R and RStudio
 
 If our goal is to construct a claim with data, we need a tool to aid in the construction. Our tool must be able to do two things: it must be able to **store** the data and it must be able to perform **computations** on the data.
@@ -132,8 +138,3 @@ You can add exponents by using `^`, but don't forget about the order of operatio
 2 ^ 3 + 1
 2 ^ (3 + 1)
 ```
-
-
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}

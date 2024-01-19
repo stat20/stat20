@@ -76,6 +76,6 @@ execute:
   message: false
   warning: false
   fig-align: center
-  
-profile:
-  default: toc
+
+metadata-files:
+  - "toc.yml"
