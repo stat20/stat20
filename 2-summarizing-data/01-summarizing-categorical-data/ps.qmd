@@ -1,0 +1,94 @@
+---
+title: "Summarizing Categorical Data"
+subtitle: "PS"
+format: stat20handout-pdf
+---
+
+## Questions 1-3
+
+Here is a contingency table of college students with their **Favorite Color** (Red or Blue) down the columns and their **School** (Berkeley or Stanford) across the rows.
+
+
+|             | Red          |         Blue   |
+| ----------- | ----------- | ----------- |
+| Berkeley      | 10      |          90     |
+| Stanford   | 60        |      40         |
+
+### Question 1
+
+Find the proportion of all students who attend Berkeley. What type of proportion is this?
+
+\   
+\   
+
+### Question 2
+
+Find the proportion of all students who attend Berkeley that like red best. What type of proportion is this?
+
+\   
+\   
+
+### Question 3
+
+Of the students who attend Berkeley, find the proportion that like red best. What type of proportion is this?
+
+\   
+\  
+
+---
+
+## Questions 4-5
+
+RMS Titanic was a British passenger liner with 2,224 people aboard (including both passengers and crew). The Titanic sank in the North Atlantic Ocean on 15 April 1912 after striking an iceberg on her way to New York City. It was the deadliest sinking of a single ship at the time with almost 70% of the 2,224 passengers and crew dying.
+
+
+Below are the first five rows of 2,224 for a data frame called `titanic`.
+
+\includegraphics{images/df.png}
+
+### Question 4
+
+What is the unit of observation for `titanic`?
+
+\   
+
+### Question 5
+
+The three following graphs were generated using `titanic`.
+
+\begin{figure}[h]
+\includegraphics{images/graphs.png}
+\centering
+\end{figure}
+
+Which graph is **best** used to answer the following questions? *Write the letter associated with the graph to the right of each question*
+
+*How many first class passengers survived the Titanic's sinking?* _______
+
+*Is there an association between a passenger's class and their survival?* _______
+
+*What is the mode of the `Class` variable?* _______
+
+---
+
+## Questions 6-7
+
+Open up RStudio and write down the code you used to complete each of the following questions in the space below.
+
+### Question 6
+
+Consider the vector `q6` which was made as follows:
+
+```{r}
+q6 <- c(1,2,3,4,5,6,NA)
+```
+
+Write R code to calculate the mean of `q6` so that the result is 3.5 (this is the mean of the numbers 1 through 6).
+
+\   
+\   
+
+### Question 7
+
+The `titanic` dataset can be found in the `openintro` package. Load this package and the data into your RStudio session, and then recreate plot C. Write the code you used below.
+
