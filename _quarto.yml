@@ -79,7 +79,3 @@ execute:
 
 metadata-files:
   - "toc.yml"
-  
-profile:
-  group:
-    - ["full-site", "live-site"]
