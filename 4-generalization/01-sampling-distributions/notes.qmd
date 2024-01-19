@@ -4,11 +4,12 @@ subtitle: "The bias and variance of moving from sample to population."
 format:
   html: default
   pdf: default
+reference-location: margin
 ---
 
 [G]{.dropcap}eneralization is the process of using a subset of information to draw conclusions about some broader set or phenomenon. It is powerful - it allows us to draw conclusions about things we have not observed - but it is tricky to do well. In these notes, you will learn the sources of error that can creep in when making a generalization.
 
-![](images/generalization.png){width="200" fig-align="center"}
+![](images/generalization.png){width="200" fig-align="center" .column-margin}
 
 There are four terms that you will see come up again and again as we discuss generalization. They are familiar terms that have tightly coupled meanings, so we present them together.
 
@@ -34,7 +35,7 @@ On the first day of class, the professor strides into Pimentel Hall to present a
 
 [^pimentel]: Photo of Pimentel Hall by flickr user TheRealMichaelMoore.
 
-Pimentel[^pimentel] is the second largest lecture hall at Cal, with exactly 527 seats. On this first day of class, the room is packed and all 527 of the students registered for Stat 20 are in the hall.
+Pimentel[^pimentel] is the second largest lecture hall at Cal with exactly 527 seats. On this first day of class, the room is packed and all 527 of the students registered for Stat 20 are in the hall.
 
 Eager to ensure that the lecture is calibrated to the interest and experience of the students, the professor seeks to learn how many years they have been at Cal. The professor calls on a student sitting in the middle of the front row and asks, "What year are you at Cal?" The student replies, "sophomore", so the professor write 2 on the board. The professor proceeds to repeat this question to all of the students sitting in the 18 seats at the front row of Pimentel. By the end, there is a data frame on the board with one column and 18 rows, the first three of which read
 
@@ -46,6 +47,7 @@ Eager to ensure that the lecture is calibrated to the interest and experience of
 
 Ever the statistician, the professor then visualizes the distribution of data by sketching on the board a bar chart and jots down the sample mean, which is 1.77.
 
+:::{.content-visible when-format="html"}
 ```{r}
 #| fig-height: 2
 #| fig-width: 3
@@ -60,6 +62,25 @@ pimentel %>%
   ggplot(aes(x = year)) +
   geom_bar()
 ```
+:::
+
+:::{.content-visible when-format="pdf"}
+```{r}
+#| fig-height: 2
+#| fig-width: 3
+#| fig-align: center
+#| echo: false
+library(tidyverse)
+
+pimentel <- data.frame(year = c(2, 1, 1, 1, 2, 2, 
+                                4, 1, 1, 3, 3, 1, 
+                                2, 2, 2, 1, 2, 1))
+
+pimentel %>%
+  ggplot(aes(x = year)) +
+  geom_bar()
+```
+:::
 
 How good of an answer is 1.77 to the professors question of, "What year are my students?"
 
@@ -71,7 +92,7 @@ Using this terminology, we can ask the question again: how good of an estimate o
 
 ## Sources of Error
 
-To understand the forms that estimation error can take, consider the analogy of darts thrown at a dart board. The center of the dart board represents the parameter that we are trying to hit and each dart that we throw represents a statistic calculated from a sample. There are two ways in which a dart throw can miss the bullseye. One way is that we could systematically tend to throw above and to the left of the bullseye. This form of error is called bias. Another way that our dart-throwing could miss the bullseye is if we are an erratic thrower and one throw tends to be very different from this next. This form of error is called variation.
+To understand the forms that estimation error can take, consider the analogy of darts thrown at a dart board. The center of the dart board represents the parameter that we are trying to hit and each dart that we throw represents a statistic calculated from a sample. There are two ways in which a dart throw can miss the bullseye. One way is that we could systematically tend to throw above and to the left of the bullseye. This form of error is called bias. Another way that our dart-throwing could miss the bullseye is if we are an erratic thrower and one throw tends to be very different from this next. This form of error is called variation or variability.
 
 ![](images/bullseye.png){fig-align=center width="370"}
 
@@ -82,7 +103,7 @@ If a sample is *representative* of the population, there is no bias present. Tha
 Statistical bias comes in many forms. Here we describe two of the most important types.
 
 **Selection bias**
-:    When the mechanism used to choose units for the sample tends to select certain units more often than they should.
+:    When the mechanism used to choose units for the sample tends to select certain units with a higher probability than other units. That is, not all units in the population are equally likely to be selected for the sample.
 
 As an example, a *convenience sample* chooses the units that are most easily available. Problems can arise when those who are easy to reach differ in important ways from those harder to reach. Another example of selection bias can happen with observational studies and experiments. These studies often rely on volunteers (people who choose to participate), and this self-selection has the potential for bias if the volunteers differ from the target population in important ways.
 
@@ -91,7 +112,10 @@ As an example, a *convenience sample* chooses the units that are most easily ava
 
 For example, low humidity can systematically give us incorrectly high measurements for air pollution. In addition, measurement devices can become unstable and drift over time and so produce systematic errors. In surveys, measurement bias can arise when questions are confusingly worded or leading, or when respondents may not be comfortable answering honestly.
 
-Both of these types of bias can lead to situations where the data are not centered on the unknown targeted value. A common method to address selection bias is to draw a *simple random sample*, where each unit from the population is equally likely to be drawn. A pilot survey can improve question wording and so reduce measurement bias. Procedures to calibrate instruments and protocols to take measurements in, say, random order can reduce measurement bias.
+**Non-response bias**
+:    When certain units originally selected for the sample fail to provide data and those non-responders different in meaningful ways from the responders. When non-response is present, the *final sample size* for which there is full data is less than the *initial sample size*.
+
+All of these types of bias can lead to situations where the data are not centered on the unknown targeted value. A common method to address selection bias is to draw a *simple random sample*, where each unit from the population is equally likely to be drawn. A pilot survey can improve question wording and so reduce measurement bias. In the lab sciences, procedures to calibrate instruments and protocols to take measurements in random order can reduce measurement bias. Non-response bias can be addressed by providing incentives for participation.
 
 Bias does not need to be avoided under all circumstances. If an instrument is highly precise (low variance) and has a small bias, then that instrument might be preferable to another that has high variance and little to no bias. Biased studies can be useful to pilot a survey instrument or to capture useful information for the design of a larger study.
 
@@ -100,6 +124,8 @@ Bias does not need to be avoided under all circumstances. If an instrument is hi
 The method used by the professor likely suffers from statistical bias. The units that were drawn into the sample (the 18 students in the front row who were called on) constitute a convenience sample: they were sampled because they were easy to sample. That is not necessarily a problem, but there is good reason to think that students of all years are not equally likely to sit in the front row. First year students, bright-eyed and bushy-tailed with enthusiasm, will be more likely to sit in the front row. If that is true, the professor incurred selection bias that will lead to an estimate of the population mean that is too low.
 
 What about measurement bias? In this case, the process of measuring a student's year involves the act of asking them a question, hearing their answer, and writing it on the board. How could this be systematically in error? One way would be if first year students occasionally lie about their year when asked, for fear of being thought of as an over-eager over-achiever. If this were true, then lots of the 2s that we recorded were in fact 1s, and the estimate of 1.77 would be too high.
+
+What about non-response bias? This is likely not a problem in this setting. While it can be easy to ignore a question that appears in a survey that you get via email, it is much more difficult to dodge a question asked of you directly during class.
 
 ### Types of Variation
 
@@ -111,7 +137,7 @@ Whether or not bias is present, data typically also exhibit variation.
 <!-- Add a few examples -->
 
 **Measurement variability**
-:    When we take multiple measurements on the same object, we get variations in measurements from one sample to the next.
+:    When we take multiple measurements on the same object and we get variations in measurements from one sample to the next.
 
 <!-- Add a few examples -->
 
@@ -139,6 +165,7 @@ To understand the role that bias and variation play in estimates, we will for th
 
 For this thought-experiment, we will will be drawing from a population that has 527 observations / rows, one for every student in Pimentel, with a population distribution of year that looks like this.
 
+:::{.content-visible when-format="html"}
 ```{r}
 #| fig-width: 3
 #| fig-height: 2
@@ -155,7 +182,27 @@ pop_eager %>%
   geom_bar(fill = "purple") +
   labs(title = "Population Distribution")
 ```
+:::
 
+:::{.content-visible when-format="pdf"}
+```{r}
+#| fig-width: 3
+#| fig-height: 2
+#| fig-align: center
+#| echo: false
+pop_eager <- data.frame(year = factor(rep(c(1, 2, 3, 4), 
+                                   times = c(245, 210, 47, 25))),
+                        eagerness = rep(c(10, 6, 3, 1), 
+                                        times = c(245, 210, 47, 25)))
+set.seed(34)
+pop_eager <- pop_eager %>%
+  slice_sample(n = nrow(pop_eager)) # shuffle the rows to make them look natural
+pop_eager %>%
+  ggplot(aes(x = year)) +
+  geom_bar(fill = "purple") +
+  labs(title = "Population Distribution")
+```
+:::
 
 #### Scenario 1: Calling on the front row
 
@@ -178,7 +225,7 @@ The probability of selecting the fourth student from the population data frame a
 
 Let's now simulate the process of drawing 18 rows out of the data frame of 527 rows, where each row is being selected with a probability proportional to it's eagerness. The three plots along the top row of the plot below illustrate what the empirical distribution of three samples might look like. They help us envision what the professor's plot on the board would look like on three different days where the 18 students in the front row were called on, and in each of those days, it is the first year students who are most likely to end up the front row.
 
-
+:::{.content-visible when-format="html"}
 ```{r}
 library(infer)
 samp_1 <- pop_eager %>%
@@ -232,6 +279,64 @@ library(patchwork)
 
 (p1 + p2 + p3) / p4
 ```
+:::
+
+:::{.content-visible when-format="pdf"}
+```{r}
+#| echo: false
+library(infer)
+samp_1 <- pop_eager %>%
+  slice_sample(n = 18,
+                   replace = FALSE,
+                   weight_by = eagerness) 
+
+many_samps <- samp_1 %>%
+  mutate(replicate = 1)
+
+set.seed(40211)
+
+for (i in 2:500) {
+  many_samps <- pop_eager %>%
+    slice_sample(n = 18,
+                 replace = FALSE,
+                 weight_by = eagerness) %>%
+    mutate(replicate = i ) %>%
+    bind_rows(many_samps)
+}
+
+p1 <- many_samps %>%
+  filter(replicate == 1) %>%
+  ggplot(aes(x = year)) + 
+  geom_bar() +
+  labs(title = "Sample 1")
+
+p2 <- many_samps %>%
+  filter(replicate == 2) %>%
+  ggplot(aes(x = year)) + 
+  geom_bar() +
+  labs(title = "Sample 2")
+
+p3 <- many_samps %>%
+  filter(replicate == 3) %>%
+  ggplot(aes(x = year)) + 
+  geom_bar() +
+  labs(title = "Sample 3")
+
+many_xbars <- many_samps %>%
+  group_by(replicate) %>%
+  summarize(xbar = mean(as.numeric(year)))
+
+p4 <- many_xbars %>%
+  ggplot(aes(x = xbar)) +
+  geom_bar(fill = "purple") +
+  lims(x = c(0, 4)) +
+  labs(title = "Sampling Distribution")
+
+library(patchwork)
+
+(p1 + p2 + p3) / p4
+```
+:::
 
 As you look from Sample 1 to Sample 3, you notice that the distribution of year varies from sample to sample. This is sampling variability. If you compare these plots to the population distribution above, you'll find these three samples on balance seem to systematically have more first year students that you might expect. This is an effect of selection bias.
 
@@ -303,7 +408,7 @@ This distribution is shown in the bottom row. We can see that in this scenario, 
 
 ## Summary
 
-In these notes we laid out a common goal of making generalizations: estimating the value of population parameters using statistics calculated from samples. The process of generalization is subject to several sources of error that are lumped into statistical bias and variation. Two of the central forms of statistical bias are selection bias and measurement bias. Two common forms of variation are sampling variability and measurement variability. With these notions of error in mind, we learned about the sampling distribution, the distribution of statistics that we would observe if we were to sample from the sample population many times and compute many statistics.
+In these notes we laid out a common goal of making generalizations: estimating the value of population parameters using statistics calculated from samples. The process of generalization is subject to several sources of error that are lumped into statistical bias and variation. Three of the central forms of statistical bias are selection bias, measurement bias, and non-response bias. Two common forms of variation are sampling variability and measurement variability. With these notions of error in mind, we learned about the sampling distribution, the distribution of statistics that we would observe if we were to sample from the sample population many times and compute many statistics.
 
 The sampling distribution is the central concept in making generalizations so we will revisit it throughout the coming weeks.
 

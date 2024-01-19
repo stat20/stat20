@@ -31,6 +31,7 @@ Once you have fit a linear model to a scatter plot, you are able to answer quest
 
 Graphically, this can be done by drawing a vertical line from where the poverty rate is 15% and finding where that line intersects your linear model. If you trace from that intersection point horizontally to the y-axis, you'll find the predicted graduation rate.
 
+:::{.content-visible when-format="html"}
 ```{r}
 #| fig-width: 5
 #| fig-height: 3
@@ -56,6 +57,37 @@ p1 +
   geom_vline(xintercept = 15, color = "steelblue", lty = 2) +
   geom_hline(yintercept = yhat, color = "steelblue", lty = 2)
 ```
+:::
+
+:::{.content-visible when-format="pdf"}
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+#| echo: false
+#| eval: true
+
+library(tidyverse)
+poverty <- read_csv("https://tinyurl.com/stat20poverty")
+
+p1 <- ggplot(poverty, aes(Poverty, Graduates)) + 
+    xlim(0, 20) +
+    ylim(75, 96) +
+    geom_point() +
+    theme_bw()
+
+m1 <- lm(Graduates ~ Poverty, data = poverty)
+
+povnew <- data.frame(Poverty = 15)
+yhat <- predict(m1, povnew)
+
+p1 + 
+  geom_abline(intercept = m1$coef[1], slope = m1$coef[2], 
+              col = "goldenrod") +
+  geom_vline(xintercept = 15, color = "steelblue", lty = 2) +
+  geom_hline(yintercept = yhat, color = "steelblue", lty = 2)
+```
+:::
 
 From the plot above, we can tell that the model yields a prediction around roughly 82.5%. To be more precise, we could plug the x-value into our equation for the line and solve.
 
@@ -69,7 +101,7 @@ $R^2$ is a statistic that captures how good the predictions from your linear mod
 
 \
 
-[![](images/r2-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1521247/external_tools/78985)
+[![](images/r2-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1527632/external_tools/78985)
 
 \
 
@@ -90,7 +122,7 @@ $R^2$ is a statistic that captures how good the predictions from your linear mod
      3. $R^2$ near 0 means predictions were less accurate.
 
 :::{.column-margin}
-![](images/r-squared.png){fig-align=center width=400}
+![](images/r-squared.png){fig-align=center width="1.8in"}
 :::
 
 #### Example: Poverty and Graduation

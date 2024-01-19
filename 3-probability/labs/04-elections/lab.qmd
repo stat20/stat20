@@ -9,16 +9,7 @@ sidebar: false
 
 This week's lab is a *mini-lab* containing only one part and done in a qmd file. The data for this lab can be found in the `iran` data frame in the `stat20data` package. Run `?iran` at the console to learn more about the columns.
 
-You can pull down these questions in RStudio by running the following command at the console:
-
-```{r}
-#| echo: true
-#| eval: false
-
-usethis::use_course("https://tinyurl.com/lab-4-elections")
-```
-
-On June 12 2009, the Republic of Iran held an election where President Mahmoud Ahmadinejad sought re-election against three challengers. One of the challengers, Mir-Hossein Mousavi. When it was announced that Ahmadinejad had won handily, there were widespread allegations of election fraud. There are many methods, both quantitative and qualitative, to detect election fraud. In this lab we will explore just one proposed method.
+On June 12 2009, the Republic of Iran held an election where President Mahmoud Ahmadinejad sought re-election against three challengers. One of the challengers, Mir-Hossein Mousavi was thought to have a good chance at defeating the incumbent. When it was announced that Ahmadinejad had won handily, there were widespread allegations of election fraud. There are many methods, both quantitative and qualitative, to detect election fraud. In this lab we will critique just one proposed method.
 
 #### Question 1
 
@@ -56,7 +47,7 @@ What is the variance of $X \sim Unif(1, 9)$? Answer this question by again mutat
 
 A second model for the probability distribution of first digits is Benford's Law.
 
-$$X ~ Benford()$$
+$$X \sim Benford()$$
 
 Benford's Law is a distribution without any parameters: it always takes values on the integers from 1 to 9 and the probability of each is $\log_{10} \left(1 + 1/x\right)$ where $x$ is the integer.
 
@@ -81,7 +72,7 @@ What might a sample of 366 draws from $X \sim Benford()$ look like?
 
 To answer this, use `fd_benford` as your box with every row a ticket. You can simulate the process of drawing a ticket out of a box by sampling rows from the data frame with `slice_sample()`. To use this function you must specify the number of rows (`n`), whether or not to sample with replacement (`replace`), and which column contains the probability of each ticket (`weight_by`).
 
-Create a plot of the resulting distribution of first digits.
+Create a plot of the resulting empirical distribution of first digits.
 
 ```{r}
 #| echo: true
@@ -97,7 +88,7 @@ fd_benford %>%
 
 What do the first digit empirical distributions look like for the four candidates in the Iranian presidential election?
 
-Inside the `stat20data` package there is a function called `get_first()` that pulls off the first digit of every element in a vector. Piece all four plots together into one single plot using the `patchwork` library (see <https://www.stat20.org/2-describing-data/05-summarizing-numerical-data/notes.html#constructing-graphical-summaries> for an example of its use).
+Inside the `stat20data` package there is a function called `get_first()` that pulls off the first digit of every element in a vector. Piece all four plots together into one single plot using the `patchwork` library (search for "patchwork" in the search bar at the top right of the course website for an example of its use).
 
 ```{r}
 #| eval: false

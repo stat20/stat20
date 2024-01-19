@@ -1,0 +1,67 @@
+---
+title: Adding and Removing Assignments
+toc-depth: 4
+---
+
+Assignments are hosted on the [Assignments](assignments.qmd) page and include a list of Labs and a list of Problem Sets. These lists build automatically if the assignment files follow a particular naming scheme. Below we discuss how to add assignments to the list. They can be removed by renaming the files or removing them entirely from the repository.
+
+For further reading on how these lists are made, see the Quarto documentation on [document listings](https://quarto.org/docs/websites/website-listings.html).
+
+## Problem Sets
+
+Problem sets are sets of drill-style problems that provide practice with the concepts and skills of a particular day's lesson. They are stored within the subdirectory containing all of the materials for that day.
+
+#### PDF handouts
+
+1. Create a file called `ps.qmd` alongside the notes for a given day's materials. Your directory should look like this:
+
+   ```markdown
+   intro-to-probability
+   ├── notes.qmd
+   ├── ps.qmd
+   ```
+2. At least two YAML options should be specified in the front-matter, `title` and the custom handout `format`:
+
+   ```yaml
+   ---
+   title: Calculating Chances
+   format: stat20handout-pdf
+   ---
+   ```
+3. Upon rendering the site, this assignment should appear on the assignments page. The format of the assignment list is controlled by the [assignments template](https://github.com/stat20/stat20/blob/main/assets/listings/assignments-ps.ejs#L4), which will automatically assign numbers to the problem sets based on their order in the directory.
+
+The pdf notes use the `stat20handout` custom pdf format. See [Custom Formats](docs/custom-formats.qmd) for more information on its use.
+
+#### Qmd handouts
+
+1. Just like with pdfs, create a file called `ps.qmd` alongside the notes for a given day's materials. Your directory should look like this:
+
+   ```markdown
+   intro-to-probability
+   ├── notes.qmd
+   ├── ps.qmd
+   ```
+2. Add the following to the front-matter of `ps.qmd`.
+
+   ```yaml
+   ---
+   title: Simulation
+   format:
+     html:
+       code-tools: 
+         source: true
+         toggle: false
+   sidebar: false
+   ---
+   ```
+   The `title` should have the name of topic, usually the same as the title of the notes. This name will be used in creating the PS name in the listing.
+   The remaining yaml options will provide a link at the top right of the problem set webpage that, when clicked, will produce a pop-up of the source of the qmd file. Students can copy and paste this into a blank qmd file in RStudio (and can remove the extra yaml options).
+
+If you have multiple problem set files on a single day, you can differentiate them by adding a single letter or digit following `ps` and hyphen. `ps.qmd`, `ps-2.qmd`, and `ps-b.qmd` should all work. See the source for the [assignment page](https://github.com/stat20/stat20/blob/main/assignments.qmd) for the rule that determines which files show up in the listing.
+
+
+## Labs
+
+::: callout-warning
+Under Construction
+:::

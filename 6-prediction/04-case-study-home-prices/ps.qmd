@@ -1,5 +1,11 @@
 ---
-title: "Problem Set 7.2"
+title: "Case Study: Home Prices"
+format:
+  html:
+    code-tools: 
+      source: true
+      toggle: false
+sidebar: false
 ---
 
 Please run the following code cell to load in the data and do the preliminary data wrangling steps found in the notes.

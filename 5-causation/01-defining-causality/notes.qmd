@@ -320,6 +320,8 @@ This definition is problematic if we intend to establish causes using only data.
 
 \
 
+[ ]{.column-margin}
+
 
 ![Illustration by Mayaan Hayal[^frost]](images/frost.png){fig-align="center" width="300px"}
 

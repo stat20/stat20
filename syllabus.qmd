@@ -139,7 +139,7 @@ The *individual* component will last ~25 minutes. You are allowed one, A4, one-s
 
 #### Exam
 
-The final exam will be held in person during finals week. The current time and date is **Thursday, December 14 from 8am to 11am**,  *not* what you see on CalCentral. 
+The [final exam](assets/final-exam-slide.qmd) will be held in person during finals week. The current time and date is **Thursday, December 14 from 8am to 11am**,  *not* what you see on CalCentral. 
 
 #### Grading
 

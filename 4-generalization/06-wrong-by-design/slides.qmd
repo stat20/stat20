@@ -30,6 +30,41 @@ execute:
 
 # Concept Questions
 
+## Concept Questions 1 and 2
+
+The following two questions are based on the diagram below. The diagram corresponds to a one-sided hypothesis test that uses the following null hypothesis:  $H_0: \mu = 1$
+
+
+![](images/power-diagram.jpg){fig-align="center"}
+
+
+##
+
+![](images/power-diagram.jpg){fig-align="center"}
+
+::: poll
+If $H_A$ represents a specific version of the alternate hypothesis that is true, what is the power of this test?
+:::
+
+
+```{r}
+countdown::countdown(1)
+```
+
+##
+
+![](images/power-diagram.jpg){fig-align="center"}
+
+::: poll
+What is the p-value of this test?
+:::
+
+
+```{r}
+countdown::countdown(1)
+```
+
+
 ## 
 
 ![](images/ppk-as-ht.png)

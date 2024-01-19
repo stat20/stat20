@@ -9,7 +9,8 @@ format:
     code-link: true
     code-summary: "."
     reference-location: document
-  pdf: default
+  pdf:
+    echo: false
 execute: 
   warning: false
   message: false
@@ -53,7 +54,8 @@ ht_scenarios <- tribble(
 ht_scenarios %>%
   kbl(linesep = "", booktabs = TRUE) %>%
   add_header_above(c("", "Test conclusion" = 2)) %>%
-  kable_styling(bootstrap_options = c("striped", "condensed"), latex_options = c("striped", "hold_position"), full_width = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                latex_options = c("hold_position"), full_width = FALSE) %>%
   column_spec(1, width = "5em", bold = T, border_right = T) %>%
   column_spec(2, color = "white", 
               background = c(rgb(150/255, 0, 0, .7),
@@ -419,6 +421,8 @@ Although hypothesis testing provides a framework for making decisions based on d
 That is, always keep in mind that the conclusion to a hypothesis test may not be right!
 Sometimes when the null hypothesis is true, we will accidentally reject it and commit a type I error; sometimes when the alternative hypothesis is true, we will fail to reject the null hypothesis and commit a type II error.
 The power of the test quantifies how likely it is to obtain data which will reject the null hypothesis when indeed the alternative is true; the power of the test is increased when larger sample sizes are taken.
+
+[ ]{.column-margin}
 
 {{< include images/tmp/_date-meta.md >}}
 
