@@ -1,6 +1,11 @@
 ---
 title: "Understanding the World with Data"
 image: images/claims.png
+format:
+  html:
+    code-fold: false
+  pdf:
+    code-fold: false
 ---
 
 :::{.lo .content-hidden unless-profile="staff-site"}
