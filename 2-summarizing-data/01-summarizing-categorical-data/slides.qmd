@@ -22,10 +22,35 @@ format:
 
 ## Agenda
 
+- Announcements
 - Concept Questions
-- Lab 1.2: Arbuthnot
+- Problem Set 2: *Summarizing Categorical Data*
+- *Break*
+- Introducing Lab 1
+- Work time for Lab 1: Understanding Context
+
+## Announcements
+
+-   Lab 1 (Class Survey) due **Tuesday, January 29th at 9am** on Gradescope
+
+. . .
+
+-   Problem Set 2 due **Tuesday, January 29th at 9am** on Gradescope
+
+. . . 
+
+-   Make sure you read the Lab Submission Guidelines posted to Ed! 
+
+. . . 
+
+-   Quiz 1 next **Monday, January 29th** in-class
+
 
 # Concept Questions
+
+# Concept Question 1
+
+-   The next four subquestions are based on the same table.
 
 ## 
 
@@ -75,7 +100,7 @@ countdown::countdown(.5, top = 0)
 ```
 
 :::notes
-An example of a join proportion.
+An example of a joint proportion.
 :::
 
 ## 
@@ -104,7 +129,7 @@ countdown::countdown(.5, top = 0)
 ```
 
 
-## 
+## Concept Question 2
 
 Political affiliation and college degree status of 500 survey participants.
 
@@ -127,28 +152,16 @@ Which group is the largest?
 The General Social Survey is a widely used sources of data on the attitudes, behaviors, and attributes of Americans. This plot shows the relationship between the political affiliation and college degree status of 500 participants.
 
 Cannot tell which group is the largest since this plot as been normalized so that the proportions within each party sum to 1. The unnormalized plot on the following slide is one that allows us to answer this questions.
-:::
 
-```{r}
-countdown::countdown(1)
-```
-
-##
-
-```{r}
-library(tidyverse)
-library(stat20data)
-library(infer)
-ggplot(gss, aes(x = partyid, fill = college)) +
-  geom_bar() +
-  labs(x = "Party", fill = "College", y = "proportion") +
-  theme_gray(base_size = 18)
-```
-
-:::notes
 The unnormalized bar chart of counts preserves original counts and thus is good at comparing joint proportions. The normalized bar count shows condition proportions and thus is good for showing associations between variables.
 :::
 
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+
+# Concept Question 3
 
 ## {background-image="images/world-energy-supply.jpeg" background-size="contain"}
 
@@ -166,9 +179,35 @@ The height of each total bar appears to be the energy supply from renewables wor
 :::
 
 ```{r}
-countdown::countdown(.5, top = 0)
+countdown::countdown(1, top = 0)
 ```
 
+
+# Problem Set 2: *Summarizing Categorical Data*
+
+```{r}
+countdown::countdown(25, top = 0)
+```
+
+# Break
+
+```{r}
+countdown::countdown(5, top = 0)
+```
+
+# Introducing Lab 1
+
+Let's visit the lab slides, which are available on stat20.org!
+
+# Lab 1: Understanding the Context of The Data
+
+```{r}
+countdown::countdown(25, top = 0)
+```
+
+# End of Lecture
+
+<!--
 # Lab 1: Arbuthnot
 
 ```{r}
@@ -200,5 +239,5 @@ Where:
 - `DATAFRAME` is the name of your data frame
 - `XVARIABLE` is the name of the variable of that data frame that you want on the x-axis
 - `YVARIABLE` is the name of the variable of that data frmae that you want on the y-axis
-
+-->
 
