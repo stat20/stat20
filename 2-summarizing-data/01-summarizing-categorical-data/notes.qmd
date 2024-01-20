@@ -496,6 +496,8 @@ ggplot(data = penguins,
   geom_bar(position = "fill")
 ```
 
+A side by side by chart can be produced by replacing `"fill"` with `"dodge"`. To recover the original, stacked bar chart, use `"stack"`!
+
 There we have it! Looking forward:
 
 1. In our very next lecture, you'll learn how to use `ggplot2` to make visualizations of numerical variables. 
