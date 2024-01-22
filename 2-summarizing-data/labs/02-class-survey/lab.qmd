@@ -59,7 +59,7 @@ Use these summaries to answer the survey question in a sentence or two.
 
 ##### part a
 
-Construct the plot that you proposed in **Part I** using `ggplot2`. *Ensure that the seasons are plotted in the order: spring, summer, winter, fall*. 
+Construct the plot that you proposed in **Part I** using `ggplot2`. *Ensure that the seasons are plotted in the order: spring, summer, fall, winter*. 
 
 ##### part b
 
