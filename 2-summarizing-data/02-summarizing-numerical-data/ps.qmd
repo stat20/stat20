@@ -52,21 +52,8 @@ flights %>%
 (D) There is no clear association between the carrier and the distance of their flights.
 (E) The carrier with the greatest variability in distance, as measured by the IQR, is AS.
 
- 
-@. Using the plot above and the table below (which shows the number of flights from each carrier) select the appropriate relationship between the sample mean and the sample median of the distances of all 2,237 flights.
 
-```{r}
-#| echo: false
-flights_mini %>%
-  count(carrier) %>%
-  pivot_wider(names_from = carrier,
-              values_from = n) %>%
-  knitr::kable()
-```
 
-(A) mean $>$ median
-(B) mean $<$ median
-(C) mean = median
 
 Consider the small data set from the notes.
 
@@ -74,18 +61,12 @@ $$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11
 
 @. The data set above was measured in meters, but what would have happened if it had been measured in decimeters (10 decimeters to a meter)? Provide reasoning for would happen to the measures of center - mean, median, mode - if it had instead been measured in decimeters. Repeat the exercise for three measures of spread: range, standard deviation, and IQR. Which measures remain the same after a multiplicative change in units?
 
-\
-\
-\
-\
-\
-\
-\
-\
-\
+{{< pagebreak >}}
 
 @. Repeat exercise two, but consider a circumstance where the data set was recorded using a faulty measuring device that added .1 to each observation (instead of multiplying by 10). Which measures of center and spread remain the same after an additive change?
 
+\
+\
 \
 \
 \
