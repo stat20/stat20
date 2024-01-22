@@ -1,5 +1,5 @@
 ---
-title: "Lab 2: Class Survey"
+title: "Lab 1: Class Survey"
 image: images/dog-pants.png
 sidebar: false
 ---
@@ -17,37 +17,102 @@ To answer this worksheet, consult the printout of the original survey found [her
 
 ## Part II: Computing on the Data
 
-The real data from your surveys is available in the `stat20data` package as `class_survey`.
+The real data from your surveys is available in the `stat20data` package as `class_survey`. To complete the following questions, you will need to find the columns in the `class_survey` data frame associated with each variable mentioned.
 
-Using this data, i. construct the plots that you proposed in Part I, and ii. calculate for the first three a measure of a typical observation (mean, median, or mode, as appropriate). Use these summaries to answer the original question in a sentence or two, noting, where appropriate, the shape of the distribution and what a "typical" observation is.
+#### Question 1
 
-#### Question 1  
-Do students prefer to spend time at the beach or in the mountains?
+> How much coding experience do students have?
 
-#### Question 2  
-How much coding experience do students have?
+Use the "scale" version for this question.
+
+##### part a
+
+Construct an appropriate plot including both of these variables using `ggplot2`.
+
+##### part b
+
+Then calculate *one* appropriate measure of a spread and *one* appropriate measure of center for this variable.
+
+##### part c
+
+Use these summaries to answer the survey question in a sentence or two.
+
+#### Question 2
+
+> What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022?
+
+##### part a
+
+Construct an appropriate plot including both of these variables using `ggplot2`.
+
+##### part b
+
+Then calculate *one* appropriate measure of a spread and *one* appropriate measure of center for this variable.
+
+##### part c
+
+Use these summaries to answer the survey question in a sentence or two.
 
 #### Question 3  
-What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022?
 
-#### Question 4  
-What is the relationship between students' optimism for cryptocurrency and their skepticism of the effect of technology on interpersonal relationships?
+> Is there an association between students' favorite season and terrain preference (beach or mountains)?
+
+##### part a
+
+Construct the plot that you proposed in **Part I** using `ggplot2`. *Ensure that the seasons are plotted in the order: spring, summer, winter, fall*. 
+
+##### part b
+
+Then, state a measure of a typical observation for the terrain preference variable for each season. 
+
+##### part c
+
+Use these summaries to answer the survey question in a sentence or two.
 
 
-. . .
+#### Question 4 
 
-Six variables appear in the survey data frame that were derived from the original `title` question: `artist`, `humanist`, `natural_scientist`, `social_scientist`, `comp_scientist` and `entrepreneur`. The `artist` variable is `TRUE` for those students who most identified as an artist and `FALSE` otherwise. The other five variables are defined similarly.
+> Is there an association between students most identifying as an entrepreneur and their optimism for cryptocurrency?
 
-For the following four questions, please answer with a plot and a sentence or two written response given the structure in the plot.
 
-#### Question 5  
-Is there an association between students most identifying as an entrepreneur and their optimism for cryptocurrency?
+You may treat the `entrepreneur` variable categorically.
 
-#### Question 6  
-Is there an association between students most identifying as a humanist and their optimism for cryptocurrency?
+##### part a
 
-#### Question 7  
-Propose your own question involving one or two variables and answer it using a plot with a written interpretation.
+Construct an appropriate plot including both of these variables using `ggplot2`.
 
-#### Question 8  
-Propose your own question involving two or three variables and answer it using a plot with a written interpretation.
+##### part b
+
+Then calculate *one* appropriate measure of a spread and *one* appropriate measure of center for the cryptocurrency variable, grouping by the levels of the `entrepreneur` variable. 
+
+##### part c
+
+Use these summaries to answer the survey question in a sentence or two.
+
+#### Question 5
+
+Six variables appear in the survey data frame that were derived from the original `title` question: `artist`, `humanist`, `natural_scientist`, `social_scientist`, `comp_scientist` and `entrepreneur`. The `artist` variable is `TRUE` for those students who most identified as an artist and `FALSE` otherwise. The other five variables are defined similarly. You may treat these variables categorically.
+
+##### part a
+
+Propose your own question involving any two variables in the dataset--at least one of which comes from the `title` variable group mentioned above.
+
+##### part b
+
+Construct a plot which would aid in answering this question using `ggplot2`. 
+
+
+##### part c 
+
+Grouping by the levels of the `title` group variable,
+calculate or state *one* appropriate measure of center for 
+your second variable.
+
+##### part d
+
+Use these summaries to answer your question in **part a** in a sentence or two.
+
+
+
+
+

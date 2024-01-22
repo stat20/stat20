@@ -4,6 +4,7 @@ subtitle: "PS"
 format: stat20handout-pdf
 ---
 
+<!--
 @. In the space below, outline a procedure to take a data set like the following and return a single statistic that fulfills the desiderata:
    a. The statistic will increase in magnitude as variability increases
    b. The statistic will decrease in magnitude as the variability decreases
@@ -12,23 +13,66 @@ format: stat20handout-pdf
 You can express your procedure as a written recipe or using mathematical notation.
 
 $$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11  \quad 11$$
+-->
 
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
+Below is a smaller version of the data from a future lab called `flights_mini`. It contains all flights out of Oakland (OAK) from December 2020. This data frame is used to create the plot that follows. `distance` refers to the distance a given plane travels on its flight, measured in miles. `carrier` refers to the carrier code for a specific airline.
 
-@. The small data set above was measured in meters, but what would have happened if it had been measured in decimeters (10 decimeters to a meter)? Provide reasoning for would happen to the measures of center - mean, median, mode - if it had instead been measured in decimeters. Repeat the exercise for three measures of spread: range, standard deviation, and IQR. Which measures remain the same after a multiplicative change in units?
+```{r}
+#| echo: false
+library(tidyverse)
+library(stat20data)
+data(flights)
+
+flights_mini <- flights %>%
+  filter(month == 12,
+         origin == "OAK") %>%
+  select(month, day, carrier, origin, distance, air_time)
+```
+
+
+```{r}
+#| echo: false
+#| fig-height: 2.5
+#| fig-width: 3.8
+#| fig-align: center
+flights %>%
+  filter(month == 12,
+         origin == "OAK") %>%
+  ggplot(aes(x = carrier, y = distance)) +
+  geom_boxplot() +
+  theme_gray(base_size = 9)
+```
+
+ 
+@. Which of the following interpretations of the plot above are true? (select all that apply)
+
+(A) The carrier with the most heavily skewed distance distribution is HA.
+(B) The median distance of the flights operated by DL, G4, and OO are roughly equivalent.
+(C) The minimum distance traveled in this data set is roughly 200.
+(D) There is no clear association between the carrier and the distance of their flights.
+(E) The carrier with the greatest variability in distance, as measured by the IQR, is AS.
+
+ 
+@. Using the plot above and the table below (which shows the number of flights from each carrier) select the appropriate relationship between the sample mean and the sample median of the distances of all 2,237 flights.
+
+```{r}
+#| echo: false
+flights_mini %>%
+  count(carrier) %>%
+  pivot_wider(names_from = carrier,
+              values_from = n) %>%
+  knitr::kable()
+```
+
+(A) mean $>$ median
+(B) mean $<$ median
+(C) mean = median
+
+Consider the small data set from the notes.
+
+$$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11  \quad 11$$
+
+@. The data set above was measured in meters, but what would have happened if it had been measured in decimeters (10 decimeters to a meter)? Provide reasoning for would happen to the measures of center - mean, median, mode - if it had instead been measured in decimeters. Repeat the exercise for three measures of spread: range, standard deviation, and IQR. Which measures remain the same after a multiplicative change in units?
 
 \
 \
@@ -42,9 +86,16 @@ $$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11
 
 @. Repeat exercise two, but consider a circumstance where the data set was recorded using a faulty measuring device that added .1 to each observation (instead of multiplying by 10). Which measures of center and spread remain the same after an additive change?
 
+\
+\
+\
+\
+\
+\
+\
+\
+\
 
-
-{{< pagebreak >}}
 
 @. Sketch your best sense of the distribution of the following variable(s). For each, please: 
 
@@ -87,4 +138,3 @@ Make a note of any assumptions you're making in interpreting these variable name
 \
 \
 
-*Distance from campus* and *Year at Cal (first, second, etc)* among all Cal students

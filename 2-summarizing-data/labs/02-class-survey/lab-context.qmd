@@ -12,7 +12,7 @@ format:
 \thispagestyle{empty}
 
 \begin{center}
-\textsc{Stat 20: Lab 2.1 Class Survey} \\
+\textsc{Stat 20: Lab 1.1 Class Survey} \\
 \noindent\rule{12cm}{0.4pt}
 \end{center}
 
@@ -29,25 +29,31 @@ format:
    - Question 22: What is the chance that a fire alarm goes off in one of the dorms this week? 
 
 \
+\
 
-3. What values would you expect `major` to take? Do you anticipate any challenges when analyzing this data?
+3. What values would you expect `major` to take? Do you anticipate any challenges when analyzing this data (and why)?
 
 \
 \
 
-Questions 4 - 7 can be answered using data visualization. To lay the groundwork for answering these questions using the survey data set, plan out your plots and set your expectations for what the data might look like. Please:
+4. Are there any other variables in the dataset which would present the same challenge you mentioned in Question 3? List them here.
+
+\
+\
+
+Questions 5 - 7 can be answered using data visualization. To lay the groundwork for answering these questions using the glimpse of the survey data set that you have, plan out your plots and set your expectations for what the data might look like. Please:
 
 - sketch (with paper and pencil) a plot that captures the distribution or relationship between the variables,
 - label the axis and add axis tick marks with plausible values,
-- depict a shape that reflects your expectation of the phenomena,
-- write out the *aesthetic mappings* (the variables in use and which visual cues / aesthetic each one is mapped to) and
-- write out the *geometry* utilized by your plot.
+- depict a shape that reflects **your expectation of the phenomena.** There is no right or wrong at this point, because in theory, you have not seen the full dataset yet! You do not need to retroactively change your answers once you do see it.
+- title your plot with a claim based on the sketch you have made.
+
   
-4. Do students prefer to spend time at the beach or in the mountains?
+5. Do students prefer to spend time at the beach or in the mountains?
 
 {{< pagebreak >}}
 
-5. How much coding experience do students have?
+6. Is there an association between students' favorite season and terrain preference (beach or mountains)?
 
 \
 \
@@ -65,7 +71,7 @@ Questions 4 - 7 can be answered using data visualization. To lay the groundwork 
 \
 \
 
-6. What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Spring 2023?
+7. Which season is favored most among students who prefer the mountains?
 
 \
 \
@@ -83,4 +89,10 @@ Questions 4 - 7 can be answered using data visualization. To lay the groundwork 
 \
 \
 
-7. What is the relationship between students' optimism for cryptocurrency and their skepticism of the effect of technology on interpersonal relationships?
+
+8. Consider the question:
+
+> How much coding experience do students have?
+
+Imagine you were working with the "words" version of this variable as shown in the glimpse and wanted to make a one-variable bar chart using this data. Do you anticipate any possible challenges with your visualization properly representing the scale in words, and why?
+
