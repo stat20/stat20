@@ -43,6 +43,7 @@ Use these summaries to answer the survey question in a sentence or two.
 
 ##### part a
 
+Construct an appropriate plot for this variable using `ggplot2`.
 
 ##### part b
 
