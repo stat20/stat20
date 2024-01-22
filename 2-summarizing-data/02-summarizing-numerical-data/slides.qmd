@@ -26,6 +26,7 @@ format:
 - Concept Questions and Activity
 - Problem Set 3
 - *Break*
+- Coding Refresher
 - Lab 1.2: Computing on the Data
 
 ## Announcements
@@ -199,6 +200,10 @@ countdown::countdown(minutes = 25, top = 0)
 ```{r}
 countdown::countdown(minutes = 5, top = 0)
 ```
+
+# Coding Refresher
+
+Head to PollEverywhere for a competition!
 
 # Lab 1.2 - Computing on the Data
 
