@@ -26,14 +26,30 @@ The same considerations of omission and inclusion come into play when developing
 - Qualities that are irrelevant, distracting, or deceptive
 - Replicated or assumed information
 
-In these notes we'll keep this guidance in mind as we discuss how to summarize numerical data with graphics, in words, and with statistics.
+In these notes we'll keep this guidance in mind as we discuss how to summarize numerical data with graphics, in words, and with statistics. Specifically, we will learn how to:
+
+-   Summarize one numerical variable
+-   Summarize one numerical variable broken up into levels of a second, categorical variable.
+
+Summarizing *two* numerical variables is a task which deserves its own set of notes; that set of notes will come later on!
 
 :::{.callout-tip}
 
 ## Code along
 
-As you read through these notes, you'll find figures and tables that were produced by running R code. If you'd like to peek into that code, click the gray arrow on the left side of the code. There's no need to learn all of these functions just yet, but it might be helpful to start reasoning through what you think the different functions are doing. When you learn these functions in the coming weeks, these notes can serve as a source of helpful examples.
+As you read through these notes, you'll find figures and tables that were produced by running R code. Specifically, you will see visualizations constructed with `ggplot2`, and tables created with another package in the `tidyverse` library, **`dplyr`**. 
+
+The `ggplot2` code for the visualizations will be presented below. We will introduce `dplyr` in the **Ideas in Code** section. 
+
+Feel free to open up RStudio and code along with us, making sure that you load the `stat20data` library and `penguins` dataset as we did last time!
 :::
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(stat20data)
+data(penguins)
+```
 
 ## Constructing Graphical Summaries
 
@@ -45,8 +61,7 @@ Let's turn to an example admittedly less complex than Hamlet: the Palmer penguin
 
 
 ```{r}
-library(tidyverse)
-library(stat20data)
+#| code-fold: false
 bill_16 <- penguins %>%
   select(bill_length_mm) %>%
   slice(1:16)
@@ -64,9 +79,19 @@ For our first graphic, let's set a high bar.
 - All information must be preserved.
 :::
 
-The most commonly used graphic that fulfills this criterion is the **dot plot**.
+The most commonly used graphic that fulfills this criterion is the **dot plot**. 
 
 ```{r}
+#| echo: true
+#| eval: false
+#| code-fold: false
+ggplot(data = penguins, 
+       mapping = aes(x= bill_length_mm)) +
+  geom_dotplot()
+```
+
+```{r}
+#| echo: false
 #| fig-align: center
 #| fig-height: 2
 #| fig-width: 5
@@ -92,6 +117,16 @@ There are several types of graphics that meet this criterion: the histogram, the
 ### Histograms
 
 ```{r}
+#| echo: true
+#| eval: false
+#| code-fold: false
+ggplot(data = penguins, 
+       mapping = aes(x= bill_length_mm)) +
+  geom_histogram()
+```
+
+```{r}
+#| echo: false
 #| fig-align: center
 #| fig-height: 2
 #| fig-width: 5
@@ -100,16 +135,17 @@ bill_16 %>%
   geom_histogram()
 ```
 
-At first glance, a histogram looks like deceptively like bar chart. There are bars  arranged along the x-axis according to their values with heights that correspond to the count of each value found in the data set. So how is this not a bar chart?
+At first glance, a histogram looks like deceptively like a bar chart. There are bars  arranged along the x-axis according to their values with heights that correspond to the count of each value found in the data set. So how is this not a bar chart?
 
 A histogram involves *aggregation*. The first step in creating a histogram is to divide the range of the variable into bins of equal size. The second step is to count up the number of observations that occur in each bin. In this way, some observations will have their own bar (every bar with a count of one) but other observations will be aggregated into the same bar: the tallest bar, with a count of 3, corresponds to all observations from 39.09 to 39.30: 39.1, 39.2, and 39.3.
 
-The degree of aggregation performed by the histogram is determined by the *binwidth*. Most software will automatically select the binwidth[^bw], but it can be useful to tinker with different values to see the distribution at different levels of aggregation. Here are four histograms of the same data that use four different binwidths.
+The degree of aggregation performed by the histogram is determined by the *binwidth*. Most software will automatically select the binwidth[^bw], but it can be useful to tinker with different values to see the distribution at different levels of aggregation. The `binwidth` argument within `geom_histogram()` can be altered to implement this. Here are four histograms of the same data that use four different binwidths (try setting your histogram's binwidth to one of the options in the below plots)!
 
 [^bw]: The `ggplot2` package in R defaults to 30 bins across the range of the data. That's a very rough rule-of-thumb, so tinkering is always a good idea.
 
 :::{.content-visible when-format="html"}
 ```{r}
+#| echo: false
 #| fig-align: center
 #| fig-height: 7
 #| fig-width: 5
@@ -179,6 +215,16 @@ There is a saying that warns about times when you, "can't see the forest for the
 Imagine that you build a histogram and place a cooked piece of spaghetti over the top of it. The curve created by the pasta is a form of a density plot.
 
 ```{r}
+#| echo: true
+#| eval: false
+#| code-fold: false
+ggplot(data = penguins, 
+       mapping = aes(x= bill_length_mm)) +
+  geom_density()
+```
+
+```{r}
+#| echo: false
 #| warning: false
 #| fig-height: 2
 #| fig-width: 5
@@ -186,14 +232,16 @@ Imagine that you build a histogram and place a cooked piece of spaghetti over th
 bill_16 %>%
   ggplot(aes(x = bill_length_mm)) +
   geom_density()
+
 ```
 
 Besides the shift from bars to a smooth line, the density plot also changes the y-axis to feature a quantity called "density". We will return to define this term later in the course, but it's sufficient to know that the values on the y-axis of a density plot are rarely useful. The important information is relative: an area of the curve with twice the density as another area has roughly twice the number of observations.
 
-The density plot, like the histogram, offers the ability to balance fidelity to the individual observations against a more general shape of the distribution. You can tip the balance to feature what you find most interesting but adjusting the *bandwidth* of the density plot.
+The density plot, like the histogram, offers the ability to balance fidelity to the individual observations against a more general shape of the distribution. You can tip the balance to feature what you find most interesting but adjusting the *bandwidth* of the density plot. This can be done by including the `bw` argument inside of density and setting it to a number (again, try setting it to one of the options in the below plots)!
 
 :::{.content-visible when-format="html"}
 ```{r}
+#| echo: false
 #| fig-align: center
 #| fig-height: 7
 #| fig-width: 5
@@ -270,6 +318,17 @@ Often we're interested not in the distribution of a single variable, but in the 
 There are several different ways to compare the distribution of a variable across two or more groups, but one of the most useful is the violin plot. Here is a violin plot of the distribution of bill length across the three species of penguins.
 
 ```{r}
+#| echo: true
+#| eval: false
+#| code-fold: false
+ggplot(data = penguins, 
+       mapping = aes(x= bill_length_mm,
+                     y = species)) +
+  geom_violin()
+```
+
+```{r}
+#| echo: false
 #| fig-align: center
 #| fig-height: 3
 #| fig-width: 5
@@ -284,6 +343,18 @@ The distribution of bill length in each species is represented by a shape that o
 If this plot type looks familiar, you may have seen its cousin, the box plot.
 
 ```{r}
+#| echo: true
+#| eval: false
+#| code-fold: false
+ggplot(data = penguins, 
+       mapping = aes(x= bill_length_mm,
+                     y = species)) +
+  geom_boxplot()
+```
+
+
+```{r}
+#| echo: false
 #| fig-align: center
 #| fig-height: 3
 #| fig-width: 5
@@ -308,6 +379,7 @@ When describing the shape of a distribution in words, pay attention to its *moda
 A good example of a distribution that would be described as unimodal is the original density plot of bill lengths of 16 Adelie penguins (below left). There is one distinct peak around 39. Although there is another peak around 34, it is not prominent enough to be considered a distinct mode. The distribution of the bill lengths of all 344 penguins (below right), however, can be described as bimodal.
 
 ```{r}
+#| echo: false
 #| warning: false
 #| fig-height: 2
 #| fig-width: 7
@@ -442,13 +514,304 @@ For categorical data, however, the mode is very useful. The mode of the species 
 
 ### Measures of Spread
 
-There are many different ways to capture spread or dispersion of data. Two commonly-used statistics are the (sample) **variance**, $s^2$, and the (sample) **standard deviation**, *s*.
+There are many different ways to capture spread or dispersion of data. Here are some basic desiderata we might hope to achieve with a measure of spread.
+
+:::{.callout-warning appearance="simple" icon=false}
+
+## Desiderata
+
+- The statistic should be low when the numbers are the same or very similar to one another.
+- The statistic should be high when the numbers are very different.
+- The statistic should not grow or shrink with the sample size ( n ).
+:::
+
+These desiderata are not met by every measure of spread. Here is one such measure of spread which does not meet all three!
+
+#### Range
+
+The range of a set of numbers is simply the maximum number in the dataset minus its minimum. 
+
+$$ range = max - min$$ 
+
+For our set of numbers, the range will be $5$.
+
+$$ {\Large 6} \quad {\ 7 \quad 7 \quad  7} \quad 8 \quad 8 \quad 9 \quad 9 \quad 10 \quad 11  \quad {\Large 11}$$
+
+Although the first two criterion above are met by the range, the third one is not. The reason is that if we add a number to our set which is greater than the maximum value, or smaller than the minimum value, the value of range will change. Therefore, increasing our sample size $n$ could cause our statistic to grow or shrink.
+
+Here are some measures of spread which *do* meet all three criterion. They do this by using incorporating some of the measures of center that we have already talked about, such as the mean and the median.
+
+#### The Sample Variance
+
+The sample variance:
+
+-   Takes the differences from each observation, $x_i$, to the sample mean $\bar{x}$;
+-   squares them;
+-   adds them all up;
+-   divides by $n - 1$;
+-   then finally, takes the square root.
+
+:::{.column-margin}
+The function in R: `var()`
+:::
+
 
 $$ s^2 = \frac{1}{n - 1} \sum_{i=1}^{n} \left( x_i - \bar{x}\right)^2 $$
+This formula is rather dense; don't worry! We won't ask you to memorize it. The key is that is fits the three criterion we were hoping for. 
+
+The distance $(x_i - \bar{x})^2$ will be small when $x_i$ is close to the mean, and large when it's not. This means the first two criterion are met. Additionally, because we are dividing by a number close to $n$, ($n-1$), the statistic does not grow or shrink with $n$. This means the last criterion is met!
+
+One other question you might have: why the square? 
+
+The reason is that spread/distance is a positive quantity. Recall that the mean of our list was $8.45$. Two numbers in our list, $7$ and $9$, are both $1.45$ units away from the mean. However, $7-8.45 = -1.45$ and $9-8.45 = 1.45$. As part of the sum, we will have to add up $-1.45$ and $1.45$, which comes out to $0$.
+
+This means that the information from the two data points $7$ and $9$ have been canceled out! We don't want this to happen, so we need to make all of the terms in the sum positive. The square takes care of that.
+
+For our list:
+
+
+$$ s^2 =  2.87 $$
+
+#### The Sample Standard Deviation
 
 $$ s = \sqrt{\frac{1}{n - 1} \sum_{i=1}^{n} \left( x_i - \bar{x}\right)^2} $$
 
-Although the formulations might look dense, there are good reasons for each decision that was made in constructing these statistics. We will discuss those decisions, as well as several other ways one could measure spread, next class.
+:::{.column-margin}
+The function in R: `sd()`
+:::
+
+The sample standard deviation $s$ is the sample as the sample variance $s^2$: we've just taken the square root. One reason for using the sample standard deviation is that it at times is more interpret-able than the sample variance, since it's measured in units rather than units squared.
+
+For our list: 
+
+$$ s =  1.69 $$
+We can say, therefore, that each data point is about 1.7 units apart from each other.
+
+---
+
+While the sample variance and sample standard deviation are great for measuring symmetric data (which  appear enough in statistics) and also show up a lot in the theory of some topics that we will later discover, they do have their faults. 
+
+Namely, when data is not symmetric, the square around $x_i - \bar{x}$ can cause some issues. Asymmetrical data will have many values $x_i$ (large or small) which are far from the mean $\bar{x}$.
+
+If $x_i - \bar{x}$ is large, then $(x_i - \bar{x})^2$ will be *very* large. Therefore, $s^2$ and $s$ can produce values that are overestimates of the spread of *most* of the data. Here are two measures of spread which counter-act this. 
+
+#### IQR (Interquartile Range)
+
+
+The IQR is the difference between the median of the larger half of the sorted data set, $Q3$, and the median of the smaller half, $Q1$.
+
+:::{.column-margin}
+The function in R: `IQR()`
+:::
+
+\   
+
+$$ IQR = Q_3 - Q_1 $$ 
+\   
+
+Let's calculate the IQR for the list of eleven numbers we've been working with. First, we find the median of our dataset. That's $8$. Then, we split the data into two halves of five. Then we find the medians of these halves. and take the difference. These steps are visualized below.
+
+\   
+
+
+$$ 6 \quad 7 \quad {\Large 7 \quad  7} \quad 8 \quad  {\large 8} \quad 9 \quad {\Large 9 \quad 10} \quad 11  \quad 11$$
+\   
+
+We have that $Q_3 = 9.5$ and $Q_1 = 7$. Then:
+
+\   
+
+$$IQR =  9.5−7 = 2.5$$
+
+The reason the IQR works well for asymmetric data is because the measure of center it's based on is the *median*, not the *mean*. The median, being just the middle point of the data and not a value obtained by calculation of all the numbers in a list, is not impacted when extreme values are tacked onto the end of the list. 
+
+:::{.callout-warning appearance="simple" icon=false}
+
+## Additional Desiderata
+
+- Is robust to extreme values (outliers).
+:::
+
+Our final measure of spread is another option which is resillent against outliers, but is based off of the mean instead of the median.
+
+#### Mean Absolute Deviation (MAD)
+
+
+The $MAD$ is very similar to the sample variance $s^2$, except that:
+
+  - we divide by $n$ rather than $n-1$;
+  - we take the absolute value of $x_i - \bar{x}$ instead of squaring it.
+  
+$$
+MAD: \quad \frac{1}{n}\sum_{i = 1}^n |x_i - \bar{x}| 
+$$
+
+  
+The key difference is the second one. The MAD is great for summarizing skewed distributions because it isn't bothered too much by the presence of extreme values in a set of numbers. That's because the absolute value bar just ensures a number is positive; it doesn't further amplify that number by squaring it.
+
+:::{.callout-warning appearance="simple" icon=false}
+
+## Additional Desiderata
+
+- Is robust to extreme values (outliers).
+:::
+
+
+
+---------------------------
+---------------------------
+
+## The Ideas in Code
+
+Once you have your data in front of you, you've seen how we can form visual summaries with `ggplot2`. But how can we calculate numerical summaries? Furthermore, what if we are concerned about summarizing a portion of our data, like just one species of penguin at a time? We will answer these questions below, and introduce some new functions from the `dplyr` package (within the `tidyverse` library) along the way. We'll also look at how `factor()` can come in handy while plotting.
+
+### Calculating Numerical Summaries
+
+One example of a numerical variable we could have examine  is the body mass of a particular penguin (measured in grams). Let's calculate both a measure of center and spread for this variable.
+
+To get an idea of what summaries we should pick, let's revisit the density plot from earlier.
+
+```{r}
+#| echo: false
+#| eval: true
+#| code-fold: false
+ggplot(data = penguins, 
+       mapping = aes(x= body_mass_g)) +
+  geom_density()
+```
+
+What we can glean from this figure is that the distribution of body masses across *all species of penguin* is skewed right. This means that, for instance, a more typical observation lies closer to 4000 grams than 5000 grams. 
+
+If we take an average, it is likely to be pulled to the right by the larger, but less typical, observations. The median observation, however, would be more resistant to this pull. Therefore, the median might be a nice choice for a measure of center. Similarly, since the IQR is initially constructed from the median, it will serve well here as a measure of spread.
+
+Now, let's calculate these values. We should first isolate our variable of interest. We can do this in code by using the `dplyr` function **`select()`**.
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-fold: false
+body_mass <- select(penguins, body_mass_g)
+body_mass
+```
+
+As is custom with `dplyr` functions, the first argument goes to the data frame you are working with. The following arguments are more function specific. In `select()`'s case, we tell the computer which column/variable we are interested in.
+
+Now, we can calculate our summaries. When working with a vector, we could use functions like `mean()` and `median()` directly, e.g. `median(body_mass_g)`. However, `body_mass_g` is not a standalone vector but is now a column in a data frame called `body_mass`! Therefore, we need to access it through a `dplyr` function called **`summarise()`**. 
+
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-fold: false
+summarise(body_mass, 
+          body_mass_median = median(body_mass_g),
+          body_mass_IQR = IQR(body_mass_g))
+```
+
+Note that while the first argument goes to the name of the data frame, the following arguments are given to the names of the new columns that `summarise()` puts in another *new data frame* (one row by two columns). You can name the columns whatever you would like. 
+
+Based on what we've found, the median here supports the claim we made above: that a typical penguin has a body mass closer to 4000 grams than to 5000 grams. The middle 50 percent of the penguins have body masses within 1225/2 grams, or roughly 600 grams, of 4050. 
+
+
+### Groupwise Operations
+
+Let's return to the bill length examine of a particular penguin, measured in millimeters. Here is the density plot for *all of the data*; for simplicity, earlier we showed you the plot for only the first 16 observations.
+
+```{r}
+#| echo: false
+#| eval: true
+#| code-fold: false
+ggplot(data = penguins, 
+       mapping = aes(x= bill_length_mm)) +
+  geom_density()
+```
+
+This plot is interesting. It appears we have a bimodal shape! While it's tempting to state that the data is roughly symmetric and calculate an overall mean, we should first see if there are any other variables at play. It stands to reason that different species of penguin might have different anatomical features. Let's add species to the mix by using the `color` aesthetic (see if you can code along)!
+
+```{r}
+#| echo: false
+#| eval: true
+#| code-fold: false
+ggplot(data = penguins, 
+       mapping = aes(x= bill_length_mm,
+                     color = species)) +
+  geom_density()
+```
+
+Aha! We now see that each penguin species has its own shape of distribution when it comes to bill length. 
+
+The example above demonstrates a very common scenario: you want to perform some calculations on one particular group of observations in your data set. But what if you want to do that same calculation for every group? For example, what if we'd like to find the average and standard deviation of bill length among each species of penguin *separately*? 
+
+This task - performing an operation on all groups of a data set one-by-one - is such a common data science task that nearly every software tool has a good solution. In the `dplyr` package, the solution is the **`group_by()`** function. Let’s see it in action.
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-fold: false
+grouped_penguins <- group_by(penguins, species)
+```
+
+Like most `tidyverse` functions, the first argument to `group_by()` is a data frame. The second argument is the name of the variable that you want to use to delineate groups. In this case, we want to group by species to calculate three separate mean/standard deviation pairs. 
+
+Now, assuming we roll with our new `grouped_penguins` data frame, we can use `summarise()` like we did before!
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-fold: false
+summarise(grouped_penguins, 
+          bill_length_mean = mean(bill_length_mm),
+          bill_length_sd = sd(bill_length_mm))
+```
+
+From both the visuals and the numbers, we can see that Adelie penguins have much smaller bill lengths on average when compared to Chinstrap and Gentoo penguins. We also see that the Adelie distribution of bill lengths is less variable than the distributions of the other two species. 
+
+### Plotting with Categorical Variables
+
+Finally, let's return to the violin plot of bill lengths grouped by species of penguin.
+
+```{r}
+#| echo: false
+#| eval: true
+#| code-fold: false
+ggplot(data = penguins, 
+       mapping = aes(x= bill_length_mm,
+                     y = species)) +
+  geom_violin()
+```
+
+What if I wanted the Adelie violin to show up on the top of the graph? By default, the violin plot puts the level first in the alphabetical order on the bottom of the plot. Therefore, I need to *reorder* the levels of species to put Adelie at the top. This is where `factor()` will do the job!
+
+As before, `bill_length_mm` is not a standalone vector but a column in a data frame! We cannot access it directly, e.g. by 
+`factor(species, levels = c("Gentoo", "Chinstrap", "Adelie"))`. 
+
+Therefore, we use the `dplyr` function **`mutate()`**. A **mutation** involves changing the properties of an existing column, or adding a new one altogether (which we will explore next week). 
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-fold: false
+reordered_penguins <- 
+  mutate(penguins, 
+  species = 
+    factor(species, levels = c("Gentoo", "Chinstrap", "Adelie")))
+```
+
+The first argument of `mutate()` is dedicated to our data frame, `penguins`. The second argument can be the name of an existing column or the name of a new column (next week). We want to change `species` to be an altered version of itself, hence we name the second argument `species`. Make sure you understand where each set of parentheses closes and ends.
+
+Now, assuming we roll with our new `reordered_penguins` data frame, we can use `ggplot()` like we did before!
+
+```{r}
+#| echo: false
+#| eval: true
+#| code-fold: false
+ggplot(data = reordered_penguins, 
+       mapping = aes(x= bill_length_mm,
+                     y = species)) +
+  geom_violin()
+```
+
+
 
 ## Summary
 

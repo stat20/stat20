@@ -58,10 +58,6 @@
           publish: false
 - week: 3
   days:
-    - display-date: Jan 29
-      date: 1/29/24
-      topic: Quiz 1
-      items: []
     - display-date: Jan 30
       date: 1/30/24
       topic: Data Pipelines
@@ -84,6 +80,10 @@
           publish: false
 - week: 4
   days:
+    - display-date: Feb 5
+      date: 2/5/24
+      topic: Quiz 1
+      items: []
     - display-date: Feb 6
       date: 2/6/24
       topic: Intro to Probability
@@ -240,7 +240,7 @@
         - type: Slides
           href: 6-prediction/01-method-of-least-squares/slides.qmd
           publish: false
-    - display-date: Mar 19
+    - display-date: Mar 21
       date: 3/21/24
       topic: Quiz 4
       items: []

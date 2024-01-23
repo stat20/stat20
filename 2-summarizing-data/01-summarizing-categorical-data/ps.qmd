@@ -23,19 +23,18 @@ Find the proportion of all students who attend Berkeley. What type of proportion
 
 ### Question 2
 
-Find the proportion of all students who attend Berkeley that like red best. What type of proportion is this?
+Find the proportion of all students who attend Berkeley *and* like red best. What type of proportion is this?
 
 \   
 \   
 
 ### Question 3
 
-Of the students who attend Berkeley, find the proportion that like red best. What type of proportion is this?
+*Of the students who attend Berkeley*, find the proportion that like red best. What type of proportion is this?
 
 \   
 \  
 
----
 
 ## Questions 4-5
 
@@ -69,11 +68,10 @@ Which graph is **best** used to answer the following questions? *Write the lette
 
 *What is the mode of the `Class` variable?* _______
 
----
 
 ## Questions 6-7
 
-Open up RStudio and write down the code you used to complete each of the following questions in the space below.
+Open up RStudio and write down the code you used to complete each of the following questions in the space below. *Make sure you load in any libraries where necessary!*
 
 ### Question 6
 
@@ -83,12 +81,14 @@ Consider the vector `q6` which was made as follows:
 q6 <- c(1,2,3,4,5,6,NA)
 ```
 
-Write R code to calculate the mean of `q6` so that the result is 3.5 (this is the mean of the numbers 1 through 6).
+Load `q6` as is into your session. Then, write R code to calculate the mean of `q6` so that the result is 3.5 (this is the mean of the numbers 1 through 6). *Hint: how can you learn more about the function `mean()`?*
 
 \   
 \   
 
 ### Question 7
 
-The `titanic` dataset can be found in the `openintro` package. Load this package and the data into your RStudio session, and then recreate plot C. Write the code you used below.
+The `promote` dataset can be found in the `stat20data` package. Using this data, write `ggplot2` code to make a stacked, normalized bar chart having identified gender on the x axis, with the bars being filled in by promotion decision. Write the code you used below. Then, make a claim about the association between the two variables (we will revisit this study in more detail later in the course)!
+
+
 

@@ -31,20 +31,23 @@ format:
 
 ## Announcements
 
--   Lab 1 (Class Survey) due **Tuesday, January 29th at 9am** on Gradescope
+-   RQ: Summarizing Numerical Data due **Wednesday at 11:59pm** on Gradescope.
+
+. . . 
+
+-   Quiz 1 next **Monday, January 29th** in-class. Topics covered:
+    -   Understanding the World with Data
+    -   Taxonomy of Data
+    -   Summarizing Categorical Data (today)
+    -   Summarizing Numerical Data (next class)
+    
+. . . 
+
+-   Lab 1 (Class Survey) due **Tuesday, January 29th at 9am** on Gradescope.  Make sure you read the Lab Submission Guidelines posted to Ed! 
 
 . . .
 
 -   Problem Set 2 due **Tuesday, January 29th at 9am** on Gradescope
-
-. . . 
-
--   Make sure you read the Lab Submission Guidelines posted to Ed! 
-
-. . . 
-
--   Quiz 1 next **Monday, January 29th** in-class
-
 
 # Concept Questions
 

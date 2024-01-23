@@ -22,20 +22,24 @@ format:
 
 ## Agenda
 
-- Quiz Review
-- Lab 1 Review
-- Concept Question
+- Announcements
+- Concept Questions and Activity
+- Problem Set 3
 - *Break*
-- Measures of Center
-- Measures of Spread
-- Summarize
-- *Break*
-- Problem Set 2.1 
+- Coding Refresher
+- Lab 1.2: Computing on the Data
 
-# Quiz Review
+## Announcements
 
-# Lab 1 Review
+-   *RQ: Data Pipelines* released Friday afternoon and due **Monday at 11:59pm**
 
+. . . 
+
+-   Problem Sets 2 (Tue/Wed) and 3 (today) due **Tuesday at 9am**
+
+. . . 
+
+-   Lab 1: Class Survey (both parts) due **Tuesday at 9am**
 
 
 # Concept Question
@@ -81,7 +85,7 @@ penguins %>%
 ```
 
 
-# Measures of Center
+# Concept Activity - Measures of Center
 
 ## Mean, median, mode: which is best?
 
@@ -94,6 +98,7 @@ penguins %>%
 :::{.poll}
 Get out a piece of paper. You'll be watching a 3 minute video that discusses characteristics of a typical human. Note which numerical summaries are used and what for.
 :::
+
 
 ##
 
@@ -118,7 +123,7 @@ Get out a piece of paper. You'll be watching a 3 minute video that discusses cha
 
 . . .
 
-But there are other notions of typical...
+But there are other notions of typical... *what about a maximum*?
 
 ## {data-menu-title="Max temp" background-image="images/max-temp.png" background-size="contain"}
 
@@ -127,15 +132,27 @@ But there are other notions of typical...
 ## {data-menu-title="Heat Dome 2" background-image="images/heat-dome-2.png" background-size="contain"}
 
 
-# Measures of Spread
+# Concept Question 3 - Measures of Spread
 
 ##
+
+-   Why are measures of spread so important? Consider the following question.
+
+. . . 
 
 :::{.poll}
 There are two new food delivery services that open in Berkeley: Oski Eats and Cal Cravings. A friend of yours that took Stat 20 collected data on each and noted that Oski Eats has a mean delivery time of 29 minutes and Cal Cravings a mean delivery time of 27 minutes. Which would would you rather order from?
 :::
 
-##
+-   Discuss this question with your classmates! (no poll question).
+
+. . . 
+
+```{r}
+countdown::countdown(minutes = 1, top = 0)
+```
+
+## One possible reality
 
 ```{r}
 #| fig-height: 7.5
@@ -170,7 +187,35 @@ p1 +
 
 > Would you still prefer to order from Cal?
 
+# Problem Set 3: Summarizing Numerical Data
 
+Work on the problem set in **groups of 2.** We will discuss some questions toward the end of the period!
+
+```{r}
+countdown::countdown(minutes = 25, top = 0)
+```
+
+# Break
+
+```{r}
+countdown::countdown(minutes = 5, top = 0)
+```
+
+# Coding Refresher
+
+Head to PollEverywhere for a competition!
+
+# Lab 1.2 - Computing on the Data
+
+Work on the lab. We will discuss some questions toward the end of the period!
+
+```{r}
+countdown::countdown(minutes = 30, top = 1)
+```
+
+# End of Lecture
+
+<!--
 ## Summarizing Distributions of Data
 
 You can construct a **statistical graphic** to show the **shape**, which you can describe in terms of **modality** and **skew**... [you can calculate a **measure of center** to convey a sense of a typical observation...]{.fragment}[and you can calculate a **measure of spread** to capture how much variability there is in the data.]{.fragment}
@@ -399,4 +444,5 @@ df %>%
 :::
 
 ::::
+-->
 
