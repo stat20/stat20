@@ -36,7 +36,7 @@
       items:
         - type: Notes
           href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
-          publish: false
+          publish: true
         - type: Slides
           href: 2-summarizing-data/01-summarizing-categorical-data/slides.qmd
           publish: false
