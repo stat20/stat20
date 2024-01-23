@@ -12,7 +12,7 @@ Please record your answers on the worksheet below and upload it to Gradescope.
 
 - [Part 1: Understanding the Context of the Data](lab-context.qmd)
 
-To answer this worksheet, consult the printout of the original survey found [here](glimpse-class-survey.qmd).
+To answer this worksheet, consult the printout of the original survey data found [here](glimpse-class-survey.qmd). You should also view the survey questions as they were asked to students [here](images/survey.pdf).
 
 
 ## Part II: Computing on the Data
