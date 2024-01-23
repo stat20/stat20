@@ -35,19 +35,11 @@ format:
 
 . . . 
 
--   Quiz 1 next **Monday, January 29th** in-class. Topics covered:
-    -   Understanding the World with Data
-    -   Taxonomy of Data
-    -   Summarizing Categorical Data (today)
-    -   Summarizing Numerical Data (next class)
-    
-. . . 
-
--   Lab 1 (Class Survey) due **Tuesday, January 29th at 9am** on Gradescope.  Make sure you read the Lab Submission Guidelines posted to Ed! 
+-   Lab 1 (Class Survey) due **Tuesday, January 30th at 9am** on Gradescope.  Make sure you read the Lab Submission Guidelines posted to Ed! 
 
 . . .
 
--   Problem Set 2 due **Tuesday, January 29th at 9am** on Gradescope
+-   Problem Set 2 due **Tuesday, January 30th at 9am** on Gradescope
 
 # Concept Questions
 
