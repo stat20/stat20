@@ -56,6 +56,9 @@
         - type: PS
           href: 2-summarizing-data/02-summarizing-numerical-data/ps.qmd
           publish: false
+  resources:
+    - '<a href="https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf">dplyr cheatsheet</a>'
+    - '<a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf">ggplot2 cheatsheet</a>'
 - week: 3
   days:
     - display-date: Jan 30
