@@ -71,7 +71,7 @@ An example of a marginal proportion.
 ![](images/2x2-table.png)
 
 :::poll
-What proportion of those in the marching band where juniors?
+What proportion of those students in the marching band were juniors?
 :::
 
 ```{r}
@@ -87,7 +87,7 @@ An example of a conditional proportion.
 ![](images/2x2-table.png)
 
 :::poll
-What proportion were sophomores not in the marching band?
+What proportion of students were sophomores not in the marching band?
 :::
 
 ```{r}
