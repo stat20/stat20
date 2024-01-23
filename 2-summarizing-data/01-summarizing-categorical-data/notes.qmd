@@ -332,6 +332,7 @@ This stands in stark contrast to the plot of the real data on the left. On Bisco
 Every function in R has a built-in help file that tells you about how it works. It can be accessed using `?`.
 
 ```{r}
+#| code-fold: false
 ?mean
 ```
 
