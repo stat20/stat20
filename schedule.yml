@@ -39,17 +39,20 @@
           publish: true
         - type: Slides
           href: 2-summarizing-data/01-summarizing-categorical-data/slides.qmd
-          publish: false
+          publish: true
+        - type: PS
+          href: 2-summarizing-data/01-summarizing-categorical-data/ps.qmd
+          publish: true
         - type: Lab
-          href: 2-summarizing-data/labs/03-flights/lab.qmd
-          publish: false
+          href: 2-summarizing-data/labs/02-class-survey/lab.qmd
+          publish: true
     - display-date: Jan 25
       date: 1/25/24
       topic: Summarizing Numerical Data
       items:
         - type: Notes
           href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
-          publish: false
+          publish: true
         - type: Slides
           href: 2-summarizing-data/02-summarizing-numerical-data/slides.qmd
           publish: false
