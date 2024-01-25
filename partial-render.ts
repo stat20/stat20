@@ -3,7 +3,7 @@ import { parse, stringify } from "https://deno.land/std/encoding/yaml.ts";
 import { join, dirname, basename } from "https://deno.land/std/path/mod.ts";
 
 const configPath = '_config.yml'; // Path to your config YAML file
-const schedulePath = 'assets/quarto-class-website_files/schedule.yml';
+const schedulePath = 'schedule.yml';
 
 
 // -------------------------------- //
