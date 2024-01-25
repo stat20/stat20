@@ -56,10 +56,10 @@ schedule:
             render: true
           - type: Slides
             href: 2-summarizing-data/02-summarizing-numerical-data/slides.qmd
-            render: false
+            render: true
           - type: PS
             href: 2-summarizing-data/02-summarizing-numerical-data/ps.qmd
-            render: false
+            render: true
   - week: 3
     days:
       - display-date: Jan 30
