@@ -14,8 +14,8 @@
     <p><span class="daily-topic"><%= day.topic %></span><br>
     <% if (day.items && day.items.length > 0) { %>
       <% for (const item of day.items) { %>
-        <% if (item.publish){ %>
-          <a href="<%= item.href %>" class="btn btn-success btn-sm"><%= item.type %></a>
+        <% if (item.render){ %>
+          <a  href="<%= item.href %>" type="button" class="btn btn-outline-primary btn-sm"><%= item.type %></a>
         <% } %>
       <% } %>
     <% } %>

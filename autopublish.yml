@@ -1,3 +1,0 @@
-autopublish:
-  timezone: "-07:00" # GMT offset in +/-hh:mm does not adjust for daylight savings
-  live-as-of: "1/20/24"

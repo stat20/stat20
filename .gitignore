@@ -19,6 +19,12 @@
 *.pdf
 _freeze/
 *notes.md
+lab-contents.yml
+notes-contents.yml
+ps-contents.yml
+slides-contents.yml
+sidebar-nav.yml
+schedule.yml
 
 # Quarto projects specific
 /.quarto/

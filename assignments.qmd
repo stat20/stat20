@@ -3,7 +3,7 @@ title: Assignments
 listing:
   - id: lab-listing
     contents: 
-      - lab-listing.yml
+      - lab-contents.yml
     sort: "date desc"
     type: grid
     fields: 
@@ -14,7 +14,7 @@ listing:
   - id: ps-listing
     template: assets/listings/assignments-ps.ejs
     contents:
-      - ps-listing.yml
+      - ps-contents.yml
     sort: "date desc"
     type: table
     fields:

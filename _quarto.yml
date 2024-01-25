@@ -1,5 +1,6 @@
 project:
   type: website
+  pre-render: prep-website.ts
 
 # Website Configuration and Layout
 website:
@@ -78,4 +79,4 @@ execute:
   fig-align: center
 
 metadata-files:
-  - "toc.yml"
+  - "sidebar-nav.yml"
