@@ -6,3 +6,22 @@ website:
       - 1-questions-and-data/02-taxonomy-of-data/notes.qmd
       - 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
       - 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
+      - 2-summarizing-data/04-conditioning/notes.qmd
+      - 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
+      - 3-probability/01-chance-intro/notes.qmd
+      - 3-probability/02-cond-prob-indep/notes.qmd
+      - 3-probability/03-random-variables/notes.qmd
+      - 3-probability/04-ev-se/notes.qmd
+      - 4-generalization/01-sampling-distributions/notes.qmd
+      - 4-generalization/02-confidence-intervals/notes.qmd
+      - 4-generalization/04-hypothesis-tests/notes.qmd
+      - 4-generalization/05-hypothesis-tests-2/notes.qmd
+      - 4-generalization/06-wrong-by-design/notes.qmd
+      - 2-summarizing-data/06-summarizing-associations/notes.qmd
+      - 2-summarizing-data/07-multiple-linear-regression/notes.qmd
+      - 6-prediction/01-method-of-least-squares/notes.qmd
+      - 6-prediction/02-improving-predictions/notes.qmd
+      - 6-prediction/03-overfitting/notes.qmd
+      - 6-prediction/05-logistic-regression/notes.qmd
+      - 5-causation/01-defining-causality/notes.qmd
+      - 5-causation/02-experiments/notes.qmd

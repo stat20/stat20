@@ -67,20 +67,20 @@
       items:
         - type: Notes
           href: 2-summarizing-data/04-conditioning/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 2-summarizing-data/04-conditioning/slides.qmd
-          render: false
+          render: true
     - display-date: Feb 1
       date: 2/1/24
       topic: Grammar of Graphics
       items:
         - type: Notes
           href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 2-summarizing-data/03-a-grammar-of-graphics/slides.qmd
-          render: false
+          render: true
 - week: 4
   days:
     - display-date: Feb 5
@@ -93,26 +93,26 @@
       items:
         - type: Notes
           href: 3-probability/01-chance-intro/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 3-probability/01-chance-intro/slides.qmd
-          render: false
+          render: true
         - type: PS
           href: 3-probability/01-chance-intro/ps.qmd
-          render: false
+          render: true
     - display-date: Feb 8
       date: 2/8/24
       topic: Conditional Probability
       items:
         - type: Notes
           href: 3-probability/02-cond-prob-indep/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 3-probability/02-cond-prob-indep/slides.qmd
-          render: false
+          render: true
         - type: PS
           href: 3-probability/02-cond-prob-indep/ps.qmd
-          render: false
+          render: true
 - week: 5
   days:
     - display-date: Feb 13
@@ -121,20 +121,20 @@
       items:
         - type: Notes
           href: 3-probability/03-random-variables/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 3-probability/03-random-variables/slides.qmd
-          render: false
+          render: true
     - display-date: Feb 15
       date: 2/15/24
       topic: Expected Value and Variance
       items:
         - type: Notes
           href: 3-probability/04-ev-se/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 3-probability/04-ev-se/slides.qmd
-          render: false
+          render: true
 - week: 6
   days:
     - display-date: Feb 20
@@ -147,10 +147,10 @@
       items:
         - type: Notes
           href: 4-generalization/01-sampling-distributions/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 4-generalization/01-sampling-distributions/slides.qmd
-          render: false
+          render: true
 - week: 7
   days:
     - display-date: Feb 26
@@ -163,26 +163,26 @@
       items:
         - type: Notes
           href: 4-generalization/02-confidence-intervals/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 4-generalization/02-confidence-intervals/slides.qmd
-          render: false
+          render: true
         - type: Lab
           href: 4-generalization/labs/05-peoples-park/lab.qmd
-          render: false
+          render: true
     - display-date: Feb 29
       date: 2/29/24
       topic: Intro to Hypothesis Tests
       items:
         - type: Notes
           href: 4-generalization/04-hypothesis-tests/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 4-generalization/04-hypothesis-tests/slides.qmd
-          render: false
+          render: true
         - type: PS
           href: 4-generalization/04-hypothesis-tests/ps.qmd
-          render: false
+          render: true
 - week: 8
   days:
     - display-date: Mar 5
@@ -191,20 +191,20 @@
       items:
         - type: Notes
           href: 4-generalization/05-hypothesis-tests-2/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 4-generalization/05-hypothesis-tests-2/slides.qmd
-          render: false
+          render: true
     - display-date: Mar 7
       date: 3/7/24
       topic: Wrong By Design
       items:
         - type: Notes
           href: 4-generalization/06-wrong-by-design/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 4-generalization/06-wrong-by-design/slides.qmd
-          render: false
+          render: true
 - week: 9
   days:
     - display-date: Mar 11
@@ -217,20 +217,20 @@
       items:
         - type: Notes
           href: 2-summarizing-data/06-summarizing-associations/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 2-summarizing-data/06-summarizing-associations/slides.qmd
-          render: false
+          render: true
     - display-date: Mar 14
       date: 3/14/24
       topic: Multiple Linear Regression
       items:
         - type: Notes
           href: 2-summarizing-data/07-multiple-linear-regression/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
-          render: false
+          render: true
 - week: 10
   days:
     - display-date: Mar 19
@@ -239,10 +239,10 @@
       items:
         - type: Notes
           href: 6-prediction/01-method-of-least-squares/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 6-prediction/01-method-of-least-squares/slides.qmd
-          render: false
+          render: true
     - display-date: Mar 21
       date: 3/21/24
       topic: Quiz 4
@@ -255,23 +255,23 @@
       items:
         - type: Notes
           href: 6-prediction/02-improving-predictions/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 6-prediction/02-improving-predictions/slides.qmd
-          render: false
+          render: true
         - type: Lab
           href: 6-prediction/labs/07-baseball/lab.qmd
-          render: false
+          render: true
     - display-date: Apr 4
       date: 4/4/24
       topic: Overfitting
       items:
         - type: Notes
           href: 6-prediction/03-overfitting/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 6-prediction/03-overfitting/slides.qmd
-          render: false
+          render: true
 - week: 12
   days:
     - display-date: Apr 9
@@ -280,10 +280,10 @@
       items:
         - type: Notes
           href: 6-prediction/05-logistic-regression/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 6-prediction/05-logistic-regression/slides.qmd
-          render: false
+          render: true
     - display-date: Apr 11
       date: 4/11/24
       topic: Logistic Regression II
@@ -300,23 +300,23 @@
       items:
         - type: Notes
           href: 5-causation/01-defining-causality/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 5-causation/01-defining-causality/slides.qmd
-          render: false
+          render: true
         - type: Lab
           href: 5-causation/labs/06-taste-test/lab.qmd
-          render: false
+          render: true
     - display-date: Apr 18
       date: 4/18/24
       topic: Causality II
       items:
         - type: Notes
           href: 5-causation/02-experiments/notes.qmd
-          render: false
+          render: true
         - type: Slides
           href: 5-causation/02-experiments/slides.qmd
-          render: false
+          render: true
 - week: 14
   days:
     - display-date: Apr 23

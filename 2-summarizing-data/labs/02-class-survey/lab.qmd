@@ -39,6 +39,17 @@ Use these summaries to answer the survey question in a sentence or two.
 
 #### Question 2
 
+For this question only, you may use the following, modified dataset, which can be obtained by running the following code in R. 
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-fold: false
+filtered_survey <- filter(class_survey, 
+                          new_COVID_variant >= 0,
+                          new_COVID_variant < 1)
+```
+
 > What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022?
 
 ##### part a
