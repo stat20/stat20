@@ -22,11 +22,11 @@ format:
 \
 
 2. Where in the Taxonomy of Data are the variables that correspond to each of the following survey questions (i.e., what is their type)?  
-   - Question 7: What is your favorite thing about Cal?
+   - Question 8: What is your favorite thing about Cal?
    
-   - Question 15: Where would you rather be?
+   - Question 16: Where would you rather be?
    
-   - Question 22: What is the chance that a fire alarm goes off in one of the dorms this week? 
+   - Question 23: What is the chance that a fire alarm goes off in one of the dorms this week? 
 
 \
 \
@@ -71,7 +71,7 @@ Questions 5 - 7 can be answered using data visualization. To lay the groundwork 
 \
 \
 
-7. Which season is favored most among students who prefer the mountains?
+7. How many students who preferred the mountains selected Winter as their favorite season?
 
 \
 \
