@@ -29,6 +29,7 @@ schedule.yml
 # Quarto projects specific
 /.quarto/
 _site
+_partial-site
 
 # Files derived from _course-settings.yml and scripts
 **/images/tmp
