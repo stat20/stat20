@@ -63,20 +63,6 @@ $$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11
 
 {{< pagebreak >}}
 
-@. Repeat exercise two, but consider a circumstance where the data set was recorded using a faulty measuring device that added .1 to each observation (instead of multiplying by 10). Which measures of center and spread remain the same after an additive change?
-
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-
 
 @. Sketch your best sense of the distribution of the following variable(s). For each, please: 
 
@@ -98,10 +84,6 @@ Make a note of any assumptions you're making in interpreting these variable name
 \
 \
 \
-\
-\
-\
-\
 
 *Scores on an easy quiz* among Stat 20 students
 
@@ -114,8 +96,16 @@ Make a note of any assumptions you're making in interpreting these variable name
 \
 \
 \
+
+The `mpg` dataset is available as a part of the `tidyverse` library. It contains information on fuel consumption for 38 models of car between 1999 and 2008. *Datasets can have help files, too!* You do not need to include code for loading in libraries or accessing help files in your answers to the below questions. 
+
+@. Write `dplyr` code to calculate the median and IQR of the vehicles in the dataset and copy it below. The result of your code should be one data structure. 
+
+\
+\
 \
 \
 \
 \
 
+@. Write `dplyr` code to calculate the mean and standard deviation of the vehicles in the dataset *for each class of car* and copy it below. The result of your code should be one data structure. 
