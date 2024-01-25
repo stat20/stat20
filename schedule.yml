@@ -59,6 +59,8 @@
         - type: PS
           href: 2-summarizing-data/02-summarizing-numerical-data/ps.qmd
           render: true
+  resources:
+    - '<a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf">ggplot2 Cheatsheet</a>'
 - week: 3
   days:
     - display-date: Jan 30
