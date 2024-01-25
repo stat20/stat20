@@ -867,11 +867,6 @@ Purves in their textbook [*Statistics*](https://wwnorton.com/books/9780393929720
 [^unsplash]: Photo via unsplash.com
 
 
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
-
-
 ## Ideas in Code
 
 You can run the simulations yourself using the code below. Copy and paste it into RStudio and play around with it.

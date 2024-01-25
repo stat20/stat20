@@ -210,7 +210,3 @@ This is an important lesson moving beyond descriptive statistics and into genera
 ## Summary
 
 In these notes you learned about a second form of null hypothesis, one where you explicitly define the proportions of a categorical variable. This type of null hypothesis allows you to generate data through simulating the process of drawing tickets from a box that is designed to match your null hypothesis. The most common test statistic used in this scenario is the chi-squared statistic, which measures the distance between two categorical distributions. Just as in the permutation tests from last time, you can assess the consistency between the null hypothesis and your data by calculating a p-value: the probability of drawing a statistic as or more extreme than the one that you observed in a world where the null hypothesis is true.
-
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}

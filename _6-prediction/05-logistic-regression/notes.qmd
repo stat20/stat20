@@ -193,8 +193,3 @@ In these notes we introduced the concept of classification using a logistic regr
 
 These notes focus on step 1 of the predictive model building process: deciding on the mathematical form of the model. In class tomorrow will take up the remaining three as we learn how to use apply logistic regression as a classification model to complete the eighth and final lab of Stat 20.
 
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
-
-

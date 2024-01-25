@@ -104,7 +104,3 @@ So how can we use this definition to decide precisely which slope and intercept 
 ## Summary
 
 Prediction is the task of predicting the value of a response variable for an unseen observation using its values of other variables that are known, the predictors. The nature of the response variable determines the nature of the task (and corresponding model): regression concerns the prediction of numerical response variables, classification concerns the prediction of categorical response variables. One such regression model is the least squares linear model, which uses the line that minimizes the residual sum of squares. Finding the value of the coefficients is a task that can be solved directly using calculus (in simple settings like this one) and also with optimization algorithms (in more general settings).
-
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}

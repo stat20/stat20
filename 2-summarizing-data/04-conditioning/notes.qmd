@@ -481,9 +481,3 @@ msleep %>%
 ```
 
 This syntax looks a lot like the syntax used for `mutate()`! Like in `mutate()`, we name and define new columns: `new_column = formula`. The difference is that `summarize()` returns a brand new data frame that does not contain the columns of the original data frame where `mutate()` returns a data frame with all columns of the original data frame in addition to the newly defined ones.
-
-
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
-

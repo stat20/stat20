@@ -324,10 +324,6 @@ Observe:
 - The output data frame has `reps` rows and 2 columns: one indicating the replicate and the other with the statistic (a difference in means).
 
 
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
-
 <!-- #### `visualize()` -->
 
 <!-- Once you have  -->

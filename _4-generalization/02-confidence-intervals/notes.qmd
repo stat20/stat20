@@ -512,10 +512,6 @@ The confidence intervals that we have made are approximate in the following sens
 
 There are times when we are unwilling to make the assumption of normality. This is the topic of the next set of notes. 
 
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
-
 [ ]{.column-margin}
 
 

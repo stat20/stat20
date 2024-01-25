@@ -327,6 +327,3 @@ This definition is problematic if we intend to establish causes using only data.
 
 [^frost]: A drawing from "The Book of Why" depicting the notion of potential outcomes described in Robert Frost's poem [The Road Not Taken](https://www.poetryfoundation.org/poems/44272/the-road-not-taken).
 
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}

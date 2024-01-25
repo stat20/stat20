@@ -677,8 +677,3 @@ This lecture is about overfitting: what happens when your model takes the partic
 A better way to approach predictive modeling is to fit the model to a training set then evaluate it with a separate testing set.
 
 [ ]{.column-margin}
-
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
-

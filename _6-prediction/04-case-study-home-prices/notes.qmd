@@ -426,7 +426,3 @@ At this point, our best models suggest that this home in Long Beach can fetch be
 In this case study we walked through a practical exercise in building a predictive model: predicting the sale price of a house. Through the process of data wrangling we learned to be aware of missing values, how to collapse levels of a categorical variable, and how to convert a variable from categorical to numeric. During exploratory data analysis we learned how to identify extreme values in our data and deal with them either as outliers or as indicators of the need for transformations. We fit several models, used a train-test split to guard against overfitting, then compared the accuracy of our models using testing $R^2$.
 
 In class we will continue with this example to deepen our understanding of how to apply linear models for prediction. 
-
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
