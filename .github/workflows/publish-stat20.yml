@@ -30,13 +30,7 @@ jobs:
             cd /home/rstudio/stat20/
 
             # _freeze should not exist
-            rm -rf ./_freeze
-            
-            # run pre-render scripts
-            Rscript ./assets/scripts/propagate-dates.r
-            Rscript ./assets/scripts/homepage-readings.r
-            Rscript ./assets/scripts/ignore-future-docs.r
-            Rscript ./assets/scripts/write-toc.r
+            quarto run partial-render.ts
             
             # render site and upload to stat20.org
-            quarto publish netlify --id 1188ba29-f00d-4f5a-ac6f-75c715522c69
+            quarto publish netlify --profile partial-render --no-render --id 1188ba29-f00d-4f5a-ac6f-75c715522c69
