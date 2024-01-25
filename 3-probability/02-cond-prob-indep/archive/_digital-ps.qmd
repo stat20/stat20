@@ -1,0 +1,64 @@
+---
+title: "Simulations"
+---
+
+```{r}
+#| message: false
+#| echo: false
+#| warning: false
+
+library(tidyverse)
+library(patchwork)
+```
+
+In the following questions, use the chunks and uncomment the code by removing the # sign.
+
+#### Question 1 Simulating the probabilities in de Méré's paradox, for 4 rolls of a die
+
+- First we will create a vector that represents a die, and remember - the only outcome you are interested in is rolling a 6, so let's call it die6. Why does the box have 5 zeroes and 1 one?
+
+```{r}
+ die6 <- c(0,0,0,0,0,1)
+```
+
+- Now we want to sample from this box 4 times, to simulate rolling a die 4 times, and then count the number of sixes in these 4 rolls. Since the draws are 0's and 1's, if we sum the draws, that counts how many sixes we rolled. 
+
+```{r}
+ sum(sample(die6, size = 4, replace = TRUE))
+```
+
+- In the next code chunk, we will use the function `replicate()` to repeat the process of simulating 4 die rolls 100 times. 
+- Each time we roll the die 4 times (using `sample()`, we will use `sum()` to counting the number of sixes in the four draws. So we are simulating rolling a die 4 times and counting the number of sixes, over and over, 100 times. 
+- After we run the chunk below, we will have a vector `game1_100` that has 100 entries, each of which represents the number of sixes in 4 rolls.
+
+```{r}
+ game1_100 <- replicate(100, 
+                  sum(sample(die6, size = 4, replace = TRUE)))
+```
+
+
+
+```{r}
+
+```
+
+
+Saywewanttodraw2ticketsfromtheboxandfindthechancethat
+the 2nd ticket is 5:
+1 2 3
+box1 6 simulateroll
+I 4
+> box=1:6 ##but only want to count 5
+ads
+5
+6
+of
+• How would we simulate this?
+sum ample box 2 replacTe RUE areabottts
+> box1=c(1, rep(0,5)) > sample(box1, 2)[2]
+ble don't times megets wantto count of
+00
+##[]extracts values satisfying condition
+> x=replicate(100000, sample(bOox1, 2)[2]) replicate N eerson ## usingDlong run definition of probability
+> sum(x)/100000
+

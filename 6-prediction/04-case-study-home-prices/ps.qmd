@@ -1,0 +1,62 @@
+---
+title: "Case Study: Home Prices"
+format:
+  html:
+    code-tools: 
+      source: true
+      toggle: false
+sidebar: false
+---
+
+Please run the following code cell to load in the data and do the preliminary data wrangling steps found in the notes.
+
+```{r}
+library(tidyverse)
+LA <- read_csv("https://www.dropbox.com/s/nzhmtmmnz4ix4rd/LA.csv?dl=1") %>%
+    mutate(log_price = log(price),
+           log_sqft = log(sqft),
+           garage_num = na_if(garage, "4+"),
+           garage_num = as.numeric(garage_num),
+           garage_cat = fct_collapse(garage,
+                                     "none" = "0",
+                                     "small" = "1",
+                                     "large" = c("2", "3", "4+")))
+```
+
+#### Question 1
+
+**Data Wrangling Review**
+
+Which cities contain the three outlier mega-mansions discovered in the notes?
+
+
+### Question 2
+
+**Transformations**
+
+Fit two linear models: one that predicts price with sqft and another that predicts log price with log sqft. Which one explains the variance in price better, as measured by *training* $R^2$?
+
+
+#### Question 3
+
+**Making predictions**
+
+Fit a linear model that predicts `log_price` using `log_sqft`, `bed`, and `bath`.
+
+Last year the University of California purchased a new house to serve as the residence of the university President and to host university functions. The address of the house is 2821 Claremont Blvd in Berkeley. Use your linear model to predict the sale price of this house. (hint: the internet is helpful!)
+
+Was your model an under- or over-estimate? Why do you think this is?
+
+
+#### Question 4
+
+**Making more predictions**
+
+Using the model from the previous question, predict the sale price of a house that is 1000 sqft and has 100 bedrooms and 2 bathrooms. Do you expect your prediction to be an over- or under estimate? Why?
+
+
+#### Question 5
+
+**Using predictions**
+
+Who might find useful a model like this that predicts the dollar value of a house? Try to brainstorm at least three different uses.

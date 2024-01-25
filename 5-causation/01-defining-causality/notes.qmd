@@ -1,0 +1,329 @@
+---
+title: "Defining Causality"
+subtitle: "Conditional counterfactuals and two strategies for constructing causal claims"
+image: images/causal.png
+format:
+  html:
+    code-fold: true
+    code-link: true
+    code-summary: "."
+  pdf: default
+execute: 
+  warning: false
+  message: false
+---
+
+:::{style="text-align: center"}
+## Welcome to Unit III: Causality
+:::
+
+At the beginning of this course, we considered four different claims associated with the following news article[^nyt]. 
+
+1. The Consumer Price Index rose 8.3% in April.
+2. The global consumer price index rose in April.
+3. The Consumer Price Index rose 8.3% because of the war in Ukraine.
+4. The Consumer Price Index will likely rise throughout the summer.
+
+![](images/nyt-inflation.png){#fig-inflation fig-align=center width="600px"}
+
+Each one of these four claims illustrates a different type of claim made using data. As a brief recap of where we are in this course, let's take them each in turn.
+
+> 1. The Consumer Price Index rose 8.3% in April.
+
+This is a claim concerning the nature of the data that is on hand, a *descriptive* claim. While these seem like the most straightforward type of claim, don't underestimate their utility or the challenges involved in crafting them. Deciding which measure is most appropriate is tricky work and the process of wrangling the data takes careful thought and time.
+
+<!-- > 2. The Consumer Price Index will likely rise throughout the summer. -->
+
+<!-- This is a *prediction*, a claim that uses the structure of the data at hand to predict the value of observations about which we have only partial information. In midsummer, we know the date will be July 15th, that's the x-coordinate. But what will the y-coordinate be, the Consumer Price Index?  Now we recognize this as a regression problem. -->
+
+<!-- While there are a host of complex machine learning models that we could use to make our predictions, we could also consider a simple linear model using the method of least squares. The best predictive model will have enough complexity to capture the structure in the data but not so much flexibility that it overfits. One of the most powerful tools for choosing between different predictive models is to compare their test set error using crossvalidation. -->
+
+> 2. The global consumer price index rose in April.
+
+This claim looks deceptively like the first but there is one important difference. The first claim concerns the CPI, which is calculated using data from the US. This second claim is about the broader global population of which the US data is a subset. In other words, this is a *generalization* from a sample to a population.
+
+For a generalization to be sound, we must take several considerations into account. First off: is the sample representative of the population or is it biased in some way? Secondly: what sources of variability are present? When working with a sample that originated from a chance method, it's important to consider the degree to which sampling variability might be able to explain the structure you see in the data. Our primary tools in this area are the confidence interval, to assess the uncertainty in a statistic, and the hypothesis test, to assess whether a particular statistic is consistent with an assertion about the state of the population parameters.
+
+> 3. The Consumer Price Index rose 8.3% because of the war in Ukraine.
+
+This bring us to the final claim, which is one concerning *causation*. The claim asserts that the structure in the data (the rise in the CPI) can be attributed to specific cause (the war in Ukraine). Causal claims are often the most challenging claims to craft but they are also some of the most useful. Uncovering causes and effects is at the heart of many sciences from Economics to Biomedicine. They also help guide decision making for individuals (is it worth my time to study for the final?) as well as for organizations (will Twitter's new option to pay for verification result in a net increase in revenue for the company?).
+
+For the remainder of Stat 20, we lay the foundation for causation, first by defining it precisely, then identifying a few of the most powerful strategies for inferring it from data.
+
+![Four types of claims made with data covered in this class.](images/claims-only.png){#fig-claims width="500px"}
+
+[^nyt]: Smialek, Jeanna (2022, May 11). Consumer Prices are Still Climbing Rapidly. *The New York Times*. <https://www.nytimes.com/2022/05/11/business/economy/april-2022-cpi.html>
+
+## Causality Defined
+
+<!-- Alternate intro: do you think smoking causes cancer? Why? Don't we need an experiment to infer causation? --> 
+
+What exactly does it mean to say that "A causes B"?
+
+We speak of causes and effects all the time, even though the language we use varies widely. "I took an aspirin and my headache got better" implies that taking the aspirin is what caused your headache to get better. "She was able to find a good job because she graduated from Berkeley" is more direct: graduating from Berkeley was the cause of her being able to find a good job.
+
+Identifying a causal statement is one thing, but we're still left the conundrum: what definition can we use to be precise about the meaning of a causal statement?
+
+Let's see what your intuition tells you about what is a cause and what is not a cause. Which causes do you identify in the following scenario[^marksmen]?
+
+[^marksmen]: This example appears in *The Book of Why* (2018) by Pearl and Mackenzie, as do subsequent historical quotations from Thucydides and Hume.
+
+> Suppose that a prisoner is about to be executed by a firing squad. A certain chain of events must occur for this to happen. First, the judge orders the execution. The order goes to a captain, who signals the two soldiers of the firing squad (soldier 1 and soldier 2) to fire. They are obedient and expert marksmen, so they only fire on command, and if either one of them shoots, the prisoner dies.
+>
+>Who caused the death of the prisoner?
+>
+>A. The judge  
+>B. The captain  
+>C. Soldier 1  
+>D. Soldier 2
+
+As you ponder where to draw the line to determine which of the these four people are the cause of the death of the prisoner, you are working out your own internal definition of causation. Keep your answers on hand; we will discuss this example in class. For now, though, let's introduce the most widely used definitions of cause and effect.
+
+### The Conditional Counterfactual
+
+One of the earliest articulations of what it means to be a cause can be found in the writing of Thucydides, the ancient Greek historian. It comes at the end of a passage where he describes a village called Orobiae, which experienced an earthquake followed by a tsunami.
+
+> About the same time that these earthquakes were so common, the sea at Orobiae, in Euboea, retiring from the then line of coast, returned in a huge wave and invaed part o the town, and retreated leaving some of it still under water; so that what was once land is now sea...
+>
+> The cause, in my opinion of this phenomenon must be sought in the earthquake. At the point where its shock has been the most violent, the sea is driven back, and suddenly recoiling with redoubled force, causes the inundation.
+>
+> Without the earthquake, I do not see how such an accident could happen.
+
+In the final line, Thucydides makes a leap: he imagines a world where the earthquake didn't happen, and can't imagine the tsunami happening. This, for him, is what makes the earthquake the cause of the tsunami. This form of reasoning about causation was summarized centuries later by the Scottish philosopher David Hume, who characterized a cause as a scenario in which  "If the first object had not been, the second never had existed."
+
+Both of these definitions rely upon imagining a world that was different from the one that was observed, a notion in logic called a counterfactual.
+
+**Counterfactual**
+:    Relating to or expressing what has not happened or is not the case.
+
+This notion is the core component of the most widely used definition of a cause, the conditional counterfactual defintion.
+
+**Cause**
+:    We say "A causes B" if, in a world where A didn't happen, B no longer happens.
+
+Using this definition of causality, let's revisit two examples from above.
+
+1. Consider the claim, "I took an aspirin and my headache got better".
+
+   Using the conditional counterfactual definition, what would you need to know to determine if the aspirin caused the headache to improve?
+
+<details>
+
+<summary>Check your answer</summary>
+
+   You would need to know that if they hadn't taken an aspirin, that their headache didn't get better.
+
+</details>
+
+2. Consider the claim, "She was able to find a good job because she graduated from Berkeley".
+
+   Using the conditional counterfactual definition, what would you need to know to determine if graduating from Berkeley caused her to find a good job?
+
+<details>
+
+<summary>Check your answer</summary>
+
+   You would need to know that if she hadn't graduated from Berkeley, that she wasn't able to find a good job.
+
+</details>
+
+In both of these examples, reasoning about the meaning of causation requires identifying the counterfactual. The language of counterfactuals can be awkward and that awkwardness points to the primary challenge of identifying a causal claim.
+
+### The Challenge of Causation
+
+> Counterfactuals have a partcularly problematic relationship wth data because data are, by definition, facts.
+> - Judea Pearl
+
+The conditional counterfactual definition of causation is sound in an abstract sense, but it is challenging when you start to think through what sort of data you could collect as evidence of causation. In the second example, we have data on the fact that she found a good job and that she graduated from Berkeley, but the counterfactual - that remains purely hypothetical. In fact, the word counterfactual means counter-to-fact, and "fact" is the meaning of the Latin word "datum" (a single piece of data). That is to say, for airtight evidence of a cause-and-effect, you must observe some data and then something that is somehow also the contrary to what you observed.
+
+In an idealized world, to demonstrate that graduating from Cal was the cause of getting a good job, you would observe this data frame[^evelyn].
+
+[^evelyn]: An a historical aside, [Evelyn Fix](https://en.wikipedia.org/wiki/Evelyn_Fix) is the name of a past professor of statistics at UC Berkeley and the co-inventor of the k-nearest neighbors algorithm.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(kableExtra)
+options(kableExtra.html.bsTable = TRUE)
+
+tab <- tibble(`Student` = c("Evelyn Fix", "Evelyn Fix"),
+              `Cal Grad` = c("yes", "no"),
+              `Good Job` = c("yes", "no"))
+```
+
+::: {.content-hidden unless-format="html"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kbl(escape = FALSE) %>%
+    kable_styling(bootstrap_options = c("hover", "striped"))
+```
+:::
+
+::: {.content-hidden unless-format="pdf"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kable(format = "latex")
+```
+:::
+
+In this idealized data frame, the two rows are both observations of the same person, so they have the same values of every possible variable: work experience, GPA, letters of recommendation, etc. The primary difference is one of them graduated from Cal and the other (from the counterfactual world) did not. Because they differed on their outcome variables (getting a good job), this would serve as rock solid proof that graduating from Cal caused Evelyn to get a good job.
+
+The challenge of using data to make causal clams is that we only ever get to observe one of the two rows above. Said another way, there are two *potential outcomes* for this scenario. One was observed (the job outcome after going to Cal) and the other was not (the job outcome without going to Cal).
+
+If you've ever used a GPS navigation app, you're already accustomed to thinking in terms of potential outcomes. Here is the guidance Google Maps gives me to travel from Pimentel Hall at Cal to downtown Oakland by car.
+
+![](images/the-route-not-taken.png){fig-align="center" width="300"}
+
+Each one of the three paths is a potential route I could take and each of those times are the app's predictions for what the potential outcomes will be. Importantly, though, these are just predictions, not data. To collect data, I have to select one of these routes to drive, then I could record data on the time it took me. If I choose the blue path and it ends up taking me 16 minutes, I'll never know for sure that it was my choice of the blue route that led to this apparently short drive time. To know that, I'd have to rewind the clock and, in a different world, decide to take one of the gray routes and observe a drive time that is more than 16 minutes.
+
+While our definition of causation prevents us from ever making completely airtight conclusions about cause and effect in scenarios like these, over the years scientists and statisticians have crafted many clever strategies for working around these constraints to build compelling causal claims.
+
+## Strategies for Estimating Causal Effects
+
+The list of statistical methods for estimating causal effects is vast. Indeed here at Cal, these methods are the sole focus of several courses including Causal Inference in the Statistics Department and Econometrics in the Economics Department. For this class, we focus on just a select few.
+
+### Different units at the same time
+
+Imagine that Evelyn Fix had a sister, Eleanor Fix. If Evelyn graduated from Cal and Eleanor did not, then we could observe this data frame.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(kableExtra)
+options(kableExtra.html.bsTable = TRUE)
+
+tab <- tibble(`Student` = c("Evelyn Fix", "Eleanor Fix"),
+              `GPA` = c(3.9, 3.9),
+              `Years exp` = c(3, 3),
+              `Rec` = c("strong", "strong"),
+              `Cal Grad` = c("yes", "no"),
+              `Good Job` = c("yes", "no"))
+```
+
+::: {.content-hidden unless-format="html"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kbl(escape = FALSE) %>%
+    kable_styling(bootstrap_options = c("hover", "striped"))
+```
+:::
+
+::: {.content-hidden unless-format="pdf"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kable(format = "latex")
+```
+:::
+
+How well does Eleanor serve as a counterfactual for Evelyn? Well, it depends on how similar they are to one another in ways that matter to the mechanism of cause and effect. As we see in the table above, they're a perfect match on several variables that probably matter: GPA, the number of years of work experience, and the strength of letters of recommendation.
+
+This general approach is called *matching* and it relies upon the idea of finding a different unit that is a close match for every possible important variable, but differs on the variable of interest. There are many methods for determining which two units in a data set are the closest matches for one another. One time-worn method is called propensity score matching but you can imagine even adapting the method that we used for the k-nearest neighbor algorithm: calculating the (Euclidean) distance between each pair of observations.
+
+Some of the most clever and impactful applications of the matching approach have been studies designed to evaluate whether smoking causes cancer. Imagine you are a doctor with a patient who smokes and has been recently diagnosed with cancer. When you tell them, "I'm afraid your smoking habit has caused your cancer", they protest: "Not at all! I'm quite sure I have a gene that causes me to want to smoke and also causes me to get cancer. If I had stopped smoking, it wouldn't have changed a thing!".
+
+That is a difficult explanation to refute! What would the counterfactual look like? You'd need someone with the exact same genetic makeup who happened to not be a smoker. But surely this close of a match doesn't exist...
+
+Unless your patient is one of an identical pair of twins. While this scenario is rare, there are plenty of pairs of identical twins that can be used to evaluate precisely this kind of scenario. At the end of the 20th century, researchers in Finland compiled a large data base of identical twins where one of them smoked and the other did not. In pair after pair, they found it much more likely that the twin who smoked was more likely to develop cancer. This technique, using identical twins to get perfect matches on genetics, has been a rich source of breakthroughs in understanding genetic determinants of disease[^twins].
+
+[^twins]: There is a rich literature that uses data bases of twins to determine genetic determinants of health outcomes. For a recent study on smoking and cancer, see [https://pubmed.ncbi.nlm.nih.gov/35143046/](Cancer in twin pairs discordant for smoking: The Nordic Twin Study of Cancer) by Korhonen et al., 2022.
+
+Despite this success, in general matching has several challenges. What if the closest match actually isn't very similar? What if you haven't recorded all of the variables that matter? In these scenarios, you might want to consider a different approach.
+
+<!-- Use example of highway overpass study -->
+
+### Same unit at different times
+
+There are certain settings where the closest approximation of the counterfactual comes not from a separate unit, but from the same unit observed at different times. Let's say that we collected data from Evelyn Fix before and after she graduated from Cal.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(kableExtra)
+options(kableExtra.html.bsTable = TRUE)
+
+tab <- tibble(`Student` = c("Evelyn Fix", "Evelyn Fix"),
+              `date` = c("June 2022", "April 2022"),
+              `GPA` = c(3.9, 3.9),
+              `Years exp` = c(3, 3),
+              `Rec` = c("strong", "strong"),
+              `Cal Grad` = c("yes", "no"),
+              `Good Job` = c("yes", "no"))
+```
+
+::: {.content-hidden unless-format="html"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kbl(escape = FALSE) %>%
+    kable_styling(bootstrap_options = c("hover", "striped"))
+```
+:::
+
+::: {.content-hidden unless-format="pdf"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kable(format = "latex")
+```
+:::
+
+Here, the unit of observation is a student at a particular time, which allows us to compare Evelyn before and after graduating from Cal. How close of a counterfactual is pre-graduation Evelyn? Keep in mind the true counterfactual would be the alternate universe where everything about the world is the same but for one thing: Evelyn hadn't graduated from Cal. Is everything the same in this pre-graduation world?
+
+The answer may be yes. Here we see her GPA is unchanged, she hasn't gained any more work experience, and she's sending out the same strong letter of recommendation. If these are the only other variables involved in getting a good job, then this would be good evidence that the graduation is the cause of the good job.
+
+But what if her GPA had inched up that final semester? Or what if the jobs that she applied for pre-graduation were simply not as good as the jobs that she applied for after graduation? In this setting, there could be multiple reasons that she got the good job because we haven't isolated the variable of interest: graduating from Cal.
+
+There are several study designs that rely upon this form of reasoning. *Longitudinal studies* are common in health and epidemiology, where researchers follow subjects over time, under the idea that a person before an event is the best comparison for what happens to a person after an event. *Difference in differences* are common in economics. In this design, two groups that differ on the variable of interest are compared before and after a particular milestone.
+
+### Experiments
+
+One of the most well-known approaches for using data to make causal claims is to conduct an experiment. This will be the subject of an activity in class tomorrow.
+
+<!-- ## Illustrating Causal Structures with Graphs -->
+
+<!-- - Define what the elements of a DAG are -->
+<!-- - Show several examples -->
+<!-- - Define confounding variable -->
+<!-- - Do this section before Strategies section so that you can illustrate what they do using graphs. -->
+
+## Summary
+
+We set the stage for reasoning about causation by defining cause and effect in terms of a conditional counterfactual. We say "A causes B" if, in a world where A didn't happen, B no longer happens.
+
+This definition is problematic if we intend to establish causes using only data. While we are never able to actually observe all of the data necessary to prove a causal claim absolutely, there are many methods that have been devised to approximate the counterfactual. One approach is to look at different units across time, and aim to make those units as similar as possible. A second approach is to look at the same unit at two points in time. A third approach is to conduct an experiment, which is the subject of the final set of notes.
+
+
+\
+
+[ ]{.column-margin}
+
+
+![Illustration by Mayaan Hayal[^frost]](images/frost.png){fig-align="center" width="300px"}
+
+[^frost]: A drawing from "The Book of Why" depicting the notion of potential outcomes described in Robert Frost's poem [The Road Not Taken](https://www.poetryfoundation.org/poems/44272/the-road-not-taken).
+

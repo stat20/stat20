@@ -1,0 +1,169 @@
+restaurant,price,food,decor,service,geo
+Daniella Ristorante,43,22,18,20,west
+Tello's Ristorante,32,20,19,19,west
+Biricchino,34,21,13,18,west
+Bottino,41,20,20,17,west
+Da Umberto,54,24,19,21,west
+Le Madri,52,22,22,21,west
+Le Zie,34,22,16,21,west
+Pasticcio,34,20,18,21,east
+Belluno,39,22,19,22,east
+Cinque Terre,44,21,17,19,east
+Fino,45,19,17,20,east
+Marchi's,47,21,19,21,east
+Nicola Paone,52,21,19,20,east
+Notaro,35,19,17,19,east
+Rossini's,47,20,18,21,east
+Trattoria Alba,37,21,19,21,east
+Villa Berulia,45,22,18,23,east
+Il Postino,57,24,21,22,east
+Luna Blu,38,19,17,18,east
+San Giusto,51,22,20,22,east
+Grifone,54,23,20,23,east
+Nanni's,51,23,17,21,east
+Osteria Laguna,38,20,18,18,east
+Bellini,49,22,21,21,east
+Cellini,45,22,20,22,east
+Anche Vivolo,37,19,17,19,east
+Bruno Ristorante,50,22,19,22,east
+Chianti,43,20,16,18,east
+Da Antonio Ristorante,49,22,19,20,east
+Harry Cipriani,65,21,20,20,east
+La Gioconda,34,20,16,18,east
+Bice,51,21,20,18,east
+Coco Pazzo Caf�,49,20,19,19,east
+DeGrezia,51,23,22,23,east
+FELIDIA,62,25,22,23,east
+Fresco by Scotto,50,23,21,21,east
+Giambelli,51,21,18,20,east
+Il Menestrello,52,22,19,22,east
+Il Nido,57,24,20,23,east
+Il Valentino,49,21,20,21,east
+Luna Piena,33,19,17,18,east
+Paper Moon Milano,43,19,17,17,east
+Teodora,41,21,17,18,east
+San Pietro,58,24,21,23,east
+Bravo Gianni,56,22,17,21,east
+Canaletto,44,22,17,21,east
+Il Gatto & La Volpe,37,20,15,20,east
+Il Valletto Due Mila,56,21,17,20,east
+Scalinatella,58,24,18,21,east
+Barbaresco,44,16,16,16,east
+Da Filippo,46,20,18,20,east
+East River Cafe,40,20,20,20,east
+Fred's at Barneys NY,39,19,18,17,east
+Il Vagabondo,36,17,14,17,east
+Mediterraneo,34,18,15,16,east
+Nello,54,18,16,15,east
+Primola,51,23,17,20,east
+Gino,41,20,14,19,east
+Via Oreto,40,22,17,20,east
+Bardolino,24,18,13,18,east
+Campagnola,53,24,20,21,east
+Cucina Vivolo,31,19,16,17,east
+Grace's Trattoria,35,18,16,17,east
+Lumi,49,20,19,19,east
+Mezzaluna,38,19,15,17,east
+Sette Mezzo,48,21,16,18,east
+Vivolo,43,20,19,20,east
+Zucchero e Pomodori,29,17,14,15,east
+Baraonda,37,17,18,15,east
+Coco Pazzo,55,22,21,20,east
+Due,37,22,18,20,east
+Il Monello,55,23,20,22,east
+Lusardi's,49,24,20,22,east
+Maruzzella,33,19,14,18,east
+Nino's,52,23,20,22,east
+Parma,47,22,16,21,east
+Il Riccio,43,21,16,20,east
+Andiamo,33,18,17,18,east
+Caffe Grazie,38,18,16,19,east
+Giovanni Venticinque,48,21,18,19,east
+Girasole,50,21,18,21,east
+Paola's,46,23,19,21,east
+Rughetta,38,23,19,24,east
+Triangolo,33,20,16,19,east
+Cafe Trevi,46,23,19,23,east
+Divino Ristorante,37,19,15,19,east
+Elio's,50,23,18,20,east
+Erminia,54,25,24,24,east
+Firenze,41,21,19,21,east
+Luca,37,21,15,18,east
+Nicola's,50,22,18,21,east
+Primavera,60,24,22,23,east
+Sirabella's,36,23,16,22,east
+Sistina,54,23,19,21,east
+Spada,39,19,18,18,east
+Trattoria Rustica,35,20,16,18,east
+Carino Ristorante,30,19,13,20,east
+Quattro Gatti,41,19,17,19,east
+Tony's Di Napoli,30,19,14,17,east
+Ecco-la,25,18,15,15,east
+Joanna's,43,19,18,21,east
+Vico,45,20,15,17,east
+Rao's,57,23,16,20,east
+Basta Pasta,32,18,15,17,west
+Campagna,51,24,21,21,east
+Follonico,48,23,20,21,east
+Ribollita,36,18,16,16,east
+Bond� Ristorante�,37,20,17,19,west
+Casa Mia,31,20,19,19,east
+Novit�,47,23,19,21,east
+Paul & Jimmy's,40,19,16,19,east
+Sal Anthony's,37,18,16,18,east
+Enoteca i Trulli,43,23,20,21,east
+I Trulli,51,23,22,21,east
+Lamarca,19,18,9,15,east
+Supreme Macaroni Co.,28,17,14,17,west
+Veronica,22,21,6,14,west
+Arno,41,19,17,19,west
+Amarone,33,19,15,18,west
+Cara Mia,29,19,15,17,west
+Casa Di Meglio,33,19,17,18,west
+La Rivista,45,19,16,18,west
+Trattoria Dopo Teatro,38,17,16,17,west
+Barbetta,52,20,23,20,west
+Becco,38,20,17,19,west
+Coco Pazzo Teatro,47,18,18,17,west
+Orso,46,22,18,20,west
+Osteria al Doge,40,20,17,18,west
+Pietrasanta,32,20,15,19,west
+Rainbow Grill,65,19,23,18,west
+Torre di Pisa,47,19,21,17,west
+San Domenico,65,23,22,22,west
+Trionfo,45,20,17,21,west
+ViceVersa,46,22,22,20,west
+Artusi,44,20,19,20,west
+Ciao Europa,40,19,19,18,west
+Limoncello,46,19,18,20,west
+Puttanesca,32,19,15,17,west
+Rino Trattoria,23,20,14,16,west
+Sette MoMA,42,18,21,17,west
+Trattoria Del Sogno,29,21,18,19,west
+Castellano,49,21,18,20,west
+Circo Osteria del,53,22,24,21,west
+Giovanni,45,22,19,21,west
+Palio,63,22,25,22,west
+Remi,52,23,23,21,west
+Tuscan Square,40,19,20,17,west
+Vago Ristorante,45,22,21,23,west
+Bello,38,21,17,20,west
+Caffe Cielo,38,18,17,18,west
+Da Tommaso,42,21,16,20,west
+Il Tinello,57,23,19,23,west
+Nocello,39,21,19,20,west
+Tino's,43,20,18,18,west
+Mangia e Bevi,29,17,14,16,west
+Patsy's,42,20,16,19,west
+Gabriel's,50,22,19,21,west
+Pappardella,34,18,16,17,west
+Ernie's,31,16,15,16,west
+Pomodoro Rosso,31,20,17,19,west
+Scaletta,46,21,19,22,west
+"La Grolla, Ristorante",42,21,15,19,west
+"Sambuca, Trattoria",31,19,16,18,west
+Baci,31,17,15,16,west
+Puccini,26,20,16,17,west
+Bella Luna,31,18,16,17,west
+M�tisse,38,22,17,21,west
+Gennaro,34,24,10,16,west

@@ -1,0 +1,31 @@
+1. Write down a probability model for vote counts.
+
+2. Review
+  - Unit of observation
+  - 
+  
+
+```{r}
+library(rvest)
+# Reading in the table from Wikipedia
+tab <- read_html("https://en.wikipedia.org/wiki/List_of_tallest_buildings") %>% 
+  html_node(".wikitable") %>%
+  html_table(fill = TRUE)
+```
+
+
+
+References:
+
+Original iran analysis:
+
+https://www.researchgate.net/publication/45856921_A_first-digit_anomaly_in_the_2009_Iranian_presidential_election
+
+https://arxiv.org/pdf/0906.2789.pdf
+
+Follow up by walter mebane:
+
+http://websites.umich.edu/~wmebane/note18jun2009.pdf
+
+Gelman's take:
+

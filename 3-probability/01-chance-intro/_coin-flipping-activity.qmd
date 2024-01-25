@@ -1,0 +1,87 @@
+---
+title: "Class Activity: Coin Flips"
+format: pdf
+execute: 
+  warning: false
+  message: false
+  echo: false
+---
+
+This activity is taken from the book *Teaching Statistics - A Bag of Tricks* by Nolan and Speed (Section 8.3.2). The goal is to point out to students the difficulties in trying to make up a random sequence. It highlights their "common misconceptions about randomness" and shows them that haphazard is not the same as random, while motivating the idea of sampling distributions.
+
+The demonstration to be done in class is as follows: -
+
+-   Divide your class into **no more than 10 groups.** This is quite important, since your chance of making a mistake increases with the number of groups. The size of the groups will depend on your attendance today.
+
+-   Further divide each group into two subgroups.
+
+-   For each group; instruct one of the subgroups to flip a quarter 100 times and record the results as a sequence of 0's and 1's, with 1 representing the coin landing heads and 0 representing the coin landing tails. Maybe tell the rest of the group to make sure that the designated flipper does good flips, with many rotations, and they catch it rather than letting it fall.
+
+-   For the same group, instruct the other subgroup to \*make up \* a sequence of length 100 0's and 1's which is supposed to represent the result of 100 coin flips and write this on a sheet of paper - but they mustn't actually flip a coin, or use their phone, or use their computer etc. They also mustn't talk to the other subgroup.
+
+-   Then have a different member of each of the subgroups goes and puts the sequence on the board, with their names. Maybe it is a good thing that the groups will be larger, so they can catch errors.
+
+-   Now you go in and identify the real vs fake flips for each group by looking for the sequence that have long streaks of one number.
+
+-   Once you are done, and hopefully you have impressed them with your ability to spot the fake, you can show them, to some extent, what's going on. Have each group go to their sequence and count two quantities: the length of the longest run in the sequence, and the number of switches from 0 to 1 or the other way (number of runs = number of switches + 1). 
+
+-   Then you can hand out copies of the plot I showed you yesterday of the simulated flips showing the distribution of these pairs of numbers, or display it. Get each group to come and tell you their values of the quantity (number of runs, longest run ). 
+-   It should not take too long to annotate with the at most 20 points. 
+
+
+Good luck! I am worried that we will have too many groups and make mistakes, which will reduce the dramatic impact.
+
+Code for plot(s):
+
+```{r}
+##| eval: false
+library(tidyverse)
+coin = c(0,1)
+### simulate sequences and compute (number of runs, length of longest run) for each.
+flips = replicate(1500,{
+  x<-sample(coin, 100, replace = TRUE)
+  result = c(longest_run = max(rle(x)$lengths),
+             n_switches = sum(diff(x) != 0))
+})
+
+```
+
+```{r}
+##| eval: false
+### plotting the simulated probability distribution
+ggplot(data.frame(t(flips)), aes(x=n_switches + 1, y = longest_run)) + 
+  geom_jitter(alpha =0.3) + 
+  xlab("number of runs") +
+  ylab("length of longest run")
+```
+
+```{r}
+##| eval: false
+### adding points
+### annotating with their values 
+### green for real and red for fake
+ggplot(data.frame(t(flips)), aes(x=n_switches + 1, y = longest_run)) + 
+  geom_jitter(alpha =0.3) + 
+  xlab("number of runs") +
+  ylab("length of longest run") + 
+  geom_point(aes(x=56, y = 6), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=56, y = 5), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=59, y = 5), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=71, y = 4), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=41, y = 7), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=48, y = 9), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=52, y = 7), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=47, y = 7), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=56, y = 4), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=49, y = 6), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=48, y = 9), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=65, y = 3), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=52, y = 5), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=51, y = 5), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=63, y = 4), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=58, y = 5), color = "red", pch = 16, size = 2) +
+  geom_point(aes(x=60, y = 5), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=46, y = 8), color = "green", pch = 16, size = 2) +
+  geom_point(aes(x=50, y = 5), color = "green", pch = 16, size = 2)
+```
+

@@ -1,0 +1,91 @@
+---
+title: "Lab 5: People's Park"
+image: images/ppk.png
+code-fold: false
+sidebar: false
+resources:
+  - "references"
+---
+
+{{< include ../../../assets/includes/_labs-header.qmd >}}
+
+:::{.content-hidden unless-profile="staff-guide"}
+### Learning Objectives
+
+Students will be able to:
+
+1. explain the goals of the survey
+2. answer questions about the survey design
+3. develop plots that address the questions that drove the creation of the survey
+4. construct confidence intervals for parameters of interest: proportions, difference in proportions, and means
+5. interpret the confidence intervals
+
+---------------
+
+:::
+
+In answering the following questions, it will be helpful to consult
+
+1. [the email from Chancellor Christ](references/chancellors-email.pdf),
+2. [slide describing the background and methodology](references/background-methods.pdf), and
+3. [the original questionnaire](references/questionnaire.pdf).
+
+## Part I: Understanding the Context of the Data
+
+- [Lab 5.1: People's Park](lab-context.pdf)
+
+
+## Part II: Computing on the Data
+
+The data collected by the Chancellor's Office on Cal students can be found as `ppk` in the `stat20data` package.
+
+The `ppk` data set represents a subset of questions that were asked in the questionnaire and have had random noise added to them. The results, in aggregate, share similar statistical properties to the raw data, but a given row no longer reflects an individual student's response completely.
+
+#### Question 1
+
+Print the first few rows with the columns that correspond to the responses to survey questions 1, 7, and 8. Note: we have changed the data back from all numerical data, as suggested by lab question 8, to a mix of numerical and categorical data. Please comment on whether your encoding of the data from Q7 on the questionnaire matches the encoding in `ppk`.
+
+#### Question 2
+
+Return to your sketches from question 9 here in the lab. Create those visualizations (or more appropriate analogues) using the questionnaire data. For each, add a title and axis labels to make it clear what they are showing, and describe the distribution in words. If your visualization is of ordinal data, the bars should be ordered accordingly. For part a here, you're welcome to select just three of the priorities to visualize.
+
+a. Question 9
+b. Question 10
+c. Question 18 and 21 (showing the change from before and after the information in one plot)
+
+#### Question 3
+
+Create a new column called `support_before` that takes the response data from question 18 and returns `TRUE` for answers of "Very strongly support", "Strongly support", and "Somewhat support" and FALSE otherwise. What proportion of the survey participants in each class (freshman, sophomore, etc) supported the People's Park Project before being presented with the information on the bottom of page 14?
+
+#### Question 4
+
+What is the mean and median rating of the condition of People's Park (question 15 on the survey)?
+
+#### Question 5
+
+Create a new column called `change_in_support` that measures the change in support from question 18 to 21 of the survey. What is the mean change in support of the survey participants in each class (freshman, sophomore, etc) for the People's Park Project after reading the information? What assumption must you make about the values of the Likert scale in order for these statistics to be informative?
+
+#### Question 6
+
+Construct one addition visualization that captures a variable or relationship between two variables that you are interested in. Describe the structure that you see in the plot.
+
+#### Question 7
+
+Create two 95% confidence intervals for the mean rating of the condition of People's Park using both the bootstrap and the normal curve. Interpret the interval in the context of the problem in a clear sentence.
+
+<!-- Which method for making the CI, if any, would you expect to be more accurate? -->
+
+#### Question 8
+
+Create two 95% confidence intervals for the overall proportion of students that support the People's Park Project without having been exposed to the information on page 14 using both the bootstrap and the normal curve. Interpret the interval in the context of the problem in a clear sentence. Do your point estimates approximately match those reported in the Chancellor's email?
+
+<!-- Which method for making the CI, if any, would you expect to be more accurate? -->
+
+#### Question 9
+
+Using just the bootstrap, create a 95% confidence intervals for the mean change in support for the Project across the entire population after being exposed to the information on page 14.
+
+#### Question 10
+
+Does your interval from the previous question contain 0? What are the implications of that for those working in the Chancellor's Office on the People's Park Project?
+
