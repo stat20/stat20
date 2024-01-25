@@ -23,6 +23,7 @@ listing:
     sort-ui: false
     filter-ui: false
 sidebar: false
+toc: false
 ---
 
 :::{.content-hidden unless-profile="staff-guide"}
