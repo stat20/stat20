@@ -24,6 +24,7 @@ notes-contents.yml
 ps-contents.yml
 slides-contents.yml
 schedule.yml
+sidebar-nav.yml
 
 # Quarto projects specific
 /.quarto/
