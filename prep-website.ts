@@ -45,8 +45,9 @@ if (quartoProfile == "partial-render") {
   await unIgnoreFiles(schedulePath);
 }
 
+
 // ---------------------------------------- //
-// Make schedule.yml with all render: true //
+//  Make schedule.yml with all render: true //
 // ---------------------------------------- //
 // This step is skipped in a partial-render
 
@@ -70,11 +71,12 @@ async function makeFullSchedule(configPath: string, schedulePath: string) {
     }
 }
 
-// This step is skipped in a partial-render
-if (quartoProfile !== "partial-render") {
+// This step is skipped in a partial-render and full-render
+if (quartoProfile !== "partial-render" && quartoProfile !== "staff-site") {
   console.log("> Making schedule file ...");
   await makeFullSchedule(configPath, schedulePath);
 }
+
 
 // -------------------------------- //
 //           Make Listings          //

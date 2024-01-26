@@ -7,7 +7,7 @@ const schedulePath = 'schedule.yml';
 
 
 // -------------------------------- //
-//     Prepare partial schedule     //
+//       Make partial schedule      //
 // -------------------------------- //
 // Make schedule.yml where each item defaults to render: true
 // This is overridden and set to false for items where date > live-as-of date
@@ -147,5 +147,5 @@ async function runQuartoRender() {
     process.close();
 }
 
-console.log(">> Quarto Render");
+console.log("> Quarto render partial site...");
 await runQuartoRender();

@@ -77,6 +77,3 @@ execute:
   message: false
   warning: false
   fig-align: center
-
-metadata-files:
-  - "sidebar-nav.yml"

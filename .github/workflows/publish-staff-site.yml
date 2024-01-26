@@ -24,5 +24,8 @@ jobs:
             # execute from the textbook
             cd /home/rstudio/stat20/
             
-            # render site using staff profile and upload to stat20staff.netlify.app
-            quarto publish netlify --profile staff-site --id 33fedc67-c501-4720-bd24-6e00c15aa700
+            # render staff-site
+            quarto run render-staff-site.ts
+            
+            # upload rendered staf site to to stat20staff.netlify.app
+            quarto publish netlify --profile staff-site --no-render --id 33fedc67-c501-4720-bd24-6e00c15aa700
