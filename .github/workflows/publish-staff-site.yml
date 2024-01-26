@@ -25,7 +25,9 @@ jobs:
             cd /home/rstudio/stat20/
             
             # render staff-site
-            quarto run render-staff-site.ts
+            # quarto run render-staff-site.ts
+            quarto render
             
             # upload rendered staf site to to stat20staff.netlify.app
-            quarto publish netlify --profile staff-site --no-render --id 33fedc67-c501-4720-bd24-6e00c15aa700
+            # quarto publish netlify --profile staff-site --no-render --id 33fedc67-c501-4720-bd24-6e00c15aa700
+            quarto publish netlify --no-render --id 33fedc67-c501-4720-bd24-6e00c15aa700
