@@ -18,7 +18,8 @@ jobs:
            # QUARTO_PROFILE: staff-site
         with:
           image: stat20/stat20-docker:latest
-          options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }} -e QUARTO_PROFILE=toc,staff-site
+          # options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }} -e QUARTO_PROFILE=toc,staff-site
+          options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }} -e 
           shell: bash
           run: |
             # execute from the textbook
