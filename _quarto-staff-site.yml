@@ -1,3 +1,6 @@
+project:
+  output-dir: "_staff-site"
+
 
 # Modify aesthetics and add Guide to navbar
 website:
