@@ -715,8 +715,3 @@ We defined the expectation and variance of sums and averages of an iid sample of
 We considered the probability distributions of sums and averages. 
 
 Finally, we introduced continuous distributions. In subsequent notes, we will introduce the most celebrated continuous distribution, the normal distribution. 
-
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
-
