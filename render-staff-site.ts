@@ -72,10 +72,11 @@ async function makeSidebarNav(schedulePath: string) {
 
 console.log("> Making extra sidebar nav ...");
 await makeSidebarNav(schedulePath);
+console.log("  - Done!");
 
 
 // -------------------------------- //
-//       Render partial site        //
+//       Render staff site        //
 // -------------------------------- //
 
 async function runQuartoRender() {
