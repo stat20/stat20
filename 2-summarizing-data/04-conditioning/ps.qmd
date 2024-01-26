@@ -1,25 +1,20 @@
 ---
-title: "Conditioning"
-format:
-  html:
-    code-tools: 
-      source: true
-      toggle: false
-sidebar: false
+title: "Data Pipelines"
+subtitle: "PS"
+format: stat20handout-pdf
 ---
 
-The following practice problems all deal with a data set that's near and dear to our hearts, the Palmer penguins. Like always, let's start our analysis by loading in the necessary packages and data sets.
+The following practice problems all deal with a data set that's near and dear to our hearts, the Palmer penguins dataset. Like always, make sure you start your analysis by loading in the necessary packages and data sets. 
+
+1. For each question, write R code and copy the code used in the space provided. **Unless otherwise specified, your answer to each question should consist of one `dplyr` data pipeline!!**
+
+2. *For the questions below that ask you to extract a subset of the data (marked with an asterisk)*, check your answer by using the new data frame you make to modify the plot made using the code provided below.
 
 ```{r}
-#| message: false
-library(tidyverse)
-library(stat20data)
-```
-
-For the questions below that ask you to extract a subset of the data, check your answer by using the new data frame to modify the penguins plot.
-
-```{r}
-ggplot(penguins, aes(x = bill_length_mm,
+#| echo: true
+#| eval: false
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm,
                      y = bill_depth_mm,
                      color = species)) +
     geom_point() +
@@ -27,23 +22,85 @@ ggplot(penguins, aes(x = bill_length_mm,
        y = c(12, 23))
 ```
 
+## Questions 1-3
 
-#### Question 1
+#### Question 1*
 
-Extract a data frame that excludes the Adelie penguins.
+Extract a data frame that excludes the Adelie penguins in two different ways:
+
+-   One without using a data pipeline;
+-   One with using a data pipeline.
+
+\
+\
+\
+\
 
 
-#### Question 2
 
-Extract a data frame that excludes the Adelie penguins and retains penguins with bill lengths between 40 and 50 mm. Sort it in decreasing order by bill length.
+#### Question 2*
 
+Extract a data frame that excludes the Adelie penguins and retains penguins with bill lengths between 40 and 50 mm.
+
+\
+\
+\
+\
+\
 
 #### Question 3
 
-Calculate the mean bill length and bill depth for each of the three species of penguins. Do those statistics line up with what you see in the penguins plot above?
+Sort the data frame from **Question 2** in decreasing order by bill length.
+
+\
+\
+\
+\
+\
+\
+
+{{< pagebreak >}}
+
+## Questions 4-6
 
 
 #### Question 4
 
-Consider a new metric called `bill_size` that's the sum of the length and depth. What is the average bill size and it's standard deviation among each species, broken out among each of the islands? (that is, nine pairs of statistics) Sort your resulting data frame in decreasing order by average bill size.
+Calculate the mean bill length and bill depth *for each of the three species of penguins*. Do those statistics line up with what you see in the penguins plot provided by the (original) code given?
+
+\
+\
+\
+\
+\
+
+
+
+#### Question 5
+
+Consider a new metric called `bill_size` that's the sum of the length and depth. What is the average bill size and it's standard deviation among each species, broken out among each of the island? You may end up with potentially nine pairs of statistics. Sort your resulting data structure in decreasing order by average bill size.
+
+\
+\
+\
+\
+\
+
+#### Question 6
+
+What are the total number of penguins in the data set belonging to each species-island combination? Why may have you not gotten nine pairs of statistics in the last question?
+
+\
+\
+\
+\
+\
+\
+
+## Question 7
+
+What is the proportion of penguins for each species having a body mass greater than 4000 grams? *Hint: use a logical variable!*
+
+
+
 

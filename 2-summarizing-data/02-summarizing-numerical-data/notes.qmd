@@ -580,7 +580,7 @@ $$ s = \sqrt{\frac{1}{n - 1} \sum_{i=1}^{n} \left( x_i - \bar{x}\right)^2} $$
 The function in R: `sd()`
 :::
 
-The sample standard deviation $s$ is the sample as the sample variance $s^2$: we've just taken the square root. One reason for using the sample standard deviation is that it at times is more interpret-able than the sample variance, since it's measured in units rather than units squared.
+The sample standard deviation $s$ is the same as the sample variance $s^2$: we've just taken the square root. One reason for using the sample standard deviation is that it at times is more interpret-able than the sample variance, since it's measured in units rather than units squared.
 
 For our list: 
 

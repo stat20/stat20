@@ -18,7 +18,7 @@ format:
 
 ## Part I: Understanding the Context of the Data
 
-1. What is the unit of observation in the data frame in the slides?
+@. What is the unit of observation in the data frame in the slides?
 
 \
 \
