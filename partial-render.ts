@@ -7,7 +7,7 @@ const schedulePath = 'schedule.yml';
 
 
 // -------------------------------- //
-//     Prepare partial schedule     //
+//       Make partial schedule      //
 // -------------------------------- //
 // Make schedule.yml where each item defaults to render: true
 // This is overridden and set to false for items where date > live-as-of date
