@@ -72,7 +72,7 @@ await makeSidebarNav(schedulePath);
 
 
 // -------------------------------- //
-//       Render partial site        //
+//         Render full site         //
 // -------------------------------- //
 
 async function runQuartoRender() {
