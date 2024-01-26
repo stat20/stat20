@@ -1,6 +1,8 @@
 project:
   output-dir: "_staff-site"
-
+  
+metadata-files:
+  - "sidebar-nav.yml"
 
 # Modify aesthetics and add Guide to navbar
 website:
