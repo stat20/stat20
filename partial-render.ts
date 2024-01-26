@@ -18,14 +18,6 @@ function convertDateToISOFormat(dateStr: string, timezone: string): string {
     return `20${year}-${month}-${day}T00:00:00${timezone}`;
 }
 
-async function getThresholdDate(configPath: string): Promise<Date> {
-    const yamlContent = await Deno.readTextFile(configPath);
-    const config = parse(yamlContent) as any;
-    const liveAsOfStr = config["partial-render"]["render-as-of"];
-    const timezone = config["partial-render"]["timezone"];
-    return new Date(convertDateToISOFormat(liveAsOfStr, timezone));
-}
-
 async function makePartialSchedule(configPath: string, schedulePath: string) {
     const yamlContent = await Deno.readTextFile(configPath);
     let config = parse(yamlContent) as any;
