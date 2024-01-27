@@ -1,6 +1,9 @@
 project:
   type: website
   pre-render: prep-website.ts
+  
+metadata-files:
+  - "sidebar-nav.yml"
 
 # Website Configuration and Layout
 website:
@@ -31,7 +34,7 @@ website:
         href: syllabus.qmd
       - text: Office Hours
         href: office-hours.qmd
-      - text: Notes
+      - text: "Notes"
         href: notes.qmd
       - text: Assignments
         href: assignments.qmd
