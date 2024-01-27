@@ -1,6 +1,6 @@
 ---
-title: "Conditioning"
-subtitle: "Filtering, groupwise operations, and data pipelines."
+title: "Data Pipelines"
+subtitle: "Data pipelines, filtering, logical variables and comparison operators"
 image: images/mammals.png
 from: markdown+emoji
 format:
@@ -8,24 +8,115 @@ format:
   pdf: default
 ---
 
-[I]{.dropcap}n the world of data, bigger is not always better. Sometimes there are real benefits to working with a subset of your observations that meet some particular condition. One use of conditioning is to add specificity to a claim. Another use of conditioning is to illuminate the relationship between variables.
-
-To gain practice with conditioning, let's turn to a data set that begins with a very general focus. In 2007, Savage and West published *A qualitative, theoretical framework for understanding mammalian sleep*[^msleep], wherein they "develop a general, quantitative theory for mammalian sleep that relates many of its fundamental parameters to metabolic rate and body size". Characterizing the sleep patterns of *all* mammals is a broad task and their data set is corresponding diverse. Take a look at the first ten rows of their data below.
+## Introducing the pipe
 
 ```{r}
+#| echo: FALSE
+#| code-fold: FALSE
+library(stat20data)
 library(tidyverse)
-
-msleep <- msleep %>%
-    mutate(log_bodywt = log(bodywt * 1000)) %>%
-    select(name, sleep_total, log_bodywt, 
-           vore, conservation)
-
-msleep
 ```
 
-In this data set, the unit of observation is a single species and the variables observed on each are its name, the average length of sleep each day, the natural log of the average weight, its dietary pattern, and its conservation status. We can visualize the relationship between sleep and body size in all 83 species using a scatter plot.
+[A]{.dropcap}t this stage in the course, the number of functions that you are familiar with has grown dramatically. To do truly powerful things with data, you need to not just call one of these functions, but string together many of them in a thoughtful and organized manner.
+
+An an example, let's return to our work with the `penguins` dataset from last lecture. In order to calculate the mean and standard deviation of bill length across each species of penguin, we need to take the original data frame and
+
+1. Use `group_by()` to inform R we would like to calculate summaries across levels of a categorical variable (namely, the `species` variable). 
+
+2. Use `summarise()` to calculate these summaries.
+
+
+A conventional approach breaks this process into two distinct lines of code and saves the output mid-way through.
 
 ```{r}
+#| code-fold: false
+grouped_penguins <- group_by(penguins, species)
+summarise(grouped_penguins, 
+          bill_length_mean = mean(bill_length_mm),
+          bill_length_sd = sd(bill_length_mm))
+```
+
+An approach that is more concise, easier to read, and generally faster to run is to compose these functions together with "the pipe". The pipe, written `|>`, is an operator that you have access to when you load the tidyverse package. If you have two functions, `f1` and `f2`, both of which take a data frame as the first argument, you can pipe the output of `f1` directly into `f2` using.
+
+:::{style="font-size: 1.5em; text-align: center"}
+```
+f1(DF) |> f2()
+```
+:::
+
+Let's use the pipe to rewrite the code shown above.
+
+```{r}
+#| code-fold: false
+group_by(penguins, species) |> 
+  summarise(bill_length_mean = mean(bill_length_mm),
+            bill_length_sd = sd(bill_length_mm))
+```
+
+The first function, `group_by()`, is unchanged. However the second function, `summarise()`, is now missing its first argument, the data frame. That is because it is being *piped directly in* from the output of the first function.
+
+While this is a fine way to use the pipe, your code is made much more readable if you format it like this:
+
+```{r}
+#| code-fold: false
+penguins |>
+  group_by(species) |> 
+  summarise(bill_length_mean = mean(bill_length_mm),
+            bill_length_sd = sd(bill_length_mm))
+```
+
+For the rest of the examples given in the notes, we will stick with this formatting when using the pipe operator. This code results in the same output as the first version, but it now reads a bit like a poem: "Take the `penguins` data frame, prepare it for calculations across each species, then calculate the mean and standard deviation of bill length (across each species of penguin)". 
+
+
+:::{.column-margin}
+This poem is admittedly not particularly poetic.
+:::
+
+### Breaking the pipe
+
+![](images/pipeline-1.png){fig-align=center}
+
+
+Here's another, less poetic way to think about the pipe, as described by the above image! Most claims about data start with a *raw* data set, undergo many subsetting, aggregating, and cleaning operations, then return a *data product*. Each one of these operations can be represented by one of the turns through the pipe. It's good practice to understand the output of each line of code by *breaking the pipe*. With regards to our previous example, we can remove the `summarise()` and just look at the output of the `group_by()` step. 
+
+```{r}
+#| code-fold: false
+penguins |>
+  group_by(species)
+```
+
+This looks . . . exactly like the original data frame. Well, not *exactly* like it: there is now a note at the top that the data frame now has the notion of groups based on `species`. In effect, `group_by()` has taken the generic data frame and turned it into the one in the middle below: the same data frame but with rows now flagged as belonging to one group or another. When we pipe this grouped data frame into `summarise()`, `summarise()` collapses that data frame down into a single row for each group and creates a new column for each new summary statistic.
+
+![](images/group-by.png){fig-align=center width="500px"}
+
+In addition to providing greater insight on each step in your data pipeline, breaking the pipe is a fantastic way to troubleshoot any errors in your pipeline. If you run just the first piece of your pipeline and it works, add the second piece and try again. Continue this process with the rest of the pieces until the error occurs. When you run into the error, the piece you just added is the guilty party. 
+
+
+## The pipe in action
+
+We will now look at a few examples to understand the power of such a simple piece of syntax. In doing so, we will introduce a few more `dplyr` functions that will expand your ability to perform more specific pieces of data analysis. 
+
+Our data set of choice begins with a very general focus. In 2007, Savage and West published *A qualitative, theoretical framework for understanding mammalian sleep*[^msleep], wherein they "develop a general, quantitative theory for mammalian sleep that relates many of its fundamental parameters to metabolic rate and body size". Characterizing the sleep patterns of *all* mammals is a broad task and their data set is corresponding diverse. Take a look at the first ten rows of their data below.
+
+[^msleep]: V. M. Savage and G. B. West. [A quantitative, theoretical framework for understanding mammalian sleep](https://www.pnas.org/doi/10.1073/pnas.0610080104). Proceedings of the National Academy of Sciences, 104 (3):1051-1056, 2007.
+
+```{r}
+#| code-fold: false
+#| echo: false
+msleep <- msleep %>%
+    mutate(log_bodywt = log(bodywt * 1000)) 
+
+msleep %>%
+    select(name, sleep_total, log_bodywt, 
+           vore, conservation)
+```
+
+In this data set, the unit of observation is a single species and the variables observed on each are its name, the average length of sleep each day, the natural log of the average weight, its dietary pattern, and its conservation status. 
+We can visualize the relationship between sleep and body size in all 83 species using a **scatter plot.**
+
+```{r}
+#| code-fold: false
+#| echo: false
 df_labels <- filter(msleep, 
                     name %in% c("Little brown bat",
                                 "African elephant"))
@@ -48,13 +139,51 @@ p_sleep
 
 The mammals vary from the wee brown bat, slumbering for nearly 20 hours a day, to the massive African elephant, nodding off for less than five. That is quite a range! Lets drill down to smaller subsets of this data frame to gain a more nuanced sense of what is going on.
 
-[^msleep]: V. M. Savage and G. B. West. [A quantitative, theoretical framework for understanding mammalian sleep](https://www.pnas.org/doi/10.1073/pnas.0610080104). Proceedings of the National Academy of Sciences, 104 (3):1051-1056, 2007.
+### Example 1: Mutation
 
-## Filtering
+Oftentimes the variables we are most interested in analyzing in a data set don't exist in the form most conducive for doing so. Other times, they don't exist at all. For example, note how in our first output of the `msleep` data and the scatter plot that body weight is being presented in *log grams* (`log_bodywt`). In reality, the body weight as originally present in the `msleep` dataset is called `bodywt` and is recorded in kilograms! To get to `log_bodywt`, we will perform what is called a mutation. 
+
+**Mutation**
+
+The act of creating a new column in a dataset based on information in existing column(s). 
+
+There are a variety of different mutations that you can apply to a column(s) in a dataset. In the last lecture, we *overwrote* an existing column with an updated version of itself. Today, we will perform a mathematical mutation on the `bodywt` column. 
+
+```{r}
+#| code-fold: false
+msleep |>
+    mutate(log_bodywt = log(bodywt * 1000)) |>
+    select(log_bodywt, bodywt)
+```
+
+Here, the first argument, `msleep`, is piped to the `dplyr` function **`mutate()`** and the second argument, `log_bodywt`, creates a new column named `log_bodywt` by multiplying the `bodywt` column by 100 (converting kilograms to grams) and then taking the natural log. We then pipe this output into `select()` to compare the two columns. 
+
+You can use `mutate()` to create multiple columns at the same time:
+
+```{r}
+#| code-fold: false
+msleep |>
+    mutate(log_bodywt = log(bodywt * 1000),
+           sleep_total_min = sleep_total*60) |>
+    select(log_bodywt, bodywt,
+           sleep_total, sleep_total_min)
+```
+
+
+If you plan to use these new columns after creating them more than once, it's best to *save them back* into the original dataset!
+
+```{r}
+#| code-fold: false
+msleep <- msleep |>
+  mutate(log_bodywt = log(bodywt * 1000),
+           sleep_total_min = sleep_total*60) 
+```
+
+### Example 2: Filtering
 
 If you think about the shape of a data frame, there are two basic ways you might go about slicing and dicing it into smaller subsets.
 
-One way is to go at it is column-by-column. The act of selecting a subset of the columns of a data frame is called, well, *selecting*. When you select a column, you can do so either by its name or by its column number (or index). Selecting columns by name is more useful because their order tends to be arbitrary and might change over the course of an analysis.
+One way is to go at it is column-by-column. The act of selecting a subset of the columns of a data frame is called, well, *selecting*. This is what we touched on briefly in the last lecture and in the previous example. When you select a column, you can do so either by its name or by its column number (or index). Selecting columns by name is more useful because their order tends to be arbitrary and might change over the course of an analysis.
 
 The other way to go at it is row-by-row. The act of subsetting the rows of the data frame based on their row number is called *slicing*. As with columns, the order of the rows is also often arbitrary, so this is of limited use. Much more useful is *filtering*.
 
@@ -70,13 +199,13 @@ Filters are powerful because they comb through the values of the data frame, whi
 
 ```{r}
 #| code-fold: false
-
-filter(msleep, name == "Little brown bat")
+msleep |>
+  filter(name == "Little brown bat")
 ```
 
 Here `name == "Little brown bat"` is the condition that must be met by any row in the data set to be retained. The syntax used to set up the condition is a comparison between a column in the data frame on the left and a possible value of that column on the right.
 
-### Comparison Operators
+### Example 2 Detour: Comparison Operators
 
 The filter above uses the most direct condition: it retains the rows that have a value in the `name` variable that is precisely `"Little brown bat"`. In this case, there is only one such row. There are a range of different comparisons that can be made, though, and each has its own operator.
 
@@ -107,13 +236,13 @@ Let's return only the rows with large animals, defined as those with a log body 
 
 ```{r}
 #| code-fold: false
-
-filter(msleep, log_bodywt > 12)
+msleep |>
+  filter(log_bodywt > 12)
 ```
 
 There were 9 such animals and you can see all of them are large.
 
-### Logical Operators
+### Example 2 Detour: Logical Operators
 
 What if you want both the little brown bat and the African elephant? What if you want both the large creatures as well as those that sleep only briefly? These are tasks that call for multiple comparisons composed together with the logical operators `&`, `|`, and `%in%`.
 
@@ -121,8 +250,8 @@ This filter returns the creatures who are large and who sleep little.
 
 ```{r}
 #| code-fold: false
-
-filter(msleep, log_bodywt > 12 & sleep_total < 5)
+msleep |>
+  filter(log_bodywt > 12 & sleep_total < 5)
 ```
 
 This can be read as "filter the `msleep` data frame to return the rows where both the log body weight is greater than 12 and the sleep total is less than 5". We see that there are 8 such creatures, one fewer than the data frame with only the body weight filter (bottle-nosed dolphins sleep, on average, 5.2 hrs).
@@ -131,18 +260,19 @@ Using `&` to represent "and" is common across most computer languages but you ca
 
 ```{r}
 #| code-fold: false
-
-filter(msleep, log_bodywt > 12, sleep_total < 5)
+msleep |>
+  filter(log_bodywt > 12,
+         sleep_total < 5)
 ```
 
-These two methods are equivalent.
+*These two methods are equivalent.*
 
 To return all rows that either have a high body weight or low sleep time or both, use the `|` operator (sometimes called "vertical bar").
 
 ```{r}
 #| code-fold: false
-
-filter(msleep, log_bodywt > 12 | sleep_total < 5)
+msleep |>
+  filter(log_bodywt > 12 | sleep_total < 5)
 ```
 
 Be cautious in deciding whether you want to use `&`  or `|`. While `|` is generally read as "or", we could also describe the above filter as one that returns the rows that have a high body weight and the rows that have low sleep times.
@@ -152,6 +282,8 @@ One way to keep them straight is to keep an eye on the number of observations th
 ```{r}
 #| fig-height: 3
 #| fig-align: center
+#| code-fold: false
+#| echo: false
 
 library(patchwork)
 
@@ -175,16 +307,16 @@ When working with nominal categorical variables, the only operator that you'll b
 
 ```{r}
 #| code-fold: false
-
-filter(msleep, name == "Little brown bat" | name == "African elephant")
+msleep |>
+  filter(name == "Little brown bat" | name == "African elephant")
 ```
 
 Or you can save some typing (and craft more readable code) by using `%in%` instead:
 
 ```{r}
 #| code-fold: false
-
-filter(msleep, name %in% c("Little brown bat", "African elephant"))
+msleep |>
+  filter(name %in% c("Little brown bat", "African elephant"))
 ```
 
 
@@ -230,11 +362,49 @@ This dual representation is very useful because it allows us to compute a propor
 
 ```{r}
 #| code-fold: false
-
 mean(a < 5)
 ```
 
-`a < 5` results in a vector with two 1s and two 0s. When you take the mean like this, you're really finding the proportion of the elements that meet the condition that you laid out in your comparison. This is a very handy trick. We'll use it more in a moment.
+`a < 5` results in a vector with two 1s and two 0s. When you take the mean like this, you're really finding the proportion of the elements that meet the condition that you laid out in your comparison. This is a very handy trick. Let's apply it to the `msleep` dataset as part of our next example.
+
+### Example 3
+
+In the following data pipeline, we will 
+
+1. Split our mammals up by diet (carnivore, herbivore, omnivore, etc.)
+
+2. Calculate the proportion of mammals in each diet group that sleep over eight hours in the day
+
+3. Calculate the number of mammals in each group
+
+This will require both `group_by()` and `summarise()`, as well as our *handy trick* discussed above and a new summary function. 
+
+```{r}
+#| code-fold: false
+msleep |>
+  group_by(vore) |>
+  summarise(p_gt_8hrs = mean(sleep_total > 8),
+            n = n())
+```
+
+-   In the above code, `sleep_total > 8` creates a vector of `TRUE`s and `FALSE`s depending on whether the mammal slept for over eight hours a day. `mean()` then treats these `TRUE`s and `FALSE`s like 1s and 0s, and produces a proportion of mammals who sleep over eight hours a day in each diet group. 
+
+-   The **`n()`** summary statistic *counts the number of observations within each group*. For example, there are nineteen carnivores in the `msleep` dataset. Based on this, we can deduce that thirteen carnviores satisfied our sleeping condition. This means that when calculating the proportion for carnivores, the `mean()` function is taking the average of thirteen 1s/`TRUE`s and six 0s/`FALSE`s!
+
+The code written above could be equivalently written as follows:
+
+```{r}
+#| code-fold: false
+#| eval: false
+msleep |>
+  mutate(long_sleep = sleep_total > 8) |>
+  group_by(vore) |>
+  summarise(p_gt_8hrs = mean(long_sleep),
+            n = n())
+```
+
+In this version, the `sleep_total > 8` vector is made into a new *column* using `mutate()` called `long_sleep`. This is a column of `TRUE`s and `FALSE`s, and we can then take its mean directly in the `summarise()` step. 
+
 
 <!-- ## Missing Data -->
 
@@ -251,141 +421,56 @@ mean(a < 5)
 <!--        log_bodywt > 6) -->
 <!-- ``` -->
 
-## Data Pipelines
 
-At this stage in the course, the number of functions that you are familiar with has grown dramatically. To do truly powerful things with data, you need to not just call one of these functions, but string together many of them in a thoughtful and organized manner.
 
-An an example, to create a sorted data frame containing just the large animals, we need to take the original data frame and
+### Example 4: Arranging
 
-1. `filter()` such that `log_bodywt > 12` and then
-2. `arrange()` in descending order of weight (`desc(log_bodywt)`).
+Sometimes, we are interested in arranging the rows of a data frame according to some logical ordering of a column. This ordering is straightforward for numeric columns; the smallest numbers should be placed first and ascend to the larger ones (or vice versa). We might also think about what happens when passing in a column of characters. Luckily, the `dplyr` package has a catch-all solution to this in the form of the **`arrange()`** function. 
 
-A conventional approach breaks this process into two distinct lines of code and saves the output mid-way through.
+Let's take a look:
 
 ```{r}
 #| code-fold: false
-
-msleep_large <- filter(msleep, log_bodywt > 12)
-arrange(msleep_large, desc(log_bodywt))
+msleep |>
+  arrange(sleep_total) |>
+  select(name, sleep_total)
 ```
 
-An approach that is more concise, easier to read, and generally faster to run is to compose these functions together with "the pipe". The pipe, written `%>%`, is an operator that you have access to when you load the tidyverse package. If you have two functions, `f1` and `f2`, both of which take a data frame as the first argument, you can pipe the output of `f1` directly into `f2` using.
-
-:::{style="font-size: 1.5em; text-align: center"}
-```
-f1(DF) %>% f2()
-```
-:::
-
-Let's use the pipe to rewrite the code shown above.
+From this output, we can see that the giraffe sleeps for the smallest amount of time per day (not even two hours)! But maybe we are interested in which mammal sleeps the longest. If this is the case, we can modify the `arrange()` function slightly by wrapping our column of interest within `desc()`.
 
 ```{r}
 #| code-fold: false
-
-filter(msleep, log_bodywt > 12) %>% arrange(desc(log_bodywt))
+msleep |>
+  arrange(desc(sleep_total)) |>
+  select(name, sleep_total)
 ```
 
-What has changed? Most immediately, we have reduced two lines of code to one. The first function, `filter()`, is unchanged however the second function, `arrange()`, is now missing its first argument, the data frame. That is because it is being piped directly in from the output of the first function.
-
-While this is a fine way to use the pipe, your code is made much more readable if you format it like this:
+What if you pass a column of characters to `arrange()`?
 
 ```{r}
 #| code-fold: false
-msleep %>%
-    filter(log_bodywt > 12) %>% 
-    arrange(desc(log_bodywt))
+msleep |>
+  arrange(vore) |>
+  select(name, vore, sleep_total)
 ```
 
-This code results in the same output as the first version, but it now reads a bit like a poem: "Take the `msleep` data frame then filter it such that the log body weight is greater than twelve then arrange it in descending order by log body weight".
-
-:::{.column-margin}
-This poem is admittedly not particularly poetic.
-:::
-
-Let's look at a few examples to understand the power of such a simple piece of syntax.
-
-### Examples
-
-*What year had the greatest total number of christenings?*
-
-In Lab 1, this question was tacked with two or three separate lines of code, one to `mutate()` and the other to `arrange()` (and possibly `select()`). As one pipeline, it is:
+When arranged by `vore`, `carni` comes first, and the rest of the diet groups will follow in alphabetical order. The mammals aren't arranged in any specific order within a diet group, but we can change that by passing another column to `arrange()`. Passing additional columns to `arrange()` will systematically break ties. The below code arranges the data frame first by diet group (from A to Z) and then breaks ties by (ascending) sleep time:
 
 ```{r}
 #| code-fold: false
-library(stat20data)
-
-arbuthnot %>%
-    mutate(total = boys + girls) %>%
-    arrange(desc(total)) %>%
-    select(year, total)
+msleep |>
+  arrange(vore, sleep_total) |>
+  select(name, vore, sleep_total)
 ```
 
-*What is the trend in the total number of christenings over time?*
-
-```{r}
-#| code-fold: false
-
-arbuthnot %>%
-    mutate(total = boys + girls) %>%
-    ggplot(aes(x = year, y = total)) +
-    geom_line()
-```
-
-This demonstrates that you can pipe a data frame directly into a ggplot - the first argument is a data frame after all! The main thing to note is that when moving into a ggplot, the layers are added with the `+` operator instead of the pipe, `%>%`.
-
-*What proportion of carnivores sleep more than 8 hours per night?*
-
-Answering this requires two steps: `filter()`ing to focus on carnivores and `summarize()`ing with a proportion that meet a condition (recall that a comparison results in a logical vector of 0s and 1s). It is often a good idea to record the number of observations that go into a summary statistic, which we do here with `n()`.
-
-```{r}
-#| code-fold: false
-msleep %>%
-    filter(vore == "carni") %>%
-    summarize(p_gt_8hrs = mean(sleep_total > 8),
-              n = n())
-```
-
-## Groupwise Operations
-
-The last example above demonstrates a very common scenario: you want to perform some calculations on one particular group of observations in your data set. But what if you want to do that same calculation for every group?
-
-The `vore` variable has four levels: `carni`, `herbi`, `insecti`, and `omni`. It would not be too difficult to copy and paste the above pipeline four times and modify each filter function to focus on a different group. But what if there were a dozen different levels?
-
-This task - performing an operation on all groups of a data set one-by-one - is such a common data science task that nearly every software tool has a good solution. In the tidyverse, the solution is the `group_by()` function. Let's see it in action.
-
-```{r}
-#| code-fold: false
-msleep %>%
-    group_by(vore) %>%
-    summarize(p_gt_8hrs = mean(sleep_total > 8),
-              n = n())
-```
-
-Like most tidyverse functions, the first argument to `group_by()` is a data frame, so it can be slotted directly into the pipeline. The second argument, the one that shows up in the code above, is the name of the variable that you want to use to delineate the groups. This is generally a factor, character, or logical vector.
-
-`group_by()` is an incredibly powerful function because it changes the behavior of downstream functions. Lets break our pipeline and inspect the data frame that comes out of it.
-
-```{r}
-#| code-fold: false
-msleep %>%
-    group_by(vore)
-```
-
-This looks . . . exactly like the original data frame.
-
-Well, not *exactly* like it: there is now a note at the top that the data frame now has the notion of groups based on `vore`. In effect, `group_by()` has taken the generic data frame and turned it into the one in the middle below: the same data frame but with rows now flagged as belonging to one group or another. When we pipe this grouped data frame into `summarize()`, `summarize()` collapses that data frame down into a single row for each group and creates a new column for each new summary statistic.
-
-![](images/group-by.png){fig-align=center width="500px"}
-
-[^dplyrcheat]: From the dplyr cheat sheet: <https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf>.
 
 ## Summary
 
-There are several ways to subset a data frame but the most important for data analysis is filtering: subsetting the rows according to a condition. In R, that condition is framed in terms of a comparison between a variable and a value (or set of values). Comparisons take many forms and can be combined using logical operators. The result is a logical vector that can be used for filtering or computing summary statistics. You can perform simulataneous analyses on multiple subsets by doing groupwise operations with `group_by()`.
+If you're thinking, :grimacing: , yikes there was a *lot* of coding in these notes, you're right. Don't worry. We'll have plenty of time to practice in class! Here's a recap of what we went through.
 
-As we begin to do analyses that require multiple operations, the pipe operator, `%>%`, can be used to stitch the functions together into a single pipeline.
+As we begin to do analyses that require multiple operations, the **pipe operator**, `|>`, can be used to stitch the functions together into a single pipeline. With the pipe operator in tow, we then introduced some new types of data operations. 
 
-If you're thinking, :grimacing: , yikes there was a *lot* of coding in these notes, you're right. Don't worry. We'll have plenty of time to practice in class.
+We can express existing variables in new ways or create new variables altogether by performing a **mutation**. There are several ways to subset a data frame but the most important for data analysis is **filtering**: subsetting the rows according to a condition. In R, that condition is framed in terms of a **comparison** between a variable and a value (or set of values). Comparisons take many forms and can be combined using **logical operators**. The result is a **logical vector** that can be used for filtering or computing summary statistics. Finally, we learned to **arrange** a data frame by the ordering of a column. 
 
 ---------------------------
 ---------------------------

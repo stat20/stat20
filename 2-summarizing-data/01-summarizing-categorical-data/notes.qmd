@@ -322,8 +322,6 @@ This stands in stark contrast to the plot of the real data on the left. On Bisco
 
 <!-- ![](images/one-var.jpg){fig-alt="Sketch showing the flow for one variable from raw data to contingency table to barchart." fig-align=center} -->
 
----------------------------
----------------------------
 
 ## The Ideas in Code
 
