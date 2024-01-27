@@ -30,6 +30,7 @@ sidebar-nav.yml
 /.quarto/
 _site
 _partial-site
+_staff-site
 
 # Files derived from _course-settings.yml and scripts
 **/images/tmp
