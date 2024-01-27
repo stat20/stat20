@@ -7,7 +7,7 @@ const schedulePath = 'schedule.yml';
 
 
 // -------------------------------- //
-//     Prepare partial schedule     //
+//       Make partial schedule      //
 // -------------------------------- //
 // Make schedule.yml where each item defaults to render: true
 // This is overridden and set to false for items where date > live-as-of date
@@ -16,14 +16,6 @@ const schedulePath = 'schedule.yml';
 function convertDateToISOFormat(dateStr: string, timezone: string): string {
     const [month, day, year] = dateStr.split('/').map(num => num.padStart(2, '0'));
     return `20${year}-${month}-${day}T00:00:00${timezone}`;
-}
-
-async function getThresholdDate(configPath: string): Promise<Date> {
-    const yamlContent = await Deno.readTextFile(configPath);
-    const config = parse(yamlContent) as any;
-    const liveAsOfStr = config["partial-render"]["render-as-of"];
-    const timezone = config["partial-render"]["timezone"];
-    return new Date(convertDateToISOFormat(liveAsOfStr, timezone));
 }
 
 async function makePartialSchedule(configPath: string, schedulePath: string) {
@@ -52,6 +44,45 @@ async function makePartialSchedule(configPath: string, schedulePath: string) {
 }
 
 await makePartialSchedule(configPath, schedulePath);
+
+
+
+// ----------------------------------- //
+//    Make Sidebar Nav from schedule   //
+// ----------------------------------- //
+
+async function makeSidebarNav(schedulePath: string) {
+    const yamlContent = await Deno.readTextFile(schedulePath);
+    const schedule = parse(yamlContent) as Array<any>;
+
+    let notesHrefs: string[] = [];
+
+    schedule.forEach(week => {
+        week.days.forEach(day => {
+            day.items.forEach(item => {
+                if (item.type === 'Notes' && item.render) {
+                    notesHrefs.push(item.href);
+                }
+            });
+        });
+    });
+
+    const sidebarNav = {
+        website: {
+            sidebar: {
+                title: "Notes",
+                contents: notesHrefs
+            }
+        }
+    };
+
+    const sidebarNavPath = join(dirname(schedulePath), 'sidebar-nav.yml');
+    await Deno.writeTextFile(sidebarNavPath, stringify(sidebarNav));
+}
+
+console.log("> Making extra sidebar nav ...");
+await makeSidebarNav(schedulePath);
+
 
 // -------------------------------- //
 //  Ignore files based on schedule  //
@@ -108,5 +139,5 @@ async function runQuartoRender() {
     process.close();
 }
 
-console.log(">> Quarto Render");
+console.log("> Quarto render partial site...");
 await runQuartoRender();

@@ -1,6 +1,0 @@
-project: 
-  type: website
-  pre-render: 
-    - assets/scripts/update-full-schedule.ts
-    - assets/scripts/make-listings.ts
-    - assets/scripts/make-toc.ts

@@ -15,14 +15,19 @@ jobs:
         uses: addnab/docker-run-action@v3
         env:
            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-           QUARTO_PROFILE: staff-site
         with:
           image: stat20/stat20-docker:latest
-          options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }} -e QUARTO_PROFILE=toc,staff-site
+          options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
           shell: bash
           run: |
+            # exit if any command returns non-zero exit
+            set -e
+            
             # execute from the textbook
             cd /home/rstudio/stat20/
             
-            # render site using staff profile and upload to stat20staff.netlify.app
-            quarto publish netlify --profile staff-site --id 33fedc67-c501-4720-bd24-6e00c15aa700
+            # render staff-site
+            quarto run render-staff-site.ts
+            
+            # upload rendered staf site to to stat20staff.netlify.app
+            quarto publish netlify --profile staff-site --no-render --id 33fedc67-c501-4720-bd24-6e00c15aa700

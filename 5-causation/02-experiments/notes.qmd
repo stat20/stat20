@@ -1,0 +1,212 @@
+---
+title: "Experiments"
+subtitle: "The principles of experimental design"
+format:
+  html:
+    code-fold: true
+    code-link: true
+    code-summary: "."
+  pdf: default
+execute: 
+  warning: false
+  message: false
+---
+
+<!-- Lead out with running example: are you reading these notes as a website or are you reading them as a pdf on a tablet? Do you think your choice in this regard will effect your understanding of the material and the course -->
+
+[C]{.dropcap}ausation has a tricky relationship with data. We can't observe the precise counterfactual that would allow us to identify an individual cause. Instead, statisticians use a host of methods to find a good approximation of the counterfactual. In the last set of notes, the methods focused on matching each unit with a near-twin; another unit that is similar in every respect except for the variable of interest. In these notes, we consider what can be gained if we zoom out and focus on causation at the group-level.
+
+The distinction between individual and group level causation is demonstrated in following two statements.
+
+1. Evelyn got a good job because she graduated from Cal.
+2. Graduating from Cal helps people get a good job.
+
+The first is a strong statement about a single individual, Evelyn. The second is a much more general statement that compares people who have have graduated from Cal with a counterfactual group who has not.
+
+Group-level causation is the focus of many sciences, which aim to make general claims about the causal mechanisms of the world. The goal is to estimate the average treatment effect.
+
+**Average Treatment Effect**
+:    A population parameter that captures the effect of being administered a particular treatment, averaged over each group. Most often estimated by a difference in sample means or a difference in sample proportions.
+
+In statement two above, a natural estimate for the average treatment effect would be the difference between the proportion of Cal graduates who got a good job and the proportion of non-Cal graduates who got a good job. That can be visualized in a simple example of three students who graduated from Cal and three who did not. The difference in the proportion with a good job is $2/3 - 1/3 = 1/3$.
+
+::: {layout="[-1,5,1,3,-1]" layout-valign="center"}
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+library(gt)
+
+df <- tibble(Name = c("Evelyn", "Grace", "Juan", "Alex", "Monica", "Sriya"),
+                `Cal Grad`= c(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE),
+                 `Good Job` = c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE))
+
+df %>%
+  gt() %>%
+  cols_width(
+    vars(Name) ~ px(70),
+    vars(`Cal Grad`) ~ px(90),
+    vars(`Good Job`) ~ px(90),
+  ) %>%
+  tab_options(data_row.padding = px(4)) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgoldenrodyellow")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = `Cal Grad` == TRUE
+    )
+  )  %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightcyan")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = `Cal Grad` == FALSE
+    )
+  )
+```
+
+{{< fa arrow-right size=2x >}}
+
+```{r}
+#| echo: false
+
+df %>%
+  group_by(`Cal Grad`) %>%
+  summarize(`P(Good Job)` = round(mean(`Good Job`), 2)) %>%
+  slice(2, 1) %>%
+  gt() %>%
+  cols_width(
+    vars(`Cal Grad`) ~ px(90),
+    vars(`P(Good Job)`) ~ px(110),
+  ) %>%
+  tab_options(data_row.padding = px(4)) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgoldenrodyellow")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = `Cal Grad` == TRUE
+    )
+  )  %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightcyan")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = `Cal Grad` == FALSE
+    )
+  )
+```
+
+:::
+
+By broadening our focus to the average treatment effect across groups, we're able to bring to bear one most convincing forms of evidence of a causal link: data from experiments.
+
+## Principles of Experimental Design
+
+An experiment is generally characterized as being a setting where the researcher actively assigns subjects or units to one particular condition or another. The most potent design of an experiment to determine whether one variable, the *treatment*, affects the outcome at the group level is the aptly named *Randomized Controlled Trial (RCT)*. 
+
+As a running example, consider an immediately relevant question: would reading these notes as a webpage (and maybe copying and pasting code cells into RStudio) lead to a deeper understanding and a correspondingly better score on the final exam? Let's run through each term one-by-one to think through how to design an RCT and effectively answers this question.
+
+### Control
+
+**Control**
+:    (noun) A second condition to which a subject or unit could be assigned that draws a contrast with the treatment condition.
+
+:    (verb) Actions taken to eliminate other possible causal factors and ensure that the only difference between the treatment and control group is the factor of interest.
+
+When designing an RCT, an essential decision is the nature of your control group. Our research question is: will reading these notes as a webpage result in a deeper understanding? Deeper . . . than what? Deeper than if you didn't read the notes at all? Deeper than if you read them aloud?
+
+If we're most interested in the difference between reading the notes as a webpage and reading them as a pdf, we could declare those who read the pdf part of the control group and those who read the pdf as part of the treatment group[^control]. Small changes to the control group can make an important difference in the precise question that you'll be answering.
+
+We can visualize the distinction between the two groups in a small example with three people in the control group (pdf) and three people in the treatment group (website).
+
+```{r}
+#| echo: false
+library(gt)
+df <- data.frame(name = c("Evelyn", "Grace", "Juan", "Alex", "Monica", "Sriya"),
+                 group = c("pdf", "pdf", "pdf", "website", "website", "website"),
+                 understanding = c("deep", "shallow", "deep", "deep", "shallow", "shallow"))
+df %>%
+  gt() %>%
+  cols_width(
+    vars(name) ~ px(70),
+    vars(group) ~ px(70),
+    vars(understanding) ~ px(110),
+  ) %>%
+  tab_options(data_row.padding = px(4)) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgoldenrodyellow")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = group == "pdf"
+    )
+  )  %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightcyan")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = group == "website"
+    )
+  )
+```
+
+We also speak of "controlling for" other variables that might provide alternate explanations for any effect that is found. Based on the schedule of assignments, it is not possible to access the notes on the website before the reading questions are due, so everyone in the treatment group would have to do their work out of order. To rule timing out as a potential cause of different levels of understanding, we would want to control for time by ensuring that the two versions of the notes were released at the same time.
+
+### Random Assignment
+
+**Random Assignment**
+:    The process of assigning subjects to either the treatment or control group in a random fashion, where they're equally likely to be assigned to each group.
+
+Because we are conducting an experiment, we are intervening in the process and directly assigning subjects to either the treatment (pdf readers) and control (website readers). There are many ways we could do this. The morning sections could all be assigned the pdf and the afternoon sections the website. Or the instructors could choose to exclusively assign either the pdf or the website version of the notes to their individual sections.
+
+The problem with both of these approaches is that our two groups might differ on more characteristics than just their reading format. The morning sections perhaps have students who are early risers and more conscientious students. Or perhaps the instructors who choose the website are more tech-savvy and more effective at teaching computing. In both cases, we invite the skeptical observer to question whether it was truly the medium of the notes that led to a difference in course grades or if it was something else.
+
+The mechanism of random assignment is brilliant because it can snuff out every such skeptical inquiry in one fell swoop. If instead we assigned each student to read the pdf or the website totally at random, every other possible characteristic between these groups should, on average, be balanced. If students are assigned at random, we'd expect an equal number of early-risers to be in both the pdf and the website group. We'd also expect the students with the more effective instructors to be evenly represented in both groups. And so on and so forth, for every possible other characteristic that might muddy the waters of our causal claim.
+
+### Replication
+
+**Replication**
+:    The practice of assigning multiple subjects to both the treatment and control group. Also, the practice of repeating an experiment a second time to see if the result is consistent.
+
+The careful reader will have noted a weakness in the brilliance of the random assignment mechanism for balancing the characteristics between the groups. What if, purely due to bad luck, we happen to randomly assign all of the early-risers to the pdf group and all of the late-risers to the website group? That would indeed bring us back to the problem of there being many ways in which our treatment group is different from our control group.
+
+The random assignment mechanism will balance out all possible confounding factors *on average*, but for a given experiment that is not guaranteed. However, it becomes much more likely if we have a large sample size. If you just have four students total in the class, two of whom are early risers, it's quite easy for both of them to end up in the pdf group if they were assigned at random. If instead you have 800 students, 400 of whom are early risers, it's very very unlikely that all 400 will have made their way into the pdf group.
+
+
+### Other considerations
+
+Randomized controlled trials have long been considered the gold standard for establishing a group-level causal claim, but care must be taken to ensure that your result means what you think it means. Here we reconsider a study where a new drug was used to treat heart attack patients. In particular, researchers wanted to know if the drug reduced deaths in patients.
+
+These researchers designed a randomized control trial because they wanted to draw causal conclusions about the drug’s effect. Study volunteers were randomly assigned to one of two study groups. One group, the treatment group, received the drug. The control group did not receive any drug treatment.
+
+Put yourself in the place of a person in the study. If you are in the treatment group, you are given a fancy new drug that you anticipate will help you. If you are in the control group, you are not treated at all but instead sit by idly, knowing you are missing out on potentially life-saving treatment. These perspectives suggest there are actually two effects in this study: the one of interest is the effectiveness of the drug, and the second is the emotional effect of (not) taking the drug, which is difficult to quantify.
+
+In order to control for the emotional effect of taking a drug, the researchers decide to hide from patients which group they are in. When researchers keep the patients uninformed about their treatment, the study is said to be *blind*. But there is one problem: if a patient does not receive a treatment, they will know they’re in the control group. A solution to this problem is to give a fake treatment to patients in the control group. This is called a *placebo*, and an effective placebo is the key to making a study truly blind. A classic example of a placebo is a sugar pill that is made to look like the actual treatment pill. However, offering such a fake treatment may not be ethical in certain experiments. For example, in medical experiments, typically the control group must get the current standard of care. Oftentimes, a placebo results in a slight but real improvement in patients. This effect has been dubbed the placebo effect.
+
+The patients are not the only ones who should be blinded: doctors and researchers can also unintentionally affect the outcome. When a doctor knows a patient has been given the real treatment, they might inadvertently give that patient more attention or care than a patient that they know is on the placebo. To guard against this, which again has been found to have a measurable effect in some instances, most modern studies employ a *double-blind* setup where doctors or researchers who interact with patients are, just like the patients, unaware of who is or is not receiving the treatment.
+
+<!-- ## Correlation and Causation: the history of Smoking and Cancer -->
+
+## Summary
+
+You may heard the phrase "Correlation does not imply causation ... unless it's seen in data from a randomized control trial." While this statement is misleading - there is a rich set of methods that, when used correctly, can make compelling causal claims from correlations found in data - it does highlight the particular strength of RCTs. RCTs are able to isolate the effect of interest by creating a carefully selected control group and then assigning subjects to groups at random. When the number of replicates is large enough, we can be confident that our control group on average serves as a close counterfactual to our treatment group.
+
+[ ]{.column-margin}
+
+<!-- [^scurvy]: This tale is recounted in full in "Scurvy, sailors, and science", Duncan P. Thomas in the Journal of the Royal Society of Medicine 1997; 90:50-54. -->
+
+<!-- A future potential source of questions: -->
+<!-- - what would a study look like if it did *not* have a control? (Queen Charlotte inoculating all of the prisoners in Newgate prison in London) what is the problem? -->
+<!-- - what would a study look like if it were *not* randomized? (Lind's Scurvy Trials) -->

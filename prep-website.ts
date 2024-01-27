@@ -45,8 +45,9 @@ if (quartoProfile == "partial-render") {
   await unIgnoreFiles(schedulePath);
 }
 
+
 // ---------------------------------------- //
-// Make schedule.yml with all render: true //
+//  Make schedule.yml with all render: true //
 // ---------------------------------------- //
 // This step is skipped in a partial-render
 
@@ -70,11 +71,12 @@ async function makeFullSchedule(configPath: string, schedulePath: string) {
     }
 }
 
-// This step is skipped in a partial-render
-if (quartoProfile !== "partial-render") {
+// This step is skipped in a partial-render and full-render
+if (quartoProfile !== "partial-render" && quartoProfile !== "staff-site") {
   console.log("> Making schedule file ...");
   await makeFullSchedule(configPath, schedulePath);
 }
+
 
 // -------------------------------- //
 //           Make Listings          //
@@ -111,43 +113,5 @@ async function makeListings(schedulePath: string) {
 
 console.log("> Making files for listings ...");
 await makeListings(schedulePath);
-
-
-// ----------------------------------- //
-//           Make Sidebar Nav          //
-// ----------------------------------- //
-
-async function makeSidebarNav(schedulePath: string) {
-    const yamlContent = await Deno.readTextFile(schedulePath);
-    const schedule = parse(yamlContent) as Array<any>;
-
-    let notesHrefs: string[] = [];
-
-    schedule.forEach(week => {
-        week.days.forEach(day => {
-            day.items.forEach(item => {
-                if (item.type === 'Notes' && item.render) {
-                    notesHrefs.push(item.href);
-                }
-            });
-        });
-    });
-
-    const sidebarNav = {
-        website: {
-            sidebar: {
-                title: "Notes",
-                contents: notesHrefs
-            }
-        }
-    };
-
-    const sidebarNavPath = join(dirname(schedulePath), 'sidebar-nav.yml');
-    await Deno.writeTextFile(sidebarNavPath, stringify(sidebarNav));
-}
-
-console.log("> Making extra sidebar nav ...");
-await makeSidebarNav(schedulePath);
-
 
 
