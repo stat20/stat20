@@ -30,7 +30,7 @@ jobs:
             cd /home/rstudio/stat20/
 
             # render partial site
-            quarto run --allow-read --allow-write partial-render.ts
+            quarto run partial-render.ts --allow-read --allow-write 
             
             # render fo reel
             # quarto render --profile partial-render
