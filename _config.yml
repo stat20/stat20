@@ -333,4 +333,12 @@ partial-render:
   render-as-of: 1/2/24
   timezone: "-07:00" # GMT offset in +/-hh:mm does not adjust for daylight savings
 
+adaptive-nav:
+  hybrid: true
+  listings:
+    - type: Lab
+    - type: PS
+  sidebar:
+    - type: Notes
+
   
