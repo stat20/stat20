@@ -658,9 +658,6 @@ The key difference is the second one. The MAD is great for summarizing skewed di
 
 
 
----------------------------
----------------------------
-
 ## The Ideas in Code
 
 Once you have your data in front of you, you've seen how we can form visual summaries with `ggplot2`. But how can we calculate numerical summaries? Furthermore, what if we are concerned about summarizing a portion of our data, like just one species of penguin at a time? We will answer these questions below, and introduce some new functions from the `dplyr` package (within the `tidyverse` library) along the way. We'll also look at how `factor()` can come in handy while plotting.

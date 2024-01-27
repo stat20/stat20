@@ -253,9 +253,6 @@ While this structure might well be called a "table" or possibly a "spreadsheet",
 [^cont-table]: An image from the Wikipedia article on contingency tables, <https://en.wikipedia.org/wiki/Contingency_table>.
 
 
----------------------------
----------------------------
-
 ## The Ideas in Code
 
 [T]{.dropcap}he concepts of a *variable*, its *type*, and the structure of a *data frame* are useful because they help guide our thinking about the nature of a data. But we need more than definitions.  If our goal is to construct a claim with data, we need a tool to aid in the construction. Our tool must be able to do two things: it must be able to **store** the data and it must be able to perform **computations** on the data. This is where R comes in!

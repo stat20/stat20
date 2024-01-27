@@ -74,7 +74,7 @@ Construct the plot that you proposed in **Part I** using `ggplot2`. *Ensure that
 
 ##### part b
 
-Then, state a measure of a typical observation for the terrain preference variable for each season.
+Then, state a measure of a typical observation of the terrain preference variable for each season group (what terrain does a typical student whose favorite season is fall prefer, and so on).
 
 ##### part c
 
