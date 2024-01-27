@@ -69,10 +69,12 @@ async function makeSidebarNav(schedulePath: string) {
 
     const sidebarNav = {
         website: {
-            sidebar: {
-                title: "Notes",
-                contents: notesHrefs
-            }
+            sidebar: [
+                {
+                    title: "Notes",
+                    contents: notesHrefs
+                }
+            ]
         }
     };
 
