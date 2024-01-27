@@ -45,7 +45,6 @@ website:
       - icon: r-circle-fill
         href: https://stat20.datahub.berkeley.edu/
         aria-label: RStudio
-        
   page-footer: 
     background: white
     foreground: "gray-800"
