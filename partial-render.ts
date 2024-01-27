@@ -152,4 +152,4 @@ async function runQuartoRender() {
     process.close();
 }
 
-await runQuartoRender();
+// await runQuartoRender();
