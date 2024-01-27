@@ -115,4 +115,4 @@ console.log("> Making files for listings ...");
 await makeListings(schedulePath);
 
 
-console.log("> Quarto render partial site...");
+console.log("> Rendering documents...");
