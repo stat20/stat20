@@ -9,6 +9,7 @@ const configPath = '_config.yml';
 //  Remove temp files generated during render  //
 // ------------------------------------------- //
 // This remove all -contents.yml files, schedule.yml, and sidebar-nav.yml
+// Is turned off if options: debug: true in _config.yml
 
 async function removeTempFiles(configPath: string) {
     const yamlContent = await Deno.readTextFile(configPath);
@@ -32,6 +33,18 @@ async function removeTempFiles(configPath: string) {
     }
 }
 
-console.log("> Cleaning up temporary files ...");
-await removeTempFiles(configPath);
+const yamlContent = await Deno.readTextFile(configPath);
+const config = parse(yamlContent) as any;
+
+const debugMode = config['options']?.debug || false;
+
+    
+if (debugMode) {
+  console.log("> Rendering complete!");
+  console.log("> Debug mode is on. Examine schedule.yml and associated nav yml files ...");
+} else {
+  console.log("> Cleaning up temporary files ...");
+  await removeTempFiles(configPath);
+  console.log("> Rendering complete!");
+}
 
