@@ -41,28 +41,42 @@ await makeFullSchedule(configPath, schedulePath);
 //    Make Sidebar Nav from schedule   //
 // ----------------------------------- //
 
-async function makeSidebarNav(schedulePath: string) {
-    const yamlContent = await Deno.readTextFile(schedulePath);
-    const schedule = parse(yamlContent) as Array<any>;
+async function makeSidebarNav(schedulePath: string, configPath: string) {
+    const scheduleContent = await Deno.readTextFile(schedulePath);
+    const schedule = parse(scheduleContent) as Array<any>;
 
-    let notesHrefs: string[] = [];
+    const configContent = await Deno.readTextFile(configPath);
+    const config = parse(configContent) as any;
 
-    schedule.forEach(week => {
-        week.days.forEach(day => {
-            day.items.forEach(item => {
-                if (item.type === 'Notes' && item.render) {
-                    notesHrefs.push(item.href);
-                }
+    const sidebarTypes = config['adaptive-nav']['sidebar'];
+    const isHybridMode = config['adaptive-nav']?.hybrid || false;
+
+    let sidebarContents = [];
+
+    sidebarTypes.forEach(sidebarType => {
+        const type = sidebarType.type;
+        let typeHrefs: string[] = [];
+
+        schedule.forEach(week => {
+            week.days.forEach(day => {
+                day.items.forEach(item => {
+                    if (item.type === type && item.render) {
+                        typeHrefs.push(item.href);
+                    }
+                });
             });
         });
+
+        if (isHybridMode) {
+            sidebarContents.push({ title: type, contents: typeHrefs });
+        } else {
+            sidebarContents.push({ section: type, contents: typeHrefs });
+        }
     });
 
     const sidebarNav = {
         website: {
-            sidebar: {
-                title: "Notes",
-                contents: notesHrefs
-            }
+            sidebar: isHybridMode ? sidebarContents : { contents: sidebarContents }
         }
     };
 
@@ -70,9 +84,8 @@ async function makeSidebarNav(schedulePath: string) {
     await Deno.writeTextFile(sidebarNavPath, stringify(sidebarNav));
 }
 
-console.log("> Making extra sidebar nav ...");
-await makeSidebarNav(schedulePath);
-console.log("  - Done!");
+console.log("> Making extra sidebar nav...")
+await makeSidebarNav(schedulePath, configPath);
 
 
 // -------------------------------- //
@@ -82,8 +95,8 @@ console.log("  - Done!");
 async function runQuartoRender() {
     const process = Deno.run({
         cmd: ["quarto", "render", "--profile", "staff-site"],
-        stdout: "inherit", // Pipe the standard output of the command directly to the standard output of the Deno process
-        stderr: "inherit", // Pipe the standard error of the command directly to the standard error of the Deno process
+        stdout: "inherit",
+        stderr: "inherit",
     });
 
     const { code } = await process.status();
@@ -95,5 +108,5 @@ async function runQuartoRender() {
     process.close();
 }
 
-console.log("> Quarto render staff site...");
+console.log("> Full render list has been made.");
 await runQuartoRender();
