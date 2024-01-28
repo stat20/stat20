@@ -6,6 +6,7 @@ format:
   html: default
   pdf: default
 ---
+
 :::{.lo .content-hidden unless-profile="staff-site"}
 
 #### Concept Acquisition
@@ -124,10 +125,13 @@ We can list the values taken by a random variable in a table, along with the pro
 :::
 
 We can write down the definition of the function $f(x)$ and it gives the same information as in the table:
- $$f(x) = \begin{cases}
+
+$$
+f(x) = \begin{cases}
           \frac{1}{8}, \; x = 0, 3 \\
           \frac{3}{8}, \; x = 1, 2 
-  \end{cases} $$
+  \end{cases}
+$$
 
 We see here that $f(x) > 0$ for only $4$ real numbers, and is $0$ otherwise. We can think of the total probability mass as $1$, and $f(x)$ describes how this mass of $1$ is distributed among the real numbers. It is often easier and more compact to define the probability distribution of $X$ using $f$ rather than the table. 
 
@@ -182,12 +186,14 @@ Using the complement rule,
 $P(X > 3) = 1 - P(X \le 3) = 1 - \left(P(X = 0) + P(X = 1) + P(X = 2) + P(X = 3)\right)$. 
 
 Note that since these events are mutually exclusive, we can use the addition rule. This gives us:
+
 $$ 
 \begin{aligned}
 P(X > 3) &= 1 - \left(\binom{10}{0}(0.35)^0 (0.65)^{10} + \binom{10}{1}(0.35)^1 (0.65)^9 + \binom{10}{2}(0.35)^2 (0.65)^8 + \binom{10}{3}(0.35)^3 (0.65)^7 \right)\\
 & \approx 0.486\\
 \end{aligned}
 $$
+
 In `R` we can use a special function to compute the binomial probabilities $f(k) = P(X=k)$. It is called `dbinom(x, size, prob)` and takes as input the $k$ that we want (`x`), the number of trials $n$ (`size`), and $p$ (`prob`). In this example, `x` are the values of interest, or 0, 1, 2; `size` is the parameter $n$, which is 10, and `prob` is the probability of a success.
 
 ```{r}
@@ -211,6 +217,7 @@ What are these events in words? What are their probabilities?
 <details> <summary> Check your answer </summary>
 - $X$ is the number of successes in ten trials, where the probability of success in each trial is 40%. $X = 5$ is the event that we see exactly five successes in the ten trials, while $X \le 5$ is the event of seeing *at most* five successes in ten trials. The last event, $3 \le X \le 8$ is the event of at least three successes, but not more than eight, in ten trials.
 We will use `dbinom()` to compute the probabilities $P(X = x)$ or the pmf values.
+
 ```{r}
 #| code-fold: false
 
@@ -240,6 +247,7 @@ $$ P(X = k) = \frac{\binom{G}{k} \times \binom{N-G}{n-k}}{\binom{N}{n}} $$
 where $N$ is the size of the population, $G$ is the total number of successes in the population, and $n$ is the sample size (so $k$ can take the values $0, 1, \ldots, n$ or $0, 1, \ldots, G$, if the number of successes in the population is smaller than the sample size.)
 
 #### Example: Gender discrimination at large supermarket?
+
 A large supermarket chain in Florida (with 1,000 employees) occasionally selects employees
 to receive management training. A group of women there claimed that
 female employees were passed over for this training in favor of
@@ -309,6 +317,7 @@ $$ f(x) = \begin{cases}
 In this case, $F(x) = P(X\le x) = 0$ for all $x < 0$ since the first positive probability is at $0$. Then, $F(0) = P(X \le 0) = 1/8$ after which it stays at $1/8$ until $x = 1$. Look at the graph below:
 
 ![](images/cdf.png){fig-align="center" width="700"}
+
 Notice that $F(x)$ is a step function, and right continuous. The jumps are at exactly the values for which $f(x) > 0$. We can get $F(x)$ from $f(x)$ by adding the values of $f$ up to and including $x$, and we can get $f(x)$ from $F(x)$ by looking at the size of the jumps. 
 
 #### Example: Drawing the graph of the cdf
@@ -332,6 +341,7 @@ Let $X$ be the random variable defined by the distribution table below. Find the
 Since $\displaystyle \sum_x P(X = x) = \sum_x f(x) = 1$, $f(4) = 1-(0.2+0.3+0.4) = 0.1.$ Therefore $F(x)$ is as shown below.
 
 ![](images/cdf-2.png){fig-align="center" width="700"}
+
 </details>
 
 
@@ -412,14 +422,13 @@ p1 <- data.frame(die_10) %>%
 
 p2 <- data.frame(rolls) %>% 
   ggplot(aes(x=factor(rolls))) + 
-  geom_bar(aes(y = (..count..)/sum(..count..)), fill="blue", width = 0.98) + 
+  geom_bar(aes(y = after_stat(count)/sum(after_stat(count))), fill="blue", width = 0.98) + 
   ylab("proportion of draws") + 
   xlab("ticket drawn") + 
   ggtitle("Outcomes from rolling a ten sided die:\n empirical distribution") 
  
 
 p1 + p2
-
 ```
 :::
 
@@ -451,14 +460,13 @@ p1 <- data.frame(die_10) %>%
 
 p2 <- data.frame(rolls) %>% 
   ggplot(aes(x=factor(rolls))) + 
-  geom_bar(aes(y = (..count..)/sum(..count..)), fill="blue", width = 0.98) + 
+  geom_bar(aes(y = after_stat(count)/sum(after_stat(count))), fill="blue", width = 0.98) + 
   ylab("proportion of draws") + 
   xlab("ticket drawn") + 
   ggtitle("Outcomes from rolling a ten sided die:\n empirical distribution") 
  
 
 p1 + p2
-
 ```
 :::
 
@@ -467,11 +475,10 @@ p1 + p2
 Let $X \sim Bin(30, 0.5)$. We can simulate the values of this random variable by drawing from the box ![](images/binom-box.jpeg){width="80"} $30$ times, and summing the draws. This will simulate counting the number of successes in $n$ trials. As in the example above, we will plot the probability distribution of $X$ on the left, and the empirical distribution on the right. 
 
 :::{.content-visible when-format="html"}
+
 ```{r}
 #| fig-width: 10
 #| fig-height: 5
-
-
 
 box <- c(0,1)
 binom_30 <- seq(from = 0, to = 30, by = 1)
@@ -479,7 +486,7 @@ prob_30 <- round(dbinom(binom_30, size = 30, prob = 0.5), 3)
 
 set.seed(12345)
 
-n_sims <- 10^6
+n_sims <- 10^4
 
 draws <- replicate(n_sims, sum(sample(box, 30, replace = TRUE)))
 
@@ -519,15 +526,13 @@ p1 + p2
 #| fig-width: 10
 #| fig-height: 5
 
-
-
 box <- c(0,1)
 binom_30 <- seq(from = 0, to = 30, by = 1)
 prob_30 <- round(dbinom(binom_30, size = 30, prob = 0.5), 3)
 
 set.seed(12345)
 
-n_sims <- 10^6
+n_sims <- 10^4
 
 draws <- replicate(n_sims, sum(sample(box, 30, replace = TRUE)))
 
@@ -555,7 +560,6 @@ p2 <- data.frame(draws) %>%
   
 
 p1 + p2
-
 ```
 :::
 
