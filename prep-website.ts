@@ -2,7 +2,7 @@
 import { parse, stringify } from "https://deno.land/std/encoding/yaml.ts";
 import { join, dirname, basename } from "https://deno.land/std/path/mod.ts";
 
-const configPath = '_config.yml'; // Path to your config YAML file
+const configPath = '_config.yml';
 const schedulePath = 'schedule.yml';
 const quartoProfile = Deno.env.get("QUARTO_PROFILE");
 
