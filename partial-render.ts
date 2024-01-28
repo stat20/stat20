@@ -138,7 +138,7 @@ await ignoreFiles(schedulePath);
 
 async function runQuartoRender() {
     const process = Deno.run({
-        cmd: ["quarto", "render", "--profile", "partial-render"],
+        cmd: ["quarto", "render", "--profile", "partial-site"],
         stdout: "inherit",
         stderr: "inherit",
     });
