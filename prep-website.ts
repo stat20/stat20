@@ -82,9 +82,14 @@ if (quartoProfile !== "partial-render" && quartoProfile !== "staff-site") {
 //           Make Listings          //
 // -------------------------------- //
 
-async function makeListings(schedulePath: string) {
-    const yamlContent = await Deno.readTextFile(schedulePath);
-    const schedule = parse(yamlContent) as Array<any>;
+async function makeListings(schedulePath: string, configPath: string) {
+    const scheduleContent = await Deno.readTextFile(schedulePath);
+    const schedule = parse(scheduleContent) as Array<any>;
+
+    const configContent = await Deno.readTextFile(configPath);
+    const config = parse(configContent) as any;
+
+    const listingTypes = config['adaptive-nav']['listings'].map((listing: any) => listing.type);
 
     const typeLists: Record<string, Array<{ path: string }>> = {};
     const scheduleDir = dirname(schedulePath);
@@ -93,8 +98,8 @@ async function makeListings(schedulePath: string) {
         for (const day of week.days) {
             if (day.items && Array.isArray(day.items)) {
                 for (const item of day.items) {
-                    if (item.render) {
-                        const type = item.type.toLowerCase();
+                    if (item.render && listingTypes.includes(item.type)) {
+                        const type = item.type; // Keep the original case
                         if (!typeLists[type]) {
                             typeLists[type] = [];
                         }
@@ -108,11 +113,10 @@ async function makeListings(schedulePath: string) {
     for (const [type, items] of Object.entries(typeLists)) {
         const outputPath = join(scheduleDir, `${type}-contents.yml`);
         await Deno.writeTextFile(outputPath, stringify(items));
+        console.log(` - Created file: ${outputPath}`); 
     }
 }
 
-console.log("> Making files for listings ...");
-await makeListings(schedulePath);
-
-
-console.log("> Rendering documents...");
+console.log("> Making contents files for listings...")
+await makeListings(schedulePath, configPath);
+console.log("> Rendering documents...")

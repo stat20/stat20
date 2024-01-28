@@ -139,8 +139,8 @@ await ignoreFiles(schedulePath);
 async function runQuartoRender() {
     const process = Deno.run({
         cmd: ["quarto", "render", "--profile", "partial-render"],
-        stdout: "inherit", // Pipe the standard output of the command directly to the standard output of the Deno process
-        stderr: "inherit", // Pipe the standard error of the command directly to the standard error of the Deno process
+        stdout: "inherit",
+        stderr: "inherit",
     });
 
     const { code } = await process.status();
@@ -152,4 +152,5 @@ async function runQuartoRender() {
     process.close();
 }
 
+console.log("> Partial render list has been made.");
 await runQuartoRender();
