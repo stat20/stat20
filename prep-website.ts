@@ -72,7 +72,7 @@ async function makeFullSchedule(configPath: string, schedulePath: string) {
 }
 
 // This step is skipped in a partial-render and full-render
-if (quartoProfile !== "partial-render" && quartoProfile !== "staff-site") {
+if (quartoProfile !== "partial-site" && quartoProfile !== "staff-site") {
   console.log("> Making schedule file ...");
   await makeFullSchedule(configPath, schedulePath);
 }
