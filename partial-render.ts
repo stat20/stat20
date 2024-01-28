@@ -153,4 +153,4 @@ async function runQuartoRender() {
 }
 
 console.log("> Partial render list has been made.");
-//await runQuartoRender();
+await runQuartoRender();
