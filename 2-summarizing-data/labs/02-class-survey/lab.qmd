@@ -106,7 +106,7 @@ Six variables appear in the survey data frame that were derived from the origina
 
 ##### part a
 
-Propose your own question involving any two variables in the dataset--at least one of which comes from the `title` variable group mentioned above.
+Propose your own question involving any two variables in the dataset--*one* of which comes from the `title` variable group mentioned above.
 
 ##### part b
 
