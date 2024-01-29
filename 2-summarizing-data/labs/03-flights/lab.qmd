@@ -1,5 +1,5 @@
 ---
-title: "Lab 3: Flights"
+title: "Lab 2: Flights"
 image: images/airline.png
 code-fold: false
 sidebar: false
@@ -21,16 +21,17 @@ For the questions on the handout, consult the image of the data frame found in t
 
 - [Part 1: Understanding the Context of the Data](lab-context.qmd)
 
+<!--
 
 ## Part II: Computing on the Data
 
 The data for this lab can be found in the `flights` data frame in the `stat20data` package. Run `?flights` at the console to learn more about the columns.
 
-<!--
+
 #### Question 1
 
 Filter the data set to contain only the flights that left in the springtime destined for Portland, Oregon and print the first few rows of the data frame. How many were there in 2020?
--->
+
 
 #### Question 2
 
@@ -47,7 +48,6 @@ Arrange the data frame to figure out: which flight holds the record for longest 
 Confirm the records for departure delay from the question above by summarizing that variable by its maximum and its minimum value.
 
 
-<!--
 #### Question 5
 
 What is the mean departure delay of flights leaving from Oakland and San Francisco separately? (calculate two means)
@@ -56,10 +56,8 @@ What is the mean departure delay of flights leaving from Oakland and San Francis
 #### Question 6
 
 What proportion of the flights left on or ahead of schedule? For Oakland and SFO separately, what proportion of flights left on or ahead of schedule?
-!-->
 
 
-<!--
 #### Question 7
 
 How many flights left SFO during March 2020? See the examples of Data Pipelines in the Conditioning notes for a helpful function.
@@ -68,7 +66,7 @@ How many flights left SFO during March 2020? See the examples of Data Pipelines 
 #### Question 8
 
 How many flights left SFO during April 2020?
--->
+
 
 #### Question 9
 
@@ -86,23 +84,23 @@ Add a new column to your data frame called `before_times` that takes values of `
 
 This is best done with a new layer called `facet_wrap()`. Learn about it's use by reading the documentation: <https://ggplot2.tidyverse.org/reference/facet_wrap.html>.
 
-<!--
+
 #### Question 12
 
 If you flew out of OAK or SFO during this time period, what is the tail number of the plane that you were on? If you did not fly in this period, find the tail number of the plane that flew JetBlue flight 40 to New York's JFK Airport from SFO on May 1st.
--->
+
 
 #### Question 13
 
 Create a data frame that contains the median and interquartile range for departure delays, grouped by carrier. Which carrier has the lowest typical departure delay? Which one has the least variable departure delays?
 
-<!--
+
 #### Question 14
 
 Create a plot that captures the relationship of average speed vs. distance and describe the shape and structure that you see. What phenomena related to taking flights from the Bay Area might explain this structure?
--->
 
-<!--
+
+
 #### Question 15
 
 For flights leaving SFO, which month has the highest average departure delay? What about the highest median departure delay? Which of these measures is more useful to know when deciding which month(s) to avoid flying if you particularly dislike flights that are severely delayed?
@@ -110,7 +108,6 @@ For flights leaving SFO, which month has the highest average departure delay? Wh
 #### Question 16
 
 Each individual airplane can be uniquely identified by its tailnumber in the same way that US citizens can be by their social security numbers. Which airplane flew the farthest during this year for which we have data? How many times around the planet does that translate to?
--->
 
 
 #### Question 17
@@ -136,7 +133,6 @@ The plot below shows the relationship between the number of flights going out of
 
 ![](images/complex-ggplot.png){fig-align=center}
 
-<!--
 #### Question 20
 
 Create a plot to illustrate the association between departure delay and arrival delay. Summarize the linear relationship by calculating the correlation coefficient and by fitting a linear model.
@@ -147,5 +143,5 @@ Which flight has the highest arrival delay given its departure delay? (Consult t
 #### Question 21
 
 Fit a multiple linear regression model that explains arrival delay using departure delay and the distance of the flight and print out the coefficients (the intercept and two slopes). Speculate as to why the *sign* (positive or negative) of the distance coefficient is what it is. Can we compare the coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not?
--->
 
+-->

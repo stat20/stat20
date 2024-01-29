@@ -99,10 +99,10 @@ c("fruit", "vegetable", "boba") %in% c("fruit", "vegetable")
 Which observations will be included in the following data frame?
 
 ```{r echo = TRUE, eval = FALSE}
-filter(class_survey, 
-       coding_exp_scale < 3,
-       olympic_sport %in% c("Ice skating", "Speed skating"),
-       entrepreneur == TRUE)
+class_survey |>
+  filter(coding_exp_scale < 3,
+        olympic_sport %in% c("Ice skating", "Speed skating"),
+        entrepreneur == TRUE)
 ```
 
 :::{.poll}
@@ -114,6 +114,7 @@ Please respond at `pollev.com`.
 countdown::countdown(1, top = 0)
 ```
 
+<!--
 ## Question 3: Opinion
 
 10. What are students’ perceptions of the chance that there is a new COVID variant that disrupts instruction in Spring 2023?
@@ -128,7 +129,9 @@ Answer at `pollev.com`.
 Q: what is the comparison group: all students or students who are not in their first semester?
 :::
 
-## Question 4
+-->
+
+## Question 3
 
 :::{.poll}
 Which data frame will have fewer rows?
@@ -137,14 +140,14 @@ Which data frame will have fewer rows?
 . . .
 
 ```{r echo = TRUE}
-class_survey <- mutate(class_survey, 
-                       first_sem = year == "This is my first semester!")
-
+#| eval: false
 # this one
-df_1 <- filter(class_survey, first_sem)
+filter(class_survey, year == "This is my first semester!")
 
 # or this one
-df_2 <- filter(class_survey, year == "This is my first semester!")
+class_survey |>
+  mutate(first_sem = (year == "This is my first semester!")) |>
+  filter(first_sem)
 ```
 
 ```{r}
@@ -153,12 +156,14 @@ countdown::countdown(1, top = 0)
 ```
 
 
-# Building data pipelines
+# Concept Question 2 Redux - Building data pipelines
 
+> How do we extract the average of these students' chance that class will be disrupted by a new COVID variant?
 
-## Question 2 Redux {auto-animate=true}
+Let's look at three different ways to answer this question
 
-How do we extract the average of these students' chance that class will be disrupted by a new COVID variant?
+## Nesting {auto-animate=true}
+
 
 ```{r}
 #| eval: false
@@ -168,9 +173,9 @@ filter(class_survey,
        entrepreneur == TRUE)
 ```
 
-## Question 2 Redux {auto-animate=true}
 
-How do we extract the average of these students' chance that class will be disrupted by a new COVID variant?
+## Nesting {auto-animate=true}
+
 
 ```{r}
 #| eval: false
@@ -184,9 +189,8 @@ select(filter(class_survey,
        new_COVID_variant)
 ```
 
-## Question 2 Redux {auto-animate=true}
+## Nesting {auto-animate=true}
 
-How do we extract the average of these students' chance that class will be disrupted by a new COVID variant?
 
 ```{r}
 #| eval: false
@@ -201,9 +205,7 @@ summarize(select(filter(class_survey,
        covid_avg = mean(new_COVID_variant))
 ```
 
-## Question 2 Redux {auto-animate=true}
-
-How do we extract the average of these students' chance that class will be disrupted by a new COVID variant?
+## Nesting {auto-animate=true}
 
 ```{r}
 summarize(select(filter(class_survey, 
@@ -218,6 +220,7 @@ summarize(select(filter(class_survey,
 ```
 
 
+<!--
 ## Data Pipelines
 
 . . .
@@ -230,6 +233,7 @@ Most claims about data start with a *raw* data set, undergo many subsetting, agg
 
 > Let's look at three equivalent ways to build a pipeline
 
+-->
 
 ## Nesting
 
@@ -315,14 +319,14 @@ summarize(df2,
 . . .
 
 ```{r eval = FALSE, echo = TRUE}
-class_survey %>%
+class_survey |>
   filter(coding_exp_scale < 3,
          olympic_sport %in% c("Ice skating", "Speed skating"),
-         entrepreneur == TRUE) %>%
+         entrepreneur == TRUE) |>
   select(coding_exp_scale,
          olympic_sport,
          entrepreneur,
-         new_COVID_variant) %>%
+         new_COVID_variant) |>
   summarize(covid_avg = mean(new_COVID_variant))
 ```
 
@@ -344,7 +348,6 @@ class_survey %>%
 
 ::::
 
-
 ## Understanding your pipeline
 
 . . .
@@ -361,8 +364,8 @@ It's good practice to understand the output of each line of code by *breaking th
 #| echo: true
 #| eval: true
 #| error: true
-class_survey %>%
-  select(new_COVID_variant) %>%
+class_survey |>
+  select(new_COVID_variant) |>
   filter(year == "It's my first year.")
 ```
 :::
@@ -371,7 +374,7 @@ class_survey %>%
 ```{r}
 #| echo: true
 #| eval: true
-class_survey %>%
+class_survey |>
   select(new_COVID_variant)
 ```
 :::
@@ -379,20 +382,20 @@ class_survey %>%
 ::::
 
 
-## Question 5
+## Concept Question 2 Redux
 
 ```{r}
 #| echo: true
 #| eval: false
-class_survey %>% # A #<<
+class_survey |> # A #<<
   filter(coding_exp_scale < 3,
          olympic_sport %in% c("Ice skating", 
                          "Speed skating"),
-         entrepreneur == TRUE) %>% # B #<<
+         entrepreneur == TRUE) |> # B #<<
   select(coding_exp_scale,
          olympic_sport,
          entrepreneur,
-         new_COVID_variant) %>% # C #<<
+         new_COVID_variant) |> # C #<<
   summarize(covid_avg = mean(new_COVID_variant)) # D #<<
 ```
 
@@ -400,296 +403,15 @@ class_survey %>% # A #<<
 What are the dimensions (rows x columns) of the data frames output at each stage of this pipe?
 :::
 
+. . . 
+
 ```{r}
 #| echo: false
 countdown::countdown(1, top = 0)
 ```
 
 
-
-
-## Question 2: Code
-
-Do you think first year students would be more likely or less likely to think we would remain in remote learning for the entire semester?
-
-:::{.poll}
-Which commands are needed to help answer this question?
-:::
-
-:::{layout-ncol=2}
-```{r}
-#| eval: false
-
-class_survey %>%
-    filter(year) %>%
-
-```
-
-:::
-
-## Describing `new_COVID_variant`
-
-```{r}
-library(tidyverse)
-library(stat20data)
-class_survey <- class_survey %>%
-  select(year, new_COVID_variant) %>%
-  mutate(new_COVID_variant = round(new_COVID_variant, digits = 2))
-```
-
-
-```{r}
-#| echo: true
-#| eval: false
-ggplot(class_survey, aes(x = new_COVID_variant)) +
-  geom_histogram()
-```
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-height: 3
-ggplot(class_survey, aes(x = new_COVID_variant)) +
-  geom_histogram()
-```
-
-
-Aside: *density plot*
-```{r}
-#| echo: true
-#| eval: false
-ggplot(class_survey, aes(x = new_COVID_variant)) +
-  geom_density() #<<
-```
-
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-height: 3
-ggplot(class_survey, aes(x = new_COVID_variant)) +
-  geom_density()
-```
-
-## Describing `new_COVID_variant`
-
-
-```{r}
-#| echo: true
-#| eval: false
-ggplot(class_survey, aes(x = new_COVID_variant)) +
-  geom_histogram()
-```
-
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-height: 3
-ggplot(class_survey, aes(x = new_COVID_variant)) +
-  geom_histogram()
-```
-
-```{r}
-#| echo: true
-summarize(class_survey,
-          mean = mean(new_COVID_variant),
-          med = median(new_COVID_variant),
-          iqr = IQR(new_COVID_variant),
-          sd = sd(new_COVID_variant))
-```
-
-The distribution of probabilities of **all** students is right-skewed with a mean probability of `r round(mean(class_survey$new_COVID_variant), 2)` and a median probability of `r round(median(class_survey$new_COVID_variant), 2)`, an IQR of `r round(IQR(class_survey$new_COVID_variant), 2)` and a SD of `r round(sd(class_survey$new_COVID_variant), 2)`.
-
-## Describing first year students
-
-How can we focus our analysis on just first year students?
-
-. . .
-
-**General goal**: Identify whether the *value* in a variable meets a *condition*.
-
- > Here: Is the value in `new_COVID_variant` equal to `"I'm in my first year."`?
-
-. . .
-
-**Our Tool, Comparison operators**: A collection of operators that compare two values / vectors and return `TRUE` or `FALSE`.
-
-## Evaluating equivalence
-
-```{r}
-#| label: fruit1
-#| echo: true
-#| eval: FALSE
-"fruit" == "vegetable"
-```
-
-. . .
-
-```{r ref.label = "fruit1", echo = FALSE}
-```
-
-. . .
-
-```{r fruit2, echo = TRUE, eval = FALSE}
-"fruit" == "fruit"
-```
-
-. . .
-
-```{r ref.label = "fruit2", echo = FALSE}
-```
-
-. . .
-
-```{r fruit3, echo = TRUE, eval = FALSE}
-"fruit" != "fruit"
-```
-
-. . .
-
-```{r ref.label = "fruit3", echo = FALSE}
-```
-
-. . .
-
-> `==` evaluates equality, `!=` evaluates inequality.
-
-
-## Adding a grouping variable
-
-. . .
-
-```{r mut, echo = TRUE, eval = FALSE}
-class_survey <- mutate(class_survey,
-                       first_year = year == "I'm in my first year.")
-class_survey
-```
-
-. . .
-
-```{r ref.label = "mut", echo = FALSE, eval = TRUE}
-```
-
-# Filtering data using logical vectors
-
-## Filtering rows
-
-
-```{r fil, echo = TRUE, eval = FALSE}
-first_yr_df <- filter(class_survey, first_year)
-first_yr_df
-```
-
-. . .
-
-```{r ref.label = "fil", echo = FALSE, eval = TRUE}
-```
-
-
-## Describing `new_COVID_variant` with statistics
-
-Statistics from *all* students
-
-```{r echo = TRUE}
-summarize(class_survey,
-          mean = mean(new_COVID_variant),
-          med = median(new_COVID_variant),
-          iqr = IQR(new_COVID_variant),
-          sd = sd(new_COVID_variant))
-```
-
-Statistics from *first year* students
-
-```{r echo = TRUE}
-summarize(first_yr_df,
-          mean = mean(new_COVID_variant),
-          med = median(new_COVID_variant),
-          iqr = IQR(new_COVID_variant),
-          sd = sd(new_COVID_variant))
-```
-
-## Describing `new_COVID_variant` with graphics
-
-
-Histogram for *all* students
-
-```{r echo = TRUE, fig.height=4}
-ggplot(class_survey, aes(x = new_COVID_variant)) +
-  geom_histogram()
-```
-
-Histograms from *first year* and non-first year students
-
-```{r echo = TRUE, fig.height=4}
-ggplot(class_survey, aes(x = new_COVID_variant)) +
-  geom_histogram() +
-  facet_wrap(vars(first_year))
-```
-
-
-
-## Example 1
-
-> What is the mean probability of `new_COVID_variant` for students who were very confident that we could engineer our way out of the effects of climate change (6 or above on `climate_change`)?
-
-```{r}
-class_survey
-```
-
-. . .
-
-```{r opt, echo = TRUE, eval = FALSE}
-optimist_df <- filter(class_survey, climate_change >= 6)
-summarize(optimist_df, mean(new_COVID_variant))
-```
-
-. . .
-
-```{r ref.label = "opt", echo = FALSE, eval = FALSE}
-```
-
-. . .
-
-```{r opt2, echo = TRUE, eval = FALSE}
-summarize(class_survey, mean(new_COVID_variant))
-```
-
-. . .
-
-```{r ref.label = "opt2", echo = FALSE, eval = TRUE}
-```
-
-
-## Example 2
-
-> What is the mean probability of `new_COVID_variant` for **first-year** students who were very confident that we could engineer our way out of the effects of climate change (6 or above on `climate_change`)?
-
-```{r}
-data("class_survey")
-```
-
-. . .
-
-```{r opt3, echo = TRUE, eval = FALSE}
-optimist_df <- filter(class_survey,
-                      climate_change >= 6,
-                      year == "I'm in my first year.")
-summarize(optimist_df, mean(new_COVID_variant))
-```
-
-. . .
-
-```{r ref.label = "opt3", echo = FALSE, eval = TRUE}
-```
-
-. . .
-
-> You can string together conditions by adding them as arguments to `filter()` separated by commas.
---
-> What else can logical vectors be used for?
-
-##
+## Concept Question 4
 
 ```{r echo = TRUE, eval = FALSE}
 summarize(class_survey, mean(year == "I'm in my first year."))
@@ -722,9 +444,29 @@ TRUE * TRUE
 
 # Break
 
-# Worksheet - Digital
+# Problem Set 5: Data Pipelines
 
 ```{r}
 #| echo: false
 countdown::countdown(25, top = 0)
 ```
+
+# Break
+
+```{r}
+#| echo: false
+countdown::countdown(5, top = 0)
+```
+
+# Lab 2.1: Flights
+
+Let's move to the lab slides on the course website!
+
+. . . 
+
+```{r}
+#| echo: false
+countdown::countdown(25, top = 0)
+```
+
+# End of Lecture
