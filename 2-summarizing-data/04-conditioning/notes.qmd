@@ -472,6 +472,7 @@ As we begin to do analyses that require multiple operations, the **pipe operator
 
 We can express existing variables in new ways or create new variables altogether by performing a **mutation**. There are several ways to subset a data frame but the most important for data analysis is **filtering**: subsetting the rows according to a condition. In R, that condition is framed in terms of a **comparison** between a variable and a value (or set of values). Comparisons take many forms and can be combined using **logical operators**. The result is a **logical vector** that can be used for filtering or computing summary statistics. Finally, we learned to **arrange** a data frame by the ordering of a column. 
 
+<!--
 ---------------------------
 ---------------------------
 
@@ -566,3 +567,4 @@ msleep %>%
 ```
 
 This syntax looks a lot like the syntax used for `mutate()`! Like in `mutate()`, we name and define new columns: `new_column = formula`. The difference is that `summarize()` returns a brand new data frame that does not contain the columns of the original data frame where `mutate()` returns a data frame with all columns of the original data frame in addition to the newly defined ones.
+-->
