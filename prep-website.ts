@@ -39,10 +39,10 @@ async function unIgnoreFiles(schedulePath: string) {
     }
 }
 
-// This step is skipped in a partial-render and a staff-site-render
-if (quartoProfile !== "partial-site" && quartoProfile !== "staff-site") {
-  console.log("> Making schedule file ...");
-  await makeFullSchedule(configPath, schedulePath);
+// If this the script is during a partial-render, remove _ from filenames
+if (quartoProfile == "partial-site") {
+  console.log("> Unignoring Files ...");
+  await unIgnoreFiles(schedulePath);
 }
 
 
