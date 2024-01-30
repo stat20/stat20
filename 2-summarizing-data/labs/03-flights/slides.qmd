@@ -28,7 +28,7 @@ format:
 
 # Part I: Understanding the Context of the Data
 
-## {background-image="images/flights-df.png" background-size=contain}
+## {background-image="images/flights.png" background-size=contain}
 
 ```{r}
 countdown::countdown(25, top = 0)
