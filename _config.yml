@@ -71,10 +71,10 @@ schedule:
             render: true
           - type: Slides
             href: 2-summarizing-data/04-conditioning/slides.qmd
-            render: false
+            render: true
           - type: Lab
             href: 2-summarizing-data/labs/03-flights/lab.qmd
-            render: false
+            render: true
       - display-date: Feb 1
         date: 2/1/24
         topic: Grammar of Graphics
