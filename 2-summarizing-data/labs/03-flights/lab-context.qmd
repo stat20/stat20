@@ -12,73 +12,22 @@ format:
 \thispagestyle{empty}
 
 \begin{center}
-\textsc{Stat 20: Lab 3.1 Flights} \\
+\textsc{Stat 20: Lab 2.1 Flights} \\
 \noindent\rule{12cm}{0.4pt}
 \end{center}
-
-## Part I: Understanding the Context of the Data
 
 @. What is the unit of observation in the data frame in the slides?
 
 \
-\
-\
 
-2. Which variables are categorical?
 
-\
-\
-\
-\
-\
-\
+@. Come up with four questions that can be posed using the variables in this dataset:
 
-3. Which variables are numerical?
-
-\
-\
-\
-\
-\
-\
-\
-
-4. Do any of the variable have ambiguous data types to you? Why are they ambiguous?
-
-\
-\
-\
-\
-
-5. Is there any discernible pattern to the manner in which the rows are ordered?
-
-\
-\
-\
-
-6. What is your guess for the units/format used to record the departure time? Said another way, what would a value of 1517 represent?
-
-\
-\
-\
-
-{{< pagebreak >}}
-
-7. What filter would you use to extract the flights that left in the springtime destined for Portland, Oregon? Draw a sketch of this smaller data frame showing at least the columns used in the filter.
-
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
+  -   One that can be answered via a summary
+  -   One that can be answered via a generalization
+  -   One that can be answered via a prediction
+  -   One that can be answered via a causal claim.
+  
 \
 \
 \
@@ -90,7 +39,136 @@ format:
 \
 \
 
-8. Provide a sketch of the code that can be used to calculate the mean departure delays of all flights. Provide a second sketch of code that calculates the mean departure delays for Oakland and San Francisco Airport separately. Provide a sketch of this second data frame with correct dimensions.
+
+
+<!--
+
+@. Which variables are categorical?
+
+\
+\
+\
+\
+\
+\
+
+@. Which variables are numerical?
+
+\
+\
+\
+\
+\
+\
+\
+
+@. Do any of the variables have ambiguous data types to you? Write them here.
+
+\ 
+\ 
+\ 
+\ 
+\ 
+\ 
+\ 
+
+-->
+
+
+
+@. Name a variable which has an ambiguous (could be numerical or categorical) type to you. Then, sketch *two* visualizations of this plot: one where the variable is treated numerically, and one where the variable is being treated categorically. In each plot:
+
+-   depict a shape which reflects *your expectation* of the phenomenon;
+-   label your axes and provide a title.
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+
+<!--
+@. Is there any discernible pattern to the manner in which the rows are ordered?
+
+\
+\
+\
+-->
+
+@. What is your guess for the units/format used to record the departure time? Said another way, what would a value of 1517 represent?
+
+\
+\
+\
+
+
+@. What filter would you use to extract the flights that left in the springtime destined for Portland, Oregon?
+Draw a sketch of this smaller data frame showing at least the columns used in the filter.
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+
+
+@. What mutation would you use to create a column that records `TRUE` for flights leaving during or after March 2020 and `FALSE` otherwise? 
+
+\
+\
+\
+\
+
+
+
+@. What mutation would you use to create a column that records the average speed of a plane during its flight, in miles per hour? *Hint: think about the units of the variables needed to complete this mutation, and perform any unit conversion that is necessary.* 
+\
+\
+\
+\
+\
+\
+\
+
+
+
+
+@. Provide one `dplyr` pipeline that calculates the mean departure delay for Oakland and San Francisco Airports. Provide a sketch of the resulting data structure with correct dimensions.
+
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
 
 
 <!-- ## Part II: Computing on the Data -->
