@@ -72,6 +72,9 @@ schedule:
           - type: Slides
             href: 2-summarizing-data/04-conditioning/slides.qmd
             render: false
+          - type: Lab
+            href: 2-summarizing-data/labs/03-flights/lab.qmd
+            render: false
       - display-date: Feb 1
         date: 2/1/24
         topic: Grammar of Graphics
