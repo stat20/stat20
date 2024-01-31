@@ -20,6 +20,7 @@ format:
       data-background-size: contain
 ---
 
+
 # Lab: Flights
 
 ## {background-image="images/sf-chronicle.png" background-size="contain"}
