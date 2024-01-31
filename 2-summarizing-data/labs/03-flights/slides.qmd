@@ -1,5 +1,5 @@
 ---
-title: "Lab 3: Flights"
+title: "Lab 2: Flights"
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
@@ -20,7 +20,7 @@ format:
       data-background-size: contain
 ---
 
-# Lab 3: Flights
+# Lab 2: Flights
 
 ## {background-image="images/sf-chronicle.png" background-size="contain"}
 

@@ -31,10 +31,26 @@ library(stat20data)
 ```
 
 - Concept Questions
-- Data Pipelines
+- Problem Set 4
 - *Break*
-- Worksheet - Digital
-- Lab 3.1: Flights 
+- Lab 2.1: Flights 
+
+## Announcements
+
+- *RQ: A Grammar of Graphics* due Wednesday at 11:59pm
+
+. . . 
+
+- *Problem Set 4* (paper, max. 3) due next Tuesday at 9am 
+
+. . . 
+
+- *Lab 2.1* (paper, max. 2) due next Tuesday at 9am
+
+. . . 
+
+- *Quiz 1* next Monday at 11:59pm (direct logistical and content questions to the syllabus and megathread on Ed). 
+
 
 # Concept Questions
 
