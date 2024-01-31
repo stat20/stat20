@@ -6,6 +6,7 @@
   
 
 ```{r}
+#| eval: false
 library(rvest)
 # Reading in the table from Wikipedia
 tab <- read_html("https://en.wikipedia.org/wiki/List_of_tallest_buildings") %>% 

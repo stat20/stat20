@@ -13,12 +13,3 @@ subtitle: "Course notes for STAT 20: Introduction to Probability and Statistics"
 \
 
 Navigate the notes using the menu in the left sidebar or the search in the upper right corner of the page. 
-
-
-:::{.content-hidden unless-profile="staff-site"}
-### Questions and Data
-
-:::{#lo-questions}
-:::
-
-:::
