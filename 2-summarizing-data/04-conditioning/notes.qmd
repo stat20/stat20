@@ -267,6 +267,7 @@ msleep |>
 
 *These two methods are equivalent.*
 
+<!--
 To return all rows that either have a high body weight or low sleep time or both, use the `|` operator (sometimes called "vertical bar").
 
 ```{r}
