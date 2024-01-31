@@ -1,5 +1,5 @@
 
-import { parse, stringify } from "https://deno.land/std/encoding/yaml.ts";
+import { parse, stringify } from "https://deno.land/std/yaml/mod.ts";
 import { join, dirname, basename } from "https://deno.land/std/path/mod.ts";
 
 const configPath = '_config.yml'; // Path to your config YAML file
