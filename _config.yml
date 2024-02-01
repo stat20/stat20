@@ -29,7 +29,7 @@ schedule:
             render: true
     resources:
       - '<a href="https://markdownlivepreview.com">Markdown Live Preview</a>'
-      - `<a href="https://www.stat20.org/1-questions-and-data/notes/extra-practice.qmd">Extra Practice</a>
+      - `<a href="https://www.stat20.org/1-questions-and-data/extra-practice.qmd">Extra Practice</a>
   - week: 2
     days:
       - display-date: Jan 23
