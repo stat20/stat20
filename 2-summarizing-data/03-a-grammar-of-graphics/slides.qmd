@@ -287,6 +287,12 @@ knitr::include_graphics("images/q1.png")
 
 > Roughly 68 percent of those passengers who were in the first class survived the wreckage of the Titanic. 
 
+. . . 
+
+```{r}
+countdown::countdown(minutes = 1, top = 0)
+```
+
 ## Which measure of center/spread is least appropriate?
 
 ```{r}
