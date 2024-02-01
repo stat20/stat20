@@ -1,8 +1,12 @@
 ---
-title: "Making Claims with Data"
-subtitle: "Extra Practice"
+title: "Understanding the World With Data"
+subtitle: "PS"
 format: stat20handout-pdf
 ---
+
+\begin{center}
+\textbf{This problem set will not be graded. Its materials will be tested on Quiz 1. We recommend that you work on it as study material.}
+\end{center}
 
 For each of the following scenarios, identify which type(s) of claim is being made: a *Summary*, a *Generalization*, a *Causal Claim*, or a *Prediction*. Some scenarios may have more than one.
 \
