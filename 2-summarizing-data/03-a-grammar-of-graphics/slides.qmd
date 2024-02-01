@@ -22,7 +22,15 @@ format:
 
 ## Agenda
 
+```{r}
+#| echo: false
+#| message: false
+library(stat20data)
+library(tidyverse)
+```
+
 - Announcements
+- Concept Question
 - Concept Activity
 - Quiz Review
 - *Break*
@@ -38,7 +46,7 @@ format:
 
 . . . 
 
--   Two problem sets without numbers relating to the *Understanding the World with Data* and *A Grammar of Graphics* have been posted to the resources tab on Ed. These are not for a grade and are for studying purposes. 
+-   Two problem sets without numbers relating to the *Understanding the World with Data* and *A Grammar of Graphics* will be posted to the resources tab on the home page of the course website. These are *not* for a grade and are for studying purposes. 
 
 . . . 
 
@@ -46,6 +54,30 @@ format:
     -   Individual portion [25 minutes]
     -   Group (max. 3) portion [15 minutes]
     -   Please consult the Quiz Megathread and Syllabus for content and logistical questions.
+    
+# Concept Question
+    
+## What code was used to make the following plot?
+
+```{r}
+penguins |>
+  filter(species == "Gentoo") |>
+  mutate(is_male = (sex == "male")) |>
+  ggplot(mapping = 
+           aes(x = body_mass_g,
+               y = is_male)) +
+  geom_boxplot() +
+  labs(x = "Body Mass (in grams)",
+      y =  "Male Penguin?",
+      title = "Male Gentoo penguins have larger body masses")
+  
+```
+
+. . .
+
+-   Choose an answer at `pollev.com`. 
+
+
     
 # Concept Activity
 
@@ -218,6 +250,118 @@ gapminder %>%
 # Quiz Review
 
 -   Head to `pollev.com` for a series of former quiz questions and quiz-level questions! *Make sure you take notes*. 
+
+## What type of claim was made?
+
+```{r}
+knitr::include_graphics("images/poll.png")
+```
+
+. . . 
+
+```{r}
+countdown::countdown(minutes = 1, top = 0)
+```
+
+## What type of variable is listeners?
+
+```{r}
+knitr::include_graphics("images/spotify.png")
+```
+
+. . . 
+
+```{r}
+countdown::countdown(minutes = 1, top = 0)
+```
+
+
+## What type of proportion is used?
+
+```{r}
+knitr::include_graphics("images/q1.png")
+```
+
+. . . 
+
+> Roughly 68 percent of those passengers who were in the first class survived the wreckage of the Titanic. 
+
+## Which measure of center/spread is least appropriate?
+
+```{r}
+library(patchwork)
+
+p1 <- penguins |>
+  filter(species == "Gentoo",
+         sex == "male") |>
+  ggplot(mapping = aes(x = body_mass_g)) +
+  geom_histogram(color = "white",
+                 bins = 10) +
+  labs(title = "Image 1")
+
+
+p2 <- class_survey |>
+  filter(new_COVID_variant >0,
+         new_COVID_variant < 1) |>
+  ggplot(mapping = aes(x = new_COVID_variant)) +
+  geom_histogram(color = "white", bins = 10) +
+  labs(title = "Image 2")
+
+p1 / p2
+
+```
+
+```{r}
+countdown::countdown(minutes = 1, top = 0)
+```
+
+## What are the aesthetics and geometry of this plot?
+
+```{r}
+#| fig-align: center
+#| fig-width: 11
+library(tidyverse)
+library(palmerpenguins)
+
+ggplot(penguins, aes(x = bill_length_mm,
+                     fill = species)) +
+    geom_density() +
+    theme_gray(base_size = 20)
+```
+
+. . . 
+
+```{r}
+countdown::countdown(1, top = 1)
+```
+
+## What has not changed when moving from left to right?
+
+```{r}
+#| fig-align: center
+#| fig-width: 11
+library(patchwork)
+p1 <- ggplot(penguins, aes(x = bill_length_mm,
+                           y = bill_depth_mm,
+                           color = species)) +
+    geom_point(size=2) +
+    theme_gray(base_size = 20) +
+    theme(legend.position = "none") 
+p2 <- ggplot(penguins, aes(x = bill_length_mm,
+                           y = bill_depth_mm,
+                           shape = species)) +
+    geom_point(size=5, alpha = .5) +
+    theme_bw(base_size = 20) +
+    lims(y = c(10,24)) +
+    theme(legend.position = "none") +
+    xlab("Bill Length (in millimeters)") +
+    annotate(geom = "text", x = 45, y = 11,
+             label = "Gentoo", size = 5) +
+    annotate(geom = "segment", x = 45, y = 11.2,
+             xend = 45, yend = 13, 
+             size = 1)
+p1 + p2
+```
 
 # Break
 
