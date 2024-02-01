@@ -9,7 +9,6 @@ format:
     multiplex: false
     transition: fade
     slide-number: c
-    self-contained: true
     incremental: false
     center: false
     menu: false
