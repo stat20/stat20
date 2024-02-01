@@ -1,0 +1,56 @@
+---
+title: "Communicating with Graphics"
+subtitle: "PS"
+format: stat20handout-pdf
+---
+
+\begin{center}
+\textbf{This problem set will not be graded. Its materials will be tested on Quiz 1. We recommend that you work on it as study material.}
+\end{center}
+
+
+Complete the following two questions in a Quarto Document.
+
+## Question 1
+
+Use the `gapminder` data set in the `gapminder` library to recreate a version of Hans Rosling's famous data visualization shown in the *A Grammar of Graphics* slides (a single plot instead of a movie; in other words, for just a single year). 
+
+-   You can see at a glance which years are available by running `count(gapminder, year)` in an R chunk. 
+
+-   You may use GDP per capita rather than fertility rate.
+
+You will need to take the following steps.
+
+### Step A
+
+Determine the correct geometry for the plot and make an initial `ggplot` with the two variables on the x and y axis.
+
+### Step B
+
+Distinguish the continents by either shape or color. Which ever one you do not use, *set* its value to something other than the default. *Hint: use the help_file for `geom_point()` to find options you can set to!*
+
+### Step C
+
+Alter the x and y axis labels so that they're more descriptive than just the variable given names in `gapminder`. 
+
+### Step D
+
+Apply a theme of your choosing.
+
+### Step E
+
+Add an annotation that draws attention to a particular feature of the data (of your choosing).
+
+### Step F
+
+Title your plot with a claim based on your data. 
+
+### Step G
+
+Apply a theme of your choosing.
+
+
+
+## Question 2
+
+Recreate one of the plots that you created for Lab 1.2, but incorporate at least 3 of the 6 elements of Communicating with Graphics to polish your plot into one that tells a particular story.

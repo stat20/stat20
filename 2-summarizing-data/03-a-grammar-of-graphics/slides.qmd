@@ -22,14 +22,34 @@ format:
 
 ## Agenda
 
-- Concept Questions
-- Lab 2: Class Survey
-  - Part I
+- Announcements
+- Concept Activity
+- Quiz Review
 - *Break*
-- Lab 2: Class Survey
-  - Part II
+- Lab 2.2: Computing on the Data
 
-# Concept Questions
+## Announcements
+
+-   Lab 2 (both parts) due Tuesday at 9am
+
+. . . 
+
+-   Problem Set 4 due Tuesday at 9am. 
+
+. . . 
+
+-   Two problem sets without numbers relating to the *Understanding the World with Data* and *A Grammar of Graphics* have been posted to the resources tab on Ed. These are not for a grade and are for studying purposes. 
+
+. . . 
+
+-   Quiz 1 next Monday, in class. 
+    -   Individual portion [25 minutes]
+    -   Group (max. 3) portion [15 minutes]
+    -   Please consult the Quiz Megathread and Syllabus for content and logistical questions.
+    
+# Concept Activity
+
+<!--
 
 ##
 
@@ -54,6 +74,7 @@ ggplot(penguins, aes(x = bill_length_mm,
 ```{r}
 countdown::countdown(1, top = 0)
 ```
+
 
 ##
 
@@ -84,8 +105,9 @@ p1 + p2
 countdown::countdown(1, top = 0)
 ```
 
+-->
 
-## 
+## Concept Activity
 
 You will be watching a 2.5 minute video of a presentation by a scientist, Hans Rosling, who studied global public health. He presents data visualizations depicting the change in life expectancy and family size over several decades in the 20th century.
 
@@ -193,6 +215,20 @@ gapminder %>%
 
 - Points
 
+# Quiz Review
+
+-   Head to `pollev.com` for a series of former quiz questions and quiz-level questions! *Make sure you take notes*. 
+
 # Break
 
-# Lab 2: Class Survey
+```{r}
+countdown::countdown(minutes = 5, top = 0)
+```
+
+# Lab 2.2: Flights
+
+```{r}
+countdown::countdown(minutes = 40, top = 0)
+```
+
+# End of Lecture
