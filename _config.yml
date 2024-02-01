@@ -88,7 +88,7 @@ schedule:
             render: true
           - type: Slides
             href: 2-summarizing-data/03-a-grammar-of-graphics/slides.qmd
-            render: false
+            render: true
     resources:
       - '<a href="https://www.stat20.org/2-summarizing-data/03-a-grammar-of-graphics/ps.pef">Extra Practice</a>'
   - week: 4
