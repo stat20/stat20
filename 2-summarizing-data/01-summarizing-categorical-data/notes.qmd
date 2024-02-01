@@ -139,6 +139,7 @@ We can also opt to present these counts in graphical form by constructing a **ba
 #| echo: false
 #| layout-ncol: 2
 #| fig-cap: [Stacked bar chart, Dodged bar chart]
+#| eval: false
 ggplot(penguins, aes(x = species,
                     fill = island)) +
     geom_bar()
