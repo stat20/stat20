@@ -98,7 +98,7 @@ schedule:
         topic: Quiz 1
         items: []
       - display-date: Feb 6
-        date: 2/6/24
+        date: 2/7/24
         topic: Intro to Probability
         items:
           - type: Notes
