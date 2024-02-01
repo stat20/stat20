@@ -72,6 +72,9 @@ schedule:
           - type: Slides
             href: 2-summarizing-data/04-conditioning/slides.qmd
             render: true
+          - type: PS
+            href: 2-summarizing-data/04-conditioning/ps.qmd
+            render: true
           - type: Lab
             href: 2-summarizing-data/labs/03-flights/lab.qmd
             render: true
