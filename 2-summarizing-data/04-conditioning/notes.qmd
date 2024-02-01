@@ -8,6 +8,8 @@ format:
   pdf: default
 ---
 
+<!--
+
 ## Introducing the pipe
 
 ```{r}
@@ -114,7 +116,6 @@ msleep %>%
 In this data set, the unit of observation is a single species and the variables observed on each are its name, the average length of sleep each day, the natural log of the average weight, its dietary pattern, and its conservation status. 
 We can visualize the relationship between sleep and body size in all 83 species using a **scatter plot.**
 
-<!--
 
 ```{r}
 #| code-fold: false
