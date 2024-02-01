@@ -38,12 +38,14 @@ Arrange the data set to find out: which flight holds the record for longest depa
 
 I attempted to find some summary statistics on the arrival delay of flights, grouped by their airline carrier. You can find the mininmum and maximum of numerical variables using the `min()` and `max()` function, respectively. This is the code that I ran.
 
-> flights |>
+```{r, echo = TRUE, eval = FALSE}
+flights |>
     group_by(carrier) |>
     summarise(min_arr_delay = min(arr_delay)) |>
     summarise(max_arr_delay = max(arr_delay)) |>
     summarise(prop_long_flight = mean(distance > 1000))
-     
+```
+
 However, I received an error and the code would not run.
 Explain the origin of this error, then modify/correct the code and run it to display the output I was hoping to achieve. 
 
@@ -51,12 +53,13 @@ Explain the origin of this error, then modify/correct the code and run it to dis
 
 Using the airport nearest your hometown, which day of the week and which airline seems best for flying there from San Francisco? If you’re from near SFO or OAK or from abroad, use Chicago as your hometown. Be clear on how you’re defining best. Feel free to mutate a column(s) to your dataset which might be your preferred way to determine best.
 
-There is no explicit weekday column in this data set, but there is suﬀicient information to piece it together. The following line of code can be added to your pipeline to create that new column. Note also that it uses functions which are contained in the `lubridate` package.
+There is no explicit weekday column in this data set, but there is sufficient information to piece it together. The following line of code can be added to your pipeline to create that new column. Note also that it uses functions which are contained in the `lubridate` package.
 
-> mutate(day_of_week =
+```{r, echo = TRUE, eval = FALSE}
+mutate(day_of_week =
             wday(ymd(paste(year, month, day, set = "-")),
             label = T))
-
+```
 
 #### Question 5
 
@@ -82,7 +85,7 @@ Create a plot to examine the relationship between average speed and distance (yo
 
 #### Question 8
 
-Color the points of the plot you made in **Question 5** by destination, and use this to provide a possible explanation for the relationship between the two variables. You can add layers to plot objects with `+`.
+Color the points of the plot you made in **Question 5** by destination, and use this to provide a possible explanation for the relationship between the two variables in the plot title. You can add layers to plot objects with `+`.
 
 
 <!--
