@@ -2,12 +2,11 @@
 title: "Data Pipelines"
 subtitle: "Data pipelines, filtering, logical variables and comparison operators"
 image: images/mammals.png
+from: markdown+emoji
 format:
   html: default
   pdf: default
 ---
-
-<!--
 
 ## Introducing the pipe
 
@@ -269,7 +268,6 @@ msleep |>
 
 *These two methods are equivalent.*
 
-<!--
 To return all rows that either have a high body weight or low sleep time or both, use the `|` operator (sometimes called "vertical bar").
 
 ```{r}
@@ -569,4 +567,3 @@ msleep %>%
 ```
 
 This syntax looks a lot like the syntax used for `mutate()`! Like in `mutate()`, we name and define new columns: `new_column = formula`. The difference is that `summarize()` returns a brand new data frame that does not contain the columns of the original data frame where `mutate()` returns a data frame with all columns of the original data frame in addition to the newly defined ones.
--->
