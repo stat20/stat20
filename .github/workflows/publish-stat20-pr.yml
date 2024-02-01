@@ -27,14 +27,8 @@ jobs:
             # execute from the textbook
             cd /home/rstudio/stat20/
 
-            # _freeze should not exist
-            rm -rf ./_freeze
-            
-            # run pre-render scripts
-            Rscript ./assets/scripts/propagate-dates.r
-            Rscript ./assets/scripts/homepage-readings.r
-            Rscript ./assets/scripts/ignore-future-docs.r
-            Rscript ./assets/scripts/write-toc.r
+            # render partial site
+            quarto run partial-render.ts
             
             # render site and upload to stat20-pr.netlify.app
             quarto publish netlify --id 4f93185f-50a9-491c-b86f-3f8e51eb3ae9
