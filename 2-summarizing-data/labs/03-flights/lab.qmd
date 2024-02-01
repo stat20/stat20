@@ -21,11 +21,71 @@ For the questions on the handout, consult the image of the data frame found in t
 
 - [Part 1: Understanding the Context of the Data](lab-context.qmd)
 
-<!--
 
 ## Part II: Computing on the Data
 
-The data for this lab can be found in the `flights` data frame in the `stat20data` package. Run `?flights` at the console to learn more about the columns.
+The data for this lab can be found in the `flights` data frame in the `stat20data` package. Run `?flights` at the console to learn more about the columns. *Answer each question with one pipeline, which may include `dplyr` code, `ggplot2` code or both*.
+
+#### Question 1
+
+How many flights in the dataset left in the springtime and were destined for Portland, Oregon? 
+
+#### Question 2
+
+Arrange the data set to find out: which flight holds the record for longest departure delay (in hrs) and what was its destination? What was the destination and delay time (in hrs) for the flight that was least delayed, i.e. that left the most ahead of schedule?
+
+#### Question 3
+
+I attempted to find some summary statistics on the arrival delay of flights, grouped by their airline carrier. You can find the mininmum and maximum of numerical variables using the `min()` and `max()` function, respectively. This is the code that I ran.
+
+> flights |>
+    group_by(carrier) |>
+    summarise(min_arr_delay = min(arr_delay)) |>
+    summarise(max_arr_delay = max(arr_delay)) |>
+    summarise(prop_long_flight = mean(distance > 1000))
+     
+However, I received an error and the code would not run.
+Explain the origin of this error, then modify/correct the code and run it to display the output I was hoping to achieve. 
+
+#### Question 4
+
+Using the airport nearest your hometown, which day of the week and which airline seems best for flying there from San Francisco? If you’re from near SFO or OAK or from abroad, use Chicago as your hometown. Be clear on how you’re defining best. Feel free to mutate a column(s) to your dataset which might be your preferred way to determine best.
+
+There is no explicit weekday column in this data set, but there is suﬀicient information to piece it together. The following line of code can be added to your pipeline to create that new column. Note also that it uses functions which are contained in the `lubridate` package.
+
+> mutate(day_of_week =
+            wday(ymd(paste(year, month, day, set = "-")),
+            label = T))
+
+
+#### Question 5
+
+The plot below shows the relationship between the number of flights going out of SFO and the average departure delay. It illustrates the hypothesis that more flights on a given day would lead to a more congested airport which would lead to greater delays on average. Each point represents single day in 2020; there are 366 of them on the plot. Form a single `dplyr` and `ggplot2` chain that will create this plot, starting with the original data set. *Hint: What does each point on the plot represent? Is it the same as the unit of observation of the initial dataset?*
+
+![](images/complex-ggplot.png){fig-align=center}
+
+#### Question 6
+
+Create a histogram showing the distribution of departure delays for all flights. You must follow the steps below:
+
+-   Set the limits of the x-axis to focus on where most of the data lie.
+
+-   Outline the bars of your histogram with one color. 
+
+-   Add a text annotation somewhere on the plot that explains the meaning of a negative departure delay.
+
+-   Finally, title your plot with a claim about the shape and modality of the distribution.
+
+#### Question 7
+
+Create a plot to examine the relationship between average speed and distance (you will have to make the average speed column first) in one pipeline, labeling your x and y axes. Save this plot into an object and print it to the screen.
+
+#### Question 8
+
+Color the points of the plot you made in **Question 5** by destination, and use this to provide a possible explanation for the relationship between the two variables. You can add layers to plot objects with `+`.
+
+
+<!--
 
 
 #### Question 1
