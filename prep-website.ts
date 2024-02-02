@@ -63,7 +63,7 @@ async function makeFullSchedule(configPath: string, schedulePath: string) {
                 items: day.items ? day.items.map(item => ({
                     ...item,
                     render: true // Set render to true for all items
-                })) : [] // Add empty array if no items are present
+                })) : []
             }))
         }));
 
