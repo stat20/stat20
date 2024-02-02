@@ -290,13 +290,6 @@ schedule:
   - week: "Spring Break"
     days: 
       - topic: "No Class"
-        display-date: Mar 25
-      
-      - topic: "No Class"
-        display-date: Mar 26
-      
-      - topic: "No Class"
-        display-date: Mar 27
         
   - week: 10
     days:
@@ -396,11 +389,11 @@ schedule:
         date: 4/25/24
         items: []
 
-  - week: "RRR Week"
+  - week: "RRR"
     days:
       - topic: "No Class"
         
-  - week: "Finals Week"
+  - week: "Final Exams"
     days:
       - topic: "Stat 20 Final"
         display-date: May 9
