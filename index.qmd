@@ -1,7 +1,6 @@
 ---
 toc: false
 page-layout: custom
-theme: ["assets/styles.scss", "assets/_cards.scss"]
 resources:
   - "homepage-readings"
 listing:

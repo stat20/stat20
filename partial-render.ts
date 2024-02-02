@@ -65,7 +65,12 @@ async function makeSidebarNav(schedulePath: string, configPath: string) {
 
     sidebarTypes.forEach(sidebarType => {
         const type = sidebarType.type;
+        const landingPage = sidebarType['landing-page'];
         let typeHrefs: string[] = [];
+
+        if (landingPage) {
+            typeHrefs.push(landingPage);
+        }
 
         schedule.forEach(week => {
             week.days.forEach(day => {

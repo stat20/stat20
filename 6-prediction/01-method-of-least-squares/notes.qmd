@@ -28,8 +28,11 @@ execute:
 
 [A]{.dropcap}s we near the end of the semester, we revisit one last time the four different claims that might be made based on the line plot found in the news story[^nyt]. 
 
+
+:::{.content-hidden when-format="pdf"}
 :::{.column-margin}
 ![Inflation in the news.](images/nyt-inflation.png){#fig-inflation fig-align=center width="70%"}
+:::
 :::
 
 1. The Consumer Price Index rose 8.3% in April.
