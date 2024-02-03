@@ -1,12 +1,98 @@
 ---
 title: "Summarizing Numerical Associations"
-subtitle: "Correllation and the least squares line"
+subtitle: "Overplotting, correlation and the least squares line"
 from: markdown+emoji
 image: images/association.png
 format:
   html: default
   pdf: default
 ---
+
+```{r}
+#| echo: false
+#| message: false
+library(stat20data)
+library(tidyverse)
+library(patchwork)
+set.seed(20)
+```
+
+
+[W]{.dropcap}hen we first discussed constructing summaries for numerical data, you may have noticed that we left out the case when we are working with two numerical variables. This is a *very* common scenario in statistics and data science-- so much so that it deserves its own set of notes! In this lecture, we will discuss how we can make visualizations and calculate summary statistics involving two numerical variables. Then, we will introduce a third method of describing data: building a **model**.
+
+## Overplotting
+
+First, we should spotlight an issue that can arise when visualizing numerical associations. This issue may have the potential to hide an association between them if it is not treated.
+
+Let's examine the class survey dataset from earlier in this course. Stat 20  students filled out a survey that asked them their opinion on several topics including:
+
+![](images/q-tech.png){fig-align=center width="500px"}
+
+![](images/q-crypto.png){fig-align=center width="500px"}
+
+The result was a data frame with 619 rows (one for every respondent) and 2 columns of discrete numerical data. A natural way to visualize this data is by creating a **scatter plot.**
+
+```{r}
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 4
+#| code-fold: false
+#| echo: false
+set.seed(20)
+ggplot(class_survey, aes(x = tech,
+                         y = crypto)) +
+    geom_point() +
+    labs(x = "Technology is destructive to relationships",
+         y = "cryptocurrency will play a\n dominant role in finance",
+         title = "No association between opinions on technology and \n cryptocurrency")
+```
+
+The eye is immediately drawn to the eerie geometric regularity of this data. Isn't real data messier than this? What's going on?
+
+A hint is in the sample size. The number of observations in the data set was over 600 and yet the number of points shown here is just a bit under 100. Where did those other observations go?
+
+It turns out they are in this plot, *they're just piled on top of one another!* Since there are only 10 possible values for each question, many students ended up selecting the same values for both, leading their points to be drawn on top of one another.
+
+This phenomenon is called **overplotting** and it is very common in large data sets. There are several strategies for dealing with it, but here we cover two of them.
+
+One approach to fixing the problem of points piled on top of one another is to unpile them by adding just a little bit of random noise to their x- and y-coordinate. This technique is called **jittering** and can be done in `ggplot2` by replacing `geom_point()` with **`geom_jitter()`**.
+
+```{r}
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 4
+#| code-fold: false
+ggplot(class_survey, aes(x = tech,
+                         y = crypto)) +
+    geom_jitter() +
+    labs(x = "Technology is destructive to relationships",
+         y = "cryptocurrency will play a\n dominant role in finance",
+         title = "No association between opinions on technology and \n cryptocurrency")
+```
+
+Ahh . . . there are those previously hidden students. Interestingly, the title on the first plot still holds true: even when we're looking at *all* of the students, there doesn't appear to be much of a pattern. That is certainly not the case in all overplotted data sets! Often overplotting will obscure a pattern that jumps out after the overplotting has been attended to.
+
+The second technique is to make the points transparent by changing an aesthetic attribute (setting) called the **alpha value.** Let's combine transparency with jittering to understand the effect.
+
+```{r}
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 4
+#| code-fold: false
+ggplot(class_survey, aes(x = tech,
+                         y = crypto)) +
+    geom_jitter(alpha = .3) +
+    labs(x = "Technology is destructive to relationships",
+         y = "cryptocurrency will play a\n dominant role in finance",
+         title = "No association between opinions on technology and \n cryptocurrency")
+```
+
+The `alpha` argument runs between 0 and 1, where 1 is fully opaque and 0 is fully see-through. Here, `alpha = .3`, which changes all observations from black to gray. Where the points overlap, their alpha values add to create a dark blob.
+
+There's still no sign of a strong association between these variables, but at least, by taking overplotting into consideration, we've made that determination after incorporating all of the data.
+
+
+## Associations and the correlation coefficient
 
 [W]{.dropcap}hich of the following plots do you think depicts the relationship between the high school graduation rate and the poverty rate among the 50 US states?
 
@@ -15,7 +101,8 @@ format:
 #| fig-height: 3
 #| fig-width: 6.2
 #| fig-align: center
-library(tidyverse)
+#| code-fold: false
+#| echo: false
 poverty <- read_delim("https://www.dropbox.com/s/0z45xgms0sie7l9/poverty.csv?dl=1")
 
 poverty <- poverty %>%
@@ -54,7 +141,8 @@ pA + pB
 #| fig-width: 6.2
 #| fig-align: center
 #| echo: false
-library(tidyverse)
+#| code-fold: false
+
 poverty <- read_delim("https://www.dropbox.com/s/0z45xgms0sie7l9/poverty.csv?dl=1")
 
 poverty <- poverty %>%
@@ -97,7 +185,7 @@ States with higher poverty rates tend to have lower graduation rates. This is a 
 You can detect associations in scatter plots by scanning from left to right along the x-axis and determining whether or not the conditional distribution of the y-variable is changing or not. In the figure to the left below, when you look first to the states with low poverty rates (in the blue box), you find that the conditional distribution of the graduation rate (represented by the blue density curve along the right side of the scatter plot) is high: most of those states have graduation rates between 85% and 90%. When you scan to the right in that scatter plot, and condition on having a high poverty rate (the states in the red box), the conditional distribution shifts downwards. Those states have graduations rates in the low 80%s.
 
 :::{.column-margin}
-These density curves are conditional distributions because we've set a condition on the data we're visualizing. When focusing on the data that's in the blue box, for example, we've in effect set up a filter where Poverty < 9.
+These density curves are conditional distributions because we've set a condition on the data we're visualizing. When focusing on the data that's in the blue box, for example, we've in effect set up a filter where Poverty < 9. 
 :::
 
 :::{.content-visible when-format="html"}
@@ -105,6 +193,8 @@ These density curves are conditional distributions because we've set a condition
 #| fig-height: 3
 #| fig-width: 7.5
 #| fig-align: center
+#| echo: false
+#| code-fold: false
 
 # Prepare plot on the left
 poverty_2 <- poverty %>%
@@ -172,6 +262,7 @@ p_real_scatter + p_real_densities +
 #| fig-width: 7.5
 #| fig-align: center
 #| echo: false
+#| code-fold: false
 
 # Prepare plot on the left
 poverty_2 <- poverty %>%
@@ -237,13 +328,13 @@ The plot on the right, by contrast, exhibits no association between poverty rate
 
 So we can use the simple scatter plot to determine whether or not two numerical variables are associated, but sometimes a graphic isn't enough. In these notes we'll move from graphical summaries to numerical summaries and construct two different approaches to capturing these associations in numbers: the correlation coefficient and the simple linear model.
 
-## The Correlation Coefficient
+### The Correlation Coefficient
 
 Let's set out to engineer our first numerical summary in the same manner that we have previously, by laying out the properties that we'd like our summary to have.
 
 Please watch the following 12 minute video.
 
-[![](images/vid-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1527632/external_tools/78985)
+[![](images/vid-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1531766/external_tools/90481)
 
 **Correlation coefficient, $r$**
 :    The correlation coefficient, $r$, between two variables $x$ and $y$ is
@@ -258,6 +349,8 @@ Several different statistics have been proposed for measuring association. This 
 The data frame used to create the scatter plot above on the left looks like this.
 
 ```{r}
+#| code-fold: false
+#| echo: false
 select(poverty, Graduates, Poverty)
 ```
 
@@ -267,7 +360,7 @@ Since it is a data frame, we can use the `summarize()` function to calculate our
 #| echo: true
 #| code-fold: false
 
-poverty %>%
+poverty |>
   summarize(r = cor(Poverty, Graduates))
 ```
 
@@ -279,7 +372,7 @@ Let's repeat this calculation for the data frame that created the shapeless scat
 #| echo: true
 #| code-fold: false
 
-poverty_shuffled %>%
+poverty_shuffled |>
   summarize(r = cor(Poverty, Graduates))
 ```
 
@@ -315,20 +408,29 @@ If that felt a little shifty to you - drawing a line by hand and then eyeballing
 
 <!-- Give a bit of instuition for where these come from -->
 
-So how does this line look compared to the hand-drawn line? Let's calculate the slope and intercept and add the resulting line to our scatter plot.
+So how does this line look compared to the hand-drawn line? Let's calculate the slope and intercept. In R, we can do this with a function called **`lm()`.**
+
+```{r}
+#| code-fold: false
+#| echo: true
+m1 <- lm(formula = Graduates ~ Poverty, data = poverty)
+```
+
+The syntax for `lm()` uses what's called "formula notation" in R. The first argument is a formula of the form `y ~ x` and can be read as, "Explain the y as a function of the x". In the second argument, you specify which data frame contains the variables used in the formula.
+If we want to use to save this slope and intercept for later use, we can save it into an object, just like a data frame or a vector can be saved. 
+
+We can then add our model to our scatter plot. This can be done with the **`geom_smooth()`** layer in `ggplot2` and the `method = "lm"` argument (you do not need to worry about the purpose of the `se` argument). 
 
 ```{r}
 #| fig-width: 3
 #| fig-height: 3
 #| fig-align: center
-m1 <- lm(Graduates ~ Poverty, poverty)
+#| code-fold: false
 
 ggplot(poverty, aes(x = Poverty, 
                     y = Graduates)) +
   geom_point() +
-  geom_abline(slope = coef(m1)[2],
-              intercept = coef(m1)[1],
-              color = "blue") +
+  geom_smooth(method = "lm", se = FALSE) +
   labs(x = "Poverty Rate",
        y = "Graduation Rate") +
   theme_bw()
@@ -336,23 +438,13 @@ ggplot(poverty, aes(x = Poverty,
 
 That works remarkably well!
 
-The function that was used to calculate the least squares slope and intercept is `lm()`. 
+### Interpreting the slope and intercept
 
-```{r}
-#| code-fold: false
-#| echo: true
-lm(Graduates ~ Poverty, data = poverty)
-```
-
-The syntax for `lm()` uses what's called "formula notation" in R. The first argument is a formula of the form `y ~ x` and can be read as, "Explain the y as a function of the x". In the second argument, you specify which data frame contains the variables used in the formula.
-
-<!-- Maybe put lm() under a heading and/or provide a template in the same way we did for ggplot at first. -->
-
-So if the correlation coefficient measures the strength of the linear relationship between two variables, what exactly are the slope and intercept measuring? The slope captures the expected change in the $y$ associated with the $x$ changing by 1 unit. In this example, states that are separated by 1 percentage point in their poverty rate tend to be separated by about -.89 in their graduation rate. This is distinct from what the correlation tells us because while $r$ will stay the same regardless of the units in which the data is measured, $b_1$ is expressly designed to tell us how those units of measurement relate to one another.
+So if the correlation coefficient measures the strength of the linear relationship between two variables, what exactly are the slope and intercept of a linear model between involving these two variables measuring? The slope captures the expected change in the $y$ variable associated with the $x$ variable changing by 1 unit. In this example, states that are separated by 1 percentage point in their poverty rate tend to be separated by about -.89 in their graduation rate. This is distinct from what the correlation tells us because while $r$ will stay the same regardless of the units in which the data is measured, $b_1$ is expressly designed to tell us how those units of measurement relate to one another.
 
 What about the intercept? It tells us the value that we'd expect the $y$ to take when the $x$ takes a value of zero. Sometimes that's an informative statistic, sometime it is not. In this setting, do you really expect the graduation rate to be around 96% when their poverty rate is zero? What would it even look like for a state to have a poverty rate of zero? The abstraction of the linear model allows us to ponder such a world, but the reality of economics in the US is that we would never actually observe poverty rates of zero.
 
-So what good is the intercept? Well, it's useful in helping us calculate a residual.
+So what good is the intercept? Well, it's useful in helping us calculate a **residual.**
 
 ### Residuals
 
@@ -371,8 +463,8 @@ Let's calculate the residual for California. Here is that row in the data set.
 ```{r}
 #| code-fold: false
 #| echo: true
-poverty %>%
-  filter(State == "California") %>%
+poverty |>
+  filter(State == "California") |>
   select(State, Graduates, Poverty)
 ```
 
@@ -402,6 +494,8 @@ The calculation of the residual can be seen in the plot below.
 #| fig-width: 4
 #| fig-height: 4
 #| fig-align: center
+#| code-fold: false
+#| echo: false
 library(ggrepel)
 poverty <- poverty %>%
   mutate(is_ca = case_when(
@@ -434,6 +528,7 @@ poverty %>%
 #| fig-height: 4
 #| fig-align: center
 #| echo: false
+#| code-fold: false
 library(ggrepel)
 poverty <- poverty %>%
   mutate(is_ca = case_when(
@@ -469,6 +564,6 @@ If you have $n$ data points, you can calculate $n$ residuals.
 
 ## Summary
 
-In these notes we considered the question of how to capture the association between two variables with numerical summary statistics. The correlation coefficient is one of the most common: it captures the strength and direction of the linear trend. This statistic can be used, along with other simple summary statistics, to calculate the slope and intercept of the least squares line. The least squares line is an alternative approach to summarizing the linear relationship between two numerical variables. It has the advantage of providing an expectation for the y-value of every observation, which allows us to calculate residuals which are expressions of whether each observation is higher or lower than we'd expect.
+In these notes we considered the question of how to capture the association between two variables with both visualizations and numerical summary statistics. The **correlation coefficient** is one of the most common statistics to use in this case: it captures the strength and direction of the linear trend. This statistic can be used, along with other simple summary statistics, to calculate the slope and intercept of the **least squares line**. The least squares line is an alternative approach to summarizing the linear relationship between two numerical variables. It has the advantage of providing an expectation for the y-value of every observation, which allows us to calculate residuals which are expressions of whether each observation is higher or lower than we'd expect.
 
 We'll spend time practicing calculating these statistics - and looking at lots of scatter plots - in class.

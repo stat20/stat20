@@ -1,33 +1,104 @@
 ---
-title: "Summarizing Associations"
-format:
-  html:
-    code-tools: 
-      source: true
-      toggle: false
-sidebar: false
+title: "Summarizing Numerical Associations"
+subtitle: "PS"
+format: stat20handout-pdf
 ---
 
-There is a data set built into R called `mtcars` that includes several measures on different types of cars. Learn more about the data set using `?mtcars`.
+There is a data set built into R called `mtcars` that includes several measures on different types of cars. Learn more about the data set using `?mtcars`. Where applicable, complete the following questions in RStudio and write the code you used below.
 
-#### Question 1
+## Question 1
 
-Summarize the association between the fuel efficiency (measured in miles per gallon) and the weight of the car using a scatter plot, the correlation coefficient, and a linear model. Since we seek to explain the fuel efficiency, put that one on the y.
+We seek to explain the fuel efficiency of cars using their weight per gallon. Summarize the association between the fuel efficiency (measured in miles per gallon) and the weight of the car using: 
+
+### Question 1a
+
+a scatter plot, 
+
+\
+\
+\
+
+### Question 1b
+
+the correlation coefficient
+
+\
+\
+\
+\
 
 
-#### Question 2
+### Question 1c
 
-Repeat question 1 but use the horsepower of the car instead of the weight. Compare the scatter plots: why does one of them have a higher correlation coefficient than the other?
+and a linear model. 
+
+\
+\
+\
+
+## Question 2
+
+Repeat **Question 1** but use the horsepower of the car instead of the weight as the explanatory variable.
+
+### Question 2a
+
+a scatter plot, 
+
+\
+\
+\
+
+### Question 2b
+
+the correlation coefficient
+
+\
+\
+\
 
 
-#### Question 3
+### Question c
 
-What is the better way to compare the strength of the linear relationship between these two pairs of variables (mpg and wt; mpg and hp): the correlation coefficients or the slopes of the linear models? Why?
+and a linear model. 
 
-
-#### Question 4
-
-Which car has the lowest fuel efficiency given its weight?
-
+\
+\
+\
 
 
+### Question 2d
+
+Compare the scatter plots of **Question 1a** and **Question 2a**. Why does one of them have a higher correlation coefficient than the other? Answer in a few sentences.
+
+\
+\
+\
+
+
+## Question 3
+
+What is the better way to compare the strength of the linear relationship between these two pairs of variables (mpg and wt; mpg and hp): the correlation coefficients or the slopes of the linear models? Why? Explain in one-two sentences.
+
+\
+\
+\
+\
+\
+\
+
+
+## Question 4
+
+Which car has the lowest fuel efficiency given its weight? State the car and provide supporting code for your answer.
+
+
+\
+\
+\
+\
+\
+\
+
+## Question 5
+
+Visualize the relationship between number of forward gears and the number of cylinders. Address any overplotting that might occur, and title the plot with a claim about the association between the two variables.
