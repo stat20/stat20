@@ -334,7 +334,7 @@ Let's set out to engineer our first numerical summary in the same manner that we
 
 Please watch the following 12 minute video.
 
-[![](images/vid-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1527632/external_tools/78985)
+[![](images/vid-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1531766/external_tools/90481)
 
 **Correlation coefficient, $r$**
 :    The correlation coefficient, $r$, between two variables $x$ and $y$ is
