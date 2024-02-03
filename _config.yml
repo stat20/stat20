@@ -113,7 +113,7 @@ schedule:
         items:
           - type: Notes
             href: 2-summarizing-data/06-summarizing-associations/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 2-summarizing-data/06-summarizing-associations/slides.qmd
             render: false
@@ -188,7 +188,7 @@ schedule:
             
   - week: 7
     days:
-      - topic: Lab Workshop / Review
+      - topic: "Lab Workshop / Review"
         display-date: Feb 26
 
       - topic: "Expected Value and Variance"
@@ -366,6 +366,7 @@ schedule:
           - type: Lab
             href: 5-causation/labs/06-taste-test/lab.qmd
             render: false
+            
       - topic: "Causality II"
         display-date: Apr 18
         date: 4/18/24
