@@ -5,7 +5,7 @@ format: stat20handout-pdf
 ---
 
 \begin{center}
-\textbf{This problem set will not be graded. Its materials will be tested on Quiz 1. We recommend that you work on it as study material.}
+\textbf{This is ungraded additional practice. We recommend that you work on it as study material.}
 \end{center}
 
 

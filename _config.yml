@@ -31,7 +31,7 @@ schedule:
             
     resources:
       - '<a href="https://markdownlivepreview.com">Markdown Live Preview</a>'
-      - '<a href="https://www.stat20.org/1-questions-and-data/extra-practice.qmd">Extra Practice</a>'
+      - '<a href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/extra-practice.pdf">Extra Practice</a>'
 
   - week: 2
     days:
@@ -97,11 +97,11 @@ schedule:
             render: true
           - type: Slides
             href: 2-summarizing-data/03-a-grammar-of-graphics/slides.qmd
-            render: false
+            render: true
             
     resources:
-      - '<a href="https://www.stat20.org/2-summarizing-data/03-a-grammar-of-graphics/ps.qmd">Extra Practice</a>'
-      
+      - '<a href="https://www.stat20.org/2-summarizing-data/03-a-grammar-of-graphics/ps.pdf">Extra Practice</a>'
+
   - week: 4
     days:
       - topic: "Lab 2 Workshop"
@@ -410,5 +410,5 @@ adaptive-nav:
     - type: PS
   sidebar:
     - type: Notes
-
+      landing-page: notes.qmd
   

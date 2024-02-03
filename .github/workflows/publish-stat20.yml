@@ -1,9 +1,9 @@
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "1 0 * * 5" # Every Friday at 5:01 pm (PDT)
-    - cron: "1 13 * * 2" # Every Tuesday at 6:01 am (PDT)
-    - cron: "1 13 * * 4" # Every Thursday at 6:01 am (PDT)
+  # schedule:
+  #   - cron: "1 0 * * 5" # Every Friday at 5:01 pm (PDT)
+  #   - cron: "1 13 * * 2" # Every Tuesday at 6:01 am (PDT)
+  #   - cron: "1 13 * * 4" # Every Thursday at 6:01 am (PDT)
   
 name: "Publish to stat20.org"
 jobs:
