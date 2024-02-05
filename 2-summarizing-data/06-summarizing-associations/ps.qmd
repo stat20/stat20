@@ -62,8 +62,6 @@ the correlation coefficient
 and a linear model. 
 
 \
-\
-\
 
 
 ### Question 2d
@@ -101,4 +99,10 @@ Which car has the lowest fuel efficiency given its weight? State the car and pro
 
 ## Question 5
 
-Visualize the relationship between number of forward gears and the number of cylinders. Address any overplotting that might occur, and title the plot with a claim about the association between the two variables.
+Visualize the relationship between number of forward gears and the number of cylinders. Address any overplotting that might occur, and title the plot with a claim about the strength of the association between the two variables.
+
+**OR**
+
+Go back to the `class_survey` dataset and find two numerical discrete variables. Visualize their relationship, addressing any overplotting which may occur, and title the plot with a claim about the strength of the association between the two variables.
+
+

@@ -24,7 +24,7 @@ For the questions on the handout, consult the image of the data frame found in t
 
 ## Part II: Computing on the Data
 
-The data for this lab can be found in the `flights` data frame in the `stat20data` package. Run `?flights` at the console to learn more about the columns. *Answer each question with one pipeline, which may include `dplyr` code, `ggplot2` code or both*.
+The data for this lab can be found in the `flights` data frame in the `stat20data` package. Run `?flights` at the console to learn more about the columns. *Where applicable, answer each question with one pipeline, which may include `dplyr` code, `ggplot2` code or both*.
 
 #### Question 1
 
@@ -32,7 +32,7 @@ How many flights in the dataset left in the springtime and were destined for Por
 
 #### Question 2
 
-Arrange the data set to find out: which flight holds the record for longest departure delay (in hrs) and what was its destination? What was the destination and delay time (in hrs) for the flight that was least delayed, i.e. that left the most ahead of schedule?
+Arrange the data set to find out: which flight holds the record for longest departure delay (in hrs) and what was its destination? What was the destination and delay time (in hrs) for the flight that was least delayed, i.e. that left the most ahead of schedule? This can be done in two separate pipelines.
 
 #### Question 3
 
@@ -85,7 +85,39 @@ Create a plot to examine the relationship between average speed and distance (yo
 
 #### Question 8
 
-Color the points of the plot you made in **Question 7** by destination, and use this to provide a possible explanation for the relationship between the two variables in the plot title. You can add layers to plot objects with `+`.
+Color the points of the plot you made in **Question 7** by destination, and use this to provide a possible explanation for the relationship between the two variables (particularly, the noticeable gap) in the plot title. You can add layers to plot objects with `+`.
+
+
+#### Question 9
+
+
+-   First, calculate the correlation coefficient between average speed and distance.
+
+-   Then, mutate two new variables onto the data frame: 
+    -   (natural) log of average speed
+    -   (natural) log of distance 
+
+-   Visualize the new variables and title your plot with a claim based on what you see.
+
+-   Finally, calculate the correlation coefficient between log of average speed and log of distance.
+
+The process of applying functions to existing variables (such as logarithm or squaring) in a dataset is often called **transforming** one's data. 
+
+
+#### Question 10
+
+Explain which variables are better described via a linear model:
+
+-   distance and average speed
+-   log distance and log average speed 
+
+in one-two sentences, using your results from **Question 7** and **Question 9** as support.
+
+
+#### Question 11
+
+Fit a linear model to the variables you chose from **Question 10**. Then determine which flight had the fastest average speed given its distance traveled.
+
 
 
 <!--

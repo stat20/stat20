@@ -440,9 +440,11 @@ That works remarkably well!
 
 ### Interpreting the slope and intercept
 
-So if the correlation coefficient measures the strength of the linear relationship between two variables, what exactly are the slope and intercept of a linear model between involving these two variables measuring? The slope captures the expected change in the $y$ variable associated with the $x$ variable changing by 1 unit. In this example, states that are separated by 1 percentage point in their poverty rate tend to be separated by about -.89 in their graduation rate. This is distinct from what the correlation tells us because while $r$ will stay the same regardless of the units in which the data is measured, $b_1$ is expressly designed to tell us how those units of measurement relate to one another.
+So if the correlation coefficient measures the strength of the linear relationship between two variables, what exactly are the slope and intercept of a linear model between involving these two variables measuring? 
 
-What about the intercept? It tells us the value that we'd expect the $y$ to take when the $x$ takes a value of zero. Sometimes that's an informative statistic, sometime it is not. In this setting, do you really expect the graduation rate to be around 96% when their poverty rate is zero? What would it even look like for a state to have a poverty rate of zero? The abstraction of the linear model allows us to ponder such a world, but the reality of economics in the US is that we would never actually observe poverty rates of zero.
+**The slope captures the expected change in the $y$ variable associated with the $x$ variable changing by 1 unit.** In this example, states that are separated by 1 percentage point in their poverty rate tend to be separated by about -.89 in their graduation rate. This is distinct from what the correlation tells us because while $r$ will stay the same regardless of the units in which the data is measured, $b_1$ is expressly designed to tell us how those units of measurement relate to one another.
+
+What about the intercept? **It tells us the value that we'd expect the $y$ to take when the $x$ takes a value of zero.** *Sometimes that's an informative statistic, sometime it is not.* In this setting, do you really expect the graduation rate to be around 96% when their poverty rate is zero? What would it even look like for a state to have a poverty rate of zero? The abstraction of the linear model allows us to ponder such a world, but the reality of economics in the US is that we would never actually observe poverty rates of zero.
 
 So what good is the intercept? Well, it's useful in helping us calculate a **residual.**
 
@@ -559,8 +561,22 @@ The horizontal dashed line represents $\hat{y} = 84.7$, the y-value of the least
 Residuals open up a new avenue for numerical statistics. While the slope and intercept are two statistics that tell us about the *overall* linear relationship between the two variables, each residual is a statistic that tells us whether an *individual* observation's y-value is higher or lower than we'd expect based on its x-value.
 
 :::{.column-margin}
-If you have $n$ data points, you can calculate $n$ residuals.
+If you have $n$ data points, you can calculate $n$ residuals. This is described below.
 :::
+
+While using R as a calculator directly to obtain *one* residual is somewhat efficient, this changes when you would like to calculate a residual for each point in your data set. Imagine having to write $n$ lines of code, one for each observation: $y_1$, $y_2$, and all the way to $y_n$! Luckily, when you save a linear model into an object, you store lots of useful information, including $\hat{y}_i$ and $\hat{e}_i$ for every observation $y_i$. These can be accessed via the `fitted()` and `residuals()` functions, respectively.
+
+`fitted()` and `residuals()` return vectors. To match the vectors up with the observations, we can *mutate* them as columns onto the original data frame. From here, we can isolate the residual for the state of California as before.
+
+```{r}
+#| code-fold: false
+poverty |>
+  mutate(y_hat = fitted(m1),
+         e_hat = residuals(m1)) |>
+  select(State, Graduates, Poverty, y_hat, e_hat) |>
+  filter(State == "California") 
+
+```
 
 ## Summary
 
