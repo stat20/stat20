@@ -1,5 +1,5 @@
 
-import { parse, stringify } from "https://deno.land/std/encoding/yaml.ts";
+import { parse, stringify } from "https://deno.land/std/yaml/mod.ts";
 import { join, dirname, basename } from "https://deno.land/std/path/mod.ts";
 
 const configPath = '_config.yml'; // Path to your config YAML file
@@ -65,7 +65,12 @@ async function makeSidebarNav(schedulePath: string, configPath: string) {
 
     sidebarTypes.forEach(sidebarType => {
         const type = sidebarType.type;
+        const landingPage = sidebarType['landing-page'];
         let typeHrefs: string[] = [];
+
+        if (landingPage) {
+            typeHrefs.push(landingPage);
+        }
 
         schedule.forEach(week => {
             week.days.forEach(day => {

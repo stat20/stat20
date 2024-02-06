@@ -1,13 +1,6 @@
 ---
 title: "Notes"
 subtitle: "Course notes for STAT 20: Introduction to Probability and Statistics"
-# filters:
-#   - glossary
-# glossary:
-#   id: lo-questions
-#   class: lo
-#   contents:
-    # - "1-questions-and-data/*"
 ---
 
 \

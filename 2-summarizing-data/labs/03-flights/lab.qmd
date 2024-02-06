@@ -111,7 +111,7 @@ Explain which pair of variables have a relationship which is better described vi
 -   distance and average speed
 -   log distance and log average speed 
 
-in one-two sentences, using your results from **Question 7** and **Question 9** as support.
+Explain in one or two sentences, using your results from **Question 7** and **Question 9** as support.
 
 
 #### Question 11

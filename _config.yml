@@ -1,9 +1,9 @@
 schedule:
   - week: 1
     days:
-      - display-date: Jan 16
+      - topic: "Understanding the World with Data"
+        display-date: Jan 16
         date: 1/16/24
-        topic: Understanding the World with Data
         items:
           - type: Notes
             href: 1-questions-and-data/01-understanding-the-world/notes.qmd
@@ -14,9 +14,10 @@ schedule:
           - type: Lab
             href: 1-questions-and-data/labs/00-getting-started/lab.qmd
             render: true
-      - display-date: Jan 18
+            
+      - topic: "Taxonomy of Data"
+        display-date: Jan 18
         date: 1/18/24
-        topic: Taxonomy of Data
         items:
           - type: Notes
             href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
@@ -27,14 +28,16 @@ schedule:
           - type: PS
             href: 1-questions-and-data/02-taxonomy-of-data/ps.qmd
             render: true
+            
     resources:
       - '<a href="https://markdownlivepreview.com">Markdown Live Preview</a>'
-      - `<a href="https://www.stat20.org/1-questions-and-data/extra-practice.qmd">Extra Practice</a>
+      - '<a href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/extra-practice.pdf">Extra Practice</a>'
+
   - week: 2
     days:
-      - display-date: Jan 23
+      - topic: "Summarizing Categorical Data"
+        display-date: Jan 23
         date: 1/23/24
-        topic: Summarizing Categorical Data
         items:
           - type: Notes
             href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
@@ -48,9 +51,10 @@ schedule:
           - type: Lab
             href: 2-summarizing-data/labs/02-class-survey/lab.qmd
             render: true
-      - display-date: Jan 25
+            
+      - topic: "Summarizing Numerical Data"
+        display-date: Jan 25
         date: 1/25/24
-        topic: Summarizing Numerical Data
         items:
           - type: Notes
             href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
@@ -61,11 +65,15 @@ schedule:
           - type: PS
             href: 2-summarizing-data/02-summarizing-numerical-data/ps.qmd
             render: true
+            
   - week: 3
     days:
-      - display-date: Jan 30
+      - topic: "Lab 1 Workshop"
+        display-date: Jan 29
+        
+      - topic: "Data Pipelines"
+        display-date: Jan 30
         date: 1/30/24
-        topic: Data Pipelines
         items:
           - type: Notes
             href: 2-summarizing-data/04-conditioning/notes.qmd
@@ -79,27 +87,59 @@ schedule:
           - type: Lab
             href: 2-summarizing-data/labs/03-flights/lab.qmd
             render: true
-      - display-date: Feb 1
+            
+      - topic: "A Grammar of Graphics"
+        display-date: Feb 1
         date: 2/1/24
-        topic: A Grammar of Graphics
         items:
           - type: Notes
             href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
             render: true
           - type: Slides
             href: 2-summarizing-data/03-a-grammar-of-graphics/slides.qmd
-            render: false
+            render: true
+            
     resources:
-      - <a href="https://www.stat20.org/2-summarizing-data/03-a-grammar-of-graphics/ps.qmd">Extra Practice</a>
+      - '<a href="https://www.stat20.org/2-summarizing-data/03-a-grammar-of-graphics/ps.pdf">Extra Practice</a>'
+
   - week: 4
     days:
-      - display-date: Feb 5
-        date: 2/5/24
-        topic: Quiz 1
-        items: []
-      - display-date: Feb 6
+      - topic: "Lab 2 Workshop"
+        display-date: Feb 5
+        
+      - topic: "Summarizing Associations"
+        display-date: Feb 6
         date: 2/6/24
-        topic: Intro to Probability
+        items:
+          - type: Notes
+            href: 2-summarizing-data/06-summarizing-associations/notes.qmd
+            render: true
+          - type: Slides
+            href: 2-summarizing-data/06-summarizing-associations/slides.qmd
+            render: true
+          - type: PS
+            href: 2-summarizing-data/06-summarizing-associations/ps.qmd
+            render: true
+            
+      - topic: "Multiple Linear Regression"
+        display-date: Feb 8
+        date: 2/8/24
+        items:
+          - type: Notes
+            href: 2-summarizing-data/07-multiple-linear-regression/notes.qmd
+            render: false
+          - type: Slides
+            href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
+            render: false
+            
+  - week: 5
+    days:
+      - topic: "Quiz 1"
+        display-date: Feb 12
+        
+      - topic: "Intro to Probability"
+        display-date: Feb 13
+        date: 2/6/24
         items:
           - type: Notes
             href: 3-probability/01-chance-intro/notes.qmd
@@ -110,9 +150,10 @@ schedule:
           - type: PS
             href: 3-probability/01-chance-intro/ps.qmd
             render: false
-      - display-date: Feb 8
+            
+      - topic: "Conditional Probability"
+        display-date: Feb 15
         date: 2/8/24
-        topic: Conditional Probability
         items:
           - type: Notes
             href: 3-probability/02-cond-prob-indep/notes.qmd
@@ -123,11 +164,20 @@ schedule:
           - type: PS
             href: 3-probability/02-cond-prob-indep/ps.qmd
             render: false
-  - week: 5
+            
+  - week: 6
     days:
-      - display-date: Feb 13
-        date: 2/13/24
-        topic: Probability Distributions; Random Variables
+      - topic: "Holiday! (no class)"
+        display-date: Feb 19
+        
+      - topic: "Probability Distributions"
+        display-date: Feb 20
+        date: 2/20/24
+        items: []
+        
+      - topic: "Random Variables"
+        display-date: Feb 22
+        date: 2/22/24
         items:
           - type: Notes
             href: 3-probability/03-random-variables/notes.qmd
@@ -135,9 +185,15 @@ schedule:
           - type: Slides
             href: 3-probability/03-random-variables/slides.qmd
             render: false
-      - display-date: Feb 15
-        date: 2/15/24
-        topic: Expected Value and Variance
+            
+  - week: 7
+    days:
+      - topic: "Lab Workshop / Review"
+        display-date: Feb 26
+
+      - topic: "Expected Value and Variance"
+        display-date: Feb 27
+        date: 2/27/24
         items:
           - type: Notes
             href: 3-probability/04-ev-se/notes.qmd
@@ -145,15 +201,20 @@ schedule:
           - type: Slides
             href: 3-probability/04-ev-se/slides.qmd
             render: false
-  - week: 6
-    days:
-      - display-date: Feb 20
-        date: 2/20/24
-        topic: Normal Approximation
+            
+      - topic: "Normal Approximation"
+        display-date: Feb 29
+        date: 2/29/24
         items: []
-      - display-date: Feb 22
-        date: 2/22/24
-        topic: 'Scope, Bias and Variability'
+        
+  - week: 8
+    days:
+      - topic: "Quiz 2"
+        display-date: Mar 4
+        
+      - topic: 'Scope, Bias and Variability'
+        display-date: Mar 5
+        date: 3/05/24
         items:
           - type: Notes
             href: 4-generalization/01-sampling-distributions/notes.qmd
@@ -161,15 +222,10 @@ schedule:
           - type: Slides
             href: 4-generalization/01-sampling-distributions/slides.qmd
             render: false
-  - week: 7
-    days:
-      - display-date: Feb 26
-        date: 2/26/24
-        topic: Quiz 2
-        items: []
-      - display-date: Feb 27
-        date: 2/27/24
-        topic: Confidence Intervals
+            
+      - topic: "Confidence Intervals"
+        display-date: Mar 7
+        date: 3/07/24
         items:
           - type: Notes
             href: 4-generalization/02-confidence-intervals/notes.qmd
@@ -180,9 +236,15 @@ schedule:
           - type: Lab
             href: 4-generalization/labs/05-peoples-park/lab.qmd
             render: false
-      - display-date: Feb 29
-        date: 2/29/24
-        topic: Intro to Hypothesis Tests
+            
+  - week: 9
+    days:
+      - topic: "Lab 4 Workshop"
+        display-date: Mar 11
+        
+      - topic: "Intro to Hypothesis Tests"
+        display-date: Mar 12
+        date: 3/12/24
         items:
           - type: Notes
             href: 4-generalization/04-hypothesis-tests/notes.qmd
@@ -193,11 +255,10 @@ schedule:
           - type: PS
             href: 4-generalization/04-hypothesis-tests/ps.qmd
             render: false
-  - week: 8
-    days:
-      - display-date: Mar 5
-        date: 3/5/24
-        topic: Types of Hypothesis Tests
+            
+      - topic: "Types of Hypothesis Tests"
+        display-date: Mar 14
+        date: 3/14/24
         items:
           - type: Notes
             href: 4-generalization/05-hypothesis-tests-2/notes.qmd
@@ -205,9 +266,15 @@ schedule:
           - type: Slides
             href: 4-generalization/05-hypothesis-tests-2/slides.qmd
             render: false
-      - display-date: Mar 7
-        date: 3/7/24
-        topic: Wrong By Design
+            
+  - week: 10
+    days:
+      - topic: "Quiz Review"
+        display-date: Mar 18
+        
+      - topic: "Wrong By Design"
+        display-date: Mar 19
+        date: 3/19/24
         items:
           - type: Notes
             href: 4-generalization/06-wrong-by-design/notes.qmd
@@ -215,37 +282,23 @@ schedule:
           - type: Slides
             href: 4-generalization/06-wrong-by-design/slides.qmd
             render: false
-  - week: 9
-    days:
-      - display-date: Mar 11
-        date: 3/11/24
-        topic: Quiz 3
-        items: []
-      - display-date: Mar 12
-        date: 3/12/24
-        topic: Simple Linear Regression
-        items:
-          - type: Notes
-            href: 2-summarizing-data/06-summarizing-associations/notes.qmd
-            render: false
-          - type: Slides
-            href: 2-summarizing-data/06-summarizing-associations/slides.qmd
-            render: false
-      - display-date: Mar 14
-        date: 3/14/24
-        topic: Multiple Linear Regression
-        items:
-          - type: Notes
-            href: 2-summarizing-data/07-multiple-linear-regression/notes.qmd
-            render: false
-          - type: Slides
-            href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
-            render: false
+            
+      - topic: "Quiz 3"
+        display-date: Mar 21
+        date: 3/21/24
+        
+  - week: "Spring Break"
+    days: 
+      - topic: "No Class"
+        
   - week: 10
     days:
-      - display-date: Mar 19
-        date: 3/19/24
-        topic: The Method of Least Squares
+      - topic: "Final Review Day"
+        display-date: Apr 1
+
+      - topic: "The Method of Least Squares"
+        display-date: Apr 2
+        date: 4/02/24
         items:
           - type: Notes
             href: 6-prediction/01-method-of-least-squares/notes.qmd
@@ -253,15 +306,10 @@ schedule:
           - type: Slides
             href: 6-prediction/01-method-of-least-squares/slides.qmd
             render: false
-      - display-date: Mar 21
-        date: 3/21/24
-        topic: Quiz 4
-        items: []
-  - week: 11
-    days:
-      - display-date: Apr 2
-        date: 4/2/24
-        topic: Evaluating and Improving Predictions
+            
+      - topic: "Evaluating and Improving Predictions"
+        display-date: Apr 4
+        date: 4/4/24
         items:
           - type: Notes
             href: 6-prediction/02-improving-predictions/notes.qmd
@@ -272,9 +320,15 @@ schedule:
           - type: Lab
             href: 6-prediction/labs/07-baseball/lab.qmd
             render: false
-      - display-date: Apr 4
-        date: 4/4/24
-        topic: Overfitting
+
+  - week: 12
+    days:
+      - topic: "Lab 6 Workshop"
+        display-date: Apr 8
+        
+      - topic: "Overfitting"
+        display-date: Apr 9
+        date: 4/9/24
         items:
           - type: Notes
             href: 6-prediction/03-overfitting/notes.qmd
@@ -282,11 +336,10 @@ schedule:
           - type: Slides
             href: 6-prediction/03-overfitting/slides.qmd
             render: false
-  - week: 12
-    days:
-      - display-date: Apr 9
-        date: 4/9/24
-        topic: Logistic Regression I
+            
+      - topic: "Logistic Regression"
+        display-date: Apr 11
+        date: 4/11/24
         items:
           - type: Notes
             href: 6-prediction/05-logistic-regression/notes.qmd
@@ -294,19 +347,15 @@ schedule:
           - type: Slides
             href: 6-prediction/05-logistic-regression/slides.qmd
             render: false
-      - display-date: Apr 11
-        date: 4/11/24
-        topic: Logistic Regression II
-        items: []
+            
   - week: 13
     days:
-      - display-date: Apr 15
-        date: 4/15/24
-        topic: Quiz 5
-        items: []
-      - display-date: Apr 16
+      - topic: "Quiz 4"
+        display-date: Apr 15
+
+      - topic: "Causality I"
+        display-date: Apr 16
         date: 4/16/24
-        topic: Causality I
         items:
           - type: Notes
             href: 5-causation/01-defining-causality/notes.qmd
@@ -317,9 +366,10 @@ schedule:
           - type: Lab
             href: 5-causation/labs/06-taste-test/lab.qmd
             render: false
-      - display-date: Apr 18
+            
+      - topic: "Causality II"
+        display-date: Apr 18
         date: 4/18/24
-        topic: Causality II
         items:
           - type: Notes
             href: 5-causation/02-experiments/notes.qmd
@@ -327,16 +377,27 @@ schedule:
           - type: Slides
             href: 5-causation/02-experiments/slides.qmd
             render: false
+            
   - week: 14
     days:
-      - display-date: Apr 23
+      - topic: "Causality III"
+        display-date: Apr 23
         date: 4/24/24
-        topic: Causality III
         items: []
-      - display-date: Apr 25
+        
+      - topic: "Causality IV"
+        display-date: Apr 25
         date: 4/25/24
-        topic: Causality IV
         items: []
+
+  - week: "RRR"
+    days:
+      - topic: "No Class"
+        
+  - week: "Final Exams"
+    days:
+      - topic: "Stat 20 Final"
+        display-date: May 9
         
 partial-render:
   render-as-of: 1/2/24
@@ -349,5 +410,5 @@ adaptive-nav:
     - type: PS
   sidebar:
     - type: Notes
-
+      landing-page: notes.qmd
   

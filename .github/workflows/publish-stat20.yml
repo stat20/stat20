@@ -1,9 +1,9 @@
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "1 0 * * 5" # Every Friday at 5:01 pm (PDT)
-    - cron: "1 13 * * 2" # Every Tuesday at 6:01 am (PDT)
-    - cron: "1 13 * * 4" # Every Thursday at 6:01 am (PDT)
+  # schedule:
+  #   - cron: "1 0 * * 5" # Every Friday at 5:01 pm (PDT)
+  #   - cron: "1 13 * * 2" # Every Tuesday at 6:01 am (PDT)
+  #   - cron: "1 13 * * 4" # Every Thursday at 6:01 am (PDT)
   
 name: "Publish to stat20.org"
 jobs:
@@ -31,9 +31,6 @@ jobs:
 
             # render partial site
             quarto run partial-render.ts
-            
-            # render for real
-            # quarto render --profile partial-site
             
             # publish rendered site to stat20.org
             quarto publish netlify --profile partial-site --no-render --id 1188ba29-f00d-4f5a-ac6f-75c715522c69
