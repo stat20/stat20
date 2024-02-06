@@ -476,7 +476,7 @@ We can express existing variables in new ways or create new variables altogether
 ---------------------------
 ---------------------------
 
-## The Ideas in Code
+## The Ideas in Code 
 
 Some notes rely heavily on code to augment your learning and understanding of the main concepts. This "Ideas in Code" section is meant to expand more on concepts and functions that the notes utilize but may not fully explain. 
 
