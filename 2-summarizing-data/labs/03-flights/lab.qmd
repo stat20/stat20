@@ -106,12 +106,12 @@ The process of applying functions to existing variables (such as logarithm or sq
 
 #### Question 10
 
-Explain which variables are better described via a linear model:
+Which pair of variables are better described via a linear model?
 
 -   distance and average speed
 -   log distance and log average speed 
 
-in one-two sentences, using your results from **Question 7** and **Question 9** as support.
+Explain in one or two sentences, using your results from **Question 7** and **Question 9** as support.
 
 
 #### Question 11
