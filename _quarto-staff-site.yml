@@ -1,8 +1,10 @@
 project:
   output-dir: "_staff-site"
+  render:
+    - "docs"
   
 metadata-files:
-  - "sidebar-nav.yml"
+  - "adaptive-nav.yml"
 
 # Modify aesthetics and add Guide to navbar
 website:
@@ -14,29 +16,29 @@ website:
     right:
       - text: "Staff Guide"
         href: staff-guide/index.qmd
-      - text: "docs"
+      - text: "Docs"
         href: docs/index.qmd
-  # sidebar:
-  #   - id: staff-guide
-  #     title: "Staff Guide"
-  #     style: floating
-  #     align: left
-  #     contents:
-  #       - staff-guide/index.qmd
-  #       - staff-guide/roles-and-expectations.qmd
-  #       - staff-guide/grading.qmd
-  #       - staff-guide/pre-semester-checklist.qmd
-  #       
-  #   - id: docs
-  #     title: "Docs"
-  #     style: floating
-  #     align: left
-  #     contents:
-  #       - section: Documention
-  #         href: docs/index.qmd
-  #         contents:
-  #           - docs/website.qmd
-  #           - docs/assignments.qmd
-  #           - docs/slides.qmd
+  sidebar:
+    - id: staff-guide
+      title: "Staff Guide"
+      style: floating
+      align: left
+      contents:
+        - staff-guide/index.qmd
+        - staff-guide/roles-and-expectations.qmd
+        - staff-guide/grading.qmd
+        - staff-guide/pre-semester-checklist.qmd
+
+    - id: docs
+      title: "Docs"
+      style: floating
+      align: left
+      contents:
+        - section: Documention
+          href: docs/index.qmd
+          contents:
+            - docs/website.qmd
+            - docs/assignments.qmd
+            - docs/slides.qmd
         
         

@@ -1,10 +1,13 @@
 project:
   type: website
-  pre-render: prep-website.ts
-  post-render: clean-website.ts
+  pre-render: qc-prep-website.ts
+  render: 
+    - "*.qmd"
+    - "!docs"
+  post-render: qc-clean-website.ts
   
 metadata-files:
-  - "sidebar-nav.yml"
+  - "adaptive-nav.yml"
 
 # Website Configuration and Layout
 website:
