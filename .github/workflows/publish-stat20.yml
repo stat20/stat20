@@ -30,7 +30,7 @@ jobs:
             cd /home/rstudio/stat20/
 
             # render partial site
-            quarto run partial-render.ts
+            quarto run qc-render.ts partial-site
             
             # publish rendered site to stat20.org
             quarto publish netlify --profile partial-site --no-render --id 1188ba29-f00d-4f5a-ac6f-75c715522c69
