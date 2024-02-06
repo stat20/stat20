@@ -116,10 +116,10 @@ schedule:
             render: true
           - type: Slides
             href: 2-summarizing-data/06-summarizing-associations/slides.qmd
-            render: false
+            render: true
           - type: PS
             href: 2-summarizing-data/06-summarizing-associations/ps.qmd
-            render: false
+            render: true
             
       - topic: "Multiple Linear Regression"
         display-date: Feb 8
