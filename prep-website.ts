@@ -1,5 +1,5 @@
 
-import { parse, stringify } from "https://deno.land/std/encoding/yaml.ts";
+import { parse, stringify } from "https://deno.land/std/yaml/mod.ts";
 import { join, dirname, basename } from "https://deno.land/std/path/mod.ts";
 
 const configPath = '_config.yml';
@@ -60,10 +60,10 @@ async function makeFullSchedule(configPath: string, schedulePath: string) {
             ...week,
             days: week.days.map(day => ({
                 ...day,
-                items: day.items.map(item => ({
+                items: day.items ? day.items.map(item => ({
                     ...item,
                     render: true // Set render to true for all items
-                }))
+                })) : []
             }))
         }));
 
