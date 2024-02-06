@@ -7,13 +7,10 @@ schedule:
         items:
           - type: Notes
             href: 1-questions-and-data/01-understanding-the-world/notes.qmd
-            render: true
           - type: Slides
             href: 1-questions-and-data/01-understanding-the-world/slides.qmd
-            render: true
           - type: Lab
             href: 1-questions-and-data/labs/00-getting-started/lab.qmd
-            render: true
             
       - topic: "Taxonomy of Data"
         display-date: Jan 18
@@ -21,13 +18,10 @@ schedule:
         items:
           - type: Notes
             href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
-            render: true
           - type: Slides
             href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
-            render: true
           - type: PS
             href: 1-questions-and-data/02-taxonomy-of-data/ps.qmd
-            render: true
             
     resources:
       - '<a href="https://markdownlivepreview.com">Markdown Live Preview</a>'
@@ -41,16 +35,12 @@ schedule:
         items:
           - type: Notes
             href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
-            render: true
           - type: Slides
             href: 2-summarizing-data/01-summarizing-categorical-data/slides.qmd
-            render: true
           - type: PS
             href: 2-summarizing-data/01-summarizing-categorical-data/ps.qmd
-            render: true
           - type: Lab
             href: 2-summarizing-data/labs/02-class-survey/lab.qmd
-            render: true
             
       - topic: "Summarizing Numerical Data"
         display-date: Jan 25
@@ -58,13 +48,10 @@ schedule:
         items:
           - type: Notes
             href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
-            render: true
           - type: Slides
             href: 2-summarizing-data/02-summarizing-numerical-data/slides.qmd
-            render: true
           - type: PS
             href: 2-summarizing-data/02-summarizing-numerical-data/ps.qmd
-            render: true
             
   - week: 3
     days:
@@ -77,16 +64,12 @@ schedule:
         items:
           - type: Notes
             href: 2-summarizing-data/04-conditioning/notes.qmd
-            render: true
           - type: Slides
             href: 2-summarizing-data/04-conditioning/slides.qmd
-            render: true
           - type: PS
             href: 2-summarizing-data/04-conditioning/ps.qmd
-            render: true
           - type: Lab
             href: 2-summarizing-data/labs/03-flights/lab.qmd
-            render: true
             
       - topic: "A Grammar of Graphics"
         display-date: Feb 1
@@ -94,10 +77,8 @@ schedule:
         items:
           - type: Notes
             href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
-            render: true
           - type: Slides
             href: 2-summarizing-data/03-a-grammar-of-graphics/slides.qmd
-            render: true
             
     resources:
       - '<a href="https://www.stat20.org/2-summarizing-data/03-a-grammar-of-graphics/ps.pdf">Extra Practice</a>'
@@ -113,13 +94,10 @@ schedule:
         items:
           - type: Notes
             href: 2-summarizing-data/06-summarizing-associations/notes.qmd
-            render: true
           - type: Slides
             href: 2-summarizing-data/06-summarizing-associations/slides.qmd
-            render: true
           - type: PS
             href: 2-summarizing-data/06-summarizing-associations/ps.qmd
-            render: true
             
       - topic: "Multiple Linear Regression"
         display-date: Feb 8
@@ -127,10 +105,8 @@ schedule:
         items:
           - type: Notes
             href: 2-summarizing-data/07-multiple-linear-regression/notes.qmd
-            render: false
           - type: Slides
             href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
-            render: false
             
   - week: 5
     days:
@@ -143,13 +119,10 @@ schedule:
         items:
           - type: Notes
             href: 3-probability/01-chance-intro/notes.qmd
-            render: false
           - type: Slides
             href: 3-probability/01-chance-intro/slides.qmd
-            render: false
           - type: PS
             href: 3-probability/01-chance-intro/ps.qmd
-            render: false
             
       - topic: "Conditional Probability"
         display-date: Feb 15
@@ -157,13 +130,10 @@ schedule:
         items:
           - type: Notes
             href: 3-probability/02-cond-prob-indep/notes.qmd
-            render: false
           - type: Slides
             href: 3-probability/02-cond-prob-indep/slides.qmd
-            render: false
           - type: PS
             href: 3-probability/02-cond-prob-indep/ps.qmd
-            render: false
             
   - week: 6
     days:
@@ -181,10 +151,8 @@ schedule:
         items:
           - type: Notes
             href: 3-probability/03-random-variables/notes.qmd
-            render: false
           - type: Slides
             href: 3-probability/03-random-variables/slides.qmd
-            render: false
             
   - week: 7
     days:
@@ -197,10 +165,8 @@ schedule:
         items:
           - type: Notes
             href: 3-probability/04-ev-se/notes.qmd
-            render: false
           - type: Slides
             href: 3-probability/04-ev-se/slides.qmd
-            render: false
             
       - topic: "Normal Approximation"
         display-date: Feb 29
@@ -218,10 +184,8 @@ schedule:
         items:
           - type: Notes
             href: 4-generalization/01-sampling-distributions/notes.qmd
-            render: false
           - type: Slides
             href: 4-generalization/01-sampling-distributions/slides.qmd
-            render: false
             
       - topic: "Confidence Intervals"
         display-date: Mar 7
@@ -229,13 +193,10 @@ schedule:
         items:
           - type: Notes
             href: 4-generalization/02-confidence-intervals/notes.qmd
-            render: false
           - type: Slides
             href: 4-generalization/02-confidence-intervals/slides.qmd
-            render: false
           - type: Lab
             href: 4-generalization/labs/05-peoples-park/lab.qmd
-            render: false
             
   - week: 9
     days:
@@ -248,13 +209,10 @@ schedule:
         items:
           - type: Notes
             href: 4-generalization/04-hypothesis-tests/notes.qmd
-            render: false
           - type: Slides
             href: 4-generalization/04-hypothesis-tests/slides.qmd
-            render: false
           - type: PS
             href: 4-generalization/04-hypothesis-tests/ps.qmd
-            render: false
             
       - topic: "Types of Hypothesis Tests"
         display-date: Mar 14
@@ -262,10 +220,8 @@ schedule:
         items:
           - type: Notes
             href: 4-generalization/05-hypothesis-tests-2/notes.qmd
-            render: false
           - type: Slides
             href: 4-generalization/05-hypothesis-tests-2/slides.qmd
-            render: false
             
   - week: 10
     days:
@@ -278,10 +234,8 @@ schedule:
         items:
           - type: Notes
             href: 4-generalization/06-wrong-by-design/notes.qmd
-            render: false
           - type: Slides
             href: 4-generalization/06-wrong-by-design/slides.qmd
-            render: false
             
       - topic: "Quiz 3"
         display-date: Mar 21
@@ -302,10 +256,8 @@ schedule:
         items:
           - type: Notes
             href: 6-prediction/01-method-of-least-squares/notes.qmd
-            render: false
           - type: Slides
             href: 6-prediction/01-method-of-least-squares/slides.qmd
-            render: false
             
       - topic: "Evaluating and Improving Predictions"
         display-date: Apr 4
@@ -313,13 +265,10 @@ schedule:
         items:
           - type: Notes
             href: 6-prediction/02-improving-predictions/notes.qmd
-            render: false
           - type: Slides
             href: 6-prediction/02-improving-predictions/slides.qmd
-            render: false
           - type: Lab
             href: 6-prediction/labs/07-baseball/lab.qmd
-            render: false
 
   - week: 12
     days:
@@ -332,10 +281,8 @@ schedule:
         items:
           - type: Notes
             href: 6-prediction/03-overfitting/notes.qmd
-            render: false
           - type: Slides
             href: 6-prediction/03-overfitting/slides.qmd
-            render: false
             
       - topic: "Logistic Regression"
         display-date: Apr 11
@@ -343,10 +290,8 @@ schedule:
         items:
           - type: Notes
             href: 6-prediction/05-logistic-regression/notes.qmd
-            render: false
           - type: Slides
             href: 6-prediction/05-logistic-regression/slides.qmd
-            render: false
             
   - week: 13
     days:
@@ -359,13 +304,10 @@ schedule:
         items:
           - type: Notes
             href: 5-causation/01-defining-causality/notes.qmd
-            render: false
           - type: Slides
             href: 5-causation/01-defining-causality/slides.qmd
-            render: false
           - type: Lab
             href: 5-causation/labs/06-taste-test/lab.qmd
-            render: false
             
       - topic: "Causality II"
         display-date: Apr 18
@@ -373,10 +315,8 @@ schedule:
         items:
           - type: Notes
             href: 5-causation/02-experiments/notes.qmd
-            render: false
           - type: Slides
             href: 5-causation/02-experiments/slides.qmd
-            render: false
             
   - week: 14
     days:
@@ -400,7 +340,7 @@ schedule:
         display-date: May 9
         
 partial-render:
-  render-as-of: 1/2/24
+  render-as-of: 2/6/24
   timezone: "-07:00" # GMT offset in +/-hh:mm does not adjust for daylight savings
 
 adaptive-nav:
@@ -408,7 +348,12 @@ adaptive-nav:
   listings:
     - type: Lab
     - type: PS
-  sidebar:
+  hybrid-sidebar:
     - type: Notes
       landing-page: notes.qmd
+      
+options:
+  debug: true
+  
+
   
