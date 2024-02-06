@@ -8,8 +8,8 @@ const tempFilesDir = '';
 const renderType = Deno.args[0];
 
 // check for argument
-if (renderType !== "partial-site" && renderType !== "staff-site") {
-    console.error("Error: The first argument must be 'partial-site' or 'staff-site'.");
+if (renderType !== "partial-site" && renderType !== "full-site") {
+    console.error("Error: The first argument must be 'partial-site' or 'full-site'.");
     Deno.exit(1);
 }
 

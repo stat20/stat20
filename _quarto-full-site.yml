@@ -1,5 +1,5 @@
 project:
-  output-dir: "_staff-site"
+  output-dir: "_full-site"
   render:
     - "docs"
   
