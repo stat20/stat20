@@ -20,6 +20,36 @@ format:
       data-background-size: contain
 ---
 
+## Agenda
+
+-   Announcements
+-   Concept Questions
+-   Problem Set 5
+-   *Break*
+-   Lab 2.2 (extended): Computing on The Data
+
+
+## Announcements
+
+-   RQ: *Multiple Linear Regression* due Wed/Thu night at 11:59pm
+
+. . . 
+
+-   Lab 2.2 *extended* and due Tuesday, February 13 at 9am
+
+. . . 
+
+-   Problem Set 5 due Tuesday, February 13 at 9am, along with Problem Set 4
+
+. . . 
+
+-   Please read updated Lab Submission Guidelines on Ed! (titling and labeling plots)
+
+. . . 
+
+-   Quiz 1 next Monday in-class. Covers all lectures from the beginning of the year until Thursday/Friday!
+
+
 # Concept Questions
 
 ## Estimate the correlation
@@ -404,6 +434,7 @@ When considering the structure in a scatter plot, pay attention to:
 3. The direction of the (linear) association
    - *Positive or negative?*
 
+<!--
 ## 
 
 ```{r}
@@ -439,6 +470,7 @@ This can be asked without poll-everywhere, without group discussion, just asking
 As they answer, ask where they're thinking those states points are; how they're using this plot to think about the highest povery rate and the lowest poverty rate. Point out that these two questions donest even take advantage of the scatter plot, which allows you to see the relationship between two variables. Each question just deals with the *marginal* distribution of poverty or graduation rate, which could just as well be two separate histograms, as shown on the next slide.
 :::
 
+
 ##
 
 ```{r}
@@ -460,6 +492,7 @@ This is an equally-useful set of plots to answer the previous question.
 
 If we want to ask a question that requires a scatter plot (and a linear model) to answer, we need to ask a conditional question.
 :::
+-->
 
 ##
 
@@ -488,55 +521,23 @@ Which state has the highest graduation rate given its poverty rate?
 This assesses whether or not students have an informal sense of what a residual is.
 :::
 
-
-## Calculating the residuals {auto-animate=true}
-
-$$ \hat{e}_i = y_i - \hat{y}_i $$
-
-. . .
+# Problem Set 5: Summarizing Numerical Associations 
 
 ```{r}
-#| echo: true
-poverty %>%
-  mutate(y_hat = fitted(m1))
+countdown::countdown(minutes = 25, top = 1)
 ```
 
-:::notes
-The use of `fitted()` (and `residuals()`) are nice and clean functions, which is why they're used here, but they're brittle used like this. Each fitted value in the vector that this function returns is associated with the state only through their ordering. If the `poverty` data frame is rearranged before this call to mutate, it will put the y-hats in the wrong rows. There are ways to fix this, but it requires code that's best not to show.
-:::
-
-## Calculating the residuals {auto-animate=true}
-
-$$ \hat{e}_i = y_i - \hat{y}_i $$
+# Break
 
 ```{r}
-#| echo: true
-poverty %>%
-  mutate(y_hat = fitted(m1),
-         res = Graduates - y_hat)
+countdown::countdown(minutes = 5, top = 0)
 ```
 
-## Calculating the residuals {auto-animate=true}
-
-$$ \hat{e}_i = y_i - \hat{y}_i $$
+# Lab 2.2 (extended): Computing on The Data
 
 ```{r}
-#| echo: true
-poverty %>%
-  mutate(y_hat = fitted(m1),
-         res = Graduates - y_hat) %>%
-  arrange(desc(res))
+countdown::countdown(minutes = 35, top = 1)
 ```
 
-## Calculating the residuals {auto-animate=true}
-
-$$ \hat{e}_i = y_i - \hat{y}_i $$
-
-```{r}
-#| echo: true
-poverty %>%
-  mutate(y_hat = fitted(m1),
-         res = Graduates - y_hat) %>%
-  arrange(res)
-```
+# End of Lecture
 
