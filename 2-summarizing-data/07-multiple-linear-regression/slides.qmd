@@ -20,6 +20,192 @@ format:
       data-background-size: contain
 ---
 
+```{r}
+#| message: false
+library(tidyverse)
+library(stat20data)
+```
+
+## Agenda
+
+-   Announcements
+-   Multiple Linear Regression Refresher
+-   Quiz Review (this week's notes)
+-   Break
+-   Lab 2.2 (extended)
+
+## Announcements
+
+-   Quiz 1 is Monday, in-class and covers all lectures from the beginning to the semester until today.
+
+. . . 
+
+-   Lab 2.2, Problem Set 4 and Problem Set 5 are due Tuesday 9am
+    -   Make sure you follow Lab Submission Guidelines on Ed
+
+. . . 
+
+-   RQ: Introducing Probability due on Monday/Tuesday at 11:59pm; Probability unit begins next week
+
+. . . 
+
+-   *Extra Practice* for Multiple Linear Regression added to the resources tab on the [course home page](https://stat20.org). 
+
+# Multiple Linear Regression Refresher
+
+-   Head to `pollev.com` for a set of rapid-fire questions on last night's notes.
+
+
+# Quiz Review
+
+-   Head to `pollev.com` for a set of quiz-level questions pertaining to *Summarizing Numerical Associations* and *Multiple Linear Regression*.
+
+
+## Question 1
+
+```{r}
+#| echo: true
+m1 <- lm(bill_depth_mm ~ bill_length_mm, data = penguins)
+```
+
+. . . 
+
+```{r}
+#| echo: true
+m2 <- lm(bill_depth_mm ~ bill_length_mm + body_mass_g + species, 
+         data = penguins)
+```
+
+:::{.poll}
+How many more coefficients does the second model have than the first?
+:::
+
+:::notes
+Remind students that they need to remember whether `species` and `body_mass_g` are numerical or categorical. Students should know how many species there are (three). 
+
+One addl. coefficient for body mass; two addl. for species (one less than the number of species, which is three). This gives a total of three more coefficients.
+:::
+
+# Questions 2-4
+
+Consider the following multiple linear regression model, which will be the subject of the next three review questions
+
+## Question 2
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+\
+
+```{r}
+#| echo: true
+m2
+```
+
+:::poll
+Which is the correct interpretation of the coefficient in front of **bill length**? *Select all that apply*.
+:::
+
+:::notes
+This one assesses their ability to use a conditional interpretation of a regression coefficient (controlling for the other variables in the model...).
+
+The correct interpretation controls for both other variables (body mass and species), and has the x variable and the y variable in the correct places. 
+:::
+
+## Question 3
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+\
+
+```{r}
+#| echo: true
+m2
+```
+
+:::poll
+Which is the correct interpretation of the coefficient in front of **Gentoo**?
+:::
+
+:::notes
+This one assesses their ability to use a conditional interpretation of a regression coefficient (controlling for the other variables in the model...)
+
+The correct interpretation needs to involve a comparison to the reference level, Adelie and should not involve anything about bill length or body mass, (other than to say they should be fixed).
+:::
+
+## Question 4
+
+```{r}
+countdown::countdown(1, top = 0)
+```
+
+\
+
+```{r}
+#| echo: true
+m2
+```
+
+:::poll
+How would this linear model best be visualized?
+:::
+
+:::notes
+Three numerical variables means we will have planes in a 3D space. The indicator coefficients will shift the planes up and down. There are three species, so three parallel planes is what we are looking for.
+:::
+
+## Question 5
+
+Consider the following linear regression output where the variable `school` is categorical and the variable `hours_studied` is numerical.
+
+| Coefficients     | Estimate |
+| ----------- | ----------- |
+| `(Intercept)`      | 2.5       |
+| `hours_studied`        | .2        |
+| `schoolCal`      | 1       |
+| `schoolStanford`        | -1      |
+
+## Question 5 (cont.)
+
+-   Say I wanted to create a data frame from the original `edu` dataframe which contains the minimum, median, and IQR for `hours_studied` among each school. In order to do this, I make use of `group_by()` followed by `summarize()`. I save this data frame into an object called `GPA_summary`.
+
+. . .
+
+:::poll
+What are the dimensions of `GPA_summary`?
+:::
+
+. . . 
+
+```{r}
+countdown::countdown(minutes = 1)
+```
+
+. . . 
+
+:::notes
+The correct answer in the poll should be 3x4. The three rows are for the three levels in the school category (there *is* an additional level beyond `"Cal"` and `"Stanford"`, regardless if it is not stated).  One column is for the school name, the other three are for each of the statistics calculated; the three rows are for the three levels in the school category.
+:::
+
+# Break
+
+```{r}
+countdown::countdown(minutes = 5, top = 0)
+```
+
+# Lab 2.2 (extended)
+
+```{r}
+countdown::countdown(minutes = 40, top = 0)
+```
+
+# End of Lecture
+
+<!---
+
 # Concept Questions
 
 ## Estimate the coefficient
@@ -46,7 +232,7 @@ m1 <- lm(bill_depth_mm ~ bill_length_mm, data = penguins)
 \
 
 :::{.poll}
-What will be the sign of the coefficient for  `bill_length_mm`?
+What will be the sign of the coefficient for `bill_length_mm`?
 :::
 
 :::notes
@@ -92,7 +278,7 @@ m2 <- lm(bill_depth_mm ~ bill_length_mm + species, penguins)
 \
 
 :::{.poll}
-What will be the sign of the coefficient for  `bill_length_mm`? How many coefficients will be in this linear model?
+What will be the sign of the coefficient for `bill_length_mm`? How many coefficients will be in this linear model?
 :::
 
 :::notes
@@ -197,6 +383,10 @@ This was a former final question.
 ```{r}
 countdown::countdown(1, top = 0)
 ```
+
+-->
+
+
 
 <!-- ## MLR Geometry -->
 
