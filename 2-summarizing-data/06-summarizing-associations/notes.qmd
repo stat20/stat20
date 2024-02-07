@@ -403,17 +403,18 @@ If that felt a little shifty to you - drawing a line by hand and then eyeballing
 **Least Squares Slope**
 :    $$ b_1 = r \frac{s_y}{s_x} $$
 
-**Least Squares Intercept**
+**Least Squares Intercept** 
 :    $$ b_0 = \bar{y} - b_1 \bar{x}$$
 
 <!-- Give a bit of instuition for where these come from -->
 
-So how does this line look compared to the hand-drawn line? Let's calculate the slope and intercept. In R, we can do this with a function called **`lm()`.**
+So how does this line look compared to the hand-drawn line? Let's calculate the slope and intercept. In R, we can do this with a function called **`lm()`.** To see the slope and intercept for our model, we can print out our model object.
 
 ```{r}
 #| code-fold: false
 #| echo: true
 m1 <- lm(formula = Graduates ~ Poverty, data = poverty)
+m1
 ```
 
 The syntax for `lm()` uses what's called "formula notation" in R. The first argument is a formula of the form `y ~ x` and can be read as, "Explain the y as a function of the x". In the second argument, you specify which data frame contains the variables used in the formula.

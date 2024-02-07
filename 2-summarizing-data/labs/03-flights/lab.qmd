@@ -85,7 +85,7 @@ Create a plot to examine the relationship between average speed and distance (yo
 
 #### Question 8
 
-Color the points of the plot you made in **Question 7** by destination, and use this to provide a possible explanation for the relationship between the two variables (particularly, the noticeable gap) in the plot title. You can add layers to plot objects with `+`.
+Rewrite the code for the plot you made in **Question 7**, coloring the points by destination, and use this to provide a possible explanation for the relationship between the two variables (particularly, the noticeable gap) in the plot title. 
 
 
 #### Question 9
@@ -106,7 +106,7 @@ The process of applying functions to existing variables (such as logarithm or sq
 
 #### Question 10
 
-Which pair of variables are better described via a linear model?
+Explain which pair of variables have a relationship which is better described via a linear model:
 
 -   distance and average speed
 -   log distance and log average speed 
