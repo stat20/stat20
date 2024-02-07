@@ -403,12 +403,13 @@ If that felt a little shifty to you - drawing a line by hand and then eyeballing
 **Least Squares Slope**
 :    $$ b_1 = r \frac{s_y}{s_x} $$
 
-**Least Squares Intercept**
+**Least Squares Intercept** 
 :    $$ b_0 = \bar{y} - b_1 \bar{x}$$
 
 <!-- Give a bit of instuition for where these come from -->
 
-So how does this line look compared to the hand-drawn line? Let's calculate the slope and intercept. In R, we can do this with a function called **`lm()`.** We can save this into a model object and then print it out.
+
+So how does this line look compared to the hand-drawn line? Let's calculate the slope and intercept. In R, we can do this with a function called **`lm()`.** To see the slope and intercept for our model, we can print out our model object.
 
 ```{r}
 #| code-fold: false

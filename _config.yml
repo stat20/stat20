@@ -127,7 +127,7 @@ schedule:
         items:
           - type: Notes
             href: 2-summarizing-data/07-multiple-linear-regression/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
             render: false
