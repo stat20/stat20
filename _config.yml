@@ -340,7 +340,7 @@ schedule:
         display-date: May 9
         
 partial-render:
-  render-as-of: 2/6/24
+  render-as-of: "2/6/24"
   timezone: "-07:00" # GMT offset in +/-hh:mm does not adjust for daylight savings
 
 adaptive-nav:
