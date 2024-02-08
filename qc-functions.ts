@@ -66,7 +66,7 @@ function getRenderVal(item: any, renderType: string, thresholdDate: Date, timezo
     // default to true
     let renderValue = true;
 
-    if (renderType === "partial") {
+    if (renderType === "partial-site") {
       
         const itemDate = new Date(convertDateToISOFormat(item.date, timezone));
         
