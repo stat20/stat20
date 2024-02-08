@@ -118,10 +118,20 @@ Explain in one or two sentences, using your results from **Question 7** and **Qu
 
 Fit a linear model to the variables you chose from **Question 10**. Then determine which flight had the fastest average speed given its distance traveled.
 
+#### Question 12
+
+Fit a multiple linear regression model that explains arrival delay using departure delay and the distance of the flight and print out the coefficients (the intercept and two slopes). 
+
+#### Question 13
+
+On average, which carrier's flights had the smallest arrival delay given their departure delay and distance? 
+
+#### Question 14
+
+Can we compare the coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not? State your answer in 2-3 sentences. 
 
 
 <!--
-
 
 #### Question 1
 
