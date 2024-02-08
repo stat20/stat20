@@ -24,13 +24,13 @@ notes-contents.yml
 ps-contents.yml
 slides-contents.yml
 schedule.yml
-sidebar-nav.yml
+adaptive-nav.yml
 
 # Quarto projects specific
 /.quarto/
 _site
 _partial-site
-_staff-site
+_full-site
 side_libs
 
 # Files derived from _course-settings.yml and scripts
