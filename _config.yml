@@ -130,7 +130,7 @@ schedule:
             render: true
           - type: Slides
             href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
-            render: false
+            render: true
             
   - week: 5
     days:
