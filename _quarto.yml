@@ -5,9 +5,6 @@ project:
     - "*.qmd"
     - "!docs"
   post-render: qc-clean-website.ts
-  
-metadata-files:
-  - "adaptive-nav.yml"
 
 # Website Configuration and Layout
 website:
@@ -52,6 +49,26 @@ website:
       - icon: r-circle-fill
         href: https://stat20.datahub.berkeley.edu/
         aria-label: RStudio
+  sidebar:
+    - title: "Staff Guide"
+      style: floating
+      align: left
+      contents:
+        - staff-guide/index.qmd
+        - staff-guide/roles-and-expectations.qmd
+        - staff-guide/grading.qmd
+        - staff-guide/pre-semester-checklist.qmd
+
+    - title: "Docs"
+      style: floating
+      align: left
+      contents:
+        - section: Documention
+          href: docs/index.qmd
+          contents:
+            - docs/website.qmd
+            - docs/assignments.qmd
+            - docs/slides.qmd
   page-footer: 
     background: white
     foreground: "gray-800"
