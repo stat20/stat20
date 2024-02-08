@@ -88,7 +88,7 @@ One addl. coefficient for body mass; two addl. for species (one less than the nu
 
 # Questions 2-4
 
-Consider the following multiple linear regression model, which will be the subject of the next three review questions
+Consider the following multiple linear regression model, which will be the subject of the next three review questions.
 
 ## Question 2
 

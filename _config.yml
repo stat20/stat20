@@ -132,6 +132,9 @@ schedule:
             href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
             render: false
             
+    resources:
+      - '<a href="https://www.stat20.org/2-summarizing-data/07-multiple-linear-regression/extra-practice.pdf"">Extra Practice</a>'
+            
   - week: 5
     days:
       - topic: "Quiz 1"

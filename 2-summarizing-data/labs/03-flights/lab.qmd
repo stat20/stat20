@@ -133,7 +133,6 @@ Can we compare the coefficients for departure delay and distance to understand w
 
 <!--
 
-
 #### Question 1
 
 Filter the data set to contain only the flights that left in the springtime destined for Portland, Oregon and print the first few rows of the data frame. How many were there in 2020?
