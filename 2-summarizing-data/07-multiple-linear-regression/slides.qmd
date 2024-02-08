@@ -51,7 +51,7 @@ library(stat20data)
 
 -   *Extra Practice* for Multiple Linear Regression added to the resources tab on the [course home page](https://stat20.org). 
 
-# Multiple Linear Regression Refresher
+# Multiple Linear Regression Refresher 
 
 -   Head to `pollev.com` for a set of rapid-fire questions on last night's notes.
 

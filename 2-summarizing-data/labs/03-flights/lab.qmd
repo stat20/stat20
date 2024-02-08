@@ -128,7 +128,7 @@ On average, which carrier's flights had the smallest arrival delay given their d
 
 #### Question 14
 
-Can we compare the coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not? State your answer in 2-3 sentences.
+Can we compare the coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not? State your answer in 2-3 sentences. 
 
 
 <!--
