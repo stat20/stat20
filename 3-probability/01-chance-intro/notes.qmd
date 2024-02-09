@@ -5,6 +5,8 @@ image: images/dice-players-painting.jpeg
 format:
   html: default
   pdf: default
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -46,20 +48,20 @@ library(infer)
 library(patchwork)
 ```
 
-[I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0.0000034%. As he writes, this is either depressing or cheering news, depending on what you had estimated your chance to be *before* reading the paper.[^Backus] The interesting point in the paper was using a probabilistic argument (originally developed by the astronomer and astrophysicist Frank Drake to estimate the probability of extra-terrestrial civilizations) to think about his dating problems. Anyone can follow the arguments put forward by Backus, including his statements that use probability.
+[I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0.0000034%. As he writes, this is either depressing or cheering news for a person, depending on what you had estimated your chance to be *before* reading the paper and doing a similar computation for yourself.[^Backus] The interesting point in the paper was using a probabilistic argument (originally developed by the astronomer and astrophysicist Frank Drake to estimate the probability of extra-terrestrial civilizations) to think about his dating problems. Anyone can follow the arguments put forward by Backus, including his statements that use probability.
 
 [^Backus]: Paper is at <https://www.astro.sunysb.edu/fwalter/AST248/why_i_dont_have_a_girlfriend.pdf> and a talk by Backus at <https://www.youtube.com/watch?v=ClPPSry8bBw>
 
 We all have some notion of chance or probability, and can ask questions like:
 
 - What is the chance you will get an A in Stat 20? (About 32%, based on last fall.)[^stat-20-A]
-- What is the chance the 49ers will win the Super Bowl this year? (About 1 in 7, higher than any other team, as of September 21.)[^49ers]
+- What is the chance the 49ers will win the Super Bowl this year? (They are the favorites, with an implied probability of about 54.5%, .)[^49ers]
 - What is the chance you will roll a double on your next turn to get out of jail while playing Monopoly? (One in six.)
-- What is the chance that the next President of the United States will be Joe Biden? (A little under 40%.) [^biden-odds]
+- What is the chance that Donald Trump will win the Presidential election? (About 47%.) [^trump-odds]
 
-[^49ers]: <https://www.foxsports.com/articles/nfl/2023-24-san-francisco-49ers-odds-odds-to-win-super-bowl-nfl-playoffs-division>
+[^49ers]: <https://www.freep.com/betting/sports/nfl-49ers-vs-chiefs-odds-moneylines-spreads-totals-best-nfl-odds-this-week>
 [^stat-20-A]: <https://berkeleytime.com/grades/0-7077-all-all&1-7077-fall-2022-all>
-[^biden-odds]: <https://www.thelines.com/odds/election/>
+[^trump-odds]: <https://www.thelines.com/odds/election/>
 
 To answer such questions, we need to quantify uncertainty and randomness, and that is the focus of this new unit: **Generalization**.
 
@@ -239,7 +241,7 @@ For example, if we are playing De Méré's second game, the event that we roll a
 If we roll a die, the events that we roll an *even* number and the event that we roll an *odd* number are mutually exclusive, but the events that we roll an *even* number and the event that we roll a *prime* number are **not** mutually exclusive, since the number 2 is both even and prime.
 
 
-The event that Manchester City wins the English Premier League (EPL) in 2024, and the event that Arsenal wins the EPL in 2024 are mutually exclusive, but the events that Manchester City are EPL champions in 2024 and Manchester City are EPL champions in 2023 are *not* mutually exclusive. 
+The event that Manchester City wins the English Premier League (EPL) in 2024, and the event that Liverpool wins the EPL in 2024 are mutually exclusive, but the events that Manchester City are EPL champions in 2024 and Manchester City are EPL champions in 2023 are *not* mutually exclusive. 
 </details>
 
 Now for the third axiom:
@@ -258,11 +260,11 @@ An important consequence of rule 3 is the *complement rule* below. First, we nee
 
 :::{.def}
 **Complement of a set $A$**
- ~ Let $A$ be an event in $\Omega$. The *complement* of $A$, written as $A^C$  consists of all those outcomes in $\Omega$ that are *not* in $A$. 
+ ~ Let $A$ be an event in $\Omega$. The *complement* of $A$, written as $A^C$,  consists of all those outcomes in $\Omega$ that are *not* in $A$. 
 :::
 
 The complement rule
-: $P(A) + P(A^C) =  1$ (since $A  \cup A^C = \Omega$)
+: $P(A) + P(A^C) =  1$ (since $A  \cup A^C = \Omega$, and $A  \cap A^C \emptyset$).
 
 
 ## Example of using the rules
@@ -521,7 +523,37 @@ What is the chance that we will win one dollar on a single spin of the wheel?
 
 
 
-## Simulations
+## The Ideas in Code
+
+### Four useful functions
+
+#### `sample()`: randomly picks out elements (items) from a vector
+
+Drawing from a box of tickets is easily simulated in R, since there is a convenient function `sample()` that does exactly what we need: draw tickets from a "box" (which needs to be a vector). 
+
+- **Arguments** 
+    - `x`: the vector to be sampled from, this *must* be specified
+    - `size`: the number of items to be sampled, the default value is the length of `x`
+    - `replace`: whether we replace a drawn item before we draw again, the default value is `FALSE`, indicating that we would draw *without* replacement.
+    
+**Example: one sample of size 2 from a box with tickets from 1 to 6**
+```{r}
+#| code-fold: false
+
+die <- c(1, 2, 3, 4, 5, 6)
+sample(die, size = 2, replace = FALSE)
+```
+ 
+What would happen if we don't specify values for `size` and `replace`? 
+
+
+
+(Note: The `set.seed()` function below ensures that we will get the same random sample each time we run the code.)[^setseed]
+
+[^setseed]: The random number generator in R is called a "Pseudo Random Number Generator", because the process can be controlled by a "seed". These are algorithmic random number generators, which means that if you provide the same seed (a starting number), R will generate the same sequence of random numbers. This makes it easier to debug your code, and reproduce your results if needed.
+
+
+### Simulations
 
 :::{.callout-tip}
 
@@ -531,9 +563,7 @@ As you read through these notes, keep RStudio open in another window to code alo
 :::
 
 
-Drawing from a box of tickets is easily simulated in R, since there is a convenient function that does exactly what we need: draw tickets from a "box" (a vector). We will use the function `sample(x, size = n, replace = FALSE)`, where `x` is the vector you want to sample from, `size` is the number of draws (with the default value being the length of `x`), and `replace` specifies whether the draws are with or without replacement. The default in `sample()` is to draw _without_ replacement. (Note: The `set.seed()` function below ensures that we will get the same random sample each time we run the code.)[^setseed]
 
-[^setseed]: The random number generator in R is called a "Pseudo Random Number Generator", because the process can be controlled by a "seed". These are algorithmic random number generators, which means that if you provide the same seed (a starting number), R will generate the same sequence of random numbers. This makes it easier to debug your code, and reproduce your results if needed.
 
 Let's simulate rolling a die and counting how many times we see each face. 
 
@@ -851,14 +881,6 @@ We know all the possible outcomes of summing a pair of dice (between $2$ and $12
 :::
 
 
-
-## Summary
-
-- In this lecture, we introduced equally likely outcomes,and defined the outcome space of an experiment. 
-- Then, using equally likely outcomes, we defined the probability of an event as the ratio of the number of outcomes in the event to the number of total outcomes in the outcome space. 
-- We wrote down the rules of probability, after defining unions, intersections, and mutually exclusive events and Venn diagrams
-- We saw how to simulate probabilities using `sample()` and `replicate()`
-
 [^fppbox]: The box model was introduced by Freedman, Pisani, and
 Purves in their textbook [*Statistics*](https://wwnorton.com/books/9780393929720)
 
@@ -969,4 +991,9 @@ dice_24_df %>%
   summarise(prop_wins_game_2 = mean(at_least_one_boxcars))
 ```
 
+## Summary
 
+- In this lecture, we introduced equally likely outcomes,and defined the outcome space of an experiment. 
+- Then, using equally likely outcomes, we defined the probability of an event as the ratio of the number of outcomes in the event to the number of total outcomes in the outcome space. 
+- We wrote down the axioms (fundamental rules) of probability, after defining unions, intersections, and mutually exclusive events and Venn diagrams.
+- In the "Ideas in Code" section, explored how to simulate probabilities using `sample()` and `replicate()`, and learned another useful function `seq()` 
