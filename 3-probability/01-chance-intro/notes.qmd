@@ -524,7 +524,7 @@ What is the chance that we will win one dollar on a single spin of the wheel?
 
 ## The Ideas in Code
 
-### Four useful functions
+### Three useful functions
 
 #### `sample()`: randomly picks out elements (items) from a vector
 
