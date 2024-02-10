@@ -272,7 +272,7 @@ Now, the height of the blue bar in the lower left of the plot shows the proporti
 
 One last question before we move on: of these two charts, which one more clearly shows the species distribution on Dream Island? Dream shows up in both charts, but only one gives you a good answer to this question.
 
-The answer to this question comes from the second chart. Here the species breakdown on Dream is clearly shown in the middle bar: a bit more than half are Gentoo, the rest are Adelie. Trying to pry this information out of the first chart is actually impossible! When we conditioned on species, we lost the relative numbers of Chinstraps and Adelies - where they found in equal numbers or were there 100 Chinstraps for every Adelie? That information can't be back-engineered from the first chart, and without it, we can't reconstruct the distribution as seen in the middle bar of the second chart.
+The answer to this question comes from the second chart. Here the species breakdown on Dream is clearly shown in the middle bar: a bit more than half are Chinstrap, the rest are Adelie. Trying to pry this information out of the first chart is actually impossible! When we conditioned on species, we lost the relative numbers of Chinstraps and Adelies - where they found in equal numbers or were there 100 Chinstraps for every Adelie? That information can't be back-engineered from the first chart, and without it, we can't reconstruct the distribution as seen in the middle bar of the second chart.
 
 The lesson from this is powerful: if you wish to make a claim rooted in a conditional proportion and are using a normalized bar chart, it is essentially to think carefully about *which* conditional proportion your chart is displaying.
 

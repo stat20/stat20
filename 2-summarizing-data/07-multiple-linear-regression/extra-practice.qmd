@@ -1,0 +1,46 @@
+---
+title: "Multiple Linear Regression"
+subtitle: "PS"
+format: stat20handout-pdf
+---
+
+\begin{center}
+\textbf{This is ungraded additional practice. We recommend that you work on it as study material.}
+\end{center}
+
+Load the `penguins` dataset into R and answer the following questions. Where code is needed, you may write it down in the space given. 
+
+### Question 1
+
+Fit the multiple linear regression model from today's slides, but instead having `"Chinstrap"` as the reference level in the `species` variable. Interpret the coefficient corresponding to the `"Adelie"` indicator variable in the context of the problem.
+
+\
+\
+\
+\
+\
+\
+\
+
+### Question 2
+
+Write out the mathematical equation of the line whose coefficients are given by your model output.
+
+\
+\
+\
+
+### Question 3
+
+Now, consider the relationship between bill length and bill depth when broken down by species. *Sketch* (do not code) a plot which can be used to summarize the relationship between all three variables. *Depict a shape which reflects your expectation of the phenomenon*. State the aesthetic mappings and geometry involved in the plot. Finally, label your axes and give the plot a title. 
+
+\
+\
+\
+\
+\
+
+
+
+
+
