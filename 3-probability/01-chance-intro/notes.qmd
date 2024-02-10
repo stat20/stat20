@@ -525,7 +525,7 @@ What is the chance that we will win one dollar on a single spin of the wheel?
 
 ### Three useful functions
 
-#### `sample()`: randomly picks out elements (items) from a vector
+#### 1. `sample()`: randomly picks out elements (items) from a vector
 
 Drawing from a box of tickets is easily simulated in R, since there is a convenient function `sample()` that does exactly what we need: draw tickets from a "box" (which needs to be a vector). 
 
@@ -564,7 +564,7 @@ sample(die, size = 2, replace = TRUE)
 ```
 
 
-#### `set.seed()`: returns the random number generator to the point given by the seed number
+#### 2. `set.seed()`: returns the random number generator to the point given by the seed number
 
 The random number generator in R is called a "Pseudo Random Number Generator", because the process can be controlled by a "seed number". These are algorithmic random number generators, which means that if you provide the same seed (a starting number), R will generate the same sequence of random numbers. This makes it easier to debug your code, and reproduce your results if needed.
 
@@ -588,7 +588,7 @@ sample(die)
 
 Notice that we get the same sample. You can try to run `sample(die)` without using `set.seed()` and see what happens.
 
-#### `seq()`: creates a sequence of numbers
+#### 3. `seq()`: creates a sequence of numbers
 
 Above, we created the vector `die` using `die <- c(1, 2, 3, 4, 5, 6)`, which is fine, but this method would be tedious if we wanted to simulate a 20-sided die, for instance. The function `seq()` allows us to create any sequence we like by specifying the starting number, how we want to increment the numbers, and either the ending number or the length of the sequence we want.
 
