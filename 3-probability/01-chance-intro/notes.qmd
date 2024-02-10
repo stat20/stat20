@@ -954,7 +954,7 @@ Purves in their textbook [*Statistics*](https://wwnorton.com/books/9780393929720
 [^unsplash]: Photo via unsplash.com
 
 
-## Ideas in Code
+<!--## Ideas in Code
 
 You can run the simulations yourself using the code below. Copy and paste it into RStudio and play around with it.
 
@@ -1055,6 +1055,7 @@ dice_24_df %>%
   mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) %>%
   summarise(prop_wins_game_2 = mean(at_least_one_boxcars))
 ```
+-->
 
 ## Summary
 
