@@ -53,7 +53,6 @@ library(patchwork)
 [^Backus]: Paper is at <https://www.astro.sunysb.edu/fwalter/AST248/why_i_dont_have_a_girlfriend.pdf> and a talk by Backus at <https://www.youtube.com/watch?v=ClPPSry8bBw>
 
 We all have some notion of chance or probability, and can ask questions like:
-
 - What is the chance you will get an A in Stat 20? (About 32%, based on last fall.)[^stat-20-A]
 - What is the chance the 49ers will win the Super Bowl this year? (They are the favorites, with an implied probability of about 54.5%, .)[^49ers]
 - What is the chance you will roll a double on your next turn to get out of jail while playing Monopoly? (One in six.)
