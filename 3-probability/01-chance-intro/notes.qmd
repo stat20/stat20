@@ -171,12 +171,12 @@ Event
 
 :::{.def}
 **Equally likely outcomes**
- ~ When all the possible outcomes in a finite outcome space of size $n$ happen with the same probability, which is $\displaystyle \frac{1}{n}$. To find the probability of an event $A$, just count how many outcomes are in $A$ and divide that by $n$.
+ ~ When all the possible outcomes in a finite outcome space of size $n$ happen with the same probability, which is $\displaystyle \frac{1}{n}$.
 :::
 
 :::{.def}
 **P(A)**
- ~ For any event $A$, we write the probability of $A$ as $P(A)$.
+ ~ For any event $A$, we write the probability of $A$ as $P(A)$.  To find the probability of an event $A$, just count how many outcomes are in $A$ and divide that by $n$.
 :::
 
 
