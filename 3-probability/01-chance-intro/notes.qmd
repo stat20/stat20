@@ -175,7 +175,7 @@ Event
 :::
 
 :::{.def}
-**$P(A)$**
+**$\mathbf{P(A)}$**
  ~ For any event $A$, we write the probability of $A$ as $P(A)$.
 :::
 
