@@ -5,6 +5,8 @@ image: images/dice-players-painting.jpeg
 format:
   html: default
   pdf: default
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -46,20 +48,19 @@ library(infer)
 library(patchwork)
 ```
 
-[I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0.0000034%. As he writes, this is either depressing or cheering news, depending on what you had estimated your chance to be *before* reading the paper.[^Backus] The interesting point in the paper was using a probabilistic argument (originally developed by the astronomer and astrophysicist Frank Drake to estimate the probability of extra-terrestrial civilizations) to think about his dating problems. Anyone can follow the arguments put forward by Backus, including his statements that use probability.
+[I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0.0000034%. As he writes, this is either depressing or cheering news for a person, depending on what you had estimated your chance to be *before* reading the paper and doing a similar computation for yourself.[^Backus] The interesting point in the paper was using a probabilistic argument (originally developed by the astronomer and astrophysicist Frank Drake to estimate the probability of extra-terrestrial civilizations) to think about his dating problems. Anyone can follow the arguments put forward by Backus, including his statements that use probability.
 
 [^Backus]: Paper is at <https://www.astro.sunysb.edu/fwalter/AST248/why_i_dont_have_a_girlfriend.pdf> and a talk by Backus at <https://www.youtube.com/watch?v=ClPPSry8bBw>
 
 We all have some notion of chance or probability, and can ask questions like:
-
 - What is the chance you will get an A in Stat 20? (About 32%, based on last fall.)[^stat-20-A]
-- What is the chance the 49ers will win the Super Bowl this year? (About 1 in 7, higher than any other team, as of September 21.)[^49ers]
+- What is the chance the 49ers will win the Super Bowl this year? (They are the favorites, with an implied probability of about 54.5%, .)[^49ers]
 - What is the chance you will roll a double on your next turn to get out of jail while playing Monopoly? (One in six.)
-- What is the chance that the next President of the United States will be Joe Biden? (A little under 40%.) [^biden-odds]
+- What is the chance that Donald Trump will win the Presidential election? (About 47%.) [^trump-odds]
 
-[^49ers]: <https://www.foxsports.com/articles/nfl/2023-24-san-francisco-49ers-odds-odds-to-win-super-bowl-nfl-playoffs-division>
+[^49ers]: <https://www.freep.com/betting/sports/nfl-49ers-vs-chiefs-odds-moneylines-spreads-totals-best-nfl-odds-this-week>
 [^stat-20-A]: <https://berkeleytime.com/grades/0-7077-all-all&1-7077-fall-2022-all>
-[^biden-odds]: <https://www.thelines.com/odds/election/>
+[^trump-odds]: <https://www.thelines.com/odds/election/>
 
 To answer such questions, we need to quantify uncertainty and randomness, and that is the focus of this new unit: **Generalization**.
 
@@ -98,7 +99,7 @@ We will see later how to compute this probability, but for now we can estimate t
 set.seed(123)
 #### de Mere - first game
 
-die <- 1:6
+die <- seq(from = 1, by = 1, to = 6)
 
 num_simulations <- 1000
 cat("Number of simulations =", sep = " ", num_simulations)
@@ -114,8 +115,8 @@ rownames(die_4_df) <- paste("simulation", sep = " ", 1:num_simulations)
 
 #head(die_4_df)
 
-die_4_df %>% 
-  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) %>%
+die_4_df |> 
+  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) |>
   summarise(prop_wins_game_1 = mean(at_least_one_six))
 
 ######## de mere second game
@@ -136,8 +137,8 @@ rownames(dice_24_df) <- paste("simulation", sep = " ", 1:num_simulations)
 
 #head(dice_24_df)
 
-dice_24_df %>% 
-  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) %>%
+dice_24_df |> 
+  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) |>
   summarise(prop_wins_game_2 = mean(at_least_one_boxcars))
 
 
@@ -168,24 +169,30 @@ Event
  ~ A collection of outcomes as a result of the experiment being performed, perhaps more than once. For example, we could toss a coin twice, and consider the *event* of both tosses landing heads. We usually denote events by upper case letters from the beginning of the alphabet: $A, B, C, \ldots$. An event is a subset of the outcome space, and we denote this by writing $A \subset \Omega$.
 :::
 
+:::{.def}
+**Equally likely outcomes**
+ ~ When all the possible outcomes in a finite outcome space of size $n$ happen with the same probability, which is $\displaystyle \frac{1}{n}$.
+:::
+
+:::{.def}
+**P(A)**
+ ~ For any event $A$, we write the probability of $A$ as $P(A)$.  To find the probability of an event $A$, just count how many outcomes are in $A$ and divide that by $n$.
+:::
+
+
 #### Example: Tossing a fair coin 
 
 ![](images/us-quarter.png){width="100" fig-align="center"}
 
 Suppose we toss a fair coin, and I ask you what is the chance of the coin landing heads. Like most people, you reply 50%. Why? Well... (you reply) there are two possible things that can happen, and if the coin is fair, then they are both equally likely, so the probability of heads is 1/2 or 50%. 
 
-Here, we have thought about an event (the coin landing heads), seen that there is one outcome in that event, and two outcomes in the outcome space, so we say the probability of the event is 1/2. We can generalize this: let's say that there are $n$ possible outcomes in the outcome space $\Omega$, and an event $A$ has $k$ possible outcomes. If all the outcomes are equally likely to happen (as in a die roll or coin toss), then we say that the chance of $A$ is $\displaystyle \frac{k}{n}$. If we denote the probability of the event $A$ as $P(A)$, then we can say that 
+Here, we have thought about an event (the coin landing heads), seen that there is one outcome in that event, and two outcomes in the outcome space, so we say the probability of the event is 1/2. We can generalize this: let's say that there are $n$ possible outcomes in the outcome space $\Omega$, and an event $A$ has $k$ possible outcomes. If all the outcomes are equally likely to happen (as in a die roll or coin toss), then we say that the chance of $A$ is $\frac{k}{n}$:
+
 $$
 P(A) = \frac{k}{n}
 $$
 
 For a fair coin, we can say $P(\text{Heads}) = \displaystyle \frac{1}{2}$.
-
-
-:::{.def}
-**Equally likely outcomes**
- ~ When all the possible outcomes in a finite outcome space of size $n$ happen with the same probability, which is $\displaystyle \frac{1}{n}$. To find the probability of an event $A$, just count how many outcomes are in $A$ and divide that by $n$.
-:::
 
 ##### Example: Tossing a fair six-sided die[^dice] 
 
@@ -235,11 +242,10 @@ Now we consider events that *don't* intersect or overlap at all, that is, they a
 
 For example, if we are playing De Méré's second game, the event that we roll a pair of sixes and the event that we roll a pair of twos cannot happen on the same roll. These are mutually exclusive. Another example: the events that President Biden is re-elected and the event that Donald Trump is elected as President cannot both happen, therefore they are mutually exclusive events. 
 
-<details><summary>More examples:</summary>
 If we roll a die, the events that we roll an *even* number and the event that we roll an *odd* number are mutually exclusive, but the events that we roll an *even* number and the event that we roll a *prime* number are **not** mutually exclusive, since the number 2 is both even and prime.
 
 
-The event that Manchester City wins the English Premier League (EPL) in 2024, and the event that Arsenal wins the EPL in 2024 are mutually exclusive, but the events that Manchester City are EPL champions in 2024 and Manchester City are EPL champions in 2023 are *not* mutually exclusive. 
+The event that Manchester City wins the English Premier League (EPL) in 2024, and the event that Liverpool wins the EPL in 2024 are mutually exclusive, but the events that Manchester City are EPL champions in 2024 and Manchester City are EPL champions in 2023 are *not* mutually exclusive. 
 </details>
 
 Now for the third axiom:
@@ -258,11 +264,11 @@ An important consequence of rule 3 is the *complement rule* below. First, we nee
 
 :::{.def}
 **Complement of a set $A$**
- ~ Let $A$ be an event in $\Omega$. The *complement* of $A$, written as $A^C$  consists of all those outcomes in $\Omega$ that are *not* in $A$. 
+ ~ Let $A$ be an event in $\Omega$. The *complement* of $A$, written as $A^C$,  consists of all those outcomes in $\Omega$ that are *not* in $A$. 
 :::
 
 The complement rule
-: $P(A) + P(A^C) =  1$ (since $A  \cup A^C = \Omega$)
+: $P(A) + P(A^C) =  1$ (since $A  \cup A^C = \Omega$, and $A  \cap A^C \emptyset$).
 
 
 ## Example of using the rules
@@ -364,13 +370,13 @@ prob_box <- c(1/5, 2/5, 1/5, 1/5)
 
 box <- c(1, 2, 2, 3, 4)
 
-p1 <- data.frame(box) %>% 
+p1 <- data.frame(box) |> 
   ggplot(aes(x=box)) +
   geom_bar(width = 0.98, fill = "darkorchid") +
   xlab("ticket value")  +
   ggtitle("Ticket distribution")
 
-p2 <- data.frame(tkts_box) %>% 
+p2 <- data.frame(tkts_box) |> 
   ggplot(aes(x=tkts_box, y=prob_box)) +
   geom_col(width = 0.98, fill = "goldenrod2") +
   xlab("ticket value") +
@@ -393,13 +399,13 @@ prob_box <- c(1/5, 2/5, 1/5, 1/5)
 
 box <- c(1, 2, 2, 3, 4)
 
-p1 <- data.frame(box) %>% 
+p1 <- data.frame(box) |> 
   ggplot(aes(x=box)) +
   geom_bar(width = 0.98, fill = "darkorchid") +
   xlab("ticket value")  +
   ggtitle("Ticket distribution")
 
-p2 <- data.frame(tkts_box) %>% 
+p2 <- data.frame(tkts_box) |> 
   ggplot(aes(x=tkts_box, y=prob_box)) +
   geom_col(width = 0.98, fill = "goldenrod2") +
   xlab("ticket value") +
@@ -427,7 +433,7 @@ set.seed(12345)
 box <- c(1,2,2,3,4)
 sample_size <- 50
 sample_box <- sample(box, size = sample_size, replace = TRUE)
-data.frame(sample_box) %>%
+data.frame(sample_box) |>
   ggplot(aes(sample_box)) + 
   geom_bar(aes(y = ..prop..), width = 0.98, fill = "blue") +
   xlab("values of draws") + 
@@ -448,7 +454,7 @@ set.seed(12345)
 box <- c(1,2,2,3,4)
 sample_size <- 50
 sample_box <- sample(box, size = sample_size, replace = TRUE)
-data.frame(sample_box) %>%
+data.frame(sample_box) |>
   ggplot(aes(sample_box)) + 
   geom_bar(aes(y = ..prop..), width = 0.98, fill = "blue") +
   xlab("values of draws") + 
@@ -521,7 +527,104 @@ What is the chance that we will win one dollar on a single spin of the wheel?
 
 
 
-## Simulations
+## The Ideas in Code
+
+### Three useful functions
+
+#### 1. `sample()`: randomly picks out elements (items) from a vector
+
+Drawing from a box of tickets is easily simulated in R, since there is a convenient function `sample()` that does exactly what we need: draw tickets from a "box" (which needs to be a vector). 
+
+- **Arguments** 
+    - `x`: the vector to be sampled from, this *must* be specified
+    - `size`: the number of items to be sampled, the default value is the length of `x`
+    - `replace`: whether we replace a drawn item before we draw again, the default value is `FALSE`, indicating that we would draw *without* replacement.
+    
+**Example: one sample of size 2 from a box with tickets from 1 to 6**
+```{r}
+#| code-fold: false
+
+die <- c(1, 2, 3, 4, 5, 6)
+sample(die, size = 2, replace = FALSE)
+```
+ 
+What would happen if we don't specify values for `size` and `replace`? 
+
+```{r}
+#| code-fold: false
+
+die <- c(1, 2, 3, 4, 5, 6)
+sample(die)
+```
+
+What would we do differently if we wanted to simulate two rolls of a die? 
+
+<details> <summary> Check your answer </summary>
+
+We would sample twice from the vector `die` *with* replacement:
+```{r}
+#| code-fold: false
+
+die <- c(1, 2, 3, 4, 5, 6)
+sample(die, size = 2, replace = TRUE)
+```
+
+
+#### 2. `set.seed()`: returns the random number generator to the point given by the seed number
+
+The random number generator in R is called a "Pseudo Random Number Generator", because the process can be controlled by a "seed number". These are algorithmic random number generators, which means that if you provide the same seed (a starting number), R will generate the same sequence of random numbers. This makes it easier to debug your code, and reproduce your results if needed.
+
+- **Arguments** 
+    - `n`: the seed number to use. You can use any number you like, for example 1, or 31415 etc
+You might have noticed that each time you run sample in the code chunk above, it gives you a different sample. Sometimes we want it to give the same sample so that we can check how the code is working without the sample changing each time. We will use the `set.seed` function for this, which ensures that we will get the same random sample each time we run the code.
+
+**Example: one sample**
+```{r}
+#| code-fold: false
+set.seed(1)
+sample(die)
+```
+
+**Example: another sample**
+```{r}
+#| code-fold: false
+set.seed(1)
+sample(die)
+```
+
+Notice that we get the same sample. You can try to run `sample(die)` without using `set.seed()` and see what happens.
+
+#### 3. `seq()`: creates a sequence of numbers
+
+Above, we created the vector `die` using `die <- c(1, 2, 3, 4, 5, 6)`, which is fine, but this method would be tedious if we wanted to simulate a 20-sided die, for instance. The function `seq()` allows us to create any sequence we like by specifying the starting number, how we want to increment the numbers, and either the ending number or the length of the sequence we want.
+
+- **Arguments**
+    - `from`: where to start
+    - `by`: size of jump from number to number (the increment)
+    
+    
+You can end a sequence in one of two ways:
+    - `to`: at what number should the sequence end
+    - `length`: how long should the sequence be
+
+**Example: sequence with the to argument**
+
+```{r}
+#| code-fold: false
+odds_1 <- seq(from = 1, by = 2, to = 9)
+odds_1
+```
+
+**Example: sequence with the length argument**
+
+```{r}
+#| code-fold: false
+odds_2 <- seq(from = 1, by = 2, length = 5)
+odds_2
+```
+
+
+### Simulations
 
 :::{.callout-tip}
 
@@ -531,9 +634,7 @@ As you read through these notes, keep RStudio open in another window to code alo
 :::
 
 
-Drawing from a box of tickets is easily simulated in R, since there is a convenient function that does exactly what we need: draw tickets from a "box" (a vector). We will use the function `sample(x, size = n, replace = FALSE)`, where `x` is the vector you want to sample from, `size` is the number of draws (with the default value being the length of `x`), and `replace` specifies whether the draws are with or without replacement. The default in `sample()` is to draw _without_ replacement. (Note: The `set.seed()` function below ensures that we will get the same random sample each time we run the code.)[^setseed]
 
-[^setseed]: The random number generator in R is called a "Pseudo Random Number Generator", because the process can be controlled by a "seed". These are algorithmic random number generators, which means that if you provide the same seed (a starting number), R will generate the same sequence of random numbers. This makes it easier to debug your code, and reproduce your results if needed.
 
 Let's simulate rolling a die and counting how many times we see each face. 
 
@@ -544,12 +645,12 @@ If we roll it 6 times, we don't really expect to see each face exactly once, and
 
 ```{r}
 set.seed(12345)
-die <- 1:6
+die <- seq(from = 1, by = 1, to = 6)
 
 die_rolls <- sample(die, 6, replace = TRUE)
 
-data.frame(die_rolls) %>%
-  group_by(die_rolls) %>% 
+data.frame(die_rolls) |>
+  group_by(die_rolls) |> 
   summarise(n = n())
 ```
 
@@ -561,8 +662,8 @@ set.seed(12345)
 
 die_rolls <- sample(die, 60, replace = TRUE)
 
-data.frame(die_rolls) %>%
-  group_by(die_rolls) %>% 
+data.frame(die_rolls) |>
+  group_by(die_rolls) |> 
   summarise(n = n())
 ```
 
@@ -572,8 +673,8 @@ set.seed(12345)
 
 die_rolls <- sample(die, 600, replace = TRUE)
 
-data.frame(die_rolls) %>%
-  group_by(die_rolls) %>% 
+data.frame(die_rolls) |>
+  group_by(die_rolls) |> 
   summarise(n = n())
 ```
 
@@ -588,7 +689,7 @@ It might be better to visualize it. We will draw the *probability distribution* 
 prob_die <- rep(1/6, 6)
 set.seed(12345)
 
-p1 <- data.frame(die) %>% 
+p1 <- data.frame(die) |> 
   ggplot(aes(x = factor(die), y=prob_die)) +
   geom_col(width = 0.98, fill = "goldenrod2") +
   xlab("number of spots") +
@@ -597,11 +698,11 @@ p1 <- data.frame(die) %>%
   lims(y = c(0, .35))
 
 roll_60 <- sample(die, 60, replace = TRUE)
-roll_60 <- data.frame(table(roll_60)) %>% 
+roll_60 <- data.frame(table(roll_60)) |> 
   mutate(prop_rolls = Freq/60)
 
 
-p2 <- roll_60 %>%
+p2 <- roll_60 |>
   ggplot(aes(x = factor(die), y= prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
@@ -612,10 +713,10 @@ p2 <- roll_60 %>%
 
 roll_600 <- sample(die, 600, replace = TRUE)
 
-roll_600 <- data.frame(table(roll_600)) %>%
+roll_600 <- data.frame(table(roll_600)) |>
     mutate(prop_rolls = Freq/600)
 
-p3 <- roll_600 %>%
+p3 <- roll_600 |>
   ggplot(aes(x = factor(die), y= prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
@@ -626,11 +727,11 @@ p3 <- roll_600 %>%
 
 roll_6000 <- sample(die, 6000, replace = TRUE)
 
-roll_6000 <- data.frame(table(roll_6000)) %>%
+roll_6000 <- data.frame(table(roll_6000)) |>
     mutate(prop_rolls = Freq/6000)
 
 
-p4 <- data.frame(roll_6000) %>%
+p4 <- data.frame(roll_6000) |>
   ggplot(aes(x = factor(die), y=prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
@@ -653,7 +754,7 @@ p4 <- data.frame(roll_6000) %>%
 prob_die <- rep(1/6, 6)
 set.seed(12345)
 
-p1 <- data.frame(die) %>% 
+p1 <- data.frame(die) |> 
   ggplot(aes(x = factor(die), y=prob_die)) +
   geom_col(width = 0.98, fill = "goldenrod2") +
   xlab("number of spots") +
@@ -662,11 +763,11 @@ p1 <- data.frame(die) %>%
   lims(y = c(0, .35))
 
 roll_60 <- sample(die, 60, replace = TRUE)
-roll_60 <- data.frame(table(roll_60)) %>% 
+roll_60 <- data.frame(table(roll_60)) |> 
   mutate(prop_rolls = Freq/60)
 
 
-p2 <- roll_60 %>%
+p2 <- roll_60 |>
   ggplot(aes(x = factor(die), y= prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
@@ -677,10 +778,10 @@ p2 <- roll_60 %>%
 
 roll_600 <- sample(die, 600, replace = TRUE)
 
-roll_600 <- data.frame(table(roll_600)) %>%
+roll_600 <- data.frame(table(roll_600)) |>
     mutate(prop_rolls = Freq/600)
 
-p3 <- roll_600 %>%
+p3 <- roll_600 |>
   ggplot(aes(x = factor(die), y= prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
@@ -691,11 +792,11 @@ p3 <- roll_600 %>%
 
 roll_6000 <- sample(die, 6000, replace = TRUE)
 
-roll_6000 <- data.frame(table(roll_6000)) %>%
+roll_6000 <- data.frame(table(roll_6000)) |>
     mutate(prop_rolls = Freq/6000)
 
 
-p4 <- data.frame(roll_6000) %>%
+p4 <- data.frame(roll_6000) |>
   ggplot(aes(x = factor(die), y=prop_rolls)) +
   geom_col(width = 0.98, fill = "blue") +
   xlab("number of spots") +
@@ -798,7 +899,7 @@ This is something that we could use if we wanted to play Monopoly and couldn't f
 
 
 ```{r}
-die <- 1:6
+die <- seq(from = 1, by = 1, to = 6)
 # to simulate rolling a die twice and summing the spots
 draws <- sample(die, size = 2, replace = TRUE)
 sum(draws)
@@ -851,14 +952,6 @@ We know all the possible outcomes of summing a pair of dice (between $2$ and $12
 :::
 
 
-
-## Summary
-
-- In this lecture, we introduced equally likely outcomes,and defined the outcome space of an experiment. 
-- Then, using equally likely outcomes, we defined the probability of an event as the ratio of the number of outcomes in the event to the number of total outcomes in the outcome space. 
-- We wrote down the rules of probability, after defining unions, intersections, and mutually exclusive events and Venn diagrams
-- We saw how to simulate probabilities using `sample()` and `replicate()`
-
 [^fppbox]: The box model was introduced by Freedman, Pisani, and
 Purves in their textbook [*Statistics*](https://wwnorton.com/books/9780393929720)
 
@@ -867,7 +960,7 @@ Purves in their textbook [*Statistics*](https://wwnorton.com/books/9780393929720
 [^unsplash]: Photo via unsplash.com
 
 
-## Ideas in Code
+<!--## Ideas in Code
 
 You can run the simulations yourself using the code below. Copy and paste it into RStudio and play around with it.
 
@@ -925,8 +1018,8 @@ head(die_4_df)
 # we will create a new column that checks, for each play (each row), if there is at least 
 # one 6. What will be the values in this column? Break the pipe and check!
 # Finally, we will compute the proportion of plays in which at least one 6 was rolled.
-die_4_df %>% 
-  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) %>%
+die_4_df |> 
+  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) |>
   summarise(prop_wins = mean(at_least_one_six))
 ```
 
@@ -964,9 +1057,15 @@ rownames(dice_24_df) <- paste("simulation", sep = " ", 1:num_simulations)
 
 #head(dice_24_df)
 
-dice_24_df %>% 
-  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) %>%
+dice_24_df |> 
+  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) |>
   summarise(prop_wins_game_2 = mean(at_least_one_boxcars))
 ```
+-->
 
+## Summary
 
+- In this lecture, we introduced equally likely outcomes,and defined the outcome space of an experiment. 
+- Then, using equally likely outcomes, we defined the probability of an event as the ratio of the number of outcomes in the event to the number of total outcomes in the outcome space. 
+- We wrote down the axioms (fundamental rules) of probability, after defining unions, intersections, and mutually exclusive events and Venn diagrams.
+- In the "Ideas in Code" section, explored how to simulate probabilities using `sample()` and `replicate()`, and learned another useful function `seq()` 
