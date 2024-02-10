@@ -415,3 +415,6 @@ adaptive-nav:
     - type: Notes
       landing-page: notes.qmd
   
+options:
+  debug: true
+  
