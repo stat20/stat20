@@ -53,8 +53,8 @@ library(patchwork)
 [^Backus]: Paper is at <https://www.astro.sunysb.edu/fwalter/AST248/why_i_dont_have_a_girlfriend.pdf> and a talk by Backus at <https://www.youtube.com/watch?v=ClPPSry8bBw>
 
 We all have some notion of chance or probability, and can ask questions like:
-- What is the chance you will get an A in Stat 20? (About 32%, based on last fall.)[^stat-20-A]
-- What is the chance the 49ers will win the Super Bowl this year? (They are the favorites, with an implied probability of about 54.5%, .)[^49ers]
+- What is the chance you will get an A in Stat 20? (About 32%, based on last fall)[^stat-20-A]
+- What is the chance the 49ers will win the Super Bowl this year? (They are the favorites, with an implied probability of about 54.5%.)[^49ers]
 - What is the chance you will roll a double on your next turn to get out of jail while playing Monopoly? (One in six.)
 - What is the chance that Donald Trump will win the Presidential election? (About 47%.) [^trump-odds]
 
@@ -161,7 +161,7 @@ Before we get going with examples, let's establish some terminology:
 
 :::{.def}
 **Outcome space**
- ~ This is just a set. It is the collection of all the possible outcomes of an experiment is called an outcome space or *sample* space, and we denote it by the upper case Greek letter $\Omega$ (``Omega"). For example, if we toss a coin, then the corresponding outcome space is $\Omega = \{\text{Heads, Tails}\}$. If we roll a die, then the corresponding outcome space $\Omega = \{1, 2, 3, 4, 5, 6\}$. We will denote a set by enclosing the elements of the set in braces: $\{ \}$. 
+ ~ This is the collection of all the possible outcomes of an experiment. This collection is called an outcome space or *sample* space, and we denote it by the upper case Greek letter $\Omega$ (``Omega"). For example, if we toss a coin, then the corresponding outcome space is $\Omega = \{\text{Heads, Tails}\}$. If we roll a die, then the corresponding outcome space $\Omega = \{1, 2, 3, 4, 5, 6\}$. We will denote a set by enclosing the elements of the set in braces: $\{ \}$. 
 :::
 
 :::{.def}
@@ -176,7 +176,7 @@ Event
 
 :::{.def}
 **P(A)**
- ~ For any event $A$, we write the probability of $A$ as $P(A)$.  To find the probability of an event $A$, just count how many outcomes are in $A$ and divide that by $n$.
+ ~ For any event $A$, we write the probability of $A$ as $P(A)$.  To find the probability of an event $A$ when all the outcomes are equally likely, just count how many outcomes are in $A$ and divide this number by $n$, the total number of outcomes in the outcome space $\Omega$.
 :::
 
 
@@ -186,11 +186,7 @@ Event
 
 Suppose we toss a fair coin, and I ask you what is the chance of the coin landing heads. Like most people, you reply 50%. Why? Well... (you reply) there are two possible things that can happen, and if the coin is fair, then they are both equally likely, so the probability of heads is 1/2 or 50%. 
 
-Here, we have thought about an event (the coin landing heads), seen that there is one outcome in that event, and two outcomes in the outcome space, so we say the probability of the event is 1/2. We can generalize this: let's say that there are $n$ possible outcomes in the outcome space $\Omega$, and an event $A$ has $k$ possible outcomes. If all the outcomes are equally likely to happen (as in a die roll or coin toss), then we say that the chance of $A$ is $\frac{k}{n}$:
-
-$$
-P(A) = \frac{k}{n}
-$$
+Here, we have thought about an event (the coin landing heads), seen that there is one outcome in that event, and two outcomes in the outcome space, so we say the probability of the event is 1/2. We can generalize this: let's say that there are $n$ possible outcomes in the outcome space $\Omega$, and an event $A$ has $k$ possible outcomes. If all the outcomes are equally likely to happen (as in a die roll or coin toss), then we say that the chance of $A$ is $P(A) = \displaystyle \frac{k}{n}$:
 
 For a fair coin, we can say $P(\text{Heads}) = \displaystyle \frac{1}{2}$.
 
@@ -241,6 +237,8 @@ Now we consider events that *don't* intersect or overlap at all, that is, they a
 ::: 
 
 For example, if we are playing De Méré's second game, the event that we roll a pair of sixes and the event that we roll a pair of twos cannot happen on the same roll. These are mutually exclusive. Another example: the events that President Biden is re-elected and the event that Donald Trump is elected as President cannot both happen, therefore they are mutually exclusive events. 
+
+<details><summary>More examples:</summary>
 
 If we roll a die, the events that we roll an *even* number and the event that we roll an *odd* number are mutually exclusive, but the events that we roll an *even* number and the event that we roll a *prime* number are **not** mutually exclusive, since the number 2 is both even and prime.
 
@@ -342,20 +340,24 @@ If $B$ is the event of *exactly* one head, then $B = \{HTT, THT, TTH\}$ and $P(B
 
 Consider the box above which has five almost identical tickets. The only difference is the value written on them. Imagine that we shake the box to mix the tickets up, and then draw *one* ticket without looking so that all the tickets are *equally likely* to be drawn[^uar]. 
 
+Make a table listing the possible outcomes when we draw a ticket from the box, and the probability of each outcome.
 What is the chance of drawing an even number?
 
 <details><summary>Check your answer</summary>
 
 **Solution**:
 
-Let $A$ be the event of drawing an even number, then $A = \{2, 2, 4\}$: we list 2 twice because there are two tickets marked 2, making it twice as likely as any other number. 
-$P(A) = 3/5$
+|**Outcome** | $1$ | $2$ | $3$ | $4$ |
+|:----:|:----:|:----:|:----:|:----:|
+|**Probability**| $\displaystyle \frac{1}{5}$ |$\displaystyle \frac{2}{5}$ |$\displaystyle \frac{1}{5}$ |$\displaystyle \frac{1}{5}$ |
+
+Let $A$ be the event of drawing an even number, then $A = \{ 2, 4\}$, or if we want to show equally likely outcomes, we would list 2 twice because there are two tickets marked 2, making it twice as likely as any other number ($\{ 2, 2, 4\}$). We see that $P(A) = 3/5$
 
 </details> 
 
-##### Probability distributions vs empirical distributions
+## Probability distributions vs empirical distributions
 
-The plots of distributions that we have seen so far have been visualizations of data, and so are called *empirical* distributions. We can represent the *theoretical* probabilities visually with bars, and we call this a *probability distribution*. Note that we do not need to collect data for this type of graph.
+The plots of distributions that we have seen so far have been visualizations of data, and so are called *empirical* distributions. We can represent the *theoretical* probabilities visually with bars, and we call this a *probability distribution*. Note that we do **not** need to collect data for this type of graph.
 
 Here is a plot of the probability distribution of the value of the drawn ticket. It is a visual representation of the table we drew earlier, and you can see that the bar over 2 is twice as tall. This is because there are twice as many tickets marked 2 as any other numbers. 
 
