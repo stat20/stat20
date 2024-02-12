@@ -157,7 +157,7 @@ You can see here that the poor Chevalier wasn't as good a mathematician as he im
 By the end of this unit, you'll be able to conduct simulations like these yourself in R! For today, we are going to begin by introducing the conceptual building blocks behind probability.
 
 
-## Basics
+## Basics 
 
 First, let's establish some terminology: 
 
