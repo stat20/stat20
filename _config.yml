@@ -146,7 +146,7 @@ schedule:
         items:
           - type: Notes
             href: 3-probability/01-chance-intro/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 3-probability/01-chance-intro/slides.qmd
             render: false
@@ -414,4 +414,7 @@ adaptive-nav:
   sidebar:
     - type: Notes
       landing-page: notes.qmd
+  
+options:
+  debug: true
   
