@@ -1,6 +1,6 @@
 ---
 title: "Introducing Probability"
-subtitle: "Definitions, examples, and axioms"
+subtitle: "Definitions, axioms, and examples"
 image: images/dice-players-painting.jpeg
 format:
   html: default
@@ -35,6 +35,7 @@ editor_options:
 
 ----------------------------------------------------
 
+
 :::
 
 ```{r}
@@ -48,13 +49,17 @@ library(infer)
 library(patchwork)
 ```
 
+:::{style="text-align: center"}
+## Welcome to Unit II: Probability
+:::
+
 [I]{.dropcap}n an enormously entertaining paper written about a decade ago, the economist Peter Backus estimated his chance of finding a girlfriend on any given night in London at about 1 in 285,000 or 0.0000034%. As he writes, this is either depressing or cheering news for a person, depending on what you had estimated your chance to be *before* reading the paper and doing a similar computation for yourself.[^Backus] The interesting point in the paper was using a probabilistic argument (originally developed by the astronomer and astrophysicist Frank Drake to estimate the probability of extra-terrestrial civilizations) to think about his dating problems. Anyone can follow the arguments put forward by Backus, including his statements that use probability.
 
 [^Backus]: Paper is at <https://www.astro.sunysb.edu/fwalter/AST248/why_i_dont_have_a_girlfriend.pdf> and a talk by Backus at <https://www.youtube.com/watch?v=ClPPSry8bBw>
 
 We all have some notion of chance or probability, and can ask questions like:
-- What is the chance you will get an A in Stat 20? (About 32%, based on last fall)[^stat-20-A]
-- What is the chance the 49ers will win the Super Bowl this year? (They are the favorites, with an implied probability of about 54.5%.)[^49ers]
+- What is the chance you will get an A in Stat 20? (About 32%, based on last fall.)[^stat-20-A]
+- What is the chance the 49ers will win the Super Bowl this year? (They are the favorites, with an implied probability of about 54.5%, .)[^49ers]
 - What is the chance you will roll a double on your next turn to get out of jail while playing Monopoly? (One in six.)
 - What is the chance that Donald Trump will win the Presidential election? (About 47%.) [^trump-odds]
 
@@ -62,11 +67,11 @@ We all have some notion of chance or probability, and can ask questions like:
 [^stat-20-A]: <https://berkeleytime.com/grades/0-7077-all-all&1-7077-fall-2022-all>
 [^trump-odds]: <https://www.thelines.com/odds/election/>
 
-To answer such questions, we need to quantify uncertainty and randomness, and that is the focus of this new unit: **Generalization**.
+The second of our four types of claim we will investigate is a **generalization.** To do so, we first need to quantify uncertainty and randomness. This is the purpose of the **Probability** unit. 
 
 ![](images/andrew-gen-focus.jpeg){fig-align=center width="400"}
 
-So far, we have examined data sets and summarized them, both numerically and visually.  We have looked at data distributions, and associations between variables. Can we extend the conclusions that we make about the data sets to larger populations? If we notice that bill length and flipper length have a strong linear relationship for the penguins in our data, can we say this is true about all penguins? How do we draw **valid** conclusions about the population our data was drawn from? These are the kinds of questions we we will study using tools from probability theory. 
+So far, we have examined data sets and summarized them, both numerically and visually.  We have looked at data distributions, and associations between variables. Can we extend the conclusions that we make about the data sets to larger populations? If we notice that bill length and flipper length have a strong linear relationship for the penguins in our data, can we say this is true about all penguins? How do we draw *valid* conclusions about the population our data was drawn from? These are the kinds of questions we we will study using tools from probability theory. 
 
 In order to be taken seriously, we need to be careful about how we collect data, and then how we generalize our findings. For example, you may have observed that some polling companies are more successful than others in their estimates and predictions, and consequently people pay more attention to them. Below is a snapshot of rankings of polling organizations from the well-known website FiveThirtyEight[^538], and one can imagine that not many take heed of the polling done by the firms with C or worse grades. According to the website, the rankings are based on the polling organization's ``historical accuracy and methodology".
 
@@ -89,7 +94,7 @@ In 17th century France, gamblers would bet on anything. In particular, they woul
 
 The next popular dice game was betting on at least one double six in twenty-four rolls of a pair of dice. De Méré knew that there were 36 possible outcomes when rolling a pair of dice, and therefore the chance of a double six was 1/36. Using this he concluded that the chance of at least one double six in 24 rolls was the same as that of at least one six in four rolls, that is, 2/3 ($24 \times 1/36$). He happily bet on this event (at least one double six in 24 rolls) but to his shock, lost more often than he won! What was going on?
 
-We will see later how to compute this probability, but for now we can estimate the value by simulating the game many times and looking at the proportion of times we see at least one six in 4 rolls of a fair die, and do the same with at least one double six in 24 rolls.
+We will see later how to compute this probability, but for now we can estimate the value by **simulating** the game many times (1000 times each) and looking at the proportion of times we see at least one six in 4 rolls of a fair die, and do the same with at least one double six in 24 rolls.
 
 ```{r}
 #| echo: false
@@ -147,12 +152,14 @@ dice_24_df |>
 ```
 
 
-You can see here that the poor Chevalier wasn't as good a mathematician as he imagined himself to be, and didn't compute the chances correctly.  `r emo::ji("monocle")` You can play with this simulation in the ``Ideas in Code" section below.
+You can see here that the poor Chevalier wasn't as good a mathematician as he imagined himself to be, and didn't compute the chances correctly. The simulated probabilities are nowhere close to 4/6 and 2/3, the probabilities that he computed for the first and second game, respectively. `r emo::ji("monocle")` 
+
+By the end of this unit, you'll be able to conduct simulations like these yourself in R! For today, we are going to begin by introducing the conceptual building blocks behind probability.
 
 
-## Basics
+## Basics 
 
-Before we get going with examples, let's establish some terminology: 
+First, let's establish some terminology: 
 
 :::{.def}
 **Experiment**
@@ -161,7 +168,7 @@ Before we get going with examples, let's establish some terminology:
 
 :::{.def}
 **Outcome space**
- ~ This is the collection of all the possible outcomes of an experiment. This collection is called an outcome space or *sample* space, and we denote it by the upper case Greek letter $\Omega$ (``Omega"). For example, if we toss a coin, then the corresponding outcome space is $\Omega = \{\text{Heads, Tails}\}$. If we roll a die, then the corresponding outcome space $\Omega = \{1, 2, 3, 4, 5, 6\}$. We will denote a set by enclosing the elements of the set in braces: $\{ \}$. 
+ ~ This is just a set. It is the collection of all the possible outcomes of an experiment is called an outcome space or *sample* space, and we denote it by the upper case Greek letter $\Omega$ (``Omega"). For example, if we toss a coin, then the corresponding outcome space is $\Omega = \{\text{Heads, Tails}\}$. If we roll a die, then the corresponding outcome space $\Omega = \{1, 2, 3, 4, 5, 6\}$. We will denote a set by enclosing the elements of the set in braces: $\{ \}$. 
 :::
 
 :::{.def}
@@ -170,27 +177,33 @@ Event
 :::
 
 :::{.def}
-**Equally likely outcomes**
- ~ When all the possible outcomes in a finite outcome space of size $n$ happen with the same probability, which is $\displaystyle \frac{1}{n}$.
+**P(A)**
+ ~ For any event $A$, we write *the probability of $A$* as $P(A)$.  To find the probability of an event $A$, just count how many outcomes are in $A$ and divide that by $n$.
 :::
 
 :::{.def}
-**P(A)**
- ~ For any event $A$, we write the probability of $A$ as $P(A)$.  To find the probability of an event $A$ when all the outcomes are equally likely, just count how many outcomes are in $A$ and divide this number by $n$, the total number of outcomes in the outcome space $\Omega$.
+**Equally likely outcomes**
+ ~ When all the possible outcomes in a finite outcome space of size $n$ happen with the same probability, which is $\displaystyle \frac{1}{n}$.
+ 
+Let's say that there are $n$ possible outcomes in the outcome space $\Omega$, and an event $A$ has $k$ possible outcomes out of those $n$. If all the outcomes are equally likely to happen (as in a die roll or coin toss), then we say that the probability of $A$ occuring is $\displaystyle \frac{k}{n}$.
+
+$$
+P(A) = \frac{k}{n}
+$$
+
 :::
 
 
-#### Example: Tossing a fair coin 
+### Example: Tossing a fair coin 
 
 ![](images/us-quarter.png){width="100" fig-align="center"}
 
 Suppose we toss a fair coin, and I ask you what is the chance of the coin landing heads. Like most people, you reply 50%. Why? Well... (you reply) there are two possible things that can happen, and if the coin is fair, then they are both equally likely, so the probability of heads is 1/2 or 50%. 
 
-Here, we have thought about an event (the coin landing heads), seen that there is one outcome in that event, and two outcomes in the outcome space, so we say the probability of the event is 1/2. We can generalize this: let's say that there are $n$ possible outcomes in the outcome space $\Omega$, and an event $A$ has $k$ possible outcomes. If all the outcomes are equally likely to happen (as in a die roll or coin toss), then we say that the chance of $A$ is $P(A) = \displaystyle \frac{k}{n}$:
+Here, we have thought about an event (the coin landing heads), seen that there is one outcome in that event, and two outcomes in the outcome space, so we say the probability of the event, $P(\text{Heads})$, is 1/2. 
 
-For a fair coin, we can say $P(\text{Heads}) = \displaystyle \frac{1}{2}$.
 
-##### Example: Tossing a fair six-sided die[^dice] 
+### Example: Tossing a fair six-sided die[^dice] 
 
 [^dice]: The singular is *die* and the plural is *dice*. If we use the word "die" without any qualifiers, we will mean a fair, six-sided die. 
 
@@ -200,16 +213,18 @@ Consider rolling a fair six-sided die: six outcomes are possible so $\Omega = \{
 |:----:|:----:|:----:|:----:|:----:|:----:|:----:|
 |**Probability**| $\displaystyle \frac{1}{6}$ |$\displaystyle \frac{1}{6}$ |$\displaystyle \frac{1}{6}$ |$\displaystyle \frac{1}{6}$ |$\displaystyle \frac{1}{6}$ |$\displaystyle \frac{1}{6}$ |
 
-In order to compute the probabilities of events, we need to set some rules. 
+Let $A$ be the event that an even number is rolled. Then the set $A$ can be written $\{2,4,6\}$. Since all of these outcomes are equally likely:
+
+$$P(A) = \frac{1}{6} + \frac{1}{6} + \frac{1}{6} = \frac{3}{6}$$
 
 ## Axioms of probability
 
-The probability (or chance - we use these words interchangebly) of an event needs to satisfy some basic mathematical rules called _axioms_ (which are intuitively clear if you think of the probability of an event as the proportion of the outcomes that are in it). There are three basic rules that will help us compute probabilities:
+In order to compute the probabilities of events, we need to set some basic mathematical rules called _axioms_ (which are intuitively clear if you think of the probability of an event as the proportion of the outcomes that are in it). There are three basic rules that will help us compute probabilities:
 
-Rule 1
+Axiom 1
 : The chance of any event is at least $0$: $P(A) \ge 0$ for any event $A$. 
 
-Rule 2
+Axiom 2
 : The chance of an outcome being in $\Omega$ is $1$: $P(\Omega) = 1$. This is true because we can consider that the probability of $\Omega$ is the number of outcomes in $\Omega$ divided by $n$, which is $n/n = 1$.
 
 Before we write the third rule, we need some more definitions and notation:
@@ -233,53 +248,75 @@ Now we consider events that *don't* intersect or overlap at all, that is, they a
 
 :::{.def}
 **Mutually exclusive events**
- ~ If two events $A$ and $B$ do not overlap, that is, they have **no outcomes in common**, we say that the events are *mutually exclusive*. Note that if $A$ and $B$ are mutually exclusive, then we know that if one of them happens, the other one **cannot**. We denote this by writing $A \cap B = \emptyset$ and read this as $A$ *intersect* $B$ is empty. Therefore, we have that $P(A \cap B) = P(\emptyset) = 0$. 
+ ~ If two events $A$ and $B$ do not overlap, that is, they have *no outcomes in common*, we say that the events are **mutually exclusive**. 
+ 
+If $A$ and $B$ are mutually exclusive, then we know that if one of them happens, the other one *cannot*. We denote this by writing $A \cap B = \emptyset$ and read this as $A$ *intersect* $B$ is empty. Therefore, we have that 
+
+$$P(A \cap B) = P(\emptyset) = 0$$. 
 ::: 
+For example, if we are playing De Méré's second game, the event $A$ that we roll a pair of sixes and the event $B$ that we roll a pair of twos cannot happen on the same roll. These events $A$ and $B$ are mutually exclusive. 
 
-For example, if we are playing De Méré's second game, the event that we roll a pair of sixes and the event that we roll a pair of twos cannot happen on the same roll. These are mutually exclusive. Another example: the events that President Biden is re-elected and the event that Donald Trump is elected as President cannot both happen, therefore they are mutually exclusive events. 
+<!--
+Another example: the events that President Biden is re-elected and the event that Donald Trump is re-elected as President cannot both happen, therefore they are mutually exclusive events. 
+-->
 
-<details><summary>More examples:</summary>
+However, if we roll a die, the event $C$ that we roll an *even* number and the event $D$ that we roll a *prime* number are *not* mutually exclusive, since the number 2 is both even and prime.
 
-If we roll a die, the events that we roll an *even* number and the event that we roll an *odd* number are mutually exclusive, but the events that we roll an *even* number and the event that we roll a *prime* number are **not** mutually exclusive, since the number 2 is both even and prime.
+<!--
+the event $C$ that we roll an *even* number and the event $D$ that we roll an *odd* number are mutually exclusive, 
+-->
 
 
+<!--
 The event that Manchester City wins the English Premier League (EPL) in 2024, and the event that Liverpool wins the EPL in 2024 are mutually exclusive, but the events that Manchester City are EPL champions in 2024 and Manchester City are EPL champions in 2023 are *not* mutually exclusive. 
 </details>
+-->
 
 Now for the third axiom:
 
-Rule 3
-: If $A$ and $B$ are mutually exclusive ($A \cap B = \emptyset$), then $P(A \cup B) = P(A) + P(B)$. That is, for two **mutually exclusive** events, the probability that *either* of the two events might occur is the *sum* of their probabilities. This is called the *addition rule*.
+Axiom 3
+: If $A$ and $B$ are mutually exclusive ($A \cap B = \emptyset$), then 
 
-<details><summary> Example:</summary>
-For example, consider rolling a fair six-sided die, and the two events $A$ and $B$, where $A$ is the event of rolling a multiple of $5$, and $B$ is the event that we roll a multiple of $2$. <br>
+$$P(A \cup B) = P(A) + P(B)$$
+That is, for two mutually exclusive events, the probability that *either* of the two events might occur is the *sum* of their probabilities. This is called the **addition rule**.
+
+For example, consider rolling a fair six-sided die, and the two events $A$ and $B$, where $A$ is the event of rolling a multiple of $5$, and $B$ is the event that we roll a multiple of $2$. 
 
 The only outcome in $A$ is $\{5\}$, while $B$ consists of $\{2, 4, 6\}$.
-$P(A) = 1/6$, and $P(B) = 3/6$. Since $A \cap B =\emptyset$, that is, $A$ and $B$ have no outcomes in common, $P(A \cup B) = P(A) + P(B) = 1/6 + 3/6 = 4/6$.
-</details>
+$P(A) = 1/6$, and $P(B) = 3/6$. Since $A \cap B =\emptyset$, that is, $A$ and $B$ have no outcomes in common, we have that
 
-An important consequence of rule 3 is the *complement rule* below. First, we need a definition.
+$$P(A \cup B) = P(A) + P(B) = \frac{1}{6} + \frac{3}{6} = \frac{4}{6}$$
+
 
 :::{.def}
-**Complement of a set $A$**
- ~ Let $A$ be an event in $\Omega$. The *complement* of $A$, written as $A^C$,  consists of all those outcomes in $\Omega$ that are *not* in $A$. 
+**The complement rule**
+
+Here is an important consequence of axiom 3. Let $A$ be an event in $\Omega$. The *complement* of $A$, written as $A^C$,  consists of all those outcomes in $\Omega$ that are *not* in $A$. Then we have the following rule:
+
+
+$$P(A) + P(A^C) =  1$$ 
+
+This is because $A  \cup A^C = \Omega$, and $A  \cap A^C \emptyset$).
 :::
 
-The complement rule
-: $P(A) + P(A^C) =  1$ (since $A  \cup A^C = \Omega$, and $A  \cap A^C \emptyset$).
+### An example with the axioms: penguins
 
-
-## Example of using the rules
-
-#### Penguins
-
-Consider the penguins data, which has 344 observations, of which 152 are Adelie penguins and 68 are Chinstrap penguins. Suppose we pick a penguin at random, what is the probability that we would pick an Adelie penguin? What about a Gentoo penguin?
+Consider the penguins dataset, which has 344 observations, of which 152 are Adelie penguins and 68 are Chinstrap penguins. Suppose we pick a penguin at random, what is the probability that we would pick an Adelie penguin? What about a Gentoo penguin?
 
 <details> <summary> Check your answer </summary>
 Let $A$ be the event of picking an Adelie penguin, $C$ be the event of picking a Chinstrap penguin, and $G$ be the event of picking a Gentoo penguin. 
-Assuming that all the penguins are equally likely to be picked, we see that then $P(A) = 152/344$, and $P(C) = 68/344$. Since only one penguin is picked, we see that $A, C$, and $G$ are mutually exclusive. This means that $P(A)+P(C)+P(G) = 1$, since $A, C$, and $G$ together make up all of $\Omega$. Therefore the complement of $G$ which is a penguin that is not Gentoo consists of Adelie and Chinstrop penguins, and $P(G^C) = P(A \cup C) = P(A) + P(C) = (152+68)/344 = 220/344$ (addition rule).
 
-Finally, the complement rule tells us that $P(G) = 1 - P(G^C) = 1 - 220/344 = 124/344$.
+Assuming that all the penguins are equally likely to be picked, we see that then $P(A) = 152/344$, and $P(C) = 68/344$. 
+
+Since only one penguin is picked, we see that $A, C$, and $G$ are *mutually exclusive*. This means that $P(A)+P(C)+P(G) = 1$, since $A, C$, and $G$ together make up all of $\Omega$.
+
+Therefore the complement of $G$, $G^C$, which is a penguin that is not Gentoo, consists of Adelie and Chinstrop penguins, and by the *addition rule*,
+
+$$P(G^C) = P(A \cup C) = P(A) + P(C) = (152+68)/344 = 220/344$$ 
+
+Finally, the *complement rule* tells us that 
+
+$$P(G) = 1 - P(G^C) = 1 - 220/344 = 124/344$$.
 </details>
 
 
@@ -305,7 +342,7 @@ Here is a Venn diagram showing two mutually exclusive events (no overlap):
 ![](images/venn-disjoint.png){fig-align=center width="500"}
 
 
-## Examples
+## Further examples
 
 #### 1. Tossing a fair coin 
 
@@ -340,24 +377,21 @@ If $B$ is the event of *exactly* one head, then $B = \{HTT, THT, TTH\}$ and $P(B
 
 Consider the box above which has five almost identical tickets. The only difference is the value written on them. Imagine that we shake the box to mix the tickets up, and then draw *one* ticket without looking so that all the tickets are *equally likely* to be drawn[^uar]. 
 
-Make a table listing the possible outcomes when we draw a ticket from the box, and the probability of each outcome.
 What is the chance of drawing an even number?
 
 <details><summary>Check your answer</summary>
 
 **Solution**:
 
-|**Outcome** | $1$ | $2$ | $3$ | $4$ |
-|:----:|:----:|:----:|:----:|:----:|
-|**Probability**| $\displaystyle \frac{1}{5}$ |$\displaystyle \frac{2}{5}$ |$\displaystyle \frac{1}{5}$ |$\displaystyle \frac{1}{5}$ |
-
-Let $A$ be the event of drawing an even number, then $A = \{ 2, 4\}$, or if we want to show equally likely outcomes, we would list 2 twice because there are two tickets marked 2, making it twice as likely as any other number ($\{ 2, 2, 4\}$). We see that $P(A) = 3/5$
+Let $A$ be the event of drawing an even number, then $A = \{2, 2, 4\}$: we list 2 twice because there are two tickets marked 2, making it twice as likely as any other number. 
+$P(A) = 3/5$
 
 </details> 
 
-## Probability distributions vs empirical distributions
+<!--
+##### Probability distributions vs empirical distributions
 
-The plots of distributions that we have seen so far have been visualizations of data, and so are called *empirical* distributions. We can represent the *theoretical* probabilities visually with bars, and we call this a *probability distribution*. Note that we do **not** need to collect data for this type of graph.
+The plots of distributions that we have seen so far have been visualizations of data, and so are called *empirical* distributions. We can represent the *theoretical* probabilities visually with bars, and we call this a *probability distribution*. Note that we do not need to collect data for this type of graph.
 
 Here is a plot of the probability distribution of the value of the drawn ticket. It is a visual representation of the table we drew earlier, and you can see that the bar over 2 is twice as tall. This is because there are twice as many tickets marked 2 as any other numbers. 
 
@@ -418,10 +452,12 @@ p1+p2
 :::
 
 Notice that the only difference between these two plots is the vertical scale. When the tickets are equally likely, the box distribution (the purple plot) completely determines the probability distribution (the golden plot).
+-->
 
 
 <!-- Since the tickets are drawn according to their chance, we could compute what a draw would be, on average, by computing a weighted (by their chance) average of the possible values. We would get, for a single draw: $1\times \frac{1}{5} + 2 \times \frac{2}{5} + 3 \times \frac{1}{5} + 4 \times \frac{1}{5} = 2.4$. (Note that this exactly matches the average of the tickets in the box $= \displaystyle \frac{1 + 2 + 2 + 3 + 4}{5}$). -->
 
+<!--
 How about if we draw 50 times at random with replacement from this box (that is, each time we draw a ticket, we put the ticket back before we draw another ticket, so that the box we draw from always has the same number of tickets), and see what our sample looks like. That is, we will see what proportion of the draws are 1's, 2's etc.
 
 :::{.content-visible when-format="html"}
@@ -480,12 +516,14 @@ We can see that the (blue) *sample proportions* look similar to the (gold) *popu
 </center>
 
 What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*. This is a plot of the *empirical* distribution, that is, a distribution that is obtained from data.
+-->
 
 
 #### 3. Tossing a biased coin
 
 Suppose I have a coin that is twice as likely to land heads as it is to land tails. This means that I cannot represent $\Omega$ as $\{H, T\}$ since heads and tails are not equally likely. How should I write $\Omega$ so that the outcomes are equally likely?
 
+<details> <summary> Check your answer </summary>
 **Solution**:
 
 In this case, we want to represent equally likely outcomes, and want $H$ to be twice as likely as $T$. We can therefore represent $\Omega$ as $\{H, H, T \}$. Now the chance of the coin landing $H$ can be written as $P(A)$ where $A$ is the event the coin lands $H$ is given by 2/3. 
@@ -513,23 +551,24 @@ $P(HH) = 4/9,\; P(HT) = P(TH) = 2/9, P(TT) = 1/9$ (Check that the probabilities 
 What box would we use if the coin is not a fair coin, but lands heads $5$ out of $6$   times?
 
 :::
+</details>
 
 
 
 #### 4. Betting on red in roulette 
 
-![](images/roulette-us.jpg){fig-align="center" width="200"}[^unsplash]
+![](images/roulette-us.jpg){fig-align="center" width="200"}
 
-<details><summary> Expand to read this example</summary>
-An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is thrown on the wheel so that it is equally likely to land in any of the 38 pockets. Players bet on which colored or numbered pocket the ball will come to rest in. If you bet one dollar that the ball will land on red, and it does, you get your dollar back, and you win one more dollar, so your *net gain* is \$1. If it doesn't, and lands on a black or green number, you lose your dollar, and your *net "gain"* is -\$1. 
+An American roulette wheel has 38 pockets[^unsplash], of which 18 are red, 18 black, and 2 are green. The wheel is spun, and a small ball is thrown on the wheel so that it is equally likely to land in any of the 38 pockets. Players bet on which colored or numbered pocket the ball will come to rest in. If you bet one dollar that the ball will land on red, and it does, you get your dollar back, and you win one more dollar, so your *net gain* is \$1. If it doesn't, and lands on a black or green number, you lose your dollar, and your *net "gain"* is -\$1. 
 
 What is the chance that we will win one dollar on a single spin of the wheel?
 
 *Hint* Write out the chance of the ball landing in a red pocket, and not landing in a red pocket.
 
 
-
 ## The Ideas in Code
+
+Our first step toward simulating experiments is introducing randomness in R. The following three functions are a good start.
 
 ### Three useful functions
 
@@ -580,21 +619,23 @@ The random number generator in R is called a "Pseudo Random Number Generator", b
     - `n`: the seed number to use. You can use any number you like, for example 1, or 31415 etc
 You might have noticed that each time you run sample in the code chunk above, it gives you a different sample. Sometimes we want it to give the same sample so that we can check how the code is working without the sample changing each time. We will use the `set.seed` function for this, which ensures that we will get the same random sample each time we run the code.
 
-**Example: one sample**
+**Example: one sample of size 2 from a box with tickets from 1 to 6**
 ```{r}
 #| code-fold: false
 set.seed(1)
-sample(die)
+sample(die, size = 2, replace = TRUE)
 ```
 
-**Example: another sample**
+**Example: another sample of size 2 from a box with tickets from 1 to 6**
 ```{r}
 #| code-fold: false
 set.seed(1)
-sample(die)
+sample(die, size = 2, replace = TRUE)
 ```
 
 Notice that we get the same sample. You can try to run `sample(die)` without using `set.seed()` and see what happens.
+
+Though we used `set.seed()` twice here to demonstrate its purpose, generally, you will only need to run `set.seed()` once time per document. This is a line of code that fits perfectly at the beginning of your work, when you are also loading libraries and packages.
 
 #### 3. `seq()`: creates a sequence of numbers
 
@@ -625,7 +666,7 @@ odds_2 <- seq(from = 1, by = 2, length = 5)
 odds_2
 ```
 
-
+<!--
 ### Simulations
 
 :::{.callout-tip}
@@ -954,13 +995,6 @@ We know all the possible outcomes of summing a pair of dice (between $2$ and $12
 :::
 
 
-[^fppbox]: The box model was introduced by Freedman, Pisani, and
-Purves in their textbook [*Statistics*](https://wwnorton.com/books/9780393929720)
-
-[^uar]: We call the tickets equally likely when each ticket has the same chance of being drawn. That is, if there are $n$ tickets in the box, each has a chance of $1/n$ to be drawn. We also refer to this as drawing a ticket *uniformly at random*, because the chance of drawing the tickets are the same, or *uniform*.
-
-[^unsplash]: Photo via unsplash.com
-
 
 <!--## Ideas in Code
 
@@ -1071,3 +1105,10 @@ dice_24_df |>
 - Then, using equally likely outcomes, we defined the probability of an event as the ratio of the number of outcomes in the event to the number of total outcomes in the outcome space. 
 - We wrote down the axioms (fundamental rules) of probability, after defining unions, intersections, and mutually exclusive events and Venn diagrams.
 - In the "Ideas in Code" section, explored how to simulate probabilities using `sample()` and `replicate()`, and learned another useful function `seq()` 
+
+[^fppbox]: The box model was introduced by Freedman, Pisani, and
+Purves in their textbook [*Statistics*](https://wwnorton.com/books/9780393929720)
+
+[^uar]: We call the tickets equally likely when each ticket has the same chance of being drawn. That is, if there are $n$ tickets in the box, each has a chance of $1/n$ to be drawn. We also refer to this as drawing a ticket *uniformly at random*, because the chance of drawing the tickets are the same, or *uniform*.
+
+[^unsplash]: Photo via unsplash.com
