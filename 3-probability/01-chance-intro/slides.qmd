@@ -50,7 +50,7 @@ library(patchwork)
 - Review of ideas in notes 
 - Concept Questions
 - Activity: coin tosses
-- PS 7: Introduction to chance
+- Problem set: Introduction to chance
 
 # Concept review: Rules
 
@@ -139,6 +139,7 @@ data.frame(tosses) %>%
 
 :::{.notes}
 DON'T FORGET TO SCROLL DOWN!!
+You can talk about why we use set.seed().
 :::
 
 What about if I toss it fifty times?
