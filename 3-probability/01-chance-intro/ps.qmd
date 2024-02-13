@@ -98,7 +98,7 @@ Examine the following code.
 ```{r}
 #| eval: false
 # First create a vector with the possible sums of a pair of dice
-dice <- seq(from = 2, by = 2, to = 12)
+dice <- seq(from = 2, by = 1, to = 12)
 # Then sample once from these sums 
 sample(x = dice, size = 1)
 ```
