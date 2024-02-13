@@ -81,6 +81,11 @@ Concepts to review: (KEEP THIS BRIEF, OR INCORPORATE INTO CQ's)
 countdown::countdown(5, top = 0)
 ```
 
+:::{.notes}
+Give them five minutes, can use kahoot music
+:::
+
+
 # Concept Question 1
 
 ## The Linda Problem  {.scrollable}
