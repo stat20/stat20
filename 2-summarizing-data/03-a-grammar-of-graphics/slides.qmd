@@ -36,13 +36,17 @@ library(tidyverse)
 - *Break*
 - Lab 2.2: Computing on the Data
 
-## Announcements
+## Announcements {.scrollable}
 
--   Lab 2 (both parts) due Tuesday at 9am
+- Quiz 1 is **not** this upcoming Monday, but *next* Monday(2/12) in-class.  This Monday will be a workshop to complete Lab 2 and PS 4.
 
 . . . 
 
--   Problem Set 4 due Tuesday at 9am. 
+-   Lab 2 (both parts) due Tuesday Feb 13 at 9am.
+
+. . . 
+
+-   Problem Set 4 due Tuesday Feb 13 at 9am. 
 
 . . . 
 
@@ -50,7 +54,7 @@ library(tidyverse)
 
 . . . 
 
--   Quiz 1 next Monday, in class. 
+-   Quiz 1 on Monday Feb 12, in class. 
     -   Individual portion [25 minutes]
     -   Group (max. 3) portion [15 minutes]
     -   Please consult the Quiz Megathread and Syllabus for content and logistical questions.

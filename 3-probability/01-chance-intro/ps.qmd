@@ -1,9 +1,119 @@
 ---
-title: "Intro to Chance"
+title: "Introducing Probability"
 subtitle: "PS"
 format: stat20handout-pdf
 ---
 
+Consider the seven sided die (with sides 0, 1, 2, 3, 4, 5 and 6) from your reading questions. You roll this die once. Let:
+
+-   A be the event that a given roll yields an even number.   
+-   B be the event that a given roll is greater than or equal to three.   
+-   C be the event that the number appears in the phrase “Stat 20”.
+
+@. Find $\text{P}(A)$, $\text{P}(B)$ and $\text{P}(C)$
+
+  \
+  
+  \
+  
+@. Find $\text{P}(A \cup B)$. 
+
+  \
+  
+  \
+  
+@. Find $\text{P}(B \cap C)$
+
+  \
+  
+  \
+  
+@. Find $\text{P}(A \cap B^C)$.
+
+  \
+  
+  \
+
+
+
+One ticket will be drawn at random from each of the two boxes below:
+
+\begin{center}
+$A: \fbox{\fbox{1} \fbox{2} \fbox{3}}$ $\hspace{1cm}$ $B: \fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}}$
+\end{center}
+
+@. What is the probability the number drawn from $A$ is greater than the one drawn from $B$?
+
+   \
+   
+   \
+
+@. What is the probability that the number drawn from $A$ is equal to the one drawn from $B$?
+
+   \
+   
+   \
+
+@. What is the probability the number drawn from $A$ is smaller than the one drawn from $B$?
+
+{{< pagebreak >}}
+   
+
+Consider an outcome space $\Omega$ with events $A, B$ that are *not* mutually exclusive. Let $P(A) = 0.5, P(B) = 0.7$ and $P(A \cap B) = .4$.
+
+@. Draw a Venn Diagram containing two circles, one representing $A$ and the other $B$.
+
+  \
+  
+  \
+  
+  \
+
+@. Shade in the space in the diagram above corresponding to event $A$.
+
+@. Shade in the space in the diagram above corresponding to event $B$ in a way that is different than the way you shaded in the space for event $A$.
+
+@. Based on your shading, calculate the probability $P(A \cup B)$. Explain why you cannot add $P(A)$ and $P(B)$ directly to obtain this answer.  
+
+  \
+  
+  \
+
+Return to the example of the seven-sided die from your reading questions and earlier in this problem set. Write code in R (and write the code below) to:
+
+@. Simulate rolling the seven-sided die once.
+
+  \
+  
+@. Simulate rolling the seven-sided die seven times.
+
+  \
+  
+@. Render a Quarto document with parts 1 and 2 such that you receive the same sample each time you run the code. You can just provide the line of code which is responsible for this behavior.
+
+  \
+  
+Examine the following code.
+
+```{r}
+#| eval: false
+# First create a vector with the possible sums of a pair of dice
+dice <- seq(from = 2, by = 1, to = 12)
+# Then sample once from these sums 
+sample(x = dice, size = 1)
+```
+
+
+@. If we want to simulate rolling a pair of dice and summing the spots (for say, playing Monopoly), will the following code do this correctly? Explain.
+
+
+\
+
+@. If you said that the code is incorrect, modify the following code to simulate this process correctly. *Hint: you may want to use `sample()` more than once.*
+
+
+
+<!--
 @. If we want to simulate rolling a pair of dice and summing the spots (for say, playing Monopoly), will the following code do this correctly? Explain.
 
 ```{r}
@@ -21,7 +131,8 @@ sample(dice, 1)
 
 \
 
-@. If we are defining a box to simulate tossing a fair coin three times and counting the **number** of heads, would either of the methods below work? If not, why not? (Note that, for example, the box  $\fbox{\fbox{0} \fbox{1}}$  would be represented by the `(0, 1)` in R, and we would then use the function `sample()`.
+
+@. If we are defining a box to simulate tossing a fair coin three times and counting the **number** of heads, would either of the methods below work? If not, why not? (Note that, for example, the box  $\fbox{\fbox{0} \fbox{1}}$  would be represented by the `c(0, 1)` in R, and we would then use the function `sample()`.
 
 (a) $\fbox{\fbox{0} \fbox{1}}$ - Draw three times at random with replacement, and sum the draws.
 (b) $\fbox{\fbox{0} \fbox{1} \fbox{2} \fbox{3}}$ -  Draw once, the result is the number of heads.
@@ -33,38 +144,16 @@ sample(dice, 1)
 
 \
 
-@. One ticket will be drawn at random from each of the two boxes below:
-
-\begin{center}
-$A: \fbox{\fbox{1} \fbox{2} \fbox{3}}$ $\hspace{1cm}$ $B: \fbox{ \fbox{1} \fbox{2} \fbox{3} \fbox{4}}$
-\end{center}
-
-   (a) What is the probability the number drawn from $A$ is greater than the one drawn from $B$?
-
-   \
-   
-   \
-
-   (b) What is the probability that the number drawn from $A$ is equal to the one drawn from $B$?
-
-   \
-   
-   \
-
-   (c) What is the probability the number drawn from $A$ is smaller than the one drawn from $B$?
-
-   \
-   
-   \
-
+<!--
 @. I want to estimate the proportion of people in Berkeley who speak at least two languages. I stand at the corner of University and Shattuck and ask each person who goes by how many languages they speak, and keep a count of how many speak at least two. Is this a good way to estimate the proportion I am looking for? 
 
    \
 
    \
+-->
 
-@.  
 
+<!--
 (a) Consider the box $\fbox{ \fbox{1} \fbox{2} \fbox{2} \fbox{3} \fbox{4}}$. I draw two tickets at random **with** replacement. If my first draw is a 2, what is the probability that my second draw is a 3?
 
 \
@@ -78,7 +167,8 @@ $A: \fbox{\fbox{1} \fbox{2} \fbox{3}}$ $\hspace{1cm}$ $B: \fbox{ \fbox{1} \fbox{
 \
 
 
-@. Consider an outcome space $\Omega$ and events $A, B, C$ with $P(A) = 0.6$, $P(B) = 0.7$.
+
+@. Consider an outcome space $\Omega$ and events $A, B, C$ with $P(A) = 0.6$, $P(B) = 0.7, $.
 
 (a) What is the smallest possible value of $P(A \cap B) = P(A \textbf{ and } B)$
 
@@ -101,6 +191,6 @@ $A: \fbox{\fbox{1} \fbox{2} \fbox{3}}$ $\hspace{1cm}$ $B: \fbox{ \fbox{1} \fbox{
 \
 
 @. Think about the two types of plots you saw in the notes: the empirical distributions and the actual probability distribution for the outcomes of rolling a fair six-sided die. Suppose we play a game now: we roll a die $n$ times, and you get 5 dollars if the proportion of times you roll a 6 is greater than 20%. You get to choose $n$ to be either 10 or 1000. Which one would you choose? Why?
-
+-->
 
  
