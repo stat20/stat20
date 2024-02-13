@@ -18,6 +18,8 @@ format:
     title-slide-attributes:
       data-background-image: ../../assets/stat20-hex-bg.png
       data-background-size: contain
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Probability of two events...{.smaller}
@@ -47,10 +49,26 @@ library(patchwork)
 
 ## Agenda
 
+- Announcements
 - Review of ideas in notes 
+- Probability refresher
 - Concept Questions
 - Activity: coin tosses
-- PS 7: Introduction to chance
+- Problem set: Introducing Probability
+
+## Announcements
+
+. . . 
+
+- Problem Set 6 due next Tuesday at 9am (paper, max. 3)
+
+. . . 
+
+- RQ: Conditional Probability due Wednesday/Thursday at 11:59pm
+
+. . . 
+
+- No lab this week.
 
 # Concept review: Rules
 
@@ -58,18 +76,38 @@ library(patchwork)
 
 Let $\Omega$ be the outcome space, and let $P(A)$ denote the probability of the event $A$. Then we have:
 
+. . . 
+
 1. $P(A) \ge 0$
+
+. . . 
+
 2. $P(\Omega) = 1$
+
+. . . 
+
 3. If $A$ and $B$ are mutually exclusive ($A \cap B = \{\}$), then $P(A \cup B) = P(A) + P(B)$
 
 :::{.notes}
-Concepts to review: 
+Concepts to review: (KEEP THIS BRIEF, OR INCORPORATE INTO CQ's)
 - The first two rules of probability 
 - unions and intersections
 - mutually exclusive events and the addition rule
 - good idea to draw Venn diagrams here
 - Use rule 3 to write down the complement rule, and show what A^C means
 :::
+
+
+# Probability refresher
+
+```{r}
+countdown::countdown(5, top = 0)
+```
+
+:::{.notes}
+Give them five minutes, can use kahoot music
+:::
+
 
 # Concept Question 1
 
@@ -93,12 +131,12 @@ Which alternative is more probable?
 
 :::{.notes}
 Correct answer: (a)
-Depending on the response, you can discuss how even though (b) is clearly contained in (a) and therefore has lower probability, an overwhelming majority of their respondents ranked (b) as more likely. "About 85% to 90% of undergraduates at several major universities chose the second option, contrary to logic", and talk about why this is so. Probability can be tricky and counterintuitive. If they do well, congratulate them and say that they are among the rare people who understand that $P(A \textbf{ and } B)$ *must* be lower than $P(A)$.
+Depending on the response, you can discuss how even though (b) is clearly contained in (a) and therefore has lower probability, an overwhelming majority of their respondents ranked (b) as more likely. "About 85% to 90% of undergraduates at several major universities chose the second option, contrary to logic", and talk about why this is so. Probability can be tricky and counter-intuitive. If they do well, congratulate them and say that they are among the rare people who understand that $P(A \textbf{ and } B)$ *must* be lower than $P(A)$.
 :::
 
 Kahneman, Daniel. Thinking, Fast and Slow (p. 158). Farrar, Straus and Giroux. 
 
-# Concept review: Simulation, empirical distributions
+<!--# Concept review: Simulation, empirical distributions
 
 ## Rolling a die 
 
@@ -110,11 +148,13 @@ Recall the following picture from the notes:
 Show the picture, and then explain the what the golden and blue distributions are, and the difference. Show them, as you repeat an action over and over again, and take the proportion of the outcomes, these proportions settle down, in the "long run", to the probabilities of the outcomes.
 :::
 
+-->
+
 ## Coin tosses {.scrollable}
 
 :::{.notes}
-We can do the same thing with coin tosses and in fact, this justifies our earlier, intuitive understanding of what happens when we toss a fair coin.
-Can also go over code to make sure they understand `sample()`
+We can simulate coin tosses and see if the simulations justify our intuitive understanding of what happens when we toss a fair coin.
+Go over code and review `set.seed()` and `sample()`. Maybe change arguments and see what happens.
 :::
 
 Let's simulate tossing a coin ten times:
@@ -124,9 +164,9 @@ Let's simulate tossing a coin ten times:
 set.seed(12345)
 
 
-coin1 <- c("Heads", "Tails")
+coin <- c("Heads", "Tails")
 
-tosses <- sample(coin1, 10, replace = TRUE)
+tosses <- sample(coin, 10, replace = TRUE)
 
 data.frame(tosses) %>%
   group_by(tosses) %>% 
@@ -138,17 +178,18 @@ data.frame(tosses) %>%
 ## Coin tosses {.scrollable}
 
 :::{.notes}
+Comment on the fact that it is not a 50-50 split.
 DON'T FORGET TO SCROLL DOWN!!
 :::
 
-What about if I toss it fifty times?
+What about if we toss the coin fifty times?
 
 ```{r}
 #| echo: true
 
 set.seed(12345)
 
-tosses <- sample(coin1, 50, replace = TRUE)
+tosses <- sample(coin, 50, replace = TRUE)
 
 data.frame(tosses) %>%
   group_by(tosses) %>% 
@@ -163,14 +204,14 @@ This doesn't look so good... Maybe tossing five hundred times will improve the s
 
 set.seed(12345)
 
-tosses <- sample(coin1, 500, replace = TRUE)
+tosses <- sample(coin, 500, replace = TRUE)
 
 data.frame(tosses) %>%
   group_by(tosses) %>% 
   summarise(n = n())
 ```
 
-We see that as the number of tosses increases, the distribution of tosses begins to look closer to 50% heads and 50% tails.
+We see that as the number of tosses increases, the split of heads and tails begins to look closer to 50-50.
 
 ## Looking at proportions: 
 
@@ -230,6 +271,7 @@ increases. Hopefully Bettina realizes she has a better chance of getting the num
 
 # Concept Question 3
 
+<!--
 ## {.scrollable} 
 
 ```{r}
@@ -324,7 +366,7 @@ Scroll to see graphs
 - A-4 emp dsn from different box
 :::
 
-# Concept Question 4
+# Concept Question 4 -->
 
 ## {.scrollable} 
 
@@ -353,7 +395,7 @@ Both parts are false since we are using the addition rule on events that are not
 :::
 
 
-# Concept Question 5
+# Concept Question 4
 
 ##
 
@@ -365,15 +407,33 @@ Consider the Venn diagram below, which has 20 possible outcomes in $\Omega$, dep
 
 ![](images/slides-cq-venn-feb-22-2023.png){fig-align=center width="300"} 
 
+:::{.notes}
+Ask them what is the quickest way to do this. Maybe even give them only 15 or 30 seconds.
+:::
+
 
 # Activity: Coin tossing 
 
 :::{.notes}
 details in coin-flipping-activity.qmd
+If running short on time can skip this entirely (move to Th/Fr), or not do the coding. 
+Take the details, and tell them you will post the plot on Ed later.
 :::
 
 ```{r}
 countdown::countdown(25, top = 0)
 ```
 
-# Problem Set 7
+# Break
+
+```{r}
+countdown::countdown(5, top = 0)
+```
+
+# Problem Set 
+
+```{r}
+countdown::countdown(50, top = 0)
+```
+
+# End of Lecture
