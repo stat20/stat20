@@ -1,5 +1,5 @@
 ---
-title: "Computing Chances"
+title: "Computing Probabilities"
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"

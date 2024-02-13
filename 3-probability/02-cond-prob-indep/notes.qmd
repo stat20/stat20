@@ -1,28 +1,34 @@
 ---
-title: "How to Calculate Chances"
+title: "Computing Probabilities"
 subtitle: "Two important ideas: Conditional probabability and Independence"
 image: images/sally-clark-headline.jpeg
 format:
   html: default
   pdf: default
+editor_options: 
+  chunk_output_type: console
 ---
 :::{.lo .content-hidden unless-profile="staff-site"}
 
 #### Concept Acquisition
 
 1. Probability distributions and histograms
-2. Reiterate connections between boxes, distribution tables, and prob histograms
+2. Draw connections between boxes, distribution tables, and prob histograms
 3. Sampling with and without replacement: what's the difference
 4. Conditional probability & multiplication rule
 5. Independence 
 6. Mutually exclusive events vs independent events
-7. Bayes' Rule ??
+7. Partitions
+8. Bayes' Rule 
 
 #### Tool Acquisition
 
 1. Using multiplication and addition rule to compute probabilities
 2. Estimating probabilities of dependent events using box/sample
 3. `slice_sample()`
+4. Script files
+5. `replicate()`
+6. The idea of nested functions (nesting `sample()` inside `sum()`)
 
 #### Concept Application
 
@@ -57,14 +63,15 @@ library(patchwork)
 
 [^3]: The thumbnail image of the headline from the Manchester Evening News and some details of the case are from <http://www.inference.org.uk/sallyclark>
 
-We will revisit this case at the end of these notes. 
+We will revisit this case at the end of these notes. In order to think about the probabilities involved, we need some more concepts. Let's go back to one of the examples with die rolls that we have seen, the outcomes that puzzled the seventeenth century gambler, the Chevalier De Méré.
 
 ## Simulating De Méré's dice games. 
 
 Recall that De Méré wanted to bet on at least one six in four rolls of a fair die, and also at least one double six in twenty-four rolls of a pair of dice.
 
-In the last notes we simulated these games to estimate the probability of De Méré winning his bet. The simulation uses the idea presented in lecture: we can think of the probability of an event as the **long-run relative frequency**, or the proportion of times we observe that particular event (or the outcomes in the event) if we repeat the action that can result in the event over and over again. Let's do that again - that is, we estimate the probabilities using the long-run proportions. We will simulate playing the game over and over again and count the number of times we see at least one six in four rolls, and similarly for the second game. (De Méré did this by betting many times, and noticed that the number of times he won wasn't matching the probability he had computed. Long-run relative frequency in real life!)
+In earlier notes, you have seen the result of simulating these two games to estimate the probability of De Méré winning his bet. The simulation used the idea of thinking of the probability of an event as the **long-run relative frequency**, or the proportion of times we observe that particular event (or the outcomes in the event) if we repeat the action that can result in the event over and over again. Let's do that again - that is, we estimate the probabilities using the long-run proportions. We will simulate playing the game over and over again and count the number of times we see at least one six in four rolls, and similarly for the second game. (De Méré did this by betting many times, and noticed that the number of times he won wasn't matching the probability he had computed. Long-run relative frequency in real life!)
 
+If you like you can read the code below by clicking on the arrow, and we will go over the function `replicate()` later in the section "Ideas in Code".
 
 :::{.content-visible when-format="html"}
 ```{r}
@@ -197,12 +204,14 @@ cat("The chance of at least one double six in 24 rolls of a  pair of dice is abo
 ```
 :::
 
-We know that if two events are mutually exclusive, we can compute the probability of *at least one* of the events occurring ($A\cup B$) using the addition rule $P(A \cup B) = P(A) + P(B)$. We cannot use the addition rule to compute the probabilities that we have simulated above, since rolling a six on the first roll and rolling a six on the second roll (for example) are not mutually exclusive.  So how do we compute them? Read on...
+Now the question is how do we figure out this probability without simulations? 
+
+We know that if two events are mutually exclusive, we can compute the probability of *at least one* of the events occurring ($A\cup B$ aka $A \text{ or } B$) using the addition rule $P(A \cup B) = P(A) + P(B)$. We *cannot* use the addition rule to compute the probabilities that we have simulated above, since rolling a six on the first roll and rolling a six on the second roll (for example) are *not* mutually exclusive.  So how do we compute them? Read on...
 
 
 ### Example: Drawing red and blue tickets from a box
 
-Consider a box with four tickets in it, two colored red and two blue. Except for their color, they are identical: ![](images/box-red-blue.jpeg){width="100"}. Suppose we draw three times at random from this box, with replacement, that is, every time we draw a ticket from the box, we put it back before drawing the next ticket. List all the possible outcomes. What is the probability of seeing *exactly* 2 red cards among our draws?
+Consider a box with four tickets in it, two colored red and two blue. Except for their color, they are identical: ![](images/box-red-blue.jpeg){width="100"}. Suppose we draw three times at random from this box, **with** replacement, that is, every time we draw a ticket from the box, we put it back before drawing the next ticket. List all the possible outcomes. What is the probability of seeing *exactly* 2 red cards among our draws?
 
 <details>
 
@@ -214,7 +223,7 @@ Note that since each of the cards is equally likely to be drawn, therefore all t
 
 </details>
 
-Now suppose we repeat the procedure, but draw *without* replacement (we don't put any tickets back). What is the probability of exactly 2 red cards in 3 draws?
+Now suppose we repeat the procedure, but draw **without** replacement (we don't put any tickets back). What is the probability of exactly 2 red cards in 3 draws?
 
 <details>
 
@@ -226,7 +235,7 @@ Notice that we have fewer possible outcomes (6 instead of 8, why?), though they 
 
 </details>
 
-What about the probability distribution table for the number of red cards in three draws? Write down the probability distribution table for the number of red cards in three draws from a box with 2 red cards and 2 blue cards, while drawing *with* replacement, and then write down the probability distribution table for the same quantity (number of red cards in three draws from a box with 2 red cards and 2 blue cards), when you draw the tickets  *without* replacement:
+What about the probabilities for the number of red cards in three draws? Write down all the possible values for the number of red cards in three draws from a box with 2 red cards and 2 blue cards, while drawing __*with*__ replacement, and their corresponding probabilities.  Repeat this exercise for the same quantity (number of red cards in three draws from a box with 2 red cards and 2 blue cards), when you draw the tickets  __*without*__ replacement:
 
 <details> <summary>Check your answer</summary>
 
@@ -253,7 +262,8 @@ Below you see an illustration of what happens to the box when we draw *without* 
 
 ![](images/without-repl-1.jpeg){fig-align="center" width="600"}
 
-We see that the box reduces after each draw. After two draws, if the first 2 draws are red (as on the left most sequence) you can't get another red ticket, whereas if you are drawing *with* replacement, you can keep on drawing red tickets. (Note that the outcomes in the bottom row are not equally likely, since on the left branch of the tree, blue is twice as likely as red to be the second card, so the outcome **RB** is twice as likely as **RR**, and the outcome **BR** on the right branch of the tree is twice as likely as BB.)
+We see that the box reduces after each draw. After two draws, if the first 2 draws are red (as on the left most sequence) you can't get another red ticket, whereas if you are drawing *with* replacement, you can keep on drawing red tickets. (Note that the outcomes in the bottom row are not equally likely, since on the left branch of the tree, blue is twice as likely as red to be the second card, so the outcome **RB** is twice as likely as **RR**, and the outcome **BR** on the right branch of the tree is twice as likely as BB.) 
+Before going further, let's recall what we know about the probabilities of events.
 
 ### Rules of probability (recap)
 
