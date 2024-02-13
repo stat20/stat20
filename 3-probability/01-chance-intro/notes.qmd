@@ -172,13 +172,13 @@ First, let's establish some terminology:
 :::
 
 :::{.def}
-Event
+**Event**
  ~ A collection of outcomes as a result of the experiment being performed, perhaps more than once. For example, we could toss a coin twice, and consider the *event* of both tosses landing heads. We usually denote events by upper case letters from the beginning of the alphabet: $A, B, C, \ldots$. An event is a subset of the outcome space, and we denote this by writing $A \subset \Omega$.
 :::
 
 :::{.def}
 **P(A)**
- ~ For any event $A$, we write *the probability of $A$* as $P(A)$.  To find the probability of an event $A$, just count how many outcomes are in $A$ and divide that by $n$.
+ ~ For any event $A$, we write *the probability of $A$* as $P(A)$.  
 :::
 
 :::{.def}
@@ -266,11 +266,8 @@ However, if we roll a die, the event $C$ that we roll an *even* number and the e
 the event $C$ that we roll an *even* number and the event $D$ that we roll an *odd* number are mutually exclusive, 
 -->
 
+Here's another example that might interest soccer fans: The event that Manchester City wins the English Premier League (EPL) in 2024, and the event that Liverpool wins the EPL in 2024 are mutually exclusive, but the events that Manchester City are EPL champions in 2024 and Manchester City are EPL champions in 2023 are *not* mutually exclusive. 
 
-<!--
-The event that Manchester City wins the English Premier League (EPL) in 2024, and the event that Liverpool wins the EPL in 2024 are mutually exclusive, but the events that Manchester City are EPL champions in 2024 and Manchester City are EPL champions in 2023 are *not* mutually exclusive. 
-</details>
--->
 
 Now for the third axiom:
 
