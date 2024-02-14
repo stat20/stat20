@@ -98,8 +98,8 @@ rownames(die_4_df) <- paste("simulation", sep = " ", 1:num_simulations)
 
 #head(die_4_df)
 
-prop_wins_game_1 <- die_4_df %>% 
-  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) %>%
+prop_wins_game_1 <- die_4_df |> 
+  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) |>
   summarise(prop_wins_game_1 = mean(at_least_one_six))
 
 # Now we print the proportion
@@ -129,8 +129,8 @@ rownames(dice_24_df) <- paste("simulation", sep = " ", 1:num_simulations)
 
 #head(dice_24_df)
 
-prop_wins_game_2 <- dice_24_df %>% 
-  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) %>%
+prop_wins_game_2 <- dice_24_df |> 
+  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) |>
   summarise(prop_wins_game_2 = mean(at_least_one_boxcars))
 
 cat("The chance of at least one double six in 24 rolls of a pair of dice is about", sep = " ", pull(prop_wins_game_2))
@@ -163,8 +163,8 @@ rownames(die_4_df) <- paste("simulation", sep = " ", 1:num_simulations)
 
 #head(die_4_df)
 
-prop_wins_game_1 <- die_4_df %>% 
-  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) %>%
+prop_wins_game_1 <- die_4_df |> 
+  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) |>
   summarise(prop_wins_game_1 = mean(at_least_one_six))
 
 # Now we print the proportion
@@ -192,8 +192,8 @@ rownames(dice_24_df) <- paste("simulation", sep = " ", 1:num_simulations)
 
 #head(dice_24_df)
 
-prop_wins_game_2 <- dice_24_df %>% 
-  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) %>%
+prop_wins_game_2 <- dice_24_df |> 
+  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) |>
   summarise(prop_wins_game_2 = mean(at_least_one_boxcars))
 
 cat("The chance of at least one double six in 24 rolls of a  pair of dice is about", sep = " ", pull(prop_wins_game_2))
