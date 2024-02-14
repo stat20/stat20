@@ -1,28 +1,34 @@
 ---
-title: "How to Calculate Chances"
+title: "Computing Probabilities"
 subtitle: "Two important ideas: Conditional probabability and Independence"
 image: images/sally-clark-headline.jpeg
 format:
   html: default
   pdf: default
+editor_options: 
+  chunk_output_type: console
 ---
 :::{.lo .content-hidden unless-profile="staff-site"}
 
 #### Concept Acquisition
 
 1. Probability distributions and histograms
-2. Reiterate connections between boxes, distribution tables, and prob histograms
+2. Draw connections between boxes, distribution tables, and prob histograms
 3. Sampling with and without replacement: what's the difference
 4. Conditional probability & multiplication rule
 5. Independence 
 6. Mutually exclusive events vs independent events
-7. Bayes' Rule ??
+7. Partitions
+8. Bayes' Rule 
 
 #### Tool Acquisition
 
 1. Using multiplication and addition rule to compute probabilities
 2. Estimating probabilities of dependent events using box/sample
-3. `slice_sample()`
+3. ~`slice_sample()`~
+4. Script files
+5. `replicate()`
+6. The idea of nested functions (nesting `sample()` inside `sum()`)
 
 #### Concept Application
 
@@ -57,14 +63,15 @@ library(patchwork)
 
 [^3]: The thumbnail image of the headline from the Manchester Evening News and some details of the case are from <http://www.inference.org.uk/sallyclark>
 
-We will revisit this case at the end of these notes. 
+We will revisit this case at the end of these notes. In order to think about the probabilities involved, we need some more concepts. Let's go back to one of the examples with die rolls that we have seen, the outcomes that puzzled the seventeenth century gambler, the Chevalier De Méré.
 
 ## Simulating De Méré's dice games. 
 
 Recall that De Méré wanted to bet on at least one six in four rolls of a fair die, and also at least one double six in twenty-four rolls of a pair of dice.
 
-In the last notes we simulated these games to estimate the probability of De Méré winning his bet. The simulation uses the idea presented in lecture: we can think of the probability of an event as the **long-run relative frequency**, or the proportion of times we observe that particular event (or the outcomes in the event) if we repeat the action that can result in the event over and over again. Let's do that again - that is, we estimate the probabilities using the long-run proportions. We will simulate playing the game over and over again and count the number of times we see at least one six in four rolls, and similarly for the second game. (De Méré did this by betting many times, and noticed that the number of times he won wasn't matching the probability he had computed. Long-run relative frequency in real life!)
+In earlier notes, you have seen the result of simulating these two games to estimate the probability of De Méré winning his bet. The simulation used the idea of thinking of the probability of an event as the **long-run relative frequency**, or the proportion of times we observe that particular event (or the outcomes in the event) if we repeat the action that can result in the event over and over again. Let's do that again - that is, we estimate the probabilities using the long-run proportions. We will simulate playing the game over and over again and count the number of times we see at least one six in four rolls, and similarly for the second game. (De Méré did this by betting many times, and noticed that the number of times he won wasn't matching the probability he had computed. Long-run relative frequency in real life!)
 
+If you like you can read the code below by clicking on the arrow. We will learn about the function `replicate()` next week. 
 
 :::{.content-visible when-format="html"}
 ```{r}
@@ -91,8 +98,8 @@ rownames(die_4_df) <- paste("simulation", sep = " ", 1:num_simulations)
 
 #head(die_4_df)
 
-prop_wins_game_1 <- die_4_df %>% 
-  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) %>%
+prop_wins_game_1 <- die_4_df |> 
+  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) |>
   summarise(prop_wins_game_1 = mean(at_least_one_six))
 
 # Now we print the proportion
@@ -122,8 +129,8 @@ rownames(dice_24_df) <- paste("simulation", sep = " ", 1:num_simulations)
 
 #head(dice_24_df)
 
-prop_wins_game_2 <- dice_24_df %>% 
-  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) %>%
+prop_wins_game_2 <- dice_24_df |> 
+  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) |>
   summarise(prop_wins_game_2 = mean(at_least_one_boxcars))
 
 cat("The chance of at least one double six in 24 rolls of a pair of dice is about", sep = " ", pull(prop_wins_game_2))
@@ -156,8 +163,8 @@ rownames(die_4_df) <- paste("simulation", sep = " ", 1:num_simulations)
 
 #head(die_4_df)
 
-prop_wins_game_1 <- die_4_df %>% 
-  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) %>%
+prop_wins_game_1 <- die_4_df |> 
+  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) |>
   summarise(prop_wins_game_1 = mean(at_least_one_six))
 
 # Now we print the proportion
@@ -185,8 +192,8 @@ rownames(dice_24_df) <- paste("simulation", sep = " ", 1:num_simulations)
 
 #head(dice_24_df)
 
-prop_wins_game_2 <- dice_24_df %>% 
-  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) %>%
+prop_wins_game_2 <- dice_24_df |> 
+  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) |>
   summarise(prop_wins_game_2 = mean(at_least_one_boxcars))
 
 cat("The chance of at least one double six in 24 rolls of a  pair of dice is about", sep = " ", pull(prop_wins_game_2))
@@ -197,12 +204,14 @@ cat("The chance of at least one double six in 24 rolls of a  pair of dice is abo
 ```
 :::
 
-We know that if two events are mutually exclusive, we can compute the probability of *at least one* of the events occurring ($A\cup B$) using the addition rule $P(A \cup B) = P(A) + P(B)$. We cannot use the addition rule to compute the probabilities that we have simulated above, since rolling a six on the first roll and rolling a six on the second roll (for example) are not mutually exclusive.  So how do we compute them? Read on...
+Now the question is how do we figure out this probability without simulations? 
+
+We know that if two events are mutually exclusive, we can compute the probability of *at least one* of the events occurring ($A\cup B$ aka $A \text{ or } B$) using the addition rule $P(A \cup B) = P(A) + P(B)$. We *cannot* use the addition rule to compute the probabilities that we have simulated above, since rolling a six on the first roll and rolling a six on the second roll (for example) are *not* mutually exclusive.  So how do we compute them? Read on...
 
 
 ### Example: Drawing red and blue tickets from a box
 
-Consider a box with four tickets in it, two colored red and two blue. Except for their color, they are identical: ![](images/box-red-blue.jpeg){width="100"}. Suppose we draw three times at random from this box, with replacement, that is, every time we draw a ticket from the box, we put it back before drawing the next ticket. List all the possible outcomes. What is the probability of seeing *exactly* 2 red cards among our draws?
+Consider a box with four tickets in it, two colored red and two blue. Except for their color, they are identical: ![](images/box-red-blue.jpeg){width="100"}. Suppose we draw three times at random from this box, __*with*__ replacement, that is, every time we draw a ticket from the box, we put it back before drawing the next ticket. List all the possible outcomes. What is the probability of seeing *exactly* 2 red cards among our draws?
 
 <details>
 
@@ -214,7 +223,7 @@ Note that since each of the cards is equally likely to be drawn, therefore all t
 
 </details>
 
-Now suppose we repeat the procedure, but draw *without* replacement (we don't put any tickets back). What is the probability of exactly 2 red cards in 3 draws?
+Now suppose we repeat the procedure, but draw __*without*__ replacement (we don't put any tickets back). What is the probability of exactly 2 red cards in 3 draws?
 
 <details>
 
@@ -226,7 +235,7 @@ Notice that we have fewer possible outcomes (6 instead of 8, why?), though they 
 
 </details>
 
-What about the probability distribution table for the number of red cards in three draws? Write down the probability distribution table for the number of red cards in three draws from a box with 2 red cards and 2 blue cards, while drawing *with* replacement, and then write down the probability distribution table for the same quantity (number of red cards in three draws from a box with 2 red cards and 2 blue cards), when you draw the tickets  *without* replacement:
+What about the probabilities for the number of red cards in three draws? Write down all the possible values for the number of red cards in three draws from a box with 2 red cards and 2 blue cards, while drawing __*with*__ replacement, and their corresponding probabilities.  Repeat this exercise for the same quantity (number of red cards in three draws from a box with 2 red cards and 2 blue cards), when you draw the tickets  __*without*__ replacement:
 
 <details> <summary>Check your answer</summary>
 
@@ -253,7 +262,8 @@ Below you see an illustration of what happens to the box when we draw *without* 
 
 ![](images/without-repl-1.jpeg){fig-align="center" width="600"}
 
-We see that the box reduces after each draw. After two draws, if the first 2 draws are red (as on the left most sequence) you can't get another red ticket, whereas if you are drawing *with* replacement, you can keep on drawing red tickets. (Note that the outcomes in the bottom row are not equally likely, since on the left branch of the tree, blue is twice as likely as red to be the second card, so the outcome **RB** is twice as likely as **RR**, and the outcome **BR** on the right branch of the tree is twice as likely as BB.)
+We see that the box reduces after each draw. After two draws, if the first 2 draws are red (as on the left most sequence) you can't get another red ticket, whereas if you are drawing *with* replacement, you can keep on drawing red tickets. (Note that the outcomes in the bottom row are not equally likely, since on the left branch of the tree, blue is twice as likely as red to be the second card, so the outcome **RB** is twice as likely as **RR**, and the outcome **BR** on the right branch of the tree is twice as likely as BB.) 
+Before going further, let's recall what we know about the probabilities of events.
 
 ### Rules of probability (recap)
 
@@ -283,14 +293,14 @@ The probability of the impossible event is 0.
 ## Conditional probabilities
 
 In the first example above, we saw that the probability of a red ticket on a draw changes if we sample without replacement. If we get a blue ticket on the first draw, the probability of a red ticket on the second draw is 2/3 (since there are 3 tickets left, of which 2 are blue). 
-If we get a red ticket on the first draw, the probability of a red ticket on the second draw is 1/3. These probabilities, that *depend* on what has happened on the first draw, are called *conditional* probabilities. If $A$ is the event of a blue ticket on the first draw, and $B$ is the event of a red ticket on the second draw, we say that the probability of $B$ *given* $A$ is 2/3, which is a conditional probability, because we put a *condition* on the first card, that it had to be blue. 
+If we get a red ticket on the first draw, the probability of a red ticket on the second draw is 1/3. These probabilities, that *depend* on what has happened on the first draw, are called __*conditional*__ probabilities. If $A$ is the event of a blue ticket on the first draw, and $B$ is the event of a red ticket on the second draw, we say that the probability of $B$ *given* $A$ is 2/3, which is a conditional probability, because we put a *condition* on the first card, that it had to be blue. 
 
 What about if we don't put a condition on the first card? What is the probability that the second card is red? 
 <details> <summary> Check your answer </summary> 
 The probability that the second card drawn is red is 1/2, if we don't have any information about the first card drawn. To see this, it is easier to imagine that we can shuffle all the cards in the box and they are put in some random order in which each of the 4 positions is equally likely. There are 2 red cards, so the probability that a red card will occupy any of the 4 positions, including the second, is 2/4.
 </details>
 
-This kind of probability, where we put no condition on the first card, is called an *unconditional* probability - we don't have any information about the first card.
+This kind of probability, where we put no condition on the first card, is called an __*unconditional*__ probability - we don't have any information about the first card.
 
 ##  The Multiplication Rule: computing the probability of an intersection
 
@@ -322,7 +332,7 @@ This gives us a way to define the conditional probability, as long as we are not
 $$  P(B | A) = \frac{ P(A \cap B)}{P(A)} $$
 :::
 
-The idea here is that we know that $A$ happened, therefore the only outcomes we are concerned about are the ones in $A$ - this is our new outcome space. We compute the relative size of the part of $B$ that happen ($A\cap B$) to the size of the new outcome space.
+The idea here is that we *know* that $A$ happened, therefore the only outcomes we are concerned about are the ones in $A$ - this is our new outcome space. We compute the relative size of the part of $B$ that happen ($A\cap B$) to the size of the new outcome space.
 
 
 :::{.callout-important icon=false}
@@ -343,11 +353,13 @@ If $A$ and $B$ are independent, $P(B\vert A) = P(B)$.
 Consequently, the multiplication rule reduces to:
 
 $$ P(A \cap B) = P(A) \times P(B | A) = P(A) \times P(B) $$
-This is usually the fastest and most convenient way to check if two events are independent.
 
-Computational check for independence
-: Check if $P(A \cap B) = P(A)\times P(B)$ 
+Usually the fastest and most convenient way to check if two events are independent is to see if the product of their probabilities is the same as the probability of their intersection.
 
+:::{.def}
+**Computational check for independence**
+Check if $P(A \cap B) = P(A)\times P(B)$ 
+:::
 
 For example, consider our box of red and blue tickets. When we draw *with* replacement, the probability of a red ticket on the second draw given a blue ticket on the first draw remains at 1/2. If we had a red ticket on the first draw, the probability of the second ticket being red is *still* 1/2. The probability doesn't change because it does not depend on the outcome of the first draw, since we put the ticket back. 
 
@@ -355,7 +367,7 @@ If we draw the tickets *without* replacement, we have seen that the probabilitie
 
 The lesson here is that when we draw tickets *with* replacement, the draws are **independent** - the outcome of the first draw does not affect the second. If we draw tickets *without* replacement, the draws are **dependent**. The outcome of the first draw changes the probabilities of the tickets for the second draw.
 
-#### Example: Selecting 2 people out of a group of 5 
+### Example: Selecting 2 people out of a group of 5 
 ##### (drawing *without* replacement)
 We have a group of 5 people: Alex, Emi, Fred, Max, and Nan. Two of the five are to be selected at random to form a two person committee. Represent this situation using draws from a box of tickets.
 
@@ -373,7 +385,7 @@ What is the probability that Alex and Emi will be selected? Guess! (Hint: you ha
 We could use the multiplication rule to compute this probability, which is *much* simpler than writing out all the possible outcomes. The committee can consist of Alex and Emi either if Alex is drawn first **and** Emi second, **or** Emi is drawn first **and** Alex second. The probability that Alex will be drawn first is $1/5$. The conditional probability that Emi will be drawn second *given* that Alex was drawn is $1/4$ since there are only 4 tickets left in the box. Using the multiplication rule, the probability that Alex will be drawn first and Emi second is $(1/4) \times (1/5) = 1/20$. Similarly, the probability that Emi will be drawn first and Alex second is $1/20$. This means that the probability that Alex and Emi will be selected for the committee is $1/20 + 1/20 = 1/10$.
 
 
-#### Example: Colored and numbered tickets
+### Example: Colored and numbered tickets
 
 I have two boxes that with numbered tickets colored red or blue as shown below. 
 
@@ -394,7 +406,7 @@ Now you work it out for box 2.
 
 </details>
 
-#### Example: Tickets with more than one number on them
+### Example: Tickets with more than one number on them
 
 Now I have two boxes that with numbered tickets, where each ticket has two numbers on them, as shown. For each box, are the two numbers independent or dependent? For example, if I know that the first number is 1 does it change the probability of the second number being 6 (or the other way around: if I know the second number is 6, does it change the probability of the first number being 1)?
 
@@ -409,7 +421,7 @@ For box 1, the first number and second number are independent, as shown below, u
 </details>
 
 
-### Back to Sally Clark
+## Back to Sally Clark
 
 Professor Roy Meadow claimed that the probability of two of Sally Clark's sons dying of SIDS was 1 in 73 million. He obtained this number by multiplying 8543 by 8543, using the multiplication rule, treating the two events as *independent*. The question is, are they really independent? Was a crime really committed? Unfortunately for Sally Clark, two catastrophic errors were committed in her case by the prosecution, and not caught by the defense. (She appealed the decision, and was acquitted and released, but after spending 4 years in prison after being accused of murdering her babies. You can imagine how she was treated.)
 
@@ -418,7 +430,7 @@ The first error was in treating the deaths as independent, and the second was in
 The second error is an example of what is called the Prosecutor's Fallacy. What is needed is $P(\text{innocence }\vert \text{ evidence})$, but it is often confused with (the *much* smaller) $P(\text{evidence }\vert \text{ innocence})$. They should have actually compared the probability of innocence given the evidence with the probability of murder given the evidence. These multiple errors ruined many lives. Though Sally Clark was eventually acquitted, helped by the Royal Statistical Society's evidence, her life was shattered, and she died soon after being released. The moral of this story is to be very careful while multiplying probabilities. You must check to see if the events are actually independent.
 
 
-### De Méré's paradox
+## De Méré's paradox
 
 Let's finally compute the probability of rolling at least one six in 4 rolls of a fair six-sided die. This is much easier to compute if we use the complement rule. The complement of at least one six is *no* sixes in 4 rolls. Each roll is independent of the other rolls because what you roll does not affect the values of future rolls. This means that we can use the multiplication rule to figure out the chance of no sixes in any of the rolls. The chance of no six in any particular roll is $5/6$ (there are five outcomes that are not six). 
 
@@ -430,13 +442,15 @@ $$ 1- P(\text{no double sixes in any of the 24 rolls}) = 1 - \left( \frac{35}{36
 
 By the way, notice that the simulation was pretty accurate!
 
-
+Before we wrap up these notes, let's review two important things. The first has to do with a very common misconception, confusing mutually exclusive and independent events.
 
 ## Mutually exclusive vs independent events
 
-Note that if two events $A$ and $B$, both with positive probability, are mutually exclusive, they **cannot** be independent. If $P(A \cap B) = 0$, but neither $P(A) =0$ nor $P(B) = 0$, then $P(A \cap B) = 0 \ne P(A)\times P(B)$.
+Note that if two events $A$ and $B$, both with <ins>positive</ins> probability, are mutually exclusive, they **cannot** be independent. If $P(A \cap B) = 0$, but neither $P(A) =0$ nor $P(B) = 0$, then $P(A \cap B) = 0 \ne P(A)\times P(B)$.
 
 Intuitively, they are opposite scenarios. Independence of two events means that knowing one of the events happens gives you *no* information about the probability of the other event, and if two events are mutually exclusive, knowing one of the events happens tells you that the probability of the other event is $0$.
+
+The second item generalizes the multiplication rule that we have already seen, by extending it to events that are not mutually exclusive. It is called the "inclusion-exclusion formula".
 
 ## Inclusion-exclusion (generalized addition rule)
 
@@ -449,7 +463,6 @@ $$P(A \cup B) = P(A) + P(B) - P(A \cap B) $$
 You can see that if we just add the probabilities of $A$ and $B$, we double count the overlap. By subtracting it once, we can get the correct probability, and we know how to compute the probability of $A\cap B$. This is known as the inclusion-exclusion principle. 
 
 
-
 ## Summary
 
 In this lecture, we do a deep dive into computing probabilities. It is well known that people are just not good at estimating probabilities of events, and we saw the tragic example of Sally Clark (who, even more sadly, is not a unique case)[^js]. 
@@ -457,6 +470,8 @@ In this lecture, we do a deep dive into computing probabilities. It is well know
 We defined conditional probability and independence, and the multiplication rule, considering draws at random with and without replacement. We finally computed the probabilities in the dice games from 17th century France by combining the multiplication rule and the complement rule. 
 
 We noted that independent events are very different from mutually exclusive events, and finally we learned how to compute probabilities of unions of events that may not be mutually exclusive with the inclusion-exclusion or generalized addition rule.
+
+In the code section, we learned about a new file type, and explored a useful function for simulations. 
 
 
 [^js]: <https://www.theguardian.com/uk-news/2021/nov/20/sally-clark-cot-death-mothers-wrongly-jailed>
