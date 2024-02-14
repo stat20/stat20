@@ -142,7 +142,7 @@ schedule:
         
       - topic: "Intro to Probability"
         display-date: Feb 13
-        date: 2/6/24
+        date: 2/13/24
         items:
           - type: Notes
             href: 3-probability/01-chance-intro/notes.qmd
@@ -156,11 +156,11 @@ schedule:
             
       - topic: "Conditional Probability"
         display-date: Feb 15
-        date: 2/8/24
+        date: 2/15/24
         items:
           - type: Notes
             href: 3-probability/02-cond-prob-indep/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 3-probability/02-cond-prob-indep/slides.qmd
             render: false
