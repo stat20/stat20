@@ -71,7 +71,7 @@ Recall that De Méré wanted to bet on at least one six in four rolls of a fair 
 
 In earlier notes, you have seen the result of simulating these two games to estimate the probability of De Méré winning his bet. The simulation used the idea of thinking of the probability of an event as the **long-run relative frequency**, or the proportion of times we observe that particular event (or the outcomes in the event) if we repeat the action that can result in the event over and over again. Let's do that again - that is, we estimate the probabilities using the long-run proportions. We will simulate playing the game over and over again and count the number of times we see at least one six in four rolls, and similarly for the second game. (De Méré did this by betting many times, and noticed that the number of times he won wasn't matching the probability he had computed. Long-run relative frequency in real life!)
 
-If you like you can read the code below by clicking on the arrow, and we will go over the function `replicate()` later in the section "Ideas in Code".
+If you like you can read the code below by clicking on the arrow. We will learn about the function `replicate()` next week. 
 
 :::{.content-visible when-format="html"}
 ```{r}
@@ -442,7 +442,7 @@ $$ 1- P(\text{no double sixes in any of the 24 rolls}) = 1 - \left( \frac{35}{36
 
 By the way, notice that the simulation was pretty accurate!
 
-Before we get to the ideas in code, let's review a couple of very important ideas. The first has to do with events that are **not** independent!
+Before we wrap up these notes, let's review two important things. The first has to do with a very common misconception, confusing mutually exclusive and independent events.
 
 ## Mutually exclusive vs independent events
 
@@ -461,17 +461,6 @@ Now that we know how to compute the probability of the intersection of two event
 $$P(A \cup B) = P(A) + P(B) - P(A \cap B) $$
 
 You can see that if we just add the probabilities of $A$ and $B$, we double count the overlap. By subtracting it once, we can get the correct probability, and we know how to compute the probability of $A\cap B$. This is known as the inclusion-exclusion principle. 
-
-## The Ideas in Code
-
-We will go over the code we used to simulate the dice games and introduce the useful function `replicate()`, but before that I want to introduce a very useful file type called an R script files. 
-
-### R script files
-
-These are files with the extension `.r`, so your file might be called `tips-and-tricks.r`, for example. 
-
-
-### `replicate()`
 
 
 ## Summary
