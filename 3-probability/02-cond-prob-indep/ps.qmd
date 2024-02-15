@@ -68,7 +68,7 @@ $A$ is the event that she picked the rope *at most* one time;
 
 $B$ is the event that the toys she picked that day included *both* the rope and the ball.
 
-@. Are $A$ and $B$ independent? *Hint: what is the relationship between mutually exclusive events and independent events?*
+@. Are $A$ and $B$ independent?
 
 \newpage
 
