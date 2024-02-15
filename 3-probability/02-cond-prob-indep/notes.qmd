@@ -449,9 +449,7 @@ Before we wrap up these notes, let's review two important things. The first has 
 
 ## Mutually exclusive vs independent events
 
-Note that if two events $A$ and $B$, both with <ins>positive</ins> probability, are mutually exclusive, they **cannot** be independent. If $P(A \cap B) = 0$, but neither $P(A) =0$ nor $P(B) = 0$, then $P(A \cap B) = 0 \ne P(A)\times P(B)$.
-
-Intuitively, they are opposite scenarios. Independence of two events means that knowing one of the events happens gives you *no* information about the probability of the other event, and if two events are mutually exclusive, knowing one of the events happens tells you that the probability of the other event is $0$.
+Note that if two events $A$ and $B$, both with <ins>positive</ins> probability, are mutually exclusive, they **cannot** be independent. If $P(A \cap B) = 0$, but neither $P(A) =0$ nor $P(B) = 0$, then $P(A \cap B) = 0 \ne P(A)\times P(B)$. However, if two events are not independent, that does not mean they are mutually exclusive.
 
 The second item generalizes the multiplication rule that we have already seen, by extending it to events that are not mutually exclusive. It is called the "inclusion-exclusion formula".
 
