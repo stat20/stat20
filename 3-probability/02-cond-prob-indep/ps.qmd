@@ -11,12 +11,12 @@ $\fbox{\fbox{0} \fbox{1} \fbox{2} \fbox{3}}$ $\hspace{1cm}$
 
 Let $A$ be the event that the *first pick* yields an even number; $B$ be the event that the *second pick* is greater than or equal to one. 
 
-@. Pick two numbers with replacement. Find $\text{P}(B|\text{first pick is 0})$.
+@. Pick two numbers without replacement. Find $\text{P}(B|\text{first pick is 0})$.
 
 \
 
 
-@. Pick two numbers with replacement. Find $\text{P}(B|\text{first pick is 2})$.
+@. Pick two numbers without replacement. Find $\text{P}(B|\text{first pick is 2})$.
 
 \
 
