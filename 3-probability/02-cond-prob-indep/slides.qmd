@@ -36,11 +36,12 @@ Will be fun to see what they input. The right answer is that they should switch.
 
 ## Agenda
 
-- PS 7 
+- Announcements
+- PS 6
 - Concept Review
 - Concept Questions 
 - Break
-- PS 8 (computing probabilities)
+- PS 7 (computing probabilities)
 - Break
 
 
@@ -54,9 +55,25 @@ Will be fun to see what they input. The right answer is that they should switch.
 - Handout: PS 8 (computing probabilities)
 :::
 
+## Announcements
+
+-   Problem Sets 6 and 7 (paper, max. 3) due Tuesday at 9am
+
+. . . 
+
+-   No lab this week.
+
+. . . 
+
+-   RQ: Probability Distributions due Mon/Tues 11:59pm
+
 # Concept questions & review
 
 ## Rules 
+
+- Conditional Probabilty
+
+For two events $A$ and $B$, $P(A \vert B) = P(A \text{ and } B) P(B)$
 
 - Multiplication rule
 
@@ -74,7 +91,7 @@ You can tell them here that $A^C$ is "not A", and then maybe use dice or coin to
 Independent events means that the occurrence of one event does not change the chance of the other occurring.
 :::
 
-## 
+## Concept Question 1
 
 ```{r}
 countdown::countdown(1, bottom = 0)
@@ -97,7 +114,7 @@ After they do this and next, write out the outcome space for the results of flip
 A and B are neither independent nor mutually exclusive.
 :::
 
-## 
+## Concept Question 2
 
 ```{r}
 countdown::countdown(1, bottom = 0)
@@ -121,7 +138,7 @@ A and C are independent. Show that P(A & C ) = 1/8 = P(A)P(C) = 1/4 * 1/2
 :::
 
 
-## 
+## Concept Question 3 {.scrollable}
 
 Suppose we draw 2 tickets at random without replacement from a box with tickets marked {1, 2, 3, . . . , 9}. Let A be the event that at least one of the tickets drawn is labeled with an even number, let B be the event that at least one of the tickets drawn is labeled with a prime number (recall that the number 1 is not regarded as a prime number). Suppose the numbers on the tickets drawn are **3** and **9**. 
 
@@ -147,8 +164,7 @@ ii and v, I told them they can immediately see that A^C is true since no even nu
 countdown::countdown(3, bottom = 0)
 ```
 
-##
-
+## 
 
 ```{r}
 countdown::countdown(2, top = 0)
@@ -157,7 +173,7 @@ countdown::countdown(2, top = 0)
 ![](images/phillies-astros.jpg){width=300}
 
 :::{.poll}
-The Houston Astros beat the Philadelphia Phillies in the 2022 World Series. The winners in the World Series have to win a majority of 7 games, so the first team to win 4 games wins the series (best of 7). The Astros were heavily favored to win, so the outcome wasn't really a suprise. Suppose we assumed that the probability that the Astros would have beaten the Phillies in any single game was estimated at 60%, independently of all the other games, what was the probability that the Astros would have won in a clean sweep? 
+The Houston Astros beat the Philadelphia Phillies in the 2022 World Series. The winners in the World Series have to win a majority of 7 games, so the first team to win 4 games wins the series (best of 7). The Astros were heavily favored to win, so the outcome wasn't really a suprise. Suppose we assumed that the probability that the Astros would have beaten the Phillies in any single game was estimated at 60%, independently of all the other games. **What was the probability that the Astros would have won in a clean sweep?**
 
 (Clean sweep means that they won in the first 4 games - which didn't happen, they won in 6 games.)
 :::
@@ -168,7 +184,7 @@ Straightforward application of multiplication rule for independent events. proba
 :::
 
 
-##
+## Concept Question 5
 
 
 ```{r}
@@ -181,12 +197,11 @@ countdown::countdown(1, top = 0)
 Suppose we assume, instead, that the probability that the Astros would have beaten the Phillies in any single game was 50%, independently of all the other games. In this case, was the probability that the series would have gone to 6 games higher than the probability that the series would have gone to 7 games, **given** that 5 games were played?
 :::
 
-
-
 :::{.notes}
 if 5 games are played it means one of the teams is leading 3-2. Therefore there are two scenarios: the team that is ahead wins game 6 and the series, or the team that is behind wins game 6 and they go to 7 games. Both are equally likely. 
 :::
 
+<!---
 ## 
 
 ```{r}
@@ -251,6 +266,7 @@ Let $A$ and $B$ be events with positive probability. Then:
 :::{.notes}
 Draw a picture here to show how we can write B like this. Now can go over problem on previous slide using Bayes
 :::
+-->
 
 # Break 
 
@@ -258,12 +274,12 @@ Draw a picture here to show how we can write B like this. Now can go over proble
 countdown::countdown(5)
 ```
 
-# PS 8
+# PS 7
 
 ```{r}
 countdown::countdown(25)
 ```
 
 :::{.notes}
-Then review PS 8. If you have time, go over coin flipping code
+Then review PS 7. If you have time, go over coin flipping code
 :::
