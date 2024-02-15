@@ -70,15 +70,7 @@ $B$ is the event that the toys she picked that day included *both* the rope and 
 
 @. Are $A$ and $B$ independent? *Hint: what is the relationship between mutually exclusive events and independent events?*
 
-\
-
-\
-
-\
-
-\
-
-\
+\newpage
 
 
 An American roulette wheel has 38 pockets, of which 18 are red, 18 black, and 2 are green. In each round, the wheel is spun and a white ball lands in one of these 38 pockets.

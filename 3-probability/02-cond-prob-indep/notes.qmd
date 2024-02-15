@@ -1,6 +1,6 @@
 ---
 title: "Computing Probabilities"
-subtitle: "Two important ideas: Conditional probabability and Independence"
+subtitle: "Conditional probabability, the multiplication rule and independence"
 image: images/sally-clark-headline.jpeg
 format:
   html: default
@@ -71,12 +71,13 @@ Recall that De Méré wanted to bet on at least one six in four rolls of a fair 
 
 In earlier notes, you have seen the result of simulating these two games to estimate the probability of De Méré winning his bet. The simulation used the idea of thinking of the probability of an event as the **long-run relative frequency**, or the proportion of times we observe that particular event (or the outcomes in the event) if we repeat the action that can result in the event over and over again. Let's do that again - that is, we estimate the probabilities using the long-run proportions. We will simulate playing the game over and over again and count the number of times we see at least one six in four rolls, and similarly for the second game. (De Méré did this by betting many times, and noticed that the number of times he won wasn't matching the probability he had computed. Long-run relative frequency in real life!)
 
-If you like you can read the code below by clicking on the arrow. We will learn about the function `replicate()` next week. 
 
 :::{.content-visible when-format="html"}
 ```{r}
 #| message: false
 #| warning: false
+#| code-fold: false
+#| echo: false
 
 set.seed(123)
 #### de Mere - first game
@@ -140,9 +141,11 @@ cat("The chance of at least one double six in 24 rolls of a pair of dice is abou
 
 :::{.content-visible when-format="pdf"}
 ```{r}
-#| echo: false
 #| message: false
 #| warning: false
+#| code-fold: false
+#| echo: false
+
 
 set.seed(123)
 #### de Mere - first game
