@@ -163,10 +163,10 @@ schedule:
             render: true
           - type: Slides
             href: 3-probability/02-cond-prob-indep/slides.qmd
-            render: false
+            render: true
           - type: PS
             href: 3-probability/02-cond-prob-indep/ps.qmd
-            render: false
+            render: true
             
   - week: 6
     days:
