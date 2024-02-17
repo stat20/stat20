@@ -56,7 +56,7 @@ library(patchwork)
 
 ## Probability histograms
 
-In this section, we will introduce a new kind of histogram that is a very natural way of thinking about probabilities, and has useful consequences.
+In this section, we will introduce a new kind of histogram that is a very natural way of representing probability distributions.
 
 ### Box of tickets
 
@@ -211,16 +211,16 @@ Before discussing how to simulate the distributions, we are going to introduce t
 
 ### Three useful functions
 
-#### 1. `rep`()`: replicates values in a vector
+#### 1. `rep()`: replicates values in a vector
 
 Sometimes we need to create vectors with repeated values. In these cases, `rep()` is very useful. 
 
 - **Arguments** 
     - `x`: the vector or list that is to be repeated. This *must* be specified
-    - `times`: the number of times we should repeat the elements of `x`. This could be a vector the same length as `x` or it could be a single number, in which case the entire `x` is repeated that many times.
+    - `times`: the number of times we should repeat the elements of `x`. This could be a vector the same length as `x` detailing how many times each element is to be repeated, or it could be a single number, in which case the entire `x` is repeated that many times.
     - `each`: the default is 1, and if specified, each element of `x` is repeated `each` times. 
     
-**Example: the outcomes from rolling a pair of dice and summing the spots**
+**Example: Rolling a pair of dice and summing the spots**
 
 Suppose we want to represent the rolling of a pair of dice and summing the spots using a box with appropriately marked tickets. We could create a vector that has each possible value.
 ```{r}
@@ -231,19 +231,46 @@ sum_dice
 
 ```
  
-The problem with the vector `sum_dice` is that the probabilities are not represented correctly. For example, there is only one way to get a sum of 2, but 6 ways to get 7. If we want to represent this action of rolling a pair of dice and taking the sum of spots, we have to use a box in which values will be repeated to reflect their probability. 
+The problem with the vector `sum_dice` is that the probabilities are not represented correctly. For example, there is only one way to get a sum of $2$, but $6$ ways to get $7$. If we want to represent this action of rolling a pair of dice and taking the sum of spots, we have to use a box in which values will be repeated to reflect their probability. How would you use `rep()` to create a vector representing a box with $36$ tickets, each representing a possible sum, and with the tickets repeated so the probabilities are correct. For example, since the sum $7$ can be obtained in $6$ ways (by rolling a $1$ and a $6$ or a $6$ and a $1$; a $2$ and a $5$ or a $5$ and a $2$ and so on), we need __six__ tickets marked $7$, so that the chance of drawing a $7$ is $6/36$.
+
+<details> <summary> Check your answer </summary>
 ```{r}
 #| code-fold: false
 
 sum_dice <- seq(from = 2, by = 1, to = 12)
 
-sum_dice_1 <- rep(sum_dice, times = 2)
-
+sum_dice_1 <- rep(sum_dice, 
+                  times = c(1,2, 3, 4, 5, 6, 5, 4, 3, 2, 1))
 sum_dice_1
 ```
+</details>
 
+#### 2. `replicate()`: repeat a specific set of tasks a large number of times.
 
+- **Arguments** 
+    - `n`: the number of times we want to repeat the task. This *must* be specified
+    - `expr`: the task we want to repeat, usually an expression that is some combinations of functions, for example, maybe we take a sample from a vector, and then sum the sample values.
+    
+**Example: Rolling a pair of dice and summing the spots**    
+  
+Let's simulate rolling a pair of dice and summing the spots using `sample()`. Remember, we should use `set.seed()` to make sure we can reproduce our results. First, let's do it once. We need to sample twice, and then use `sum()` to add up the sample values. The easiest way to do this is to *nest* the functions, with the one we want executed first on the inside. So we will nest `sample()` inside of `sum()`.
 
+```{r}
+set.seed(214)
+die <- seq(from = 1, to = 6)
+sum(sample(die, size = 2, replace = TRUE))
+```
+
+Now I want to do this task 10 times. That is, each time I sample twice (to simulate rolling a pair of dice), and then sum the sample values. I should get 10 sums (so the numbers will be between $2$ and $12$).
+
+```{r}
+set.seed(214)
+replicate(n=10, expr = sum(sample(die, size = 2, replace = TRUE)))
+```
+
+We could replicate as many times as we like
+    
+**Example: Rolling a pair of dice and summing the spots**
 
 ### Simulations
 
@@ -554,7 +581,7 @@ ggplot(data.frame(many_draws), aes(x=many_draws)) +
 #| code-fold: false
 #| echo: false
 
-many_draws <- replicate(5000, sum(sample(die, size = 2, replace = TRUE)))
+many_draws <- 
 ggplot(data.frame(many_draws), aes(x=many_draws)) + 
   geom_bar(aes(y=..prop..), fill="blue", width = 0.98) + 
   ylab("proportion") + 
