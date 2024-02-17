@@ -1,6 +1,6 @@
 ---
-title: "Probability Distributions"
-subtitle: "Visualizing probabilities"
+title: "Probability Distributions and Histograms"
+subtitle: "Some special distributions and visualizing probabilities"
 image: images/die-emp-prob-dsn.jpg
 format:
   html: default
@@ -52,7 +52,7 @@ library(patchwork)
 
 
 
-[S]{.dropcap}o far we have seen examples of outcome spaces, and descriptions of how we might compute probabilities, along with tabular representations of the probabilities. In this set of notes, we are going to talk about how to visualize probabilities using histograms (and *why*) we would do this, as well as how to visualize simulations of outcomes from actions such as tossing coins or rolling dice. 
+[S]{.dropcap}o far we have seen examples of outcome spaces, and descriptions of how we might compute probabilities, along with tabular representations of the probabilities. In this set of notes, we are going to talk about how to visualize probabilities using histograms, as well as how to visualize simulations of outcomes from actions such as tossing coins or rolling dice. 
 
 ## Probability histograms
 
@@ -323,7 +323,7 @@ There are some important __named__ distributions that every student of probabili
 
 ### Bernoulli distribution
 
-This is the simplest probability distribution describing the probabilities associated with binary outcomes, such as coin tosses that can either land Heads or Tails. We can represent the outcomes as $\fbox{1}$ and $\fbox{0}$, where the probability of $\fbox{1}$ is $p$, and therefore, the probability of $\fbox{0}$ is $1-p$. We have already seen some probability histogram for this distribution.
+This is the simplest probability distribution describing the probabilities associated with binary outcomes, such as coin tosses that can either land Heads or Tails. We can represent the outcomes as $\fbox{1}$ and $\fbox{0}$, where the probability of $\fbox{1}$ is $p$, and therefore, the probability of $\fbox{0}$ is $1-p$. We have already seen some examples of probability histograms for this distribution.
 
 ![](images/prob-hist-coin-toss.png){fig-align="center" width="400"}
 
@@ -429,7 +429,7 @@ set.seed(214)
 replicate(n=10, expr = sum(sample(die, size = 2, replace = TRUE)))
 ```
 
-We could replicate as many times as we like, so let's repeat the process 1000 times, and see how many of each sum value we get. We will save the output as a data frame and use `count()`, and compare the values with the true probability.
+We could replicate as many times as we like, so let's repeat the process 1000 times, and see how many of each value we get. We can use `count()` to tally the values, and then compute the proportions to compare the values with the true probability.
 
 ```{r}
 set.seed(214)
@@ -447,7 +447,7 @@ data.frame() |>
 This is a kind of bar chart in which the heights represent numbers, so it is useful for plotting probability histograms. We would specify a variable to the y-axis.
 
 - **Arguments** 
-    - `x`, `y`: these have to be specified, where `y` will show the heights.
+    - `x`, `y`: these have to be specified
 
 **Example: probability histogram for the Bernoulli($p=2/3$) distribution**       
 ```{r}
@@ -464,6 +464,11 @@ data.frame(x = x, prob_x = px) |>
        title = "The Bernoulli(2/3) distribution")
 ```
 
+#### 4. R-script files
+
+A script file is like a giant chunk. In order to create one, you go to the "File" menu in RStudio: File -> New File -> R Script. 
+Then you can type in all your commands in this file, and run the line. There is no need to render anything, so can be much quicker than working on a qmd, which involves typesetting. 
+Try it out!
 
 ### Simulations
 
@@ -477,9 +482,6 @@ As you read through the code in this section, keep RStudio open in another windo
 Let's simulate rolling a die and counting how many times we see each face. 
 
 If we roll it 6 times, we don't really expect to see each face exactly once, and as you can see below, in this particular instance of rolling the die six times, we didn't see the face with one spot, but saw two spots twice. 
-
-
-
 
 ```{r}
 set.seed(12345)
@@ -516,9 +518,11 @@ data.frame(die_rolls) |>
   summarise(n = n())
 ```
 
-It might be better to visualize it. We will draw the *probability distribution* in gold, which shows the probabilities of each possible outcome (the probability distribution), and compare it to the *empirical* distributions in blue (plotting the *data* distribution, not the probability distribution) of the results of rolling the die $60, 600$, and $6000$ times. Note that the probability distribution is *theoretical*, where the area of the bars represent probabilities, and the total area of the bars is $1$.
+It might be better to visualize it. As we have been doing, we will draw the *probability* distribution in gold, which shows the probabilities of each possible outcome (the probability distribution), and compare it to the *empirical* distributions in blue (plotting the *data* distribution, not the probability distribution) of the results of rolling the die $60, 600$, and $6000$ times. Note that the probability distribution is *theoretical*, where the area of the bars represent probabilities, and the total area of the bars is $1$. 
 
-:::{.content-visible when-format="html"}
+Note: in the code below, in order to display all 4 histograms in a single plot we are using a package called `patchwork`. We save each plot as `p1`, `p2` etc, and then put them all together in the configuration we want. The code below seems long, but it is really repeating the same code for $60$ rolls, and then for $600$ rolls etc.
+
+
 ```{r}
 #| fig-align: center
 #| fig-height: 6
@@ -579,72 +583,7 @@ p4 <- data.frame(roll_6000) |>
 
 (p1 + p2)/(p3+p4)
 ```
-:::
 
-:::{.content-hidden when-format="html"}
-```{r}
-#| fig-align: center
-#| fig-height: 6
-#| fig-width: 6
-#| code-fold: false
-#| echo: false
-
-prob_die <- rep(1/6, 6)
-set.seed(12345)
-
-p1 <- data.frame(die) |> 
-  ggplot(aes(x = factor(die), y=prob_die)) +
-  geom_col(width = 0.98, fill = "goldenrod2") +
-  xlab("number of spots") +
-  ylab("probability") +
-  ggtitle("Probability distribution of the \n outcome of a die roll") +
-  lims(y = c(0, .35))
-
-roll_60 <- sample(die, 60, replace = TRUE)
-roll_60 <- data.frame(table(roll_60)) |> 
-  mutate(prop_rolls = Freq/60)
-
-
-p2 <- roll_60 |>
-  ggplot(aes(x = factor(die), y= prop_rolls)) +
-  geom_col(width = 0.98, fill = "blue") +
-  xlab("number of spots") +
-  ylab("proportion of rolls") +
-  ggtitle("Empirical distribution for \n 60 rolls") +
-  lims(y = c(0, .35))
-
-
-roll_600 <- sample(die, 600, replace = TRUE)
-
-roll_600 <- data.frame(table(roll_600)) |>
-    mutate(prop_rolls = Freq/600)
-
-p3 <- roll_600 |>
-  ggplot(aes(x = factor(die), y= prop_rolls)) +
-  geom_col(width = 0.98, fill = "blue") +
-  xlab("number of spots") +
-  ylab("proportion of rolls") +
-  ggtitle("Empirical distribution for \n 600 rolls") +
-  lims(y = c(0, .35))
-  
-
-roll_6000 <- sample(die, 6000, replace = TRUE)
-
-roll_6000 <- data.frame(table(roll_6000)) |>
-    mutate(prop_rolls = Freq/6000)
-
-
-p4 <- data.frame(roll_6000) |>
-  ggplot(aes(x = factor(die), y=prop_rolls)) +
-  geom_col(width = 0.98, fill = "blue") +
-  xlab("number of spots") +
-  ylab("proportion of rolls") +
-  ggtitle("Empirical distribution for \n 6000 rolls") +
-  lims(y = c(0, .35))
-
-(p1 + p2)/(p3+p4)
-```
-:::
 
 The important takeaway here is that we have a *theoretical* probability distribution of the outcomes, and we have what actually happens when we perform the experiment over and over. Eventually, the empirical distribution begins to look like the theoretical distribution. 
 
@@ -656,9 +595,9 @@ box <- c(1, 2, 2, 3, 4)
 sample(box,1)
 ```
 
-We can use `sample()` to *estimate* the chance of a particular outcome  when we aren't sure of what that chance might be. We would do this by repeatedly sampling from the "box" with replacement (many times), then computing the proportion of times we drew each ticket. For example, say we consider our first example (the simple box), and want to estimate the chance of each ticket.
+We can use `sample()` to *estimate* the chance of a particular outcome  when we aren't sure of what that chance might be. We would do this by repeatedly sampling from the "box" with replacement (many times), then computing the proportion of times we drew each ticket. For example, say we consider our first example (the simple box with tickets ), and want to estimate the chance of each ticket.
 
-In the code below, another new function is introduced: `replicate()`. The function `replicate(reps, expr)` is a very useful function that takes as input an expression `expr` and evaluates it `reps` times, returning a vector. 
+In the code below, we use `sample()` along with the new function introduced earlier: `replicate()`. Also note that `geom_bar()` is set to display proportions rather than counts.
 
 ```{r}
 #| code-fold: false
@@ -666,17 +605,18 @@ In the code below, another new function is introduced: `replicate()`. The functi
 #| fig-height: 3
 #| fig-align: center
 
+set.seed(12345)
 box <- c(1, 2, 2, 3, 4)
 draws <- replicate(2000, sample(box, 1, replace = TRUE))
 ggplot(data.frame(draws), aes(x=draws)) + 
-  geom_bar(aes(y=..prop..), fill="blue", width = 0.98) + 
+  geom_bar(aes(y=after_stat(prop)), fill="blue", width = 0.98) + 
   ylab("proportion of draws") + 
   xlab("ticket drawn")
 ```
 
 We see that the *estimated* chance of drawing a $\fbox{2}$ is about 0.4, and this is about twice the estimated chance of drawing any other ticket. Of course, we knew this already, without needing to code it in R. Let's think of a more complicated situation: 
 
-What if we wanted to wanted to draw _five_ tickets with replacement from this box, and sum the draws? What would be the possible values that we would get? What could their chances be? We can visualize this in R:
+What if we wanted to wanted to draw _five_ tickets with replacement from this box, and sum the draws? What would be the possible values that we would get? What could their chances be? We can visualize this in R by simulating drawing five tickets from the box, with replacement, replicating this process many times, and then plotting the empirical histogram:
 
 
 :::{.content-visible when-format="html"}
@@ -724,66 +664,33 @@ Suppose, for example, that we would like to figure out the chance of exactly 2 h
 
 ```{r}
 
-coin <- c(0, 1) #1 represents the toss landing heads
-two_heads <-replicate(50000, sum(sample(coin, 4, replace = TRUE)) == 2)
-cat("The proportion of times we see 2 heads out of 4 tosses is", mean(two_heads))
-
+coin <- c(0, 1) 
+x  <- replicate(50000, sum(sample(coin, 4, replace = TRUE)))
+x |>
+  data.frame() |> 
+  mutate(two_heads = x==2) |> #create a column that is TRUE if the 4 tosses had 2 H
+  summarise(prop_two_heads = mean(two_heads))
 ```
 
 
-#### Rolling a pair of dice and summing the spots
+#### Empirical histogram for rolling a pair of dice and summing the spots
 
-This is something that we could use if we wanted to play Monopoly and couldn't find the dice. Recall the box we used to simulate a die roll. Now we are going to define a vector in R to represent a die, and sample twice with replacement, from this vector, and add the spots.
+We have seen the probability histogram for rolling a pair of dice and summing the spots. Now let's use `replicate()` to simulate this action and see if the histogram looks like what we drew.
 
-
-```{r}
-die <- seq(from = 1, by = 1, to = 6)
-# to simulate rolling a die twice and summing the spots
-draws <- sample(die, size = 2, replace = TRUE)
-sum(draws)
-
-```
-
-We could also repeat it many times and estimate the chance of each of the possible outcomes.
-
-:::{.content-visible when-format="html"}
 ```{r}
 #| fig-width: 4
 #| fig-height: 3
 #| fig-align: center
 
-many_draws <- replicate(5000, sum(sample(die, size = 2, replace = TRUE)))
-ggplot(data.frame(many_draws), aes(x=many_draws)) + 
-  geom_bar(aes(y=..prop..), fill="blue", width = 0.98) + 
+sum_spots <- replicate(5000, sum(sample(die, size = 2, replace = TRUE)))
+sum_spots |>
+  data.frame() |>
+  ggplot(aes(x=sum_spots)) + 
+  geom_bar(aes(y = after_stat(prop)), fill="blue", width = 0.98) + 
   ylab("proportion") + 
-  xlab("sum of two draws") + 
-  scale_x_continuous(breaks = seq(min(many_draws), 
-                                  max(many_draws), by = 1))
-
+  xlab("sum of two draws") +
+  scale_x_discrete(limits = 2:12)
 ```
-:::
-
-:::{.content-hidden when-format="html"}
-```{r}
-#| fig-width: 4
-#| fig-height: 3
-#| fig-align: center
-#| code-fold: false
-#| echo: false
-
-many_draws <- 
-ggplot(data.frame(many_draws), aes(x=many_draws)) + 
-  geom_bar(aes(y=..prop..), fill="blue", width = 0.98) + 
-  ylab("proportion") + 
-  xlab("sum of two draws") + 
-  scale_x_continuous(breaks = seq(min(many_draws), 
-                                  max(many_draws), by = 1))
-
-```
-:::
-
-
-
 
 
 <!--## Ideas in Code
@@ -890,184 +797,12 @@ dice_24_df |>
 -->
 
 
-
-
-
-
-:::{.content-visible when-format="html"}
-```{r}
-#| fig-width: 10
-#| fig-height: 5
-
-die_10 <- seq(from = 1, to = 10, by = 1)
-prob_10 <- rep(0.1, 10)
-
-set.seed(12345)
-
-n_rolls <- 10^5
-
-rolls <- sample(die_10, n_rolls, replace = TRUE)
-
-p1 <- data.frame(die_10) %>% 
-  mutate(prob_10 = prob_10) %>%
-  ggplot(aes(x = factor(die_10), y = prob_10)) +
-  geom_col(fill = "goldenrod2", width = 0.98) + 
-   ylab("probability") + 
-   xlab(" number of spots") + 
-  ggtitle("Outcomes from rolling a ten sided die:\n probability distribution")
-  
-
-p2 <- data.frame(rolls) %>% 
-  ggplot(aes(x=factor(rolls))) + 
-  geom_bar(aes(y = after_stat(count)/sum(after_stat(count))), fill="blue", width = 0.98) + 
-  ylab("proportion of draws") + 
-  xlab("ticket drawn") + 
-  ggtitle("Outcomes from rolling a ten sided die:\n empirical distribution") 
- 
-
-p1 + p2
-```
-:::
-
-:::{.content-visible when-format="pdf"}
-```{r}
-#| fig-width: 10
-#| fig-height: 5
-#| echo: false
-#| message: false
-#| warning: false
-
-die_10 <- seq(from = 1, to = 10, by = 1)
-prob_10 <- rep(0.1, 10)
-
-set.seed(12345)
-
-n_rolls <- 10^5
-
-rolls <- sample(die_10, n_rolls, replace = TRUE)
-
-p1 <- data.frame(die_10) %>% 
-  mutate(prob_10 = prob_10) %>%
-  ggplot(aes(x = factor(die_10), y = prob_10)) +
-  geom_col(fill = "goldenrod2", width = 0.98) + 
-   ylab("probability") + 
-   xlab(" number of spots") + 
-  ggtitle("Outcomes from rolling a ten sided die:\n probability distribution")
-  
-
-p2 <- data.frame(rolls) %>% 
-  ggplot(aes(x=factor(rolls))) + 
-  geom_bar(aes(y = after_stat(count)/sum(after_stat(count))), fill="blue", width = 0.98) + 
-  ylab("proportion of draws") + 
-  xlab("ticket drawn") + 
-  ggtitle("Outcomes from rolling a ten sided die:\n empirical distribution") 
- 
-
-p1 + p2
-```
-:::
-
-#### Example: the binomial(*n*, *p*) random variable
-
-Let $X \sim Bin(30, 0.5)$. We can simulate the values of this random variable by drawing from the box ![](images/binom-box.jpeg){width="80"} $30$ times, and summing the draws. This will simulate counting the number of successes in $n$ trials. As in the example above, we will plot the probability distribution of $X$ on the left, and the empirical distribution on the right. 
-
-:::{.content-visible when-format="html"}
-
-```{r}
-#| fig-width: 10
-#| fig-height: 5
-
-box <- c(0,1)
-binom_30 <- seq(from = 0, to = 30, by = 1)
-prob_30 <- round(dbinom(binom_30, size = 30, prob = 0.5), 3)
-
-set.seed(12345)
-
-n_sims <- 10^4
-
-draws <- replicate(n_sims, sum(sample(box, 30, replace = TRUE)))
-
-p1 <- data.frame(binom_30) %>% 
-  mutate(prob_30 = prob_30) %>%
-  ggplot(aes(x = factor(binom_30), y = prob_30)) +
-  geom_col(fill = "goldenrod2", width = 0.98, color = "white") + 
-   ylab("probability") + 
-   xlab(" number of successes") + 
-  ggtitle("Probabilities for the binomial random variable \n n = 30, p = 0.5") +
-  theme_bw()
-  
-
-fac_30 <- factor(binom_30, levels = 0:30)
-
-p2 <- data.frame(draws) %>% 
-  ggplot(aes(x=draws)) + 
-  geom_bar(aes(y=..prop..), fill="blue", width = 0.98, color = "white") + 
-  ylab("proportion of draws") + 
-  xlab("sum of draws") + 
-  ggtitle("Empirical distribution for random numbers generated \n
-          from the Bin(30, 0.5) distribution")  +
-  theme_bw() +
-  scale_x_discrete(limits = factor(seq(0,30)), labels = fac_30, drop = FALSE)
-  
-
-p1 + p2
-
-```
-:::
-
-:::{.content-visible when-format="pdf"}
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-#| fig-width: 10
-#| fig-height: 5
-
-box <- c(0,1)
-binom_30 <- seq(from = 0, to = 30, by = 1)
-prob_30 <- round(dbinom(binom_30, size = 30, prob = 0.5), 3)
-
-set.seed(12345)
-
-n_sims <- 10^4
-
-draws <- replicate(n_sims, sum(sample(box, 30, replace = TRUE)))
-
-p1 <- data.frame(binom_30) %>% 
-  mutate(prob_30 = prob_30) %>%
-  ggplot(aes(x = factor(binom_30), y = prob_30)) +
-  geom_col(fill = "goldenrod2", width = 0.98, color = "white") + 
-   ylab("probability") + 
-   xlab(" number of successes") + 
-  ggtitle("Probabilities for the binomial random variable \n n = 30, p = 0.5") +
-  theme_bw()
-  
-
-fac_30 <- factor(binom_30, levels = 0:30)
-
-p2 <- data.frame(draws) %>% 
-  ggplot(aes(x=draws)) + 
-  geom_bar(aes(y=..prop..), fill="blue", width = 0.98, color = "white") + 
-  ylab("proportion of draws") + 
-  xlab("sum of draws") + 
-  ggtitle("Empirical distribution for random numbers generated \n
-          from the (30, 0.5) distribution")  +
-  theme_bw() +
-  scale_x_discrete(limits = factor(seq(0,30)), labels = fac_30, drop = FALSE)
-  
-
-p1 + p2
-```
-:::
-
-[^covid]: <https://www.covidstates.org/reports/state-of-the-covid-19-pandemic>
-[^wm]:<https://www.latimes.com/world/la-xpm-2011-jun-20-la-naw-wal-mart-court-20110621-story.html>
-[^binom]: <https://en.wikipedia.org/wiki/Binomial_coefficient>
-
 ## Summary
 
-- In these notes, we defined random variables, and described discrete and continuous random variables.
-- For any random variable, there is an associated probability distribution, and this is described by the probability mass function or pmf $f(x)$. We also defined a function that, for a random variable $X$, and any real number $x$, describes all the probability that is to the left of $x$. This function is called the cumulative distribution function (cdf) of $X$ and is denoted $F(x)$.
-- We looked at some special distributions (Bernoulli, binomial, discrete uniform, and hypergeometric)
-- We defined functions in `R` that can compute the pmf and cdf for special distributions.
-- Finally, we looked at connections between random variables and boxes with tickets, and saw how to simulate some empirical distributions.
+- Defined probability distributions
+- Stated the basic counting principle and introduced permutations and combinations
+- Defined some famous named distributions (Bernoulli, discrete uniform, binomial, hypergeometric)
+- Visualized probability distributions using probability histograms
+- Looked at the relationship between empirical histograms and probability histograms.
+- Introduced functions `rep()`, `replicate()`, `geom_col()`
+- Simulated random experiments such as die rolls and coin tosses to visualize the distributions.
