@@ -429,7 +429,7 @@ set.seed(214)
 replicate(n=10, expr = sum(sample(die, size = 2, replace = TRUE)))
 ```
 
-We could replicate as many times as we like, let's repeat the process 1000 times, and see how many of each sum value we get. We will save the output as a data frame and use `count()`, and compare the values with the true probability.
+We could replicate as many times as we like, so let's repeat the process 1000 times, and see how many of each sum value we get. We will save the output as a data frame and use `count()`, and compare the values with the true probability.
 
 ```{r}
 set.seed(214)
@@ -443,7 +443,27 @@ data.frame() |>
 
 ```
     
-**Example: Rolling a pair of dice and summing the spots**
+#### 3. `geom_col()`: plotting probability distributions
+This is a kind of bar chart in which the heights represent numbers, so it is useful for plotting probability histograms. We would specify a variable to the y-axis.
+
+- **Arguments** 
+    - `x`, `y`: these have to be specified, where `y` will show the heights.
+
+**Example: probability histogram for the Bernoulli($p=2/3$) distribution**       
+```{r}
+#| fig-align: center
+#| fig-height: 3
+#| fig-width: 4
+x <- c(0,1)
+px <- c(1/3, 2/3)
+data.frame(x = x, prob_x = px) |>
+  ggplot(mapping = aes(x=factor(x), y=prob_x)) +
+  geom_col() +
+  labs(x="value",
+       y = "probability",
+       title = "The Bernoulli(2/3) distribution")
+```
+
 
 ### Simulations
 
@@ -451,11 +471,8 @@ data.frame() |>
 
 ## Code along
 
-As you read through these notes, keep RStudio open in another window to code along at the console.
+As you read through the code in this section, keep RStudio open in another window to code along at the console.
 :::
-
-
-
 
 Let's simulate rolling a die and counting how many times we see each face. 
 
