@@ -124,7 +124,7 @@ Notice that this histogram is different from the ones we have seen before, since
 We could do this for any of examples that we have seen - die rolls, coin tosses etc. What about if we *don't* know the probability distribution of the outcomes of an experiment? For example, what if we didn't know how to compute the probability distribution above? What could we do to get an idea of what the probabilities might be? Well, we could keep drawing tickets over and over again from the box, __with__ replacement, keep track of the tickets we draw, and make a bar graph. This kind of histogram, which is the kind we have seen before, is a visual representation of *data*, and is called an __*empirical*__ histogram, representing an *empirical* distribution of the values.
 
 
-### Probability distributions vs empirical distributions
+### Probability histograms vs empirical histograms
 
 You see two plots below: the top (purple) figure is a bar graph showing the distribution of the tickets in the box, and the bottom (golden) is the probability histogram for the value of a randomly drawn ticket.
 
@@ -204,7 +204,32 @@ We can see that the (blue) *sample proportions* look similar to the (gold) *popu
 
 What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*, but it isn't *exactly* the true probabilities. This is a plot of the *empirical* distribution, that is, a distribution that is obtained from the data.
 
+We will see how to simulate plot empirical histograms for various distributions later, but for now let's look at some more examples of probability histograms. 
 
+## Examples
+
+### Tossing a coin
+
+Let's think about the probabilities when we toss a coin. If we toss a *fair* coin once, we have two equally likely outcomes that are possible, "Heads" and "Tails", each of which are equally likely. In order to plot a histogram, we need to record each toss that lands heads as $1$ and each toss that lands tails as $0$. This is like drawing a ticket from a box that has two tickets marked $0$ and $1$.
+
+What if the coin is not fair, and the chance of landing heads is $2/3$ or even $3/4$. In these cases, the histogram's bar over $1$ has to reflect this probability. Since the area of the bar is the probability, if the width was $1$, the height of the bar over $1$ would be $3/4$. Here are three probability histograms, one for a fair coin, and the other two for biased coins. 
+
+![](images/prob-hist-coin-toss.png){fig-align=center width="600px"}
+
+Suppose we wanted to represent tossing a __biased__ coin by drawing tickets from a box. What box would we use? For example, if the probability of the coin landing heads is $3/4$, and we wanted to represent this by drawing from a box of tickets marked $\fbox{0}$ or $\fbox{1}$, then we would need *three* tickets marked $\fbox{1}$, and one ticket marked $\fbox{0}$. What about if the probability of the coin landing heads was $2/3$? What tickets would the corresponding box contain? What about if the probability of the coin landing heads was 0.3?
+
+<details> <summary> Check your answer </summary>
+1. If the probability of heads is $2/3$, then we need the probability of drawing a $\fbox{1}$ to be $2/3$, so we would need two tickets marked $\fbox{1}$ and one marked $\fbox{0}$. 
+
+2. If the probability of the coin landing heads is $0.3$, then we need three out of ten tickets in the box to be marked $\fbox{1}$ and the other seven to be $\fbox{0}$.
+
+</details>
+
+### Rolling a pair of dice and summing the spots
+
+The outcomes are already numbers, so we don't need to represent them differently. We know that there are $36$ total possible equally likely outcomes when we roll a pair of dice, but when we add the spots, we have only 11 possible outcomes, which are __not__ equally likely (the chance of seeing a $2$ is 1/36, but $P(6)=5/36$.)
+
+The histogram will have the possible outcomes listed on the x-axis, and bars of width $1$ over each possible outcome. The height of these bars will be the probability, so that the areas of the bars represent the probability of the value under the bar.
 ## The Ideas in Code
 
 Before discussing how to simulate the distributions, we are going to introduce three useful functions and a very important file type..
