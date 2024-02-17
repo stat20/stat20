@@ -689,34 +689,31 @@ sum_spots |>
   geom_bar(aes(y = after_stat(prop)), fill="blue", width = 0.98) + 
   ylab("proportion") + 
   xlab("sum of two draws") +
-  scale_x_discrete(limits = 2:12)
+  scale_x_continuous(breaks = seq(min(sum_spots), max(sum_spots), by = 1))
 ```
 
 
-<!--## Ideas in Code
+<!--## Simulating De Méré's dice games
 
 You can run the simulations yourself using the code below. Copy and paste it into RStudio and play around with it.
 
-First, lets define two vectors called **die** and **pair_of_dice** that represent the outcome spaces of rolling a die once and rolling a pair of dice once, respectively. 
+First, lets recall the two vectors we defined that represent the outcome spaces of rolling a die once and rolling a pair of dice once and summing the spots, respectively. 
 
 ```{r}
 #| code-fold: false
 
-die <- 1:6
+die <- seq(from = 1, to = 6)
 
-die
+sum_dice <- seq(from = 2, by = 1, to = 12)
 
-pair_dice <- c( 2, 3, 3, rep(4,3), rep(5,4), rep(6, 5), rep(7,6), 
-                rep(8,5), rep(9,4), rep(10,3), rep(11,2), 12)
+#now with correct frequencies
 
-pair_dice
+sum_dice <- rep(sum_dice, 
+                  times = c(1,2, 3, 4, 5, 6, 5, 4, 3, 2, 1))
 
 ```
 
-
-We used a new function here called `rep(x, n)`. This function has two arguments, the first `x` is a vector of any type, and the second `n` is an integer. It returns an object creates a vector of the same type as`x` by repeating `x`, `n` times. For example`rep(2,5)` gives `r rep(2,5)`, `rep(2:4,5)` gives `r rep(2:4,5)`.
-
-Now let's set up the first game, and repeat it 1000 times. You can change the number of simulations below. The first line has another new function called $\texttt{set.seed()}$. We write this with an integer argument that can be any integer you like, this integer is called the *seed*. Using this function ensures that any time you are using a random number generator (which you do when you sample at random), you will be able to reproduce your results as long as you use the same seed.
+Now let's set up the first game, and repeat it 1000 times. You can change the number of simulations below.
 
 ```{r}
 #| code-fold: false
