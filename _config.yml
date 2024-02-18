@@ -176,17 +176,26 @@ schedule:
       - topic: "Probability Distributions"
         display-date: Feb 20
         date: 2/20/24
-        items: []
+        items:
+          - type: Notes
+            href: 3-probability/03-probability-dsn/notes.qmd
+            render: true
+          - type: Slides
+            href: 3-probability/03-probability-dsn/slides.qmd
+            render: false
+          - type: PS
+            href: 3-probability/03-probability-dsn/ps.qmd
+            render: false
         
       - topic: "Random Variables"
         display-date: Feb 22
         date: 2/22/24
         items:
           - type: Notes
-            href: 3-probability/03-random-variables/notes.qmd
+            href: 3-probability/04-random-variables/notes.qmd
             render: false
           - type: Slides
-            href: 3-probability/03-random-variables/slides.qmd
+            href: 3-probability/04-random-variables/slides.qmd
             render: false
             
   - week: 7
