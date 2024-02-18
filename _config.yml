@@ -142,31 +142,31 @@ schedule:
         
       - topic: "Intro to Probability"
         display-date: Feb 13
-        date: 2/6/24
+        date: 2/13/24
         items:
           - type: Notes
             href: 3-probability/01-chance-intro/notes.qmd
             render: true
           - type: Slides
             href: 3-probability/01-chance-intro/slides.qmd
-            render: false
+            render: true
           - type: PS
             href: 3-probability/01-chance-intro/ps.qmd
-            render: false
+            render: true
             
       - topic: "Conditional Probability"
         display-date: Feb 15
-        date: 2/8/24
+        date: 2/15/24
         items:
           - type: Notes
             href: 3-probability/02-cond-prob-indep/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 3-probability/02-cond-prob-indep/slides.qmd
-            render: false
+            render: true
           - type: PS
             href: 3-probability/02-cond-prob-indep/ps.qmd
-            render: false
+            render: true
             
   - week: 6
     days:
@@ -176,17 +176,26 @@ schedule:
       - topic: "Probability Distributions"
         display-date: Feb 20
         date: 2/20/24
-        items: []
+        items:
+          - type: Notes
+            href: 3-probability/03-probability-dsn/notes.qmd
+            render: true
+          - type: Slides
+            href: 3-probability/03-probability-dsn/slides.qmd
+            render: false
+          - type: PS
+            href: 3-probability/03-probability-dsn/ps.qmd
+            render: false
         
       - topic: "Random Variables"
         display-date: Feb 22
         date: 2/22/24
         items:
           - type: Notes
-            href: 3-probability/03-random-variables/notes.qmd
+            href: 3-probability/04-random-variables/notes.qmd
             render: false
           - type: Slides
-            href: 3-probability/03-random-variables/slides.qmd
+            href: 3-probability/04-random-variables/slides.qmd
             render: false
             
   - week: 7
