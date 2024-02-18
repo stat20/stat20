@@ -1,0 +1,1053 @@
+---
+title: "Probability Distributions"
+subtitle: "Some special distributions and visualizing probabilities"
+image: images/die-emp-prob-dsn.jpg
+format:
+  html: default
+  pdf: default
+editor_options: 
+  chunk_output_type: console
+---
+
+:::{.lo .content-hidden unless-profile="staff-site"}
+
+#### Concept Acquisition
+
+1. Probability distributions
+2. Probability histograms
+3. Empirical histograms
+4. Distribution tables
+
+
+
+#### Tool Acquisition
+
+1. How to write down the distribution of the probabilities of outcomes
+2. What a probability histogram represents
+3. Empirical histograms vs probability histograms
+4. `geom_col()`, R script files, `replicate()`
+
+
+#### Concept Application
+
+1.Drawing probability histograms
+2.Using R to simulate probabilities
+3.Drawing empirical histograms
+
+
+----------------------------------------------------
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(stat20data)
+library(infer)
+library(patchwork)
+```
+
+
+
+[S]{.dropcap}o far we have seen examples of outcome spaces, and descriptions of how we might compute probabilities, along with tabular representations of the probabilities. In this set of notes, we are going to talk about how to visualize probabilities using tables and histograms, as well as how to visualize simulations of outcomes from actions such as tossing coins or rolling dice. 
+
+## Probability distributions and histograms
+
+### Probability distributions
+
+Recall the example in which we drew a ticket from a box with 5 tickets in it:
+
+![](images/box.jpeg){fig-align=center width="200px"}
+
+If we draw one ticket at random from this box, we know that the probabilities of the four distinct outcomes can be listed in a table as:
+
+|**Outcome** | $1$ | $2$ | $3$ | $4$ |
+|:----:|:----:|:----:|:----:|:----:|
+|**Probability**| $\displaystyle \frac{1}{5}$ |$\displaystyle \frac{2}{5}$ |$\displaystyle \frac{1}{5}$ |$\displaystyle \frac{1}{5}$ |
+
+What we have described in the table above is a __probability distribution__. We have shown how the total probability of one  or 100% is *distributed* among all the possible outcomes. Since the ticket $\fbox{2}$ is twice as likely as any of the other outcomes, it gets twice as much of the probability. 
+
+### Probability histograms
+
+A table is nice, but a visual representation would be even better. 
+
+<!--
+How might we visualize this distribution? One way might be to represent the outcomes along the $x$-axis, and the probabilities as vertical lines:
+
+
+
+```{r}
+#| fig.width: 4
+#| fig.height: 3
+#| fig.align: center
+#| echo: false
+#| message: false
+
+tkts_box <- c(1, 2, 3, 4)
+prob_box <- c(1/5, 2/5, 1/5, 1/5)
+
+data.frame(tkts_box) |>
+  ggplot(mapping = aes(x = tkts_box, y = prob_box)) + 
+  geom_point() +
+  ylim(c(0, 0.5)) + 
+  geom_segment(x = tkts_box, xend = tkts_box, y = c(0, 0, 0 , 0), yend = prob_box) +
+  geom_hline(yintercept = 0) + 
+  labs(title = "Probability distribution of a ticket\n drawn from the box above",
+       x = "ticket value",
+       y = "probability")
+```
+-->
+
+```{r}
+#| fig.width: 4
+#| fig.height: 3
+#| fig.align: center
+#| echo: false
+
+tkts_box <- c(1, 2, 3, 4)
+prob_box <- c(1/5, 2/5, 1/5, 1/5)
+
+box <- c(1, 2, 2, 3, 4)
+
+data.frame(tkts_box) |> 
+  ggplot(aes(x=tkts_box, y=prob_box)) +
+  geom_col(width = 0.98, fill = "goldenrod2") +
+  ylim(c(0, 0.5)) + 
+ labs(title = "Probability distribution of a ticket\n drawn from the box above",
+       x = "ticket value",
+       y = "probability")
+
+```
+
+We have represented the distribution in the form of a histogram, with the areas of the bars representing probabilities. Notice that this histogram is different from the ones we have seen before, since we didn't collect any data. We just defined the probabilities based on the outcomes, and then drew bars with the heights being the probabilities. This type of *theoretical* histogram is called a __*probability histogram*__.
+
+### Empirical histograms
+
+What about if we *don't* know the probability distribution of the outcomes of an experiment? For example, what if we didn't know how to compute the probability distribution above? What could we do to get an idea of what the probabilities might be? Well, we could keep drawing tickets over and over again from the box, *with replacement* (that is, we put the selected tickets back before choosing again), keep track of the tickets we draw, and make a histogram of our results. This kind of histogram, which is the kind we have seen before, is a visual representation of *data*, and is called an **empirical histogram.**
+
+<!--
+We could do this for any of examples that we have seen - die rolls, coin tosses etc. What about if we *don't* know the probability distribution of the outcomes of an experiment? For example, what if we didn't know how to compute the probability distribution above? What could we do to get an idea of what the probabilities might be? Well, we could keep drawing tickets over and over again from the box, __with__ replacement (that is, we put the selected tickets back before choosing again), keep track of the tickets we draw, and make a bar graph. This kind of histogram, which is the kind we have seen before, is a visual representation of *data*, and is called an __*empirical*__ histogram, representing an *empirical* distribution of the values.
+-->
+
+<!--
+You see two plots below: the top (purple) figure is a bar graph showing the distribution of the tickets in the box, and the bottom (golden) is the probability histogram for the value of a randomly drawn ticket.
+
+
+```{r}
+#| fig.width: 6
+#| fig.height: 5
+#| fig.align: center
+#| echo: false
+
+tkts_box <- c(1, 2, 3, 4)
+prob_box <- c(1/5, 2/5, 1/5, 1/5)
+
+box <- c(1, 2, 2, 3, 4)
+
+p1 <- data.frame(box) |> 
+  ggplot(aes(x=box)) +
+  geom_bar(width = 0.98, fill = "darkorchid") +
+  xlab("ticket value")  +
+  ggtitle("Ticket distribution")
+
+p2 <- data.frame(tkts_box) |> 
+  ggplot(aes(x=tkts_box, y=prob_box)) +
+  geom_col(width = 0.98, fill = "goldenrod2") +
+  xlab("ticket value") +
+  ylab("probability") + 
+  ggtitle("Probability distribution")
+
+p1/p2
+```
+
+Notice that the only difference between these two plots is the vertical scale. When the tickets are equally likely, the box distribution (the purple plot) completely determines the probability distribution (the golden plot).
+
+Now, how would we figure out the probabilities (shown in the golden plot) using simulation?
+-->
+
+<!--
+Since the tickets are drawn according to their chance, we could compute what a draw would be, on average, by computing a weighted (by their chance) average of the possible values. We would get, for a single draw: $1\times \frac{1}{5} + 2 \times \frac{2}{5} + 3 \times \frac{1}{5} + 4 \times \frac{1}{5} = 2.4$. (Note that this exactly matches the average of the tickets in the box $= \displaystyle \frac{1 + 2 + 2 + 3 + 4}{5}$). 
+-->
+
+```{r}
+#| fig.width: 4
+#| fig.height: 4
+#| fig.align: center
+#| warning: false
+#| echo: false
+
+set.seed(12345)
+box <- c(1,2,2,3,4)
+sample_size <- 50
+sample_box <- sample(box, size = sample_size, replace = TRUE)
+data.frame(sample_box) |>
+  ggplot(aes(sample_box)) + 
+  geom_bar(aes(y = ..prop..), width = 0.98, fill = "blue") +
+  xlab("values of draws") + 
+  ylab("proportion of draws")
+```
+
+On the x-axis of this histogram, we have the ticket values; on the y-axis, we have the proportion of times that this ticket was selected out of the 50 with-replacement draws we took.We can see that the sample proportions looks similar to the values given by the probability distribution, but there are some differences. For example, we appear to have drawn more $3$s and less $4$s than what was to be expected. It turns out that the counts and proportions of the drawn tickets are:
+
+<center>
+<div style="width:300px">
+
+|    Ticket | Number of times drawn | Proportion of times drawn |
+|:---------:|:---------------------:|:---------------------:|
+| $\fbox{1}$| `r table(sample_box)[[1]]` | `r table(sample_box)[[1]]/sample_size` |
+| $\fbox{2}$| `r table(sample_box)[[2]]` |`r table(sample_box)[[2]]/sample_size` |
+| $\fbox{3}$| `r table(sample_box)[[3]]` | `r table(sample_box)[[3]]/sample_size` |
+| $\fbox{4}$|  `r table(sample_box)[[4]]` | `r table(sample_box)[[4]]/sample_size` |
+
+</div>
+</center>
+
+What we have seen here is how when we draw at random, we get a sample that resembles the population, that is, a *representative sample*, but it isn't *exactly* the true probabilities. If we increase our sample, however, say to 500, we will get something that more closely aligns with the truth. 
+
+
+### Examples
+
+<!--
+### Tossing a coin
+
+Let's think about the probabilities when we toss a coin. If we toss a *fair* coin once, we have two equally likely outcomes that are possible, "Heads" and "Tails", each of which are equally likely. In order to plot a histogram, we need to record each toss that lands heads as $1$ and each toss that lands tails as $0$. This is like drawing a ticket from a box that has two tickets marked $0$ and $1$.
+
+What if the coin is not fair, and the chance of landing heads is $2/3$ or even $3/4$. In these cases, the histogram's bar over $1$ has to reflect this probability. Since the area of the bar is the probability, if the width was $1$, the height of the bar over $1$ would be $3/4$. Here are three probability histograms, one for a fair coin, and the other two for biased coins. 
+
+![](images/prob-hist-coin-toss.png){fig-align=center width="600px"}
+
+Suppose we wanted to represent tossing a __biased__ coin by drawing tickets from a box. What box would we use? For example, if the probability of the coin landing heads is $3/4$, and we wanted to represent this by drawing from a box of tickets marked $\fbox{0}$ or $\fbox{1}$, then we would need *three* tickets marked $\fbox{1}$, and one ticket marked $\fbox{0}$. What about if the probability of the coin landing heads was $2/3$? What tickets would the corresponding box contain? What about if the probability of the coin landing heads was $0.3$?
+
+<details> <summary> Check your answer </summary>
+1. If the probability of heads is $2/3$, then we need the probability of drawing a $\fbox{1}$ to be $2/3$, so we would need two tickets marked $\fbox{1}$ and one marked $\fbox{0}$. 
+
+2. If the probability of the coin landing heads is $0.3$, then we need three out of ten tickets in the box to be marked $\fbox{1}$ and the other seven to be $\fbox{0}$.
+
+</details>
+-->
+
+#### Rolling a pair of dice and summing the spots
+
+The outcomes are already numbers, so we don't need to represent them differently. We know that there are $36$ total possible equally likely outcomes when we roll a pair of dice, but when we add the spots, we have only 11 possible outcomes, which are __not__ equally likely (the chance of seeing a $2$ is $1/36$, but $P(6)=5/36$).
+
+The probability histogram will have the possible outcomes listed on the x-axis, and bars of width $1$ over each possible outcome. The height of these bars will be the probability, so that the areas of the bars represent the probability of the value under the bar. The height, which is the probability, is written on the top of each bar.
+
+![](images/prob-hist-sum-dice.png){fig-align=center width="600px"}
+
+What about the probability distribution? Make a table showing the probability distribution for rolling a pair of dice and summing the spots. 
+
+<details><summary> Check your answer </summary>
+
+|**Outcome** | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ | $8$ | $9$ | $10$ | $11$ | $12$ |
+|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
+|**Probability**| $\displaystyle \frac{1}{36}$ |$\displaystyle \frac{2}{36}$ |$\displaystyle \frac{3}{36}$ |$\displaystyle \frac{4}{36}$ |$\displaystyle \frac{5}{36}$ |$\displaystyle \frac{6}{36}$ |$\displaystyle\frac{5}{36}$ |$\displaystyle \frac{4}{36}$ |$\displaystyle \frac{3}{36}$ |$\displaystyle \frac{2}{36}$ |$\displaystyle \frac{1}{36}$ | 
+</details>
+
+#### Tossing a fair coin 3 times and counting the number of heads
+
+We have seen that there are 8 equally likely outcomes from tossing a fair coin three times: $\{HHH, HHT, HTH, THH, TTH, THT, HTT, TTT\}$. If we count the number of $H$ in each outcome, and write down the probability distribution of the number of heads, we get: 
+
+|**Outcome** | $0$ | $1$ | $2$ | $3$ |
+|:----:|:----:|:----:|:----:|:----:|
+|**Probability**| $\displaystyle \frac{1}{8}$ |$\displaystyle \frac{3}{8}$ |$\displaystyle \frac{3}{8}$ |$\displaystyle \frac{1}{8}$ |
+
+What would the probability histogram look like?
+
+<details><summary> Check your answer </summary>
+![](images/prob-hist-3-tosses.png){fig-align=center width="300"}
+
+</details>
+
+We are going to introduce some special distributions. We have seen most of these distributions, but will introduce some names and definitions. Before we do this, let's recall how to count the number of outcomes for various experiments such as tossing coins or drawing tickets from a box (both with and without replacement). 
+
+## Basic rule of counting
+
+Recall that if we have multiple steps (say $n$) of some action, such that the $j^{\text{th}}$ step has $k_j$ outcomes; then the total number of outcomes is $k_1 \times k_2 \times \ldots k_n$ and is obtained by multiplying the number of outcomes at each step. This principle is illustrated in the picture below: Geni the Gentoo penguin[^horst-art] is trying to count how many outfits they have, if each outfit consists of a t-shirt and a pair of pants. The tree diagram below shows the number of possible outfits Geni can wear. In this example, $n=2$, $k_1 = 3$, and $k_2 = 2$, since Geni has three t-shirts to choose from, and for each t-shirt, they have two pairs of pants, leading to a total of $3 \times 2 = 6$ outfits. 
+
+![](images/geni-clothes.png){fig-align=center width="400px"}
+
+This example seems trivial, but it illustrates the basic principle of counting: we get the total number of possible outcomes of an action that has multiple steps, by multiplying together the number of outcomes for each step. All the counting that follows in our notes applies this rule.
+For example, let's suppose we are drawing tickets from a box which has tickets marked with the letters $\fbox{C}$,  $\fbox{R}$,  $\fbox{A}$,  $\fbox{T}$,  $\fbox{E}$, and say we draw __three__ letters *with* replacement (that means that we put each drawn ticket back, so the box is the same for each draw). How many possible sequences of three letters can we get? Using the counting rule,since we have $5$ choices for the first letter, $5$ for the second, and $5$ for the third, we will have a total of $5\times 5 \times 5 = 125$ possible words, allowing for repeated letters (that means that $CCC$ is a possible outcome).
+
+How many possible words are there if we draw __without__ replacement? That is, we *don't* put the drawn ticket back?
+
+<details><summary> Check your answer</summary>
+
+We have $5$ choices for the first letter, $4$ for the second, and $3$ for the third, leading to $5 \times 4 \times 3 = 60$ possible outcomes or words. Note that here we count the word $CRA$ as *different* from the word $CAR$. That is, the order in which we draw the letters matters. 
+
+We usually write the quantity $5 \times 4 \times 3$ as $\displaystyle \frac{5!}{2!}$ where $n! = n\times(n-1)\times(n-2)\times \ldots \times 3 \times 2 \times 1$
+
+</details>
+
+### Counting the number of ways to select a subset
+
+What if, in this example of selecting $3$ letters without replacement from  $\fbox{C}$,  $\fbox{R}$,  $\fbox{A}$,  $\fbox{T}$,  $\fbox{E}$, the order does *not* matter - we don't count the order in which the letters , just *which* letters were selected, that is, only the letters themselves matter. For example, the words $CRA,\,CAR,\,ARC,\,ACR,\,RAC,\,RCA$ all count as the *same* word, so we will count all $6$ words as the *same subset* of letters. We have to take the number that we got  from earlier and divide it by the number of words that can be made from $3$ letters (number of rearrangements), which is $3 \times 2\times 1$. This gives us the number of ways that we can __*choose*__ $3$ letters out of $5$, which is 
+$$
+\frac{\left(5!/2!\right)}{3!} = \frac{5!}{2!\; 3!},
+$$
+
+and is called the number of __*combinations*__ of $5$ things taken $3$ at a time. 
+
+[^horst-art]: Penguin taken from art by \@allison_horst
+
+To recap: when we draw $k$ items from $n$ items *without* replacement, we have two cases: either we care in what order we draw the $k$ items and the different arrangements of the *same* set of $k$ items have to be counted separately. The number of such arrangements is called the *permutations* of $n$ things taken $k$ at a time. In the example above, we have $5 \times 4\times 3 = 60$ ways of choosing $3$ things out of $5$ when we count every sequence as different. 
+
+:::{.def}
+**Permutations**
+ ~ The number of possible arrangements or sequences of $n$ things taken $k$ at a time which is given by (the ordering matters):
+$$
+\frac{n!}{(n-k)!}
+$$
+:::
+
+:::{.def}
+**Combinations**
+ ~ Number of ways to choose a __subset__ of $k$ things out of $n$ possible things which is given by
+$$
+\frac{n!}{k!\; (n-k)!}
+$$
+This number is just the number of distinct arrangements or permutations of $n$ things taken $k$ at a time divided by the number of arrangements of $k$ things. It is denoted by $\displaystyle \binom{n}{k}$, which is read as "*n choose k*".
+:::
+
+**Example**
+How many ways can I deal $5$ cards from a standard deck of 52 cards?
+
+<details> <summary> Check your answer </summary>
+
+When we deal cards, order does not matter, so this number is $\displaystyle \binom{52}{5} = \frac{52!}{(52-5)!5!} = 2,598,960$.
+
+</details>
+
+
+## Special distributions
+
+There are some important *special* distributions that every student of probability must know. Here are a few, and we will learn some more later in the course. We have already seen most of these distributions. All we are doing now is identifying their names. First, we need a vocabulary term:
+
+:::{.def}
+**Parameter of a probability distribution**
+ ~ A constant(s) number associated with the distribution. If you know the parameters of a probability distribution, then you can compute the probabilities of all the possible outcomes.
+:::
+
+Each of the distributions we will cover below has a parameter(s) associated with it. 
+
+### Discrete uniform distribution
+
+This is the probability distribution over the numbers $1, 2, 3 \ldots, n$. We have seen it for dice above. This probability distribution is called the *discrete uniform probability distribution*, since each possible outcome has the same probability, that is, $1/n$.  We call $n$ the *parameter* of the discrete uniform distribution.
+
+### Bernoulli distribution
+
+This is a probability distribution describing the probabilities associated with binary outcomes that result from *one* action, such as *one* coin toss that can either land Heads or Tails. We can represent the action as drawing *one* ticket from a box with tickets marked $\fbox{1}$ or $\fbox{0}$, where the probability of $\fbox{1}$ is $p$, and therefore, the probability of $\fbox{0}$ is $(1-p)$. We have already seen some examples of probability histograms for this distribution. We usually think of the possible outcomes of a Bernoulli distribution as *success* and *failure*, and represent a success by $\fbox{1}$ and a failure by $\fbox{0}$.
+
+![](images/prob-hist-coin-toss.png){fig-align="center" width="400"}
+
+For the Bernoulli distribution, our parameter is $p = P\left(\fbox{1}\right)$. If we know $p$, we also know the probability of drawing a ticket marked $\fbox{0}$. 
+
+In the figure above, the first histogram is for a Bernoulli distribution with parameter $p = 1/2$, the second $p=3/4$, and the third has $p = 2/3$.
+
+
+### Binomial Distribution
+
+The binomial distribution, which describes the *total* number of successes in a sequence of $n$ independent Bernoulli trials, is one of the most important probability distributions. For example, consider the outcomes from tossing a coin $n$ times and counting the total number of heads across all $n$ tosses, where the probability of heads on each toss is $p$. Each toss is one Bernoulli trial, where a success would be the coin landing heads. The binomial distribution describes the probabilities of the total number of heads in three tosses. We saw what this distribution looks like in the case where $n = 3$ for three tosses of a fair coin.
+
+What would the probability distribution and histogram for the number of heads in three tosses of a biased coin like, where $P(H) = 2/3$? Make sure you know how the probabilities are computed. For example, $P(HHH) = (2/3)^3 = 8/27$.
+
+<details><summary>Check your answer</summary>
+
+![](images/biased-coin-3-tosses.png){fig-align="center" width="600"}
+
+Note that the outcomes $HHT, HTH, THH$ all have the same probability, as do the outcomes $TTH, THT, HTT$, since the probability only depends on how many heads and how many tails we see in three tosses, not the order in which we see them. We get the probability of 2 heads in 3 tosses by adding the probabilities of all three outcomes $HHT, HTH, THH$, since they are mutually exclusive. (In three tosses, we can see exactly *one* of the possible 8 sequences listed above.)
+
+</details>
+
+More generally, suppose that we have $n$ *independent* trials, where each trial can either result in a "success" (like drawing a ticket marked $\fbox{1}$) with probability $p$; or a "failure" (like drawing $\fbox{0}$) with probability $1-p$. In the case of the Bernoulli distribution, $n = 1$. 
+
+The multiplication rule for independent events tells us how to compute the probability of a sequence that consisted of the first $k$ trials being successes and the rest of the $n-k$ trials being failures. The probability of this *particular* sequence of $k$ successes followed by $n-k$ failures is (by multiplying their probabilities) given by:
+$$
+p^k \times (n-p)^{n-k}
+$$
+Now this is the probability of *one* particular sequence: $SSS\ldots SSFF \ldots FFF$, but as we saw in the example above, only the *number* of successes and failures matter, not the particular order. So *every* sequence of $n$ trials in which we have $k$ successes and $n-k$ failures has the same probability.
+
+How many such sequences are there? We can count them using our rules above. We have $n$ spots in the sequence, of which $k$ have to be successes. The number of such sequences of length $n$ consisting of $k$ $S$'s and $n-k$ $F$'s) is given by $\displaystyle \binom{n}{k}$. Each such sequence has probability $\displaystyle p^k \times (n-p)^{n-k}$. Adding up all these $\displaystyle \binom{n}{k}$ probabilities (of each such sequence) gives us the formula for the __probability of $k$ successes in $n$ trials__:
+$$
+\binom{n}{k} \times p^k \times (n-p)^{n-k}
+$$
+ 
+The probability distribution described by the above formula is called the **binomial distribution**. It is named after $\displaystyle \binom{n}{k}$, which is called the *binomial coefficient.* The binomial distribution has *two* parameters: the number of trials $n$ and the probability of success on each trial, $p$. 
+ 
+ 
+#### Example
+
+Toss a weighted coin, where $P(\text{heads}) = .7$ five times. What is the probability that you see exactly four heads across these five tosses?
+
+<details> <summary> Check your answer </summary>
+Across five trials, we need to see four heads and one tails. Since each toss is independent, one possible way to obtain what we are looking for is $HHHHT$. This is given by
+
+$$
+(.7)^4 \times (.3)^1
+$$
+ 
+However, we need to consider all the possible orderings of tosses that involve four heads and one tail. This is given by the binomial coefficient $\binom{5}{4}$. Our final probability is therefore:
+
+$$
+\binom{5}{4} (.7)^4 \times (.3)^1 \approx 0.36
+$$
+</details>
+
+### Hypergeometric distribution 
+ 
+In the binomial scenario described above, we had $n$ __independent__ trials, where each trial resulted in a success or a failure. This is like sampling __with__ replacement from a box of $0$'s and $1$'s. Now consider the situation when we have a box with $N$ tickets marked with either $\fbox{0}$ or $\fbox{1}$. 
+
+As usual, the ticket marked $\fbox{1}$ represents a success. Say the box has $G$ tickets marked $\fbox{1}$ (and therefore $N-G$ tickets marked  $\fbox{0}$ representing failures). Suppose we draw a *simple random sample* of size $n$ from this box. A simple random sample is a sample drawn without replacement, and on each draw, every ticket is equally likely to be selected from among the remaining tickets. Then, the probability of drawing a ticket marked $\fbox{1}$ *changes* from draw to draw. 
+
+What is the probability that we will have *exactly* $k$ successes among these $n$ draws? The probability distribution that gives us this answer is given by 
+
+$$
+\frac{\binom{G}{k}\times \binom{N-G}{n-k}}{\binom{N}{n}}
+$$
+
+and is called the **hypergeometric distribution**. It has *three* parameters, $n$, $N$ and $G$. This is a wacky formula, so let's explain it piece by piece, starting with the numerator and then moving to the denominator!
+
+#### Numerator
+
+We count the *number of samples drawn without replacement that have $k$ tickets marked $\fbox{1}$.* Since there are $G$ tickets marked  $\fbox{1}$ in the box, and $\displaystyle \binom{G}{k}$ ways to choose exactly $k$ of them. Similarly, there are  $N-G$ tickets marked  $\fbox{0}$ in the box, and $\displaystyle \binom{N-G}{n-k}$ ways to choose exactly $n-k$ of them. The total number of ways to have $k$ $\fbox{1}$s and $n-k$ $\fbox{0}$s is therefore (by multiplication):
+
+$$
+\binom{G}{k}\times \binom{N-G}{n-k}
+$$
+
+#### Denominator
+
+We count the *total number of simple random samples of size $n$ that can be drawn from a pool of $N$ observations*. This is given by $\displaystyle \binom{N}{n}$. 
+
+#### Example 
+
+Say we have a box of $10$ tickets consisting of $4$ tickets marked $\fbox{0}$ and $6$ tickets marked $\fbox{1}$, and draw a simple random sample of size $3$ from this box. 
+
+What is the probability that *two* of the tickets drawn are marked $\fbox{1}$?
+
+<details> <summary> Check your answer </summary>
+
+We draw $3$ tickets __without__ replacement. We need two of these tickets to be marked $\fbox{1}$ and there are six in total to choose from; we need one of them to be marked $\fbox{0}$ and there are four in total to choose from. Therefore, there are 
+
+$$
+\binom{6}{2}\times \binom{4}{1} = 60
+$$
+different ways to pick three tickets in this manner. 
+
+How many *total* ways are there to draw $n=3$ tickets from a box of $N=10$?
+This is given by $\binom{10}{3} = 120$.
+
+Therefore, our final answer is given by 
+
+
+$$
+\frac{\binom{6}{2}\times \binom{4}{1}}{\binom{10}{3}} = \frac{60}{120} =  \frac{1}{2}
+$$
+
+</details>
+ 
+### Binomial vs Hypergeometric distributions
+
+Both these distributions deal with:
+
+-   a *fixed* number of trials, or instances of the random experiment;
+
+-   outcomes that are deemed either successes or failures.  
+
+The difference is that for a binomial random variable, the probability of a success stays the *same* for each trial, and for a hypergeometric random variable, the probability *changes* with each trial. 
+
+<!--
+If we use a box of tickets to describe these random variables, both distributions can be modeled by sampling from boxes with each ticket marked with $0$ or $1$, but for the binomial distribution, we sample $n$ times *with* replacement and count the number of successes; and for the hypergeometric distribution, we sample $n$ times *without* replacement, and count the number of successes in our sample.
+-->
+ 
+## The Ideas in Code
+
+Before discussing how to simulate the distributions, we are going to introduce three more useful functions.
+
+### Three useful functions
+
+#### 1. `rep()`: replicates values in a vector
+
+Sometimes we need to create vectors with repeated values. In these cases, `rep()` is very useful. 
+
+- **Arguments** 
+    - `x`: the vector or list that is to be repeated. This *must* be specified
+    - `times`: the number of times we should repeat the elements of `x`. This could be a vector the same length as `x` detailing how many times each element is to be repeated, or it could be a single number, in which case the entire `x` is repeated that many times.
+    - `each`: the default is 1, and if specified, each element of `x` is repeated `each` times. 
+    
+<!--
+**Example: Rolling a pair of dice and summing the spots**
+
+Suppose we want to represent the rolling of a pair of dice and summing the spots using a box with appropriately marked tickets. We could create a vector that has each possible value.
+```{r}
+#| code-fold: false
+
+sum_dice <- seq(from = 2, by = 1, to = 12)
+sum_dice
+
+```
+ 
+The problem with the vector `sum_dice` is that the probabilities are not represented correctly. For example, there is only one way to get a sum of $2$, but $6$ ways to get $7$. If we want to represent this action of rolling a pair of dice and taking the sum of spots, we have to use a box in which values will be repeated to reflect their probability. How would you use `rep()` to create a vector representing a box with $36$ tickets, each representing a possible sum, and with the tickets repeated so the probabilities are correct. For example, since the sum $7$ can be obtained in $6$ ways (by rolling a $1$ and a $6$ or a $6$ and a $1$; a $2$ and a $5$ or a $5$ and a $2$ and so on), we need __six__ tickets marked $7$, so that the chance of drawing a $7$ is $6/36$.
+
+<details> <summary> Check your answer </summary>
+```{r}
+#| code-fold: false
+
+sum_dice <- seq(from = 2, by = 1, to = 12)
+
+sum_dice_1 <- rep(sum_dice, 
+                  times = c(1,2, 3, 4, 5, 6, 5, 4, 3, 2, 1))
+sum_dice_1
+```
+</details>
+-->
+
+
+#### 2. `replicate()`: repeat a specific set of tasks a large number of times.
+
+- **Arguments** 
+    - `n`: the number of times we want to repeat the task. This *must* be specified
+    - `expr`: the task we want to repeat, usually an expression that is some combinations of functions, for example, maybe we take a sample from a vector, and then sum the sample values.
+    
+<!---
+**Example: Rolling a pair of dice and summing the spots**    
+  
+Let's simulate rolling a pair of dice and summing the spots using `sample()`. Remember, we should use `set.seed()` to make sure we can reproduce our results. First, let's do it once. We need to sample twice, and then use `sum()` to add up the sample values. The easiest way to do this is to *nest* the functions, with the one we want executed first on the inside. So we will nest `sample()` inside of `sum()`.
+
+```{r}
+#| code-fold: false
+set.seed(214)
+die <- seq(from = 1, to = 6)
+sum(sample(die, size = 2, replace = TRUE))
+```
+
+Now I want to do this task 10 times. That is, each time I sample twice (to simulate rolling a pair of dice), and then sum the sample values. I should get 10 sums (so the numbers will be between $2$ and $12$).
+
+```{r}
+#| code-fold: false
+set.seed(214)
+replicate(n=10, expr = sum(sample(die, size = 2, replace = TRUE)))
+```
+-->
+
+<!---
+We could replicate as many times as we like, so let's repeat the process 1000 times, and see how many of each value we get. We can use `count()` to tally the values, and then compute the proportions to compare the values with the true probability.
+
+```{r}
+#| code-fold: false
+set.seed(214)
+x <- replicate(n=1000, expr = sum(sample(die, size = 2, replace = TRUE)))
+x |> 
+data.frame() |>
+ mutate(sums = factor(x)) |>
+  group_by(sums) |>
+  summarise(prop = n()/1000) |> 
+  mutate(true_prob = c(1,2,3,4,5,6,5,4,3,2,1)/36)
+
+```
+-->
+
+
+#### 3. `geom_col()`: plotting with probability
+
+When plotting probability histograms, we know exactly what the the height of each bar should be. This is as opposed to the bar charts you have seen before (and empirical histograms), where we are just trying to visualize the data that we have collected.
+ 
+`geom_col()` creates a bar chart in which the heights represent numbers that can be specified via an aesthetic. In other words, the y variable *will* appear in our call to `aes()`!
+
+<!--
+**Example: probability histogram for the Bernoulli($p=2/3$) distribution**
+
+In order to use `ggplot()`, we need to make a data frame with the information about the probability distribution first.  
+
+```{r}
+#| fig-align: center
+#| fig-height: 3
+#| fig-width: 4
+#| code-fold: false
+x <- c(0,1)
+px <- c(1/3, 2/3)
+bern_df <- data.frame(x = x, prob_x = px) 
+```
+
+
+Once this is done, we can make our probability histogram. Note that since the bar chart is a categorical plot, we need to make the x variable be treated categorically; this can be done with `factor()`.  
+
+```{r}
+#| fig-align: center
+#| fig-height: 3
+#| fig-width: 4
+#| code-fold: false
+bern_df |>
+  ggplot(mapping = aes(x=factor(x), y=prob_x)) +
+  geom_col() +
+  labs(x="value",
+       y = "probability",
+       title = "The Bernoulli(2/3) distribution")
+```
+-->
+
+### Example: Rolling a die twice and summing the spots
+
+:::{.callout-tip}
+
+## Code along
+
+As you read through the code in this section, keep RStudio open in another window to code along at the console. **Keep in mind that we use `set.seed()` more than once for demonstration purposes only.**
+:::
+
+Suppose we want to simulate the task of rolling a pair of die and summing the two spots. We can accomplish this task and examine our results using the functions we have just introduced. First, we will make a vector representing a fair, six-sided die.
+
+```{r}
+#| code-fold: false
+die <- seq(from = 1, to = 6, by = 1)
+```
+
+#### Obtaining a sum
+
+##### Method 1 - `replicate()`
+
+We can use the `sample()` function to roll the die twice; this will output a vector with two die numbers. Then, we can take the sum of this vector by nesting the call to `sample()` inside of sum.  
+
+```{r}
+#| code-fold: false
+set.seed(214)
+sum(sample(die, size = 2, replace = TRUE))
+```
+
+If we would like to repeat this action many times (for instance, in a game of Monopoly, each player has to roll two dice on their turn and sum the spots), the `replicate()` function will come in handy. In the following line of code, we obtain 10 sums. 
+
+```{r}
+#| code-fold: false
+replicate(n= 10, expr = sum(sample(die, size = 2, replace = TRUE)))
+```
+
+##### Method 2 - `rep()`
+
+We could also roll the die in advance and then sample from the possible sums: 2 through 12. However, when rolling the two die, there is only one way to get a sum of $2$ (both dice need to be one), but six ways to get a sum of $7$. This shows that if we want to represent this action of rolling a pair of dice and taking the sum of spots, we have to use a box in which values will be repeated to reflect their probability. We can use the `times` argument of the `rep()` function to make such a box. The number $2$ is repeated once, the number $3$ is repeated twice, and so on until the number $7$ is repeated six times. We can then sample once from this box.
+
+
+```{r}
+#| code-fold: false
+possible_sums <- seq(from = 2, by = 1, to = 12)
+correct_sums <- rep(possible_sums, 
+                    times = c(1,2, 3, 4, 5, 6, 5, 4, 3, 2, 1))
+correct_sums
+```
+
+To get 10 sums as we did before, we just need to sample with ten times with replacement from this new box, `correct_sums`. 
+
+```{r}
+#| code-fold: false
+sample(x = correct_sums, size = 10, replace = TRUE)
+```
+
+### Visualizing our results
+
+#### Making a probability histogram with `geom_col()`
+
+First, let's create a vector with the probabilities associated with each possible that can be obtained from rolling two dice. We are taking these probabilities from the drawn probability histogram earlier in the notes.
+
+```{r}
+#| code-fold: false
+prob_sums <- c(1,2,3,4,5,6,5,4,3,2,1)/36
+```
+
+Now, using the above and the `possible_sums` vector from before, we can make a data frame with the information about the probability distribution and create a probability histogram, which in turn can be used to make a plot with `geom_col()`. 
+
+```{r}
+#| fig.width: 4
+#| fig.height: 4
+#| fig.align: center
+#| code-fold: false
+
+prob_hist <- data.frame(possible_sums, prob_sums) |>
+  ggplot(mapping = aes(x = factor(possible_sums),
+                       y = prob_sums)) +
+  geom_col(fill = "goldenrod") +
+  labs(x = "sum value",
+       y = "probability")
+prob_hist
+```
+
+The use of `factor()` is to make sure that for the purposes of the plot, that the sum values are treated categorically.
+
+#### Performing a simulation and making an empirical histogram
+
+Let's simulate rolling two die and and computing a sum fifty times   Then, we can make a data frame out of our results and find the total amount of rolls, grouped by face. This can be done with the `n()` summary function-- and if we divide by 50, we can get the sample proportions of each sum. 
+
+
+```{r}
+#| code-fold: false
+set.seed(214)
+
+results <- replicate(n= 50, 
+                     expr = sum(sample(die, size = 2, replace = TRUE)))
+```
+
+```{r}
+#| code-fold: false
+empirical <- data.frame(results) |>
+  group_by(results) |> 
+  summarise(props = n()/50)
+empirical
+```
+
+Now, we can construct an empirical histogram using the `empirical` data frame. 
+
+```{r}
+#| fig.width: 4
+#| fig.height: 4
+#| fig.align: center
+#| code-fold: false
+
+emp_50 <- empirical |>
+  ggplot(mapping = aes(x = factor(results),
+                       y = props)) +
+  geom_col(fill = "blue") +
+  labs(x = "sum value",
+       y = "sample proportion")
+emp_50
+  
+```
+
+#### Comparing our results to the truth
+
+You may have wondered why we bothered to save the plot objects. The reason is that we can use a nifty [library called `patchwork`](https://patchwork.data-imaginist.com/articles/patchwork.html) which will help us to more easily visualize multiple plots at once by using mathematical and logical syntax. For instance, using `+` will put plots side by side.
+
+```{r}
+#| fig.width: 6
+#| fig.height: 4
+#| fig.align: center
+#| code-fold: false
+library(patchwork)
+prob_hist + emp_50
+```
+
+With only 50 experiments run, we see that the empirical histogram doesn't quite match. However, modify the above code by increasing the number of repetitions, and you will see the empirical histogram begin to resemble more closely true probability distribution. This is an example of **long-run relative frequency.**
+
+
+<!---
+Rolling only 6 times, we don't really expect to see each face exactly once, and as you can see below, in this particular instance of rolling the die six times, we didn't see the face with one spot, but saw two spots twice. 
+
+
+What about if we roll the die 60 times? We should see each face *about* ten times:
+
+```{r}
+#| code-fold: false
+#| echo: false
+set.seed(12345)
+
+die_rolls <- sample(x = die, size = 60, replace = TRUE)
+
+data.frame(die_rolls) |>
+  group_by(die_rolls) |> 
+  summarise(n = n())
+```
+
+Not so great, but let's try rolling the die 600 times:
+```{r}
+#| code-fold: false
+#| echo: false
+set.seed(12345)
+
+die_rolls <- sample(x = die, size = 600, replace = TRUE)
+
+data.frame(die_rolls) |>
+  group_by(die_rolls) |> 
+  summarise(n = n())
+```
+--->
+
+
+<!---
+
+#### Visualizing empirical histograms
+
+We can also visualize the results of this code. As we have been doing, we will draw the *probability* distribution in gold, which shows the probabilities of each possible outcome (the probability distribution), and compare it to the *empirical* distributions in blue (plotting the *data* distribution, not the probability distribution) of the results of rolling the die $60, 600$, and $6000$ times. Note that the probability distribution is *theoretical*, where the area of the bars represent probabilities, and the total area of the bars is $1$. 
+
+Note: in the code below, in order to display all 4 histograms in a single plot we are using a package called `patchwork`. We save each plot as `p1`, `p2` etc, and then put them all together in the configuration we want. The code below seems long, but it is really repeating the same code for $60$ rolls, and then for $600$ rolls etc.
+
+
+```{r}
+#| fig-align: center
+#| fig-height: 6
+#| fig-width: 6
+
+prob_die <- rep(1/6, 6)
+set.seed(12345)
+
+p1 <- data.frame(die) |> 
+  ggplot(aes(x = factor(die), y=prob_die)) +
+  geom_col(width = 0.98, fill = "goldenrod2") +
+  xlab("number of spots") +
+  ylab("probability") +
+  ggtitle("Probability distribution of the \n outcome of a die roll") +
+  lims(y = c(0, .35))
+
+roll_60 <- sample(die, 60, replace = TRUE)
+roll_60 <- data.frame(table(roll_60)) |> 
+  mutate(prop_rolls = Freq/60)
+
+
+p2 <- roll_60 |>
+  ggplot(aes(x = factor(die), y= prop_rolls)) +
+  geom_col(width = 0.98, fill = "blue") +
+  xlab("number of spots") +
+  ylab("proportion of rolls") +
+  ggtitle("Empirical distribution for \n 60 rolls") +
+  lims(y = c(0, .35))
+
+
+roll_600 <- sample(die, 600, replace = TRUE)
+
+roll_600 <- data.frame(table(roll_600)) |>
+    mutate(prop_rolls = Freq/600)
+
+p3 <- roll_600 |>
+  ggplot(aes(x = factor(die), y= prop_rolls)) +
+  geom_col(width = 0.98, fill = "blue") +
+  xlab("number of spots") +
+  ylab("proportion of rolls") +
+  ggtitle("Empirical distribution for \n 600 rolls") +
+  lims(y = c(0, .35))
+  
+
+roll_6000 <- sample(die, 6000, replace = TRUE)
+
+roll_6000 <- data.frame(table(roll_6000)) |>
+    mutate(prop_rolls = Freq/6000)
+
+
+p4 <- data.frame(roll_6000) |>
+  ggplot(aes(x = factor(die), y=prop_rolls)) +
+  geom_col(width = 0.98, fill = "blue") +
+  xlab("number of spots") +
+  ylab("proportion of rolls") +
+  ggtitle("Empirical distribution for \n 6000 rolls") +
+  lims(y = c(0, .35))
+
+(p1 + p2)/(p3+p4)
+```
+
+
+The important takeaway here is that we have a *theoretical* probability distribution of the outcomes, and we have what actually happens when we perform the experiment over and over. Eventually, the empirical distribution begins to look like the theoretical distribution. 
+
+
+```{r}
+#| code-fold: false
+set.seed(12345)
+box <- c(1, 2, 2, 3, 4)
+sample(box,1)
+```
+
+We can use `sample()` to *estimate* the chance of a particular outcome  when we aren't sure of what that chance might be. We would do this by repeatedly sampling from the "box" with replacement (many times), then computing the proportion of times we drew each ticket. For example, say we consider our first example (the simple box with tickets ), and want to estimate the chance of each ticket.
+
+In the code below, we use `sample()` along with the new function introduced earlier: `replicate()`. Also note that `geom_bar()` is set to display proportions rather than counts.
+
+```{r}
+#| code-fold: false
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: center
+
+set.seed(12345)
+box <- c(1, 2, 2, 3, 4)
+draws <- replicate(2000, sample(box, 1, replace = TRUE))
+ggplot(data.frame(draws), aes(x=draws)) + 
+  geom_bar(aes(y=after_stat(prop)), fill="blue", width = 0.98) + 
+  ylab("proportion of draws") + 
+  xlab("ticket drawn")
+```
+
+We see that the *estimated* chance of drawing a $\fbox{2}$ is about 0.4, and this is about twice the estimated chance of drawing any other ticket. Of course, we knew this already, without needing to code it in R. Let's think of a more complicated situation: 
+
+What if we wanted to wanted to draw _five_ tickets with replacement from this box, and sum the draws? What would be the possible values that we would get? What could their chances be? We can visualize this in R by simulating drawing five tickets from the box, with replacement, replicating this process many times, and then plotting the empirical histogram:
+
+
+:::{.content-visible when-format="html"}
+```{r}
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: center
+
+box <- c(1, 2, 2, 3, 4)
+draws <- replicate(5000, sum(sample(box, size = 5, replace = TRUE)))
+ggplot(data.frame(draws), aes(x=draws)) + 
+  geom_bar(aes(y=..prop..), fill="blue", width = 0.98) + 
+  ylab("proportion") + 
+  xlab("sum of draws") + 
+  scale_x_continuous(breaks = seq(min(draws), max(draws), by = 1))
+```
+:::
+
+:::{.content-hidden when-format="html"}
+```{r}
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: center
+#| code-fold: false
+#| echo: false
+
+box <- c(1, 2, 2, 3, 4)
+draws <- replicate(5000, sum(sample(box, size = 5, replace = TRUE)))
+ggplot(data.frame(draws), aes(x=draws)) + 
+  geom_bar(aes(y=..prop..), fill="blue", width = 0.98) + 
+  ylab("proportion") + 
+  xlab("sum of draws") + 
+  scale_x_continuous(breaks = seq(min(draws), max(draws), by = 1))
+```
+:::
+
+We can see that there is a lot more variation in the values taken by the sum of 5 draws.
+
+
+#### Tossing a fair coin
+
+We can estimate the chances of various outcomes related to coin tossing, using sampling from a box. 
+
+Suppose, for example, that we would like to figure out the chance of exactly 2 heads if we toss a coin 4 times. Think about how you would use the functions `sample()` and `replicate()` to model this, using the 0-1 box we defined earlier, for tossing a coin.
+
+```{r}
+
+coin <- c(0, 1) 
+x  <- replicate(50000, sum(sample(coin, 4, replace = TRUE)))
+x |>
+  data.frame() |> 
+  mutate(two_heads = x==2) |> #create a column that is TRUE if the 4 tosses had 2 H
+  summarise(prop_two_heads = mean(two_heads))
+```
+
+
+#### Empirical histogram for rolling a pair of dice and summing the spots
+
+We have seen the probability histogram for rolling a pair of dice and summing the spots. Now let's use `replicate()` to simulate this action and see if the histogram looks like what we drew.
+
+```{r}
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: center
+
+sum_spots <- replicate(5000, sum(sample(die, size = 2, replace = TRUE)))
+sum_spots |>
+  data.frame() |>
+  ggplot(aes(x=sum_spots)) + 
+  geom_bar(aes(y = after_stat(prop)), fill="blue", width = 0.98) + 
+  ylab("proportion") + 
+  xlab("sum of two draws") +
+  scale_x_continuous(breaks = seq(min(sum_spots), max(sum_spots), by = 1))
+```
+
+
+<!--## Simulating De Méré's dice games
+
+You can run the simulations yourself using the code below. Copy and paste it into RStudio and play around with it.
+
+First, lets recall the two vectors we defined that represent the outcome spaces of rolling a die once and rolling a pair of dice once and summing the spots, respectively. 
+
+```{r}
+#| code-fold: false
+
+die <- seq(from = 1, to = 6)
+
+sum_dice <- seq(from = 2, by = 1, to = 12)
+
+#now with correct frequencies
+
+sum_dice <- rep(sum_dice, 
+                  times = c(1,2, 3, 4, 5, 6, 5, 4, 3, 2, 1))
+
+```
+
+Now let's set up the first game, and repeat it 1000 times. You can change the number of simulations below.
+
+```{r}
+#| code-fold: false
+
+##### de mere first game ############
+
+set.seed(123123) 
+# This ensures that each time we run this code, we will get the same results.
+
+num_simulations <- 1000 
+# specifying the number of simulations, or the number of times we will play
+
+# now we will play the game of rolling the die 4 times num_simulations times
+die_4 <- replicate(num_simulations, sample(die, 4, replace = TRUE)) 
+
+# the results of play are saved as a numerical array (a matrix), not a data frame
+# so we save it as a data frame, and transpose the rows and columns so each row is the 
+# result of one game
+die_4_df <- data.frame(t(die_4))
+
+# the next two lines of code are to make our data frame look better
+# and you can ignore them
+
+colnames(die_4_df) <- paste("roll", sep = " ", 1:4) 
+
+rownames(die_4_df) <- paste("simulation", sep = " ", 1:num_simulations)
+
+# let's take a look at our data frame
+head(die_4_df)
+
+
+# we will create a new column that checks, for each play (each row), if there is at least 
+# one 6. What will be the values in this column? Break the pipe and check!
+# Finally, we will compute the proportion of plays in which at least one 6 was rolled.
+die_4_df |> 
+  mutate(at_least_one_six = if_any(everything(), ~ . == 6)) |>
+  summarise(prop_wins = mean(at_least_one_six))
+```
+
+Let's repeat the simulation for the second game, in which we roll a pair of dice 24 times and record a win if at least one double six is rolled. 
+
+Note that the number of simulations is defined above.
+
+```{r}
+#| code-fold: false
+
+set.seed(123123)
+
+######## de mere second game  ############
+
+# define the outcome space from rolling a pair of dice listing all the outcomes, repeated
+# the number of ways that can occur. For example we can get 3 by rolling a 2, 1 or a 1, 2
+# note that we can get 12 in exactly 1 way, by rolling a double six.
+
+
+pair_dice <- c( 2, 3, 3, rep(4,3), rep(5,4), rep(6, 5), rep(7,6), 
+                rep(8,5), rep(9,4), rep(10,3), rep(11,2), 12)
+
+## note, not ideal because if see 7 don't know how we got it
+
+# play the game on repeat
+dice_24 <- replicate(num_simulations, sample(pair_dice, 24, replace = TRUE) )
+
+# make a data frame
+dice_24_df <-  data.frame(t(dice_24)) 
+
+# make the data frame easier to read
+colnames(dice_24_df) <- paste("roll", sep = " ", 1:24)
+rownames(dice_24_df) <- paste("simulation", sep = " ", 1:num_simulations)
+
+
+#head(dice_24_df)
+
+dice_24_df |> 
+  mutate(at_least_one_boxcars = if_any(everything(), ~ . == 12)) |>
+  summarise(prop_wins_game_2 = mean(at_least_one_boxcars))
+```
+-->
+
+
+## Summary
+
+- Defined probability distributions
+- Stated the basic counting principle and introduced permutations and combinations
+- Defined some famous named distributions (Bernoulli, discrete uniform, binomial, hypergeometric)
+- Visualized probability distributions using probability histograms
+- Looked at the relationship between empirical histograms and probability histograms.
+- Introduced functions `rep()`, `replicate()`, `geom_col()`
+- Simulated random experiments such as die rolls and coin tosses to visualize the distributions.
