@@ -178,13 +178,13 @@ schedule:
         date: 2/20/24
         items:
           - type: Notes
-            href: 3-probability/03-probability-dsn/notes.qmd
+            href: 3-probability/03-probability-dsns/notes.qmd
             render: true
           - type: Slides
-            href: 3-probability/03-probability-dsn/slides.qmd
+            href: 3-probability/03-probability-dsns/slides.qmd
             render: false
           - type: PS
-            href: 3-probability/03-probability-dsn/ps.qmd
+            href: 3-probability/03-probability-dsns/ps.qmd
             render: false
         
       - topic: "Random Variables"
