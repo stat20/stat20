@@ -265,33 +265,35 @@ We are going to introduce some special distributions. We have seen most of these
 
 ## Basic rule of counting
 
-Recall that if we have multiple stages (say $n$) of some action, and each stage has $k_j$ outcomes, then the total number of outcomes will be obtained by multiplying the number of outcomes at each stage, as illustrated in the picture below. Geni the Gentoo penguin[^horst-art] is trying to count how many outfits they have, if each outfit consists of a t-shirt and a pair of pants. The tree diagram below shows the number of possible outfits Geni can wear. Geni has three t-shirts to choose from, and for each t-shirt, they have two pairs of pants, leading to a total of $3 \times 2 = 6$ outfits. 
+Recall that if we have multiple steps (say $n$) of some action, such that the $j^{\text{th}}$ step has $k_j$ outcomes; then the total number of outcomes is $k_1 \times k_2 \times \ldots k_n$ and is obtained by multiplying the number of outcomes at each step. This principle is illustrated in the picture below: Geni the Gentoo penguin[^horst-art] is trying to count how many outfits they have, if each outfit consists of a t-shirt and a pair of pants. The tree diagram below shows the number of possible outfits Geni can wear. In this example, $n=2$, $k_1 = 3$, and $k_2 = 2$, since Geni has three t-shirts to choose from, and for each t-shirt, they have two pairs of pants, leading to a total of $3 \times 2 = 6$ outfits. 
 
 ![](images/geni-clothes.png){fig-align=center width="400px"}
 
-This example seems trivial, but it illustrates the basic principle of counting in which we get the total number of possible outcomes by multiplying together the number of outcomes at each stage. All the counting that follows in our notes applies this rule.
-For example, let's suppose we are drawing tickets from a box which has tickets marked with the letters $\fbox{C}$,  $\fbox{R}$,  $\fbox{A}$,  $\fbox{T}$,  $\fbox{E}$, and say we draw three letters __with__ replacement (that means that we put each drawn ticket back, so the box is the same for each draw). How many possible sequences of three letters can we get? Using the counting rule, we can see that we have $5$ choices for the first letter, $5$ for the second, and $5$ for the third, for a total of $5\times 5 \times 5 = 125$ possible words, allowing for repeated letters (that means that $CCC$ is a possible outcome).
+This example seems trivial, but it illustrates the basic principle of counting: we get the total number of possible outcomes of an action that has multiple steps, by multiplying together the number of outcomes for each step. All the counting that follows in our notes applies this rule.
+For example, let's suppose we are drawing tickets from a box which has tickets marked with the letters $\fbox{C}$,  $\fbox{R}$,  $\fbox{A}$,  $\fbox{T}$,  $\fbox{E}$, and say we draw __three__ letters *with* replacement (that means that we put each drawn ticket back, so the box is the same for each draw). How many possible sequences of three letters can we get? Using the counting rule,since we have $5$ choices for the first letter, $5$ for the second, and $5$ for the third, we will have a total of $5\times 5 \times 5 = 125$ possible words, allowing for repeated letters (that means that $CCC$ is a possible outcome).
 
 How many possible words are there if we draw __without__ replacement? That is, we *don't* put the drawn ticket back?
 
 <details><summary> Check your answer</summary>
 
-We have $5$ choices for the first letter, $4$ for the second, and $3$ for the third, leading to $5 \times 4 \times 3 = 60$ possible outcomes or words. Note that here we count the word $CRA$ as *different* from the word $CAR$. That is, the order of the letters matters. 
+We have $5$ choices for the first letter, $4$ for the second, and $3$ for the third, leading to $5 \times 4 \times 3 = 60$ possible outcomes or words. Note that here we count the word $CRA$ as *different* from the word $CAR$. That is, the order in which we draw the letters matters. 
 
-A short way of writing this quantity  $5 \times 4 \times 3$ is $\displaystyle \frac{5!}{2!}$ where $n! = n\times(n-1)\times(n-2)\times \ldots \times 3 \times 2 \times 1$
+We usually write the quantity $5 \times 4 \times 3$ as $\displaystyle \frac{5!}{2!}$ where $n! = n\times(n-1)\times(n-2)\times \ldots \times 3 \times 2 \times 1$
 
 </details>
 
 ### Counting the number of ways to select a subset
 
-What if order does *not* matter, so we don't count the order of the letters, just *which* letters were picked? In that case $CRA = CAR = ARC = ACR = RAC = RCA$, and all these will count as $1$. We have to take our number from earlier and divide it by the number of words that can be made from $3$ letters (number of rearrangements), which is $3 \times 2\times 1$. This gives us the number of ways that we can __*choose*__ $3$ letters out of $6$ d, which is 
+What if, in this example of selecting $3$ letters without replacement from  $\fbox{C}$,  $\fbox{R}$,  $\fbox{A}$,  $\fbox{T}$,  $\fbox{E}$, the order does *not* matter - we don't count the order in which the letters , just *which* letters were selected, that is, only the letters themselves matter. For example, the words $CRA,\,CAR,\,ARC,\,ACR,\,RAC,\,RCA$ all count as the *same* word, so we will count all $6$ words as the *same subset* of letters. We have to take the number that we got  from earlier and divide it by the number of words that can be made from $3$ letters (number of rearrangements), which is $3 \times 2\times 1$. This gives us the number of ways that we can __*choose*__ $3$ letters out of $5$, which is 
 $$
-\frac{\left(5!/2!\right)}{3!} = \frac{5!}{2!\; 3!}
+\frac{\left(5!/2!\right)}{3!} = \frac{5!}{2!\; 3!},
 $$
 
-and is called the number of __*combinations*__ of $6$ things taken $3$ at a time. 
+and is called the number of __*combinations*__ of $5$ things taken $3$ at a time. 
 
 [^horst-art]: Penguin taken from art by \@allison_horst
+
+To recap: when we draw $k$ items from $n$ items *without* replacement, we have two cases: either we care in what order we draw the $k$ items and the different arrangements of the *same* set of $k$ items have to be counted separately. The number of such arrangements is called the *permutations* of $n$ things taken $k$ at a time. In the example above, we have $5 \times 4\times 3 = 60$ ways of choosing $3$ things out of $5$ when we count every sequence as different. 
 
 :::{.def}
 **Permutations**
@@ -303,11 +305,11 @@ $$
 
 :::{.def}
 **Combinations**
-Number of ways to __choose__ a subset of $k$ items out of $n$ possible items which is given by
+ ~ Number of ways to choose a __subset__ of $k$ things out of $n$ possible things which is given by
 $$
 \frac{n!}{k!\; (n-k)!}
 $$
-This number is denoted by $\displaystyle \binom{n}{k}$, which is read as "*n* __choose__ *k*".
+This number is just the number of distinct arrangements or permutations of $n$ things taken $k$ at a time divided by the number of arrangements of $k$ things. It is denoted by $\displaystyle \binom{n}{k}$, which is read as "*n choose k*".
 :::
 
 **Example**
@@ -322,7 +324,7 @@ When we deal cards, order does not matter, so this number is $\displaystyle \bin
 
 ## Special distributions
 
-There are some important __named__ distributions that every student of probability must know. Here are a few, and we will learn some more later in the course. We have already seen most of these distributions. All we are doing now is identifying their names. 
+There are some important *special* distributions that every student of probability must know. Here are a few, and we will learn some more later in the course. We have already seen most of these distributions. All we are doing now is identifying their names. First, we need a vocabulary term:
 
 :::{.def}
 **Parameter of a probability distribution**
@@ -337,28 +339,40 @@ This is the probability distribution over the numbers $1, 2, 3 \ldots, n$. We ha
 
 ### Bernoulli distribution
 
-This is a probability distribution describing the probabilities associated with binary outcomes that result from *one* action, such as *one* coin toss that can either land Heads or Tails. We can represent the outcomes as $\fbox{1}$ and $\fbox{0}$, where the probability of $\fbox{1}$ is $p$, and therefore, the probability of $\fbox{0}$ is $1-p$. We have already seen some examples of probability histograms for this distribution.
+This is a probability distribution describing the probabilities associated with binary outcomes that result from *one* action, such as *one* coin toss that can either land Heads or Tails. We can represent the action as drawing *one* ticket from a box with tickets marked $\fbox{1}$ or $\fbox{0}$, where the probability of $\fbox{1}$ is $p$, and therefore, the probability of $\fbox{0}$ is $(1-p)$. We have already seen some examples of probability histograms for this distribution. We usually think of the possible outcomes of a Bernoulli distribution as *success* and *failure*, and represent a success by $\fbox{1}$ and a failure by $\fbox{0}$.
 
 ![](images/prob-hist-coin-toss.png){fig-align="center" width="400"}
 
-For the Bernoulli distribution, our parameter is $p$. If we know $p$, which is the probability of drawing a ticket marked $\fbox{1}$, we can also figure out the probability of drawing a ticket marked $\fbox{0}$. 
+For the Bernoulli distribution, our parameter is $p = P\left(\fbox{1}\right)$. If we know $p$, we also know the probability of drawing a ticket marked $\fbox{0}$. 
 
 In the figure above, the first histogram is for a Bernoulli distribution with parameter $p = 1/2$, the second $p=3/4$, and the third has $p = 2/3$.
 
 
 ### Binomial Distribution
 
-More generally, suppose that we have $n$ *independent* trials, where each trial can either result in a "success" marked as $\fbox{1}$, and with probability $p$; or a "failure" $\fbox{0}$, with probability $1-p$. In the case of the Bernoulli distribution, $n = 1$. 
+The binomial distribution, which describes the *total* number of successes in a sequence of $n$ independent Bernoulli trials, is one of the most important probability distributions. For example, consider the outcomes from tossing a coin $n$ times and counting the total number of heads across all $n$ tosses, where the probability of heads on each toss is $p$. Each toss is one Bernoulli trial, where a success would be the coin landing heads. The binomial distribution describes the probabilities of the total number of heads in three tosses. We saw what this distribution looks like in the case where $n = 3$ for three tosses of a fair coin.
 
-For example, consider the outcomes from tossing a coin $n$ times and counting the total number of heads across all $n$ tosses, where the probability of heads on each toss is $p$. We saw what this distribution looks like in the case where $n = 3$ (three tosses of a fair coin). 
+What would the probability distribution and histogram for the number of heads in three tosses of a biased coin like, where $P(H) = 2/3$? Make sure you know how the probabilities are computed. For example, $P(HHH) = (2/3)^3 = 8/27$.
+
+<details><summary>Check your answer</summary>
+
+![](images/biased-coin-3-tosses.png){fig-align="center" width="600"}
+
+Note that the outcomes $HHT, HTH, THH$ all have the same probability, as do the outcomes $TTH, THT, HTT$, since the probability only depends on how many heads and how many tails we see in three tosses, not the order in which we see them. We get the probability of 2 heads in 3 tosses by adding the probabilities of all three outcomes $HHT, HTH, THH$, since they are mutually exclusive. (In three tosses, we can see exactly *one* of the possible 8 sequences listed above.)
+
+</details>
+
+More generally, suppose that we have $n$ *independent* trials, where each trial can either result in a "success" (like drawing a ticket marked $\fbox{1}$) with probability $p$; or a "failure" (like drawing $\fbox{0}$) with probability $1-p$. In the case of the Bernoulli distribution, $n = 1$. 
 
 The multiplication rule for independent events tells us how to compute the probability of a sequence that consisted of the first $k$ trials being successes and the rest of the $n-k$ trials being failures. The probability of this *particular* sequence of $k$ successes followed by $n-k$ failures is (by multiplying their probabilities) given by:
 $$
 p^k \times (n-p)^{n-k}
 $$
-Now this is the probability of *one* particular sequence: $SSS\ldots SSFF \ldots FFF$. How many such sequences are there? We can count them using our rules above. We have $n$ spots in the sequence, of which $k$ have to be successes. The number of such sequences of length $n$ consisting of $k$ $S$ and $n-k$ $F$'s) is given by $\displaystyle \binom{n}{k}$. Multiplying this by the probability of each sequence gives us the formula for the probability of $k$ successes in $n$ trials:
+Now this is the probability of *one* particular sequence: $SSS\ldots SSFF \ldots FFF$, but as we saw in the example above, only the *number* of successes and failures matter, not the particular order. So *every* sequence of $n$ trials in which we have $k$ successes and $n-k$ failures has the same probability.
+
+How many such sequences are there? We can count them using our rules above. We have $n$ spots in the sequence, of which $k$ have to be successes. The number of such sequences of length $n$ consisting of $k$ $S$'s and $n-k$ $F$'s) is given by $\displaystyle \binom{n}{k}$. Each such sequence has probability $\displaystyle p^k \times (n-p)^{n-k}$. Adding up all these $\displaystyle \binom{n}{k}$ probabilities (of each such sequence) gives us the formula for the __probability of $k$ successes in $n$ trials__:
 $$
-\binom{n}{k} p^k \times (n-p)^{n-k}
+\binom{n}{k} \times p^k \times (n-p)^{n-k}
 $$
  
 The probability distribution described by the above formula is called the **binomial distribution**. It is named after $\displaystyle \binom{n}{k}$, which is called the *binomial coefficient.* The binomial distribution has *two* parameters: the number of trials $n$ and the probability of success on each trial, $p$. 
@@ -384,9 +398,9 @@ $$
 
 ### Hypergeometric distribution 
  
-In the binomial scenario, we had $n$ __independent__ trials, where each trial resulted in a success or a failure. This is like sampling __with__ replacement from a box of $0$'s and $1$'s. Now consider the situation when we have a box with $N$ tickets marked with either $\fbox{0}$ or $\fbox{1}$. 
+In the binomial scenario described above, we had $n$ __independent__ trials, where each trial resulted in a success or a failure. This is like sampling __with__ replacement from a box of $0$'s and $1$'s. Now consider the situation when we have a box with $N$ tickets marked with either $\fbox{0}$ or $\fbox{1}$. 
 
-As usual, the ticket marked $\fbox{1}$ represents a success. Say the box has $G$ tickets marked $\fbox{1}$ (and therefore $N-G$ tickets representing failures). Suppose we draw a *simple random sample* of size $n$ from this box. A simple random sample is a sample drawn without replacement, and every ticket is equally likely to be selected from among the remaining tickets. Then, the probability of drawing a ticket marked $\fbox{1}$ changes from draw to draw. 
+As usual, the ticket marked $\fbox{1}$ represents a success. Say the box has $G$ tickets marked $\fbox{1}$ (and therefore $N-G$ tickets marked  $\fbox{0}$ representing failures). Suppose we draw a *simple random sample* of size $n$ from this box. A simple random sample is a sample drawn without replacement, and on each draw, every ticket is equally likely to be selected from among the remaining tickets. Then, the probability of drawing a ticket marked $\fbox{1}$ *changes* from draw to draw. 
 
 What is the probability that we will have *exactly* $k$ successes among these $n$ draws? The probability distribution that gives us this answer is given by 
 
@@ -394,7 +408,7 @@ $$
 \frac{\binom{G}{k}\times \binom{N-G}{n-k}}{\binom{N}{n}}
 $$
 
-and is called the **hypergeometric distribution**. It has *three* paramaeters, $n$, $N$ and $G$. This is a wacky formula, so let's explain it piece by piece, starting with the numerator and then moving to the denominator!
+and is called the **hypergeometric distribution**. It has *three* parameters, $n$, $N$ and $G$. This is a wacky formula, so let's explain it piece by piece, starting with the numerator and then moving to the denominator!
 
 #### Numerator
 
