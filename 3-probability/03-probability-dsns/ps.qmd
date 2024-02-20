@@ -1,54 +1,124 @@
 ---
-title: "Random Variables"
+title: "Probability Distributions"
 subtitle: "PS"
 format: stat20handout-pdf
 ---
+<!--A fair coin is tossed 4 times.
 
-#### Question 1: Binomial, hypergeometric, or neither?
+@. What is the probability of getting 4 heads?
 
-In the following examples, 
+\
 
-- define an appropriate random variable
--  decide whether it is binomial, hypergeometric, or neither. 
--  if it is binomial or hypergeometric, identify the parameters of the distribution
--  compute the probability (you may leave it as an expression)
+@. What is the probability of the 4th toss landing heads *given* that the first three landed heads?
 
-\vspace{2mm}
+\
 
-(a) The probability that 3 out of 8 tosses of a fair coin will land heads.
-
-\vspace{4cm}
-
-(b) The probability of rolling at least two 3’s and two 4’s out of twelve rolls of a die.
-
-\vspace{4cm}
+\
 
 
-(c) The chance that there are exactly three diamonds among the first ten cards dealt off the top of a shuffled deck (note that cards are dealt without replacement).
+-->
+*Stat 20 is super fun!*
 
-\vspace{4cm}
+@. Suppose a character is picked at random from this sentence (not including punctuation marks). Make a table for the probability distribution of the character that is picked (either a vowel, consonant, or number).
 
-(d) The chance that you have to roll a six-sided die 8 times until you get a total of 2 sixes.
+\
 
-\pagebreak
+\ 
 
-#### Question 2: Picking answer choices at random on a MC test
+\
 
-A test consists of $20$ multiple-choice questions. Each question has $4$ answer choices, of which only one is correct and three are incorrect. You answer each question by picking one of the four options at random, so how you answer one question has no bearing on the others (they are independent). Let $X$ be the number of questions you answer correctly. What is the chance that you answer more than 2 questions correctly?
+Consider a box with four balls in it, two of which are red and two are blue. The balls are identical, except for their color. Now suppose we draw *three* times at random ("at random" means that all the balls are equally likely) from this box. For each of the following scenarios, list all the possible outcomes, and make a table showing the probability distribution of these outcomes.
 
-\vspace{2.5cm}
+@. We draw *with* replacement.
 
-#### Question 3: Committees
+\
 
-A committee of two is to be selected from among the five teachers and ten students attending a meeting. Let $X$ be the number of teachers selected for the committee. Write down the probability mass function for $X$.
+\
 
-\vspace{4cm}
+@. We draw *without* replacement.
+
+\
+
+\
+
+@. Consider tossing a fair coin *four* times. Sketch a probability histogram for the number of heads in the four tosses. Make sure to label and title your plot (How many total equally likely outcomes are there in four tosses of a coin? Make sure you get your probabilities correct!)
+
+\
+
+\
+
+\
 
 
-#### Question 5: Box models and random variables
 
-For the boxes below, draw one ticket at random, and let $X$ be the value of the ticket that you draw. Write down the pmf, and draw the graph of the cdf of $X$.
+A test consists of 20 multiple choice questions. Each question has 4 answer choices, of which only one is correct, and three are incorrect. You haven't studied at all for this test, and decides to answer all the questions by picking one of the four answer choices at random. What is the probability that
 
-(a) \fbox{\fbox{-2} \fbox{-1} \fbox{0} \fbox{2}} \hspace{2in} (b) \fbox{\fbox{0} \fbox{1} \fbox{1} \fbox{6}}
+@. you answer eight questions correctly?
+
+\ 
+
+\
+
+
+@. you answer more than two questions correctly?
+
+{{< pagebreak >}}
+
+A committee of *three* is to be selected from among five teachers and ten students (a total of fifteen people). 
+
+@. What is the probability that the committee consists of only teachers?
+
+\
+
+\
+
+@. What is the probability that the committee has at least one student?
+
+\
+
+\
+
+
+@. What is the probability that the committee has exactly one student?
+
+\
+
+\
+
+
+@. Let's suppose we deal 5 cards from a standard deck. What is the probability that the hand of 5 cards contains a pair of aces?
+
+\
+ 
+\
+
+
+Let's revisit Question 4 about tossing a fair coin four times. 
+
+@. Write code to create the probability histogram for the number of heads in four tosses (that you sketched earlier). Do it in R and then copy the code here.
+
+\
+
+\
+
+@. Write code to simulate this experiment (tossing a coin four times) and counting the number of heads. Repeat this experiment 500 times, and create an *empirical* histogram for the number of heads in four tosses of a fair coin. Copy the code here.Do the two plots (from the previous question and this one) look similar?
+
+\
+
+\
+
+\
+
+
+
+@. Consider the American roulette wheel (38 pockets: 18 red, 18 black, 2 green). Write code to simulate the number of times you land on a red space during 100 spins of a roulette wheel. 
+
+\
+
+\
+
+
+
+
 
 
