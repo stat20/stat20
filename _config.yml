@@ -182,10 +182,10 @@ schedule:
             render: true
           - type: Slides
             href: 3-probability/03-probability-dsns/slides.qmd
-            render: false
+            render: true
           - type: PS
             href: 3-probability/03-probability-dsns/ps.qmd
-            render: false
+            render: true
         
       - topic: "Random Variables"
         display-date: Feb 22
