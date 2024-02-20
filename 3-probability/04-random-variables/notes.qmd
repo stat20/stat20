@@ -15,12 +15,13 @@ format:
 2. Distribution tables
 3. Probability mass functions
 4. Cumulative distribution functions
-5. Bernoulli, binomial & hypergeometric distributions
+5. Bernoulli, binomial, hypergeometric, geometric, Poisson distributions
+6. Relationships between Bernoulli & binomial, binomial & hg, binomial & Poisson
 
 #### Tool Acquisition
 
 1. How to recognize binomial distribution
-2. `dbinom(), pbinom(), dhyper()`
+2. `dbinom(), pbinom(), dhyper(), phyper(), choose(), `
 2. connections to boxes of tickets
 3. How to compute probabilities
 
