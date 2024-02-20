@@ -472,7 +472,7 @@ We defined conditional probability and independence, and the multiplication rule
 
 We noted that independent events are very different from mutually exclusive events, and finally we learned how to compute probabilities of unions of events that may not be mutually exclusive with the inclusion-exclusion or generalized addition rule.
 
-In the code section, we learned about a new file type, and explored a useful function for simulations. 
+<!--In the code section, we learned about a new file type, and explored a useful function for simulations.-->
 
 
 [^js]: <https://www.theguardian.com/uk-news/2021/nov/20/sally-clark-cot-death-mothers-wrongly-jailed>
