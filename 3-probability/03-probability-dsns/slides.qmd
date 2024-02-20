@@ -41,6 +41,13 @@ library(patchwork)
 - PS 8
 
 
+## Announcements
+
+- PS 6 and 7 due Tuesday
+
+- No lab today, but we will work on PS 8
+
+
 :::{.notes}
 You may need to review the concepts as I said in slack, depending on how they do in the pe refresher
 :::
