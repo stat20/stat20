@@ -337,6 +337,8 @@ This example was made famous by Ladislaus Bortkiewicz in 1898 when he discussed 
 ```{r}
 #| echo: false
 #| warning: false
+#| fig-width: 5
+#| fig-height: 3
 
 library(vcd)
 data("VonBort")
@@ -391,7 +393,10 @@ Now we will define another important quantity related to random variables. This 
 $F(x) = P(X \le x)$.
 :::
 
-We usually abbreviate this function to __cdf__. It is a very important function since it also describes the probability distribution of $X$.
+We usually abbreviate this function to __cdf__. It is a very important function since it also describes the probability distribution of $X$. In order to compute $F(x)$ for any real number $x$, we just add up all the probability so far:
+$$
+F(x) = \sum_{y \le x} f(y)
+$$
 
 For example, if $X$ is the number of heads in $3$ tosses of a fair coin, recall that:
 
@@ -406,7 +411,15 @@ In this case, $F(x) = P(X\le x) = 0$ for all $x < 0$ since the first positive pr
 
 Notice that $F(x)$ is a step function, and right continuous. The jumps are at exactly the values for which $f(x) > 0$. We can get $F(x)$ from $f(x)$ by adding the values of $f$ up to and including $x$, and we can get $f(x)$ from $F(x)$ by looking at the size of the jumps. 
 
-#### Example: Drawing the graph of the cdf
+#### Example: Writing down the cdf of a Bernoulli random variable
+
+Suppose $X \sim $ Bernoulli$(0.5)$. Then we know that $P(X = 0) = P(X=1) = 0.5$.
+The cdf of $X$, $F(x)$ gives us the total probability so far up to and including $x$. For example, if $x = -3$, $F(x) =0$ since the first time there is any positive probability for $X$ is at $0$. At $x = 0$, $F(x) = 0.5$, and it stays there until it gets to $x =1$, when it "accumulates" another $0.5$ of probability. Here is the figure:
+
+![](images/cdf-bernoulli.png){fig-align="center" width="700"}
+Notice where the function is open and closed ($\circ$ vs $\bullet$).
+
+#### Exercise: Drawing the graph of the cdf
 
 Let $X$ be the random variable defined by the distribution table below. Find the cdf of $X$, and draw the graph, making sure to define $F(x)$ for all real numbers $x$. Before you do that, you will have to determine the value of $f(x)$ for $x = 4$.
 
@@ -430,8 +443,80 @@ Since $\displaystyle \sum_x P(X = x) = \sum_x f(x) = 1$, $f(4) = 1-(0.2+0.3+0.4)
 
 </details>
 
+## Ideas in code
 
-In `R`, we have functions that calculate $F(x)$ for some special distributions, including the binomial and hypergeometric distributions. For a binomial distribution, we use the function `pbinom(x, size, prob)` Similarly, for the hypergeometric distribution, we use `phyper(x, m, n, k)`.
+### Useful functions
+
+#### `factorial()` and `choose()`
+
+The function used to compute the binomial coefficient $\binom{n}{k}$ is `choose(n,k)`, while the function to compute $n!$ is `factorial(n)`. Here are a couple of examples:
+
+```{r}
+#| code-fold: false
+
+cat(" 5! is equal to ", factorial(5) )
+```
+
+`cat()` prints whatever is in the `()`. 
+
+```{r}
+#| code-fold: false
+
+choose(4,2)
+```
+
+While these are both functions that are useful if we want to compute binomial probabilities, we won't use them since R has built in functions that calculate both $f(x)$ and $F(x)$ for many distributions, including the ones that we have listed in these notes.
+
+All these all have the similar forms, and we will list the functions and their arguments here. For each distribution, there are four types of functions and they begin with `d`, `p`, `r`, and `q`, followed by an abbreviation of the name of the distribution. We will describe the first three types of functions in these notes.
+
+#### Bernoulli$(p)$ and Binomial$(n,p)$
+
+1.  `dbinom` computes the pmf of $X$, $f(k) = P(X = k)$, for $k = 0, 1, \ldots, n$.
+- Arguments:
+    - `x`: the value of $k$ in $f(k)$
+    - `size`: the parameter $n$, the number of trials
+    - `prob`: the parameter $p$, the probability of success
+    
+2. `pbinom` computes the cdf $F(x) = P(X \le x)$  
+- Arguments:
+    - `q`: the value of $x$ in $F(x)$
+    - `size`: the parameter $n$, the number of trials
+    - `prob`: the parameter $p$, the probability of success
+
+3. `rbinom` generates a sample (random numbers) from the Binomial$(n,p)$ distribution.
+- Arguments:
+    - `n`: the sample size
+    - `size`: the parameter $n$, the number of trials
+    - `prob`: the parameter $p$, the probability of success
+    
+##### Example
+
+Suppose we consider $n = 3$, $p= 0.5$, that is, $X$ is the number successes in 3 independent Bernoulli trials.
+
+```{r}
+#| code-fold: false
+
+# probability that we see exactly 1 success = f(1)
+dbinom(x = 1, size = 3, prob = 0.5)
+
+
+# probability that we see at most 1 success = F(1) = f(0) + f(1)
+pbinom(q = 1, size = 3, prob = 0.5 )
+# check f(0) + f(1)
+dbinom(x = 0, size = 3, prob = 0.5) + dbinom(x = 1, size = 3, prob = 0.5)
+
+
+# generate a sample of size 5 where each element in sample 
+# represents number of successes in 3 trials (like number of heads in 3 tosses)
+rbinom(n = 5, size = 3, prob = 0.5)
+
+# if we want to generate a sequence of 10 tosses of a fair coin, for example:
+rbinom(n = 10, size = 1, prob = 0.5)
+```
+
+
+
+ Similarly, for the hypergeometric distribution, we use `phyper(x, m, n, k)`.
 
 Going back to the example above, let's compute the probabilities using `pbinom(x, 10, 0.4)` and compare them to the probabilities computed earlier using `dbinom(x, size, prob)` 
 
