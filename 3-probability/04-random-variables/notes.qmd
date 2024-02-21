@@ -653,9 +653,7 @@ rpois(n = 5, lambda = 1)
 ```
 
 
-
-
-## Connections between discrete random variables and draws from a box of tickets
+<!--## Connections between discrete random variables and draws from a box of tickets
 
 #### Example: the discrete uniform random variable
 
@@ -832,15 +830,17 @@ p2 <- data.frame(draws) |>
 p1 + p2
 ```
 :::
-
 [^covid]: <https://www.covidstates.org/reports/state-of-the-covid-19-pandemic>
+-->
+
 [^wm]:<https://www.latimes.com/world/la-xpm-2011-jun-20-la-naw-wal-mart-court-20110621-story.html>
 [^binom]: <https://en.wikipedia.org/wiki/Binomial_coefficient>
 
 ## Summary
 
 - In these notes, we defined random variables, and described discrete and continuous random variables.
-- For any random variable, there is an associated probability distribution, and this is described by the probability mass function or pmf $f(x)$. We also defined a function that, for a random variable $X$, and any real number $x$, describes all the probability that is to the left of $x$. This function is called the cumulative distribution function (cdf) of $X$ and is denoted $F(x)$.
-- We looked at some special distributions (Bernoulli, binomial, discrete uniform, and hypergeometric)
-- We defined functions in `R` that can compute the pmf and cdf for special distributions.
-- Finally, we looked at connections between random variables and boxes with tickets, and saw how to simulate some empirical distributions.
+- For any random variable, there is an associated probability distribution, and this is described by the probability mass function or pmf $f(x)$. 
+- We also defined a function that, for a random variable $X$, and any real number $x$, describes all the probability that is to the left of $x$. This function is called the cumulative distribution function (cdf) of $X$ and is denoted $F(x)$.
+- We looked at some special distributions (discrete uniform, Bernoulli, binomial, hypergeometric, and Poisson)
+- We defined functions in R that can compute the pmf and cdf for the named distributions (except for discrete uniform since it doesn't need a special function as we can just use `sample()`).
+<!--- Finally, we looked at connections between random variables and boxes with tickets, and saw how to simulate some empirical distributions.-->
