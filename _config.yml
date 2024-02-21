@@ -197,6 +197,9 @@ schedule:
           - type: Slides
             href: 3-probability/04-random-variables/slides.qmd
             render: false
+          - type: PS
+            href: 3-probability/04-random-variables/ps.qmd
+            render: false
             
   - week: 7
     days:
