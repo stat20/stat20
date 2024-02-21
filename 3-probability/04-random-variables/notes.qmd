@@ -15,12 +15,13 @@ format:
 2. Distribution tables
 3. Probability mass functions
 4. Cumulative distribution functions
-5. Bernoulli, binomial & hypergeometric distributions
+5. Bernoulli, binomial, hypergeometric, Poisson distributions
+6. Relationships between Bernoulli & binomial, binomial & hg, binomial & Poisson
 
 #### Tool Acquisition
 
 1. How to recognize binomial distribution
-2. `dbinom(), pbinom(), dhyper()`
+2. `dbinom(), pbinom(), dhyper(), phyper(), choose()` etc.
 2. connections to boxes of tickets
 3. How to compute probabilities
 
@@ -47,28 +48,50 @@ library(infer)
 library(patchwork)
 ```
 
-Suppose we want to simulate tossing a coin $10$ times, and compute the proportion of times that the coin lands heads. We might use the function `sample()` to sample from `(0, 1)`, where the outcome "Heads" is represented by the number `1` and the outcome "Tails" is represented by the number `0`. We can save the result as `tosses_10`. Our code might be `tosses_10 <- sample(c(0,1), 10, replace = TRUE)`.  `tosses_10`  might look like `0 0 1 1 0 1 1 1 1 0`, and if we compute its mean (`mean(tosses_10)`), we would get the proportion of times the coin landed heads (in this example it is 0.6). 
+We have seen that if we want to simulate tossing a fair coin $10$ times, and compute the proportion of times that the coin lands heads, we might use `sample()` to sample from `(0, 1)`, where the outcome "Heads" is represented by the number `1` and the outcome "Tails" is represented by the number `0`. Our code might look like:
 
+```r
+set.seed(1)
+tosses_10 <- sample(c(0,1), 10, replace = TRUE)
+tosses_10
+mean(tosses_10)
+```
+
+```{r}
+#| echo: false
+set.seed(1)
+tosses_10 <- sample(c(0,1), 10, replace = TRUE)
+tosses_10
+mean(tosses_10)
+```
+
+We used the same idea - of assigning numbers to outcomes when we looked the probability distribution of the number of heads in three tosses, and when we looked the Bernoulli, binomial, and hypergeometric distributions. 
 
 ## Random variables
 
-What we did, in fact, was define a **function** that assigned a real number to each possible outcome in $\Omega$. In our simulation above, if $\Omega$ is the set of outcomes $\{\text{``Heads'', ``Tails''}\}$,  we assigned the outcome  $\text{``Heads''}$ to the real number $1$, and the outcome  $\text{``Tails''}$ to the real number $0$. By sampling over and over again from `(0,1)`, we got a sequence of $0$'s and $1$'s that was *randomly generated* by our sampling, and then we could do arithmetic on this sequence, such as compute the proportion of times we sampled $1$. To put it in mathematical notation:
+In each of these examples what we did, in fact, was define a **function** that assigned a real number to each possible outcome in $\Omega$. In our simulation above, if $\Omega$ is the set of outcomes $\{\text{``Heads'', ``Tails''}\}$,  we assigned the outcome  $\text{``Heads''}$ to the real number $1$, and the outcome  $\text{``Tails''}$ to the real number $0$. By sampling over and over again from `(0,1)`, we got a sequence of $0$'s and $1$'s that was *randomly generated* by our sampling, and then we could do arithmetic on this sequence, such as compute the proportion of times we sampled $1$, or represent the probabilities as a histogram. Moving from non-numeric outcomes in an outcome space $\Omega$ to numbers on the real line is enormously useful.
+
+To put it in mathematical notation:
 
 $$ X : \Omega \rightarrow \mathbb{R}$$
 
-$X$ is called a *random variable*: variable, because it takes different values on the real line, and random, because it inherits the randomness from the generating process (in this case, the process is tossing a coin).
+$X$ is called a __*random variable*__: *variable*, because it takes different values on the real line, and *random*, because it inherits the randomness from the generating process (in this case, the process is tossing a coin).
 
 :::{.def}
 **Random variable**
- ~ A random variable is a function that associates real numbers with outcomes from a random experiment which are in an outcome space $\Omega$.
+ ~ A random variable is a function that associates real numbers with outcomes from a random experiment where $\Omega$ is the associated outcome space. 
 ::: 
 
-These assigned numbers have probabilities coming from the probability distribution on $\Omega$. The range of the random variable is the set of all the possible values that $X$ can take. We usually denote random variables by $X, Y, \ldots$ or capital letters towards the end of the alphabet.  We write statements about the values $X$ takes, such as $X = 1$ or $X = 0$. Note that $X = 1$ is an *event* and it may be true or not. The probability of such events is written as $P(X = x)$, where $x$ is a real number.
+The values on the real line that are determined by $X$ have probabilities coming from the probability distribution on $\Omega$. The range of the random variable is the set of all the possible values that $X$ can take. We usually denote random variables by $X, Y, \ldots$ or capital letters towards the end of the alphabet.  We write statements about the values $X$ takes, such as $X = 1$ or $X = 0$. Note that $X = 1$ is an *event* and it may be true or not. The probability of such events is written as $P(X = x)$, where $x$ is a real number.
+
+Note that we are now just formalizing the association of outcomes in $\Omega$ with numbers. We have already seen this association when we described probability distributions. Earlier we defined probability distributions as how the total probability of $1$ or $100$% was distributed among all possible outcomes of the random experiment. Now we can extend this definition to the associated real numbers as defined by $X$. 
 
 :::{.def}
 **Probability distribution of a random variable $X$**
  ~ The set of possible values of $X$, along with the associated probabilities, is called the *probability distribution* for the random variable $X$.
 :::
+
+For example, we can consider the example of $X$ being the number of heads in three tosses of a coin, and represent it as in the picture below:
 
 ![](images/rv-picture.png){fig-align="center" width="600"}
 

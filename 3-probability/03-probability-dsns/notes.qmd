@@ -366,13 +366,13 @@ More generally, suppose that we have $n$ *independent* trials, where each trial 
 
 The multiplication rule for independent events tells us how to compute the probability of a sequence that consisted of the first $k$ trials being successes and the rest of the $n-k$ trials being failures. The probability of this *particular* sequence of $k$ successes followed by $n-k$ failures is (by multiplying their probabilities) given by:
 $$
-p^k \times (n-p)^{n-k}
+p^k \times (1-p)^{n-k}
 $$
 Now this is the probability of *one* particular sequence: $SSS\ldots SSFF \ldots FFF$, but as we saw in the example above, only the *number* of successes and failures matter, not the particular order. So *every* sequence of $n$ trials in which we have $k$ successes and $n-k$ failures has the same probability.
 
-How many such sequences are there? We can count them using our rules above. We have $n$ spots in the sequence, of which $k$ have to be successes. The number of such sequences of length $n$ consisting of $k$ $S$'s and $n-k$ $F$'s) is given by $\displaystyle \binom{n}{k}$. Each such sequence has probability $\displaystyle p^k \times (n-p)^{n-k}$. Adding up all these $\displaystyle \binom{n}{k}$ probabilities (of each such sequence) gives us the formula for the __probability of $k$ successes in $n$ trials__:
+How many such sequences are there? We can count them using our rules above. We have $n$ spots in the sequence, of which $k$ have to be successes. The number of such sequences of length $n$ consisting of $k$ $S$'s and $n-k$ $F$'s) is given by $\displaystyle \binom{n}{k}$. Each such sequence has probability $\displaystyle p^k \times (1-p)^{n-k}$. Adding up all these $\displaystyle \binom{n}{k}$ probabilities (of each such sequence) gives us the formula for the __probability of $k$ successes in $n$ trials__:
 $$
-\binom{n}{k} \times p^k \times (n-p)^{n-k}
+\binom{n}{k} \times p^k \times (1-p)^{n-k}
 $$
  
 The probability distribution described by the above formula is called the **binomial distribution**. It is named after $\displaystyle \binom{n}{k}$, which is called the *binomial coefficient.* The binomial distribution has *two* parameters: the number of trials $n$ and the probability of success on each trial, $p$. 
