@@ -131,7 +131,7 @@ In all of the following, we do not restrict the value taken by the random variab
 
 Recall that American roulette wheels have $38$ numbered slots, numbered from $1$ to $36$, of which $18$ are colored red, and $18$ black. There are two green slots numbered $0$ and a $00$. As the wheel spins, a ball is sent spinning in the opposite direction. When the wheel slows the ball will land in one of the numbered slots. Players can make various bets on where the ball lands, such as betting on whether the ball will land in a red slot or a black slot. If a player bets one dollar on red, and the ball lands on red, then they win a dollar, in addition to getting their stake of one dollar back. If the ball does not land on red, then they lose their dollar to the casino. Suppose a player bets six times on six consecutive spins, betting on red each time. Their *net gain* can be defined as the amount they won minus the amount they lost. Is net gain a random variable? What are its possible values (write down how much the player can win or lose in one spin of the wheel, then two, and so on)? 
 
-<details> <summary> Check your answer </summary>
+<details> <summary>Check your answer</summary>
 
 Yes, net gain *is* a random variable, and its possible values are: $-6, -4, -2, 0, 2, 4, 6$. (Why?)
 
@@ -254,7 +254,7 @@ For example, let $X \sim Bin(10,0.4)$. In words $X$ counts the number of success
 What are these events in words? 
 
 <details> <summary> Check your answer </summary>
-- $X$ is the number of successes in ten trials, where the probability of success in each trial is 40%. $X = 5$ is the event that we see exactly five successes in the ten trials, while $X \le 5$ is the event of seeing *at most* five successes in ten trials. The last event, $3 \le X \le 8$ is the event of at least three successes, but not more than eight, in ten trials.
+$X$ is the number of successes in ten trials, where the probability of success in each trial is 40%. $X = 5$ is the event that we see exactly five successes in the ten trials, while $X \le 5$ is the event of seeing *at most* five successes in ten trials. The last event, $3 \le X \le 8$ is the event of at least three successes, but not more than eight, in ten trials.
 
 <!--We will use `dbinom()` to compute the probabilities $P(X = x)$ or the pmf values.
 
@@ -522,7 +522,7 @@ In the section on the Binomial distribution above, we had an exercise where $X \
 - $X \le 5$
 - $3 \le X \le 8$
 
-<details> <summary> Check your answer <\summary>
+<details> <summary> Check your answer </summary>
 
 ```{r}
 #| code-fold: false
@@ -557,7 +557,8 @@ What is going on in the last expression? Why is $P(3 <= X <= 8) = F(8) - F(2)$?
 <details><summary> Check your answer </summary>
 
 $P(3 <= X <= 8)$ consists of all the probability at the points $3, 4, 5, 6, 7, 8$. 
-$F(8) = P(X\le 8) $ is all the probability up to $8$, including any probability at $8$. We subtract off all the probability up to and including $2$ from $F(8)$ and are left with the probability at the values $3$ up to and including $8$, which is what we want.
+
+$F(8) = P(X \le 8)$ is all the probability up to $8$, including any probability at $8$. We subtract off all the probability up to and including $2$ from $F(8)$ and are left with the probability at the values $3$ up to and including $8$, which is what we want.
 
 </details>
 
