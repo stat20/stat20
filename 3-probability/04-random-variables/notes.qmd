@@ -319,13 +319,13 @@ choose(500, 0)*choose(500, 10)/choose(1000, 10)
 
 ### The Poisson Distribution
 
-There are three very important distributions that we see over and over again in many situations. One of them is the *binomial* distribution, which we have discussed above. The reason this distribution is so ubiquitous is that we use it for *classifying* things into binary outcomes and *counting* the number of "successes". Another discrete distribution that is used to model many different things - from the number of people arriving at an ATM in a given period of time, to the frequency with which officers in the Prussian army were accidentally kicked to death by their horses[^poisson]. This distribution is called the *Poisson* distribution after a French mathematician, Siméon-Denis Poisson, who developed the theory in the nineteenth century.Interestingly, he was not the *first* French mathematician to develop this theory. That honor belonged to the seventeenth century contemporary and friend of Isaac Newton, Abraham De Moivre.[^poisson] (The third important distribution is called the Normal distribution, also first discovered by De Moivre, which we will introduce later in the course.) 
+There are three very important distributions that we see over and over again in many situations. One of them is the *binomial* distribution, which we have discussed above. The reason this distribution is so ubiquitous is that we use it for *classifying* things into binary outcomes and *counting* the number of "successes". The second important discrete distribution is used to model many different things - from the number of people arriving at an ATM in a given period of time, to the frequency with which officers in the Prussian army were accidentally kicked to death by their horses[^poisson]. This distribution is called the *Poisson* distribution after a French mathematician, Siméon-Denis Poisson, who developed the theory in the nineteenth century.Interestingly, he was not the *first* French mathematician to develop this theory. That honor belonged to the seventeenth century mathematician who was a contemporary (and friend) of Isaac Newton, Abraham de Moivre.[^poisson] (The third important distribution is called the Normal distribution, also first discovered by de Moivre, which we will introduce later in the course.) 
 
 The Poisson distribution appears in situations when we have a very large number of trials in which we are checking the occurrence or not of a particular event which has a very low probability. That is, we have a very large number $n$ of Bernoulli trials, which have a very small $p$ or probability of success, such that the product $np$ is not too small or large. We call the number of successes $X$, and it counts the occurrence of events whose counts tend to be small. Note that $X \sim Bin(n, p)$, and $$P(X = 0) = \binom{n}{0}\times p^0\times (1-p)^n = (1-p)^n.$$
 For large $n$, it turns out that $(1-p)^n \approx e^{-\lambda}$, where $\lambda = np$. We won't derive the distribution here, but we will use the Poisson distribution for random variables that count the number of occurrences of events in a given period of time in when the events result from a very large number of independent trials. The independence of the trials means that the probability of success does not change over time.
 
 :::{.def}
-** Poisson distribution **
+**Poisson distribution**
  ~ We say that such a random variable $X$ has the Poisson distribution with parameter $\lambda$ if
  $$ P(X = k) = e^{-\lambda} \frac{\lambda^k}{k!},$$
 where $k = 0, 1, 2, \ldots$. That is, the possible values of $X$ are non-negative integers, and since $k!$ grows much faster than $\lambda^k$, the probability that $X$ takes large values is very small. The parameter $\lambda$ is called the *rate* of the distribution, and represents how many "successes" we expect in the given time unit. 
@@ -469,7 +469,7 @@ While these are both functions that are useful if we want to compute binomial pr
 
 All these all have the similar forms, and we will list the functions and their arguments here. For each distribution, there are four types of functions and they begin with `d`, `p`, `r`, and `q`, followed by an abbreviation of the name of the distribution. We will describe the first three types of functions in these notes.
 
-#### Bernoulli$(p)$ and Binomial$(n,p)$
+### Bernoulli$(p)$ and Binomial$(n,p)$
 
 1.  `dbinom` computes the pmf of $X$, $f(k) = P(X = k)$, for $k = 0, 1, \ldots, n$.
 - Arguments:
@@ -489,7 +489,7 @@ All these all have the similar forms, and we will list the functions and their a
     - `size`: the parameter $n$, the number of trials
     - `prob`: the parameter $p$, the probability of success
     
-##### Example
+#### Example
 
 Suppose we consider $n = 3$, $p= 0.5$, that is, $X$ is the number of successes in 3 independent Bernoulli trials.
 
@@ -514,7 +514,7 @@ rbinom(n = 5, size = 3, prob = 0.5)
 rbinom(n = 10, size = 1, prob = 0.5)
 ```
 
-##### Exercise
+#### Exercise
 
 In the section on the Binomial distribution above, we had an exercise where $X \sim Bin(10, 0.4)$. Using the functions defined above, compute:
 
@@ -563,7 +563,7 @@ $F(8) = P(X \le 8)$ is all the probability up to $8$, including any probability 
 </details>
 
 
-#### Hypergeometric $(N, G, n)$
+### Hypergeometric $(N, G, n)$
 
 The notation is a bit confusing, but just remember that `x` is usually the number $k$ that you want the probability for, and `m + n`$=N$ is the total number of successes and failures, or the population size.
 
@@ -588,7 +588,7 @@ The notation is a bit confusing, but just remember that `x` is usually the numbe
     - `n`: the value $N-G$, the number of failures in the population
     - `k`: the sample size (number of draws $n$)
     
-##### Example
+#### Example
 
 Suppose we consider $N = 10, G  = 6, n = 3$, that is, $X$ is the number of successes in 3 draws without replacement from a box that has 6 tickets marked $\fbox{1}$ and 4 tickets marked $\fbox{0}$
 
@@ -611,7 +611,7 @@ rhyper(nn = 5, m = 6, n = 4, k = 3)
 
 ```
 
-#### Poisson($\lambda$)
+### Poisson($\lambda$)
 
 1.  `dpois` computes the pmf of $X$, $f(k) = P(X = k)$, for $k = 0, 1, 2,  \ldots$.
 - Arguments:
@@ -628,7 +628,7 @@ rhyper(nn = 5, m = 6, n = 4, k = 3)
     - `n`: the desired sample size
     - `lambda`: the parameter $\lambda$
     
-##### Example
+#### Example
 
 Suppose we consider $\lambda = 1$, that is $X \sim$ Poisson$(\lambda)$. 
 
