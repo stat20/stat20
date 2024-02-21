@@ -244,7 +244,7 @@ In `R` we can use a special function to compute the binomial probabilities $f(k)
 -->
 
 As stated earlier, we can define *events* by the *values* taken by random variables.
-For example, let $X = Bin(10,0.4)$. In words $X$ counts the number of successes in 10 trials.
+For example, let $X \sim Bin(10,0.4)$. In words $X$ counts the number of successes in 10 trials.
  Given this $X$, what are the following events in words?
 
 - $X = 5$
@@ -491,7 +491,7 @@ All these all have the similar forms, and we will list the functions and their a
     
 ##### Example
 
-Suppose we consider $n = 3$, $p= 0.5$, that is, $X$ is the number successes in 3 independent Bernoulli trials.
+Suppose we consider $n = 3$, $p= 0.5$, that is, $X$ is the number of successes in 3 independent Bernoulli trials.
 
 ```{r}
 #| code-fold: false
@@ -514,11 +514,15 @@ rbinom(n = 5, size = 3, prob = 0.5)
 rbinom(n = 10, size = 1, prob = 0.5)
 ```
 
+##### Exercise
 
+In the section on the Binomial distribution above, we had an exercise where $X \sim Bin(10, 0.4)$. Using the functions defined above, compute:
 
- Similarly, for the hypergeometric distribution, we use `phyper(x, m, n, k)`.
+- $X = 5$
+- $X \le 5$
+- $3 \le X \le 8$
 
-Going back to the example above, let's compute the probabilities using `pbinom(x, 10, 0.4)` and compare them to the probabilities computed earlier using `dbinom(x, size, prob)` 
+<details> <summary> Check your answer <\summary>
 
 ```{r}
 #| code-fold: false
@@ -546,6 +550,8 @@ dbinom(x = 3, size = 10, prob = 0.4) + dbinom(x = 4, size = 10, prob = 0.4) +
 pbinom(8, 10, 0.4) - pbinom(2, 10, 0.4)
 ```
 
+</details>
+
 What is going on in the last expression? Why is $P(3 <= X <= 8) = F(8) - F(2)$?
 
 <details><summary> Check your answer </summary>
@@ -554,6 +560,99 @@ $P(3 <= X <= 8)$ consists of all the probability at the points $3, 4, 5, 6, 7, 8
 $F(8) = P(X\le 8) $ is all the probability up to $8$, including any probability at $8$. We subtract off all the probability up to and including $2$ from $F(8)$ and are left with the probability at the values $3$ up to and including $8$, which is what we want.
 
 </details>
+
+
+#### Hypergeometric $(N, G, n)$
+
+The notation is a bit confusing, but just remember that `x` is usually the number $k$ that you want the probability for, and `m + n`$=N$ is the total number of successes and failures, or the population size.
+
+1.  `dhyper` computes the pmf of $X$, $f(k) = P(X = k)$, for $k = 0, 1, \ldots, n$.
+- Arguments:
+    - `x`: the value of $k$ in $f(k)$
+    - `m`: the parameter $G$, the number of successes in the population
+    - `n`: the value $N-G$, the number of failures in the population
+    - `k`: the sample size (number of draws $n$, note that $0 \le k \le m+n$)
+    
+2. `phyper` computes the cdf $F(x) = P(X \le x)$  
+- Arguments:
+    - `q`: the value of $x$ in $F(x)$
+    - `m`: the parameter $G$, the number of successes in the population
+    - `n`: the value $N-G$, the number of failures in the population
+    - `k`: the sample size (number of draws $n$)
+
+3. `rhyper` generates a sample (random numbers) from the hypergeometric$(N, G, n)$ distribution.
+- Arguments:
+    - `nn`: the number of random numbers desired
+    - `m`: the parameter $G$, the number of successes in the population
+    - `n`: the value $N-G$, the number of failures in the population
+    - `k`: the sample size (number of draws $n$)
+    
+##### Example
+
+Suppose we consider $N = 10, G  = 6, n = 3$, that is, $X$ is the number of successes in 3 draws without replacement from a box that has 6 tickets marked $\fbox{1}$ and 4 tickets marked $\fbox{0}$
+
+```{r}
+#| code-fold: false
+
+# probability that we see exactly 1 success = f(1)
+dhyper(x = 1, m = 6, n = 4, k = 3)
+
+# you can compute this by hand as well to check. 
+
+# probability that we see at most 1 success = F(1) = f(0) + f(1)
+phyper(q = 1, m = 6, n = 4, k = 3)
+# check f(0) + f(1)
+dhyper(x = 0, m = 6, n = 4, k = 3) + dhyper(x = 1, m = 6, n = 4, k = 3)
+
+# generate a sample of size 5 where each element in sample 
+# represents number of successes in 3 draws
+rhyper(nn = 5, m = 6, n = 4, k = 3)
+
+```
+
+#### Poisson($\lambda$)
+
+1.  `dpois` computes the pmf of $X$, $f(k) = P(X = k)$, for $k = 0, 1, 2,  \ldots$.
+- Arguments:
+    - `x`: the value of $k$ in $f(k)$
+    - `lambda`: the parameter $\lambda$
+    
+2. `ppois` computes the cdf $F(x) = P(X \le x)$  
+- Arguments:
+    - `q`: the value of $x$ in $F(x)$
+    - `lambda`: the parameter $\lambda$
+
+3. `rpois` generates a sample (random numbers) from the  Poisson($\lambda$) distribution.
+- Arguments:
+    - `n`: the desired sample size
+    - `lambda`: the parameter $\lambda$
+    
+##### Example
+
+Suppose we consider $\lambda = 1$, that is $X \sim$ Poisson$(\lambda)$. 
+
+```{r}
+#| code-fold: false
+
+# probability that we see exactly 1 event = f(1)
+dpois(x = 1, lambda = 1)
+
+#check f(1) = exp(-lambda)*lambda = exp(-1)*1
+exp(-1)
+
+# probability that we see at most 1 success = F(1) = f(0) + f(1)
+ppois(q = 1,lambda = 1)
+# check f(0) + f(1)
+dpois(x = 0, lambda = 1) + dpois(x = 1, lambda = 1)
+
+
+# generate a sample of size 5 where each element in sample 
+# represents a random count from the Poisson(1) distribution
+rpois(n = 5, lambda = 1)
+
+```
+
+
 
 
 ## Connections between discrete random variables and draws from a box of tickets
