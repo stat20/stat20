@@ -138,7 +138,7 @@ Yes, net gain *is* a random variable, and its possible values are: $-6, -4, -2, 
 </details>
 
 
-## The probability distribution of a random variable $X$
+## The probability distribution of a discrete random variable $X$
 
 The list of probabilities associated with each of its values is called the *probability distribution* of the random variable $X$. 
 We can list the values and corresponding probability in a table. This table is called the *distribution table* of the random variable. For example, let $X$ be the number of heads in $3$ tosses of a fair coin. The probability distribution table for $X$ is shown below. The first column should have the possible values that $X$ can take, denoted by $x$, and the second column should have $P(X = x)$. Make sure that the probabilities add up to 1! $\displaystyle \sum_x P(X = x) = 1$.
@@ -171,7 +171,7 @@ We see here that $f(x) > 0$ for only $4$ real numbers, and is $0$ otherwise. We 
 
 Let's revisit the special distributions that we have seen so far.
 
-## Special distributions and the associated random variables
+## Some special discrete random variables and their distributions
 
 For each of the named distributions that we defined earlier, we can define a random variable with that probability distribution. 
 
