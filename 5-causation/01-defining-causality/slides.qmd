@@ -67,6 +67,7 @@ In the next slide, you will see the first few rows of a dataset containing demog
 :::poll
 We are interested in determining whether a difference in `median_edu` has a causal effect on `homeownership`. With this in mind, which county serves as the best counterfactual match to Fresno County?
 
+
 (A) Kern County
 (B) Marin County
 (C) Contra Costa County 
