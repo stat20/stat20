@@ -4,51 +4,95 @@ subtitle: "PS"
 format: stat20handout-pdf
 ---
 
-#### Question 1: Binomial, hypergeometric, or neither?
+For each of the boxes below, draw one ticket at random, and let $X$ be the value of the ticket that you draw. 
 
-In the following examples, 
+@. \fbox{\fbox{-2} \fbox{-1} \fbox{0} \fbox{2}}
 
-- define an appropriate random variable
--  decide whether it is binomial, hypergeometric, or neither. 
--  if it is binomial or hypergeometric, identify the parameters of the distribution
--  compute the probability (you may leave it as an expression)
+Write down the pmf, and draw the graph of the cdf of $X$.
 
-\vspace{2mm}
+\
 
-(a) The probability that 3 out of 8 tosses of a fair coin will land heads.
+\
 
-\vspace{4cm}
-
-(b) The probability of rolling at least two 3’s and two 4’s out of twelve rolls of a die.
-
-\vspace{4cm}
+\
 
 
-(c) The chance that there are exactly three diamonds among the first ten cards dealt off the top of a shuffled deck (note that cards are dealt without replacement).
+\
 
-\vspace{4cm}
-
-(d) The chance that you have to roll a six-sided die 8 times until you get a total of 2 sixes.
-
-\pagebreak
-
-#### Question 2: Picking answer choices at random on a MC test
-
-A test consists of $20$ multiple-choice questions. Each question has $4$ answer choices, of which only one is correct and three are incorrect. You answer each question by picking one of the four options at random, so how you answer one question has no bearing on the others (they are independent). Let $X$ be the number of questions you answer correctly. What is the chance that you answer more than 2 questions correctly?
-
-\vspace{2.5cm}
-
-#### Question 3: Committees
-
-A committee of two is to be selected from among the five teachers and ten students attending a meeting. Let $X$ be the number of teachers selected for the committee. Write down the probability mass function for $X$.
-
-\vspace{4cm}
+\
 
 
-#### Question 5: Box models and random variables
+@.  \fbox{\fbox{0} \fbox{1} \fbox{1} \fbox{6}}
 
-For the boxes below, draw one ticket at random, and let $X$ be the value of the ticket that you draw. Write down the pmf, and draw the graph of the cdf of $X$.
+Write down the pmf, and draw the graph of the cdf of $X$.
 
-(a) \fbox{\fbox{-2} \fbox{-1} \fbox{0} \fbox{2}} \hspace{2in} (b) \fbox{\fbox{0} \fbox{1} \fbox{1} \fbox{6}}
+\
+
+\
+
+\
+
+\
+
+\
+
+
+
+
+<!--A very useful property of Poisson random variables is that if $X$ and $Y$ are independent random variables, where $X \sim$ Poisson$(\lambda)$ and $Y \sim$ Poisson$(\mu)$, then $X+Y \sim$ Poisson$(\lambda+\mu)$. Use this fact to figure out the probabilities in the next three questions.-->
+
+Suppose  $X \sim$ Poisson$(6)$, where $X$ represents the number of students who earn an A+ in Stat 20, and  $Y \sim$ Poisson$(5)$ represents the number of students who earn an F in stat 20. We can assume that these two quantities are independent, since the class is not curved. 
+
+@. What is the probability that *no one* fails Stat 20? After writing the expression for this probability, compute it in R, using an appropriate function, and copy your code here.
+
+\
+
+\
+
+\
+
+@. What is the probability that *at least* 10 students earn an A+ in Stat 20? Write the expression for this probability, and then compute it in R, using an appropriate function, and copy your code here.
+
+
+
+{{< pagebreak >}}
+
+@. Suppose you are playing roulette in Las Vegas, and you bet on red each time (recall that an American roulette wheel has 18 red, 18 black, and 2 green slots). You play 50 times, and bet on red every single time. Let $X$ be the number of times you win in 50 plays. What is the distribution of $X$? Make sure to state the parameters of the distribution. What is the probability that you win at least 12 times? Use an appropriate function to compute this probability in R and copy your code here. 
+
+\
+
+\
+
+\
+
+
+@. I tried to use the *Hypergeometric* distribution to simulate drawing spades ($\spadesuit$)  from a standard 52-card deck with the following line of code, but I received an error and the code would not run.
+
+```r
+rhyper(m = 13, n = 39, k = 60, nn = 1)
+```
+Why didn't my code run? What caused the error?
+
+\
+
+\
+
+\
+
+@. I decided to try again to use the function `rhyper()` to simulate drawing 5 cards from a standard deck and counting the number of $\spadesuit$s. 
+
+```r
+rhyper(m = 13, n = 52, k = 5, nn = 1)
+```
+This code runs, but is it correct? Explain your answer clearly.
+
+
+\
+
+\
+
+\
+
+@. How would you simulate tossing a coin 10 times and counting the number of heads? Let $X$ be the number of heads in 10 tosses. What is the distribution of $X$? Write code to simulate 100 values from this distribution, and plot the empirical histogram for $X$. Copy the code here.
 
 
