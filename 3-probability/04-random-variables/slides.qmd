@@ -18,16 +18,41 @@ format:
     title-slide-attributes:
       data-background-image: ../../assets/stat20-hex-bg.png
       data-background-size: contain
+editor_options: 
+  chunk_output_type: console
 ---
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(stat20data)
+library(infer)
+library(patchwork)
+```
 
 ## Agenda
 
-- PS 8: time to work on it and then review
-- Brief lecture and CQs on Random Variables
+- PS 8: time to work on it and then review 
+- Brief lecture on random variables
 - Break
-- PS 9 (random variables)
-- If time, coin flipping graph
+- Concept Questions 
+- PS 9
 
+:::{.notes}
+suggested times:
+
+- PS 8: time to work on it and then review (25 minutes)
+
+- Brief lecture on random variables (20 minutes)
+
+- Break (5 mins)
+
+- Concept Questions (20 minutes)
+
+- PS 9 (40 minutes)
+:::
 
 # PS 8 
 
@@ -41,21 +66,22 @@ countdown::countdown(25, bottom = 0)
 
 
 :::{.incremental}
-- Let $X$ be the number of heads in three tosses of a fair coin.
+- Let $X$ be the number of heads in three tosses of a fair coin. What is the distribution of $X$? That is, what is $f(x) = P(X = x)$? What values will $x$ take?
 
-- What about if $X$ is the number of heads in 3 tosses of a biased coin, where the chance of heads is $\frac{2}{3}$?
+- What about if $X$ is the number of heads in 3 tosses of a biased coin, where the chance of heads is $\frac{2}{3}$? Now what is $f(x) = P(X = x)$?
 
-- Now suppose we toss a fair coin until the first time it lands heads, and let $X$ be the number of tosses. What is the pmf of $X$? Is it binomial?
+- Now suppose we toss a fair coin until the first time it lands heads, and let $X$ be the number of tosses (including the last one, which is the first time the coin lands heads). What is the pmf of $X$? Is it binomial?
 
 - Finally, let's consider a deck of cards, and we are interested in the number of hearts dealt in a hand of five. Call this number $X$. What is the pmf of $X$?
 :::
 
 :::{.notes}
-Write out outcome space of 3 coin flips of a fair coin and use this to define rv X = number of heads. Write out the pmf and cdf, and draw the cdf. Show why $X$ is binomial and what are $n$ ad $p$
+Write out outcome space of 3 coin flips of a fair coin and use this to define rv X = number of heads. Write out the pmf and cdf, and draw the cdf. Show why $X$ is binomial and what are $n$ and $p$
 
 Show what happens if coin is unfair. How the probabilities change.
 
 Demo dbinom and pbinom and connection to pmf and cdf.
+Show how we can use rbinom to get an empirical histogram for three flips of fair or biased coin.
 
 :::
 
@@ -73,105 +99,44 @@ Demo dbinom and pbinom and connection to pmf and cdf.
 :::
 
 :::{.notes}
-Draw an example on the board. Maybe box of tickets { 0, 0, 0 , 1, 1, 2, 2, 2} draw one ticket, and let $X$ be the value of the ticket.
+Draw an example on the board. Maybe box of tickets { 0, 0, 0 , 1, 1, 2, 2, 2} draw one ticket, and let $X$ be the value of the ticket. Write out both $f(x)$ and $F(x)$ in function notation, then draw the cdf and show how we can get from the cdf to the pmf.
 :::
 
 # Concept Questions
 
+## 
+
+```{r}
+countdown::countdown(1, bottom = 0)
+```
+
+Roll a pair of fair six-sided dice and let $X = 1$ if the dice land showing the same number of spots, and $0$ otherwise. For example, if both dice land $2$, then $X = 1$, but if one lands $2$ and the other lands $3$, then $X = 0$. 
+
+:::{.poll}
+What is $P(X=1)$? 
+:::
+
+
+
+:::{.notes}
+The chance that $X = 1$ can be broken up into six mutually exclusive situations, that the dice both show one spot, or both show two spots, etc. Each of these has probability $1/36$ so the total probability by the addition rule is $6/36 = 1/6$
+:::
+
 ##
 
 ```{r}
 countdown::countdown(1, bottom = 0)
 ```
 
-Is the following random variable binomial (if so, what are $n$ and $p$?), hypergeometric (if so , what are $N$, $G$, and $n$?), or neither?
+The graph of the cdf of a random variable $X$ is shown below. What is $F(2)$? What about $f(2)$?
 
-\
-
-Roll a fair ten-sided die 20 times. Let $X$ be the number of times we roll a multiple of 3.
-
-\
-
-:::{.poll}
-Binomial, hypergeometric, or neither? 
-:::
-
-:::{.notes}
-Binomial(20, 3/10). The pollev will have three choices, and then figuring out the parameters can be a classroom discussion.
-:::
-
-##
-
-```{r}
-countdown::countdown(1, bottom = 0)
-```
-
-Is the following random variable binomial (if so, what are $n$ and $p$?), hypergeometric (if so , what are $N$, $G$, and $n$?), or neither?
-
-\
-
-
-YouGov surveyed about 1,900 adults and asked them if they thought that Kevin Mcarthy should be ousted from his role as speaker. Let $X$ be the number of people who responded "Yes". The population of the US is about 335 million.
-
-
-:::{.poll}
-Binomial, hypergeometric, or neither? 
-:::
-
-:::{.notes}
-Hypergeometric($N = 335$ mill,  $n = 1900$, G), where G is not known, being the number of people who approve of McCarthy's ouster  . Can remark that we could use Bin to model this rather than HG, and that we will discuss samples next week.
-:::
-
-##
-
-
-```{r}
-countdown::countdown(1, bottom = 0)
-```
-
-Is the following random variable binomial (if so, what are $n$ and $p$?), hypergeometric (if so , what are $N$, $G$, and $n$?), or neither?
-
-\
-
-A six-sided die is tossed two times and the sum of the faces showing is $8$. Let $X$ be 1 if the sum is $8$ and $0$ otherwise.
-
-\
-
-
-:::{.poll}
-Binomial, hypergeometric, or neither? 
-:::
+![](images/rq-rv-cdf.png){fig-align="center" width="500"}
 
 
 :::{.notes}
-Binomial, with $n = 1, p = 5/36$ or Bernoulli with $p = 5/36$. This was part of the handout but I think some classroom discussion is warranted, so moved it here.
+$F(2) = 2/3, f(2) = 0$
 :::
 
-
-##
-
-
-```{r}
-countdown::countdown(1, bottom = 0)
-```
-
-Is the following random variable binomial (if so, what are $n$ and $p$?), hypergeometric (if so , what are $N$, $G$, and $n$?), or neither?
-
-\
-
-
-A bag that has 6 pieces of fruit: 2 mangoes, 3 apples, and 1 orange. I reach into the bag and draw out one fruit at a time, selecting each fruit at random (so they are equally likely). Let $X$ be the number of draws until and including the first time I draw a apple. 
-
-
-:::{.poll}
-Binomial, hypergeometric, or neither? 
-:::
-
-
-
-:::{.notes}
-Neither. It would be useful at this point to write out the pmf of $X$, and point out that they are using the multiplication rule and a conditional probability.
-:::
 
 ## 
 
@@ -191,24 +156,70 @@ $P(X \ge 1) = 1 - P(X < 1) = 1 - P(X = 0) = 1 - (1-p)^{10}$, where $p = 0.2$, be
 :::
 
 
-
-## 
+##
 
 ```{r}
-countdown::countdown(3, bottom = 0)
+countdown::countdown(1, bottom = 0)
 ```
 
-Roll a pair of fair six-sided dice and let $X = 1$ if the dice land showing the same number of spots, and $0$ otherwise. For example, if both dice land $2$, then $X = 1$, but if one lands $2$ and the other lands $3$, then $X = 0$. 
+There are 4 histograms of different Poisson distributions below. Match each distribution to its parameter $\lambda$. Recall that $\lambda$ is how many occurrences we think will happen in a given period of time.
 
-:::{.poll}
-What is $P(X=1)$? 
-:::
+$$
+(1)\: \lambda = 0.5 \hspace{2cm} (2)\: \lambda = 1 \hspace{2cm} (3) \: \lambda = 2 \hspace{2cm} (4) \: \lambda = 4\hspace{2cm} 
+$$
 
+```{r}
+#| fig-align: center
+#| 
+x1 <- rpois(500, 0.5)
+x2 <- rpois(500, 1)
+x3 <- rpois(500, 2)
+x4 <- rpois(500, 4)
 
+  p1 <- data.frame(x1 = x1) |> 
+  group_by(x1) |>
+  summarise(props = n()/500) |>
+    ggplot(aes(x = factor(x1), y = props)) + 
+    geom_col(width = 0.98, fill = "blue") +
+     labs(x = "x", 
+          y = "P(X = x)") + 
+    annotate("text", x = 4, y = 0.4, label = "(B)", size = 5)
+   
+   p2 <- data.frame(x2 = x2) |> 
+     group_by(x2) |>
+     summarise(props = n()/500) |>
+     ggplot(aes(x = factor(x2), y = props)) + 
+     geom_col(width = 0.98, fill = "blue2") +
+     labs(x = "x", 
+          y = "P(X = x)") + 
+      annotate("text", x = 5, y = 0.3, label = "(D)", size = 5)
+   
+   p3 <- data.frame(x3 = x3) |> 
+     group_by(x3) |>
+     summarise(props = n()/500) |>
+     ggplot(aes(x = factor(x3), y = props)) + 
+     geom_col(width = 0.98, fill = "blue3")+
+     labs(x = "x", 
+          y = "P(X = x)") + 
+      annotate("text", x = 7, y = 0.2, label = "(C)", size = 5)
+   
+   p4 <- data.frame(x4 = x4) |> 
+     group_by(x4) |>
+     summarise(props = n()/500) |>
+     ggplot(aes(x = factor(x4), y = props)) + 
+     geom_col(width = 0.98, fill = "blue4")+
+     labs(x = "x", 
+          y = "P(X = x)") +
+      annotate("text", x = 9.5, y = 0.15, label = "(A)", size = 5)
+
+   (p4+p1+p3+p2)  
+```
 
 :::{.notes}
-The chance that $X = 1$ can be broken up into six mutually exclusive situations, that the dice both show one spot, or both show two spots, etc. Each of these has probability $1/36$ so the total probability by the addition rule is $6/36 = 1/6$
+explain the smaller the rate, the lower the probability of higher values. 
+A-4, B-1, C-3, D-2
 :::
+
 
 # Break 
 
@@ -216,5 +227,9 @@ The chance that $X = 1$ can be broken up into six mutually exclusive situations,
 countdown::countdown(5, top = 0)
 ```
 
-# PS 9
+# PS 9 
+
+```{r}
+countdown::countdown(40, top = 0)
+```
 
