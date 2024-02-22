@@ -1,0 +1,13 @@
+---
+title: "Matching"
+subtitle: "The principles of experimental design"
+format:
+  html:
+    code-fold: true
+    code-link: true
+    code-summary: "."
+  pdf: default
+execute: 
+  warning: false
+  message: false
+---
