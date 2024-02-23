@@ -147,20 +147,20 @@ $$E(c) = c \cdot f(c) = c $$
 
 :::{.def} 
 **2. Constant multiple of a random variable**
-: If $c$ is a constant, and $X$ is a random variable with pmf $f(x)$, then we can consider $cX$ to be the random variable that takes the value $cx$ when $X$ takes the value $x$, so $f(cx) = f(x)$. Therefore, 
+ ~ If $c$ is a constant, and $X$ is a random variable with pmf $f(x)$, then we can consider $cX$ to be the random variable that takes the value $cx$ when $X$ takes the value $x$, so $f(cx) = f(x)$. Therefore, 
 $$ E(cX) = \sum_x cx \cdot f(x) = c \sum_x x \cdot f(x) = c\cdot E(X) $$
 :::
 
 :::{.def} 
 **3. Additivity of expectation**
-:  Let $X$ and $Y$ be two random variables, and consider their sum $X + Y$. Then,
+ ~ Let $X$ and $Y$ be two random variables, and consider their sum $X + Y$. Then,
 $$ E(X + Y) = E(X) + E(Y)$$
 This is true regardless of whether $X$ and $Y$ are independent or not (we will call random variables independent when the values of one don't affect the probabilities of the other, like coin tosses and die rolls).
 :::
 
 :::{.def} 
 **4. Linearity of expectation**
-: Putting the previous two properties together, we get
+ ~ Putting the previous two properties together, we get
 $$ E(aX + bY) = E(aX) + E(bY) = a\cdot E(X) +b \cdot E(Y)$$
 :::
 
@@ -170,7 +170,7 @@ The next property is very important and a little tricky, so read it carefully. W
 
 :::{.def} 
 **5. Expectation of a function of a random variable**
-: Suppose $Y = g(X)$ is a function of the random variable $X$. Then $Y$ is also a random variable taking values $y = g(x)$, and the probabilities are just the probabilities associated with $x$. Then the expected value of $Y$ is given by:
+ ~ Suppose $Y = g(X)$ is a function of the random variable $X$. Then $Y$ is also a random variable taking values $y = g(x)$, and the probabilities are just the probabilities associated with $x$. Then the expected value of $Y$ is given by:
 $$
 E(Y) = E(g(X)) = \sum_x g(x) \times f(x) = \sum_x g(x) \times P(X=x)
 $$
@@ -183,10 +183,10 @@ Let $X$ be a random variable with the following probability distribution:
 
 | $x$ |  $P(X = x)$  |
 |:------:|:---------:|
-|  $-2$  |  $0.2$ |
-|  $-1$  |  $0.1$ |
-|  $0$   |  $0.2$ |
-|  $1$   | $0.3$ |   
+|  $-2$ |  $0.2$ |
+|  $-1$ |  $0.1$ |
+|  $0$  |  $0.2$ |
+|  $1$  |  $0.3$ |   
 |  $3$  |  $0.2$ |  
 
 Let's first add a column with the product $x\times P(X=x)$:
@@ -215,11 +215,16 @@ Summing the last column we get $E(Y) = 0.8 + 0.1 + 0 + 0.3 + 1.8 =$ `r 0.8 + 0.1
 
 
 :::{.callout-warning icon=false}
-Do **not** apply the function to $f(x)$! The probability distribution remains the same, only the variable values change - instead of using $x$, we use $g(x)$.
+Do **not** apply the function to $f(x)$! The probability distribution remains the same, only the values of the variable $X$ change. Instead of using $x$, we use $g(x)$.
 :::
 
+Now with these tools aka properties of expectation in hand, let's compute the expected values of a binomial random variable.
 
-#### Example: Binomial random variables
+## Special distributions
+
+We use a variety of ways to describe the expected value of a random variable. We might use the phrases "mean of the random variable $X$" or "mean of the distribution" or "expected value of the random variable $X$" and they all refer to the same quantity $E(X)$ which describes, in a sense, the *center of mass* of the probability distribution of $X$. Now we will write down the mean of the named distributions we have defined. We have already computed the mean of two special distributions, the discrete uniform and the Bernoulli. 
+
+### Binomial Distribution
 
 Let $X\sim Bin(n, p)$. Recall that $X$ counts the number of successes in $n$ trials, where the probability of success on each trial is $p$. We can define $n$ Bernoulli ($p$) random variables $X_1, X_2, \ldots, X_n$ where $X_k = 1$ with probability $p$, that is, $X_k$ is 1 if the $k$th trial is a success. We see that the binomial random variable $X$ can be written as a sum of these $n$ Bernoulli random variables: 
 
@@ -239,6 +244,48 @@ E(X) &= E( X_1 + X_2 + \ldots + X_n) \\
 $$
 
 Therefore, if $X\sim Bin(n, p)$, then $E(X) = np$. This intuitively makes sense: if I toss a fair coin 100 times, I expect to see about $50$ heads. This is a very neat trick to compute the expected value of a binomial random variable because you can imagine that computing the expected value using the formula $\displaystyle \sum_x x \cdot f(x)$ would be very messy and difficult. Using Bernoulli random variables allowed us to easily calculate the expected value of a binomial random variable.
+
+### Hypergeometric Distribution
+
+It turns out that whether we sample with or without replacement does not matter, and the expected value of a hypergeometric distribution is just the sample size times the number of successes in the population to begin with, so if $X \sim HG(N, G, n)$, then:
+$$
+E(X) = n \times \frac{G}{N}
+$$
+You do not need to know how to derive the expectation for a hypergeometric random variable.
+
+### Poisson Distribution
+
+The expected value of a Poisson random has a rather nice derivation. You are not expected to know how to derive it, but if you know about Taylor series, you can expand the following to read how to compute the expected value of a Poisson random variable. Otherwise, it is enough to know that if $X \sim Pois(\lambda)$, then
+$$
+E(X) = \lambda
+$$
+
+This makes intuitive sense, if we think of the Poisson random variable as approximating a binomial random variable that has large $n$ and tiny $p$, with $\lambda = np$. Think coin tosses with a very low chance of heads, we still expect to see about $np$ heads on average.
+
+<details><summary> Derivation of $E(X) = \lambda$</summary>
+$$
+\begin{aligned}
+E(X) &= \sum_{k=0}^\infty k\times P(X = k)\\
+    &= \sum_{k=0}^\infty k \times e^{-\lambda}\frac{\lambda^k}{k!}\\ 
+    &= \sum_{k=1}^\infty  k \times e^{-\lambda}\frac{\lambda^k}{k!}\\
+    &=  e^{-\lambda}\lambda \, \times \sum_{k=1}^\infty \frac{\lambda^{k-1}}{(k-1)!} \\
+    &=  e^{-\lambda}\lambda \, \times \sum_{j=0}^\infty \frac{\lambda^j}{j!} \\
+    &= e^{-\lambda}\lambda \times  e^{\lambda} \\ 
+    &= \lambda
+\end{aligned}
+$$
+
+- In the third line, the lower limit for the sum changes because the first term is $0$ since $k = 0$.
+
+- In the fourth line, we take out $e^{-\lambda}$ and $\lambda$, and cancel the $k$ in $k!$.
+
+- In the fifth line, we rewrite the lower limit of the sum and the power of $\lambda$ to be $j$ which begins at $0$.
+
+- In the fifth line, notice that sum is just the Maclaurin series of $ e^{\lambda}$.
+
+</details>
+
+Now, let's look at another constant associated with the random variable.
 
 ## Variance and standard deviation of a random variable
 
@@ -267,9 +314,9 @@ $SD(X)$ is a "give or take" number attached to the mean $E(X)$, so we can say th
  
 \
 
-#### Example: Rolls of a weighted die 
+### Example: Rolls of a weighted (unfair) die 
 
-Recall the example in which we roll an unfair die, and the probability mass function $f$ was given by:
+Recall the example in which we roll an unfair die, and the probability mass function $f(x)$ was given by:
 $$
 P(X=x) = f(x) = \begin{cases}
 0.1,\: \text{for}\, x = 1, 3, 5 \\
@@ -295,7 +342,7 @@ Therefore the standard deviation of $X = SD(X)$ is the square root of the varian
 
 \
 
-#### Example: Rolls of a fair die 
+### Example: Rolls of a fair die 
 
 We have already computed that the expected value of the random variable $X = 3.5$ where $X$ is the result of rolling a fair die. What are $Var(X)$ and $SD(X)$?
 
@@ -313,7 +360,10 @@ Why do you think that $Var(X)$ and $SD(X)$ are greater when $X$ is the result of
 ### Computational formula for $Var(X)$
 
 To compute variance, we usually use a nice shortcut formula:
-$$Var(X) = E\left(X^2\right) - \mu^2$$
+
+$$
+Var(X) = E\left(X^2\right) - \mu^2
+$$
 
 ### Properties of variance and standard deviation
 
