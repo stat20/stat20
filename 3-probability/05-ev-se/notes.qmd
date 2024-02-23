@@ -365,19 +365,24 @@ $$
 Var(X) = E\left(X^2\right) - \mu^2
 $$
 
-### Properties of variance and standard deviation
+## Properties of variance and standard deviation
 
-1. The variance of a constant is 0 
-: Remember that the variance measures how spread out the values of $X$ are about the mean. A constant doesn't spread out at all, so it makes sense that the variance is $0$. 
+:::{.def}
+**1. The variance of a constant is $0$**
+ ~ Remember that the variance measures how spread out the values of $X$ are about the mean. A constant doesn't spread out at all, so it makes sense that the variance is $0$.
+:::
 
 Let's confirm this. Let $X$ be a random variable such that $X = c$ with $f(c) = 1$ for some real number $c$. (This means that $X$ takes the value $c$ with probability 1, that is, with certainty.)
 
-$$ Var(X) = E(X^2) - \mu^2 = E(c^2) - c^2 = c^2 - c^2 = 0$$.
+$$ 
+Var(X) = E(X^2) - \mu^2 = E(c^2) - c^2 = c^2 - c^2 = 0.
+$$
 Note that $E(c^2) = c^2$ as $c^2$ is a constant. Thus we have that $SD(c) = 0$.
 
 
-2. The variance of a constant multiple of $X$: $Var(cX) = c^2 Var(X)$
-: Note that $E(cX) = c\mu$ by the properties of expectation. Thus we have (using the short cut formula):
+:::{.def}
+**2. The variance of a constant multiple of $X$: $Var(cX) = c^2 Var(X)$**
+ ~ Note that $E(cX) = c\mu$ by the properties of expectation. Thus we have (using the short cut formula):
 
 $$
 \begin{aligned} 
@@ -388,30 +393,48 @@ $$
     &= c^2 Var(X)
 \end{aligned}
 $$
+:::
 
 Thus, $SD(cX) = \sqrt{Var(cX)} = \sqrt{c^2 Var(X)} = \lvert c \rvert SD(X).$ 
 ($SD(X) \ge 0$)
 
-3. The variance of $X$ is unchanged by adding a constant
-: If we add a constant to $X$, the spread of the distribution does not change, only its center changes. Let $c$ be a real number. Then we have:
+:::{.def}
+**3. The variance of $X$ is unchanged by adding a constant**
+ ~ If we add a constant to $X$, the spread of the distribution does not change, only its center changes. Let $c$ be a real number. Then we have:
 
 $$
 Var(X+c) = Var(X)
 $$
+:::
+
+You can verify this using the shortcut formula (we won't ask you to derive this).
+<details><summary>Check your answer</summary>
 
 
-4. Additivity of variance
-: If $X$ and $Y$ are **independent** random variables, that is the events $X = x$ and $Y = y$ are independent for all values of $x$ and $y$, we have that:
+\begin{aligned}
+Var(X +c) &= E\left(\left(X+c\right)^2\right) - \left(E\left(X+c\right)\right)^2\\
+          &= E\left(X^2 + 2cX + c^2\right) - \left((E(X))^2 + 2cE(X) + c^2\right) \\
+          &= E\left(X^2\right) + 2cE(X) + c^2 - \left((E(X)\right)^2 -  2cE(X) - c^2\\
+          &= E\left(X^2\right) -  \left((E(X)\right)^2 \\
+          &= Var(X)
+
+\end{aligned}
+</details>
+
+:::{.def}
+**4. Additivity of variance**
+ ~ If $X$ and $Y$ are **independent** random variables, that is the events $X = x$ and $Y = y$ are independent for all values of $x$ and $y$, we have that:
 
 $$
 Var(X + Y) = Var(X) + Var(Y) \text{ and } Var(X - Y) = Var(X) + Var(Y)
 $$
+:::
 
 Note that in this case, $Var(X + Y) = Var(X) + Var(Y)$ implies that $SD(X +Y) = \sqrt{Var(X) + Var(Y)}$ - square roots and therefore SD's are *not* additive.
 
 \
 
-#### Example: Box of tickets
+### Example: Box of tickets
 
 Consider the box with the following $30$ tickets:
 
@@ -436,7 +459,7 @@ The standard deviation $SD(X) = \sqrt{Var(X)} =$ `r round(sqrt(1.045556), 3)`.
 
 
 
-#### Example: Bernoulli random variables
+### Bernoulli random variables
 
 Let $X$ be a Bernoulli ($p$) random variable. We know that $E(X) = \mu = p$. If we compute $E(X^2)$, we get that $E(X^2) = p$. (Make sure you know how to compute $E(X^2)$.) Therefore we have that:
 $$
@@ -444,13 +467,20 @@ Var(X) = E(X^2) - \mu^2 = p - p^2 = p(1-p).
 $$
 
 
-#### Example: Binomial random variables
+### Binomial random variables
 
 We use the same method as we did to compute the expectation of $X\sim Bin(n,p)$. We will write $X$ as a sum of independent Bernoulli random variables:
 $$ X = X_1 + X_2 + \ldots + X_n$$
 where each $X_k \sim$ Bernoulli($p$). Since the $X_k$ are results of independent trials (by the definition of the binomial distribution), we have:
 $$Var(X) = Var(X_1) + Var(X_2) + \ldots + Var(X_n) = np(1-p).$$
 Therefore, $SD(X) = \sqrt{np(1-p)}$
+
+### Poisson random variables
+
+Computing the variance of a Poisson random variable is more complicated than computing its expectation, so we will just state the variance as a fact. Let $X \sim Poisson(\lambda)$. Then
+$$
+Var(X) = \lambda.
+$$
 
 
 ## Independent and identically distributed random variables
@@ -465,7 +495,7 @@ This is a very important concept that we have already used to compute the expect
 A common example is when we toss a coin $n$ times and count the number of heads - each coin toss can be considered a Bernoulli random variable, and the total number of heads is a sum of $n$ iid Bernoulli random variables. 
 
 
-#### Example: iid random variables 
+### Example: Drawing tickets with replacement
 
 Consider the box shown below:
 
@@ -482,7 +512,7 @@ $$
 
 \
 
-## Sums and averages of random variables
+<!--## Sums and averages of random variables
 
 ### Sums
 
@@ -728,6 +758,7 @@ p4 <- data.frame(mean_draws_100) %>%
 
 What do we notice in these figures? The black line is the expected value. We see that the center of the distribution for the sample sum grows as the sample size increases (look at the x-axis), but this does not happen for the distribution of the sample mean. You can also see that the spread of the data for the sample sum is much greater when n = 100, but this does not happen for the distribution of the sample mean. We will explore the sample sum and sample mean next week. Now, the $y$ axis has neither counts nor proportion, but it has "density". This makes the histogram have a total area of one, similar to a probability histogram. Now we can think of this density histogram as an *approximation* of the probability histogram.
 
+
 ## Continuous distributions
 
 So far, we have talked about discrete distributions, and the probability mass functions for such distributions. Consider a random variable that takes *any* value in a given interval. Recall that  we call such random variables *continuous*. In this situation, we cannot think about discrete bits of probability mass which are non-zero for certain numbers, but rather we imagine that our total probability mass of $1$ is *smeared* over the interval, giving us a smooth density curve, rather than a histogram. To define the probabilities associated with a continuous random variable, we define a probability *density* function (pdf) rather than a probability mass function. 
@@ -790,14 +821,20 @@ In general, for the $U(0,1)$ distribution, $F(x) = x$.
 
 </details>
 
+-->
+
 ## Summary
 
-We defined the expected value or the mean of a discrete random variable and listed the properties of expectation including linearity and additivity. 
+- We defined the expected value or the mean of a discrete random variable and listed the properties of expectation including linearity and additivity. 
 
-We defined the variance and standard deviation of a random  variable. Both expectation and variance (and therefore standard deviation) are constants associated to the distribution of the random variable. The variance is more convenient than the sd for computation because it doesn't have square roots. However, the units are squared, so you have to be careful while interpreting the variance. We discussed the properties of variance and standard deviation. 
+- We defined the variance and standard deviation of a random  variable. Both expectation and variance (and therefore standard deviation) are constants associated to the distribution of the random variable. The variance is more convenient than the sd for computation because it doesn't have square roots. However, the units are squared, so you have to be careful while interpreting the variance. We discussed the properties of variance and standard deviation. 
 
-We defined the expectation and variance of sums and averages of an iid sample of random variables, and introduced the term *standard error*. We recognized how the mean and variance scale with $n$ and defined the square root law for the standard error of the sum or mean of an iid sample. 
+- We wrote down the expected values and variance for various special random variables.
+
+
+<!-- We defined the expectation and variance of sums and averages of an iid sample of random variables, and introduced the term *standard error*. We recognized how the mean and variance scale with $n$ and defined the square root law for the standard error of the sum or mean of an iid sample. 
 
 We considered the probability distributions of sums and averages. 
 
 Finally, we introduced continuous distributions. In subsequent notes, we will introduce the most celebrated continuous distribution, the normal distribution. 
+-->
