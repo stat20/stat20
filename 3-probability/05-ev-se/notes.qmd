@@ -413,7 +413,7 @@ Var(X+c) = Var(X)
 $$
 :::
 
-You can verify this using the shortcut formula (we won't ask you to derive this).
+<!--You can verify this using the shortcut formula (we won't ask you to derive this).
 <details><summary>Check your answer</summary>
 
 $$
@@ -428,6 +428,7 @@ Var(X +c) &= E\left(\left(X+c\right)^2\right) - \left(E\left(X+c\right)\right)^2
 $$
 
 </details>
+-->
 
 :::{.def}
 **4. Additivity of variance**
