@@ -419,8 +419,8 @@ $$
 \begin{aligned}
 Var(X +c) &= E\left(\left(X+c\right)^2\right) - \left(E\left(X+c\right)\right)^2\\
           &= E\left(X^2 + 2cX + c^2\right) - \left((E(X))^2 + 2cE(X) + c^2\right) \\
-          &= E\left(X^2\right) + 2cE(X) + c^2 - \left((E(X)\right)^2 -  2cE(X) - c^2\\
-          &= E\left(X^2\right) -  \left((E(X)\right)^2 \\
+          &= E\left(X^2\right) + 2cE(X) + c^2 - \left(E(X)\right)^2 -  2cE(X) - c^2\\
+          &= E\left(X^2\right) -  \left(E(X)\right)^2 \\
           &= Var(X)
 
 \end{aligned}
