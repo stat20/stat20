@@ -410,7 +410,7 @@ $$
 You can verify this using the shortcut formula (we won't ask you to derive this).
 <details><summary>Check your answer</summary>
 
-
+$$
 \begin{aligned}
 Var(X +c) &= E\left(\left(X+c\right)^2\right) - \left(E\left(X+c\right)\right)^2\\
           &= E\left(X^2 + 2cX + c^2\right) - \left((E(X))^2 + 2cE(X) + c^2\right) \\
@@ -419,6 +419,8 @@ Var(X +c) &= E\left(\left(X+c\right)^2\right) - \left(E\left(X+c\right)\right)^2
           &= Var(X)
 
 \end{aligned}
+$$
+
 </details>
 
 :::{.def}
