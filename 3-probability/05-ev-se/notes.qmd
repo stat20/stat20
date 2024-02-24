@@ -134,6 +134,7 @@ E(X) &= 1 \times \frac{4}{15} + 2 \times \frac{7}{30} +  0 \times \frac{1}{3} + 
  &= \frac{17}{30} = 0.5666667
 \end{aligned}
 $$
+</details>
  
 Now we have the definition, let's look at what we can do with it. Most of the properties below are what you would expect when you have a sum, since recall that you can pull constants in and out of sums, for example $2x + 2y = 2(x+y)$.
 
