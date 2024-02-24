@@ -211,10 +211,10 @@ schedule:
         date: 2/27/24
         items:
           - type: Notes
-            href: 3-probability/04-ev-se/notes.qmd
-            render: false
+            href: 3-probability/05-ev-se/notes.qmd
+            render: true
           - type: Slides
-            href: 3-probability/04-ev-se/slides.qmd
+            href: 3-probability/05-ev-se/slides.qmd
             render: false
             
       - topic: "Normal Approximation"
