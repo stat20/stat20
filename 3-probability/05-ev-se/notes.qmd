@@ -44,8 +44,10 @@ In general, if we have a discrete uniform random variable on the values $1, 2, 3
 
 \
 
-#### Example: Rolls of an *unfair* die 
- What happens if all the faces are *not* equally likely? Consider the following scenario: let $X$ be the result of rolling a weird six-sided die, which has the probability of rolling a 4 or 6 is __double__ that of rolling an odd number, and the probability of rolling a 2 is __three__ times that of rolling an odd number. What is the pmf of $X$? See if you can work it out! Remember that the probabilities have to add to 1. 
+
+### Example: Rolls of an *unfair* die 
+
+What happens if all the faces are *not* equally likely? Consider the following scenario: let $X$ be the result of rolling a weird six-sided die, which has the probability of rolling a 4 or 6 is __double__ that of rolling an odd number, and the probability of rolling a 2 is __three__ times that of rolling an odd number. What is the pmf of $X$? See if you can work it out! Remember that the probabilities have to add to 1. 
  
 <details><summary>Check your answer</summary> 
 
@@ -108,7 +110,7 @@ In all the figures above, note the red triangle marking the expected value. If y
 
 \
 
-#### Exercise: Compute the expectation of the random variable whose distribution is shown below:
+### Exercise: Compute the expectation of the random variable whose distribution is shown below:
 
 Let $X$ be a random variable such that 
 
@@ -255,12 +257,15 @@ You do not need to know how to derive the expectation for a hypergeometric rando
 
 ### Poisson Distribution
 
-The expected value of a Poisson random has a rather nice derivation. You are not expected to know how to derive it, but if you know about Taylor series, you can expand the following to read how to compute the expected value of a Poisson random variable. Otherwise, it is enough to know that if $X \sim Pois(\lambda)$, then
+
+The expected value of a Poisson random has a rather nice derivation. It is enough to know that if $X \sim Pois(\lambda)$, then
+
 $$
 E(X) = \lambda
 $$
 
-This makes intuitive sense, if we think of the Poisson random variable as approximating a binomial random variable that has large $n$ and tiny $p$, with $\lambda = np$. Think coin tosses with a very low chance of heads, we still expect to see about $np$ heads on average.
+This makes intuitive sense, if we think of the Poisson random variable as approximating a binomial random variable that has large $n$ and tiny $p$, with $\lambda = np$. Think coin tosses with a very low chance of heads, we still expect to see about $np$ heads on average. You are not expected to know how to derive the expected value of a Poisson random variable, but if you know about Taylor series, you can expand the following to see it.
+
 
 <details><summary> Derivation of $E(X) = \lambda$</summary>
 $$
@@ -410,7 +415,7 @@ $$
 You can verify this using the shortcut formula (we won't ask you to derive this).
 <details><summary>Check your answer</summary>
 
-
+$$
 \begin{aligned}
 Var(X +c) &= E\left(\left(X+c\right)^2\right) - \left(E\left(X+c\right)\right)^2\\
           &= E\left(X^2 + 2cX + c^2\right) - \left((E(X))^2 + 2cE(X) + c^2\right) \\
@@ -419,6 +424,8 @@ Var(X +c) &= E\left(\left(X+c\right)^2\right) - \left(E\left(X+c\right)\right)^2
           &= Var(X)
 
 \end{aligned}
+$$
+
 </details>
 
 :::{.def}
@@ -483,7 +490,7 @@ Var(X) = \lambda.
 $$
 
 
-## Independent and identically distributed random variables
+<!--## Independent and identically distributed random variables
 
 :::{.def}
 **IID random variables**
