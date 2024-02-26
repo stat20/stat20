@@ -1,0 +1,110 @@
+---
+format:
+  pdf:
+    include-in-header: 
+      text: |
+        \usepackage{fancyhdr}
+    fontsize: 10pt
+    margin-top: .8in
+    margin-bottom: .5in
+---
+
+\thispagestyle{empty}
+
+\begin{center}
+\textsc{Stat 20: Lab 3.1 Elections} \\
+\noindent\rule{12cm}{0.4pt}
+\end{center}
+
+@. What is the unit of observation in the dataset shown in the screengrab?
+
+\
+
+@. Sketch a plot of the vote counts for Ahmadenijad among each unit (that you identified in the previous question). Label your axes and title your plot with a claim about the shape and modality of the data. Depict a shape which reflects **your** expectation of the phenomenon.
+
+
+\
+
+\
+
+\
+
+\
+
+\
+
+\
+
+@. Sketch a plot of the *first digit* of the vote counts for Ahmadenijad among each unit. Label your axes and title your plot with a claim about the shape and modality of the data. Depict a shape which reflects **your** expectation of the phenomenon. 
+
+\
+
+\
+
+\
+
+\
+
+\
+
+\
+
+
+One common theory on how to determine whether an election is fair is as follows: 
+
+> In a normally occurring, fair election, the *first digit* of the vote counts for each voting precinct should follow **Benford’s Law**. If they do not, that might suggest that vote counts have been manually altered.
+
+Benford's Law is not any universal, binding statute but actually a probability distribution on the set $\{1,2,3,4,5,6,7,8,9\}$. Let $X$ be a random variable following the Benford's Law probability distribution. Then:
+
+$$
+f(x) = log_{10}(1 + \frac{1}{x})
+$$
+\newpage
+
+@. Sketch an (approximate) probability histogram which describes the probability distribution of $X$. Label your axes. 
+
+\
+
+\
+
+
+\
+
+
+
+@. Use the formula to calculate $\mathbb{E}(X)$.
+
+\
+
+\
+
+
+@. Use the formula to calculate $Var(X)$.
+
+\
+
+\
+
+\
+
+
+Let $Y$ be a new random variable which also represents the first digit of vote tallies. 
+
+@. If you had no inclination as to what the probability distribution of first digits of vote counts would look like, what distribution might you assign $Y$? State a distribution (and the values which it can take) . 
+
+\
+
+
+@. Sketch an (approximate) probability histogram which describes the probability distribution of $X$. Label your axes. 
+
+\
+
+\
+
+\
+
+@. Then calculate $\mathbb{E}(Y)$ and $Var(Y)$ for a random variable $X$ having the distribution you assigned it in the previous question.
+
+\
+
+\
