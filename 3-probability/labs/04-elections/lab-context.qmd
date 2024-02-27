@@ -20,7 +20,7 @@ format:
 
 \
 
-@. Sketch a plot of the vote counts for Ahmadenijad among each unit (that you identified in the previous question). Label your axes and title your plot with a claim about the shape and modality of the data. Depict a shape which reflects **your** expectation of the phenomenon.
+@. Sketch a plot of the vote counts for Ahmadinejad. Label your axes and title your plot with a claim about the shape and modality of the data. Depict a shape which reflects **your** expectation of the phenomenon.
 
 
 \
@@ -35,7 +35,7 @@ format:
 
 \
 
-@. Sketch a plot of the *first digit* of the vote counts for Ahmadenijad among each unit. Label your axes and title your plot with a claim about the shape and modality of the data. Depict a shape which reflects **your** expectation of the phenomenon. 
+@. Sketch a plot of the *first digit* of the vote counts for Ahmadinejad. Label your axes and title your plot with a claim about the shape and modality of the data. Depict a shape which reflects **your** expectation of the phenomenon. 
 
 \
 

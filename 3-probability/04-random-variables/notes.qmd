@@ -281,7 +281,7 @@ dbinom(x = 3, size = 10, prob = 0.4) + dbinom(x = 4, size = 10, prob = 0.4) +
 
 ### The Hypergeometric Distribution
 
-In the example above, we sampled $10$ California residents *with* replacement from a database of voters. Usually we always sample *without* replacement, so in a situation such as in the example, where we are define a random variable $X$ to be the number of successes in a *simple random sample* of $n$ draws from a population of size $N$, then $X$ will have the *hypergeometric* distribution with parameters $\left(N, G, n\right)$ where $G$ is the total number of successes in our population. If we let $X$ be the number of successes in $n$ draws, then we have that 
+In the example above, we sampled $10$ California residents *with* replacement from a database of voters. Usually we always sample *without* replacement, so in a situation such as in the example, where we are define a random variable $X$ to be the number of successes in a *simple random sample* of $n$ draws from a population of size $N$, then $X$ will have the *hypergeometric* distribution with parameters $\left(N, G, n\right)$ where $G$ is the total number of successes in our population. We write this as $X \sim HG(N, G, n)$. If we let $X$ be the number of successes in $n$ draws, then we have that 
 $$ P(X = k) = \frac{\binom{G}{k} \times \binom{N-G}{n-k}}{\binom{N}{n}} $$
 where $N$ is the size of the population, $G$ is the total number of successes in the population, and $n$ is the sample size (so $k$ can take the values $0, 1, \ldots, n$ or $0, 1, \ldots, G$, if the number of successes in the population is smaller than the sample size.)
 
@@ -326,7 +326,7 @@ For large $n$, it turns out that $(1-p)^n \approx e^{-\lambda}$, where $\lambda 
 
 :::{.def}
 **Poisson distribution**
- ~ We say that such a random variable $X$ has the Poisson distribution with parameter $\lambda$ if
+ ~ We say that such a random variable $X$ has the Poisson distribution with parameter $\lambda$, and write it as $X \sim Poisson(\lambda)$, if
  $$ P(X = k) = e^{-\lambda} \frac{\lambda^k}{k!},$$
 where $k = 0, 1, 2, \ldots$. That is, the possible values of $X$ are non-negative integers, and since $k!$ grows much faster than $\lambda^k$, the probability that $X$ takes large values is very small. The parameter $\lambda$ is called the *rate* of the distribution, and represents how many "successes" we expect in the given time unit. 
 :::
