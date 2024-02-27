@@ -20,11 +20,11 @@ format: stat20handout-pdf
 \
 
 
-Imagine you are rolling a six-sided die with a probability distribution given below. 
+Suppose you roll a six-sided die with a probability distribution given below. Let $X$ be the number of spots rolled.
 
-| $\textbf{roll}$  |  $\textbf{1}$  |  $\textbf{2}$ | $\textbf{3}$ | $\textbf{4}$| $\textbf{5}$ | $\textbf{6}$  |
+| $x$  |  $\textbf{1}$  |  $\textbf{2}$ | $\textbf{3}$ | $\textbf{4}$| $\textbf{5}$ | $\textbf{6}$  |
 | ---- | ----  | ---- | ---- | ---- | ---- | ---- | 
-| $\textbf{P(roll)}$ | $\frac{1}{10}$  |  $\frac{3}{10}$    | $\frac{2}{10}$  |  $\frac{1}{10}$  | $\frac{2}{10}$  | $\frac{1}{10}$  |
+| $P(X=x)$ | $\frac{1}{10}$  |  $\frac{3}{10}$    | $\frac{2}{10}$  |  $\frac{1}{10}$  | $\frac{2}{10}$  | $\frac{1}{10}$  |
 
 @. Calculate $\mathbb{E}(X)$
 
