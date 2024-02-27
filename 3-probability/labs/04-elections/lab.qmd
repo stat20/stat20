@@ -32,6 +32,8 @@ iran |>
 
 -->
 
+<!--
+
 ## Part II: Computing on the Data
 
 ### Question 1
@@ -109,6 +111,8 @@ How does the election data you chose appear to fit Benford's distribution as com
 ### Question 9
 
 Based on the results of **Question 8**, what might you conclude about the utility of Benford's law in detecting election fraud? Explain in one to two sentences.
+
+-->
 
 
 <!--
