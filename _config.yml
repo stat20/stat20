@@ -219,6 +219,9 @@ schedule:
           - type: PS
             href: 3-probability/05-ev-se/ps.qmd
             render: true  
+          - type: Lab
+            href: 3-probability/labs/04-elections/lab.qmd
+            render: true  
             
       - topic: "Normal Approximation"
         display-date: Feb 29
