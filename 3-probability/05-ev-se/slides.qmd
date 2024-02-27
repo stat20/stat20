@@ -31,7 +31,7 @@ format:
 - Lab 3 slides
 - Lab 3
 
-## Do you feel this way about this chapter?
+## The Pointy-haired boss's thoughts on expected values...
 
 ![](images/dilbert-ev.png){fig-aligned="center" width="500"}
 
