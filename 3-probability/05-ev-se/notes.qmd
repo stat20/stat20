@@ -259,7 +259,7 @@ You do not need to know how to derive the expectation for a hypergeometric rando
 ### Poisson Distribution
 
 
-The expected value of a Poisson random has a rather nice derivation. It is enough to know that if $X \sim Pois(\lambda)$, then
+The expected value of a Poisson random variable has a rather nice derivation. It is enough to know that if $X \sim Pois(\lambda)$, then
 
 $$
 E(X) = \lambda
