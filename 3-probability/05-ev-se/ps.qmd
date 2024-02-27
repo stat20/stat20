@@ -1,83 +1,113 @@
 ---
-title: "Expectation and Variance"
+title: "Expected Value and Variance"
 subtitle: "PS"
 format: stat20handout-pdf
 ---
 
-#### Question 1:  Expected value from cdf of $X$
-Given the cdf of the random variable $X$ below, compute $E(X)$ and $Var(X)$. Note that:
+@. Let $X$ be a Discrete Uniform random variable on $[-4, -1, 0, 1, 2].$ Let $Y = X^2$. Find $\mathbb{E}(Y)$.
 
-$$
-F(x) = \begin{cases}
-			0, & \text{$x < -1$}\\
-            0.4, & -1 \le x < 1 \\
-            0.8, & 1 \le x < 2 \\
-            1, & 2 \le x \\
-		 \end{cases}
-$$		 
+\
+
+\
+
+\
+
+
+@. Let $X$ be a random variable such that $\mathbb{E}(X) = 4$. Let $Y = 2 + 3X$. Find $\mathbb{E}(Y)$.
+
+\
+
+\
+
+
+Suppose you roll a six-sided die with a probability distribution given below. Let $X$ be the number of spots rolled.
+
+| $x$  |  $\textbf{1}$  |  $\textbf{2}$ | $\textbf{3}$ | $\textbf{4}$| $\textbf{5}$ | $\textbf{6}$  |
+| ---- | ----  | ---- | ---- | ---- | ---- | ---- | 
+| $P(X=x)$ | $\frac{1}{10}$  |  $\frac{3}{10}$    | $\frac{2}{10}$  |  $\frac{1}{10}$  | $\frac{2}{10}$  | $\frac{1}{10}$  |
+
+@. Calculate $\mathbb{E}(X)$
+
+\
+
+\
+
+@. Calculate $Var(\frac{1}{2}X + 300)$.
+
+
+\
+
+\
+
+
+
+Given the cdf of the random variable $X$ below:
+
+@. compute $\mathbb{E}(X)$ and $Var(X)$.
 
 
 ![](images/question-1-cdf.png){fig-align="center" width="400"}
 
-\vspace{2.5cm}
+{{< pagebreak >}}
 
 
-#### Question 2: How many red tickets 
+An American roulette wheel has 38 slots: 18 red, 18 black and 2 green. 
 
-A box of 100 tickets contains 45 red tickets, 50 blue tickets,
-  and 5 yellow tickets. Twenty tickets will be drawn from this box at
-  random, with replacement. What is the expected number of red tickets in the sample?
+@. Let $S$ be the number of times in 10 spins that you land on a red space. Calculate $\mathbb{E}(S)$, $Var(S)$ and $SD(S)$.
 
+\
 
-\vspace{2cm}
+\
 
+\
 
-#### Question 3: Expectations of linear transformations
+@. Write R code which will allow you to simulate 10 spins of an American roulette wheel (where your possible outcome is either *red* or *not red*), and count the number of spins that result in landing on a red space.
 
-Let $X$ be a random variable such that $E(X) = 4$. Let $Y = 2 + 3X$. What is $E(Y)$?
+\
 
-\vspace{3cm}
+\
 
+@. Write R code which will allow you to simulate 100 of these experiments (so 100 experiments, each featuring 10 spins of the wheel, and the number of red spaces landed on is counted in each experiment). Your output should be a vector with 100 observations, where the first element is the number of red spaced landed on in experiment one, and so on.
 
+\
 
+\
 
-#### Question 4: Continuous random variables
+\
 
-Consider the function $f(x)$ where:
-$$
-f(x) = \begin{cases}
-x+1, \: -1 \le x \le 0\\
-1-x, \: 0 \le x \le 1 \\
-0, \: \text{ for all other }x
-\end{cases}
-$$
+@. Write code to calculate the mean, variance and standard deviation of the vector you created in the last step. Then, compare them to the theoretical quantities you calculated at the start of this series of problems in one to two sentences.
 
-(a) Does $f$ satisfy the criteria to be a probability density function? (It should be non-negative and integrate to 1, that is, the total area under the curve is 1.)    
+\
 
-\vspace{5cm}
+\
+
+\
 
 
-(b) What is your guess for $E(X)$, without doing any integration or summation?
+Consider the random variable $X$ whose probability mass function can be obtained from the graph in **Question 5**.
+
+@. Write R code which will allow you to simulate 100 realizations (draws) of this random variable.
+
+\
+
+\
+
+@. Write code to calculate the mean and variance of the output you created in the last step. Then, compare them to the theoretical quantities you calculated in **Question 5** in one to two sentences.
 
 
-\vspace{3cm}
 
 
-#### Question 5: Sums of random variables
 
-A discrete random variable $X$ takes values from $-5$ to $5$ with $E(X) = 0$ and $SD(X) = 3$. Define $X_1, X_2, \ldots, X_n$ to be independent random variables with the same distribution as $X$. 
 
-(i) Does this mean (for example) that if we know that $X = 1$, we know that $X_k = 1$ for all of $X_1, X_2, \ldots, X_n$? Why or why not?
 
-\vspace{2cm}
 
-(ii) Let $n = 100$ and consider $S_{100} = X_1 + X_2 + \ldots + X_{100}$. What is the expected value and SD of $S_{100}$?
 
-\vspace{3cm}
 
-(iii) Now, let $n = 200$, so $S_{200} =  X_1 + X_2 + \ldots + X_{200}$. Is $SD(S_{200}) = 2 \times SD(S_{100})$? Explain your answer.
 
-\vspace{3cm}
+
+
+
+
 
 
 

@@ -215,7 +215,10 @@ schedule:
             render: true
           - type: Slides
             href: 3-probability/05-ev-se/slides.qmd
-            render: false
+            render: true
+          - type: PS
+            href: 3-probability/05-ev-se/ps.qmd
+            render: true  
             
       - topic: "Normal Approximation"
         display-date: Feb 29

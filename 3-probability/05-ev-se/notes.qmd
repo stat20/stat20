@@ -47,7 +47,7 @@ In general, if we have a discrete uniform random variable on the values $1, 2, 3
 
 ### Example: Rolls of an *unfair* die 
 
-What happens if all the faces are *not* equally likely? Consider the following scenario: let $X$ be the result of rolling a weird six-sided die, which has the probability of rolling a 4 or 6 is __double__ that of rolling an odd number, and the probability of rolling a 2 is __three__ times that of rolling an odd number. What is the pmf of $X$? See if you can work it out! Remember that the probabilities have to add to 1. 
+What happens if all the faces are *not* equally likely? Consider the following scenario: let $X$ be the result of rolling a weird six-sided die, which has that the probability of rolling a 4 or 6 is __double__ that of rolling any of the odd numbers ($P(X=4) = P(X = 6) = 2\times P(X =1)$ etc), and the probability of rolling a 2 is __three__ times that of rolling any of the odd numbers ($P(X=2) = 3\times P(X =1)$ etc). What is the pmf of $X$? See if you can work it out! Remember that the probabilities have to add to 1. 
  
 <details><summary>Check your answer</summary> 
 
@@ -413,7 +413,7 @@ Var(X+c) = Var(X)
 $$
 :::
 
-<!--You can verify this using the shortcut formula (we won't ask you to derive this).
+You can verify this using the shortcut formula (we won't ask you to derive this).
 <details><summary>Check your answer</summary>
 
 $$
@@ -423,12 +423,11 @@ Var(X +c) &= E\left(\left(X+c\right)^2\right) - \left(E\left(X+c\right)\right)^2
           &= E\left(X^2\right) + 2cE(X) + c^2 - \left(E(X)\right)^2 -  2cE(X) - c^2\\
           &= E\left(X^2\right) -  \left(E(X)\right)^2 \\
           &= Var(X)
-
 \end{aligned}
 $$
 
 </details>
--->
+
 
 :::{.def}
 **4. Additivity of variance**
@@ -458,7 +457,8 @@ What about the variance of $X$?
 $$
 \begin{aligned}
 Var(x) &= E\left[ ( X - \mu)^2 \right] \\
-  &=  \left( \frac{8}{30}\times (1-0.567)^2  + \frac{7}{30} \times (2-0.567)^2 + \frac{10}{30} \times (0-0.567)^2 + \frac{5}{30} \times (-1 - 0.567)^2 \right) \\
+  &=  \left( \frac{8}{30}\times (1-0.567)^2  + \frac{7}{30} \times (2-0.567)^2 \right. \\
+  &+ \left. \frac{10}{30} \times (0-0.567)^2 + \frac{5}{30} \times (-1 - 0.567)^2 \right) \\
   &\approx 1.045\\
 \end{aligned}  
 $$
