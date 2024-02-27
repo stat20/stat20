@@ -32,9 +32,86 @@ iran |>
 
 -->
 
-<!--
-
 ## Part II: Computing on the Data
+
+### Question 1
+
+What is the empirical distribution of the vote counts for Ahmadinejad? Answer with:
+
+-   a plot (label your axes and provide a title), 
+-   numerical summaries of center and spread, 
+-   and a written interpretation.
+
+### Question 2
+
+Create a data frame named `benford` having two columns: one with the range of values that the Benford's Law probability distribution can take, and the second with the corresponding probabilities for each value. 
+
+### Question 3
+
+What might 366 draws (the amount of rows in the `iran` dataframe) from $X \sim Benford()$ look like? Find out by sampling rows from the data frame `benford`. Create a plot of the resulting empirical distribution of first digits. Label your axes and title your plot *Benford's Law Simulation*.
+
+### Question 4
+
+What do the first digit empirical distributions look like for the four candidates in the Iranian presidential election? 
+
+-   Make one plot for each distribution and title them by candidate name.
+-   Combine the four plots into a single visualization using the `patchwork` library.
+
+Inside the `stat20data` package there is a function called `get_first()` that pulls off the first digit of every element in a vector. This will be helpful when creating your plots.
+
+### Question 5
+
+How do the observed first digit distributions of **Question 4** compare to the one you created in **Question 3** by sampling from Benford's Law? Which candidate has a first-digit distribution that is:
+
+-   most similar to 
+-   most different 
+
+from the sampled one?
+
+---
+
+### US Elections
+
+The [OpenElections](http://www.openelections.net) project obtains and standardizes precinct-level results from US elections, including the 2020 US Presidential Election.
+You will be analyzing results from *one state* in **Questions 6-9**. 
+
+To access the data, search OpenElections' GitHub page ([https://github.com/openelections](https://github.com/openelections)) and click on a link to a data repository for the state of your choosing. Select the `2020` folder and find a file that ends in `.csv`. Some notes:
+
+- Each state uses a different format, so click through a couple states' repositories until you find one that will allow you to study voting patterns at the *precinct-level*.
+- To read the csv file into R, you will need to point R to the raw version of the data set. To view the raw csv you will either click the button that says "Raw" at the top right of the data frame on GitHub or click the link that says "View Raw Data". When you are looking at the raw csv file, the url in your browser is the one you can use to access the file from within R, using the following code:
+
+```{r}
+#| eval: false
+#| warning: false
+us_election <- read_csv("paste link here")
+```
+
+You want to make sure you save the dataset into your environment; you can pick a name of your choosing.
+
+- There may be strange extra rows in your data, such as a row tallying total overall votes. Visually inspect the data to see if anything jumps out and be sure to take this into consideration when doing your analysis.
+
+
+
+---
+
+### Question 6
+
+What state did you choose to study? What is the unit of observation in your state's data frame? What are the dimensions?
+
+### Question 7
+
+Use this data to create a plot of that state's first digit distribution by precinct. Use the number of votes cast for Joseph Biden in each precinct.
+
+### Question 8
+
+How does the election data you chose appear to fit Benford's distribution as compared to the data from the 2009 Iran election?
+
+### Question 9
+
+Based on the results of **Question 8**, what might you conclude about the utility of Benford's law in detecting election fraud? Explain in one to two sentences.
+
+
+<!--
 
 This week's lab is a *mini-lab* containing only one part and done in a qmd file. The data for this lab can be found in the `iran` data frame in the `stat20data` package. Run `?iran` at the console to learn more about the columns.
 

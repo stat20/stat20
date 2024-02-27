@@ -35,17 +35,24 @@ library(patchwork)
 ## Agenda
 
 - Announcements
-- Probability refresher
-- Concept questions
+- Probability refresher (last week)
 - Break
-- PS 8
+- Concept questions: Probability Distributions
+- PS 8: Probability Distributions
 
 
 ## Announcements
 
-- PS 6 and 7 due Tuesday
 
-- No lab today, but we will work on PS 8
+- No lab today
+
+. . . 
+
+- Problem Set 8 (paper max. 3) due next Tuesday at 9am
+
+. . .
+
+- RQ: Random Variables due Wednesday 11:59pm
 
 
 :::{.notes}
@@ -194,9 +201,7 @@ Scroll to see graphs
 - A-4 emp dsn from different box
 :::
 
-
-
-
+# Binomial, hypergeometric, or neither?
 
 ##
 
@@ -239,7 +244,7 @@ Binomial, hypergeometric, or neither?
 :::
 
 :::{.notes}
-Hypergeometric($N = 335$ mill,  $n = 1500$, G), where G is not known, being the number of people who have read at least one book  . Can remark that we could use the binomial  to model this rather than HG, and that we will discuss sample surveys in this unit. Disturbingly, only 54% of respondents had read at least one book. Here is the link: <https://today.yougov.com/entertainment/articles/48239-54-percent-of-americans-read-a-book-this-year>
+Hypergeometric($N = 335$ mill,  $n = 1500$, G), where G is not known, being the number of people who have read at least one book  . Can remark that we could use the binomial to model this rather than HG, and that we will discuss sample surveys in this unit. Disturbingly, only 54% of respondents had read at least one book. Here is the link: <https://today.yougov.com/entertainment/articles/48239-54-percent-of-americans-read-a-book-this-year>
 :::
 
 ##
