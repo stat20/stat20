@@ -344,6 +344,18 @@ $$
 
 Since all the $X_k$ have the same distribution, we can use $X_1$ to compute the mean and SD of the sum. This law says that if the sample size increases as $n$, the expected value scales as the *number* of random variables, but the standard deviation of the sum increases more slowly, scaling as $\sqrt{n}$. In other words, if you increase the number of random variables you are summing, the spread of your sum about its expected value increases, but not as fast as the expectation of the sum.
 
+### Example: The drunkard's walk
+
+Back to our inebriated random walker who is trying to walk home. Recall that at each time step, the walker moves forward or backward with equal probability. After $n$ steps, their position can be written as 
+$$
+S_n = X_1 + X_2 + \ldots X_n
+$$
+where $X_k = +1$ or $-1$ with probability $0.5$ each. $E(X_k) = 0$ and $Var(X_k) = 1$, so we get that:
+$$
+E(S_n) = 0, \; Var(S_n) = n, \text{ and } SD(n) = \sqrt{n}.
+$$
+
+
 
 ### Averages
 
@@ -637,7 +649,7 @@ The normal curve is enormously useful because many data distributions are simila
 
 Since many useful statistics can be written as the sum or mean of iid random variables, this is a very important and useful theorem, and we will use it extensively for inference in the next unit.
 
-Recall our hammered homeseeker from the beginning of this chapter, and the bell-shaped distribution of their position after half an hour. Since their position can be written as a sum of all their steps (which were $+1$ or $-1$), the Central Limit Theorem applies to the probability distribution of the sum, and that is why the distribution is bell-shaped. 
+Recall our hammered homeseeker from the beginning of this chapter, and the bell-shaped distribution of their position after half an hour. Since their position can be written as a sum of all their steps (which were $+1$ or $-1$), the Central Limit Theorem applies to the probability distribution of the sum, and that is why the distribution is bell-shaped. Using the normal approximation and the empirical rule, we can say that with probability about $32\%$, our tipsy friend will be *farther* than one standard deviation from the starting point, which was the bar. Recall that one standard deviation for $n=30$ is $\sqrt{n} \approx 5.5$ steps. So he may be close to his home (with about $16\%$ probability) or totally in the other direction (also with about $16\%$ probability). 
 
 ## Ideas in code
 
