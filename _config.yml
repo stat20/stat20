@@ -226,7 +226,17 @@ schedule:
       - topic: "Normal Approximation"
         display-date: Feb 29
         date: 2/29/24
-        items: []
+        items:
+          - type: Notes
+            href: 3-probability/06-normal-approx/notes.qmd
+            render: true
+          - type: Slides
+            href: 3-probability/06-normal-approx/slides.qmd
+            render: false
+          - type: PS
+            href: 3-probability/06-normal-approx/ps.qmd
+            render: false  
+        
         
   - week: 8
     days:
