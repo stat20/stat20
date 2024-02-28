@@ -242,7 +242,7 @@ Suppose we make $n$ draws at random with replacement from the box in the example
 ![](images/box-1.png){fig-aligned="center" width="300"}
 
 Suppose we sum the drawn tickets. We denote the *sum* of $n$ random variables by $S_n$.
-Note that $S_n = X_1, X_2, \ldots, X_{n}$ is also a random variable.
+Note that $S_n = X_1 + X_2 + \ldots + X_{n}$ is also a random variable.
 
 Let's simulate this by letting $n=25$ and sampling $25$ tickets with replacement, summing them, and then repeating this process. Note that the smallest sum we can get is $S_n = 0$ and the largest is $100$. (Why?)
 
@@ -645,7 +645,7 @@ So *if* we know a particular distribution is similar in shape to the normal dist
 
 ## The Central Limit Theorem
 
-The normal curve is enormously useful because many data distributions are similar to the normal curve (scaled appropriately), so we can use the areas under the normal curve to approximate the areas of the data distributions to figure out proportions. The reason so many data distributions approximately follow a normal distribution is because of one of the most fundamental results in statistics called the Central Limit Theorem. This astounding result says that __sums (and averages) of independent and identically distributed random variables will follow an approximately normal distribution as the sample size grows large__. If we restate this in terms of our box model, this theorem says that, for large enough $n$, if we draw $n$ times from a box of tickets with replacement, then the probability distribution of the sum and the average of the draws will be approximately normal, *regardless* of the distribution of the tickets in the box. This means that the tickets in the box can be anything, but as long as we draw enough times, the sum will have an approximately bell-shaped distribution. 
+The normal curve is enormously useful because many data distributions are similar to the normal curve, so we can use the areas under the normal curve to approximate the areas of the data distributions to figure out proportions. The reason so many data distributions approximately follow a normal distribution is because of one of the most fundamental results in statistics called the Central Limit Theorem. This astounding result says that __sums (and averages) of independent and identically distributed random variables will follow an approximately normal distribution as the sample size grows large__. If we restate this in terms of our box model, this theorem says that, for large enough $n$, if we draw $n$ times from a box of tickets with replacement, then the probability distribution of the sum and the average of the draws will be approximately normal, *regardless* of the distribution of the tickets in the box. This means that the tickets in the box can be anything, but as long as we draw enough times, the sum will have an approximately bell-shaped distribution. 
 
 Since many useful statistics can be written as the sum or mean of iid random variables, this is a very important and useful theorem, and we will use it extensively for inference in the next unit.
 
