@@ -236,7 +236,9 @@ schedule:
           - type: PS
             href: 3-probability/06-normal-approx/ps.qmd
             render: false  
-        
+    
+    resources:
+      - '<a href="https://www.stat20.org/3-probability/06-normal-approx/extra-practice.pdf"">Extra Practice</a>'
         
   - week: 8
     days:
