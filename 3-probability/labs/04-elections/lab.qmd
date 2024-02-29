@@ -76,7 +76,9 @@ from the sampled one?
 
 ### Question 6
 
-Based on the results of **Question 5**, what might you conclude about the utility of Benford's law in detecting election fraud? Explain in one to two sentences.
+Based on the results of **Question 5**, do you believe that the 2009 Iran election was fraudulent? Additionally, to what extent do you believe that Benford's Law would be able to detect fraud if it exists? Explain in three to four sentences. 
+
+<!--
 
 ---
 
@@ -111,7 +113,7 @@ How does the election data you chose appear to fit Benford's distribution as com
 
 Based on the results of **Question 8**, what might you conclude about the utility of Benford's law in detecting election fraud? Explain in one to two sentences.
 
-
+-->
 
 <!--
 

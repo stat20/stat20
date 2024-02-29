@@ -188,10 +188,6 @@ In this lab we will:
 
 . . . 
 
--   Compare the first digits of vote counts in the 2020 United States presidential election to this distribution
-
-. . . 
-
 -   Reach a conclusion on whether the election was fraudulent (or whether the Benford's Law is a good tool at detecting fraud in the first place). 
 
 <!--
