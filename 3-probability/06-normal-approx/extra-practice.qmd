@@ -84,7 +84,7 @@ Write down $f(x)$, the probability mass function for $X_1$.
 
 \
 
-@. Using the column in `q8` of the $S_{10,000}$'s generated from the **Question 6**, write R code to roughly estimate the probability that you have taken less than 3200 steps in the "wrong direction" after 10,000 repetitions of the experiment that you found in **Question 4**. *Hint: see if you can calculate a proportion*.
+@. Using the column in `q8` of the $S_{10,000}$'s generated from the **Question 6**, write R code to roughly estimate the probability that you have taken less than 3200 steps in the "wrong direction" after 10,000 repetitions of the experiment that you found in **Question 5**. *Hint: see if you can calculate a proportion*.
 
 
 
