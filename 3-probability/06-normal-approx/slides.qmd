@@ -1,5 +1,5 @@
 ---
-title: "Expected Value and Variance"
+title: "Normal Approximations"
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
@@ -24,143 +24,14 @@ format:
 
 ##
 
-- Concept review 
 - Concept questions
-- PS 10
+- Quiz review
 - Break
-- Lab 3 slides
-- Lab 3
-
-## The Pointy-haired boss's thoughts on expected values...
-
-![](images/dilbert-ev.png){fig-aligned="center" width="500"}
+- Time to finish Lab 3
 
 
-
-
-# Concept Review
-
-##
-
-Let $X$ be a random variable such that 
-$$
-X = \begin{cases}
-			-1, & \text{ with probability } 1/3\\
-            0, &  \text{ with probability } 1/6\\
-            1, &  \text{ with probability } 4/15 \\
-            2, & \text{ with probability } 7/30 \\
-		 \end{cases}
-$$
-
-(a) Draw the graph of the cdf of $X$ 
-
-```{r}
-countdown::countdown(8, bottom = 0)
-```
-
-\
-
-(b) Compute the expected value and variance of $X$
-
-:::{.notes}
-write down pmf with denominator 30, and draw cdf on the board. 
-P(X = -1)= 5/30, P(X = 0)= 10/30,  P(X = 1)= 8/30, P(X = 2)= 7/30
-E(X) = (-1)(5/30) + 0(10/30) + 1(8/30) + 2(7/30)
-(-10 + 0 + 8 + 14)/30 = 12/30 = 2/5
-Var(X) = E(X^2) - 4/25 = (10 + 0 + 8 +28)/30 -4/25 = 23/15- 4/25 ~~ 1.37333
-Graph the pmf and mark the expectation
-The numbers are not pretty but the point is to show them the computation and graph
-The rest of the ideas can be recapped as you go over the concept questions
-You may want to review linearity of expectation here, or save it for when going over the PS
-:::
 
 # Concept Questions
-
-##
-
-```{r}
-countdown::countdown(1, bottom = 0)
-```
-
-$X$ is a random variable with the distribution shown below:
-
-$$
-X = \begin{cases}
- 3, \; \text{ with prob } 1/3\\
- 4, \; \text{ with prob } 1/4\\
- 5, \; \text{ with prob } 5/12
- \end{cases}
-$$
-
-
-Consider the box with tickets:  $\fbox{3}\, \fbox{3}\, \fbox{3} \,\fbox{4}  \,\fbox{4} \,\fbox{4} \,\fbox{4} \,\fbox{5} \,\fbox{5}\, \fbox{5} \,\fbox{5} \,\fbox{5}$ 
-
-Suppose we draw once from this box and let $Y$ be the value of the ticket drawn. Which random variable has a higher expectation?
-
-:::{.poll}
-The expected value of $X$ is ____ the expected value of $Y$. 
-:::
-
-:::{.notes}
-This is a reading question. Note that the pmf implied by the box is not the same as the given pmf. In the box, 4 has a higher probability, so the average is higher. They do not need to actually do the computation.
-At this point, ask them what box would they use so that if $X$ is the value of a randomly selected ticket, the distribution of $X$ is exactly the distribution shown here.
-:::
-
-##
-
-```{r}
-countdown::countdown(1, bottom = 0)
-```
-
-Prof. Stoyanov's Zoom office hours are not too crowded this spring. She observes that number of Stat 20 students coming to her Thursday office hours have a Poisson(2) distribution. There is one Data 88 student from a previous semester who is *always* there (they want a letter of recommendation). 
-
-:::{.poll}
-What is the expected value (EV) and variance (V) of the number of students in her Zoom office hours?
-:::
-
-:::{.notes}
-This is also a reading question, with < 50% getting it right. 
-Let $X$ be the number of Stat 20 students who go to the office hours. Then $E(X) = 2 = Var(X)$.
-But the number of students in the office is $X+1$ since that one student is always there. 
-$E(X+1) = 2+1 = 3$ and $Var(X+1) = Var(X) = 2$
-:::
-
-##
-
-
-```{r}
-countdown::countdown(1, bottom = 0)
-```
-
-Let $X$ be a discrete uniform random variable on the set $\{-1, 0, 1\}$. 
-
-:::{.poll}
-If $Y=X^2$, what is $E(Y)$?
-:::
-
-
-
-##
-
-```{r}
-countdown::countdown(1, bottom = 0)
-```
-
-Let $X$ be a discrete uniform random variable on the set $\{-1, 0, 1\}$. 
-
-:::{.poll}
-If $W = \min(X, 0.5)$, what is $E(W)$?
-:::
-
-:::{.notes}
-begin by asking them what is What is $E(X)$? And pointing out that if we have a symmetric distribution then EX is in the middle. Emphasize the idea of it being a "typical" value and an average or a mean. This is so they practice computing the EV of a function of a rv. Have them make a table (or perhaps you draw a table) of $X$, $Y$, $W$ and $f(x)$
-:::
-
-<!--##
-
-Evgeni bakes a cake and invites two friends to join him in eating it. The cake will be evenly split between whoever shows up and Evgeni. His friends know that Evgeni is an erratic baker at best, and independently each toss a coin to decide whether they will go or not. Let $X$ be the **fraction** of the cake that Evgeni gets to eat. For example if 1 friend shows up, Evgeni gets half the cake, if 2 show up, he gets one-third of the cake. What is $E(X)$?
-
-
 
 ##
 
@@ -267,10 +138,7 @@ Which distribution belongs to which random variable?
 They need to remember that the expected value of S_x will be 200, and for S_y 300.
 :::
 
--->
-
-
-# PS 10
+# Quiz review 
 
 ```{r}
 countdown::countdown(25)
@@ -351,7 +219,9 @@ geom_col(fill = "goldenrod2") + labs(x = "Values taken by X", y = "P(X = x)") +
 -->
 
 
-# Lab 4 (Slides)
+# Lab 3
 
+```{r}
+countdown::countdown(55)
+```
 
-# Lab 4 
