@@ -232,7 +232,7 @@ schedule:
             render: true
           - type: Slides
             href: 3-probability/06-normal-approx/slides.qmd
-            render: false
+            render: true
           - type: PS
             href: 3-probability/06-normal-approx/ps.qmd
             render: false  
