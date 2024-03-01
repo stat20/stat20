@@ -23,31 +23,10 @@ format:
 
 # Agenda
 
-- Announcements
 - Concept Questions
 - Quiz 2 review
 - Break
 - Lab 3.1 and 3.2
-
-## Announcements
-
--   Lab 3.2 released today (six questions), due Tuesday at 9am along with Lab 3.1
-
-. . . 
-
--   Look out for *Extra Practice: Normal Approximations* to be posted to the resources tab later this week (at the latest, Friday). 
-
-. . . 
-
--   Quiz 2 on Monday (review today)
-
-. . . 
-
--   RQ: *Scope, Bias and Variability* due 11:59pm
-
-. . . 
-
--   We start the Generalization unit next week!
 
 
 # Concept Questions
