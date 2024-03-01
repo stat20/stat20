@@ -9,6 +9,7 @@ sidebar: false
 #| message: false
 #| echo: false
 library(stat20data)
+library(patchwork)
 library(tidyverse)
 ```
 
@@ -76,7 +77,46 @@ from the sampled one?
 
 ### Question 6
 
-Based on the results of **Question 5**, do you believe that the 2009 Iran election was fraudulent? Additionally, to what extent do you believe that Benford's Law would be able to detect fraud if it exists? Explain in three to four sentences. 
+Below are two visualizations using data from the last two presidential elections in California. The last two Democratic candidates for president were Joe Biden in 2020 and Hillary Clinton in 2016.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig-align: center
+
+ca_2020 <- read_csv("https://raw.githubusercontent.com/openelections/openelections-data-ca/master/2020/20201103__ca__general__precinct.csv")
+
+ca_2016 <- read_csv("https://raw.githubusercontent.com/openelections/openelections-data-ca/master/2016/20161108__ca__general__precinct.csv")
+
+plot_2016 <- ca_2016 |>
+  mutate(first_digit = get_first(votes)) |>
+  filter(candidate == "Hillary Clinton",
+         first_digit > 0) |>
+  ggplot(mapping = aes(x = factor(first_digit))) +
+  geom_bar(fill = "darkblue", color = "black") +
+  labs(y = "Count",
+       x = "First Digit",
+       title = "Distribution of Vote Counts for Hillary Clinton",
+       subtitle = "California, 2016 General Election") +
+  theme_bw()
+
+
+plot_2020 <- ca_2020 |>
+  mutate(first_digit = get_first(votes)) |>
+  filter(candidate =="Joe Biden",
+         first_digit > 0) |>
+  ggplot(mapping = aes(x = factor(first_digit))) +
+  geom_bar(fill = "skyblue",color = "black") +
+  labs(y = "Count",
+        x = "First Digit",
+       title = "Distribution of Vote Counts for Joe Biden",
+       subtitle = "California, 2020 General Election") +
+  theme_bw()
+
+plot_2016/plot_2020
+```
+
+Based on these results and the results from **Question 5**, to what extent to you believe the 2009 Iranian election was fraudulent? Explain in three to four sentences. 
 
 <!--
 

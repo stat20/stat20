@@ -2,6 +2,7 @@
 title: "Normal Approximations"
 format:
   revealjs:
+    self-contained: true
     author: "STAT 20: Introduction to Probability and Statistics"
     height: 900
     width: 1600
@@ -22,13 +23,10 @@ format:
 
 # Agenda
 
-##
-
-- Concept questions
-- Quiz review
+- Concept Questions
+- Quiz 2 review
 - Break
-- Time to finish Lab 3
-
+- Lab 3.1 and 3.2
 
 
 # Concept Questions
