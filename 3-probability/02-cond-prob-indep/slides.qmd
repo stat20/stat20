@@ -73,7 +73,7 @@ Will be fun to see what they input. The right answer is that they should switch.
 
 - Conditional Probabilty
 
-For two events $A$ and $B$, $P(A \vert B) = P(A \text{ and } B) P(B)$
+For two events $A$ and $B$, $P(A \vert B) = \displaystyle \frac{P(A \text{ and } B)}{P(B)}$
 
 - Multiplication rule
 
