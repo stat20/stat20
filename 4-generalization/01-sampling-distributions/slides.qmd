@@ -279,9 +279,9 @@ If you take the mean of class size in the student survey data set, you'll get a 
 
 One wrinkle that you could end with: which of those two averages is actually better for understanding the effect of large class sizes? The first one is a property of classes. That might be useful for thinking through things like the size of classrooms on campus. The second average is a property of students. In a way, it better captures the student experience of being in large vs small classes.
 
-This is going very far afield, but there's a similar phenomenon when measuring population density of cities. If it's measured as people / sq mile, that gives us a sense of how each sq mile of land feels. You could also measure it using the average number of people that you run into in a day per person. This gives a sense of how crowded things are.
+This is going very far afield, but there's a similar phenomenon when measuring population density of cities. If it's measured as people / sq mile, that gives us a sense of how each sq mile of land feels. You could also measure it using the average number of people that you run into in a day per person. This gives a sense of how crowded things are for people.
 
-These two measures diverge if you imagine a city on 2 square miles with a population of 100,000 people split evenly between those two squares. Then imagine a second city also on 2 sq miles, but 99,999 live in one sq mile and just 1 person lives in the other square mile. By the first metric, they have the same density, but the second city will feel much more density to its residents.
+These two measures diverge if you imagine a city on 2 square miles with a population of 100,000 people split evenly between those two squares. Then imagine a second city also on 2 sq miles, but 99,999 live in one sq mile and just 1 person lives in the other square mile. By the first metric, they have the same density, but the second city will feel much more dense to its residents.
 :::
 
 
