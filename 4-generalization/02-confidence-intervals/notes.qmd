@@ -322,46 +322,45 @@ We have seen that the sampling distribution takes a familiar shape: that of the 
 
 ![](images/triptych-subs.jpg){fig-align=center width=400} 
 
-The sketch that we have added in the middle panel shows a sampling distribution that looks like the bell curve. To understand how this will be helpful, let's make a quick
-digression to talk about the normal distribution.
+This is the Central Limit Theorem in action. The CLT states that sums of random variables become normally distributed as $n$ increases. Conveniently enough, most useful statistics are some version of a sum: $\bar{x}$ is a sum divided by $n$ and $\hat{p}$ is a sum of variables that take values 0 or 1, divided by $n$. This powerful mathematical result enables one of the most popular methods of constructing confidence intervals.
 
-#### The Normal Distribution
+<!-- #### The Normal Distribution -->
 
-The normal distribution describes a continuous random variable that has a density function with a familiar bell shape[^normalpdf]. 
+<!-- The normal distribution describes a continuous random variable that has a density function with a familiar bell shape[^normalpdf].  -->
 
-[^normalpdf]: For a normally distributed random variable, $f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$. Read more on Wikipedia: <https://en.wikipedia.org/wiki/Normal_distribution>
+<!-- [^normalpdf]: For a normally distributed random variable, $f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$. Read more on Wikipedia: <https://en.wikipedia.org/wiki/Normal_distribution> -->
 
-```{r}
-#| warning: false
-#| fig-width: 4
-#| fig-height: 2
-#| fig-align: center
+<!-- ```{r} -->
+<!-- #| warning: false -->
+<!-- #| fig-width: 4 -->
+<!-- #| fig-height: 2 -->
+<!-- #| fig-align: center -->
 
-data.frame(x = seq(-3, 3, .01)) %>%
-  mutate(y = dnorm(x)) %>%
-  ggplot(aes(x = x, y = y)) +
-  geom_line() +
-  labs(x = "x",
-       y = "f(x)") +
-  scale_y_continuous(breaks = NULL) +
-  theme_bw()
-```
+<!-- data.frame(x = seq(-3, 3, .01)) %>% -->
+<!--   mutate(y = dnorm(x)) %>% -->
+<!--   ggplot(aes(x = x, y = y)) + -->
+<!--   geom_line() + -->
+<!--   labs(x = "x", -->
+<!--        y = "f(x)") + -->
+<!--   scale_y_continuous(breaks = NULL) + -->
+<!--   theme_bw() -->
+<!-- ``` -->
 
-If a random variable $X$ follows a normal distribution, we write
+<!-- If a random variable $X$ follows a normal distribution, we write -->
 
-$$X \sim \textrm{N}(\mu, \sigma)$$
+<!-- $$X \sim \textrm{N}(\mu, \sigma)$$ -->
 
-where $\mu$ is the mean of the distribution and $\sigma$ is its standard deviation. The particular normal distribution shown above is the *standard normal distribution*, where $\mu = 0$ and $\sigma = 1)$.
+<!-- where $\mu$ is the mean of the distribution and $\sigma$ is its standard deviation. The particular normal distribution shown above is the *standard normal distribution*, where $\mu = 0$ and $\sigma = 1)$. -->
 
-We can calculate the probability of any event related to $X$ by finding the area under the curve corresponding to that event. That includes the probability that $X$ falls within a particular interval. In the table below, we record the probabilities of three such intervals.
+<!-- We can calculate the probability of any event related to $X$ by finding the area under the curve corresponding to that event. That includes the probability that $X$ falls within a particular interval. In the table below, we record the probabilities of three such intervals. -->
 
-| Interval | Area under the normal curve |
-| ---- | ---- |
-| Between -1 and 1 | `r round(pnorm(1)-pnorm(-1), 2)` |
-| Between -1.96 and 1.96 | `r round(pnorm(1.96)-pnorm(-1.96), 2)` |
-| Between -2.58 and 2.58 | `r round(pnorm(2.58)-pnorm(-2.58), 2)` |
+<!-- | Interval | Area under the normal curve | -->
+<!-- | ---- | ---- | -->
+<!-- | Between -1 and 1 | `r round(pnorm(1)-pnorm(-1), 2)` | -->
+<!-- | Between -1.96 and 1.96 | `r round(pnorm(1.96)-pnorm(-1.96), 2)` | -->
+<!-- | Between -2.58 and 2.58 | `r round(pnorm(2.58)-pnorm(-2.58), 2)` | -->
 
-So *if* we know a particular distribution is similar in shape to the normal distribution, we're able to calculate the probabilities that the random variable falls within a particular interval. With this observation in hand, let's return to the task of making an interval estimate.
+<!-- So *if* we know a particular distribution is similar in shape to the normal distribution, we're able to calculate the probabilities that the random variable falls within a particular interval. With this observation in hand, let's return to the task of making an interval estimate. -->
 
 #### Normal Confidence Intervals
 
