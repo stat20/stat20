@@ -73,13 +73,13 @@ In answering the following questions, it will be helpful to consult
 
 <!-- Create two 95% confidence intervals for the mean rating of the condition of People's Park using both the bootstrap and the normal curve. Interpret the interval in the context of the problem in a clear sentence. -->
 
-<!-- <!-- Which method for making the CI, if any, would you expect to be more accurate? --> -->
+<!-- Which method for making the CI, if any, would you expect to be more accurate? -->
 
 <!-- #### Question 8 -->
 
 <!-- Create two 95% confidence intervals for the overall proportion of students that support the People's Park Project without having been exposed to the information on page 14 using both the bootstrap and the normal curve. Interpret the interval in the context of the problem in a clear sentence. Do your point estimates approximately match those reported in the Chancellor's email? -->
 
-<!-- <!-- Which method for making the CI, if any, would you expect to be more accurate? --> -->
+<!-- Which method for making the CI, if any, would you expect to be more accurate? -->
 
 <!-- #### Question 9 -->
 
