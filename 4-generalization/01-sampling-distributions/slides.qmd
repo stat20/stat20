@@ -91,37 +91,6 @@ library(patchwork)
 
 ##
 
-Say we want to estimate the size of an average class at Berkeley. 
-
-:::{.poll}
-Should we survey the students, and ask them how large their classes are? Should we ask the administration?  Does it matter?
-:::
-
-```{r}
-countdown::countdown(1, bottom = 0)
-```
-
-::: {.notes}
-This one you may want to send straight to "discuss with your group".
-
-This is a good question to debrief with careful boardwork. You can go quite deep on it, so decide beforehand how far you'd like to go.
-
-One way to start the debrief is to make a table of Pros and Cons for both the Administration and the Student Survey, then ask students for help filling it in. Things that might come up include sources of variability (small sample variability in the survey), non-response bias in the survey, and possibly selection bias in the survey (which could take several forms).
-
-You can also debrief by sketching data frames. For the administrative data, draw a sketch of the data frame they have access to, where the unit is a class, and one of the columns records the class size. Then draw a sketch of the student survey data frame, where the unit is a student in a particular class, with a column that records the class size. If you summarize the class size column with the mean in the first dataframe and n = N, then you've just calculated the parameter - it's a summary task, no generalization necessary.
-
-If you take the mean of class size in the student survey data set, you'll get a *much* bigger number, because you'll be over-sampling students from the very large classes. This can be thought of as selection bias, leading to an overestimate of the parameter.
-
-One wrinkle that you could end with: which of those two averages is actually better for understanding the effect of large class sizes? The first one is a property of classes. That might be useful for thinking through things like the size of classrooms on campus. The second average is a property of students. In a way, it better captures the student experience of being in large vs small classes.
-
-This is going very far afield, but there's a similar phenomenon when measuring population density of cities. If it's measured as people / sq mile, that gives us a sense of how each sq mile of land feels. You could also measure it using the average number of people that you run into in a day per person. This gives a sense of how crowded things are.
-
-These two measures diverge if you imagine a city on 2 square miles with a population of 100,000 people split evenly between those two squares. Then imagine a second city also on 2 sq miles, but 99,999 live in one sq mile and just 1 person lives in the other square mile. By the first metric, they have the same density, but the second city will feel much more density to its residents.
-:::
-
-
-##
-
 #### Scenario 1: Calling on the front row
 
 ```{r}
@@ -284,6 +253,37 @@ p4 <- many_xbars %>%
 
 (p1 + p2 + p3) / p4
 ```
+
+##
+
+Say we want to estimate the size of an average class at Berkeley. 
+
+:::{.poll}
+Should we survey the students, and ask them how large their classes are? Should we ask the administration?  Does it matter?
+:::
+
+```{r}
+countdown::countdown(1, bottom = 0)
+```
+
+::: {.notes}
+This one you may want to send straight to "discuss with your group".
+
+This is a good question to debrief with careful boardwork. You can go quite deep on it, so decide beforehand how far you'd like to go.
+
+One way to start the debrief is to make a table of Pros and Cons for both the Administration and the Student Survey, then ask students for help filling it in. Things that might come up include sources of variability (small sample variability in the survey), non-response bias in the survey, and possibly selection bias in the survey (which could take several forms).
+
+You can also debrief by sketching data frames. For the administrative data, draw a sketch of the data frame they have access to, where the unit is a class, and one of the columns records the class size. Then draw a sketch of the student survey data frame, where the unit is a student in a particular class, with a column that records the class size. If you summarize the class size column with the mean in the first dataframe and n = N, then you've just calculated the parameter - it's a summary task, no generalization necessary.
+
+If you take the mean of class size in the student survey data set, you'll get a *much* bigger number, because you'll be over-sampling students from the very large classes. This can be thought of as selection bias, leading to an overestimate of the parameter.
+
+One wrinkle that you could end with: which of those two averages is actually better for understanding the effect of large class sizes? The first one is a property of classes. That might be useful for thinking through things like the size of classrooms on campus. The second average is a property of students. In a way, it better captures the student experience of being in large vs small classes.
+
+This is going very far afield, but there's a similar phenomenon when measuring population density of cities. If it's measured as people / sq mile, that gives us a sense of how each sq mile of land feels. You could also measure it using the average number of people that you run into in a day per person. This gives a sense of how crowded things are.
+
+These two measures diverge if you imagine a city on 2 square miles with a population of 100,000 people split evenly between those two squares. Then imagine a second city also on 2 sq miles, but 99,999 live in one sq mile and just 1 person lives in the other square mile. By the first metric, they have the same density, but the second city will feel much more density to its residents.
+:::
+
 
 
 # PS: Sampling Distributions
