@@ -268,7 +268,7 @@ schedule:
         items:
           - type: Notes
             href: 4-generalization/02-confidence-intervals/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 4-generalization/02-confidence-intervals/slides.qmd
             render: false
