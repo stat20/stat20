@@ -175,7 +175,7 @@ p4 +
 ```
 
 :::poll
-How would the sampling distribution **change** if instead of calling on the front row, the Prof. put all 527 names on tickets in a box, mixed them up, then drew 18 names without replacement?
+How would the sampling distribution **change** if instead of calling on the front row, the Prof. put all 527 names on tickets in a box, mixed them up, then drew 18 names without replacement? Select the most dramatic change.
 :::
 
 ::: notes
