@@ -1,6 +1,6 @@
 ---
 title: "Confidence Intervals"
-subtitle: "Quantifying the sampling variability of a statistic."
+subtitle: "Quantifying the random variability of a statistic."
 toc-depth: 4
 format:
   html: default
@@ -20,656 +20,112 @@ library(palmerpenguins)
 library(patchwork)
 ```
 
-[T]{.dropcap}he process of generalizing from a statistic of a sample to a parameter of a population is known as *statistical inference*. The parameter of interest could be a mean, median, proportion, correlation coefficient, the coefficient of a linear model . . . the list goes on. In the scenario that unfolded in Pimentel Hall, the parameter was the mean year of the 527 students in the class. The process of estimating that parameter by calculating the sample mean of the 18 students who decided to sit in the front row that day induces a sampling distribution.
+[T]{.dropcap}he process of generalizing from a statistic of a sample to a parameter of a population is known as *statistical inference*. The parameter of interest could be a mean, median, proportion, correlation coefficient, the coefficient of a linear model . . . the list goes on. In the scenario that unfolded in Pimentel Hall, the parameter was the mean year of the 527 students in the class. The process of estimating that parameter by calculating the sample mean of a random subset of students induces a sampling distribution.
 
+This sampling distribution captures the two sources of error that creep in while generalizing. The horizontal offset from true population parameter to the mean of the sampling distribution represents the bias. The spread of the sampling distribution represents the random variability.
 
-```{r}
-#| fig-height: 2
-#| fig-width: 5
-#| fig-align: center
-pop_eager <- data.frame(year = rep(c(1, 2, 3, 4),
-                                   times = c(245, 210, 47, 25)),
-                        eagerness = rep(c(10, 6, 3, 1),
-                                        times = c(245, 210, 47, 25)))
-set.seed(55)
-pop_eager <- pop_eager %>%
-  slice_sample(n = nrow(pop_eager))
-
-mu <- mean(pop_eager$year)
-
-p_pop <- pop_eager %>%
-  ggplot(aes(x = year)) +
-  geom_bar(fill = "purple") +
-  labs(title = "Population Distribution",
-       y = "") +
-  annotate("point", x = mu, y = -20, shape = 17, size = 5, color = "goldenrod2") +
-  theme_gray(base_size = 10) +
-  theme(plot.title = element_text(size=10))
-
-library(infer)
-samp_1 <- pop_eager %>%
-  slice_sample(n = 18,
-                   replace = FALSE,
-                   weight_by = eagerness)
-
-many_samps <- samp_1 %>%
-  mutate(Sample = 1)
-
-for (i in 2:500) {
-  many_samps <- pop_eager %>%
-    slice_sample(n = 18,
-                 replace = FALSE,
-                 weight_by = eagerness) %>%
-    mutate(Sample = i ) %>%
-    bind_rows(many_samps)
-}
-
-many_xbars <- many_samps %>%
-  group_by(Sample) %>%
-  summarize(xbar = mean(as.numeric(year)))
-
-xlims_from_pop <- ggplot_build(p_pop)$layout$panel_scales_x[[1]]$range$range
-
-p_samp_dist <- many_xbars %>%
-  ggplot(aes(x = xbar)) +
-  geom_bar(fill = "purple") +
-  lims(x = c(0, 4)) +
-  labs(title = "Sampling Distribution",
-       y = "",
-       x = expression(paste(bar(x), " (mean year)"))) +
-  geom_vline(xintercept = mu, color = "tomato") + 
-  annotate("point", x = mean(many_xbars$xbar), y = -10, shape = 17, size = 5, color = "goldenrod2") +
-  theme_gray(base_size = 10) +
-  theme(plot.title = element_text(size=10)) +
-  lims(x = xlims_from_pop)
-p_samp_dist
-```
-
-This sampling distribution captures the two sources of error that creep in while generalizing. The horizontal offset from true population parameter (the red line) to the mean of the sampling distribution (the gold triangle) represents the bias. The spread of the sampling distribution represents the variation. In these lecture notes you'll learn how to quantify sampling variability using two common tools.
+In these lecture notes you'll learn how to quantify random variability using two common tools.
 
 **Standard Error (SE)**
 : The standard deviation of the sampling distribution of a statistic.
 
 **Confidence Interval**
-: An interval of two values that represent lower and upper bounds on the statistic that captures most of the sampling distribution.
+: An interval of two values calculated from a sample that represents a plausible range for the unknown parameter.
 
-To focus on the variation, let's introduce a second example, one in which we will not need to worry about bias.
+To focus on the random variability, let's imagine a different scenario unfolding in Pimentel Hall, one in which we will not need to worry about bias.
 
+## Scenario 2: Drawing names from a box
 
-## A Simple Random Sample
+Instead of calling on students who happen to sit in the front row, the professor decides to take a more systematic approach. Before class, he makes a box with 527 tickets, each one showing the name of a different student in the class. During class, he randomly draws out 18 tickets without replacement, calls on those students, then writes their years down on the blackboard.
 
-##### Restaurants in San Francisco
+Instead of focusing on the average age of the 527 students in the class, the professor this time is interested in a different parameter: the proportion of students who are in their first year.
 
-Every year, the city of San Francisco's health department visits all the restaurants in the city and inspects them for food safety. Each restaurant is given an inspection score; these range from 100 (perfectly clean) to 48 (serious potential for contamination). 
-We have these scores from 2016. Let's build up to the sampling distribution bit by bit.
+The professor writes the years of the first three students on the board next to a variable $x$, which takes a value of 1 for first year students and 0 otherwise.
 
- <!-- ADD REF -->
+| Year |  x  |
+|:----:|:---:|
+|  3   |  0  |
+|  1   |  1  |
+|  2   |  0  |
 
-#### The Population Distribution
-
-Our population consists of the restaurants in San Francisco. Since the data are published online for all restaurants, we have a census[^census] of scores for every restaurant in the city.
-
-[^census]: The terms *census* refers to a setting where you have access to the entire population.
-
-```{r}
-#| warning: false
-#| fig-width: 4
-#| fig-height: 2.5
-#| fig-align: center
-
-load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
-
-pop_dist <- ggplot(as.data.frame(fs_scores), aes(x=fs_scores, y=..density..)) + 
-      geom_histogram(breaks=seq(47.5, 100.5, by = 1), 
-                 color="black", fill="gray") +
-      geom_vline(xintercept = mean(fs_scores), color = "tomato") +
-      xlab("Food Safety Scores") +
-      ylab("Proportion") +
-      ggtitle("Population Distribution")
-
-pop_dist
-```
-
-The population distribution is skewed left with a long left tail. The highest possible score is 100. It appears that even scores are more popular than odd scores for scores in the 90s; in fact there are no scores of 99, 97, and 95. 
-
-We can calculate two parameters of this population:
-
-[Population parameters, like the parameters of probability distributions, are usually given a Greek letter. The population mean is $\mu$, said "myoo", and the population standard deviation is $\sigma$, said "sigma".]{.column-margin}
-
-- The *population mean*, $\mu$, is `r round(mean(fs_scores), 2)`.
-- The *population SD*, $\sigma$, is `r round(sd(fs_scores), 1)`.
-
-#### The Empirical Distribution
-
-Although we have data on all of the restaurants in the city, imagine that you're an inspector who has visited a simple random sample of 100 restaurants. That is, you draw 100 times without replacement from the population, with each unit equally likely to be selected. This leads to a representative sample that will have no selection bias.
-
-The distribution of this sample (an empirical distribution) looks like:
-
-
-```{r}
-#| warning: false
-#| fig-width: 4
-#| fig-height: 2.5
-#| fig-align: center
-
-set.seed(103122)
-samp_scores <- sample(fs_scores, 100)
-
-emp_dist <- ggplot(as.data.frame(samp_scores), aes(x=samp_scores)) + 
-      geom_histogram(breaks=seq(47.5, 100.5, by = 1), 
-                 color="black", fill="gray") + 
-      xlab("Food Safety Scores") +
-      ylab("Proportion") +
-      ggtitle("Empirical Dist. (Sample 1)")
-
-emp_dist
-```
-
-The sample statistics here are:
-
-[While parameters are symbolized with Greek letters, statistics are usually symbolized with Latin letters.]{.column-margin}
-
-- The *sample mean*, $\bar{x}$, is `r round(mean(samp_scores), 2)`.
-- The *sample SD*, $s$, is `r round(sd(samp_scores), 1)`.
-
-Observe that the empirical distribution resembles the population distribution because we are using a sampling method without with selection bias. It's not a perfect match but the shape is similar. The sample average ($\bar{x}$) and the sample SD ($s$) are also close to but not the same as the population average ($\mu$) and SD ($\sigma$).
-
-#### The Sampling Distribution
-
-If you compared your sample to that of another inspector who visited 100 restaurants, their sample would not be identical to yours, but it would still resemble the population distribution, and its $\bar{x}$ and $s$ would be close to those of all the restaurants in the city. 
-
-The distribution of the possible values of the $\bar{x}$ of a simple random sample of 100 restaurants is the sampling distribution of the mean (of the sample). We can use it to, for example, find the chance that the sample mean will be over 88, or the chance that the sample mean will be between 85 and 95. 
-
-Ordinarily this distribution takes some work to create, but in this thought-experiment have have access to the full population, so we can simply use the computer to simulate the process. We repeat 100,000 times the process of drawing a simple random sample of 100 restaurants.  The full distribution looks like: 
-
-```{r}
-#| warning: false
-#| fig-width: 4
-#| fig-height: 2.5
-#| fig-align: center
-
-set.seed(10312022)
-samp_means <- replicate(100000, mean(sample(fs_scores, 100)))
-
-sampling_dist <- ggplot(as.data.frame(samp_means), 
-                        aes(x=samp_means, y=..density..)) + 
-      geom_histogram(bins = 45, 
-                 color="black", fill="gray") + 
-      xlab("Average Food Safety Scores") +
-      ylab("Proportion") +
-      ggtitle("Sampling Distribution")
-
-sampling_dist
-```
-
-We can consider numerical summaries of this distribution:
-
-- The mean of the sampling distribution is `r round(mean(samp_means), 2)`.
-- The SD of the sampling distribution, which is called the *Standard Error (SE)*, is `r round(sd(samp_means), 1)`. This convention of using a different name for the SD for the distribution of a statistic helps keep straight which kind of standard deviation we're talking about.   
-
-Observe that the sampling distribution of $\bar{x}$ doesn't look anything like the population or sample. Instead, it's roughly symmetric in shape with a center that matches $\mu$, and a small SE. The small size of the SE reflects the fact that the $\bar{x}$ tends to be quite close to $\mu$.
-
-Again, the sampling distribution provides the distribution for the possible values of $\bar{x}$. From this distribution, we find that the chance $\bar{x}$ is over 88 is about `r round(sum(samp_means > 88)/length(samp_means), 2)`, and the chance $\bar{x}$ is between 85 and 95 is roughly, `r round(sum(samp_means >= 85 & samp_means <=95)/length(samp_means), 2)`. 
-
-#### Putting the Three Panels Together
-
-Let's look at these three aspects of this process side-by-side.
-
-```{r}
-#| warning: false
-#| fig-width: 9
-#| fig-height: 3
-
-pop_dist + emp_dist + sampling_dist
-```
-
-|             | Population | Empirical   | Sampling
-| ----------- | ----------- | ----------- | ----------- |
-| Shape | left skew | left skew | bell-shaped / normal | 
-| Mean | $\mu$ = `r round(mean(fs_scores), 2)`      | $\bar{x}$ = `r mean(samp_scores)`  | `r round(mean(samp_means), 2)`      | 
-| SD | $\sigma$ = `r round(sd(fs_scores), 1)`      | $s$ = `r round(sd(samp_scores), 1)`  | `r round(sd(samp_means), 2)`      | 
-
-Observe that:
-
-1. $\mu$ and the mean of the sampling distribution are roughly the same.
-2.$\sigma$ and the SE of the sample averages are related in the following way[^finite]:
-
-$$SE(\bar{x}) \approx \frac{\sigma}{\sqrt{n}}$$
-
-3. The histogram of the sample averages is not skewed like the histogram of the population, on the contrary, it is symmetric and bell-shaped, like the normal curve.
-
-4. The histogram of our sample of 100 resembles the population histogram. 
-
-5. Since 100 is a pretty large sample,
+Because the values in the column `x` are a result of a random sample process, each one can be thought of as a realization of a random variable. Let $X_i$ be 1 if the $i$^th^ randomly selected student is a first year and 0 otherwise.
 
 $$
-\begin{aligned}
-\mu &\approx \bar{x} \\
-\sigma &\approx s \\
-\end{aligned}
+X_i \sim Bernoulli(p)
 $$
 
-[^finite]: This approximation becomes equality for a random sample *with replacement*. When we have a SRS, the exact formula is $SE(\bar{x}) = \sqrt{\frac{N-n}{N-1}} \sigma/\sqrt{n}$.
+where $p$ is the (unknown!) proportion of students in the class that are first years - the parameter of interest.
 
-    This additional term, called the *finite population correction factor*, adjusts for the fact that we are drawing without replacement. Here $N$ is the number of tickets in the box (the size of the population) and $n$ is the number of tickets drawn from the box (the size of the sample).
+This is helpful: it casts the random part of the process in precise probability language that we're familiar with. It also makes clear the central challenge of statistical inference: how do we estimate an unknown parameter using only observations of random variables? And further: how can we convey our own uncertainty in the estimate due to the randomness?
 
-    To help make sense of this correction factor, think about the following two cases:
+### From Point to Interval Estimates
 
-    - Draw $N$ tickets from the box (that is, $n = N$).
-    - Draw only one ticket from the box.
+Once the professor has the full sample of 18 observations on the board, the most natural estimate of the proportion of first years in the whole class is the sample proportion, $\hat{p}$ of first years among those 18 observations. This 
 
-    What happens to the SE in these two extreme cases?
+If we consider each observation to be a random variable, though, that means $\hat{p}$ is itself an observation of a random variable. Let $\hat{P}$ be the proportion of first year students in a sample of size $n$. Let's rewrite it in terms of random variables that we're more familiar with.
 
-    In the first case, you will always see the entire population if you are drawing without replacement. So, the sample mean will exactly match the population mean. The sampling distribution has no variation, so $SE = 0$.
+$$
+\begin{eqnarray}
+\hat{P} &= \frac{1}{n}\left( X_1 + X_2 + \ldots + X_n \right) \\
+&= \frac{1}{n}\left( S_n \right) 
+\end{eqnarray}
+$$
 
-    In the second case, since you take only one draw from the box, it doesn't matter if you replace it or not. So the SE for a SRS should match the SE when sampling with replacement in this special case. In settings when $N$ is large relative to $n$, it effectively behaves as if you are sampling with replacement.
-
-
-Up until this point, we've worked through this thought experiment with the unrealistic assumption that we know the population. Now we're ready to make inferences in a setting where we *don't* know the population.
-
-## Inference for a Population Average
-
-Drawing on our understanding of the thought-experiment, we ask: 
-
-*What happens when you don't see the population, you just have your sample, and you want to make an inference about the population?*
-
-We have serious gaps in our procedure for learning about the sampling distribution!
-
-![](images/triptych-sample-only.jpg){fig-align=center width=400}
-
-To start, we know we can use the sample average, $\bar{x}$, to infer the population average, $\mu$. This is called a *point estimate* for the population parameter. 
-
-But can we do better than that? Can we bring in more of the information that we have learned from the thought-experiment?
-For example, can we accompany our point estimate with a sense of its accuracy? Ideally, this would be the SE of the sample mean. Unfortunately, we don't know the SE because it depends on $\sigma$. So now what do we do?
-
-### Standard Error
-
-The thought-experiment tells us that $s$ is close to the $\sigma$ (when you have a SRS). So we can substitute the $s$ into the formula for the SE.
-
-$$ SE(\bar{x}) \approx \frac{s}{\sqrt{n}}$$
-
-When presenting our findings, you might say, that based on a SRS of 100 restaurants in San Francisco, the average food safety score is estimated to be `r round(mean(samp_scores), 0)` with a standard error of about
-`r round(sd(samp_scores)/sqrt(length(samp_scores)),1)`.
-
-Suppose someone took a sample of 25 restaurants and provided an estimate of the average food safety score. Is that only 1/4 as accurate because the sample is 1/4 the size of ours?
-
-Suppose someone took a sample of 100 restaurants in New York City where there are 50,000 restaurants (this is a made up number). Is their estimate only 1/10 a accurate because the number of units in the population is 10 times yours?
-
-We can use the formula for the SE to answer these questions. In the table below, we have calculated SEs for a generic value of $\sigma$ and various choices of the population size and sample size.
-
-| Population Size ($N$) |  | Sample Size ($n$)|  | 
-| --- | --- | --- | --- |
-|  | 25 | 100 | 400 |
-| 500        | $SE = \sigma/5$ | $SE = \sigma/10$ | $SE = \sigma/20$ |
-| 5,000      | $SE = \sigma/5$ | $SE = \sigma/10$ | $SE = \sigma/20$ | 
-| 50,000     | $SE = \sigma/5$ | $SE = \sigma/ 10$ | $SE = \sigma/ 20$ | 
-
-
-What do you notice about the relationship between sample size and population size and SE?
-
-- The absolute size of the population doesn't enter into the accuracy of the estimate, as long as the sample size is small relative to the population.
-- A sample of 400 is twice as accurate as a sample of 100, which in turn is twice as accurate as a sample of 25 (assuming the population is relatively much larger than the sample). The precision of estimating the population mean improves according to the square root of the sample size.
-
-
-### Confidence Intervals
-
-Confidence intervals bring in more information from the thought-experiment.
-The confidence interval provides an interval estimate, instead of a point estimate, that is based on spread of the sampling distribution of the statistic.
-
-We have seen that the sampling distribution takes a familiar shape: that of the normal curve (also called the bell curve)[^normalassump]. Therefore we can fill in some of the holes in the thought-experiment with approximations.
-
-[^normalassump]: This is not always the case. We'll come back to this point later. 
-
-![](images/triptych-subs.jpg){fig-align=center width=400} 
-
-The sketch that we have added in the middle panel shows a sampling distribution that looks like the bell curve. To understand how this will be helpful, let's make a quick
-digression to talk about the normal distribution.
-
-#### The Normal Distribution
-
-The normal distribution describes a continuous random variable that has a density function with a familiar bell shape[^normalpdf]. 
-
-[^normalpdf]: For a normally distributed random variable, $f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$. Read more on Wikipedia: <https://en.wikipedia.org/wiki/Normal_distribution>
-
-```{r}
-#| warning: false
-#| fig-width: 4
-#| fig-height: 2
-#| fig-align: center
-
-data.frame(x = seq(-3, 3, .01)) %>%
-  mutate(y = dnorm(x)) %>%
-  ggplot(aes(x = x, y = y)) +
-  geom_line() +
-  labs(x = "x",
-       y = "f(x)") +
-  scale_y_continuous(breaks = NULL) +
-  theme_bw()
-```
-
-If a random variable $X$ follows a normal distribution, we write
-
-$$X \sim \textrm{N}(\mu, \sigma)$$
-
-where $\mu$ is the mean of the distribution and $\sigma$ is its standard deviation. The particular normal distribution shown above is the *standard normal distribution*, where $\mu = 0$ and $\sigma = 1)$.
-
-We can calculate the probability of any event related to $X$ by finding the area under the curve corresponding to that event. That includes the probability that $X$ falls within a particular interval. In the table below, we record the probabilities of three such intervals.
-
-| Interval | Area under the normal curve |
-| ---- | ---- |
-| Between -1 and 1 | `r round(pnorm(1)-pnorm(-1), 2)` |
-| Between -1.96 and 1.96 | `r round(pnorm(1.96)-pnorm(-1.96), 2)` |
-| Between -2.58 and 2.58 | `r round(pnorm(2.58)-pnorm(-2.58), 2)` |
-
-So *if* we know a particular distribution is similar in shape to the normal distribution, we're able to calculate the probabilities that the random variable falls within a particular interval. With this observation in hand, let's return to the task of making an interval estimate.
-
-#### Normal Confidence Intervals
-
-When the sampling distribution is roughly normal in shape, then we can construct an interval that expresses exactly how much sampling variability there is. Using our single sample of data and the properties of the normal distribution, we can be 95% confident that the population parameter is within the following interval.
-
-$$[\bar{x} - 1.96 SE, \bar{x} + 1.96SE]$$
-
-So for a sample where the sample mean is `r round(mean(samp_scores))` and the 95% confidence interval is [`r round(mean(samp_scores) - 1.96*sd(samp_scores)/10, 1)`, `r round(mean(samp_scores) + 1.96*sd(samp_scores)/10, 1)` ], you would say,
-
-> I am 95% confident that the population mean is between `r round(mean(samp_scores) - 1.96*sd(samp_scores)/10, 1)` and `r round(mean(samp_scores) + 1.96*sd(samp_scores)/10, 1)`.
-
-For the particular interval that you have created, you don't know if it contains the population mean or not. This is why we use the term *confidence* to describe it instead of probability. Probability comes into play when taking the sample, after that our confidence interval is a known observed value with nothing left to chance.
-
-##### Confidence not Probability
-
-To be more precise about what is meant by "confidence", let's take 100 samples of size 25 from the restaurant scores, and calculate a 95% confidence interval for each of our 100 samples. How many of these 100 confidence intervals do you think will include the population mean? 
-
-Let's simulate it! At the bottom of the plot below, the horizontal line at the $y = 1$ indicates the coverage of the confidence interval from the first sample. It stretches from roughly 84 to 91. The line above it at $y = 2$ indicates the coverage of the confidence interval that resulted from the second sample, from roughly 85 to 92.5. Both of these confidence intervals happened to cover the true population parameter, indicated by the black vertical line.
-
-```{r}
-#| warning: false
-#| fig-width: 4
-#| fig-height: 5
-#| fig-align: center
-
-set.seed(10312022)
-samp25_means <- replicate(100, mean(sample(fs_scores, 25)))
-
-lower <- samp25_means - 1.96 * sd(fs_scores)/5
-upper <- samp25_means + 1.96 * sd(fs_scores)/5
-trial <- 1:100
-cover <- (mean(fs_scores) >= lower) & (mean(fs_scores) <= upper)
-CIs <- data.frame(trial, lower, upper, cover)
-
-ci100 <- ggplot(CIs, aes(y = trial)) +
-  geom_segment(aes(x=lower, y=trial, xend=upper, yend=trial, color= cover), 
-               show.legend=FALSE) +
-  annotate("segment", x=mean(fs_scores), xend=mean(fs_scores),
-                y=0, yend=101, color="black") +
-  labs(x=expression(bar(x)), y = "Iteration") +
-  theme_minimal()
-
-ci100
-```
-
-As we look up the graph through the remaining intervals, we see that `r sum(CIs$cover)` of the 100 confidence intervals cover the population parameter. This is by design. If we simulate another 100 times, we may get a different number, but it is likely to be close to 95.
-
-## Inference for a Population Proportion
-
-To gain practice with making confidence intervals, we turn to another example. This time we sample from a population where the values are 0s and 1s. You will see that the process is very much the same, although there are a few simplifications that arise due to the nature of the population.
+What distribution does $S_n$ follow? The professor has drawn each ticket out *without replacement*, so this is best 
 
 ```{r}
 #| echo: false
-hi_scores <- 0 + (fs_scores >= 95)
-set.seed(10312)
-hi_score_samp <- sample(hi_scores, 25)
-hi_score_means <- replicate(100000, mean(sample(hi_scores, 25)))
+#| eval: false
+pop_equal <- pop_eager %>%
+  mutate(eagerness = 1)
+
+samp_1 <- pop_equal %>%
+  slice_sample(n = 18,
+                   replace = FALSE,
+                   weight_by = eagerness)
+
+many_samps <- samp_1 %>%
+  mutate(replicate = 1)
+
+for (i in 2:500) {
+  many_samps <- pop_equal %>%
+    slice_sample(n = 18,
+                 replace = FALSE,
+                 weight_by = eagerness) %>%
+    mutate(replicate = i ) %>%
+    bind_rows(many_samps)
+}
+
+p1 <- many_samps %>%
+  filter(replicate == 1) %>%
+  ggplot(aes(x = year)) +
+  geom_bar() +
+  labs(title = "Sample 1")
+
+p2 <- many_samps %>%
+  filter(replicate == 2) %>%
+  ggplot(aes(x = year)) +
+  geom_bar() +
+  labs(title = "Sample 2")
+
+p3 <- many_samps %>%
+  filter(replicate == 3) %>%
+  ggplot(aes(x = year)) +
+  geom_bar() +
+  labs(title = "Sample 3")
+
+many_xbars <- many_samps %>%
+  group_by(replicate) %>%
+  summarize(xbar = mean(as.numeric(year)))
+
+p4 <- many_xbars %>%
+  ggplot(aes(x = xbar)) +
+  geom_bar(fill = "purple") +
+  geom_vline(xintercept = mean(as.numeric(pop_eager$year)),
+             col = "blue", lwd = 1.5) +
+  lims(x = c(0, 4)) +
+  labs(title = "Sampling Distribution")
+
+(p1 + p2 + p3) / p4
 ```
 
-Suppose we only want to eat at restaurants with food safety scores above 95. Let's make a confidence interval for the proportion of restaurants in San Francisco with scores that are "excellent" (scores over 95). 
-To tackle this problem, we can modify our population. Since we need only to keep track of whether a score is excellent, we can replace the scores on the tickets with 0s and 1s, where 1 indicates an excellent score. Of the `r length(fs_scores)` 
-restaurants in San Francisco, `r sum(fs_scores >= 95)` are excellent. We can think of our population as a box with `r length(fs_scores)` tickets in it, and `r sum(fs_scores >= 95)` are marked 1, and `r sum(fs_scores < 95)` are marked 0. This time let's take a SRS of 25.
-
-The thought-experiment appears as 
-
-```{r}
-#| warning: false
-#| fig-width: 9
-#| fig-height: 3
-
-hi_score_dist <- ggplot(as.data.frame(hi_scores), 
-                        aes(x=hi_scores, y=..density..)) + 
-      geom_histogram(breaks=seq(-0.5, 1.5, by = 1), 
-                 color="black", fill="gray") + 
-      xlab("Excellent score?") +
-      ylab("Proportion") +
-      ggtitle("Population")
-
-hi_samp_dist <- ggplot(as.data.frame(hi_score_samp), aes(x=hi_score_samp, y=..density..)) + 
-      geom_histogram(breaks=seq(-0.5, 1.5, by = 1), 
-                 color="black", fill="gray") + 
-      xlab("Excellent scores?") +
-      ylab("Proportion") +
-      ggtitle("Empirical Distribution")
-
-hi_sampling_dist <- ggplot(as.data.frame(hi_score_means), 
-                        aes(x=hi_score_means, y=..density..)) + 
-      geom_histogram(bins = 20, 
-                 color="black", fill="gray") + 
-      xlab("Proportion excellent") +
-      ylab("Proportion") +
-      ggtitle("Sampling Distribution")
-
-hi_score_dist + hi_samp_dist + hi_sampling_dist
-```
-
-
-|             | Population  | Empirical   | Sampling | 
-| ----------- | ----------- | ----------- | ----------- |
-| Shape | left skew | left skew | bell-shaped / normal |
-| Mean | $p$ = `r round(mean(hi_scores), 2)`      |  $\hat{p}$ = `r mean(hi_score_samp)`  | `r round(mean(hi_score_means), 2)`      |
-| SD | $\sigma = \sqrt{p(1-p)}$ = `r round(sd(hi_scores), 2)`      | $s$ = `r round(sd(hi_score_samp), 2)`  | `r round(sd(hi_score_means), 2)`      |
-
-In the special case of a 0-1 box:
-
-+ The population average is the proportion of 1s in the box, let's call this parameter $p$. 
-+ The taking a draw from the population distribution taking a draw from a Bernoulli random variable, so $\sigma = \sqrt{p(1-p)}$.
-+ The sampling distribution has mean $p$.
-+ The sampling proportion, $\hat{p}$, is similar to $p$.
-+ The SE of the sample proportion[^sdp] is approximately $SE(\hat{p}) = \frac{\sqrt{\hat{p}(1-\hat{p})}}{\sqrt{n}}$.
-
-With an equation to estimate $SE$ from our data in hand, we can form a 95% confidence interval.
-
-$$\left[\hat{p} - 1.96 \frac{\sqrt{\hat{p}(1-\hat{p})}}{\sqrt{n}}, \hat{p} + 1.96 \frac{\sqrt{\hat{p}(1-\hat{p})}}{\sqrt{n}}\right]$$
-
-[^sdp]: This calculation results from casting the total number of 1's in a sample of size $n$ as a binomial random variable with success probability $p$. Call that random variable $Y$. The variance of a binomial random variable is $Var(Y) = np(1-p)$. Observing that sample proportion can be considered a binomial count divided by $n$, and applying the properties of variance, we can find the variance of $\hat{p}$ as,
-
-    \begin{eqnarray}
-    Var(\hat{p}) &= Var(\frac{1}{n}Y) \\
-    &= \frac{1}{n^2}Var(Y) \\
-    &= \frac{1}{n^2}np(1-p) \\
-    &= \frac{p(1-p)}{n}
-    \end{eqnarray}
-    
-    So the standard error can be calculated as:
-    
-    \begin{eqnarray}
-    SE(\hat{p}) &= \sqrt{Var(\hat{p})} = \sqrt{\frac{p(1-p)}{n}}
-    \end{eqnarray}
-    
-    When estimating the SE from data, we plug in $\hat{p}$ for $p$.
-
-<!-- Let's make a 99% confidence interval for the proportion of restaurants with scores at least 95,  -->
-<!-- [`r round(mean(hi_score_samp) - 2.58*sd(hi_score_samp)/10, 2)`, `r round(mean(hi_score_samp) + 2.58*sd(hi_score_samp)/10, 2)` ]. -->
-
-## Summary
-
-In these notes, we have restricted ourselves to the simple random sample, where the only source of error that we're concerned with is sampling variability. We outlined two tools for estimating that variability: the standard error (SE) and the confidence interval.
-
-We saw how the size of the sample impacts the standard error of the estimate. The larger the sample, the more accurate our estimates are and in particular the accuracy improves according to $1/\sqrt{n}$. We also found that the size of the population doesn't impact the accuracy, as long as the sample is small compared to the population.   
-
-We made confidence intervals for population averages and proportions using the normal distribution. This approach can be extended to other properties of a population, such as the median of a population, or the coefficient in a regression equation.
-
-The confidence intervals that we have made are approximate in the following sense:
-
-+ We're approximating the shape of the unknown sampling distribution with the normal curve.
-+ The SD of the sample is used in place of the SD of the population in  calculating the SE of the statistic.
-
-There are times when we are unwilling to make the assumption of normality. This is the topic of the next set of notes. 
-
-[ ]{.column-margin}
-
-
-<!-- [I]{.dropcap}n the last set of notes, we used a thought experiment to understand the ways in which the professor calling on students from the front row could yield estimates that are in error. In this thought experiment, we had access to the population, the set of all 527 students in the class, whose distribution is shown in the top row of the plot below. The population parameter that the professor sought to learn was the mean year of those 527 students, 1.72, indicated by a gold triangle. -->
-
-<!-- To estimate that parameter, on the first day of class the professor called on a sample of the 18 students sitting in the front row. The empirical distribution of the years of those 18 students is shown below as Sample 1. Because first year students are more eager and thus more likely to sit in the front row, it is not surprising that they were over-represented in this distribution. As a consequence, the sample mean, 1.44 (shown as a blue triangle), underestimates the population mean. -->
-
-<!-- That selection bias, however, isn't the only source of error. Every day in class, there is some degree of randomness in which seats students sit in, so the group of students in the front row varies. Imagine on the second day, with the students in a slightly different seating configuration, the professor calls on the front row again. A different set of 18 students respond with their years; their empirical distribution shown in Sample 2. -->
-
-<!-- The sample on day two is different from the sample on day one, so the sample mean is a bit different too: 1.39. You can imagine repeating this thought experiment on day three, and on day four, and on day five . . . each time collecting a new slightly different sample of 18 students with their own slightly different sample mean. The distribution of those sample means is the sampling distribution. -->
-
-<!-- ```{r} -->
-<!-- library(tidyverse) -->
-<!-- pop_eager <- data.frame(year = rep(c(1, 2, 3, 4),  -->
-<!--                                    times = c(245, 210, 47, 25)), -->
-<!--                         eagerness = rep(c(10, 6, 3, 1),  -->
-<!--                                         times = c(245, 210, 47, 25))) -->
-<!-- set.seed(55) -->
-<!-- pop_eager <- pop_eager %>% -->
-<!--   slice_sample(n = nrow(pop_eager))  -->
-
-<!-- mu <- mean(pop_eager$year) -->
-
-<!-- p_pop <- pop_eager %>% -->
-<!--   ggplot(aes(x = year)) + -->
-<!--   geom_bar(fill = "purple") + -->
-<!--   labs(title = "Population Distribution", -->
-<!--        y = "") + -->
-<!--   annotate("point", x = mu, y = -20, shape = 17, size = 5, color = "goldenrod2") + -->
-<!--   theme_gray(base_size = 10) + -->
-<!--   theme(plot.title = element_text(size=10)) -->
-
-<!-- library(infer) -->
-<!-- samp_1 <- pop_eager %>% -->
-<!--   slice_sample(n = 18, -->
-<!--                    replace = FALSE, -->
-<!--                    weight_by = eagerness)  -->
-
-<!-- many_samps <- samp_1 %>% -->
-<!--   mutate(Sample = 1) -->
-
-<!-- for (i in 2:500) { -->
-<!--   many_samps <- pop_eager %>% -->
-<!--     slice_sample(n = 18, -->
-<!--                  replace = FALSE, -->
-<!--                  weight_by = eagerness) %>% -->
-<!--     mutate(Sample = i ) %>% -->
-<!--     bind_rows(many_samps) -->
-<!-- } -->
-
-<!-- xbar1 <- many_samps %>% -->
-<!--   filter(Sample == 1) %>% -->
-<!--   summarize(mean(year)) %>% -->
-<!--   pull() -->
-
-<!-- xbar2 <- many_samps %>% -->
-<!--   filter(Sample == 2) %>% -->
-<!--   summarize(mean(year)) %>% -->
-<!--   pull() -->
-
-<!-- xbar3 <- many_samps %>% -->
-<!--   filter(Sample == 3) %>% -->
-<!--   summarize(mean(year)) %>% -->
-<!--   pull() -->
-
-<!-- p1 <- many_samps %>% -->
-<!--   filter(Sample == 1) %>% -->
-<!--   ggplot(aes(x = year)) +  -->
-<!--   geom_bar() + -->
-<!--   labs(title = "Sample 1", -->
-<!--        y = "") + -->
-<!--   annotate("point", x = xbar1, y = 0, shape = 17,  -->
-<!--            size = 4, color = "steelblue") + -->
-<!--   theme_gray(base_size = 10) + -->
-<!--   theme(plot.title = element_text(size=10)) -->
-
-<!-- p2 <- many_samps %>% -->
-<!--   filter(Sample == 2) %>% -->
-<!--   ggplot(aes(x = year)) +  -->
-<!--   geom_bar() + -->
-<!--   labs(title = "Sample 2", -->
-<!--        y = "") + -->
-<!--   annotate("point", x = xbar2, y = 0, shape = 17,  -->
-<!--            size = 4, color = "steelblue") + -->
-<!--   theme_gray(base_size = 10) + -->
-<!--   theme(plot.title = element_text(size=10)) -->
-
-<!-- p3 <- many_samps %>% -->
-<!--   filter(Sample == 3) %>% -->
-<!--   ggplot(aes(x = year)) +  -->
-<!--   geom_bar() + -->
-<!--   labs(title = "Sample 3", -->
-<!--        y = "") + -->
-<!--   annotate("point", x = xbar3, y = 0, shape = 17,  -->
-<!--            size = 4, color = "steelblue") + -->
-<!--   theme_gray(base_size = 10) + -->
-<!--   theme(plot.title = element_text(size=10)) -->
-
-<!-- # fix limits -->
-<!-- xlims_from_samps <- list(ggplot_build(p1)$layout$panel_scales_x[[1]]$range$range, -->
-<!--            ggplot_build(p2)$layout$panel_scales_x[[1]]$range$range, -->
-<!--            ggplot_build(p3)$layout$panel_scales_x[[1]]$range$range) -->
-<!-- max_xlims <- unlist(xlims_from_samps[which.max(lapply(xlims_from_samps, diff))]) -->
-
-<!-- ylims_from_samps <- list(ggplot_build(p1)$layout$panel_scales_y[[1]]$range$range, -->
-<!--            ggplot_build(p2)$layout$panel_scales_y[[1]]$range$range, -->
-<!--            ggplot_build(p3)$layout$panel_scales_y[[1]]$range$range) -->
-<!-- max_ylims <- unlist(ylims_from_samps[which.max(lapply(ylims_from_samps, diff))]) -->
-
-<!-- p1 <- p1 + -->
-<!--   lims(x = max_xlims, -->
-<!--        y = max_ylims) -->
-
-<!-- p2 <- p2 + -->
-<!--   lims(x = max_xlims, -->
-<!--        y = max_ylims) -->
-
-<!-- p3 <- p3 + -->
-<!--   lims(x = max_xlims, -->
-<!--        y = max_ylims) -->
-
-<!-- sample_labels <- c("1" = "Sample 1", -->
-<!--                    "2" = "Sample 2", -->
-<!--                    "3" = "Sample 3") -->
-
-<!-- p_samps <- many_samps %>% -->
-<!--   filter(Sample %in% 1:3) %>% -->
-<!--   ggplot(aes(x = year)) +  -->
-<!--   geom_bar() + -->
-<!--   labs(y = "") + -->
-<!--   facet_wrap(vars(Sample), -->
-<!--              labeller = labeller(Sample = sample_labels)) + -->
-<!--   theme_gray(base_size = 10) -->
-
-<!-- many_xbars <- many_samps %>% -->
-<!--   group_by(Sample) %>% -->
-<!--   summarize(xbar = mean(as.numeric(year))) -->
-
-<!-- xlims_from_pop <- ggplot_build(p_pop)$layout$panel_scales_x[[1]]$range$range -->
-
-<!-- p_samp_dist <- many_xbars %>% -->
-<!--   ggplot(aes(x = xbar)) + -->
-<!--   geom_bar(fill = "steelblue") + -->
-<!--   lims(x = c(0, 4)) + -->
-<!--   labs(title = "Sampling Distribution", -->
-<!--        y = "", -->
-<!--        x = expression(paste(bar(x), " (mean year)"))) + -->
-<!--   annotate("point", x = mu, y = -10, shape = 17, size = 5, color = "goldenrod2") + -->
-<!--   theme_gray(base_size = 10) + -->
-<!--   theme(plot.title = element_text(size=10)) + -->
-<!--   lims(x = xlims_from_pop) -->
-
-<!-- library(patchwork) -->
-
-<!-- triptych <- (plot_spacer() + p_pop + plot_spacer()) /  -->
-<!--   (p1 + p2 + p3) /  -->
-<!--   (plot_spacer() + p_samp_dist + plot_spacer()) -->
-<!-- triptych -->
-<!-- ``` -->
-
-<!-- This sampling distribution contains 500 sample means. The selection bias in calling only on the front row -->
