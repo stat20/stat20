@@ -272,9 +272,6 @@ schedule:
           - type: Slides
             href: 4-generalization/02-confidence-intervals/slides.qmd
             render: false
-          - type: Lab
-            href: 4-generalization/labs/05-peoples-park/lab.qmd
-            render: false
             
   - week: 9
     days:
