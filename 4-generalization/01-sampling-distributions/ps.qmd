@@ -3,52 +3,52 @@ title: "Sampling Distributions"
 format: stat20handout-pdf
 ---
 
-## Case Study 1: Cherry Blossom Run
+<!-- ## Case Study: Cherry Blossom Run -->
 
-The Cherry Blossom Run is an annual 10-mile race that takes place in April in Washington D.C. when the cherry trees are in bloom. Data were scraped from the Run’s website and include official times and other information, such as the age, sex, and address for all registered runners from 1999 to 2012. Originally designed as a preparatory race for professional runners in the New York Marathon, the Cherry Blossom Run has gained popularity and roughly 10,000 people participate each year. An ambitious data scientist used these data to compare the times of 30-year-old runners to 50-year-old runners, to study how run times decreased as people age.
+<!-- The Cherry Blossom Run is an annual 10-mile race that takes place in April in Washington D.C. when the cherry trees are in bloom. Data were scraped from the Run’s website and include official times and other information, such as the age, sex, and address for all registered runners from the 2019 race. Designed as a preparatory race for professional runners in the New York Marathon, roughly 10,000 people participate each year. An ambitious data scientist used these data to compare the times of 30-year-old runners to 50-year-old runners, to study how running speed changes as Americans go through middle age. -->
 
-1. Describe the sample. Roughly large is it ($n$) and what is the unit of observation?
+<!-- 1. Describe the sample. Roughly how large is it ($n$) and what is the unit of observation? -->
 
-\
+<!-- \ -->
 
-2. Describe the population. How large is it ($N$)?
+<!-- 2. Describe the population. How large is it ($N$)? -->
 
-\
+<!-- \ -->
 
-3. Identify the population parameter that researchers are interested in estimating and the corresponding statistic that will serve as the estimate.
+<!-- 3. Identify the population parameter that researchers are interested in estimating and the corresponding statistic that will serve as the estimate. -->
 
-\
+<!-- \ -->
 
-4. Identify possible sources of bias and whether they are selection or measurement bias. How do you expect this will effect the estimate of the parameter?
+<!-- 4. Identify possible sources of bias and whether they are selection or measurement bias. How do you expect this will effect the estimate of the parameter? -->
 
-\
-\
-\
-\
-\
-\
-\
-\
-\
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
 
 
-5. Identify possible sources of variation and whether they are sampling or measurement variability. How do you expect this will effect the estimate of the parameter?
+<!-- 5. Identify possible sources of variation and whether they are sampling or measurement variability. How do you expect this will effect the estimate of the parameter? -->
 
-\
-\
-\
-\
-\
-\
-\
-\
-\
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
 
-6. On a separate sheet of paper, make two sketches: an empirical distribution of the data and what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Illustrate any anticipation of bias you have by adding a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be.
+<!-- 6. On a separate sheet of paper, make two sketches: an empirical distribution of the data and what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Illustrate any anticipation of bias you have by adding a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be. -->
 
-## Case Study 2: National Youth Tobacco Study
+## Case Study 1: National Youth Tobacco Study
 
-The National Youth Tobacco Survey (NYTS) is a complex survey carried out by the CDC to better understand teen tobacco use patterns. It is a school-based, pencil-and-paper questionnaire, self-administered to a nationally representative sample of students in grades 6-12 in the U.S. In 2019, 5,675 students completed the NYTS; the overall survey response rate was 71.6%. Students were asked if they had used an e-cigarette in the past 30 days. In an effort to address the reasons  students used e-cigarettes, they were also asked who introduced them to e-cigarettes and whether they used other forms of tobacco.
+The National Youth Tobacco Survey (NYTS) is a complex survey carried out by the CDC to better understand the rate of e-cigarette usage among teens. It is a school-based, pencil-and-paper questionnaire, self-administered to a nationally representative sample of students in grades 6-12 in the U.S. In 2019, 5,675 students completed the NYTS; the overall survey response rate was 71.6%. Among other questions, students were asked if they had used an e-cigarette in the past 30 days.
 
 1. Describe the sample. How large is it ($n$) and what is the unit of observation?
 
@@ -87,10 +87,40 @@ The National Youth Tobacco Survey (NYTS) is a complex survey carried out by the 
 \
 \
 
-6. On a separate sheet of paper (a third page to your submission), make two sketches: 1. an empirical distribution of the data and 2. what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Illustrate any anticipation of bias you have by adding a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be.
+6. On the back of this page make two sketches: 1. an empirical distribution of the data and 2. what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Illustrate any anticipation of bias you have by adding a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be.
 
-<!-- {{< pagebreak >}} -->
+{{< pagebreak >}}
 
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+\hrule
 
 <!-- ## Case Study 2: World Health Organization -->
 
