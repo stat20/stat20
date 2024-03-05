@@ -245,7 +245,7 @@ schedule:
       - topic: "Quiz 2"
         display-date: Mar 4
         
-      - topic: 'Scope, Bias and Variability'
+      - topic: 'Sampling Distributions'
         display-date: Mar 5
         date: 3/05/24
         items:
@@ -254,7 +254,13 @@ schedule:
             render: true
           - type: Slides
             href: 4-generalization/01-sampling-distributions/slides.qmd
-            render: false
+            render: true
+          - type: PS
+            href: 4-generalization/01-sampling-distributions/ps.qmd
+            render: true
+          - type: Lab
+            href: 4-generalization/labs/05-peoples-park/lab.qmd
+            render: true
             
       - topic: "Confidence Intervals"
         display-date: Mar 7
@@ -265,9 +271,6 @@ schedule:
             render: false
           - type: Slides
             href: 4-generalization/02-confidence-intervals/slides.qmd
-            render: false
-          - type: Lab
-            href: 4-generalization/labs/05-peoples-park/lab.qmd
             render: false
             
   - week: 9
@@ -317,7 +320,7 @@ schedule:
             render: false
             
       - topic: "Quiz 3"
-        display-date: Mar 21
+        display-date: "Mar 21, Mar 22"
         date: 3/21/24
         
   - week: "Spring Break"
