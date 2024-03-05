@@ -20,13 +20,65 @@ format:
       data-background-size: contain
 ---
 
-![](images/daily-cal-ppk.png){fig-align="center"}
+![](images/ppk-berkeleyside.png){fig-align="center"}
+
+:::notes
+This is a recent new article in Berkeleyside, the local paper, about the incredible lengths to which the university has gone to ensure that it can proceed with the development of People's Park into housing.
+
+If you're not familiar with the debate (which has lasted many years and is ongoing), search the archives at Daily Cal and Berkeleyside for background.
+:::
 
 ##
 
 <center>
 <iframe width="1120" height="730" src="https://www.youtube.com/embed/3mmIaFNAdeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </center>
+
+:::notes
+This is a promo video produced by the University to make an argument for the project. This was released at roughly the same time as the survey results.
+:::
+
+## People's Park Project
+
+The University wishes to turn a university-owned plot of land called People's Park into housing. 
+
+:::columns
+:::{.column width="50%" .fragment}
+### Opponents
+
+- Advocates for the homeless residents living on site
+- Neighbors who don't want a tall tower built
+- Historical preservationists who want to preserve it for its role in countercultural movement of the '60s.
+:::
+
+:::{.column width="50%" .fragment}
+### Proponents
+
+- Advocates for homeless more generally
+- Neighbors who want the blight and crime gone
+- Students who want easier access to housing
+- City of Berkeley who wants more housing built
+:::
+:::
+
+## The Chancellor's Survey
+
+:::columns
+:::{.column width="50%"}
+![Chancellor Carol Christ](images/christ.jpeg)
+:::
+
+:::{.column width="50%"}
+In fall of 2021, the Chancellor's Office commissioned a survey of the Berkeley community to gauge opinions on people's park.
+
+\
+\
+
+In this lab you will gain access to this survey data.
+:::
+
+:::
+
 
 ## Part I: Understanding the Context of the Data
 
