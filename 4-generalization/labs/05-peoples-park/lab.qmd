@@ -32,7 +32,7 @@ In answering the following questions, it will be helpful to consult
 
 ## Part I: Understanding the Context of the Data
 
-- [Lab 5.1: People's Park](lab-context.pdf)
+- [Lab Part I: People's Park](lab-context.pdf)
 
 
 <!-- ## Part II: Computing on the Data -->
