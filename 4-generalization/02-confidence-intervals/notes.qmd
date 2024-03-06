@@ -232,9 +232,10 @@ pop_dist + emp_dist + sampling_dist
 Observe that:
 
 1. $\mu$ and the mean of the sampling distribution are roughly the same.
-2.$\sigma$ and the SE of the sample averages are related in the following way[^finite]:
 
-$$SE(\bar{x}) \approx \frac{\sigma}{\sqrt{n}}$$
+2. $\sigma$ and the SE of the sample averages are related in the following way[^finite]:
+
+   $$SE(\bar{x}) \approx \frac{\sigma}{\sqrt{n}}$$
 
 3. The histogram of the sample averages is not skewed like the histogram of the population, on the contrary, it is symmetric and bell-shaped, like the normal curve.
 
@@ -366,6 +367,12 @@ This is the Central Limit Theorem in action. The CLT states that sums of random 
 
 When the sampling distribution is roughly normal in shape, then we can construct an interval that expresses exactly how much sampling variability there is. Using our single sample of data and the properties of the normal distribution, we can be 95% confident that the population parameter is within the following interval.
 
+:::{.column-margin}
+
+The number 1.96 doesn't come out of thin air. Refer to the notes on the [Normal Distribution](../../3-probability/06-normal-approx/notes.qmd) to understand the origins.
+
+:::
+
 $$[\bar{x} - 1.96 SE, \bar{x} + 1.96SE]$$
 
 So for a sample where the sample mean is `r round(mean(samp_scores))` and the 95% confidence interval is [`r round(mean(samp_scores) - 1.96*sd(samp_scores)/10, 1)`, `r round(mean(samp_scores) + 1.96*sd(samp_scores)/10, 1)` ], you would say,
@@ -448,7 +455,7 @@ hi_samp_dist <- ggplot(as.data.frame(hi_score_samp), aes(x=hi_score_samp, y=..de
 
 hi_sampling_dist <- ggplot(as.data.frame(hi_score_means), 
                         aes(x=hi_score_means, y=..density..)) + 
-      geom_histogram(bins = 20, 
+      geom_histogram(bins = 16, 
                  color="black", fill="gray") + 
       xlab("Proportion excellent") +
       ylab("Proportion") +
