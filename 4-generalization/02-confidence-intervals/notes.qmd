@@ -85,7 +85,7 @@ p_samp_dist <- many_xbars %>%
 p_samp_dist
 ```
 
-This sampling distribution captures the two sources of error that creep in while generalizing. The horizontal offset from true population parameter (the red line) to the mean of the sampling distribution (the gold triangle) represents the bias. The spread of the sampling distribution represents the variation. In these lecture notes you'll learn how to quantify sampling variability using two common tools.
+This sampling distribution captures the two sources of error that creep in while generalizing. The horizontal offset from the true population parameter (the red line) to the mean of the sampling distribution (the gold triangle) represents the bias. The spread of the sampling distribution represents the variation. In these lecture notes you'll learn how to quantify sampling variability using two common tools.
 
 **Standard Error (SE)**
 : The standard deviation of the sampling distribution of a statistic.
@@ -293,7 +293,7 @@ When presenting our findings, you might say, that based on a SRS of 100 restaura
 
 Suppose someone took a sample of 25 restaurants and provided an estimate of the average food safety score. Is that only 1/4 as accurate because the sample is 1/4 the size of ours?
 
-Suppose someone took a sample of 100 restaurants in New York City where there are 50,000 restaurants (this is a made up number). Is their estimate only 1/10 a accurate because the number of units in the population is 10 times yours?
+Suppose someone took a sample of 100 restaurants in New York City where there are 50,000 restaurants (this is a made up number). Is their estimate only 1/10 as accurate because the number of units in the population is 10 times yours?
 
 We can use the formula for the SE to answer these questions. In the table below, we have calculated SEs for a generic value of $\sigma$ and various choices of the population size and sample size.
 
@@ -314,7 +314,7 @@ What do you notice about the relationship between sample size and population siz
 ### Confidence Intervals
 
 Confidence intervals bring in more information from the thought-experiment.
-The confidence interval provides an interval estimate, instead of a point estimate, that is based on spread of the sampling distribution of the statistic.
+The confidence interval provides an interval estimate, instead of a point estimate, that is based on the spread of the sampling distribution of the statistic.
 
 We have seen that the sampling distribution takes a familiar shape: that of the normal curve (also called the bell curve)[^normalassump]. Therefore we can fill in some of the holes in the thought-experiment with approximations.
 
