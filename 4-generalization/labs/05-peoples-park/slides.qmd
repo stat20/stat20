@@ -1,5 +1,5 @@
 ---
-title: "Lab 5: People's Park"
+title: "Lab: People's Park"
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
