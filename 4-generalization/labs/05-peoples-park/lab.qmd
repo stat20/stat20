@@ -71,19 +71,23 @@ Construct one addition visualization that captures a variable or relationship be
 
 #### Question 7
 
-Create two 95% confidence intervals for the mean rating of the condition of People's Park using the normal curve. Interpret the interval in the context of the problem in a clear sentence.
+Create a 95% confidence intervals for the mean rating of the condition of People's Park using the normal curve. Interpret the interval in the context of the problem in a clear sentence.
 
 
 #### Question 8
 
-Create two 95% confidence intervals for the overall proportion of students that support the People's Park Project without having been exposed to the information on page 14 using the normal curve. Interpret the interval in the context of the problem in a clear sentence. Do your point estimates approximately match those reported in the Chancellor's email?
-
-
-#### Question 9
-
-Using just the bootstrap, create a 95% confidence intervals for the mean change in support for the Project across the entire population after being exposed to the information on page 14.
+Create a 95% confidence interval for the overall proportion of students who support the People's Park Project without having been exposed to the information on page 14 using the normal curve. Interpret the interval in the context of the problem in a clear sentence. Does your point estimate approximately match that reported in the Chancellor's email?
 
 #### Question 9
+
+Select a confidence level *lower* than 95% and recalculate the interval from the previous question to express this confidence level. In general, are intervals with higher confidence wider or narrower than those with lower confidence?
+
+
+#### Question 10
+
+Using the normal curve, create a 95% confidence interval for the mean change in support for the Project across the entire population after being exposed to the information on page 14.
+
+#### Question 11
 
 Does your interval from the previous question contain 0? What are the implications of that for those working in the Chancellor's Office on the People's Park Project?
 
