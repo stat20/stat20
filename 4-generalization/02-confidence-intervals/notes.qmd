@@ -27,6 +27,7 @@ library(patchwork)
 #| fig-height: 2
 #| fig-width: 5
 #| fig-align: center
+#| echo: false
 pop_eager <- data.frame(year = rep(c(1, 2, 3, 4),
                                    times = c(245, 210, 47, 25)),
                         eagerness = rep(c(10, 6, 3, 1),
@@ -116,6 +117,7 @@ Our population consists of the restaurants in San Francisco. Since the data are 
 #| fig-width: 4
 #| fig-height: 2.5
 #| fig-align: center
+#| echo: false
 
 load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
 
@@ -151,6 +153,7 @@ The distribution of this sample (an empirical distribution) looks like:
 #| fig-width: 4
 #| fig-height: 2.5
 #| fig-align: center
+#| echo: false
 
 set.seed(103122)
 samp_scores <- sample(fs_scores, 100)
@@ -187,6 +190,7 @@ Ordinarily this distribution takes some work to create, but in this thought-expe
 #| fig-width: 4
 #| fig-height: 2.5
 #| fig-align: center
+#| echo: false
 
 set.seed(10312022)
 samp_means <- replicate(100000, mean(sample(fs_scores, 100)))
@@ -219,6 +223,7 @@ Let's look at these three aspects of this process side-by-side.
 #| warning: false
 #| fig-width: 9
 #| fig-height: 3
+#| echo: false
 
 pop_dist + emp_dist + sampling_dist
 ```
@@ -392,6 +397,7 @@ Let's simulate it! At the bottom of the plot below, the horizontal line at the $
 #| fig-width: 4
 #| fig-height: 5
 #| fig-align: center
+#| echo: false
 
 set.seed(10312022)
 samp25_means <- replicate(100, mean(sample(fs_scores, 25)))
@@ -437,6 +443,7 @@ The thought-experiment appears as
 #| warning: false
 #| fig-width: 9
 #| fig-height: 3
+#| echo: false
 
 hi_score_dist <- ggplot(as.data.frame(hi_scores), 
                         aes(x=hi_scores, y=..density..)) + 
