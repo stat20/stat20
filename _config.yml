@@ -271,7 +271,7 @@ schedule:
             render: true
           - type: Slides
             href: 4-generalization/02-confidence-intervals/slides.qmd
-            render: false
+            render: true
             
   - week: 9
     days:
