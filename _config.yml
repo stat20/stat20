@@ -278,9 +278,20 @@ schedule:
       - topic: "Lab 4 Workshop"
         display-date: Mar 11
         
-      - topic: "Intro to Hypothesis Tests"
+      - topic: "Bootstrapping"
         display-date: Mar 12
         date: 3/12/24
+        items:
+          - type: Notes
+            href: 4-generalization/03-bootstrapping/notes.qmd
+            render: true
+          - type: Slides
+            href: 4-generalization/04-bootstrapping/slides.qmd
+            render: false
+        
+      - topic: "Intro to Hypothesis Tests"
+        display-date: Mar 14
+        date: 3/14/24
         items:
           - type: Notes
             href: 4-generalization/04-hypothesis-tests/notes.qmd
@@ -292,9 +303,14 @@ schedule:
             href: 4-generalization/04-hypothesis-tests/ps.qmd
             render: false
             
+  - week: 10
+    days:
+      - topic: "Quiz Review"
+        display-date: Mar 18
+        
       - topic: "Types of Hypothesis Tests"
-        display-date: Mar 14
-        date: 3/14/24
+        display-date: Mar 19
+        date: 3/19/24
         items:
           - type: Notes
             href: 4-generalization/05-hypothesis-tests-2/notes.qmd
@@ -302,15 +318,10 @@ schedule:
           - type: Slides
             href: 4-generalization/05-hypothesis-tests-2/slides.qmd
             render: false
-            
-  - week: 10
-    days:
-      - topic: "Quiz Review"
-        display-date: Mar 18
         
-      - topic: "Wrong By Design"
-        display-date: Mar 19
-        date: 3/19/24
+      - topic: "Quiz 3, Wrong By Design"
+        display-date: "Mar 21/22"
+        date: 3/21/24
         items:
           - type: Notes
             href: 4-generalization/06-wrong-by-design/notes.qmd
@@ -318,10 +329,7 @@ schedule:
           - type: Slides
             href: 4-generalization/06-wrong-by-design/slides.qmd
             render: false
-            
-      - topic: "Quiz 3"
-        display-date: "Mar 21, Mar 22"
-        date: 3/21/24
+
         
   - week: "Spring Break"
     days: 
