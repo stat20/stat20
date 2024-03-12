@@ -287,7 +287,10 @@ schedule:
             render: true
           - type: Slides
             href: 4-generalization/04-bootstrapping/slides.qmd
-            render: false
+            render: true
+          - type: Bootstrapping
+            href: 4-generalization/04-bootstrapping/ps.qmd
+            render: true
         
       - topic: "Intro to Hypothesis Tests"
         display-date: Mar 14
