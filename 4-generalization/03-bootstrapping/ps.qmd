@@ -6,7 +6,7 @@ format: stat20handout-pdf
 
 Bootstrapping and the Central Limit Theorem are two ways to approximate the sampling distribution of statistics. But how good of an approximation are they?
 
-Go to [abray.shinyapps.io/sampling-dist](abray.shinyapps.io/sampling-dist).
+Go to [abray.shinyapps.io/sampling-dist](abray.shinyapps.io/sampling-dist)
 
 ### The Triptych
 
