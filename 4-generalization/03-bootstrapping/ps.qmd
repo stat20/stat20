@@ -1,0 +1,5 @@
+---
+title: "Bootstrapping"
+format: stat20handout-pdf
+---
+
