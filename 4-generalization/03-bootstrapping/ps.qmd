@@ -1,0 +1,70 @@
+---
+title: "Bootstrapping"
+subtitle: "PS"
+format: stat20handout-pdf
+---
+
+Bootstrapping and the Central Limit Theorem are two ways to approximate the sampling distribution of statistics. But how good of an approximation are they?
+
+Go to [abray.shinyapps.io/sampling-dist](abray.shinyapps.io/sampling-dist).
+
+### The Triptych
+
+@. Using the app, create a large moderately skewed population, draw a sample of size 100, then simulate the sampling distribution of the mean. Sketch the three distributions as density plots below.
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+@. Of these three plots, which one(s) are observed in real-life settings?
+
+\
+
+@. What mathematical result describes the particular shape seen in the sampling distribution?
+
+\
+
+@. Experiment with the shape of the population, the sample size, and the statistic being studied. Report 3 different settings that lead to sampling distributions that look *non-normal* and sketch those non-normal shapes below.
+
+
+{{< pagebreak >}}
+
+### Approximations
+
+Using the Triptych settings from one of your non-normal sampling distributions, click into the "Approximations" tab at the top.
+
+@. Import your empirical distribution to serve as the bootstrap population and then draw several bootstrap samples. How many observations are being visualized in each bootstrap sample? What is the highest and lowest value that can be seen in bootstrap distribution?
+
+\
+\
+
+@. Generate a full bootstrap sampling distribution using the statistic specified in the Triptych. Of these three plots, which one(s) can be observed in a real-life setting?
+
+\
+
+@. Superimpose on top of the bootstrap distribution the shape of the true simulated sampling distribution. Draw that figure below, labeling both distributions, and comment on how good of an approximations the bootstrap sampling distribution is to the true sampling distribution.
+
+\
+\
+\
+\
+\
+\
+\
+
+
+@. Use the app to develop general rules of thumb for each statistic for when the bootstrap algorithm can provide a good approximation to the shape of the sampling distribution. For each statistic, discuss the properties of the population and the sample.
+
+
+
+
