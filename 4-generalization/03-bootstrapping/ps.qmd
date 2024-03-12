@@ -10,7 +10,7 @@ Go to [abray.shinyapps.io/sampling-dist](abray.shinyapps.io/sampling-dist)
 
 ### The Triptych
 
-@. Using the app, create a large moderately skewed population, draw a sample of size 100, then simulate the sampling distribution of the mean. Sketch the three distributions as density plots below.
+@. Using the app, create a large slightly skewed population, draw a sample of size 100, then simulate the sampling distribution of the mean. Sketch the three distributions as density plots below.
 
 \
 \
@@ -43,7 +43,7 @@ Go to [abray.shinyapps.io/sampling-dist](abray.shinyapps.io/sampling-dist)
 
 Using the Triptych settings from one of your non-normal sampling distributions, click into the "Approximations" tab at the top.
 
-@. Import your empirical distribution to serve as the bootstrap population and then draw several bootstrap samples. How many observations are being visualized in each bootstrap sample? What is the highest and lowest value that can be seen in bootstrap distribution?
+@. Import your empirical distribution to serve as the bootstrap population and then draw several bootstrap samples. How many observations are being visualized in each bootstrap sample? What is the highest and lowest value that can be seen in a bootstrap sample?
 
 \
 \
@@ -52,7 +52,7 @@ Using the Triptych settings from one of your non-normal sampling distributions, 
 
 \
 
-@. Superimpose on top of the bootstrap distribution the shape of the true simulated sampling distribution. Draw that figure below, labeling both distributions, and comment on how good of an approximations the bootstrap sampling distribution is to the true sampling distribution.
+@. Overlay on top of the bootstrap distribution the shape of the true simulated sampling distribution. Draw that figure below, labeling both distributions, and comment on how good of an approximation the bootstrap sampling distribution is to the true sampling distribution.
 
 \
 \
