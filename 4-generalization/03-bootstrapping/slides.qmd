@@ -37,6 +37,7 @@ As students arrive, randomly give ~8 of them an index card.
 
 - Concept Question
 - Activity: The Bootstrap
+- PS: The Bootstrap
 - Bootstrapping with `infer`
 
 # Concept Question
@@ -148,6 +149,13 @@ Ask for a second volunteer to generate the second bootstrap sample. Repeat the p
 
 Collect the bootstrapped medians and proportions and sketch them as the first few points in a broader density plot that we'll be able to see when we take more and more bootstrap samples. Label this as the "bootstrap distribution" and speak of it as an approximation to the true sampling distribution. You can explain the 1 - alpha bootstrap interval as the interval that captures the middle 95% of bootstrapped statistics.
 :::
+
+# Problem Set
+
+```{r}
+countdown::countdown(20)
+```
+
 
 # Bootstrapping with Infer
 
