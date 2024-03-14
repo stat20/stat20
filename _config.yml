@@ -340,7 +340,7 @@ schedule:
         
   - week: 10
     days:
-      - topic: "Final Review Day"
+      - topic: "Final Review Day/Cheatsheet Pickup"
         display-date: Apr 1
 
       - topic: "The Method of Least Squares"
@@ -370,7 +370,7 @@ schedule:
 
   - week: 12
     days:
-      - topic: "Lab 6 Workshop"
+      - topic: "Lab 5 Workshop"
         display-date: Apr 8
         
       - topic: "Overfitting"
