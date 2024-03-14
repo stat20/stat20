@@ -78,6 +78,8 @@ Let's create the bootstrap sampling distribution for the example of food safety 
 #| fig-width: 5
 #| fig-height: 3
 #| fig-align: center
+#| code-fold: false
+#| echo: false
 
 load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
 
@@ -105,7 +107,8 @@ The *bootstrap sampling distribution* looks like the following.
 #| fig-width: 5
 #| fig-height: 3
 #| fig-align: center
-#| echo: true
+#| code-fold: false
+#| echo: false
 
 library(infer)
 boot <- food_scores %>%
@@ -149,6 +152,8 @@ The best one-variable linear model to fit body mass is the model that explains a
 This model has an $R^2$ of 0.54. But, when we add information about the penguin's flipper length, the model does improve somewhat. The coefficients of the model with sex and flipper length as explanatory variables for body mass is:
 
 ```{r}
+#| code-fold: false
+#| echo: false
 library(stat20data)
 
 penguins_adelie <- penguins %>% 
@@ -168,6 +173,8 @@ Recall that this model is equivalent to fitting two parallel lines, one for each
 #| fig-width: 5
 #| fig-height: 3
 #| fig-align: center
+#| code-fold: false
+#| echo: false
 
 a_male <- lm_mfs$coefficients[1] + lm_mfs$coefficients[2]
 a_female <- lm_mfs$coefficients[1] 
@@ -220,6 +227,8 @@ Let's simulate the bootstrap sampling distribution with 500 rounds of drawing 14
 #| fig-width: 5
 #| fig-height: 3
 #| fig-align: center
+#| code-fold: false
+#| echo: false
 
 set.seed(11522)
 
@@ -248,6 +257,9 @@ We can make a 99% bootstrap confidence interval by finding the 0.5th percentile 
 
 
 ```{r}
+#| code-fold: false
+#| echo: false
+
 ci <- boot_coef %>%
   filter(term == "flipper_length_mm") %>%
   get_ci(level = .99)
@@ -294,7 +306,7 @@ The specify function allows you to specify which column of a data frame you are 
 ```{r}
 #| echo: true
 #| code-fold: false
-penguins %>%
+penguins |>
   specify(response = bill_length_mm)
 ```
 
@@ -312,8 +324,8 @@ Useful functions include:
 ```{r}
 #| echo: true
 #| code-fold: false
-penguins %>%
-  specify(response = bill_length_mm) %>%
+penguins |>
+  specify(response = bill_length_mm) |>
   generate(reps = 2, type = "bootstrap")
 ```
 
@@ -329,9 +341,9 @@ The third link in an `infer` pipeline is the calculate function, which calculate
 ```{r}
 #| echo: true
 #| code-fold: false
-penguins %>%
-  specify(response = bill_length_mm) %>%
-  generate(reps = 2, type = "bootstrap") %>%
+penguins |>
+  specify(response = bill_length_mm) |>
+  generate(reps = 2, type = "bootstrap") |>
   calculate(stat = "mean")
 ```
 
@@ -353,12 +365,12 @@ If you would like to create bootstrapped coefficients for a linear model, you'll
 ```{r}
 #| echo: true
 #| code-fold: false
-penguins_adelie <- penguins %>%
+penguins_adelie <- penguins |>
   filter(species == "Adelie")
 
-penguins_adelie %>%
-  specify(body_mass_g ~ sex + flipper_length_mm) %>%
-  generate(reps = 2, type = "bootstrap") %>%
+penguins_adelie |>
+  specify(body_mass_g ~ sex + flipper_length_mm) |>
+  generate(reps = 2, type = "bootstrap") |>
   fit()
 ```
 
@@ -377,7 +389,7 @@ This function drops rows that have missing values (`NA`s). Add as arguments any 
 df <- data.frame(rank = c(2, 3, 1, 4, NA),
                  letter = c(NA, NA, NA, "d", "e"))
 
-df %>%
+df |>
   drop_na(rank)
 
 df %>%

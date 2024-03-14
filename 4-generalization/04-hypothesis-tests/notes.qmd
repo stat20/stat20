@@ -52,6 +52,8 @@ So just how different were these proportions in the data? The plot above shows d
 Here are the first 10 observations.
 
 ```{r}
+#| code-fold: false
+#| echo: false
 library(tidyverse)
 set.seed(3224)
 code_blue <- read_csv("https://www.dropbox.com/s/yj3grtilupyj9pv/code_blue.csv?dl=1") %>%
@@ -128,6 +130,8 @@ By repeating steps 1 and 2 many many times, we can build up the full distributio
 #| fig-align: center
 #| fig-width: 5
 #| fig-height: 3
+#| code-fold: false
+#| echo: false
 library(infer)
 
 null <- code_blue %>%
@@ -156,6 +160,10 @@ To put that into perspective, we can plot the observed statistic as a vertical l
 #| fig-width: 10
 #| fig-height: 3
 #| fig-column: body-outset
+#| code-fold: false
+#| echo: false
+
+
 null %>%
   ggplot(aes(x = stat)) +
   geom_bar(col = "white", bins = 23) +
@@ -251,8 +259,6 @@ The hypothesis test begins with the assertion of a null hypothesis that describe
 
 A postscript on the case of Kristen Gilbert. Although the hypothesis test ruled out random chance as the reason for the spike in deaths under her watch, it didn't rule out other potential causes for that spike. It's possible, after all, that the nightshifts that Gilbert was working happen to be the time of day when cardiac arrests are more common. For this reason, the statistical evidence was never presented to the jury, but the jury nonetheless found her guilty based on other evidence presented in the trial.
 
----------------------------
----------------------------
 
 ## The Ideas in Code
 
@@ -276,9 +282,9 @@ library(tidyverse)
 library(stat20data)
 library(infer)
 
-penguins %>%
+penguins |>
   specify(response = body_mass_g,
-          explanatory = sex) %>%
+          explanatory = sex) |>
   hypothesize(null = "independence")
 ```
 
@@ -294,9 +300,9 @@ Let's say for this example you select as your test statistic a difference in mea
 ```{r}
 #| warning: false
 #| code-fold: false
-obs_stat <- penguins %>%
+obs_stat <- penguins |>
   specify(response = body_mass_g,
-          explanatory = sex) %>%
+          explanatory = sex) |>
   calculate(stat = "diff in means")
 
 obs_stat
@@ -309,11 +315,11 @@ To generate a null distribution of the kind of differences in means that you'd o
 ```{r}
 #| warning: false
 #| code-fold: false
-null <- penguins %>%
+null <- penguins |>
   specify(response = body_mass_g,
-          explanatory = sex) %>%
-  hypothesize(null = "independence") %>%
-  generate(reps = 500, type = "permute") %>%
+          explanatory = sex) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 500, type = "permute") |>
   calculate(stat = "diff in means")
 
 null
