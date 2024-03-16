@@ -52,12 +52,12 @@ This pattern has been thought to apply to the first digit counts of voting data 
 #| fig-height: 2.75
 #| fig-width: 7
 #| fig-align: center
+
 library(tidyverse)
 library(stat20data)
 
-
 benfords_dist <- data.frame(x = 1:9,
-                            y = log10(1 + 1/1:9)) %>%
+                            y = log10(1 + 1/1:9)) |>
   ggplot(aes(x = factor(x), y = y)) +
   geom_col(fill = "goldenrod2") +
   labs(x = "First Digit",
@@ -65,12 +65,12 @@ benfords_dist <- data.frame(x = 1:9,
        title = "Benford's Law") +
   theme_bw()
 
-iran <- iran %>%
+iran <- iran |>
   mutate(first_digit = factor(get_first(karrubi)))
 
-empirical_dist <-  iran %>%
+empirical_dist <-  iran |>
   ggplot(aes(x = first_digit)) +
-  geom_bar() +
+  geom_bar(fill = "blue") +
   labs(x = "First Digit",
        y = "",
        title = "Empirical Distribution (Karroubi)") +
@@ -112,12 +112,12 @@ p_benfords <- c("1" = log10(1 + 1/1),
                 "9" = log10(1 + 1/9))
 
 set.seed(30)
-draw_9 <- iran %>%
-  specify(response = first_digit) %>%
-  hypothesize(null = "point", p = p_benfords) %>%
+draw_9 <- iran |>
+  specify(response = first_digit) |>
+  hypothesize(null = "point", p = p_benfords) |>
   generate(reps = 9, type = "draw")
 
-draw_9 %>%
+draw_9 |>
   ggplot(aes(x = first_digit)) +
   geom_bar() +
   facet_wrap(vars(replicate)) +
@@ -143,12 +143,12 @@ In our setting, index $i$ refers to each of the 9 digits. We could find the firs
 This process is repeated for each of the 9 digits, then the result added up to a single statistic. We'll save the tedious arithmetic and let R calculate the chi-squared statistic that corresponds to Karroubi's first digit distribution.
 
 ```{r}
-obs_stat <- iran %>%
-  specify(response = first_digit) %>%
-  hypothesize(null = "point", p = p_benfords) %>%
+obs_stat <- iran |>
+  specify(response = first_digit) |>
+  hypothesize(null = "point", p = p_benfords) |>
   calculate(stat = "Chisq")
 
-obs_stat %>%
+obs_stat |>
   pull()
 ```
 
@@ -158,8 +158,8 @@ We can however, compare this statistic to the statistics we would see in a world
 
 ```{r}
 #| fig-width: 3
-draw_9 %>%
-  calculate(stat = "Chisq") %>%
+draw_9 |>
+  calculate(stat = "Chisq") |>
   knitr::kable(align = "rl")
 ```
 
@@ -173,13 +173,13 @@ We can repeat the simulation process used above 5000 times and, for each of the 
 #| fig-width: 6
 #| fig-height: 2.75
 #| fig-align: center
-null <- iran %>%
-  specify(response = first_digit) %>%
-  hypothesize(null = "point", p = p_benfords) %>%
-  generate(reps = 5000, type = "draw") %>%
+null <- iran |>
+  specify(response = first_digit) |>
+  hypothesize(null = "point", p = p_benfords) |>
+  generate(reps = 5000, type = "draw") |>
   calculate(stat = "Chisq")
 
-null %>%
+null |>
   visualize() +
   shade_p_value(obs_stat, direction = "right")
 ```
@@ -194,11 +194,47 @@ A low p-value indicates that our data - Karroubi's official vote data out of Ira
 
 The controversy around the application of Benford's Law in situations like this centers on whether or not a fair election would actually be expected to generate first digits that look like Benford's Law. Benford's Law is a simple mathematical abstraction and elections are very particular things, with each one unfolding according to different policies and procedure, and each one aggregated at different levels (precincts, cities, counties, etc.).
 
-In your lab, some of you found first digit distributions from the US that seemed to follow Benford's Law very well. Others found deviations even more extreme than seen in Karroubi's data. US elections, for the most part are free of the sort of fraud that would show up in these analyses, so the appropriate conclusion is not that we detected evidence of fraud but rather that Benford's Law simply isn't a good fit for many of the processes that generate vote counts in elections.
+<!-- In your lab, some of you found first digit distributions from the US that seemed to follow Benford's Law very well. Others found deviations even more extreme than seen in Karroubi's data.  -->
+
+If you repeat this analysis on first digit distributions from US elections, you'd find that some of them follow Benford's Law very well. Others found deviations even more extreme than seen in Karroubi's data. US election, for the most part are free of the sort of fraud that would show up in these analyses, so the appropriate conclusion is not that we detected evidence of fraud but rather that Benford's Law simply isn't a good fit for many of the processes that generate vote counts in elections.
 
 This is an important lesson moving beyond descriptive statistics and into generalizations.  When you lay out the null hypothesis, you are describing a complicated real world process with a simplified explanation. The success of that generalization depends in large part on the degree to which this simplification preserves the most important features of reality[^gelman].
 
 [^gelman]: For more conversation around the application of Benford's Law to the election in Iran (and elections in general), see a blog post by Andrew Gelman, a professor of statistics at Columbia University: [Unconvincing (to me) use of Benford’s law to demonstrate election fraud in Iran](https://statmodeling.stat.columbia.edu/2009/06/17/unconvincing_to/).
+
+## On Tail or Two?
+
+In the United States vs. Kristen Gilbert, the null hypothesis that the statisticians operated under was that Gilbert was innocent. More specifically, it asserted that the occurrence of a death on a shift at the hospital was independent of whether or not Gilbert was working. This hypothesis can be stated in terms of parameters; that the probability of a death on a shift with Gilbert present is equal to the probability of a death on a shift without her present.
+
+- $H_0$: $p_{gilbert} - p_{no\,gilbert} = 0$
+
+There are actually three different ways that the statisticians could have set up their alternative hypotheses.
+
+1) $H_A$: $p_{gilbert} - p_{no\,gilbert} < 0$
+2) $H_A$: $p_{gilbert} - p_{no\,gilbert} \ne 0$
+3) $H_A$: $p_{gilbert} - p_{no\,gilbert} > 0$
+
+The first version seems surprising: we're entertaining an alternate explanation where in fact *fewer* deaths would have occurred on Gilbert's shifts. The second version is the one that we used in the previous notes: that it's possible either more or fewer deaths occurred on Gilbert's shifts.
+
+The third version is very tempting. It disregards the extra alternative (that Gilbert could be associated with *fewer* deaths) and that seems natural since the data pointed  in the opposite direction. However, there are two dangers if we ignore possibilities that disagree with our data or that conflict with our world view:
+
+-   Framing an alternative hypothesis simply to match the direction that the data point will inflate the type I error rate. After all the work we have done (and will continue to do) to rigorously control the error rates in hypothesis tests, careless construction of the alternative hypotheses can disrupt that hard work.
+
+-   If we only use alternative hypotheses that agree with our worldview, then we are going to be subjecting ourselves to confirmation bias, which means we are looking for data that supports our ideas.
+    That's not very scientific, and we can do better!
+
+The alternative hypotheses found in 1) and 3) define what are called **one-sided hypothesis tests** (also called "one-tailed") because they only explore one direction of possibilities. Such hypotheses are appropriate when we are exclusively interested in the single direction, but usually we want to consider all possibilities. A better approach is to use **two-sided hypothesis tests** (also called "two-tailed"), defined by hypotheses in the form of 2).
+
+The chi-squared test used for the Iran elections is an unusual case where the one-sided test is appropriate. The left tail of that distribution contains statistics that indicate strong consistency with the null hypothesis, so only the right tail is used to calculate the p-value.
+
+## The Significance Level
+
+If it is necessary to make a binary decision based on a p-value, it must be decided beforehand what level of evidence is needed before you would rule out the null hypothesis.
+
+**Significance level, $\alpha$**
+:    A number between 0 and 1 that serves as the threshold for the p-value. The null hypothesis is rejected when the p-value $< \alpha$, and the finding is found "statistically significant".
+
+By convention, $\alpha = 0.05$, however you should adjust the significance level based on the application. Certain scientific fields might tend to use a slightly higher or lower threshold for what constitutes statistical significance. In a setting where the decisions have very different real-world consequences, those, too, can factor into the choice of $\alpha$.
 
 <!-- #### One-tailed or Two? -->
 
