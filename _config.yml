@@ -317,7 +317,7 @@ schedule:
         items:
           - type: Notes
             href: 4-generalization/05-hypothesis-tests-2/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 4-generalization/05-hypothesis-tests-2/slides.qmd
             render: false
