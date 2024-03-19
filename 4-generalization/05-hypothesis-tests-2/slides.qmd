@@ -24,18 +24,23 @@ execute:
 
 ## Agenda
 
--   Time to fill out the *Mid-Semester Feedback* form
--   Concept Questions: Hypothesis Tests II
--   *Break* 
--   PS: Hypothesis Testing with `infer`
+-   Announcements
+-   Concept Questions
+-   *Break*
+-   Problem Set 14: *Hypothesis Tests II*
 
-# Time to fill out the *Mid-Semester Feedback* form
+## Announcements
 
-- Click [here](https://forms.gle/RZhyfvhX7TWpq9k96) to fill out this form.
+-   RQ: *Wrong By Design* due Wed/Thu night at 11:59pm
 
-```{r}
-countdown::countdown(minutes = 10)
-```
+. . . 
+
+-   Quiz 3 is in the first half of *class* on Thursday/Friday.
+
+. . . 
+
+-   *Problem Set 14* is due the Tuesday after break. 
+
 
 # Concept Questions
 
@@ -203,8 +208,14 @@ countdown::countdown(1)
 <iframe src="https://en.wikipedia.org/wiki/Bouba/kiki_effect" height=600 width=1500>
 </iframe>
 
-# Problem Set: Hypothesis Testing II
+# *Break*
 
 ```{r}
-countdown::countdown(25)
+countdown::countdown(5)
+```
+
+# Problem Set 14: *Hypothesis Testing II*
+
+```{r}
+countdown::countdown(50)
 ```
