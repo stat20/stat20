@@ -24,10 +24,13 @@ execute:
 
 ## Agenda
 
+- Announcements
 - Concept Questions
-- Problem Set: Is Yawning Contagious
-- Appendix: Hypothesis Testing with `infer`
+- Problem Set 13: Hypothesis Tests? (first page)
+- *Break*
+- Problem Set 13: Hypothesis Tests? (second page)
 
+<!---
 :::notes
 Pick a Card Activity
 
@@ -42,6 +45,7 @@ Shuffle the deck, say that's its fair, then select a random student to be the fi
 
 Walk through how students started with a previous notion that the deck was fair (null hypothesis: p(red) = .5). As they observed data, they assessed the degree of consistency with that notion by computing the probability of the data. Calculate a table of the binomial probabilities of one black, two blacks, three blacks, on the board. With 4 blacks, the probability is 1/2^4 = .0625 and with 5 blacks its 1/2^5 = .03125. Draw a line between these two probability and identify it as the alpha = .05 threshold that is generally used for "calling bullshit on the null".
 :::
+-->
 
 # Concept Questions
 
@@ -78,6 +82,7 @@ Correct answers: A, D, F.
 Most of these they haven't seen examples of, so it will be worth laying out the null hypotheses.
 :::
 
+<!---
 ## 
 
 We want to understand whether blood thinners are helpful or harmful. We’ll consider both of these possibilities using a two-sided hypothesis test.
@@ -102,37 +107,82 @@ countdown::countdown(1, bottom = 0)
 :::notes
 .3 is probably the best answer but .2 is ok too.
 :::
+-->
 
 ##
 
 A pharmaceutical company developed a new treatment for eczema and performed a
-hypothesis test to see if it worked better than the company's old treatment. The P-value for the test was $10\%$. Which of the following statements are true?
+hypothesis test to see if it worked better than the company's old treatment. The P-value for the test was $10\%$. Which one of the following statements are true?
 
 \
 
 A. The probability that the null hypothesis is false is $10\%$.
 
-B. The probability that the null hypothesis is false is $90\%$.
+B. The P-value of about $10\%$ was computed assuming that the null hypothesis was true.
 
-C. The P-value of about $10\%$ was computed assuming that the null hypothesis was true.
+C. The new drug is significantly better than the old. 
 
-D. The new drug is significantly better than the old. 
-
-E. The alternative hypothesis is 10 times more likely the null.
+D. The alternative hypothesis is 10 times more likely the null.
 
 ```{r}
 #| echo: false
 countdown::countdown(1, bottom = 0)
 ```
 
-# Problem Set: Is Yawning Contagious?
+# Problem Set 13
+
+-   Today's problem set is all about answering one question:
+
+. . . 
+
+> Is yawning contagious?
+
+## What do you think?
+
+Answer at `pollev.com`.
+
+# Problem Set 13:
+
+-   Now, we will watch a short excerpt from a Mythbusters episode in which the Mythbusters crew sets up, performs and analyzes the results of an experiment designed to test whether yawning is contagious.
+
+
+## What do you think about the of the experiment in the video?
+
+-   Discuss with your group, identifying anything that seems amiss.
+
+```{r}
+#| echo: false
+countdown::countdown(1.5)
+```
+
+# Problem Set 13: Page 1
 
 ```{r}
 #| echo: false
 countdown::countdown(20)
 ```
 
+# Break
 
+```{r}
+#| echo: false
+countdown::countdown(5)
+```
+
+
+# Problem Set 13: Page 2
+
+```{r}
+#| echo: false
+countdown::countdown(20)
+```
+
+## Do you still think yawning is contagious?
+
+Answer at `pollev.com`.
+
+
+<!---
 # Hypothesis Testing with `infer`
 
 
