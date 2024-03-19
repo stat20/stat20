@@ -44,6 +44,37 @@ execute:
 
 # Concept Questions
 
+##
+
+Which pair of plots would have the *greatest* chi-squared distance between them? (consider one of them the "observed" and the other the "expected")
+
+```{r}
+library(ggplot2)
+df <- data.frame(x = c(rep(c("red", "green", "blue"), 
+                           times = c(3, 2, 7)),
+                       rep(c("red", "green", "blue"), 
+                           times = c(5, 4, 3)),
+                       rep(c("red", "green", "blue"), 
+                           times = c(3, 4, 5)),
+                       rep(c("red", "green", "blue"), 
+                           times = c(1, 10, 1)),
+                       rep(c("red", "green", "blue"), 
+                           times = c(4, 4, 4)),
+                       rep(c("red", "green", "blue"), 
+                           times = c(10, 1, 1))),
+                 lab = rep(LETTERS[1:6], each = 12))
+
+ggplot(df, aes(x = x)) +
+  geom_bar() +
+  facet_wrap(vars(lab)) +
+  theme_bw(base_size = 14)
+```
+
+```{r}
+countdown::countdown(1)
+```
+
+
 ## An In-class Experiment
 
 In order to demonstrate how to conduct a hypothesis test through simulation, we will be collecting data from this class using a poll.
