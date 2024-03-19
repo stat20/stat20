@@ -202,7 +202,7 @@ This is an important lesson moving beyond descriptive statistics and into genera
 
 [^gelman]: For more conversation around the application of Benford's Law to the election in Iran (and elections in general), see a blog post by Andrew Gelman, a professor of statistics at Columbia University: [Unconvincing (to me) use of Benford’s law to demonstrate election fraud in Iran](https://statmodeling.stat.columbia.edu/2009/06/17/unconvincing_to/).
 
-## On Tail or Two?
+## One Tail or Two?
 
 In the United States vs. Kristen Gilbert, the null hypothesis that the statisticians operated under was that Gilbert was innocent. More specifically, it asserted that the occurrence of a death on a shift at the hospital was independent of whether or not Gilbert was working. This hypothesis can be stated in terms of parameters; that the probability of a death on a shift with Gilbert present is equal to the probability of a death on a shift without her present.
 

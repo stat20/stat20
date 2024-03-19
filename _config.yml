@@ -320,7 +320,10 @@ schedule:
             render: true
           - type: Slides
             href: 4-generalization/05-hypothesis-tests-2/slides.qmd
-            render: false
+            render: true
+          - type: PS
+            href: 4-generalization/05-hypothesis-tests-2/ps.qmd
+            render: true
         
       - topic: "Quiz 3, Wrong By Design"
         display-date: "Mar 21/22"
