@@ -285,11 +285,23 @@ obs_p_hat <- shapes |>
   # hypothesize(null = "point", p = .5) |>
   # generate(reps = 500, type = "simulate") |>
   calculate(stat = "prop")
+```
 
+
+## 4. Assess the consistency of the data and the null
+
+```{r}
+#| echo: true
+#| eval: false
 null |>
   visualise() +
   shade_pvalue(obs_p_hat, direction = "both")
+
+null |>
+  get_p_value(obs_p_hat, direction = "both")
 ```
+
+
 
 ## The p-value
 
