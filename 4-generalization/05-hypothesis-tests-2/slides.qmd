@@ -27,7 +27,7 @@ execute:
 -   Announcements
 -   Concept Questions
 -   *Break*
--   Problem Set 14: *Hypothesis Tests II*
+-   PS 14: *Hypothesis Tests II*
 
 ## Announcements
 
