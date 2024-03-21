@@ -1,6 +1,6 @@
 ---
-title: "Matching"
-subtitle: "The principles of experimental design"
+title: "Estimating Causal Effects via Matching"
+subtitle: "approximating counterfactuals with similar units"
 format:
   html:
     code-fold: true
@@ -11,3 +11,133 @@ execute:
   warning: false
   message: false
 ---
+
+## Causal claims without randomization
+
+In the last two sets of notes we learned about randomized experiments and their
+close relatives natural experiments.  Both kinds of studies are very useful
+for learning about causal claims; because comparison groups are guaranteed
+to be similar on average before the treatment is given, differences in 
+outcomes between the groups must be the result of the treatmment.
+
+However, we frequently need to evaluate causal claims without having access
+to data from a randomized experiment or an obvious natural experiment. Today
+we'll explore how to take some of the ideas important in understanding and
+analyzing randomized experiments and use them to make progress in data
+where treatment is not randomly assigned.
+
+### Similar units with different treatments
+
+Let's return to our example of evaluating the impact of graduating from Cal on
+obtaining a good job.
+Imagine that Cal student Evelyn Fix had a sister, Eleanor Fix. If Evelyn graduated from Cal and Eleanor did not, then we could observe this data frame.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(kableExtra)
+options(kableExtra.html.bsTable = TRUE)
+
+tab <- tibble(`Student` = c("Evelyn Fix", "Eleanor Fix"),
+              `GPA` = c(3.9, 3.9),
+              `Years exp` = c(3, 3),
+              `Rec` = c("strong", "strong"),
+              `Cal Grad` = c("yes", "no"),
+              `Good Job` = c("yes", "no"))
+```
+
+::: {.content-hidden unless-format="html"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kbl(escape = FALSE) %>%
+    kable_styling(bootstrap_options = c("hover", "striped"))
+```
+:::
+
+::: {.content-hidden unless-format="pdf"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kable(format = "latex")
+```
+:::
+
+To understand the causal effect of college for Evelyn, we need to know the 
+counterfactual value of the 'Good Job' variable in the setting where she didn't 
+attend college. Could we use Eleanor to stand in for Evelyn's counterfactual?
+
+Well, it depends on how similar they are to one another in ways that matter to the mechanism of cause and effect. As we see in the table above, they're a perfect match on several variables that probably matter: GPA, the number of years of work experience, and the strength of letters of recommendation.  
+
+Now imagine we had several Cal students, and each one had a sibling with generally
+similar attributes.
+SHOW DATAFRAME
+
+When we conduct covariate balance checks comparing the treatment (graduated from
+Cal) group and the control group, we see that these groups look very similar.  
+If we had been able to randomly assign graduation status, it would not be 
+surprising to see a pattern of covariate balance measures like this one.
+
+There is one important difference between this study and the natural experiments
+in the previous set of notes.  Here, we don't have any compelling reason to
+believe that graduation from Cal was randomly assigned between siblings. It's
+possible that the decision was random, but it's also possible that some hidden
+factor drove the decision.  For example, we don't have any information about the
+career goals or interests of these students.  If Evelyn, David, Jerzy, and Betty
+all chose to go to Berkeley to study Stat and their siblings all skipped college
+and spent their time playing with bands because they wanted to be rock stars
+then maybe the real reason the former group is employed is because of their interest
+in a field with good job opportunities, not because of the college they attended.
+
+
+
+This is the biggest thing you give up when you don't run an RCT.  You need to assume
+that unobserved variables are not present.  MENTION SENSITIVITY ANALYSIS HERE OR LATER?
+
+### Matching
+
+In most datasets, you are not guaranteed to have a sibling for each subject. 
+However, we can still use the idea of the Evelyn-Eleanor study by looking directly
+at the covariates for each treated subject and searching for a control subject
+with similar values. This general approach is called *matching*.
+
+
+There are many methods for determining which two units in a data set are the closest matches for one another. One simple idea is to adapt the method that we used for the k-nearest neighbor algorithm: calculating the (Euclidean) distance between each pair of observations.
+
+DATA EXAMPLE.  SHOW HOW TO OBTAIN THE MATCHES, REPLOT COVARIANCE BALANCE.
+ 
+
+
+WHERE TO PUT THIS?
+
+Some of the most clever and impactful applications of the matching approach have been studies designed to evaluate whether smoking causes cancer. Imagine you are a doctor with a patient who smokes and has been recently diagnosed with cancer. When you tell them, "I'm afraid your smoking habit has caused your cancer", they protest: "Not at all! I'm quite sure I have a gene that causes me to want to smoke and also causes me to get cancer. If I had stopped smoking, it wouldn't have changed a thing!".
+
+That is a difficult explanation to refute! What would the counterfactual look like? You'd need someone with the exact same genetic makeup who happened to not be a smoker. But surely this close of a match doesn't exist...
+
+Unless your patient is one of an identical pair of twins. While this scenario is rare, there are plenty of pairs of identical twins that can be used to evaluate precisely this kind of scenario. At the end of the 20th century, researchers in Finland compiled a large data base of identical twins where one of them smoked and the other did not. In pair after pair, they found it much more likely that the twin who smoked was more likely to develop cancer. This technique, using identical twins to get perfect matches on genetics, has been a rich source of breakthroughs in understanding genetic determinants of disease[^twins].
+
+[^twins]: There is a rich literature that uses data bases of twins to determine genetic determinants of health outcomes. For a recent study on smoking and cancer, see [https://pubmed.ncbi.nlm.nih.gov/35143046/](Cancer in twin pairs discordant for smoking: The Nordic Twin Study of Cancer) by Korhonen et al., 2022.
+
+Despite this success, in general matching has several challenges. What if the closest match actually isn't very similar? What if you haven't recorded all of the variables that matter? In these scenarios, you might want to consider a different approach.
+
+<!-- Use example of highway overpass study -->
+
+SOMETHING ABOUT SENSITIVITY ANALYSIS?
+
+
+
+FOR NEXT SET OF NOTES
+
+
+### Summary
+
+FILL IN
+
+

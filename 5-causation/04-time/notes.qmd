@@ -1,6 +1,6 @@
 ---
-title: "Experiments"
-subtitle: "The principles of experimental design"
+title: "Using Time to Measure Causal Effects"
+subtitle: "pre/post and difference-in-difference designs"
 format:
   html:
     code-fold: true
@@ -11,3 +11,126 @@ execute:
   warning: false
   message: false
 ---
+
+
+
+## Causality and variation across time.
+
+When we don't have access to a randomized experiment, creative methods are 
+required to extract evidence about causal claims from data.  In the last set of
+notes, we looked at matching methods, which approximate unobserved counterfactual
+outcomes by identifying different that appear very similar based on their 
+covariate values. Today we think about a very differeent way to approximate 
+missing counterfactuals: repeated observations for the same subject at different
+times with different treatments.
+
+
+### Same unit at different times
+
+ Let's say that we collected data from Evelyn Fix before and after she graduated from Cal.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(kableExtra)
+options(kableExtra.html.bsTable = TRUE)
+
+tab <- tibble(`Student` = c("Evelyn Fix", "Evelyn Fix"),
+              `date` = c("June 2022", "April 2022"),
+              `GPA` = c(3.9, 3.9),
+              `Years exp` = c(3, 3),
+              `Rec` = c("strong", "strong"),
+              `Cal Grad` = c("yes", "no"),
+              `Good Job` = c("yes", "no"))
+```
+
+::: {.content-hidden unless-format="html"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kbl(escape = FALSE) %>%
+    kable_styling(bootstrap_options = c("hover", "striped"))
+```
+:::
+
+::: {.content-hidden unless-format="pdf"}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tab %>%
+    kable(format = "latex")
+```
+:::
+
+Here, the unit of observation is a student at a particular time, which allows us to compare Evelyn before and after graduating from Cal. How close of a counterfactual is pre-graduation Evelyn? Keep in mind the true counterfactual would be the alternate universe where everything about the world is the same but for one thing: Evelyn hadn't graduated from Cal. Is everything the same in this pre-graduation world?
+
+The answer may be yes. Here we see her GPA is unchanged, she hasn't gained any more work experience, and she's sending out the same strong letter of recommendation. If these are the only other variables involved in getting a good job, then this would be good evidence that the graduation is the cause of the good job.
+
+But what if her GPA had inched up that final semester? Or what if the jobs that she applied for pre-graduation were simply not as good as the jobs that she applied for after graduation? In this setting, there could be multiple reasons that she got the good job because we haven't isolated the variable of interest: graduating from Cal.
+
+This is called *longitudinal* or *panel* data.  There are several study designs that rely upon this form of reasoning. *Pre/post*
+designs use two measurements for each subject, one with the treatment and one
+without, to measure a causal effect.  *Interrupted time series* designs are similar
+but use multiple observations before and after each unit enters treatment to 
+estimate counterfactual trends.  Finally, *difference in difference* designs unite
+some of the benefits of matching and pre/post designs.
+
+## [DATA EXAMPLE]
+
+Introduce problem with measurements before and after
+
+## Pre/post design
+
+A pre/post design takes the simple approach of subtracting the pre-treatment
+value from the post-treatment value.
+
+DRAW A PICTURE
+
+Why is this good?  Think about covariate balance.  Even better, think about
+covariate balance on unobserved things. More reasonable assumption than no unobserved
+confounders.
+
+
+What could go wrong?  Time itself could have an effect!  Not a problem for 
+matching.
+
+## Interrupted time series.
+
+Suppose we observe some additional timepoints beforehand. 
+
+What would pre/post estimate be here?  But seeing trend helps us recognize that
+most of this is explained by time.  Nevertheless, the data does seem to suggest
+some effect [show trend].
+
+With extra data, we can fit a trend, not just a value, to pre-period, and can
+compare post to predicted value.  This is called interrupted time series.
+Better than pre/post because we can rule out some effects of time (although still
+need to worry about changes to trend, e.g. b/c ofunobserved things shifting at same time.)
+
+## Panel data with regression
+
+Describe how to fit both models using a regression model.
+
+
+## Difference-in-difference
+
+EXAMPLE: suggest permanent control.  What if we could see its pattern?  Could use
+it to check assumptions of interrupted time series.  But could go a step further
+and use these data to correct directly for any problem arising from issues.
+[maybe give example].
+
+Describe estimator.  Called diff-in-diff
+
+Can also do this by regression.
+
+STANDARD ERRORS?  NEED TO BE A LITTLE BIT CAREFUL HERE.
+
+
+
+### Summary
