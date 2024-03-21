@@ -41,7 +41,6 @@ execute:
 
 -   *Problem Set 14* is due the Tuesday after break. 
 
-
 # Concept Questions
 
 ##
@@ -73,6 +72,73 @@ ggplot(df, aes(x = x)) +
 ```{r}
 countdown::countdown(1)
 ```
+
+:::notes
+This question recalls the introduction of a new summary statistic in the notes: the chi-squared. It is used to measure the distance between two distributions of categorical variables. The pair with the highest statistic is D and F. The important mathematical intuition to have here is that the statistic adds together every squared normalized difference, so one very large difference can inflate the statistic.
+:::
+
+## Chi-squareds Compared
+
+:::columns
+:::{.column width="50%"}
+
+```{r}
+library(dplyr)
+df |>
+  filter(lab %in% c("D", "F")) |>
+  ggplot(aes(x = x)) +
+  geom_bar() +
+  facet_wrap(vars(lab)) +
+  theme_bw(base_size = 14)
+```
+
+```{r}
+#| warning: false
+#| eval: false
+library(infer)
+# D vs F
+df |>
+  filter(lab %in% c("D")) |>
+  chisq_stat(response = x,
+             p = c("blue" = 1/12,
+                   "green" = 1/12,
+                   "red" = 10/12))
+```
+
+$$
+\frac{(1-1)^2}{1} + \frac{(10 - 1)^2}{1} + \frac{(1 - 10)^2}{10} \\
+0 + 81 + \frac{81}{10}  = 89.1
+$$
+
+:::
+:::{.column width="50%" .fragment}
+```{r}
+df |>
+  filter(lab %in% c("B", "C")) |>
+  ggplot(aes(x = x)) +
+  geom_bar() +
+  facet_wrap(vars(lab)) +
+  theme_bw(base_size = 14)
+```
+
+```{r}
+#| eval: false
+# B vs C
+df |>
+  filter(lab %in% c("B")) |>
+  chisq_stat(response = x,
+             p = c("blue" = 5/12,
+                   "green" = 4/12,
+                   "red" = 3/12))
+```
+
+$$
+\frac{(3-5)^2}{5} + \frac{(4-4)^2}{4} + \frac{(5-3)^2}{3} \\
+\frac{4}{5} + 0 + \frac{4}{3} = 2.13
+$$
+
+:::
+:::
 
 
 ## An In-class Experiment
@@ -183,20 +249,21 @@ n_b <- 20
 shapes <- data.frame(name = c(rep("Kiki", n_k),
                               rep("Booba", n_b)))
 
-shapes %>%
+shapes |>
   specify(response = name,
-          success = "Kiki") %>%
-  hypothesize(null = "point", p = .5) %>%
-  generate(reps = 1, type = "draw") %>%
+          success = "Kiki") |>
+  hypothesize(null = "point", p = .5) |>
+  generate(reps = 1, type = "draw") |>
   calculate(stat = "prop")
 ```
 
 ::: notes
-1. copy and paste the code cell from the slides into RStudio
-2. replace n_k and n_b with the values from your poll.
-3. "break the pipe" to show what happens at every stage.
-4. run several pipelines with reps = 1 to show it changing.
-5. set reps to 500 to show the full collection of p-hats.
+1. have students open laptops and an R script to code along.
+2. copy and paste the code cell from the slides into RStudio
+3. replace n_k and n_b with the values from your poll.
+4. "break the pipe" to show what happens at every stage.
+5. run several pipelines with reps = 1 to show it changing.
+6. set reps to 500 to show the full collection of p-hats.
 :::
 
 ## 4. Assess the consistency of the data and the null
@@ -205,24 +272,36 @@ shapes %>%
 #| echo: true
 #| eval: false
 
-null <- shapes %>%
+null <- shapes |>
   specify(response = name,
-          success = "Kiki") %>%
-  hypothesize(null = "point", p = .5) %>%
-  generate(reps = 500, type = "draw") %>%
+          success = "Kiki") |>
+  hypothesize(null = "point", p = .5) |>
+  generate(reps = 500, type = "draw") |>
   calculate(stat = "prop")
 
-obs_p_hat <- shapes %>%
+obs_p_hat <- shapes |>
   specify(response = name,
-          success = "Kiki") %>%
-  # hypothesize(null = "point", p = .5) %>%
-  # generate(reps = 500, type = "simulate") %>%
+          success = "Kiki") |>
+  # hypothesize(null = "point", p = .5) |>
+  # generate(reps = 500, type = "simulate") |>
   calculate(stat = "prop")
+```
 
-null %>%
+
+## 4. Assess the consistency of the data and the null
+
+```{r}
+#| echo: true
+#| eval: false
+null |>
   visualise() +
   shade_pvalue(obs_p_hat, direction = "both")
+
+null |>
+  get_p_value(obs_p_hat, direction = "both")
 ```
+
+
 
 ## The p-value
 
