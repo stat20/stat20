@@ -99,7 +99,7 @@ library(tidyverse)
 library(infer)
 library(stat20data)
 
-ppk <- ppk %>%
+ppk <- ppk |>
   mutate(support_before = Q18_words %in% c("Somewhat support", 
                                           "Strongly support",
                                           "Very strongly support"))
@@ -113,13 +113,13 @@ library(tidyverse)
 library(infer)
 library(stat20data)
 
-ppk <- ppk %>%
+ppk <- ppk |>
   mutate(support_before = Q18_words %in% c("Somewhat support", 
                                           "Strongly support",
                                           "Very strongly support"))
-obs_stat <- ppk %>%
+obs_stat <- ppk |>
   specify(response = support_before,
-          success = "TRUE") %>%
+          success = "TRUE") |>
   calculate(stat = "prop")
 ```
 
@@ -231,6 +231,7 @@ countdown::countdown(minutes = 30)
 ```
 
 
+
 <!-- ##  -->
 
 <!-- Imagine a scenario when your sample consists of the entire population. After setting up the hypotheses for your test, you ponder the chance that you'll make a statistical error. -->
@@ -243,6 +244,7 @@ countdown::countdown(minutes = 30)
 <!-- countdown::countdown(1) -->
 <!-- ``` -->
 
+<!---
 
 # Hypothesis Testing Review
 
@@ -501,3 +503,5 @@ This is an example of how low-power studies resulted in a failure to detect that
 # One goal for today
 
 [Learn why we don't accept the null hypothesis.]{.bigadage}
+
+-->
