@@ -49,6 +49,8 @@ Benford's Law is a mathematical law that describes a particular distribution of 
 This pattern has been thought to apply to the first digit counts of voting data as well. The theory is that if the voting process is fair, then the distribution of the first digit of vote counts across different municipalities should follow Benford's Law. Fraudulent activity such as ballot-stuffing, would materialize as deviations from Benford's Law.
 
 ```{r}
+#| code-fold: false
+#| echo: false
 #| fig-height: 2.75
 #| fig-width: 7
 #| fig-align: center
@@ -96,6 +98,7 @@ This null hypothesis describes everything we need to simulate the sort of data t
 While we could indeed do this process by hand (sacrificing both index cards and time), we will opt instead to use a computer. Below are nine different first digit distributions that we might see in a world where the first digits follow Benford's Law.
 
 ```{r}
+#| code-fold: false
 #| fig-align: center
 #| fig-width: 7
 #| fig-height: 5
@@ -143,11 +146,16 @@ In our setting, index $i$ refers to each of the 9 digits. We could find the firs
 This process is repeated for each of the 9 digits, then the result added up to a single statistic. We'll save the tedious arithmetic and let R calculate the chi-squared statistic that corresponds to Karroubi's first digit distribution.
 
 ```{r}
+#| code-fold: false
 obs_stat <- iran |>
   specify(response = first_digit) |>
   hypothesize(null = "point", p = p_benfords) |>
   calculate(stat = "Chisq")
+```
 
+```{r}
+#| code-fold: false
+#| echo: false
 obs_stat |>
   pull()
 ```
@@ -157,6 +165,8 @@ obs_stat |>
 We can however, compare this statistic to the statistics we would see in a world where the null hypothesis is true. Here are the chi-squared statistics for each of the 9 distributions above. Look through them one-by-one: what sort of chi-squared statistic do you get for distributions that are very similar to Benford's? What about for ones that look different?
 
 ```{r}
+#| code-fold: false
+#| echo: false
 #| fig-width: 3
 draw_9 |>
   calculate(stat = "Chisq") |>
@@ -170,6 +180,7 @@ This mode of thinking allows us to put our observed statistic of 28.1 into conte
 We can repeat the simulation process used above 5000 times and, for each of the 5000 simulated data sets, calculate a chi-squared statistic. Those 5000 statistics form a null distribution.
 
 ```{r}
+#| code-fold: false
 #| fig-width: 6
 #| fig-height: 2.75
 #| fig-align: center
