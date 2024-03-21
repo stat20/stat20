@@ -25,11 +25,12 @@ execute:
 ## Agenda
 
 - Concept Questions
-- Practice Problems
+- Problem Set 15
 
 
 # Concept Questions
 
+<!--
 ## Concept Questions 1 and 2
 
 The following two questions are based on the diagram below. The diagram corresponds to a one-sided hypothesis test that uses the following null hypothesis:  $H_0: \mu = 1$
@@ -63,7 +64,7 @@ What is the p-value of this test?
 ```{r}
 countdown::countdown(1)
 ```
-
+-->
 
 ## 
 
@@ -130,13 +131,13 @@ library(tidyverse)
 library(infer)
 library(stat20data)
 
-ppk <- ppk %>%
+ppk <- ppk |>
   mutate(support_before = Q18_words %in% c("Somewhat support", 
                                           "Strongly support",
                                           "Very strongly support"))
-obs_stat <- ppk %>%
+obs_stat <- ppk |>
   specify(response = support_before,
-          success = "TRUE") %>%
+          success = "TRUE") |>
   calculate(stat = "prop")
 obs_stat
 ```
@@ -145,11 +146,11 @@ obs_stat
 
 ```{r}
 #| echo: true
-null <- ppk %>%
+null <- ppk |>
   specify(response = support_before,
-          success = "TRUE") %>%
-  hypothesize(null = "point", p = .5) %>%
-  generate(reps = 500, type = "draw") %>%
+          success = "TRUE") |>
+  hypothesize(null = "point", p = .5) |>
+  generate(reps = 500, type = "draw") |>
   calculate(stat = "prop")
 ```
 
@@ -157,11 +158,11 @@ null <- ppk %>%
 
 ```{r}
 #| echo: true
-null <- ppk %>%
+null <- ppk |>
   specify(response = support_before,
-          success = "TRUE") %>%
-  hypothesize(null = "point", p = .5) %>%
-  generate(reps = 500, type = "draw") %>%
+          success = "TRUE") |>
+  hypothesize(null = "point", p = .5) |>
+  generate(reps = 500, type = "draw") |>
   calculate(stat = "prop")
 null
 ```
@@ -172,11 +173,11 @@ null
 #| echo: true
 #| eval: false
 #| fig-align: center
-null <- ppk %>%
+null <- ppk |>
   specify(response = support_before,
-          success = "TRUE") %>%
-  hypothesize(null = "point", p = .5) %>%
-  generate(reps = 500, type = "draw") %>%
+          success = "TRUE") |>
+  hypothesize(null = "point", p = .5) |>
+  generate(reps = 500, type = "draw") |>
   calculate(stat = "prop")
 visualize(null) +
   shade_p_value(obs_stat, direction = "both")
@@ -185,11 +186,11 @@ visualize(null) +
 ```{r}
 #| echo: false
 #| fig-align: center
-null <- ppk %>%
+null <- ppk |>
   specify(response = support_before,
-          success = "TRUE") %>%
-  hypothesize(null = "point", p = .5) %>%
-  generate(reps = 500, type = "draw") %>%
+          success = "TRUE") |>
+  hypothesize(null = "point", p = .5) |>
+  generate(reps = 500, type = "draw") |>
   calculate(stat = "prop")
 visualize(null) +
   shade_p_value(obs_stat, direction = "both") +
@@ -223,8 +224,10 @@ Answer: Concluding that there is an even split when in fact there is a clear maj
 After the previous question, students should get this quite easily.
 :::
 
+# Problem Set 15
+
 ```{r}
-countdown::countdown(1)
+countdown::countdown(minutes = 30)
 ```
 
 
