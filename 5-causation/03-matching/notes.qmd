@@ -1,6 +1,6 @@
 ---
-title: "Estimating Causal Effects via Matching"
-subtitle: "approximating counterfactuals with similar units"
+title: "Estimating Causal Effects without Randomization"
+subtitle: "natural experiments anad mataching"
 format:
   html:
     code-fold: true
@@ -25,6 +25,43 @@ to data from a randomized experiment or an obvious natural experiment. Today
 we'll explore how to take some of the ideas important in understanding and
 analyzing randomized experiments and use them to make progress in data
 where treatment is not randomly assigned.
+
+# Natural experiments
+
+NEW EXAMPLE
+
+This is not technically a randomized experiment, since we didn't control or
+choose how subjects received their treatments.  But it seems likely that
+treatment was given in an arbitrary manner here. It is sometimes called a 
+natural experiment or a quasi-experiment.
+Can we use this data to
+make judgments about a causal claim?
+
+### Hypothetical experiments and covariate balance
+
+A good place to start is to imagine that we had conducted an experiment.  What
+would covariate balance look like?  We can compare the actual covariate balance
+and run the same tests we did for the RCT above.  If the groups are sufficiently
+well-balanced that we don't see a difference, it's easier to believe a claim.
+
+WORK THROUGH DETAILS
+
+### Limitations of covariate balance in natural experiments
+
+MAYBE THIS GOES WITH MATCHING SLIDES>
+
+In this example covariate balance helped us feel good about proceeding.  But
+what if we'd measured three more variables and they'd all been really out of balance?
+TRY TO MOTIVATE THIS MORE CLEARLY
+In this case we probably wouldn't want to trust our results.
+
+
+Of course, we didn't measure those variables, and we don't know for sure that
+they weren't out of balance. One of the frustrating things about cases where we 
+didn't perform the randomization ourselves is that we can never be sure we've measured 
+all the important variables.
+
+
 
 ### Similar units with different treatments
 
