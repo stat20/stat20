@@ -1,6 +1,6 @@
 ---
 title: "Estimating Causal Effects without Randomization"
-subtitle: "natural experiments anad mataching"
+subtitle: "natural experiments and matching"
 format:
   html:
     code-fold: true
@@ -14,56 +14,128 @@ execute:
 
 ## Causal claims without randomization
 
-In the last two sets of notes we learned about randomized experiments and their
-close relatives natural experiments.  Both kinds of studies are very useful
+Randomized experiments are very useful
 for learning about causal claims; because comparison groups are guaranteed
 to be similar on average before the treatment is given, differences in 
-outcomes between the groups must be the result of the treatmment.
+outcomes between the groups must be the result of the treatment.
 
 However, we frequently need to evaluate causal claims without having access
-to data from a randomized experiment or an obvious natural experiment. Today
+to data from a randomized experiment. <!--or an obvious natural experiment.-->
+Today
 we'll explore how to take some of the ideas important in understanding and
 analyzing randomized experiments and use them to make progress in data
-where treatment is not randomly assigned.
+where treatment assignments are not determined by researchers.  Such non-
+experimental studies are called observational studies, emphasizing that all
+researchers do is observe treatment assignments rather than making them.  
 
-# Natural experiments
+## Natural experiments
 
-NEW EXAMPLE
+[insert pic of basketball foul call]
 
-This is not technically a randomized experiment, since we didn't control or
-choose how subjects received their treatments.  But it seems likely that
-treatment was given in an arbitrary manner here. It is sometimes called a 
-natural experiment or a quasi-experiment.
-Can we use this data to
-make judgments about a causal claim?
+Do judicial decision-makers tend to favor members of the same race?  In the 
+mid-2000s two economists interested in this question, Joseph Price and Justin 
+Wolfers, obtained data on 12 years
+of referee decisions from professional National Basketball Association (NBA) 
+games, including indicators for whether players and referees were Black or
+non-Black. They compared the rate at which referees gave fouls to players of the
+same race (Black or non-Black) to the rate at which fouls were given to players
+of the opposite racial category.
 
-### Hypothetical experiments and covariate balance
+![](images/balance_table1_price_wolfers.png){#fig-inflation width="600px"}
+[^foulpic]
 
-A good place to start is to imagine that we had conducted an experiment.  What
-would covariate balance look like?  We can compare the actual covariate balance
-and run the same tests we did for the RCT above.  If the groups are sufficiently
-well-balanced that we don't see a difference, it's easier to believe a claim.
+This study aims to investigate a causal claim: for a given player in a given game,
+would the player's foul rate have been different if a different referee had been
+assigned whose race did (or did not) match the player's race?  
 
-WORK THROUGH DETAILS
+If Price and Wolfers had reached an agreement with the NBA that allowed them
+to assign referees to games at random, they could have conducted a randomized
+experiment to answer this question using the ideas from the last set of notes.
+This did not happen; however, Price and Wolfers argue that the actual manner
+in which referees were assigned to games closely resemble what they would have
+done in their ideal hypothetical experiment:
 
-### Limitations of covariate balance in natural experiments
-
-MAYBE THIS GOES WITH MATCHING SLIDES>
-
-In this example covariate balance helped us feel good about proceeding.  But
-what if we'd measured three more variables and they'd all been really out of balance?
-TRY TO MOTIVATE THIS MORE CLEARLY
-In this case we probably wouldn't want to trust our results.
-
-
-Of course, we didn't measure those variables, and we don't know for sure that
-they weren't out of balance. One of the frustrating things about cases where we 
-didn't perform the randomization ourselves is that we can never be sure we've measured 
-all the important variables.
+> Assignments of referees to crews are made to balance the experience of referees across
+> games, with groups of three referees working together for only a
+> couple of games before being regrouped. According to the NBA, assignments of 
+> refereeing crews to specific (regular season) games is
+> "completely arbitrary" with no thought given to the characteristics
+> of the competing teams. Each referee works 70 to 75 games each
+> year, and no referee is allowed to officiate more than nine games
+> for any team, or referee twice in a city within a fourteen-day
+> period. Although these constraints mean that assignment of refereeing crews to 
+> games is not literally random, the more relevant
+> claim for our approach is that assignment decisions are unrelated
+> to the racial characteristics of either team.[^pricewolfers]
 
 
 
-### Similar units with different treatments
+To back up their claim, Price and Wolferspresented covariate balance tables.  The first one
+gives tests for each of the 12 seasons of data for the null hypothesis that the 
+number of Black starters is independent of the number of Black referees who 
+officiate its games (which would be true if referees were actually randomly 
+assigned).  The second table examines several other variables to see if they 
+are significantly associated with the number of white referees, including
+year, attendance, indicator variables for individual teams.  The table suggests
+that the number of white referees did vary over time (notice the .00 p-values
+in the first row of the second table) but most of the other p-values are fairly
+large, suggesting approximate balance.
+
+![](images/balance_table1_price_wolfers.png){#fig-inflation width="300px"}
+![](images/balance_table2_price_wolfers.png){#fig-inflation fig-align=center width="300px"}
+
+If indeed the process of assigning referees is independent of the race, team, and
+popularity of any particular team or player, as well as any other covariates that
+might be good predictors of foul rate, then each group provides a good 
+approximation to the missing counterfactual outcome distribution for the other 
+group, and the study can be analyzed as though it were from a truly-randomized
+experiment to produce a good average treatment effect 
+estimate.
+
+Following this strategy, Price and Wolfers find a significant discrimination 
+effect: on average basketball players facing
+an officiating referee of the same race enjoy a foul rate 4\% lower than when 
+facing an officiating referee of the opposite race, and also score 2.5\% more points.
+[^pricewolfers2]
+
+
+Studies like this are often known 
+as natural experiments (or quasi-experiments).
+
+**Natural experiment**
+:   A study in which researchers did not randomly assign treatment but claim that
+the treatment process is sufficiently independent of covariates to justify
+treatment effect estimation.
+
+[^foulpic] Image credit Keith Allison, obtained from Wikimedia Commons.
+
+
+[^pricewolfers] From Price, J., & Wolfers, J. (2010). Racial discrimination 
+among NBA referees. \emph{The Quarterly Journal of Economics}, 125(4), 
+1859-1887.
+
+[^pricewolfers2] Interestingly, after Price's and Wolfers' study led to 
+a back-and-forth debate with NBA statisticians and received 
+significant media attention, they repeated their study on mid-2010s data and found
+that the effect had disappeared, making a further (and perhaps less justifiable)
+claim that awareness of the potential for racial bias can  cause evaluators to eliminate
+it from their process. You can read about their follow-up study in 
+Pope, D. G., Price, J., & Wolfers, J. (2018). Awareness reduces racial bias. 
+\emph{Management Science}, 64(11), 4988-4995.
+
+
+## Similar units with different treatments
+
+
+While natural experiments provide a strong example of a case where we can learn
+about causal effects from purely observational data, only rarely are treatments
+we care about known to be quasi-randomly assigned as in the NBA refereeing example.
+More generally, we may have only amorphous knowledge of how treatment assignment
+occurs, or we may have strong reasons to believe that treated and control 
+individuals differ systematically.  In this setting we need a new
+strategy for causal effect estimation.
+
+### Siblings
 
 Let's return to our example of evaluating the impact of graduating from Cal on
 obtaining a good job.
@@ -115,28 +187,32 @@ Well, it depends on how similar they are to one another in ways that matter to t
 
 Now imagine we had several Cal students, and each one had a sibling with generally
 similar attributes.
-SHOW DATAFRAME
+
+
+[INSERT DATAFRAME]
 
 When we conduct covariate balance checks comparing the treatment (graduated from
 Cal) group and the control group, we see that these groups look very similar.  
 If we had been able to randomly assign graduation status, it would not be 
 surprising to see a pattern of covariate balance measures like this one.
 
-There is one important difference between this study and the natural experiments
-in the previous set of notes.  Here, we don't have any compelling reason to
-believe that graduation from Cal was randomly assigned between siblings. It's
-possible that the decision was random, but it's also possible that some hidden
-factor drove the decision.  For example, we don't have any information about the
-career goals or interests of these students.  If Evelyn, David, Jerzy, and Betty
-all chose to go to Berkeley to study Stat and their siblings all skipped college
-and spent their time playing with bands because they wanted to be rock stars
-then maybe the real reason the former group is employed is because of their interest
-in a field with good job opportunities, not because of the college they attended.
+[LOVE PLOT]
+
+[BALANCE TABLE WITH P-VALUES]
+
+This idea has  led to clever and impactful studies to evaluate whether smoking 
+causes cancer. Imagine you are a doctor with a patient who smokes and has been 
+recently diagnosed with cancer. When you tell them, "I'm afraid your smoking habit has caused your cancer", they protest: "Not at all! I'm quite sure I have a gene that causes me to want to smoke and also causes me to get cancer. If I had stopped smoking, it wouldn't have changed a thing!".
+
+That is a difficult explanation to refute.
+What would the counterfactual look like? You'd need either to run an RCT (which would
+be unethical) or find someone with the exact same genetic makeup who happened to not be a smoker. But surely this close of a match doesn't exist...
+
+Unless your patient is one of an identical pair of twins. While this scenario is rare, there are plenty of pairs of identical twins that can be used to evaluate precisely this kind of scenario. At the end of the 20th century, researchers in Finland compiled a large data base of identical twins where one of them smoked and the other did not. In pair after pair, they found it much more likely that the twin who smoked was more likely to develop cancer. This technique, using identical twins to get perfect matches on genetics, has been a rich source of breakthroughs in understanding genetic determinants of disease[^twins].
+
+[^twins]: There is a rich literature that uses data bases of twins to determine genetic determinants of health outcomes. For a recent study on smoking and cancer, see [https://pubmed.ncbi.nlm.nih.gov/35143046/](Cancer in twin pairs discordant for smoking: The Nordic Twin Study of Cancer) by Korhonen et al., 2022.
 
 
-
-This is the biggest thing you give up when you don't run an RCT.  You need to assume
-that unobserved variables are not present.  MENTION SENSITIVITY ANALYSIS HERE OR LATER?
 
 ### Matching
 
@@ -146,31 +222,71 @@ at the covariates for each treated subject and searching for a control subject
 with similar values. This general approach is called *matching*.
 
 
-There are many methods for determining which two units in a data set are the closest matches for one another. One simple idea is to adapt the method that we used for the k-nearest neighbor algorithm: calculating the (Euclidean) distance between each pair of observations.
+There are many methods for determining which two units in a data set are the 
+closest matches for one another. One simple idea is to adapt the method that 
+we used for the k-nearest neighbor algorithm: calculating the (Euclidean) 
+distance between each pair of observations.
 
-DATA EXAMPLE.  SHOW HOW TO OBTAIN THE MATCHES, REPLOT COVARIANCE BALANCE.
+We demonstrate this method of nearest-neighbor matching using a small synthetic
+dataset based on the college graduation data.  We start with XX treated units and
+XX controls.
+
+DATA EXAMPLE WITH MATCHIT.  
+
+Discuss improved covariate balance
+SHOW HOW TO OBTAIN THE MATCHES, REPLOT COVARIANCE BALANCE.
  
 
 
-WHERE TO PUT THIS?
-
-Some of the most clever and impactful applications of the matching approach have been studies designed to evaluate whether smoking causes cancer. Imagine you are a doctor with a patient who smokes and has been recently diagnosed with cancer. When you tell them, "I'm afraid your smoking habit has caused your cancer", they protest: "Not at all! I'm quite sure I have a gene that causes me to want to smoke and also causes me to get cancer. If I had stopped smoking, it wouldn't have changed a thing!".
-
-That is a difficult explanation to refute! What would the counterfactual look like? You'd need someone with the exact same genetic makeup who happened to not be a smoker. But surely this close of a match doesn't exist...
-
-Unless your patient is one of an identical pair of twins. While this scenario is rare, there are plenty of pairs of identical twins that can be used to evaluate precisely this kind of scenario. At the end of the 20th century, researchers in Finland compiled a large data base of identical twins where one of them smoked and the other did not. In pair after pair, they found it much more likely that the twin who smoked was more likely to develop cancer. This technique, using identical twins to get perfect matches on genetics, has been a rich source of breakthroughs in understanding genetic determinants of disease[^twins].
-
-[^twins]: There is a rich literature that uses data bases of twins to determine genetic determinants of health outcomes. For a recent study on smoking and cancer, see [https://pubmed.ncbi.nlm.nih.gov/35143046/](Cancer in twin pairs discordant for smoking: The Nordic Twin Study of Cancer) by Korhonen et al., 2022.
-
-Despite this success, in general matching has several challenges. What if the closest match actually isn't very similar? What if you haven't recorded all of the variables that matter? In these scenarios, you might want to consider a different approach.
+PUT THIS IN OR TAKE IT OUT?
+This form of matching is limited in what it can do. What if the 
+closest match for some unit actually isn't very similar?  What if balance does not
+look sufficiently like an RCT after matching? What if your treatment variable has
+more than 2 categories? In these scenarios, matching requires some  
 
 <!-- Use example of highway overpass study -->
 
+
+
+## Unobserved confounding
+
+There is at least one important difference between the matched studies discussed above and a natural experiment.
+ Here, we don't have any compelling reason to
+believe that graduation from Cal was randomly assigned between siblings or matched
+subjects. It's
+possible that the decision was random, but it's also possible that some hidden
+factor drove the decision.  For example, we don't have any information about the
+career goals or interests of these students.  If Evelyn, David, Jerzy, and Betty
+all chose to go to Berkeley because they love statistics and their siblings all 
+skipped college
+and spent their time practicing the guitar because they dream of becoming rock stars
+then maybe the real reason the former group is employed is because of their interest
+in a field with good job opportunities, not because of the college they attended.
+In the smoking twins study, it could be that the smoking twins pursued other kinds of
+risky behaviors (e.g. drug use, poor diet, working in dangerous jobs) at a higher
+rate than the non-smoking twins despite their genetic similarity. 
+
+
+Unless
+we happened to measure these covariates, the data does not help us much to refute
+these considerations. We have to rely on our judgment about the context to 
+evaluate whether they are more plausible than the treatment effect. This situation
+is called unobserved confounding, and if it is present it can lead to subsantially
+biased treatment effect estimates.
+
+**Unobserved confounding**
+:   When unmeasured covariates predictive of our outcome variable are present and
+imbalanced in our study.
+
+Notice that if we had been able to randomly assign college graduation or smoking 
+status and had a large number of replicates, unobserved confounding would not
+be a concern.  Because we know randomized treatment assignment is independent
+of everything about study subjects, whether observed or unobserved, we expect it
+to balance unobserved quantities on average and can ignore them.
+This is the biggest thing you give up when you don't run an RCT. <!-- You need to assume
+that unobserved variables are not present.  MENTION SENSITIVITY ANALYSIS HERE OR LATER?-->
+
 SOMETHING ABOUT SENSITIVITY ANALYSIS?
-
-
-
-FOR NEXT SET OF NOTES
 
 
 ### Summary

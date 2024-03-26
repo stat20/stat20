@@ -43,7 +43,7 @@ As a running example, consider an immediately relevant question: would reading t
 
 When designing an RCT, an essential decision is the nature of your control group. Our research question is: will reading these notes as a webpage result in a deeper understanding? Deeper . . . than what? Deeper than if you didn't read the notes at all? Deeper than if you read them aloud?
 
-If we're most interested in the difference between reading the notes as a webpage and reading them as a pdf, we could declare those who read the pdf part of the control group and those who read the pdf as part of the treatment group[^control]. Small changes to the control group can make an important difference in the precise question that you'll be answering.
+If we're most interested in the difference between reading the notes as a webpage and reading them as a pdf, we could declare those who read the pdf part of the control group and those who read the pdf as part of the treatment group. Small changes to the control group can make an important difference in the precise question that you'll be answering.
 
 We can visualize the distinction between the two groups in a small example with three people in the control group (pdf) and three people in the treatment group (website).
 
@@ -384,15 +384,12 @@ values. So we will fit an ordinary regression model to predict treatment status
 using all our covariates.  Letting $z_i$ represent treatment status for subject
 $i$ and $\widehat{z}_i$ represent our predicted value for subject $i$'s treatment 
 status based on $k$ covariates, we will compute the following test 
-statistic:
-$$
-F_{balance} =\frac{\frac{1}{k}\sum^n_{i=1}(\widehat{z}_i - \overline{z})^2}{\frac{1}{n-k-1}\sum^n_{i=1}(z_i - \widehat{z}_i)^2}
-$$
+statistic:-->
 
-This is known as an F-statistic and is used more generally to compare how
+<!--This is known as an F-statistic and is used more generally to compare how
 much better a regression models predicts than using the sample mean (relative to the
-amount of noise).  <!--[^Fstat].-- >  It will tend to be close to 1 when the covariates are not
-helpful for predicting treatment status and much larger when they are useful.
+amount of noise).  [^Fstat]. It will tend to be close to 1 when the covariates are not
+helpful for predicting treatment status and much larger when they are useful.-->
 
 <!--[^Fstat] The formula for the F-statistic may not seem very intuitive.  -->
 
@@ -460,7 +457,7 @@ looks significantly different from zero.
 
 
 
-[^linkfun] It may seem odd to fit a multiple least-squares regression to a binary
+[^linkfun]: It may seem odd to fit a multiple least-squares regression to a binary
 outcome like whether understanding is deep rather than a logistic regression as 
 we might have in the prediction unit.  The reason we do it is because we care
 about extracting and interpreting the model's coefficients rather than its predictions.  
