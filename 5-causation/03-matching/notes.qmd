@@ -30,7 +30,7 @@ researchers do is observe treatment assignments rather than making them.
 
 ## Natural experiments
 
-[insert pic of basketball foul call]
+![](images/nba_foul.jpg){#fig-inflation fig-align=center width="500px"}[^foulpic]
 
 Do judicial decision-makers tend to favor members of the same race?  In the 
 mid-2000s two economists interested in this question, Joseph Price and Justin 
@@ -41,8 +41,7 @@ non-Black. They compared the rate at which referees gave fouls to players of the
 same race (Black or non-Black) to the rate at which fouls were given to players
 of the opposite racial category.
 
-![](images/balance_table1_price_wolfers.png){#fig-inflation width="600px"}
-[^foulpic]
+
 
 This study aims to investigate a causal claim: for a given player in a given game,
 would the player's foul rate have been different if a different referee had been
@@ -81,8 +80,8 @@ that the number of white referees did vary over time (notice the .00 p-values
 in the first row of the second table) but most of the other p-values are fairly
 large, suggesting approximate balance.
 
-![](images/balance_table1_price_wolfers.png){#fig-inflation width="300px"}
-![](images/balance_table2_price_wolfers.png){#fig-inflation fig-align=center width="300px"}
+![](images/balance_table1_price_wolfers.png){#fig-inflation width="600px"}
+![](images/balance_table2_price_wolfers.png){#fig-inflation fig-align=center width="600px"}
 
 If indeed the process of assigning referees is independent of the race, team, and
 popularity of any particular team or player, as well as any other covariates that
@@ -107,14 +106,14 @@ as natural experiments (or quasi-experiments).
 the treatment process is sufficiently independent of covariates to justify
 treatment effect estimation.
 
-[^foulpic] Image credit Keith Allison, obtained from Wikimedia Commons.
+[^foulpic]: Image credit Keith Allison, obtained from Wikimedia Commons.
 
 
-[^pricewolfers] From Price, J., & Wolfers, J. (2010). Racial discrimination 
+[^pricewolfers]: From Price, J., & Wolfers, J. (2010). Racial discrimination 
 among NBA referees. \emph{The Quarterly Journal of Economics}, 125(4), 
 1859-1887.
 
-[^pricewolfers2] Interestingly, after Price's and Wolfers' study led to 
+[^pricewolfers2]: Interestingly, after Price's and Wolfers' study led to 
 a back-and-forth debate with NBA statisticians and received 
 significant media attention, they repeated their study on mid-2010s data and found
 that the effect had disappeared, making a further (and perhaps less justifiable)
@@ -189,17 +188,67 @@ Now imagine we had several Cal students, and each one had a sibling with general
 similar attributes.
 
 
-[INSERT DATAFRAME]
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+tab <- tibble(`Student` = c("Evelyn Fix", "Eleanor Fix", 
+                            "Jerzy Neyman", "Jenny Neyman",
+                            "David Blackwell", "Derek Blackwell",
+                            "Betty Scott", "Brandon Scott"),
+              `GPA` = c(3.9, 3.9, 3.7, 3.5, 3.9, 4.0, 3.6,3.6),
+              `Years exp` = c(3, 3, 4,2,2,2,0,1),
+              `Rec` = c("strong", "strong", "moderate", "moderate",
+                        "strong", "strong", "strong", "moderate"),
+              `Cal Grad` = rep(c("yes", "no"),4),
+              `Good Job` = c("yes", "no","yes","no", "yes","yes","no","no"))
+```
 
 When we conduct covariate balance checks comparing the treatment (graduated from
 Cal) group and the control group, we see that these groups look very similar.  
 If we had been able to randomly assign graduation status, it would not be 
 surprising to see a pattern of covariate balance measures like this one.
 
-[LOVE PLOT]
+```{r}
+#| echo: false
+library(cobalt)
+sibs <- tab |>
+    mutate(cal_grad = `Cal Grad`== 'yes') 
+bal.tab(cal_grad ~ GPA + `Years exp` + Rec, data = sibs,
+        s.d.denom = 'pooled', binary = 'std') |>
+  plot()
 
-[BALANCE TABLE WITH P-VALUES]
 
+```
+
+```{r}
+#| echo: false
+library(infer)
+pvalue_summary <- data.frame('covariate' = c(), 'pvalue' = c())
+sibs_rec <- sibs |> 
+  mutate(strong_Rec = as.numeric('Rec' == 'strong'))
+set.seed(2024-3-26)
+for(cov_name in c('GPA','Years exp', 'strong_Rec')){
+   obs_stat <- sibs_rec |>
+   specify( response = !!sym(cov_name),
+           explanatory = `Cal Grad`) |>
+    calculate(stat = 'diff in means', order = c('yes','no'))
+   
+   null <- sibs_rec |>
+   specify( response = !!sym(cov_name),
+           explanatory = `Cal Grad`) |>
+     hypothesize(null = 'independence') |>
+     generate(reps = 500, type = 'permute') |>
+    calculate(stat = 'diff in means', order = c('yes','no'))
+   
+   pval <- get_p_value(null, obs_stat, direction = 'both')
+   pvalue_summary <- bind_rows(data.frame('covariate' = cov_name, 
+                                          'pvalue' = pval), pvalue_summary)
+}
+pvalue_summary
+```
 This idea has  led to clever and impactful studies to evaluate whether smoking 
 causes cancer. Imagine you are a doctor with a patient who smokes and has been 
 recently diagnosed with cancer. When you tell them, "I'm afraid your smoking habit has caused your cancer", they protest: "Not at all! I'm quite sure I have a gene that causes me to want to smoke and also causes me to get cancer. If I had stopped smoking, it wouldn't have changed a thing!".
@@ -228,24 +277,128 @@ we used for the k-nearest neighbor algorithm: calculating the (Euclidean)
 distance between each pair of observations.
 
 We demonstrate this method of nearest-neighbor matching using a small synthetic
-dataset based on the college graduation data.  We start with XX treated units and
-XX controls.
+dataset based on the college graduation data.  We start with 5 treated units and
+15 controls.
+```{r}
+#build the synthetic dataset for matching
+#NB: if we feel comfortable bringing in Maha distance,
+# use shape1=4 and runif min = 2.5 maha, 20 individulas w treat prob. 0.3 for good performance.
+#| echo: false
+set.seed(2024-3-26)
+grad_job <- data.frame('GPA' = c(), 'years_exp' = c(), 'rec' = c(), 
+                       'cal_grad' = c(), 'good_job' = c())
+for(i in 1:20){
+  this_cal_grad <- runif(1) < 0.3
+  if(this_cal_grad){
+     grad_job <- data.frame('GPA' = round(2+2*rbeta(1,shape1=3, shape2=2),2),
+                'years_exp' = round(4*rbeta(1, shape1=2, shape2=4)),
+                'rec' = sample(c('strong', 'moderate', 'weak'), size=1,
+                                 prob = c(0.6, 0.3, 0.1)),
+                'cal_grad' = this_cal_grad,
+                'good_job' = sample(c('yes','no'), size = 1, 
+                                    prob = c(0.6,0.4))) |>
+        bind_rows(grad_job)
+  }else{
+    grad_job <-  data.frame('GPA' = round(runif(1, min =2.5, max = 4),2),
+                'years_exp' = round(runif(1, min = 0, max = 4)),
+                'rec' = sample(c('strong', 'moderate', 'weak'), size=1,
+                                 prob = c(0.3, 0.4, 0.3)),
+                'cal_grad' = this_cal_grad,
+                'good_job' = sample(c('yes','no'), size = 1, 
+                                    prob = c(0.6,0.4))) |>
+       bind_rows(grad_job)    
+  }
+}
 
-DATA EXAMPLE WITH MATCHIT.  
+```
 
-Discuss improved covariate balance
-SHOW HOW TO OBTAIN THE MATCHES, REPLOT COVARIANCE BALANCE.
+
+```{r}
+head(grad_job)
+```
+We use the \texttt{MatchIt} package in R to find the nearest neighbor for each 
+treated unit using the 
+Euclidean distance, forming five matched pairs  We can use the \texttt{plot} function to compare how close paired units lie on each variable.
+
+```{r}
+library(MatchIt)
+grad_matched <- matchit(cal_grad ~ GPA + years_exp + rec, method = 'nearest',
+                        distance = 'euclidean', data = grad_job)
+plot(grad_matched, type = 'density')
+```
+
+The gray lines give the density of the control distribution for each covariate 
+and the black lines
+give the density of the treated distributions.
+
+We can also make a Love plot comparing the standardized differences before and
+after[^smd_after] matching.
+
+```{r}
+grad_matched |>
+  bal.tab(s.d.denom = 'pooled', binary = 'std', un = TRUE) |>
+  plot()
+```
+
+Prior to matching, students who did not go to Cal looked very different from those
+who did; on average, they had higher GPAS and more years of experience, but the
+Cal grads were much more likely to have strong letters and much less likely to
+have weak letters.  However, after matching the two groups look almost identical,
+albeit with a slightly higher average GPA among the Cal grads.
+
+[^smd_after]: Note that when we compute SMDs after matching, we use the same
+denominator as for the original SMD (based on the entire dataset). This ensures
+that the "before matching" and "after matching" SMDs use the same standard
+deviation measure as units, which allows us to compare them meaningfully.
  
+Nearest-neighbor matching may not always fix balance this effectively.  Sometimes
+one of the treated units has no comparable control available, or not all variables
+end up balanced well.  In these scenarios, modifications to the matching strategy
+can help, including eliminating some treated units or using a different kind
+of distance.  Although we won't discuss these modifications in detail, the 
+\texttt{MatchIt} package supports many of them and provides a handy online
+guide: <https://kosukeimai.github.io/MatchIt/articles/matching-methods.html>.
+
+Since after matching our comparison groups closely resemble what we might have
+seen in a randomized experiment, we report the sample difference in means 
+as our estimate of the average treatment effect and conduct a hypothesis test as
+we would have in a randomized trial where we were able to assign Berkeley graduation
+status at random.  To use the data only from the matched individuals, rather than
+everyone in \texttt{grad_job}, we start with the output object from the matching
+step and pipe it to the \texttt{match.data} command to obtain the smaller 
+dataframe.
+
+```{r}
+set.seed(2024-3-27)
+obs_stat <- grad_matched |>
+   match.data() |>
+   specify(response = good_job,
+          explanatory = cal_grad,
+          success = "yes") |>
+  calculate(stat = "diff in props", order = c("TRUE","FALSE"))
+  obs_stat
+
+null <- grad_matched |>
+ match.data() |>
+ specify(response = good_job,
+          explanatory = cal_grad,
+          success = "yes") |>
+  hypothesize(null = "independence") |>
+  generate(reps = 500, type = "permute") |>
+  calculate(stat = "diff in props", order = c("TRUE","FALSE"))
+
+null |>
+  visualize() +
+  shade_p_value(obs_stat, direction = 'both')
+  
+null |> get_p_value(obs_stat, direction = 'both')
 
 
-PUT THIS IN OR TAKE IT OUT?
-This form of matching is limited in what it can do. What if the 
-closest match for some unit actually isn't very similar?  What if balance does not
-look sufficiently like an RCT after matching? What if your treatment variable has
-more than 2 categories? In these scenarios, matching requires some  
-
-<!-- Use example of highway overpass study -->
-
+```
+Although we estimate that graduation from Cal increases the probability of obtaining
+a good job by 0.4, the p-value is very high suggesting that such high values are
+expected to occur frequently even under the null hypothesis that Cal graduation
+status and holding a good job are independent.
 
 
 ## Unobserved confounding
@@ -256,8 +409,8 @@ believe that graduation from Cal was randomly assigned between siblings or match
 subjects. It's
 possible that the decision was random, but it's also possible that some hidden
 factor drove the decision.  For example, we don't have any information about the
-career goals or interests of these students.  If Evelyn, David, Jerzy, and Betty
-all chose to go to Berkeley because they love statistics and their siblings all 
+career goals or interests of these students.  If the Berkeley students all chose
+to attend because they love statistics and their siblings or matched controls all 
 skipped college
 and spent their time practicing the guitar because they dream of becoming rock stars
 then maybe the real reason the former group is employed is because of their interest
@@ -265,7 +418,6 @@ in a field with good job opportunities, not because of the college they attended
 In the smoking twins study, it could be that the smoking twins pursued other kinds of
 risky behaviors (e.g. drug use, poor diet, working in dangerous jobs) at a higher
 rate than the non-smoking twins despite their genetic similarity. 
-
 
 Unless
 we happened to measure these covariates, the data does not help us much to refute
@@ -286,11 +438,18 @@ to balance unobserved quantities on average and can ignore them.
 This is the biggest thing you give up when you don't run an RCT. <!-- You need to assume
 that unobserved variables are not present.  MENTION SENSITIVITY ANALYSIS HERE OR LATER?-->
 
-SOMETHING ABOUT SENSITIVITY ANALYSIS?
-
 
 ### Summary
 
-FILL IN
+We don't need to give up on evaluating causal claims just because we are unable
+to assign treatments at random as in an experiment.  In the best case, we 
+can find natural experiments, or situations where nature or someone else assigns 
+treatments essentially
+at random.  Even if a natural experiment isn't available, we can attempt to 
+approximate one by finding similar individuals with different treatment status
+in the same dataset by matching subjects on their covariates.  When
+matched comparisons balance observe covariates well we can argue in favor of
+causal claims, although concerns about unobserved covariates (which are absent
+in randomized trials) remain.
 
 
