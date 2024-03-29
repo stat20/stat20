@@ -430,7 +430,10 @@ biased treatment effect estimates.
 :   When unmeasured covariates predictive of our outcome variable are present and
 imbalanced in our study.
 
-Notice that if we had been able to randomly assign college graduation or smoking 
+In order to trust the causal claims arising from a matched observational study,
+we need to assume that there is **no unobserved confounding**.
+
+Notice that if we had been able to randomly assign college grasduation or smoking 
 status and had a large number of replicates, unobserved confounding would not
 be a concern.  Because we know randomized treatment assignment is independent
 of everything about study subjects, whether observed or unobserved, we expect it
