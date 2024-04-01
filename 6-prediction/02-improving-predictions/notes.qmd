@@ -451,12 +451,41 @@ lm(formula = response ~ poly(x = predictor,
                    raw = TRUE), data = df)
 ```
 
+### Making predictions on a new observation with `predict()`
 
+We have spending a lot of time talking about how to fit a model meant for predicting, but have not actually done any predicting! The `predict()` function can help us do this. It takes in two main arguments:
 
+  -   `object`: This is the linear model object which contains the coefficients $b_0$, ..., $b_p$. In the graduate and poverty example, this object was `m1`. We had `m1` through `m4` in the ZAGAT example.
+  -   `newdata`: This is a *data frame* containing the new observation(s). This data frame must at least contain each of the predictor variables used in the column, with a value of these variables for each observation. 
+  
+#### Example: ZAGAT food rating
+
+Here, we will use `m2` from the ZAGAT example. This model used $food$ and $geo$ in an attempt to predict price at a restaurant. 
+
+First, let's make a new data frame with a couple of new, made-up observations.
+
+```{r}
+#| code-fold: false
+restaurants <- data.frame(
+  food = c(25, 17),
+  geo = c("east", "west"))
+```
+
+One of these restaurants is located in east Manhattan and has a food score of 25/30, while the other one is in west Manhattan and has a food score of 17/30.
+
+Now, we can use this data frame alongside our `m2` model object to make predictions for the prices.
+
+```{r}
+#| code-fold: false
+predict(object = m2, newdata = restaurants)
+```
+
+We are predicted to have to pay roughly $\$56$ at the first restaurant and roughly $\$31$ at the second. 
 
 ## Summary
 
 In this lecture we learned how to evaluate and improve out predictions. While there are many metrics to measure the explanatory power of a model, one of the most commonly used is $R^2$, the proportion of the variability of the $y$ that is explained by the model.
 
 To improve our predictions - and increase the $R^2$ - we saw three different strategies. If you have additional predictors in your data frame, its easy as pie to add them to your regression model and you are guaranteed to increase your $R^2$.
+
 A second strategy is capture non-linear structure by creating new variables that are simple transformations of the existing variable. The third approach, also targeting non-linear structure, is to replace a single predictor with a polynomial.
