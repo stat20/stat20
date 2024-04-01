@@ -121,23 +121,8 @@ Consider picking a starting value for each of $b_0$ through $b_p$, plugging thes
 
 There are many iterative algorithms that accomplish the same task, some better than others. Two examples:
 
+- **Nelder-Mead**: an older and more general (and generally not as reliable!) algorithm. This is the one we showed you in the video.
 - **Gradient Descent**: the most-used algorithm currently. Used to fit deep learning models.
-- **Nelder-Mead**: an older and more general (and generally not as reliable!) algorithm.
-
-While the Gradient Descent method is preferred over the Nelder-Mead method, we would like to show you the Nelder-Mead method in action. Here is a brief description of the method from Wikipedia, followed by a GIF which demonstrates the method being used to find a solution for an equation with two coefficients $b_1$ and $b_2$. 
-
-
-> The downhill simplex method now takes a series of steps, most steps just moving the point of the simplex where the function is largest (“highest point”) through the opposite face of the simplex to a lower point. These steps are called reflections, and they are constructed to conserve the volume of the simplex (and hence maintain its nondegeneracy). When it can do so, the method expands the simplex in one or another direction to take larger steps. When it reaches a “valley floor”, the method contracts itself in the transverse direction and tries to ooze down the valley. If there is a situation where the simplex is trying to “pass through the eye of a needle”, it contracts itself in all directions, pulling itself in around its lowest (best) point.
-
-```{r}
-#| fig-align: center
-#| echo: false
-#| code-fold: false
-#| fig-height: 1
-#| fig-width: 1
-knitr::include_graphics("images/Nelder-Mead_Himmelblau.gif")
-```
-
 
 ## The Ideas in Code
 
