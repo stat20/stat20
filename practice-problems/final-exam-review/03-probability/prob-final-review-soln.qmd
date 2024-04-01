@@ -1,0 +1,10 @@
+---
+title: "Probability"
+subtitle: "Final Exam Review Solution"
+format: stat20handout-pdf
+---
+
+**Solutions to MC in bold.**
+
+
+
