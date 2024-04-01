@@ -82,9 +82,14 @@ The past two decades have been a golden age for predictive models, with hundreds
 
 ## Linear Regression
 
-We've seen linear regression before, but we saw it in a very particular context: we used linear regression for its ability to help us describe the structure of the data set at hand. It calculates not just one but two or more summary statistics - the regression coefficients, that tell us about the linear relationships between the variables.
+We first introduced linear regression as a method of explaining a continuous numerical $y$ variable in terms of a linear function of $p$ explanatory terms, $x_i$.
+     $$ \hat{y} = b_0 + b_1x_1 + b_2x_2 + \ldots +b_px_p $$
 
-We're going to revisit to this model for its ability to also make predictions on unseen data. Before we do so, though, you should be sure you're familiar with these concepts: correlation coefficient, slope, intercept, fitted values, and residuals. Take a moment to skim those notes:
+Each of the $b_i$ are called **coefficients**. 
+
+Before, we saw linear regression in a very particular context: we used it for its ability to help us describe the structure of the data set at hand. It calculates not just one but two or more summary statistics - the regression coefficients, that tell us about the linear relationships between the variables.
+
+We're now going to revisit to this model for its ability to also make predictions on unseen data. Before we do so, though, you should be sure you're familiar with these concepts: correlation coefficient, slope, intercept, fitted values, and residuals. Take a moment to skim those notes:
 
 - [Summarizing Numerical Associations](../../2-describing-data/09-summarizing-associations/notes.qmd)
 - [Multiple Linear Regression](../../2-describing-data/10-multiple-linear-regression/notes.qmd)
@@ -96,14 +101,116 @@ When we presented the equations to calculate the slope and intercept of a least 
 The least squares linear model is so-called because it defines a line that has a particular mathematical property: it is the line that has the lowest residual sum of squares of all possible lines.
 
 **Residual Sum of Squares (RSS)**
-:    For observations of a response variable $y_i$, predictions of its value (fitted values) $\hat{y}_i$, and a data set with $n$ observations, the RSS is
+:    For observations of an explanatory variable $y_i$, a response variable $y_i$, predictions of its value (fitted values) $\hat{y}_i$, and a data set with $n$ observations, the RSS is
      $$ RSS = \sum_{i = 1}^n \left(y_i - \hat{y}_i \right)^2$$
+where $$ \hat{y_i} = b_{0} + b_1x_{1,i} + b_2x_{2,i} + \ldots +b_px_{p,i} $$
 
-So how can we use this definition to decide precisely which slope and intercept to use? Please watch the following 19 minute video to find out.
+Plugging this expression into the first equation gives us
+
+$$ RSS = \sum_{i = 1}^n \left(y_i - (b_{0} + b_1x_{1,i} + b_2x_{2,i} + \ldots +b_px_{p,i}  )\right)^2$$
+
+So how can we use this definition to decide precisely which slope $b_0$ and intercept $b_1$ to use? Please watch the following 19 minute video to find out.
 
 [![](images/method-of-least-squares-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1527632/external_tools/78985)
 
+### Algorithmic Methods
+
+As we saw in the video, the problem of least squares can be defined as one of **optimization.** We would like to make $RSS$ as small as possible. The values of the coefficients that do this are said to *optimize* the $RSS$ equation. Although a direct way to find these values involves taking the partial derivatives of the third equation with respect to each coefficient $b_0$, $b_1$, ..., $b_p$, setting the resulting equation equal to 0, and solving for the coefficient, you could think about using a different, perhaps more intuitive method. 
+
+Consider picking a starting value for each of $b_0$ through $b_p$, plugging these into the third equation, and seeing what comes out. Then, try to pick another set of numbers that makes the result of the $RSS$ equation smaller.  Provided that you have a concerted method to pick the next set of numbers, you can repeat this process over and over until you find the set of numbers which yields the smallest value for $RSS$. This process can be described as an *algorithmic* method to find the values of the coefficients $b_0$ through $b_p$.
+
+There are many iterative algorithms that accomplish the same task, some better than others. Two examples:
+
+- **Gradient Descent**: the most-used algorithm currently. Used to fit deep learning models.
+- **Nelder-Mead**: an older and more general (and generally not as reliable!) algorithm.
+
+While the Gradient Descent method is preferred over the Nelder-Mead method, we would like to show you the Nelder-Mead method in action. Here is a brief description of the method from Wikipedia, followed by a GIF which demonstrates the method being used to find a solution for an equation with two coefficients $b_1$ and $b_2$. 
+
+
+> The downhill simplex method now takes a series of steps, most steps just moving the point of the simplex where the function is largest (“highest point”) through the opposite face of the simplex to a lower point. These steps are called reflections, and they are constructed to conserve the volume of the simplex (and hence maintain its nondegeneracy). When it can do so, the method expands the simplex in one or another direction to take larger steps. When it reaches a “valley floor”, the method contracts itself in the transverse direction and tries to ooze down the valley. If there is a situation where the simplex is trying to “pass through the eye of a needle”, it contracts itself in all directions, pulling itself in around its lowest (best) point.
+
+```{r}
+#| fig-align: center
+#| echo: false
+#| code-fold: false
+#| fig-height: 1
+#| fig-width: 1
+knitr::include_graphics("images/Nelder-Mead_Himmelblau.gif")
+```
+
+
+## The Ideas in Code
+
+### Writing a function in R 
+
+We have been using functions that already exist in either the base installation of R or in another package, such as `dplyr`, `ggplot2` or `stat20data`, but sometimes it can be useful to write our own functions. 
+
+Custom **functions** in R can be created with the function `function()` (quite meta) and assigned to an object. The *arguments* that we would like the function to take go inside the parentheses of `function()`. The things that we would like the function to do go inside `{}`. 
+
+Here is a representation of $f(x) = (x+.5)^2$ in R, which we are saving into the object `f`. Once we run the following code, we'll have access to `f` in our environment and can use it.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| code-line-numbers: "1"
+f <- function(x) {
+  (x + .5)^2
+}
+```
+
+```{r}
+#| echo: true
+#| code-fold: false
+f(x = 1.5)
+```
+
+
+### Nelder-Mead on a simple function
+
+Here, we plot the function $f(x)$ that we described above over the $x$ values $[-1,1]$. 
+
+
+```{r}
+#| echo: false
+#| code-fold: false
+
+library(tidyverse)
+
+tibble(x = seq(-1, 1, .01)) %>%
+  mutate(y = (x + .5)^2)%>%
+  ggplot(aes(x = x, y = y)) +
+  geom_line(col = "goldenrod", linewidth = 2.5) +
+  annotate(geom = "point", x = 0, y = f(0),
+           col = "red", size = 8) +
+  labs(y = "f(x)") +
+  theme_bw(base_size = 22)
+```
+
+
+We can see that the minimum value of $f(x)$ lies between $-1$ and $1$. Can we find the value of $x$ that will give us this minimum using Nelder-Mead? We can try, using the `optim()` function!
+
+#### `optim()`
+
+There are two main arguments to modify:
+
+-   The function to optimize is passed to `fn`. In this case, the function we made is called `f`.
+
+-   You provide a *starting point* for the algorithm with `par`. 
+    -   In this situation, we are trying to find the value of $x$ to minimize $f(x)$, so we will enter a number. We'll start with $x = .5$, but you can tinker around yourself and try something different. Depending on what you start with, you may come up with something different as a final answer, so feel free to try out different numbers! 
+    -   In a linear regression context, we are trying find the values of the coefficients $b_0$ through $b_p$ to minimize $\hat{y}$, so we need to input a *vector* of starting values, one for each coefficient. This can be done using `c()`. 
+
+Nelder-Mead is a *random* algorithm; each time you run it you'll get a (slightly) different answer. We therefore use `set.seed()` to make sure the same value is printed out for the purpose of publishing these notes. 
+
+```{r}
+#| echo: true
+#| code-fold: false
+set.seed(5)
+optim(par = .5, fn = f)
+
+```
+
+You don't need to understand the entirety of the output given by `optim()`-- just focus on the number under `$par`. This is the value of $x$ that `optim()` thinks will give the minimum value of $f(x)$ after. In truth, the correct value is $-0.5$, so we didn't fare too badly!
 
 ## Summary
 
-Prediction is the task of predicting the value of a response variable for an unseen observation using its values of other variables that are known, the predictors. The nature of the response variable determines the nature of the task (and corresponding model): regression concerns the prediction of numerical response variables, classification concerns the prediction of categorical response variables. One such regression model is the least squares linear model, which uses the line that minimizes the residual sum of squares. Finding the value of the coefficients is a task that can be solved directly using calculus (in simple settings like this one) and also with optimization algorithms (in more general settings).
+Prediction is the task of predicting the value of a response variable for an unseen observation using its values of other variables that are known, the predictors. The nature of the response variable determines the nature of the task (and corresponding model): regression concerns the prediction of numerical response variables, classification concerns the prediction of categorical response variables. One such regression model is the least squares linear model, which uses the line that minimizes the residual sum of squares. Finding the value of the coefficients is a task that can be solved directly using calculus (in simple settings like this one) and also with optimization algorithms (in more general settings). We gave an example of using such an algorithm, demonstrating how to write a function in R in the process. 
