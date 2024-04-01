@@ -355,7 +355,7 @@ schedule:
         items:
           - type: Notes
             href: 6-prediction/01-method-of-least-squares/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 6-prediction/01-method-of-least-squares/slides.qmd
             render: false
