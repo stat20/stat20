@@ -29,15 +29,20 @@ Once you have fit a linear model to a scatter plot, you are able to answer quest
 
 > What graduation rate would you expect for a state with a poverty rate of 15%?
 
+
+
 Graphically, this can be done by drawing a vertical line from where the poverty rate is 15% and finding where that line intersects your linear model. If you trace from that intersection point horizontally to the y-axis, you'll find the predicted graduation rate.
 
 :::{.content-visible when-format="html"}
 ```{r}
 #| fig-width: 5
 #| fig-height: 3
+#| echo: false
+#| code-fold: false
 #| fig-align: center
 
 library(tidyverse)
+library(broom)
 poverty <- read_csv("https://tinyurl.com/stat20poverty")
 
 p1 <- ggplot(poverty, aes(Poverty, Graduates)) + 
@@ -65,6 +70,7 @@ p1 +
 #| fig-height: 3
 #| fig-align: center
 #| echo: false
+#| code-fold: false
 #| eval: true
 
 library(tidyverse)
@@ -131,32 +137,10 @@ To fit the least squares linear regression model to predict graduation rate usin
 
 ```{r}
 #| code-fold: false
-
-library(tidyverse)
-poverty <- read_csv("https://tinyurl.com/stat20poverty")
 m1 <- lm(Graduates ~ Poverty, data = poverty)
 ```
 
-When you run this code, you'll see a new object appear in your environment: `m1`. This new object, though, is not a vector or a data frame. It's a much richer object called a *list* that stores all sorts of information about your linear model. You can click through the different part of `m1` in your environment pane, or your can use functions from the `broom` package to extract the important components using code.
-
-```{r}
-#| code-fold: false
-
-library(broom)
-glance(m1)
-```
-
-The `glance()` function returns a series of different metrics used to evaluate the quality of your model. First among those is r-squared. Because the output of `glance()` is just another data frame, we can extract just the r-squared column using `select()`.
-
-```{r}
-#| code-fold: false
-
-glance(m1) %>%
-    select(r.squared)
-```
-
-We learn that the linear model using the poverty rate is able to explain about 56% of the variability found in graduation rates. That's a good start!
-
+For this particular model, $R^2 = .56$. This means that  poverty rate is able to explain about 56% of the variability found in graduation rates. That's a good start!
 
 ## Improving predictions
 
@@ -164,11 +148,13 @@ $R^2$ allows us to quantify how well the model explains the structure found in t
 
 ### Adding Predictors
 
-Let's return to the data set that that we studying when we first leared about [Multiple Linear Regression](https://www.stat20.org/2-describing-data/10-multiple-linear-regression/notes.html): ratings of Italian restaurants from the Zagat guide. For each of the 168 restaurants in the data set, we have observations on the average price of a meal, the food quality, the quality of the decor, the quality of the service, and whether it is east or west of Fifth Avenue.
+Let's return to the data set that that we studying when we first learned about multiple linear regression: ratings of Italian restaurants from the ZAGAT guide. For each of the 168 restaurants in the data set, we have observations on the average price of a meal, the food quality, the quality of the decor, the quality of the service, and whether it is east or west of Fifth Avenue.
 
 ```{r}
 #| warning: false
 #| message: false
+#| code-fold: false
+#| echo: false
 
 zagat <- read_csv("https://www.dropbox.com/s/c797oanmvdzjegt/zagat.csv?dl=1")
 zagat
@@ -189,6 +175,8 @@ Unfortunately we can't visualize these four linear models as four lines on a sca
 We can, however, compare these four models in an arena where they're all on the same playing field: how well they predict price. To quantify that, we can calculate the $R^2$ value for each.
 
 ```{r}
+#| code-fold: false
+#| echo: false
 m1_r2 <- glance(m1) %>%
   pull(r.squared)
 m2_r2 <- glance(m2) %>%
@@ -202,7 +190,7 @@ data.frame(model = c("m1", "m2", "m3", "m4"),
            R_squared = c(m1_r2, m2_r2, m3_r2, m4_r2))
 ```
 
-Observe that the more information we provide the model - by adding predictors - the greater the $R^2$ becomes! This is not a particular characteristic of the Zagat data set but of $R^2$ in general. Adding new predictors will never lower the $R^2$ of a model fit using least squares.
+Observe that the more information we provide the model - by adding predictors - the greater the $R^2$ becomes! This is not a particular characteristic of the ZAGAT data set but of $R^2$ in general. Adding new predictors will never lower the $R^2$ of a model fit using least squares.
 
 ### Non-linear transformation
 
@@ -214,6 +202,8 @@ Take a question from flights lab as an example where we plot the average airspee
 
 ```{r}
 #| fig-align: center
+#| code-fold: false
+#| echo: false
 
 library(stat20data)
 data(flights)
@@ -240,13 +230,19 @@ There does appear to be a *monotonically increasing* trend, but it starts out st
 This trend is reminiscent of functions like *log* or *square root*. 
 
 Lets try transforming our predictor (distance) with the log function to create a new variable called `log_dist`.
+
+```{r}
+#| code-fold: false
+flights <- flights |> 
+    mutate(log_dist = log(distance))
+```
+
 We can then fit a linear model using this new `log_dist` variable as the predictor.
 
 ```{r}
 #| code-fold: false
-flights <- flights %>% 
-    mutate(log_dist = log(distance))
-lm_speed_from_log_dist <- lm(avg_speed ~ log_dist, data=flights)
+lm_speed_from_log_dist <- 
+  lm(formula = avg_speed ~ log_dist, data=flights)
 ```
 
 Looking at the data below, we see there does seem to be a linear relationship between `avg_speed` and our new variable `log_dist`!
@@ -254,10 +250,13 @@ Notice the x-axis in the below plot is `log_dist` whereas it was `distance` in t
 
 ```{r}
 #| fig-align: center
+#| code-fold: false
+#| echo: false
+
 rsq <- glance(lm_speed_from_log_dist)$r.squared
 
-flights %>%
-    mutate(speed_pred = predict(lm_speed_from_log_dist, data=flights)) %>% 
+flights |>
+    mutate(speed_pred = predict(lm_speed_from_log_dist, data=flights)) |>
     ggplot(aes(x=log_dist, y=avg_speed)) +
     geom_point(alpha = .4) + 
     geom_line(aes(x=log_dist, y=speed_pred), color='blue') + 
@@ -278,9 +277,11 @@ We can plot the non-linear prediction function in the original predictor distanc
 
 ```{r}
 #| fig-align: center
+#| code-fold: false
+#| echo: false
 
-flights %>%
-    mutate(speed_pred = predict(lm_speed_from_log_dist, data=flights)) %>% 
+flights |>
+    mutate(speed_pred = predict(lm_speed_from_log_dist, data=flights)) |>
     ggplot(aes(x=distance, y=avg_speed)) +
     geom_point() + 
     geom_line(aes(x=distance, y=speed_pred), color='blue') +
@@ -303,6 +304,8 @@ Take the following example where there is a strong association between x and y, 
 
 ```{r}
 #| fig-align: center
+#| code-fold: false
+#| echo: false
 
 # fix random state so the random numbers we generate are always the same
 set.seed(14)
@@ -324,7 +327,7 @@ df %>%
 So how should we model this?
 Polynomials to the rescue!
 
-A polynomial is a function like
+A **polynomial** is a function like
 
 $$
 f(x) = -20 + 34 x - 16 x^2 + 2 x^3
@@ -342,6 +345,8 @@ The number $d$ is called the *degree* of the polynomial -- this is the largest e
 Polynomials are flexible functions that can be quite useful for modeling.
 We can fit a polynomial model by adding new transformed variables to the data frame then fitting a linear model with these new transformed variables.
 This is just like how we fit a logarithmic function before by adding a new log transformed variable to the data frame then fit a linear model.
+
+<!---
 ```{r}
 #| code-fold: false
 df
@@ -371,23 +376,15 @@ df_with_poly %>%
     theme_bw()
 ```
 
+
+#### Shortcut to fitting polynomials
+-->
+
 The prediction function here is a polynomial given by
 
 $$
 \widehat{y} = -20.086 + 34.669 \cdot x -16.352 \cdot x^2 + 2.042 \cdot x^3 
 $$
-
-#### Shortcut to fitting polynomials
-
-What if we wanted to fit a degree 100 polynomial? 
-We could modify the code above with a really long mutate/lm function, but that is tedious. 
-Fortunately `R` has a nice shortcut with the `poly()` function. This gives us the same 3rd degree polynomial model as above, but with much less code.
-
-```{r}
-#| code-fold: false
-lm_poly_shortcut <- lm(y ~ poly(x = x, degree = 3, raw = TRUE), data = df)
-lm_poly_shortcut
-```
 
 
 <!-- RAAWRRRR I cannot get interpolation to work  -->
@@ -401,6 +398,60 @@ lm_poly_shortcut
 <!--      geom_point() + -->
 <!--      geom_line(aes(x=x, y=y_pred), color='red') -->
 <!-- ``` -->
+
+## The Ideas in Code
+
+### Inspect model output with the `broom` library
+
+Consider the code we ran earlier to fit a linear model which can predict graduation rate using the poverty rate.
+
+```{r}
+#| code-fold: false
+m1 <- lm(Graduates ~ Poverty, data = poverty)
+```
+
+When you run this code, you'll see a new object appear in your environment: `m1`. This new object, though, is not a vector or a data frame. It's a much richer object called a *list* that stores all sorts of information about your linear model. You can click through the different part of `m1` in your environment pane, or your can use functions from the `broom` package to extract the important components using code.
+
+```{r}
+#| code-fold: false
+
+library(broom)
+glance(m1)
+```
+
+The `glance()` function returns a series of different metrics used to evaluate the quality of your model. First among those is r-squared. Because the output of `glance()` is just another data frame, we can extract just the r-squared column using `select()`.
+
+```{r}
+#| code-fold: false
+
+glance(m1) |>
+    select(r.squared)
+```
+
+Here's the $R^2$ we got earlier!
+
+### Fitting polynomials in R with `poly()`
+
+In R, we can fit polynomials using the `poly()` function. Here is the code that was used to fit the polynomial earlier in the notes.
+
+You do not need to worry about the meaning behind the `raw = TRUE` argument. The simulated data frame mentioned earlier is called `df`, and has two variables in it: `predictor` and `response`. 
+
+```{r}
+#| code-fold: false
+#| echo: false
+df <- df |>
+  mutate(predictor = x, 
+         response = y)
+```
+
+```{r}
+#| code-fold: false
+lm(formula = response ~ poly(x = predictor, 
+                   degree = 3, 
+                   raw = TRUE), data = df)
+```
+
+
 
 
 ## Summary
