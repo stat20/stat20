@@ -1,0 +1,230 @@
+---
+title: "Summarization"
+subtitle: "Final Exam Review"
+format: stat20handout-pdf
+---
+
+The next few questions are based on a baseball teams dataset called `Teams` Below is an excerpt of six rows and seven columns from this dataset.
+
+```{r}
+#| eval: true
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+library(tidyverse)
+library(infer)
+library(Lahman)
+set.seed(20)
+
+knitr::kable(Teams %>%
+  filter(yearID > 2013) %>%
+  slice_sample(n = 6, replace = FALSE) %>%
+  select(yearID, teamID, lgID, G, W, R, H) %>%
+  head(n = 6))
+```
+
+
+Below is a brief description of each column in the dataset.
+
+-   `yearID`: The year in which the team played, ranging from 1871 to 2021.
+-   `teamID`: Abbreviation of the team name (teams that played in multiple years will appear in multiple rows).
+-    `lgID`: The league in which the team played. For the purpose of these questions, it will be one of `AL` (American League) or `NL` (National League).
+-   `G`: The number of games played by the team in one season.
+-   `W`: The number of wins the team accrued over one season.
+-   `R`: The number of runs (points) the team scored over one season.
+-   `H`: The number of hits (times a player reaches at least first base) the team recorded over one year.
+
+@. Consider *just* the excerpt of the data frame shown at the top of this page, called `teams_excerpt`. What are the dimensions (rows x cols) of the data frame that is output from the following pipeline?
+
+
+```{r}
+#| eval: false
+#| echo: true
+teams_excerpt %>%
+  filter(lgID == "AL") %>%
+         mutate(runs_per_game = R/G,
+                hits_per_game = H/G)
+```
+
+
+ -    (A) 2x9
+ -    (B) 4x9
+ -    (C) 3x7
+ -    (D) 8x6
+ 
+@. Which operator or function will allow me to save the output from the above pipeline for future use?
+
+ -    (A) `%>%`
+ -    (B) `<-`
+ -    (C) `==`
+ -    (D) `%in%`
+ -    (E) `~`
+ 
+ 
+@. Which of the following statements about the `teams` dataset are true? *Select all that apply.*
+
+-   (A) The unit of observation of the `teams` dataset is a single team.
+-   (B) `teamID` is a categorical, nominal variable.
+-   (C) To visualize how `H` is associated with `R`, one could construct a dotplot.
+-   (D) To make `lgID` a categorical, ordinal variable, we could use the `factor()` function inside of a `mutate` step.
+
+@. As stated in the dataset description, `lgID` is only one of `"AL"` and `"NL"` for the purposes of this problem. Which of the following `filter` operations will extract *just* the rows containing these league IDs from the `teams` dataframe? *Select all that apply.*
+
+ -    (A) `lgID == "AL" | lgID == "NL"`
+ -    (B) `lgID == "AL" & lgID == "NL"`
+ -    (C) `lgID %in% c("AL, "NL")`
+ 
+
+
+@. I was then interested in determining  how `lgID` was associated with runs scored. I filtered `teams` to 2013 and beyond (beginning 2013, both leagues had the same number of teams). To factor in that the 2020 season was shortened, I plotted runs per game instead of just runs. Here are two separate visualizations I created.
+
+```{r}
+#| eval: true
+#| echo: false
+#| fig-align: center
+#| fig-width: 4.5
+
+
+library(patchwork)
+A <- Teams %>%
+  filter(yearID > 2013) %>%
+  mutate(runs_per_game = R/G) %>%
+  ggplot(aes(x = runs_per_game, y = lgID)) +
+  geom_boxplot() +
+  labs(x = "Runs Per Game",
+       y = "League",
+       fill = "League",
+       title = "Visualization A") +
+  theme_bw(base_size = 10)
+
+B <- Teams %>%
+  filter(yearID > 2013) %>%
+  mutate(runs_per_game = R/G) %>%
+  ggplot(aes(x = runs_per_game)) +
+  geom_histogram(color = "white", bins = 30) +
+  facet_wrap(facets = vars(lgID), nrow = 2) +
+  labs(x = "Runs Per Game",
+       y = "Count",
+       title = "Visualization B") +
+  theme_bw(base_size = 10)
+
+A / B
+
+```
+
+
+> Fill in the blanks: Visualization A is/are a _____ and Visualization B is/are a _____.
+
+ -    (A) Side by side box plots; Bar charts
+ -    (B) Side by side violin plots; Bar charts
+ -    (C) Side by side box plots; Histograms
+ -    (D) Side by side violin plots; Histograms
+ 
+
+
+@. Which of the following statements can correctly be concluded from these two visualizations? *Select all that apply.*
+
+ -    (A) Per Visualization A, the IQR of the runs per game for teams playing in the AL is smaller than the IQR of the runs per game for teams playing in the NL.
+ -    (B) Per Visualization A, the mean runs per game for teams playing in the AL is larger than the mean runs per game for teams playing in the NL.
+ -    (C) The mode number of runs per game for teams playing in the AL lies somewhere between 4 and 5 runs.
+ -    (D) The distribution of runs per game for teams playing in the AL exhibits a very slight right skew.
+
+
+
+@. Which of the following statements are true about the two visualizations? *Select all that apply.*
+
+-   (A) Visualization A contains an aesthetic mapping for the variable `lgID`.
+-   (B) Visualization B contains a `y` aesthetic mapping.
+-   (C) Visualization A contains a `y` aesthetic mapping.
+-   (D) Neither Visualization A nor B contain an annotation.
+
+
+@. Below is another visualization I made using the `teams` dataset. This visualization again includes teams that played beginning in 2013. Starting from the *original* `teams` data frame and referencing the six-row excerpt and data dictionary provided at the beginning of the packet, write a single pipeline that will produce this plot, along with its axes labels and title.
+
+
+```{r}
+#| eval: true
+#| echo: false
+#| fig-align: center
+#| fig-width: 4.5
+#| fig-height: 2.5
+
+Teams %>%
+  filter(yearID > 2013) %>%
+  mutate(hits_per_game = H/G) %>%
+  ggplot(aes(x = hits_per_game, y = lgID)) +
+  geom_violin() +
+  labs(x = "Hits Per Game",
+       y = "League",
+       title = "Teams playing in the American League
+       attain more hits per game") +
+  theme_bw(base_size = 10)
+```
+
+\
+
+\
+
+
+\
+
+\
+
+\
+
+
+***
+
+@. For numerical variables $x$ and $y$, the correlation coefficient $r$ is bounded between 0 and 1, with values closer to 1 indicating a stronger relationship between $x$ and $y$.
+
+ -    (A) True
+ -    (B) False
+ 
+ 
+@. Consider a linear model that uses numerical variable $x_1$ and a categorical dummy variable $x_2$ to explain the numerical variable $y$ ($\hat{y} = b_0 + b_{1}x_1 + b_{2}x_2$). The following is the correct interpretation of the coefficient $b_1$: Given two observations having the same level of $x_2$, an increase in $x_1$ by one unit is associated with a $b_{1}$ increase in $\hat{y}$.
+
+ -    (A) True
+ -    (B) False
+ 
+ 
+@. When attempting to visualize a linear model that explains a numerical variable $y$ using two numerical variables $x_3$ and $x_4$, one can make a scatter plot with $x_3$ and $y$ on the horizontal and vertical axes, respectively. Then, the third variable $x_4$ is represented by plotting multiple, parallel lines for each of its possible values.
+
+ -    (A) True
+ -    (B) False
+ 
+***
+
+Consider the following linear regression output where the variable `fur_color` is categorical and the variable `cat_length` is numerical.
+
+```{r}
+#| eval: false
+#| echo: true
+#| fig-align: center
+lm(num_furs_shed ~ cat_length + fur_color, data = cats)
+```
+
+
+| Coefficients     | Estimate |
+| ----------- | ----------- |
+| `(Intercept)`      | 1000       |
+| `cat_length`        | 20        |
+| `fur_colorBrown`      | 5       |
+| `fur_colorGray`        | -2      |
+
+
+@. Say I wanted to create a data frame using a single pipeline which contains the mean, median, and IQR for `cat_length` among each fur color of cat. Which data manipulation operations would be required here? *Select all that apply.*
+
+ -    (A) `arrange`
+ -    (B) `group_by`
+ -    (C) `filter`
+ -    (D) `mutate`
+ -    (E) `summarize`
+
+
+@. What would be the dimensions of this data frame?
+
+ -    (A) 3x4
+ -    (B) 3x3
+ -    (C) 2x4
+ -    (D) 2x3
