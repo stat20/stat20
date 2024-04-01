@@ -24,8 +24,10 @@ execute:
 
 ## Agenda
 
-1. Concept Questions
-2. Lab 6.1
+-   Concept Questions
+-   More time on Lab 6.1
+-   *Break*
+-   Lab 6.2
 
 # Concept Questions
 
@@ -227,3 +229,18 @@ tibble(pet=runif(n=n_samples, min=0, max=100),
 ```{r}
 countdown::countdown(1)
 ```
+
+# Lab 
+
+```{r}
+countdown::countdown(25)
+```
+
+# Break
+
+```{r}
+countdown::countdown(5)
+```
+
+# End of Lecture
+
