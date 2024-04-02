@@ -2,6 +2,7 @@
 title: "Method of Least Squares"
 format:
   revealjs:
+    self-contained: true
     author: "STAT 20: Introduction to Probability and Statistics"
     height: 900
     width: 1600
@@ -66,8 +67,7 @@ This is a serious challenge encountered by self-driving cars at the moment. This
 
 ```{r}
 #| echo: true
-f <- function(x, y)
-{
+f <- function(x, y) {
   y*(x + 3) 
 }
 ```

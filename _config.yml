@@ -358,7 +358,13 @@ schedule:
             render: true
           - type: Slides
             href: 6-prediction/01-method-of-least-squares/slides.qmd
-            render: false
+            render: true
+          - type: PS
+            href: 6-prediction/01-method-of-least-squares/ps.qmd
+            render: true
+          - type: Lab
+            href: 6-prediction/labs/07-baseball/lab.qmd
+            render: true
             
       - topic: "Evaluating and Improving Predictions"
         display-date: Apr 4
@@ -366,12 +372,9 @@ schedule:
         items:
           - type: Notes
             href: 6-prediction/02-improving-predictions/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 6-prediction/02-improving-predictions/slides.qmd
-            render: false
-          - type: Lab
-            href: 6-prediction/labs/07-baseball/lab.qmd
             render: false
 
   - week: 12

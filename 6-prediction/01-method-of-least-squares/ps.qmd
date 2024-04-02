@@ -61,12 +61,12 @@ Where applicable, answer the following questions using R code and write the code
 
 \
 
-
+<!---
 `lm()` uses the closed form equations to find the least squares estimates but there are other ways to do this optimization; one was discussed in the notes. We will have you go through this method in this problem set. 
 
 The function `rss` below is meant to mirror the formula for $\text{RSS}$ for a simple linear regression model:
 
-$$ \text{RSS} = \sum_{i = 1}^n \left(y_i - (b_{0} + b_1x    )\right)^2$$
+$$ \text{RSS}(b_0,b_1) = \sum_{i = 1}^n \left(y_i - (b_{0} + b_1x_i    )\right)^2$$
 ```{r}
 #| echo: true
 #| eval: false
@@ -94,7 +94,7 @@ optim(par = c( , ), fn = )
 @. Change the `rss` function from the last question so it captures the sum of the *absolute value of the residuals*. This is given by the function below. 
 
 
-$$ \sum_{i = 1}^n \left|y_i - (b_{0} + b_1x)    \right|$$
+$$ \text{RSABS}(b_0,b_1)= \sum_{i = 1}^n \left|y_i - (b_{0} + b_1x_i)    \right|$$
 
 
 
@@ -112,7 +112,7 @@ rsabs <- function(coef) {
 }
 ```
 
-@. Use `rabs` to estimate the parameters $b_0$ and $b_1$ using `optim()` as you did before. *Play around with starting values for the `par` vector until you get something that you like*; **do not plug in the exact estimates you get from using `lm()`.** Fill in the template below with the starting values that you settle on. 
+@. Use `rsabs` to estimate the parameters $b_0$ and $b_1$ using `optim()` as you did before. *Play around with starting values for the `par` vector until you get something that you like*; **do not plug in the exact estimates you get from using `lm()`.** Fill in the template below with the starting values that you settle on. 
 
 ```{r}
 #| echo: true
@@ -124,5 +124,5 @@ optim(par = c( , ), fn = )
 @. Comment on how well the estimates from `rsabs` match the estimates that come out of `lm()` and the estimates that you got from `rss` in two or more sentences.  
 
 \
-
+-->
 

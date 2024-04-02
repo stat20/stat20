@@ -1,5 +1,5 @@
 ---
-title: "Lab 6: Baseball"
+title: "Lab 5: Baseball"
 image: images/box_score.jpeg
 code-fold: false
 sidebar: false
@@ -9,8 +9,9 @@ sidebar: false
 
 ## Part I: Understanding the Context of the Data
 
-- [Lab 6.1: Baseball](lab-context.pdf)
+- [Lab 5.1: Baseball](lab-context.pdf)
 
+<!---
 
 ## Part II: Computing on the Data
 
@@ -36,9 +37,6 @@ Teams
 
 4. Plot the relationship between runs allowed and wins. Describe the relationship. How does it compare to the relationship between runs and wins?
 
-<!--
-5. Split your filtered version of the `Teams` data set into training and testing sets using the guidance provided in the notes (reserve at least 20% for the test set). Save them as `teams_train` and `teams_test`.
--->
 
 5. Fit a simple linear model to predict wins by runs and call it `model_1`. Write out the equation for the linear model (using the estimated coefficients) and report the $R^2$.
 
@@ -55,10 +53,15 @@ Teams
    b. at least one non-linear transformation or polynomial term. 
    
    Write out the equation for the resulting linear model and report the $R^2$.
+   
+10. Revisit the definition of causation. If your predictive model has a positive coefficient between one of the predictors and the response, is that evidence that if you increase that predictor variable for a given observation, the response variable will increase? That is, can you (or a sports management team) use this model to draw causal conclusions? Why or why not?
 
 <!--
 10. Looking across all three models, in general how did the values training $R^2$ compare to the values of testing $R^2$? Which is the better metric when deciding how well a model will perform on new data? By that metric, which of your three models is best?
 -->
 
-10. Revisit the definition of causation. If your predictive model has a positive coefficient between one of the predictors and the response, is that evidence that if you increase that predictor variable for a given observation, the response variable will increase? That is, can you (or a sports management team) use this model to draw causal conclusions? Why or why not?
+<!--
+5. Split your filtered version of the `Teams` data set into training and testing sets using the guidance provided in the notes (reserve at least 20% for the test set). Save them as `teams_train` and `teams_test`.
+-->
+
 
