@@ -111,7 +111,7 @@ $$ RSS = \sum_{i = 1}^n \left(y_i - (b_{0} + b_1x_{1,i} + b_2x_{2,i} + \ldots +b
 
 So how can we use this definition to decide precisely which slope $b_0$ and intercept $b_1$ to use? Please watch the following 19 minute video to find out.
 
-[![](images/method-of-least-squares-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1527632/external_tools/78985)
+[![](images/method-of-least-squares-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1531766/external_tools/90481)
 
 ### Algorithmic Methods
 
