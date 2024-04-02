@@ -66,8 +66,7 @@ This is a serious challenge encountered by self-driving cars at the moment. This
 
 ```{r}
 #| echo: true
-f <- function(x, y)
-{
+f <- function(x, y) {
   y*(x + 3) 
 }
 ```
