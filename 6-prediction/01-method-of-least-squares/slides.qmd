@@ -2,6 +2,7 @@
 title: "Method of Least Squares"
 format:
   revealjs:
+    self-contained: true
     author: "STAT 20: Introduction to Probability and Statistics"
     height: 900
     width: 1600
