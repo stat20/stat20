@@ -107,7 +107,7 @@ $R^2$ is a statistic that captures how good the predictions from your linear mod
 
 \
 
-[![](images/r2-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1527632/external_tools/78985)
+[![](images/r2-thumbnail.png){width=400}](https://bcourses.berkeley.edu/courses/1531766/external_tools/90481)
 
 \
 
