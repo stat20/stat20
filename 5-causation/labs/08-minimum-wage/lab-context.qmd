@@ -4,7 +4,9 @@ subtitle: "Lab"
 format: stat20handout-pdf
 ---
 
-In answering the following questions, it will be helpful to consult the data snapshot [AND PAPER EXCERPT?  FIRST 3-4 PAGES?] linked from the Lab 8 webpage.
+In answering the following questions, it will be helpful to consult the data 
+snapshot 
+<!--[AND PAPER EXCERPT?  FIRST 3-4 PAGES?]--> linked from the Lab 8 webpage.
 
 #### Question 1
 
@@ -22,7 +24,10 @@ In an ideal world (i.e. one where you have a large budget and/or immense politic
 
 #### Question 3
 
-Pick a few of the measured covariates that seem especially important and sketch a Love plot showing anticipated balance on these variables in the hypothetical randomized experiment from Question 2.
+Which of the variables in the dataframe are covariates, and which are post-
+treatment variables? Pick a few of the measured covariates that seem especially 
+important and sketch a Love plot showing anticipated balance on these variables 
+in the hypothetical randomized experiment from Question 2.
 
 \
 \
@@ -31,7 +36,10 @@ Pick a few of the measured covariates that seem especially important and sketch 
 
 #### Question 4
 
-Now consider the actual observational study. Sketch a Love plot showing anticipated balance on the covariates from Question 3 between restaurants in New Jersey and restaurants in Pennsylvania and explain any differences fro the sketch in Question 3.
+Now consider the actual observational study. Sketch a Love plot showing 
+anticipated balance on the covariates from Question 3 between restaurants 
+in New Jersey and restaurants in Pennsylvania and explain any differences from 
+the sketch in Question 3.
 
 \
 \

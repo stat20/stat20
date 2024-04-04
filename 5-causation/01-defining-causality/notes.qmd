@@ -132,7 +132,7 @@ In both of these examples, reasoning about the meaning of causation requires ide
 
 ### The Challenge of Causation
 
-> Counterfactuals have a partcularly problematic relationship wth data because data are, by definition, facts.
+> Counterfactuals have a particularly problematic relationship wth data because data are, by definition, facts.
 > - Judea Pearl
 
 The conditional counterfactual definition of causation is sound in an abstract sense, but it is challenging when you start to think through what sort of data you could collect as evidence of causation. In the second example, we have data on the fact that she found a good job and that she graduated from Berkeley, but the counterfactual - that remains purely hypothetical. In fact, the word counterfactual means counter-to-fact, and "fact" is the meaning of the Latin word "datum" (a single piece of data). That is to say, for airtight evidence of a cause-and-effect, you must observe some data and then something that is somehow also the contrary to what you observed.
