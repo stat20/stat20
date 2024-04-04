@@ -24,10 +24,24 @@ execute:
 
 ## Agenda
 
+-   Announcements
 -   Concept Questions
--   More time on Lab 6.1
--   *Break*
+-   Problem Set 17
 -   Lab 6.2
+
+## Announcements
+
+-   Problem Sets:
+    -   PS 16 (one-side) released Tuesday and due next Tuesday at 9am
+    -   **PS 17 (one-side) released today and due next Tuesday at 9am**
+    -   **Extra Practice released Thursday (non-turn in)**
+  
+. . . 
+
+-   Lab 5:
+    -   Lab 5.1 released Tuesday and due next Tuesday at 9am
+    -   **Lab 5.2 released Thursday and due next Tuesday at 9am**
+    -   **Lab 5 Workshop next Monday**
 
 # Concept Questions
 
