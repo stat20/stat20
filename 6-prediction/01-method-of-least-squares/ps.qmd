@@ -71,7 +71,7 @@ $$ \text{RSS}(b_0,b_1) = \sum_{i = 1}^n \left(y_i - (b_{0} + b_1x_i    )\right)^
 #| echo: true
 #| eval: false
 rss <- function(coef) {
-  ((flights$avg_speed - (coef[1] + coef[2] * flights$distance))^2)
+  sum((flights$avg_speed - (coef[1] + coef[2] * flights$distance))^2)
 }
 ```
 

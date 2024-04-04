@@ -365,6 +365,9 @@ schedule:
           - type: Lab
             href: 6-prediction/labs/07-baseball/lab.qmd
             render: true
+          - type: Extra Practice
+            href: 6-prediction/01-method-of-least-squares/extra-practice.qmd
+            render: true
             
       - topic: "Evaluating and Improving Predictions"
         display-date: Apr 4
@@ -376,6 +379,10 @@ schedule:
           - type: Slides
             href: 6-prediction/02-improving-predictions/slides.qmd
             render: false
+          - type: PS
+            href: 6-prediction/02-improving-predictions/ps.qmd
+            render: false
+          
 
   - week: 12
     days:
@@ -436,6 +443,9 @@ schedule:
             
   - week: 14
     days:
+      - topic: "Lab 7 Workshop"
+        display-date: Apr 22
+        
       - topic: "Causality III"
         display-date: Apr 23
         date: 4/24/24

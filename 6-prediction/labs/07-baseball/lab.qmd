@@ -11,7 +11,7 @@ sidebar: false
 
 - [Lab 5.1: Baseball](lab-context.pdf)
 
-<!---
+
 
 ## Part II: Computing on the Data
 
@@ -37,13 +37,11 @@ Teams
 
 4. Plot the relationship between runs allowed and wins. Describe the relationship. How does it compare to the relationship between runs and wins?
 
-
-5. Fit a simple linear model to predict wins by runs and call it `model_1`. Write out the equation for the linear model (using the estimated coefficients) and report the $R^2$.
+5. Fit a simple linear model to predict wins by runs and call it `model_1`. Write out the equation for the linear model (using the estimated coefficients) and interpret the $R^2$ in the context of the problem in at least one sentence. 
 
 6. What is the average number of season runs and wins? Based on the previous model, how many games would you predict a team that scored the average number of runs would win? 
 
 7. What about a team that scored 600 runs? What about 850 runs? What about 10,000 runs? Would any of these predictions be inaccurate and why?
-
 
 8. Fit a multiple linear regression model to predict wins by runs *and* runs allowed (`RA`) and save it as `model_2`. Write out the equation for the linear model and report the $R^2$. How does this model compare to the simple linear regression from the previous question?
 
@@ -54,7 +52,7 @@ Teams
    
    Write out the equation for the resulting linear model and report the $R^2$.
    
-10. Revisit the definition of causation. If your predictive model has a positive coefficient between one of the predictors and the response, is that evidence that if you increase that predictor variable for a given observation, the response variable will increase? That is, can you (or a sports management team) use this model to draw causal conclusions? Why or why not?
+10. Revisit the definition of causation. If your predictive model has a positive coefficient between one of the predictors and the response, is that evidence that if you increase that predictor variable for a given observation, the response variable will increase? That is, can you (or a sports management team) use this model to draw causal conclusions? Why or why not? Answer in at least three sentences.
 
 <!--
 10. Looking across all three models, in general how did the values training $R^2$ compare to the values of testing $R^2$? Which is the better metric when deciding how well a model will perform on new data? By that metric, which of your three models is best?
