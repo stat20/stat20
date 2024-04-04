@@ -43,7 +43,7 @@ Graphically, this can be done by drawing a vertical line from where the poverty 
 
 library(tidyverse)
 library(broom)
-poverty <- read_csv("https://tinyurl.com/stat20poverty")
+poverty <- read_csv("poverty.csv")
 
 p1 <- ggplot(poverty, aes(Poverty, Graduates)) + 
     xlim(0, 20) +
