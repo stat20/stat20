@@ -378,10 +378,10 @@ schedule:
             render: true
           - type: Slides
             href: 6-prediction/02-improving-predictions/slides.qmd
-            render: false
+            render: true
           - type: PS
             href: 6-prediction/02-improving-predictions/ps.qmd
-            render: false
+            render: true
           
 
   - week: 12
