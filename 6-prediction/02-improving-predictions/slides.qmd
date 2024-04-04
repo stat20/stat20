@@ -26,8 +26,8 @@ execute:
 
 -   Announcements
 -   Concept Questions
--   Problem Set 17
--   Lab 6.2
+-   Problem Set
+-   Lab
 
 ## Announcements
 
@@ -207,11 +207,11 @@ m1$coef
 
 
 :::{.poll}
-How many hours does the model predict Frank will sleep each day?
+How many hours does the model predict Frank will sleep each day? **Write out the linear equation of the model from the model output to help you**.
 :::
 
 ```{r}
-countdown::countdown(1, top = 0)
+countdown::countdown(3, top = 0)
 ```
 
 
@@ -244,7 +244,7 @@ tibble(pet=runif(n=n_samples, min=0, max=100),
 countdown::countdown(1)
 ```
 
-# Lab 
+# Problem Set
 
 ```{r}
 countdown::countdown(25)
@@ -254,6 +254,12 @@ countdown::countdown(25)
 
 ```{r}
 countdown::countdown(5)
+```
+
+# Lab 
+
+```{r}
+countdown::countdown(45)
 ```
 
 # End of Lecture
