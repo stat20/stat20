@@ -29,7 +29,7 @@ Teams <- as.tibble(Teams)
 Teams
 ```
 
-1. Subset the Teams data set to only include years from 2000 to present day (this is the data set that you'll use for the remainder of this lab. There might be another year post-2000 that you might want to filter out: why?).  What are the dimensions of this filtered data set? 
+1. Subset the Teams data set to only include years from 2000 to present day (this is the data set that you'll use for the remainder of this lab. There might be another year post-2000 that you might want to filter out: why?). What are the dimensions of this filtered data set? 
 
 2. Plot the distribution of wins. Describe the shape of the distribution and compare it to your speculations from part 1 of the lab.
 
