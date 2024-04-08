@@ -1,7 +1,8 @@
 ---
 title: "Overfitting"
-subtitle: "Overfitting with scissors; training and testing splits."
+subtitle: "Training sets and testing sets"
 image: images/poly.png
+self-contained: true
 format:
   html:
     code-fold: true
