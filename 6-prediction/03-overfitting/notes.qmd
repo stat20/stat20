@@ -1,6 +1,6 @@
 ---
 title: "Overfitting"
-subtitle: "Overfitting with scissors and the utility of a train/test split."
+subtitle: "Overfitting with scissors; training and testing splits."
 image: images/poly.png
 format:
   html:
@@ -15,34 +15,21 @@ execute:
   message: false
 ---
 
-[L]{.dropcap}earning through examples is one of the most important ways we acquire knowledge. Have you ever given someone an example to illustrate a concept, but that person gets too caught up in the details of the example and learns the wrong lesson? There is an expression for this: "missing the forest for the trees"[^trees].
-Before reading these notes please listen to Act 3 of an episode of the podcast "This American Life" called "Kids Look Back" (10 minutes).
+<!---
+Before reading these notes, take a listen to Act 3 of an episode of the podcast "This American Life" called "Kids Look Back" (10 minutes).
 
 [This American Life: Kids Look Back](https://www.thisamericanlife.org/584/for-your-reconsideration)
+---
+-->
 
-[^trees]: Definition (Merriam-Webster): to not understand or appreciate a larger situation, problem, etc., because one is considering only a few parts of it.
-
-<!-- https://www.merriam-webster.com/dictionary/miss%20the%20forest%20for%20the%20trees#:~:text=Definition%20of%20miss%20the%20forest,a%20few%20parts%20of%20it -->
-
-Almost all predictive modeling -- from linear regression to artificial intelligence based on deep learning -- is accomplished though learning by example. In simple linear regression we show our algorithm a bunch of pairs of examples $(x_1, y_1), \dots, (x_n, y_n)$ and ask the linear model to best approximate $y$ through the linear function $\widehat{y} = b_0 + b_1 \cdot x$. The "lesson" that the model learns are the values of $b_0$ and $b_1$ that define the model, and those are composed of nothing more than the original observations[^slr].
-
-[^slr]: Recall $b_1 = r \frac{s_y}{s_x}$ and each of the statistics involved are functions of $x_i, y_i$ and $n$).
-
-Missing the forest for the trees turns out to be one of the most important concepts predictive modeling. In statistics we call it *overfitting*.
-
-**Overfitting**
-:    The practice of using a predictive model is very effective at explaining the data used to fit it and correspondingly poor at making predictions on new data. Usually a result of applying a model that is too complex.
-
-Let's illustrate overfitting with an example 😉.
-
-## Example: Overfitting with Polynomials
-
-Here we collected data about the association between number of hours studied and students' test scores in a math class. Our goal is to predict the exam score from number of hours studied. Both plots below show the same data, but show the predictions from two different predictive models.
+[B]{.dropcap}elow is data we collected about the association between number of hours studied and students' test scores in a math class. Our goal is to predict the exam score from number of hours studied. Both plots below show the same data, but show the predictions from two different predictive models.
 
 ```{r}
 #| fig-width: 7
 #| fig-height: 3.6
 #| fig-align: center
+#| code-fold: false
+#| echo: false
 library(tidyverse)
 library(patchwork)
 library(broom)
@@ -75,7 +62,7 @@ math <- math %>%
     mutate(y_pred_linear = predict(lm_lin, newdata=math),
            y_pred_poly = predict(lm_poly, newdata=math))
 
-math_filled_in_range_filled_in_range <- math_filled_in_range %>% 
+math_filled_in_range <- math_filled_in_range %>% 
     mutate(y_pred_linear = predict(lm_lin, newdata=math_filled_in_range),
            y_pred_poly = predict(lm_poly, newdata=math_filled_in_range))
 
@@ -97,23 +84,86 @@ plot_poly <- math %>%
 plot_linear + plot_poly
 ```
 
-Which model looks more appropriate? More specifically,
+Which model looks more appropriate: the blue, or the red? More specifically,
 
 -   Does it make sense that there should be a big difference between studying 6.7 hours vs studying 6.8 hours?
 
 -   Should studying a little more make your score go down?
 
-The predictive model on the left seems more reasonable: studying more should steadily increase your score. The predictive model on the right seems like it took the particular data points too seriously!
+The blue model seems more reasonable: studying more should steadily increase your score. The predictive model on the right seems like it took the particular data points "too seriously!" This will be an issue if a new set of students from the same class comes along and we want to predict what their exam scores will be based on the amount of hours studied. Let's use the blue and red models to predict scores from more students from this same class.
 
-This is a clarion case of overfitting.
+```{r}
+#| fig-width: 7
+#| fig-height: 3.6
+#| fig-align: center
+#| code-fold: false
+#| echo: false
+set.seed(6)
 
-### Model Complexity
+noise2 <-  rnorm(n=n_samples, mean=0, sd=5)
+math2 <- tibble(hours=runif(n=n_samples, min=min_n_hours, max=max_n_hours),
+             score=point_per_hour * hours + intercept + noise2)
 
-> With great modeling power comes great responsibility to not overfit.
 
-The blue model on the left above is fairly simple (just a line!) while the red overfit model on the right looks much more complex (it is fairly irregular and goes up and down). We created the overfitted predictive model on the right by fitting a polynomial with a high degree.
+# add predictions into model
+math2 <- math2 %>% 
+    mutate(y_pred_linear = predict(lm_lin, newdata=math2),
+           y_pred_poly = predict(lm_poly, newdata=math2))
 
-Polynomials are quite powerful models and are capable of creating very complex predictive functions. The higher the polynomial degree, the more complex function it can create.
+math_filled_in_range <- math_filled_in_range %>% 
+    mutate(y_pred_linear = predict(lm_lin, newdata=math_filled_in_range),
+           y_pred_poly = predict(lm_poly, newdata=math_filled_in_range))
+
+plot_linear <- math2 %>% 
+    ggplot(aes(x=hours, y=score)) +
+    geom_point() +
+    geom_line(aes(x=hours, y=y_pred_linear), color='blue') +
+    lims(x=c(5, 10), y=c(65, 90)) +
+    ggtitle("Math class data") +
+    theme_bw()
+
+plot_poly <- math2 %>% 
+    ggplot(aes(x=hours, y=score)) +
+    geom_point() +
+    geom_line(data=math, aes(x=hours, y=y_pred_poly), color='red')+
+    lims(x=c(5, 10), y=c(65, 90)) +
+    theme_bw()
+
+plot_linear + plot_poly
+```
+
+We see that the blue line is prepared to predict the exam scores well enough for these students--even though the model was not fit using them! The red model, however, does poorly. It is so beholden to the first group of students that it doesn't know how to manage when the students are even slightly different. In statistics, we say that the red model was **overfit**.
+
+**Overfitting**
+:    The practice of using a predictive model which is very effective at explaining the data used to fit it, but is poor at making predictions on *new* data. 
+
+<!---
+## Defining overfitting
+
+Learning through examples is one of the most important ways we acquire knowledge.
+Almost all predictive modeling -- from linear regression to artificial intelligence based on deep learning -- is accomplished though learning by example. 
+
+In simple linear regression we show our model a bunch of pairs of examples $(x_1, y_1), \dots, (x_n, y_n)$ and ask the linear model to best approximate $y$ through the linear function $\widehat{y} = b_0 + b_1 \cdot x$. The "lesson" that the model learns are the values of $b_0$ and $b_1$ that define the relationship between the variables $x$ and $y$ (and those coefficient values are composed of nothing more than the original observations[^slr]).
+
+[^trees]: Definition (Merriam-Webster): to not understand or appreciate a larger situation, problem, etc., because one is considering only a few parts of it.
+
+
+https://www.merriam-webster.com/dictionary/miss%20the%20forest%20for%20the%20trees#:~:text=Definition%20of%20miss%20the%20forest,a%20few%20parts%20of%20it 
+
+
+[^slr]: Recall $b_1 = r \frac{s_y}{s_x}$ and each of the statistics involved are functions of $x_i, y_i$ and $n$).
+
+Have you ever given someone an example to illustrate a concept, but that person gets too caught up in the details of the example and learns the wrong lesson? There is an expression for this: "missing the forest for the trees"[^trees].
+Missing the forest for the trees turns out to be one of the most important concepts predictive modeling. In statistics, we call it *overfitting*.
+
+**Overfitting**
+:    The practice of using a predictive model which is very effective at explaining the data used to fit it, but is poor at making predictions on *new* data. 
+-->
+
+## Overfitting with polynomials
+
+Usually, overfitting occurs as a result of applying a model that is too complex, like the red one we saw for the math class data above.  We created that overfitted predictive model on the right by fitting a polynomial with a high degree. Polynomials are quite powerful models and are capable of creating very complex predictive functions. The higher the polynomial degree, the more complex function it can create.
+
 
 Let's illustrate by fitting polynomial models with progressively higher degrees to the data set above.
 
@@ -121,39 +171,86 @@ Let's illustrate by fitting polynomial models with progressively higher degrees 
 #| fig-height: 3
 #| fig-width: 8
 #| fig-align: center
+#| code-fold: false
+#| echo: false
 plot_deg_1 <- math_filled_in_range %>% 
-    mutate(y_pred = predict(lm(score ~ poly(hours, degree=1, raw=T), data=math), newdata=math_filled_in_range)) %>% 
+    mutate(y_pred = predict(lm(score ~ poly(hours, degree=5, raw=T), data=math), newdata=math_filled_in_range)) %>% 
     ggplot( aes(x=hours, y=score)) +
-    geom_line(aes(x=hours, y=y_pred), color='red')+
-    geom_point(data=math, aes(x=hours, y=score)) +
-    lims(x=c(5, 10), y=c(65, 90)) +
-    ggtitle("Degree 1 polynomial") +
-    theme_bw()
-
-plot_deg_3 <- math_filled_in_range %>%
-    mutate(y_pred = predict(lm(score ~ poly(hours, degree=3, raw=T), data=math), newdata=math_filled_in_range)) %>%
-    ggplot(aes(x=hours, y=score)) +
-    geom_line(aes(x=hours, y=y_pred), color='red')+
-    geom_point(data=math, aes(x=hours, y=score)) +
-    lims(x=c(5, 10), y=c(65, 90)) +
-    ggtitle("Degree 3 polynomial") +
-    theme_bw()
-
-plot_deg_5 <- math_filled_in_range %>%
-    mutate(y_pred = predict(lm(score ~ poly(hours, degree=5, raw=T), data=math), newdata=math_filled_in_range)) %>%
-    ggplot(aes(x=hours, y=score)) +
-    geom_line(aes(x=hours, y=y_pred), color='red') +
+    geom_line(aes(x=hours, y=y_pred), color='blue')+
     geom_point(data=math, aes(x=hours, y=score)) +
     lims(x=c(5, 10), y=c(65, 90)) +
     ggtitle("Degree 5 polynomial") +
     theme_bw()
 
+plot_deg_3 <- math_filled_in_range %>%
+    mutate(y_pred = predict(lm(score ~ poly(hours, degree=6, raw=T), data=math), newdata=math_filled_in_range)) %>%
+    ggplot(aes(x=hours, y=score)) +
+    geom_line(aes(x=hours, y=y_pred), color='purple')+
+    geom_point(data=math, aes(x=hours, y=score)) +
+    lims(x=c(5, 10), y=c(65, 90)) +
+    ggtitle("Degree 6 polynomial") +
+    theme_bw()
+
+plot_deg_5 <- math_filled_in_range %>%
+    mutate(y_pred = predict(lm(score ~ poly(hours, degree=7, raw=T), data=math), newdata=math_filled_in_range)) %>%
+    ggplot(aes(x=hours, y=score)) +
+    geom_line(aes(x=hours, y=y_pred), color='hotpink') +
+    geom_point(data=math, aes(x=hours, y=score)) +
+    lims(x=c(5, 10), y=c(65, 90)) +
+    ggtitle("Degree 7 polynomial") +
+    theme_bw()
+
 plot_deg_1 + plot_deg_3 + plot_deg_5
 ```
 
-The higher the polynomial degree, the closer the prediction function comes to perfectly fitting the data[^interpolation].
-We can quantitatively evaluate this by looking at the $R^2$ value.
-The plot below shows the $R^2$ value for models fit with different polynomial degrees.
+The higher the polynomial degree, the closer the prediction function comes to perfectly fitting the data[^interpolation]. Therefore, when it comes to evaluating which model is the best for prediction, we would say the degree seven polynomial is best.  Indeed, based on our knowledge so far, it would have the highest $R^2$. The true test is yet to come, though. Let's measure these three models on how well they predict to the second group of students that weren't used to fit the model. 
+
+```{r}
+#| fig-height: 3
+#| fig-width: 8
+#| fig-align: center
+#| code-fold: false
+#| echo: false
+
+plot_deg_1 <- math_filled_in_range %>% 
+    mutate(y_pred = predict(lm(score ~ poly(hours, degree=5, raw=T), data=math), newdata=math_filled_in_range)) %>% 
+    ggplot( aes(x=hours, y=score)) +
+    geom_line(aes(x=hours, y=y_pred), color='blue')+
+    geom_point(data=math2, aes(x=hours, y=score)) +
+    lims(x=c(5, 10), y=c(65, 90)) +
+    ggtitle("Degree 5 polynomial") +
+    theme_bw()
+
+plot_deg_3 <- math_filled_in_range %>%
+    mutate(y_pred = predict(lm(score ~ poly(hours, degree=6, raw=T), data=math), newdata=math_filled_in_range)) %>%
+    ggplot(aes(x=hours, y=score)) +
+    geom_line(aes(x=hours, y=y_pred), color='purple')+
+    geom_point(data=math2, aes(x=hours, y=score)) +
+    lims(x=c(5, 10), y=c(65, 90)) +
+    ggtitle("Degree 6 polynomial") +
+    theme_bw()
+
+plot_deg_5 <- math_filled_in_range %>%
+    mutate(y_pred = predict(lm(score ~ poly(hours, degree=7, raw=T), data=math), newdata=math_filled_in_range)) %>%
+    ggplot(aes(x=hours, y=score)) +
+    geom_line(aes(x=hours, y=y_pred), color='hotpink') +
+    geom_point(data=math2, aes(x=hours, y=score)) +
+    lims(x=c(5, 10), y=c(65, 90)) +
+    ggtitle("Degree 7 polynomial") +
+    theme_bw()
+
+plot_deg_1 + plot_deg_3 + plot_deg_5
+```
+
+As we increase the degree, the polynomial begins to perform worse on this new data as it bends to conform to the original data. For example, we see that for the student having studied around five and a half hours, the fifth degree polynomial does well, but the seven degree polynomial does horribly! To put a cherry on top, the red model we showed you in the beginnng of these notes was a *twenty* degree polynomial!
+
+What we see is that the higher the degree, the more risk we run of using a model that overfits. 
+
+## Training and testing sets: a workflow to curb overfitting
+
+What you should have taken away so far is the following: *we should not fit the model (set the $b_0, b_1$ coefficients) and evaluate the model (judge its predictive power) with the same data set!* 
+
+We can further back up this idea quantitatively. The plot below shows the $R^2$ value for math class models fit with different polynomial degrees.
 
 [^interpolation]: We say a function that perfectly predicts each data point *interpolates* the data. See the first red curve for the math class exams.
 
@@ -161,6 +258,8 @@ The plot below shows the $R^2$ value for models fit with different polynomial de
 #| fig-align: center
 #| fig-width: 5
 #| fig-height: 2.5
+#| code-fold: false
+#| echo: false
 #########################
 # Digression: for loops #
 #########################
@@ -195,37 +294,22 @@ for (degree in degrees2evaluate) {
 data.frame(degree=degrees2evaluate,
            Rsq=Rsq_values) %>% 
   ggplot(aes(x=degree, y=Rsq)) + 
-  geom_point() + 
+  geom_line() + 
   scale_x_continuous(breaks=degrees2evaluate)+
   theme_bw()
 ```
 
-The $R^2$ value goes steadily upwards as the polynomial degree goes up.
-In fact this is mathematically guaranteed to happen: for a fixed data set the $R^2$ value for a polynomial model with higher degree will always be higher than a polynomial model with lower degree.
+The $R^2$ value goes steadily upwards as the polynomial degree goes up. In fact this is mathematically guaranteed to happen: *for a fixed data set the $R^2$ value for a polynomial model with higher degree will always be higher than a polynomial model with lower degree.* 
 
-This should be disconcerting. From visually inspecting the above plots we can see that higher degree polynomials seem to be *worse* models. Does that mean $R^2$ is a good not metric to evaluate our model?
+This should be disconcerting, especially since we earlier saw that the model with the highest $R^2$ did the worst on our unseen data. What you might also notice is that the $R^2$ isn't increasing by that much between degrees as the degree gets higher. This suggests that adding that additional degree isn't improving our *general* predictive power much; it's just helping the model tailor itself to the *specific* data we have. 
 
-## Training versus Testing
-
-We can rescue $R^2$ by changing our workflow to bring it into alignment with the nature of prediction.
-
-Previously we both *fit* the model (set the $b_0, b_1$ coefficients) and *evaluated* the model (calculated $R^2$) with the same data set. This $R^2$, then, captures the degree to which model can explain the structure in the observed data. The task of prediction, however, involves formulating an estimate for a data point that is *unobserved*. This is a more difficult task.
-
-We can mirror this important distinction in the structure of our data. Instead of thinking in terms of a single data set, we can partition the observations of the data set into two separate sets.
+Does that mean $R^2$ is not a good metric to evaluate our model? Not necessarily. We can just change our workflow slightly. Instead of thinking in terms of a single data set, we can *partition*, or split the observations of the data set into two separate sets. We can use one of these data sets to *fit* the model, and the other to *evaluate* it. 
 
 **Training Set**
 :    The set of observations used to fit a predictive model; i.e. estimate the model coefficients.
 
 **Testing Set**
 :    The set of observations used to assess the accuracy of a predictive model. This set is disjoint from the training set.
-
-Our new workflow for assessing the predictive ability of our model will have three steps.
-
-1. Split the observations into a training and a testing set
-2. Fit the model to the training set
-3. Evaluate the model (calculate $R^2$) using the testing set
-
-In step one we must decide how large each set should be. We could put half of the observations in each set (a 50-50 split), however it can be useful to spend more of the data budget on estimating the coefficients. A standard partition is to dedicate 80% of the observations to the training set and the remainder to the testing set (a 80-20 split). The other question is how best to assign the observations to the two sets. In general, it is best to do this randomly to avoid one set that is categorically different than the other.
 
 The partition of a data frame into training and testing sets is illustrated by the diagram below.
 
@@ -362,20 +446,39 @@ library(patchwork)
 ```
 
 The original data frame consists of 10 observations. For each observation we have recorded a response variable, $y$, and three predictors, $x_1, x_2$, and $x_3$. If we do an 80-20 split, then 8 of the rows will randomly be assigned to the training set (in blue). The 2 remaining rows (rows 2 and 6) are assigned to the testing set (in gold).
- 
-### Example: Predicting Final Exam Scores
 
-Let's illustrate the training and testing approaching to evaluating predictions for the exam scores from a biology class with 200 students using as a predictor the number of hours that they have studied. Here we are going to compare two models: a simple linear model versus a 5^th^ degree polynomial, both fit using the method of least squares.
+So to recap, our new workflow for predictive modeling involves: 
 
-- $\textbf{Model 1:} \quad \widehat{score} = b_0 + b_1 \times hours$
-- $\textbf{Model 2:} \quad \widehat{score} = b_0 + b_1 \times hours + b_2 \times hours^2 + b_3 \times hours^3 + b_4 \times hours^4 + b_5 \times hours^4$
+1. Splitting the data into a training and a testing set
+2. Fitting the model to the training set
+3. Evaluating the model using the testing set
 
-The first step is to split the observations into a training and a testing set. We'll use an 80-20 split, with each observation assigned to its set randomly.
+### More on splitting the data
+
+As in the diagram above, a standard partition is to dedicate 80% of the observations to the training set and the remainder to the testing set (a 80-20 split), though this is not a rule which is set in stone. The other question is how best to assign the observations to the two sets. In general, it is best to do this *randomly* to avoid one set that is categorically different than the other.
+
+### Mean square error: another metric for evaluation
+
+While $R^2$ is the most immediate metric to evaluate the predictive quality of a linear regression, it is quite specific to linear modeling. Therefore, data scientists have come up with another, more general metric called **mean square error (MSE).**  Let $y_i$ be observations of the response variable in the testing set, and $\hat{y}_i$ be your model's predictions for those observations. Then $\text{MSE}$ is given by 
+
+$$ \text{MSE} = \sum_{i=1}^n(y_i-\hat{y_i})^2$$
+You may notice that for a linear regression model, $\text{MSE} = \text{RSS}$.
+
+A common offshoot is **root mean square error** ($\text{RMSE}$), which you can obtain by taking the square root of $\text{MSE}$. Much like what standard deviation does for variance, $\text{RMSE}$ allows you to think above the average error on a regular scale rather than on a squared scale. 
+
+
+## The Ideas in Code
+
+Let's shift the subject to mathematics to biology, and illustrate the training and testing approaching to evaluating predictions for the exam scores from a biology class with 200 students using as a predictor the number of hours that they have studied. Let's visualize these data first. 
 
 ```{r}
+#| code-fold: false
+#| echo: false
+
 # Simulate a data set
+
 n_samples_big <- 200
-set.seed(1233)
+set.seed(20)
 noise <-  rnorm(n = n_samples_big, mean = 0, sd = 5)
 
 biology <- tibble(hours = runif(n = n_samples_big,
@@ -385,57 +488,47 @@ biology <- tibble(hours = runif(n = n_samples_big,
 ```
 
 ```{r}
-#| code-fold: false
-#| echo: true
-
-# fix the random seed so we get the same train/test split every time
-set.seed(13)
-
-# randomly sample train/test set split
-set_type <- sample(x = c('train', 'test'), 
-                   size = 200, 
-                   replace = TRUE, 
-                   prob = c(0.8, 0.2))
-
-biology <- biology %>% 
-    mutate(set_type = set_type)
-biology
-```
-
-<!-- ```{r} -->
-
-<!-- biology %>%  -->
-
-<!--     count(set_type) -->
-
-<!-- ``` -->
-
-Let's visualize these data.
-
-```{r}
 #| fig-align: center
 #| fig-height: 4
 #| fig-width: 6
+#| code-fold: false
+#| echo: false
 biology %>% 
-    ggplot(aes(x = hours, y = score, color = set_type)) +
+    ggplot(aes(x = hours, y = score)) +
     geom_point() + 
     ggtitle("Biology class") +
     theme_bw()
 ```
 
-Next let's split the original data frame into a training data frame and test data frame.
+Here we are going to compare two models: a simple linear model versus a 5^th^ degree polynomial, both fit using the method of least squares.
+
+- $\textbf{Model 1:} \quad \widehat{score} = b_0 + b_1 \times hours$
+- $\textbf{Model 2:} \quad \widehat{score} = b_0 + b_1 \times hours + b_2 \times hours^2 + b_3 \times hours^3 + b_4 \times hours^4 + b_5 \times hours^4$
+
+### Step 1: Split data 
+
+We'll use an 80-20 split, with each observation assigned to its set randomly. There are many ways to do this via code, but the `rsample` package has a trio of functions that do this rather easily. 
+
+-   `initial_split()`: creates an object which prepares the dats for splitting. The `prop` argument sets the proportion of the entire data that will appear in the training set.
+-   `training()`: creates the training set with the object created using `initial_split`.
+-   `testing()`: creates the testing set with the object created using `initial_split()`
 
 ```{r}
 #| code-fold: false
 #| echo: true
-biology_train <- biology %>% 
-    filter(set_type == 'train')
+#| message: false
+library(rsample)
 
-biology_test <- biology %>% 
-    filter(set_type == 'test')
+set.seed(20)
+biology_split <- initial_split(biology, prop = 4/5)
+biology_train <- training(biology_split)
+biology_test <- testing(biology_split)
+
 ```
 
-Now fit two models on the training data.
+### Step 2: Fit the model to the training set
+
+Now fit two models on the training data. We will be using `lm()`, and for both models, the `data` argument is given by `biology_train`. 
 
 ```{r}
 #| code-fold: false
@@ -446,6 +539,7 @@ lm_slr <- lm(score ~ hours, data = biology_train)
 lm_poly <- lm(score ~ poly(hours, degree = 20, raw = T), data = biology_train)
 ```
 
+<!--
 Next we visually inspect the predictions.
 
 ```{r}
@@ -462,24 +556,23 @@ biology_filled_in_range <- biology_filled_in_range %>%
            y_pred_poly = predict(lm_poly, 
                                  newdata = biology_filled_in_range)) 
 
-biology %>% 
-    ggplot(aes(x=hours, y=score, color=set_type)) +
+biology_train %>% 
+    ggplot(aes(x=hours, y=score)) +
     geom_point() +
     geom_line(data=biology_filled_in_range, aes(x=hours, y=y_pred_linear), color='red') +
     geom_line(data=biology_filled_in_range, aes(x=hours, y=y_pred_poly), color='blue') +
     lims(x=c(5, 10), y=c(65, 90)) +
     theme_bw()
 ```
+-->
 
-First let's evaluate the $R^2$ for the training data.
-We can do this just like before with `glance`.
-Which model do you expect to have a better *training* set $R^2$ value?
+We can evaluate the $R^2$'s for both models' performance on the training data just like before with `glance()`. Which model do you expect to have a better *training* set $R^2$ value?
 
 ```{r}
 #| code-fold: false
 #| echo: true
+library(broom)
 
-# this calculates the training r^2
 glance(lm_slr) %>%
     select(r.squared)
 
@@ -488,21 +581,33 @@ glance(lm_poly) %>%
 ```
 
 Just as we might have guessed from looking at the model fits, the polynomial model has a better $R^2$ value when evaluated on the training set.
-Next let's evaluate these models on the *test* set.
+
+### Step 3: Evaluate the model on the testing set.
+
+The real test of predictive power between the two models comes now, when we will make exam score predictions using the *testing* set: data which the model was not used to fit and hasn't seen. 
+
+We will still be using the `predict()` function for this purpose. Now, we can just plug `biology_test` into the `newdata` argument!
 
 ```{r}
 #| code-fold: false
 #| echo: true
-
-# get predictions on test set
 score_pred_linear <- predict(lm_slr, newdata = biology_test)
 score_pred_poly <- predict(lm_poly, newdata = biology_test)
 ```
 
+Once these predictions $\hat{y}_i$ are made, we then can use `dplyr` code to:
+
+-   mutate on the predictions to our testing data
+-   set up the $R^2$ formula and calculate[^rsquare]. In the code below, we are using the formula
+
+$$R^2 = 1-\frac{\text{RSS}}{\text{TSS}} = 1-\frac{\sum_{i=1}^n(y_i-\hat{y_i})^2}{\sum_{i=1}^n(y_i-\bar{y})^2}$$
+
+-   We can also calculate $\text{MSE}$ and $\text{RMSE}$ as $\text{RSS}$ and $\sqrt{\text{RSS}}$, respectively. 
+
+
 ```{r}
 #| code-fold: false
 #| echo: true
-# calculate R squared for test set
 biology_test %>%
     mutate(score_pred_linear = score_pred_linear,
            score_pred_poly = score_pred_poly,
@@ -512,13 +617,24 @@ biology_test %>%
               RSS_linear = sum(resid_sq_linear),
               RSS_poly = sum(resid_sq_poly)) %>%
     mutate(Rsq_linear = 1 - RSS_linear/TSS,
-           Rsq_poly = 1 - RSS_poly/TSS) %>%
-    select(Rsq_linear, Rsq_poly)
+           Rsq_poly = 1 - RSS_poly/TSS,
+           MSE_linear = RSS_linear,
+           MSE_poly = RSS_poly,
+           RMSE_linear = sqrt(MSE_linear),
+           RMSE_poly = sqrt(MSE_poly)) |>
+  select(Rsq_linear, Rsq_poly, MSE_linear, MSE_poly)
 ```
 
-Voila the linear model's test set $R^2$ is better than the polynomial model's test $R^2$!
+Voila the linear model's test set $R^2$ is better than the polynomial model's test $R^2$! We also see the $\text{MSE}$ for the linear model is lower than that for the polynomial model.
 
-So which is the better predictive model: Model 1 or Model 2? In terms of training $R^2$, Model 2 came out of top, but Model 1 won out in testing $R^2$. While training $R^2$ can tell us how well a predictive model explains the structure in the data set upon which it was trained, it is deceptive to use as a metric of true predictive accuracy. The task of prediction is fundamentally one applied to unseen data, so testing $R^2$ is the appropriate metric. Model 1, the simpler model, is the better predictive model.
+
+[^rsquare]: Because $\hat{y}_i$ involve information from the training data and $y_i$ and $\bar{y}$ come from the testing data, the decomposition of the sum of squares does not work. So, we cannot interpret testing $R^2$ as we would training $R^2$, and you may have a testing $R^2$ less than 0. However, higher $R^2$ values still signal that the model has good predictive power. 
+
+So which is the better predictive model: Model 1 or Model 2? In terms of training, Model 2 came out of top, but Model 1 won out in testing. 
+
+Again, while training $R^2$ can tell us how well a predictive model explains the structure in the data set upon which it was trained, it is deceptive to use as a metric of true predictive accuracy. The task of prediction is fundamentally one applied to unseen data, so testing $R^2$ is the appropriate metric. Model 1, the simpler model, is the better predictive model. After all, the data we are using looks much better modeled by a line than a five degree polynomial. 
+
+
 
 <!-- ## Hyperparameter tuning -->
 
