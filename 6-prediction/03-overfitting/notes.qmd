@@ -504,27 +504,52 @@ biology %>%
 Here we are going to compare two models: a simple linear model versus a 5^th^ degree polynomial, both fit using the method of least squares.
 
 - $\textbf{Model 1:} \quad \widehat{score} = b_0 + b_1 \times hours$
-- $\textbf{Model 2:} \quad \widehat{score} = b_0 + b_1 \times hours + b_2 \times hours^2 + b_3 \times hours^3 + b_4 \times hours^4 + b_5 \times hours^4$
+- $\textbf{Model 2:} \quad \widehat{score} = b_0 + b_1 \times hours + b_2 \times hours^2 + b_3 \times hours^3 + b_4 \times hours^4 + b_5 \times hours^5$
 
 ### Step 1: Split data 
 
-We'll use an 80-20 split, with each observation assigned to its set randomly. There are many ways to do this via code, but the `rsample` package has a trio of functions that do this rather easily. 
+We'll use an 80-20 split, with each observation assigned to its set randomly. There are many ways to do this via code: here is one using functions we've seen. 
 
--   `initial_split()`: creates an object which prepares the dats for splitting. The `prop` argument sets the proportion of the entire data that will appear in the training set.
--   `training()`: creates the training set with the object created using `initial_split`.
--   `testing()`: creates the testing set with the object created using `initial_split()`
+-   Generate a vector of $n$ observations (in this case, our data has 200 observations) in which *approximately* 80 percent of the observations are `"train"` and 20 percent of the observations are `"test"`. To do this, we can make use of the `sample()` function. 
 
 ```{r}
 #| code-fold: false
 #| echo: true
-#| message: false
-library(rsample)
-
 set.seed(20)
-biology_split <- initial_split(biology, prop = 4/5)
-biology_train <- training(biology_split)
-biology_test <- testing(biology_split)
 
+train_or_test <- sample(x = c("train", "test"), 
+                   size = 200, 
+                   replace = TRUE, 
+                   prob = c(0.8, 0.2))
+```
+
+-   mutate this vector onto our data frame (our data frame here is called `biology`). Below, you can see which rows in the data frame have been assigned to `"train"` and which have been assigned to `"test"`.
+
+```{r}
+#| code-fold: false
+#| echo: true
+biology <- biology |>
+    mutate(set_type = train_or_test)
+```
+
+
+```{r}
+#| code-fold: false
+#| echo: false
+biology |>
+  slice_sample(n = 6)
+```
+
+-   split the data based on whether the observations are in the `"train"` or `"test"` set.
+
+```{r}
+#| code-fold: false
+#| echo: true
+biology_train <- biology |>
+    filter(set_type == "train")
+
+biology_test <- biology |>
+    filter(set_type == "test")
 ```
 
 ### Step 2: Fit the model to the training set
@@ -535,9 +560,9 @@ Now fit two models on the training data. We will be using `lm()`, and for both m
 #| code-fold: false
 #| echo: true
 
-# notice we use the training data to fit the model!
 lm_slr <- lm(score ~ hours, data = biology_train)
-lm_poly <- lm(score ~ poly(hours, degree = 20, raw = T), data = biology_train)
+lm_poly <- lm(score ~ poly(hours, degree = 20, raw = T),
+              data = biology_train)
 ```
 
 <!--
