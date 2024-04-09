@@ -63,15 +63,17 @@ What does it mean to create a matched comparison between New Jersey and Pennsylv
 
 #### Question 6
 
-	What assumptions are needed to trust the matched estimate that we don’t require for the hypothetical randomized trial in Question 2?  Based on the description of the data, do you believe those assumptions? Why or why not?
+What assumptions are needed to trust the matched estimate that we don’t require for the hypothetical randomized trial in Question 2?  Based on the description of the data, do you believe those assumptions? Why or why not?
+
 
 \
 \
 \
 \
 \
+\
+\
 
-{{< pagebreak >}}
 
 #### Question 7
 
@@ -102,11 +104,7 @@ New Jersey data alone.  What assumptions are needed here and how do they compare
 \
 \
 \
-\
-\
-\
-\
-\
+
 
 {{< pagebreak >}}
 
@@ -129,13 +127,4 @@ using the full dataset.  How are the assumptions it requires different from thos
 \
 \
 \
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
+

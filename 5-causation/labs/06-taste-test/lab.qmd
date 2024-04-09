@@ -18,15 +18,21 @@ Be sure to tag your group mates when you submit this to Gradescope!
 
 1. List any changes that you made to your experimental protocol from when you formulated it on Wednesday and when you executed it Friday.
 
-2. Create a data frame based of the data you collected and print it out into your lab report. You can print all rows your data frame using `slice(my_df, 1:100)`. Consult the notes "A Tool for Computing with Data" for a refresher of how to make a data frame.
+2. Create a data frame based of the data you collected, listed in the order in which
+it was collected, and print it out into your lab report. You can print all rows your data frame using `slice(my_df, 1:100)`. Consult the notes "A Tool for Computing with Data" for a refresher of how to make a data frame.
 
 Does the data frame differ at all from the one that you sketched into your experimental protocol? If so, how?
 
 
 3. Create a visualization of the data you collected (not the null distribution) similar to the one you sketched in the handout. Does it look clearly in support of your claim or contrary to your claim or somewhere in between?
 
+4. Considering the order in which the data was collected as a numeric covariate,
+(i.e. 1 for the first observation, 2 for the second, etc.), compute and report its
+standardized mean difference.  Conduct a hypothesis test to check whether run order
+differs significantly across your experimental groups and interpret the results.
 
-4. Conduct a hypothesis test to determine whether your data is consistent with the null hypothesis. Be sure to provide.
+
+5. Conduct a hypothesis test to determine whether your data is consistent with the null hypothesis. Be sure to provide.
 
     a. The null and alternative hypotheses.
     b. The value of the observed test statistic.
@@ -34,4 +40,5 @@ Does the data frame differ at all from the one that you sketched into your exper
     d. The p-value and your conclusion (use $\alpha = .05$) regarding null hypothesis and original claim.
 
 
-5. A thought experiment: if you did not find a significant effect, speculate as to what you could change about your protocol to increase the chance that you find an effect. If you did find a significant effect, speculate as to what you would change about your protocol if you wanted to decrease the chance that you'd find an effect if you were to repeat the experiment.
+6. A thought experiment: if you did not find a significant effect, speculate as to what you could change about your protocol to increase the chance that you find an effect. If you did find a significant effect, speculate as to what you would change about your protocol if you wanted to decrease the chance that you'd find an effect if you were to repeat the experiment.
+x

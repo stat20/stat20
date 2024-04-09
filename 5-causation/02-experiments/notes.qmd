@@ -83,11 +83,11 @@ format_data %>%
 ```
 
 
-Given a dataset like this, we already know how to compute a difference
+<!--Given a dataset like this, we already know how to compute a difference
 in proportions and conduct a hypothesis test to see whether reader format
-and understanding are associated.  
+and understanding are associated.  -->
 
-```{r}
+<!--```{r}
 library(infer)
 set.seed(2024-3-25)
 obs_stat <- format_data |>
@@ -110,11 +110,11 @@ null |>
   
 null |> get_p_value(obs_stat, direction = 'both')
 
-```
+```-->
 
-What makes this study special is the process that generated this data.  
-Because this was a randomized control experiment, we can make stronger claims here.
-In particular, the difference in proportions provides a good estimate of the 
+The process of computing a difference in proportions and conducting a hypothesis test for this dataset is no different than in the examples from the generalization
+notes.  What makes this study special is the process that generated this data.  
+Because this was a randomized control experiment, the difference in proportions provides a good estimate of the 
 average treatment effect, and if it differs significantly from zero we have
 compelling evidence that reader format has a causal impact on understanding.
 We now describe some aspects of experimental design that help establish  this
@@ -321,9 +321,10 @@ mean(format_data$GPA[format_data$group == 'pdf'])) /sqrt(0.5*var(format_data$GPA
 ### Evaluating covariate balance across an experiment.
 
 To get a quick look at balance across all our variables, we can 
-create a Love plot:
+create a **Love plot**:
 
 ```{r}
+#| echo: false
 library(cobalt)
 format_data <- format_data |>
                 mutate(is_website = group == 'website')
@@ -352,6 +353,8 @@ we use the covariate instead of the outcome. Here we conduct this test for
 GPA. 
 
 ```{r}
+#| echo: false
+library(infer)
 set.seed(2024-3-25)
 obs_stat <- format_data |>
    specify(explanatory = group,
@@ -409,7 +412,7 @@ $\left(\begin{array}{c} 6 \\ 3 \end{array}\right)$ unique treatment assignments,
 and that we conduct a one-tailed test (since our test statistic takes on large
 values when the null hypothesis is false).-->
 
-### What if large imbalances are present?
+<!--### What if large imbalances are present?-->
 
 One of the most important reasons to check covariate balance is to catch problems
 with how the experiment was run. Suppose that we'd intended to sort a spreadsheet
@@ -419,16 +422,16 @@ balance test would likely have rejected the null hypothesis that treatment was
 randomly assigned, allowing us to catch the issue.  For this reason it is often
  a good idea to check balance before actually running the experiment!
  
- In our example, there is no particular evidence of improper randomization.  
+<!-- In our example, there is no particular evidence of improper randomization.  
  However, it may still bother us that the pdf group has a mean GPA of 3.55 
  while the website group has a mean GPA of 3.28.  Even if this imbalance is
  the result of bad luck rather than systematic bad randomization it may still
  undermine our claims.  For this reason, instead of using a simple difference
  in proportions to estimate the ATE in this study, we may prefer to fit a multiple
  least squares regression model that includes both GPA and reader format, and use
- the coefficient of reader as our estimate [^linkfun].
+ the coefficient of reader as our estimate [^linkfun].-->
  
-```{r}
+<!--```{r}
 obs_reg <- format_data |>
   mutate(deep_understanding = as.numeric(understanding == 'deep')) |>
   specify(deep_understanding ~ group + GPA ) |>
@@ -446,18 +449,18 @@ visualize(null_reg) +
 
 get_p_value(null_reg, obs_reg, direction = 'both')
 
-```
+```-->
 
-Although this pipeline gives us coefficients and estimates for the GPA 
+<!--Although this pipeline gives us coefficients and estimates for the GPA 
 coefficient and the intercept we only care about the coefficient of the treatment
 our study set out to measure, in this case ``groupwebsite."  From the plot we
 can see that the ATE estimate using regression is slightly larger in magnitude
 than the ATE estimate using the difference in proportions, but neither estimate
-looks significantly different from zero.
+looks significantly different from zero.-->
 
 
 
-[^linkfun]: It may seem odd to fit a multiple least-squares regression to a binary
+<!--[^linkfun]: It may seem odd to fit a multiple least-squares regression to a binary
 outcome like whether understanding is deep rather than a logistic regression as 
 we might have in the prediction unit.  The reason we do it is because we care
 about extracting and interpreting the model's coefficients rather than its predictions.  
@@ -466,15 +469,51 @@ outcome variable and don't provide good estimates for the ATE in general.
 <!--is good for prediction, but its coefficients are harder to interpret and do not
 correspond-->
 
-MOVE THIS PARAGRAPH TO FOOTNOTE? Of course, a better way to deal with the issue of GPA balance is to run your
+<!--MOVE THIS PARAGRAPH TO FOOTNOTE? Of course, a better way to deal with the issue of GPA balance is to run your
 experiment on students who all have near-identical GPAs, or divide your students
 into several subgroups each with near-identical GPAS and assign equal numbers of 
 treatment and control subjects in each group.  This is known as blocking and 
 ensures good balance, although it can be complicated to do in practice and cannot
-be done for many variables at once.
+be done for many variables at once.-->
 
+## The Ideas in Code
 
+The `cobalt` package in R contains the function `bal.tab` to create tables of standardized differences.  By passing its 
+output to `plot` you can create a Love plot.
 
+```{r}
+library(cobalt)
+format_data <- format_data |>
+                mutate(is_website = group == 'website')
+
+bal.tab(is_website ~ major + GPA + native_speaker, data = format_data,
+        s.d.denom = 'pooled', binary = 'std') |>
+  plot()
+```
+
+Running balance tests uses infer much like we did in the generalization unit.  The covariate for which we are testing
+balance is the response and the treatment is the explanatory
+variable.  
+
+```{r}
+library(infer)
+set.seed(2024-3-25)
+obs_stat <- format_data |>
+   specify(explanatory = group,
+          response = GPA) |>
+  calculate(stat = "diff in means", order = c("website","pdf"))
+
+null <- format_data |>
+  specify(response = GPA,
+          explanatory = group) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 500, type = "permute") |>
+  calculate(stat = "diff in means", order = c("website","pdf"))
+
+null |>
+  visualize() +
+  shade_p_value(obs_stat, direction = 'both')
+```
 
 ## Summary
 

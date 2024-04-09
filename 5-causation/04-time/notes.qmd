@@ -100,6 +100,7 @@ at data on the number of purchases of unhealthy foods at four stores that
 instituted such a policy in the mid-2010s.  
 
 ```{r}
+#| echo: false
 load('checkout_data.Rdata')
 checkout_concise
 ```
@@ -133,9 +134,10 @@ earlier versions of themselves before treatment occurred.
 A pre/post design takes the simple approach of subtracting the pre-treatment
 value from the post-treatment value for each store and taking the average.
 The following plot shows the change in sales for each of four stores in the data,
-and the pre/post estimate is computed below using the \texttt{infer} package.
+and the pre/post estimate is computed below. <!-- using the \texttt{infer} package.-->
 
 ```{r}
+#| echo: false
 checkout_concise |>
   ggplot(mapping = aes(x = checkout_policy, y = sales, group = store_id)) + 
   geom_line() + labs(title = 'Sales of unhealthy foods often decreased post-policy',
@@ -144,6 +146,7 @@ checkout_concise |>
 ```
 
 ```{r}
+#| echo: false
 library(infer)
 checkout_concise |>
   specify(response = sales,
@@ -179,7 +182,7 @@ pre/post designs require counterfactual outcomes and unmeasured confounding to
 be **stable across time**.
 
 
-### Confidence intervals for pre/post effect estimates
+<!--### Confidence intervals for pre/post effect estimates
 
 We can use the bootstrap to build confidence intervals for pre/post designs,
 but we have to be careful.  The pre/post design depends on having exactly two 
@@ -226,7 +229,7 @@ bootstrap_checkout |>
 
 Although our 95\% confidence interval mostly includes negative values, it also
 includes zero and some positive effects, so these four stores alone don't provide
-a compelling case for a strong causal effect of checkout policies on sales.
+a compelling case for a strong causal effect of checkout policies on sales.-->
 
 ## Dealing with effects of time.
 
@@ -249,6 +252,7 @@ further forward in time after the change.  We can now extend the earlier plot
 for the pre/post design to include the additional timepoints.
 
 ```{r}
+#| echo: false
 checkout |>
   ggplot(mapping = aes(x = time, y = sales, group = store_id)) + 
   geom_line() + labs(title = 'Sales of unhealthy foods did not show a dramatic time trend',
@@ -266,11 +270,12 @@ treatment effect.  Because the treatment effect "interrupts" the pattern of the
 smooth time trend, this design is known as an **interrupted time series**.
 
 To estimate the treatment effect after separating out the trend, we can fit a 
-regression model for sales two independent variables, a numeric variable for time 
+regression model for sales  with two independent variables, a numeric variable for time 
 period and a binary 
 indicator for whether the policy change has been instituted:
 
 ```{r}
+#| echo: false
 its_model <- lm(sales ~ checkout_policy + time, data = checkout)
 its_model
 ```
@@ -309,7 +314,7 @@ we are comparing the actual post-treatment sales (in solid blue).
 <!--gives the difference between that counterfactual case and the observed reality
 under treatment.-->
 
-CUT OR FOOTNOTE THIS?  What if the points in the after-treatment period appear
+<!--CUT OR FOOTNOTE THIS?  What if the points in the after-treatment period appear
 to follow a different slope than the points in the before-treatment period?
 This suggests that the average effect of treatment may change over time.  
 Consider the plot below:
@@ -325,9 +330,9 @@ as it is right when the intervention occurs.  This isn't especially plausible in
 the supermarket checkout example (nor does the plot look like it requires two
 separate lines) but may apply in other settings where treatment
 has both an immemdiate and a more gradual long-term effect.  <!--in the first period when the
-treatment is instituted, but is XX several periods later-->  To fit this model, 
+treatment is instituted, but is XX several periods later-->  <!--To fit this model, 
 you would simply fit two regression models, one to the before-treatment period
-alone and the other two the after-treatment period alone.
+alone and the other two the after-treatment period alone.-->
 
 
 
@@ -336,7 +341,8 @@ confounders to be stable over time, but they do require changes in
 unobserved confounders to affect outcomes only **linearly** (i.e. with a constant
 slope). To see why this assumption is important, consider the following picture:
 
-![](images/its_change_in_slope.png){#fig-inflation fig-align=center width="500px"}
+![](images/its_nonlinear.png){#fig-inflation fig-align=center width="500px"}
+[^haber_pic]
 
 Here the red band gives the shape of the actual pattern in the data, which
 appears to be a smooth and gradually decreasing curve. If the time trend has this
@@ -345,14 +351,18 @@ it and may instead insist on the presence of large treatment effects (as the lin
 appear to show) which are unlikely to be real.
 
 
-To make a confidence interval, it's important that we keep all units in a trajectory
+<!--To make a confidence interval, it's important that we keep all units in a trajectory
 together as we did with the pre/post design;  however, since we have a more 
 complicated model to fit we can't just reduce everything to pre-post differences.
 Instead we would need to take bootstrap samples where we select entire groups of 
 observations (i.e. all the units for a given store) with replacement.  This is
 known as the block bootstrap.  However, it is not possible to do this with 
-\texttt{infer} package so we won't cover it.
+\texttt{infer} package so we won't cover it.-->
 
+[^haber_pic]: Image from Haber, N. A., Clarke-Deelder, E., Salomon, J. A., 
+Feller, A., & Stuart, E. A. (2021). Impact evaluation of coronavirus disease 
+2019 policy: A guide to common design issues. \emph{American Journal of 
+Epidemiology}, 190(11), 2474-2486.
 
 ### Pure controls: difference-in-difference design
 
@@ -368,8 +378,7 @@ use them to estimate the time trend.  Here is a plot illustrating this idea:
 
 The dashed line represents a counterfactual average outcome for the treated units 
 if they had not received treatment, and we are interested in learning the difference
-between this dashed line and the actual outcome for the intervention group.  
-Although we don't have multiple observations prior to treatment to estimate the
+between this dashed line and the actual outcome for the intervention group.  Although we don't have multiple observations prior to treatment to estimate the
 slope of the dashed line anymore, we can learn it by looking at the pre/post differences
 in the control group below.  We can then get an effect estimate by subtracting
 the pure control pre/post difference in the outcome $Y$ from the treated group's 
@@ -393,6 +402,7 @@ We now test out difference-in-difference analysis on the supermarket checkout
 data.  We start by making a pre/post plot with our four treated stores and
 two additional stores that never instituted a checkout policy [^simcontrol].
 ```{r}
+#| echo: false
 checkout_w_control |>
   mutate('ever_treated' = !(store_id %in% c(244,248))) |>
   ggplot(mapping = aes(x = time, y = sales, group = store_id, color = ever_treated)) + 
@@ -417,6 +427,7 @@ seems more plausible based on the plot[^did_matching].
 We now compute pre/post differences for the treated stores and for the pure control
 stores, and take their difference to get our effect estimate.
 ```{r}
+#| echo: false
 #create new dataframe with one row per store and pre/post sales difference
 checkout_post <- checkout_w_control |>
   filter(time == 'post') |>
@@ -443,7 +454,7 @@ checkout_by_store |>
 
 
 
-To make a confidence interval for a difference-in-difference effect, we can
+<!--To make a confidence interval for a difference-in-difference effect, we can
 use a similar strategy to the one we used for pre/post: take pre/post differences for all stores,
 (treated and pure control) then bootstrap these.  The only difference is that we
 keep track of which differences are treated and which are not, and we compute the
@@ -467,7 +478,7 @@ bootstrap_did |>
 This bootstrap distribution suggests there is no strong evidence of a treatment
 effect of one particular sign; the data is consistent with a wide range of 
 both positive and negative effects.  This is not surprising given our small 
-sample size.  
+sample size.  -->
 
 [^simcontrol]: The version of the supermarket checkout data we have does not
 actually contain pure controls, so observations for two control units have been 
@@ -481,6 +492,119 @@ had a larger set of pure controls available and more store covariates measured,
 we could check covariate balance and conduct matching first, then run the 
 difference-in-difference design on the pre/post data from the matched subjects
 only.
+
+## Dependence in panel data and matched designs
+
+So far we have focused on estimating effects using panel data. We may also 
+be interested in creating confidence intervals for our effect estimates and
+conducting hypothesis tests to determine whether they differ significantly from
+zero.  At a high level, we can use the same processes as in the generalization
+unit. 
+
+However, we have to be careful because in panel data it is usually not
+reasonable to think of our individual observations as a simple random sample
+or as independent and identically distributed draws from a population.  Instead,
+our data come in groups of repeated observations for an individual subject, 
+which will tend to be more similar to each other than to observations from other
+subjects. This has implications for how we bootstrap or permute our data.
+
+For example, if we simply permuted all sales values in our checkout policy 
+dataset, the values we observed for a single store might be scattered across 
+several different stores instead of staying together.  Similarly,  if we took 
+a bootstrap sample from all observations, we might end up with three or more 
+observations from some stores and only one for others.  This would make it difficult
+to compute a pre/post estimate!
+
+The simplest solution is to aggregate our data to form a new dataframe with
+one row per unique subject, then permute or bootstrap the rows of this new
+dataframe.  For pre/post and difference in difference designs, the natural way
+to aggregate is to take each subject's pre/post difference, since the effect 
+estimate is simply an average (or a difference in means) of these quantities
+across unique subjects. [^its_inference]
+
+A similar strategy is recommended for matching estimators.  Although matched
+subjects are not actually different copies of the same person, they have been
+chosen to be more similar to each other than to other subjects; because of this
+we should permute or bootstrap matched differences rather than individual outcomes.
+
+[^its_inference]: For interrupted time series, the regression model we estimate
+cannot easily be written in terms of unit differences.  Hypothesis testing
+and confidence intervals require instead that groups of observations be 
+permuted or resampled in a specific pattern, using tools such as clustered
+standard errors or the block bootstrap.  These more complex procedures cannot
+be carried out using the `infer` package and we won't cover them in this class.
+
+
+
+## The Ideas in Code
+
+
+To make plots for panel data designs, it is often helpful to use the 
+`geom_line()` geometry, mapping the unique subject ID to the `group` argument 
+to get a separate line for each unit.
+```{r}
+checkout |>
+  ggplot(mapping = aes(x = time, y = sales, group = store_id)) + 
+  geom_line() + labs(title = 'Sales of unhealthy foods did not show a dramatic time trend',
+                     x = 'Time (4-week periods)',
+                     y = 'Sales (number of packages sold)') + 
+  geom_vline(xintercept = 15, linetype = 2) +
+  annotate('text', label = 'Checkout policy enacted', x = 15, y = 50)
+```
+
+To do a hypothesis test or create a confidence interval, we must usually begin
+by transforming the dataframe so each row represents a different unique subject.
+In the checkout policy example, we call the new dataframe `checkout_by_store`.
+This code chunk shows how we can calculate the effect estimates from store-specific
+sales differences using `infer` commands.
+```{r}
+#create new dataframe with one row per store and pre/post sales difference
+checkout_post <- checkout_w_control |>
+  filter(time == 'post') |>
+  mutate('post_sales' = sales)
+checkout_pre_sales <- checkout_w_control |>
+  filter(time == 'pre') |>
+  mutate('pre_sales' = sales) |>
+  select(pre_sales)
+checkout_by_store <- cbind(checkout_post, checkout_pre_sales) |>
+  mutate('sales_diff' = post_sales - pre_sales,
+         'ever_treated' = checkout_policy) |>
+  select(store_id, sales_diff, ever_treated)
+
+checkout_by_store |>
+  group_by(ever_treated) |>
+  summarize('Average Pre/Post Difference in Sales' = mean(sales_diff))
+
+checkout_by_store |>
+  specify(response = sales_diff, 
+          explanatory = ever_treated) |>
+  calculate(stat = 'diff in means', order = c('TRUE', 'FALSE'))
+
+```
+
+This code chunk shows how we can create a bootstrap confidence interval for
+our difference in difference estimate by resampling store differences.
+```{r}
+set.seed(2024-3-28)
+bootstrap_did <- checkout_by_store |>
+  specify(response = sales_diff, 
+          explanatory = ever_treated) |>
+  generate(reps = 500, type = 'bootstrap') |>
+  calculate(stat = 'diff in means', order = c('TRUE', 'FALSE'))
+
+bootstrap_confint <- bootstrap_did |>
+  get_confidence_interval(level = 0.95)
+
+bootstrap_did |>
+  visualize() +
+  shade_confidence_interval(bootstrap_confint)
+```
+
+If we want a hypothesis test instead, we could instead specify an independence 
+null hypothesis for checkout_by_store with the same response and explanatory 
+variables, and generate null draws with `generate()` using the 
+`type = permute` argument.
+
 
 ## Summary
 
