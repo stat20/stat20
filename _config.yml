@@ -398,7 +398,13 @@ schedule:
             render: true
           - type: Slides
             href: 6-prediction/03-overfitting/slides.qmd
-            render: false
+            render: true
+          - type: PS
+            href: 6-prediction/03-overfitting/ps.qmd
+            render: true
+          - type: Lab
+            href: 6-prediction/labs/08-cancer/lab.qmd
+            render: true
             
       - topic: "Logistic Regression"
         display-date: Apr 11
