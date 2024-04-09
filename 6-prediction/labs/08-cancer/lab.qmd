@@ -11,7 +11,7 @@ sidebar: false
 - [Lab 6.1: Cancer Diagnosis](lab-context.pdf)
 
 ```{r}
-#| echo: true
+#| echo: false
 #| eval: false
 #| code-fold: false
 
@@ -21,11 +21,13 @@ cells <- read_csv("https://www.dropbox.com/s/0rbzonyrzramdgl/cells.csv?dl=1") %>
   mutate(diagnosis = factor(diagnosis, levels = c("B", "M")))
 ```
 
+<!---
 The diagnosis is in the column named `diagnosis`; each other column should be used to predict the diagnosis.
+
 
 ### Understanding and Exploring the Data
 
-<!---
+
 
 1. What is the unit of observation in this data frame?
 
