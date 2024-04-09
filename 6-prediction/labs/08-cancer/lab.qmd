@@ -1,12 +1,14 @@
 ---
-title: "Lab 8: Diagnosing Cancer"
+title: "Lab 6: Diagnosing Cancer"
 image: images/benign_vs_malignant.png
 sidebar: false
 ---
 
 {{< include ../../../assets/includes/_labs-header.qmd >}}
 
-In this lab you will train and evaluate a classification algorithm to determine whether or not a [fine needle aspiration biopsy](https://en.wikipedia.org/wiki/Fine-needle_aspiration) is cancerous (malignant) or non-cancerous (benign). The data were downloaded from the [UC Irvine Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29) and lightly processed.
+## Part I: Understanding the Context of the Data
+
+- [Lab 6.1: Cancer Diagnosis](lab-context.pdf)
 
 ```{r}
 #| echo: true
@@ -22,6 +24,8 @@ cells <- read_csv("https://www.dropbox.com/s/0rbzonyrzramdgl/cells.csv?dl=1") %>
 The diagnosis is in the column named `diagnosis`; each other column should be used to predict the diagnosis.
 
 ### Understanding and Exploring the Data
+
+<!---
 
 1. What is the unit of observation in this data frame?
 
@@ -59,3 +63,4 @@ The diagnosis is in the column named `diagnosis`; each other column should be us
 13. Calculate the testing misclassification rate using your new classification rule. Did it go up or down? Why?
 
 14. In many realms of medicine, classification algorithms can be more accurate than the most well-trained medical doctors. What is gained and what is lost by shifting to algorithmic diagnoses? Although a book could be written about this topic, please answer in one paragraph.
+--->

@@ -462,8 +462,8 @@ As in the diagram above, a standard partition is to dedicate 80% of the observat
 
 While $R^2$ is the most immediate metric to evaluate the predictive quality of a linear regression, it is quite specific to linear modeling. Therefore, data scientists have come up with another, more general metric called **mean square error (MSE).**  Let $y_i$ be observations of the response variable in the testing set, and $\hat{y}_i$ be your model's predictions for those observations. Then $\text{MSE}$ is given by 
 
-$$ \text{MSE} = \sum_{i=1}^n(y_i-\hat{y_i})^2$$
-You may notice that for a linear regression model, $\text{MSE} = \text{RSS}$.
+$$ \text{MSE} = \frac{1}{n}\sum_{i=1}^n(y_i-\hat{y_i})^2$$
+You may notice that for a linear regression model, $\text{MSE} = \frac{1}{n}\text{RSS}$.
 
 A common offshoot is **root mean square error** ($\text{RMSE}$), which you can obtain by taking the square root of $\text{MSE}$. Much like what standard deviation does for variance, $\text{RMSE}$ allows you to think above the average error on a regular scale rather than on a squared scale. 
 
@@ -628,7 +628,7 @@ Once these predictions $\hat{y}_i$ are made, we then can use `dplyr` code to:
 
 $$R^2 = 1-\frac{\text{RSS}}{\text{TSS}} = 1-\frac{\sum_{i=1}^n(y_i-\hat{y_i})^2}{\sum_{i=1}^n(y_i-\bar{y})^2}$$
 
--   We can also calculate $\text{MSE}$ and $\text{RMSE}$ as $\text{RSS}$ and $\sqrt{\text{RSS}}$, respectively. 
+-   We can also calculate $\text{MSE}$ and $\text{RMSE}$ as $\frac{1}{n}\text{RSS}$ and $\frac{1}{n}\sqrt{\text{RSS}}$, respectively. 
 
 
 ```{r}
@@ -641,11 +641,12 @@ biology_test %>%
            resid_sq_poly = (score - score_pred_poly)^2) %>%
     summarize(TSS = sum((score - mean(score))^2),
               RSS_linear = sum(resid_sq_linear),
-              RSS_poly = sum(resid_sq_poly)) %>%
+              RSS_poly = sum(resid_sq_poly),
+              n = n()) %>%
     mutate(Rsq_linear = 1 - RSS_linear/TSS,
            Rsq_poly = 1 - RSS_poly/TSS,
-           MSE_linear = RSS_linear,
-           MSE_poly = RSS_poly,
+           MSE_linear = RSS_linear/n,
+           MSE_poly = RSS_poly/n,
            RMSE_linear = sqrt(MSE_linear),
            RMSE_poly = sqrt(MSE_poly)) |>
   select(Rsq_linear, Rsq_poly, MSE_linear, MSE_poly)
