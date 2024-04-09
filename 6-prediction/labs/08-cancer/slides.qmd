@@ -1,5 +1,5 @@
 ---
-title: "Lab 8: Diagnosing Cancer"
+title: "Lab 6: Diagnosing Cancer"
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"

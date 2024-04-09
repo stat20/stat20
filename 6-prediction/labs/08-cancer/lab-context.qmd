@@ -1,0 +1,95 @@
+---
+title: "Cancer Diagnosis"
+subtitle: "Lab"
+format: stat20handout-pdf
+---
+
+In this lab you will train and evaluate a classification algorithm to determine whether or not a [fine needle aspiration biopsy](https://en.wikipedia.org/wiki/Fine-needle_aspiration) is cancerous (malignant) or non-cancerous (benign). The data were downloaded from the [UC Irvine Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29) and lightly processed. Here is a brief glimpse at some of the columns. Use this glimpse to answer the following questions. 
+
+```{r}
+#| echo: false
+#| warning: false
+library(tidyverse)
+cells <- read_csv("https://www.dropbox.com/s/0rbzonyrzramdgl/cells.csv?dl=1") %>%
+  mutate(diagnosis = factor(diagnosis, levels = c("B", "M")))
+
+
+set.seed(57)
+knitr::kable(cells |>
+                  slice_sample(n = 12, replace = FALSE) |>
+                  select(diagnosis, radius_mean,area_mean,
+                         radius_sd))
+```
+
+
+@.  What is the unit of observation in this data frame?
+
+\
+
+@. We will be fitting models to output a diagnosis ("benign" or "malignant"). This is a categorical outcome. Which level will be considered the reference level by default in R and why?
+
+\
+
+\
+
+@.  If you were to deploy your method in a clinical setting to help diagnose cancer, would it be worse to misclassify a benign case or to misclassify a malignant case? Explain your rationale in at least two sentences.
+
+\
+
+\
+
+\
+
+
+@.  Based on the glimpse, use a plot to compare the `radius_mean` for benign vs. malignant biopsies, *side-by-side*. Make sure to give your label your axes and give your plot a title. Give a shape which matches **your** expectation of the phenomenon and explain your choice in at least one sentence.
+
+\
+
+\
+
+\
+
+\
+
+
+@. Based on the glimpse, sketch a plot that examines the association between two predictors, `radius_mean` and `area_mean`. Make sure to give your label your axes and give your plot a title. Give a shape which matches **your** expectation of the phenomenon and explain your choice in at least one sentence.
+
+
+\
+
+\
+
+\
+
+\
+
+\
+
+
+@. Based on the glimpse, sketch a single plot that examines the association between `radius_mean` and `radius_sd` separately for each diagnosis (hint: there should be *three* variables depicted on your plot). Give a shape which matches **your** expectation of the phenomenon and explain your choice in at least one sentence. Do you think the relationship between `radius_mean` and `area_mean` will be different for each diagnosis, and why? Explain in at least once sentence.
+
+\
+
+\
+
+\
+
+\
+
+\
+
+\
+
+@. In many realms of medicine, classification algorithms can be more accurate than the most well-trained medical doctors. What is gained and what is lost by shifting to algorithmic diagnoses? Although a book could be written about this topic, please answer in one paragraph.
+
+\
+
+\
+
+\
+
+
+
+
+
+

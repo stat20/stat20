@@ -1,33 +1,68 @@
 ---
 title: "Overfitting"
-format:
-  html:
-    code-tools: 
-      source: true
-      toggle: false
-sidebar: false
+format: stat20handout-pdf
 ---
 
-In this problem set you'll practice fitting and evaluating two different predictive models. You can load in the data with the following code.
+
+In this problem set you'll practice fitting and evaluating different predictive models to see if you can detect overfitting. You can load in the data via a link on Ed. For the following questions, fill in the space below with the R code you used.
+
+
+
+@. Visualize the relationship between $x$ and $y$ with a `ggplot` and comment on what you see, describing the strength, direction, and shape/form of the association.
+
+
+\
+
+\
+
+\
+
+
+@. Split your data into training and testing sets; seventy percent of the data should be allocated to the training set.
+
+\
+
+\
+
+\
+
+@. Fill out the below table. You will fit a model with a polynomial having the degree specified, and report the testing and training $\text{RMSE}$ in each case. 
+
+
+| Degree | Training RMSE | Testing RMSE |
+|--------|---------------|--------------|
+| 1      |               |              |
+| 2      |               |              |
+| 3      |               |              |
+| 4      |               |              |
+| 5      |               |              |
+| 10     |               |              |
+| 20     |               |              |
+| 25     |               |              |
+
+> To help you, here is some code that will calculate training $\text{RMSE}$ for you, provided you have fit a linear model called `m1` and make a training set called `train`:
 
 ```{r}
 #| echo: true
-library(tidyverse)
-train <- read_csv('https://raw.githubusercontent.com/idc9/course-materials/main/3-prediction/14-overfitting/train.csv')
+#| eval: false
+train |>
+  mutate(resids = (y - fitted(m1))^2) |>
+  summarise(RMSE = sqrt(sum(resids)))
+```
 
-test <- read_csv('https://raw.githubusercontent.com/idc9/course-materials/main/3-prediction/14-overfitting/test.csv')
+> You will need to modify this code slightly to help you find the testing RMSE. Write the modified code in the space below given a linear model `m1`.
+
+
+```
+test |>
+  
+  
 ```
 
 
-#### Question 1
 
-Fit a simple linear model to the training data that that predicts y as a function of x. Use this model to calculate a training and testing $R^2$.
 
-#### Question 2
 
-Fit a polynomial model to the training data that that predicts y as a function of x. Use this model to calculate a training and testing $R^2$. The choice of the degree of the polynomial is up to you.
+@. Describe the pattern in the results you see and explain it. 
 
-#### Question 3
-
-How did the testing and training $R^2$s compare between the linear and the polynomial models? What is driving the difference in these statistics between these two models?
 
