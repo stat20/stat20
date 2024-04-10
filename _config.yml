@@ -412,7 +412,7 @@ schedule:
         items:
           - type: Notes
             href: 6-prediction/05-logistic-regression/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 6-prediction/05-logistic-regression/slides.qmd
             render: false
