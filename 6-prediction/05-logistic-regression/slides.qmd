@@ -22,9 +22,9 @@ format:
 
 ## Agenda
 
-1. CQ
-2. Lecture: Misclassification
-3. Lab 8
+-   Concept Questions
+-   Quiz Review
+-   Lab 
 
 # Concept Questions
 
@@ -116,7 +116,7 @@ predict(m2, newdata = data.frame(body_mass_g = 4100, bill_length_mm = 35), type 
 :::
 
 
-# Misclassification
+# Misclassification: Appendix
 
 ## Building a predictive model
 
@@ -160,10 +160,10 @@ set_type <- sample(x = c('train', 'test'),
                    replace = TRUE, 
                    prob = c(0.8, 0.2))
 
-train <- penguins %>%
+train <- penguins |>
   filter(set_type == "train")
 
-test <- penguins %>%
+test <- penguins |>
   filter(set_type == "test")
 ```
 
@@ -185,7 +185,7 @@ m2 <- glm(sex ~ body_mass_g + bill_length_mm,
           data = train, family = "binomial")
 p_hat <- predict(m2, test, type = "response")
 
-test %>%
+test |>
   select(sex)
 ```
 
@@ -197,8 +197,8 @@ m2 <- glm(sex ~ body_mass_g + bill_length_mm,
           data = train, family = "binomial")
 p_hat <- predict(m2, test, type = "response")
 
-test %>%
-  select(sex) %>%
+test |>
+  select(sex) |>
   mutate(p_hat = p_hat)
 ```
 
@@ -211,30 +211,19 @@ m2 <- glm(sex ~ body_mass_g + bill_length_mm,
           data = train, family = "binomial")
 p_hat <- predict(m2, test, type = "response")
 
-test %>%
-  select(sex) %>%
+test |>
+  select(sex) |>
   mutate(p_hat = p_hat,
          y_hat = ifelse(p_hat > .5, "male", "female"))
 ```
 
-## Classification errors
-
-**False Positives**: Predicting a 1 that is in fact a 0
-
-**False Negatives**: Predicting a 0 that is in fact a 1
-
-. . .
-
-**Misclassification Rate**:
-
-$$ \frac{FP + FN}{total \, number \, of \, predictions} $$
 
 ## Classification errors {auto-animate="true"}
 
 ```{r}
 #| echo: true
-test %>%
-  select(sex) %>%
+test |>
+  select(sex) |>
   mutate(p_hat = p_hat,
          y_hat = ifelse(p_hat > .5, "male", "female"),
          FP = sex == "female" & y_hat == "male",
@@ -245,11 +234,11 @@ test %>%
 
 ```{r}
 #| echo: true
-test %>%
-  select(sex) %>%
+test |>
+  select(sex) |>
   mutate(p_hat = p_hat,
-         y_hat = ifelse(p_hat > .5, "male", "female")) %>%
-  summarize(misclas = mean(sex != y_hat))
+         y_hat = ifelse(p_hat > .5, "male", "female")) |>
+  summarize(MCR = mean(sex != y_hat))
 ```
 
 

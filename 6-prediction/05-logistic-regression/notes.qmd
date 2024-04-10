@@ -19,15 +19,17 @@ execute:
 [T]{.dropcap}he framework that we used to build a predictive model for regression followed four distinct steps:
 
 1. **Decide on the mathematical form of the model**: we used a linear model with potential for transformations and polynomials
-2. **Select a metric that defines the "best" fit**: we used the residual sum of squares (RSS)
-3. **Estimating the coefficients of the model that are best using the training data**: we found the coefficients that minimized RSS on the training data
-4. **Evaluating predictive accuracy using a test data set**: we calculated testing $R^2$ using ~20% of the data that was withheld
+2. **Select a metric that defines the "best" fit**: we used $R^2$ or $\text{MSE}$
+3. **Estimating the coefficients of the model that are best using the training data**: we found the coefficients that minimized our metric of choice on the training data
+4. **Evaluating predictive accuracy using a test data set**: we calculated testing $R^2$/$\text{MSE}$ using ~20% of the data that was withheld
 
 We used this process to build our first simple linear regression model to predict high school graduation rates but the same four steps are used by Zillow to build Zestimate^TM^, their deep learning model to predict house price.
 
-These are also the same four steps that we will use as we shift in these notes to the task of classification. In a classification task, we seek to predict a response variable that is categorical, very often a two-level categorical variable. Classification models are everywhere: they help doctors determine whether or not a patient has a disease, whether or not an image contains a particular object (say, a person or a cat), and whether or not customer will purchase an item.
+These are also the same four steps that we will use as we shift in these notes to the task of **classification.** In a classification task, we seek to predict a response variable that is categorical, very often a two-level categorical variable. Classification models are everywhere: they help doctors determine whether or not a patient has a disease, whether or not an image contains a particular object (say, a person or a cat), and whether or not customer will purchase an item.
 
+<!---
 The last time you checked your email inbox, you observed the results of yet another very useful classification model: a spam filter. There are many different types of classification models that we could use as a spam filter but in this class we'll focus on one of the most common, called logistic regression.
+--->
 
 
 ## Example: Spam filters
@@ -60,15 +62,21 @@ This particular data set arose from selecting a single email account, saving eve
 
 ### Exploratory Data Analysis
 
-Let's see how well a few tempting predictors work at separating spam from not spam by performing some exploratory data analysis. I would expect messages containing the word "winner" to be more likely to be spam than those that do not. A stacked bar chart can answer that question.
+Let's see how well a few tempting predictors work at separating spam from not spam by performing some exploratory data analysis. We might expect messages containing the word "winner" to be more likely to be spam than those that do not. A stacked, normalized bar chart can answer that question.
 
 ```{r}
 #| fig-height: 2
 #| fig-width: 3.5
 #| fig-align: center
+#| code-fold: false
+#| echo: false
 library(tidyverse)
+library(broom)
 ggplot(email, aes(x = winner, fill = spam)) +
   geom_bar(position = "fill") +
+  labs(x = "Email contains the word \"winner\"?",
+       y = "Proportion",
+       fill = "Spam?") +
   theme_bw()
 ```
 
@@ -76,18 +84,26 @@ Indeed, it looks like around 30% of emails with "winner" were spam, compared to 
 
 Although this is tempting, it is still a pretty weak classifier. Most of the messages with "winner" are not spam, so calling them spam will result in most of them being misclassified.
 
-So if "winner" isn't the silver bullet predictor we need, let's try another: `num_char`. This variable records the total number of characters present in the message -- how long it is. I have no prior sense of whether spam would be more likely to consist of short or long emails, so let's visualize them. This predictor is continuous, so let's overlay two density plots to get a sense of the distribution between spam and not spam.
+So if "winner" isn't the silver bullet predictor we need, let's try another: `num_char`. This variable records the total number of characters present in the message -- how long it is. We probably have no prior sense of whether spam would be more likely to consist of short or long emails, so let's visualize them. This predictor is numerical continuous, so let's overlay two density plots to get a sense of the distribution between spam and not spam.
 
 ```{r}
 #| fig-height: 2.5
 #| fig-width: 7
 #| fig-align: center
+#| code-fold: false
+#| echo: false
 p_numchar <- ggplot(email, aes(x = num_char, fill = spam)) +
   geom_density(alpha = .4) +
+  labs(x ="No. of Chars.",
+       y = "Density",
+       fill = "Spam?") +
   theme_bw()
 
 p_log_numchar <- ggplot(email, aes(x = log(num_char), fill = spam)) +
   geom_density(alpha = .4) +
+  labs(x ="No. of Chars.",
+       y = "Density",
+       fill = "Spam?") +
   theme_bw()
 
 library(patchwork)
@@ -98,9 +114,9 @@ The original plot on the left is very difficult to read because this variable is
 
 We see a reasonable separation here: spam messages tend to be shorter than non-spam messages. We could consider another very simple spam filter: if the log number of characters is less than 1.2, classify it as spam.
 
-This simple filter suffers from the same problem as the first. Although these density plots have the same area, there are in fact far fewer overall instances of spam than not-spam. That means that there are far more not-spam messages with a log number of characters less than 1.2 than there are spam message. This filter, like the first, would misclassify much of the training data.
+However, this simple filter suffers from the same problem as the first. Although these density plots have the same area, there are in fact far fewer overall instances of spam than not-spam. That means that there are far more not-spam messages with a log number of characters less than 1.2 than there are spam message. This filter, like the first, would misclassify much of the training data.
 
-What we need is a more general framework to fold the strength of these two variables - as well as many of the other ones in the data set - into a model that can produce a single, more accurate prediction. The model framework that we'll use is multiple linear regression.
+What we need is a more general framework to fold the strength of these two variables - as well as many of the other ones in the data set - into a model that can produce a single, more accurate prediction. We will start from the framework of multiple linear regression and move to something that can be used for classification. 
 
 ## From Linear to Logistic Regression
 
@@ -114,19 +130,19 @@ $$ \hat{y} = b_0 + b_1 x $$
 
 While this is doable, it leaves us with a bit of a conundrum. For a low value of `log_num_char` it's possible that we would predict $\hat{y} = 1$ and for a high value it's possible that we'd predict $\hat{y} = 0$. But what if `log_num_char` is somewhere in the middle? What does it mean if we predict that the value of spam is .71?
 
-One approach to resolving this is to treat our prediction not as a value of $y$, but as a estimate of the *probability*, $\hat{p}$, that $y = 1$. We can rewrite the model as:
+One approach to resolving this is to *treat our prediction not as a value of $y$, but as a estimate of the _probability_, $\hat{p}$, that $y = 1$.* We can rewrite the model as:
 
 $$ \hat{p} = b_0 + b_1 x $$
 
 This resolves the conundrum of how to think about a prediction of .71. That is now the model's determination of the probability that the message is spam. This tweak solves one problem, but it introduces another. How do we interpret predictions at very high values of `log_num_char`, where $\hat{p}$ is negative? Surely a probability cannot be negative!
 
-We can fix this by changing the mathematical form of the model used to predict the response. Instead of it being a line, we can use an alternative function that prevents predictions greater than 1 and less than zero. The most commonly used function is called the *standard logistic* function:
+We can fix this by *changing the mathematical form of the model used to predict the response. Instead of it being a line, we can use an alternative function that prevents predictions greater than 1 and less than zero.* The most commonly used function is called the **standard logistic function**:
 
 $$ f(z) = \frac{1}{1 + e^{-z}}$$
 
 $z$ can be any number of the real number line. As $z$ gets large, $f(z)$ approaches 1; as $z$ is negative, $f(z)$ approaches 0; when $z$ is 0, $f(z)$ is .5.
 
-This is a very clever idea. It allows us to combine all of the information from our predictors into a single numerical score, $z$, which can then be sent through the logistic function to estimate the probability that $y = 1$. This method is called logistic regression.
+This is a very clever idea. It allows us to combine all of the information from our predictors into a single numerical score, $z$. We can obtain $z$ through a form that is familiar to us: $b_0 + b_1 x_1 + \ldots + b_p x_p$. This score can then be sent through the logistic function to estimate the probability that $y = 1$. This method is called **logistic regression**.
 
 **Logistic Regression** (for prediction)
 :    A model to predict the probability that 0-1 response variable $y$ is 1 using the inverse logit of a linear combination of predictors $x_1, x_2, \ldots, x_p$.
@@ -139,57 +155,115 @@ We can visualize the approach that logistic regression takes by sketching the pr
     
 ![](images/log-2.png){width="450" fig-align="center"}
 
+## Classification errors
 
+Now that we have a model archetype to move forward with, we are almost ready to build it and see how it does. First though, we should first consider what happens when our predictions are wrong. Hopefully, we will classify most of our e-mails correctly, but we will fail at least some of the time. We might predict that an e-mail is spam when it is not. In other cases, we might predict that an e-mail is not spam when it actually is. Therefore, there are two types of error we should consider. 
 
-## Fitting Logistic Regression
+Recall that based on the `email` dataset, `1` refers to an e-mail which is truly spam. In a binary classification problem, we often call `1` a *positive* result. Likewise, `0` refers to an e-mail which is genuine. We call `0` a *negative* result. This sets up formal definitions for the two types of errors mentioned above. 
 
-The computational machinery for fitting logistic regression looks almost identical to what we used for linear least squares regression. The primary function we'll use is `glm()`.
+**False Positives**
+: Predicting a 1 that is in fact a 0
+
+**False Negatives**
+: Predicting a 0 that is in fact a 1
+
+### Misclassification rate
+
+While thinking about failing is not exciting, it does give us a way to think about how well our classification model is doing. We would like the number of misclassifications over a large number of e-mails to be as small as possible. This fraction can be quantified as the **misclassification rate** or $\text{MCR}$ for short.
+
+**Misclassification Rate**
+
+$$\text{MCR} = \frac{\text{no. FP} + \text{no. FN}}{\text{no. of predictions}} = \frac{\text{no. of misclassifications}}{\text{no. of predictions}}$$
+
+Just like in a multiple linear regression context, we can fit a suite of different models on the *training set* and evaluate their performance on the *testing set*. Now, our model type of choice is logistic regression and our evaluation metric is $\text{MCR}$. 
+
+## The Ideas in Code
+
+### Fitting Logistic Regression with `glm()`
+
+The computational machinery for fitting logistic regression looks almost identical to what we used for linear least squares regression. The primary function we'll use is `glm()`. We will also use a different `broom` function called `tidy()` to display the coefficients $b_0$ and $b_1$. `tidy()` can also be used in a linear regression context as well.
 
 ```{r}
 #| code-fold: false
 
 m1 <- glm(spam ~ log(num_char), data = email, family = "binomial")
-m1
+m1 |>
+  tidy() |>
+  select(term,estimate,std.error)
 ```
 
 These coefficients are a bit more challenging to interpret since they're no longer linearly related to the response. The sign of the coefficient for `log(num_char)`, however, is informative: it tells us that messages with more characters will be predicted to have a lower probability of being spam.
 
-Let's take a look at the predictions that this model makes back into the data set that it was trained on (also called the fitted values). When using the `predict()` function on logistic regression models, there are several different types of predictions that it can return, so be sure to specify `type = "response"`.
+
+### Evaluating model performance
+
+#### Calculating $\text{MCR}$
+
+Let's take a look at the predictions that this model makes back into the data set that it was trained on. When using the `predict()` function on logistic regression models, there are several different types of predictions that it can return, so be sure to use the additional argument `type` and supply it with `"response"`. This will return $\hat{p}_i$ (probability of a `1`) for each observation.
 
 ```{r}
 #| code-fold: false
-
-p_hat_m1 <- predict(m1, email, type = "response")
+p_hat_m1 <- predict(object = m1, 
+                    newdata = email, 
+                    type = "response")
 ```
 
-We can then move from values of $\hat{p}_i$ to values of $y_1$ by checked to see whether each value of $\hat{p}_i$ is greater than .5. Let's combine these values into one data frame.
+We can then move from values of $\hat{p}_i$ to values of $\hat{y}_i$. In general, our rule will be to check and see whether each value of $\hat{p}_i$ is greater than .5. If so, we will assign the value of `1`; otherwise, we will assign it `0`. This sounds similar to creating a logical variable, but assigning something different than `TRUE` and `FALSE` to each observation in the dataset. We will use a function called **`ifelse()`**, therefore, which will allow us to assign we want (`1` and `0`).
 
 ```{r}
 #| code-fold: false
+email <- email |>
+  mutate(y_hat_m1 = 
+           ifelse(test = p_hat_m1 > .5, yes = 1, no = 0))
 
-predictions <- tibble(y = email$spam) %>%
-  mutate(p_hat_m1 = p_hat_m1,
-         y_hat_m1 = p_hat_m1 > .5)
-predictions
 ```
 
-These first 10 rows were all examples of not-spam ($y = 0$), and our model corresponding estimate that the probabilities that each one is spam based on the value of `log_num_char` is quite low, ranging from .04 to .14. Since these are all less than .5, every prediction (or fitted value) was 0.
+Finally, we can calculate $\text{MCR}$. First, we can find all of the emails for which the `y` and `y_hat_m1` don't match. Then, we can take the *proportion* of those e-mails out of all e-mails in the dataset.
 
+```{r}
+#| code-fold: false
+email |>
+  mutate(misclassified = (spam != y_hat_m1)) |>
+  summarise(MCR = mean(misclassified))
+```
+
+Note this $\text{MCR}$ was calculated over *all of the data*. The best way to evaluate the performance of the model is to split the data into training and testing sets, fit the model on the training set and evaluate it on the testing set. We can calculate both training and testing versions of $\text{MCR}$ and compare them to see if the model is doing well on e-mails it hasn't yet seen. 
+
+Overall, we are misclassifying around 10 percent of all e-mails (both spam and genuine), which doesn't look like a bad start, but we might want to take a little deeper of a dive to see *how* the model is misclassifying observations.
+
+### False positives versus false negatives
+
+Indeed, we can see if the model is failing at classifiying one type of e-mail more than another. To do this, we can find the number of false positives and false negatives. We can group our observations by their actual class versus their predicted class. There are four possibilities, so there will be four groups.
+
+```{r}
+#| code-fold: false
+#| echo: true
+email |>
+  group_by(spam, y_hat_m1) |>
+  summarise(n = n())
+```
+
+We actually see that the model is doing great at predicting correctly when the e-mail is genuine (few false positives), but doing horribly at detecting spam (many, many false negatives). Only $5$ out of the $367$ spam e-mails are being classified correctly. Essentially all of our mistakes are in the form of false negatives! We also can see here that there are way more genuine e-mails than spam e-mails in the dataset, so our misclassification rate is being inflated as a result. Clearly, more than just the length of an e-mail is necessary to help us detect spam. 
+
+
+<!---
 How well did the model do when it predicted very high values of $\hat{p}_i$. Let's take a look by sorting the data frame in descending order.
 
 ```{r}
+#| eval: false
 #| code-fold: false
-predictions %>%
+predictions |>
   arrange(desc(p_hat_m1))
 ```
 
 There were two messages that the model assigned a probability of .884 that they were spam and indeed they were. But then the model made several errors. Messages 3 through 9 were all also predicted to be spam but in fact they were not.
 
-It seems, on the surface that this simple logistic regression model, though it is functional, is not very accurate. We'll aim to increase its accuracy tomorrow in class.
+It seems, on the surface that this simple logistic regression model, though it is functional, is not very accurate. 
+--->
 
 ## Summary
 
 In these notes we introduced the concept of classification using a logistic regression model. Logistic regression uses the logistic function to transform predictions into a probability that the response is 1. These probabilities can be used to classify y as 0 or 1 by checked to see if they exceed a threshold (often .5).
 
-These notes focus on step 1 of the predictive model building process: deciding on the mathematical form of the model. In class tomorrow will take up the remaining three as we learn how to use apply logistic regression as a classification model to complete the eighth and final lab of Stat 20.
+We then went through the process of fitting logistic regression to help us classify spam e-mails, and evaluated our results using the misclassification rate. 
 
