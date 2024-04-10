@@ -199,26 +199,27 @@ These coefficients are a bit more challenging to interpret since they're no long
 
 #### Calculating $\text{MCR}$
 
-Let's take a look at the predictions that this model makes back into the data set that it was trained on. When using the `predict()` function on logistic regression models, there are several different types of predictions that it can return, so be sure to use the additional argument `type` and supply it with `"response"`. This will return $\hat{p}_i$ (probability of a `1`) for each observation.
-
-```{r}
-#| code-fold: false
-p_hat_m1 <- predict(object = m1, 
-                    newdata = email, 
-                    type = "response")
-```
+Let's take a look at the predictions that this model makes back into the data set that it was trained on. When using the `predict()` function on logistic regression models, there are several different types of predictions that it can return, so be sure to use the additional argument `type` and supply it with `"response"`. This will return $\hat{p}_i$ (probability of `1`) for each observation.
 
 We can then move from values of $\hat{p}_i$ to values of $\hat{y}_i$. In general, our rule will be to check and see whether each value of $\hat{p}_i$ is greater than .5. If so, we will assign the value of `1`; otherwise, we will assign it `0`. This sounds similar to creating a logical variable, but assigning something different than `TRUE` and `FALSE` to each observation in the dataset. We will use a function called **`ifelse()`**, therefore, which will allow us to assign we want (`1` and `0`).
+
+The following block of code completes both of these two steps and saves the results back into the `email` data frame.
+
 
 ```{r}
 #| code-fold: false
 email <- email |>
-  mutate(y_hat_m1 = 
-           ifelse(test = p_hat_m1 > .5, yes = 1, no = 0))
+  mutate(p_hat_m1 = predict(object = m1, 
+                            newdata = email, 
+                            type = "response"),
+         y_hat_m1 = ifelse(test = p_hat_m1 > .5, 
+                           yes = 1, 
+                           no = 0))
 
 ```
 
-Finally, we can calculate $\text{MCR}$. First, we can find all of the emails for which the `y` and `y_hat_m1` don't match. Then, we can take the *proportion* of those e-mails out of all e-mails in the dataset.
+
+We are now ready to calculate $\text{MCR}$. First, we can find all of the emails for which the `y` and `y_hat_m1` don't match. Then, we can take the *proportion* of those e-mails out of all e-mails in the dataset.
 
 ```{r}
 #| code-fold: false
@@ -226,8 +227,6 @@ email |>
   mutate(misclassified = (spam != y_hat_m1)) |>
   summarise(MCR = mean(misclassified))
 ```
-
-Note this $\text{MCR}$ was calculated over *all of the data*. The best way to evaluate the performance of the model is to split the data into training and testing sets, fit the model on the training set and evaluate it on the testing set. We can calculate both training and testing versions of $\text{MCR}$ and compare them to see if the model is doing well on e-mails it hasn't yet seen. 
 
 Overall, we are misclassifying around 10 percent of all e-mails (both spam and genuine), which doesn't look like a bad start, but we might want to take a little deeper of a dive to see *how* the model is misclassifying observations.
 
@@ -244,6 +243,11 @@ email |>
 ```
 
 We actually see that the model is doing great at predicting correctly when the e-mail is genuine (few false positives), but doing horribly at detecting spam (many, many false negatives). Only $5$ out of the $367$ spam e-mails are being classified correctly. Essentially all of our mistakes are in the form of false negatives! We also can see here that there are way more genuine e-mails than spam e-mails in the dataset, so our misclassification rate is being inflated as a result. Clearly, more than just the length of an e-mail is necessary to help us detect spam. 
+
+#### Training and testing sets
+
+One final note: this $\text{MCR}$ was calculated over *all of the data*. The best way to evaluate the performance of the model is to split the data into training and testing sets, fit the model on the training set and evaluate it on the testing set. We can calculate both training and testing versions of $\text{MCR}$ and compare them to see if the model is doing well on e-mails it hasn't yet seen. 
+
 
 
 <!---
