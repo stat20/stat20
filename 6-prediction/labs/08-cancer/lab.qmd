@@ -67,9 +67,9 @@ The diagnosis is in the column named `diagnosis`; each other column should be us
  
 4. Split the data set into a roughly 80-20 train-test set split. 
 
-5. Using the training data, fit a simple logistic regression model that predicts the diagnosis using the mean of the texture index using a threshold of .5. 
+5. Using the training data, fit a simple logistic regression model that predicts the diagnosis using the mean of the texture index.
 
-6. What would your model predict for a biopsy with a mean texture of 15? What probability does it assign to that outcome?
+6. Using a threshold of .5, What would your model predict for a biopsy with a mean texture of 15? What probability does it assign to that outcome?
 
 6. Calculate and report two misclassification rates for your simple model: first on the training data and then on the testing data. 
 
@@ -85,7 +85,7 @@ The diagnosis is in the column named `diagnosis`; each other column should be us
 
 12. Make the change you identified in the previous question and calculate the new number of false negatives.
 
-13. Calculate the testing misclassification rate using your new classification rule. Did it go up or down? 
+13. Calculate the testing misclassification rate using your new classification rule. 
 
 14. Did your misclassification rule go up or down? Answer this question and explain why it went up or down in at least two sentences. 
 
