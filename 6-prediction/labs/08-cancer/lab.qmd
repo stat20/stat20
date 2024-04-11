@@ -10,16 +10,6 @@ sidebar: false
 
 - [Lab 6.1: Cancer Diagnosis](lab-context.pdf)
 
-```{r}
-#| echo: false
-#| eval: false
-#| code-fold: false
-
-# load data and set "B" (benign) as the reference level
-library(tidyverse)
-cells <- read_csv("https://www.dropbox.com/s/0rbzonyrzramdgl/cells.csv?dl=1") %>%
-  mutate(diagnosis = factor(diagnosis, levels = c("B", "M")))
-```
 
 <!---
 The diagnosis is in the column named `diagnosis`; each other column should be used to predict the diagnosis.
@@ -44,25 +34,59 @@ The diagnosis is in the column named `diagnosis`; each other column should be us
     - Is the relationship between `radius_mean` and `radius_sd` different for benign biopsies vs. malignant biopsies?
 
     - If so, can you give an explanation for this difference?
+-->
 
 
-### Diagnosing Biopsies
+## Part II: Computing on the Data
 
-6.  Split the full cells data set into a roughly 80-20 train-test set split. How many observations do you have in each?
+You can load in the `biopsies` data frame using the code below:
 
-7. Using the training data, fit a simple logistic regression model that predicts the diagnosis using the mean of the texture index using a threshold of .5. What would your model predict for a biopsy with a mean texture of 15? What probability does it assign to that outcome?
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: false
 
-8. Calculate the misclassification rate first on the training data and then on the testing data. Is there any evidence that this model is overfitting? How can you tell one way or the other?
 
-9. Build a more complex model to predict the diagnosis using five predictors of your choosing, then calculate the testing and training misclassification rate. Is there evidence that your model is overfitting? How can you tell one way or the other?
+library(tidyverse)
+biopsies <- 
+  read_csv("https://www.dropbox.com/s/0rbzonyrzramdgl/cells.csv?dl=1") |>
+  mutate(diagnosis = factor(diagnosis, levels = c("B", "M")))
+```
 
-10. If you were to deploy your method in a clinical setting to help diagnose cancer, which type of classification error would be worse and why?
+The diagnosis is in the column named `diagnosis`; each other column should be used to predict the diagnosis.
 
-11. Calculate the total number of false negatives in the test data set when using your simple model with only one variable.
+1. Make a single plot that examines the association between `radius_mean` and `radius_sd` separately for each diagnosis (hint: `aes()` should have three arguments).
 
-12. What can you change about your classification rule to lower the number of false negatives? Make this change and calculate the new number of false negatives.
+2. Calculate the correlation between these two variables for each diagnosis.
 
-13. Calculate the testing misclassification rate using your new classification rule. Did it go up or down? Why?
+3. Give at least a two-sentence interpretation of the results in the last two questions. In particular, comment on:
 
-14. In many realms of medicine, classification algorithms can be more accurate than the most well-trained medical doctors. What is gained and what is lost by shifting to algorithmic diagnoses? Although a book could be written about this topic, please answer in one paragraph.
---->
+ - Is the relationship between `radius_mean` and `radius_sd` different for benign biopsies vs. malignant biopsies?
+ 
+ - If so, can you give an explanation for this difference?
+ 
+4. Split the data set into a roughly 80-20 train-test set split. 
+
+5. Using the training data, fit a simple logistic regression model that predicts the diagnosis using the mean of the texture index.
+
+6. Using a threshold of .5, What would your model predict for a biopsy with a mean texture of 15? What probability does it assign to that outcome?
+
+6. Calculate and report two misclassification rates for your simple model: first on the training data and then on the testing data. 
+
+7. Build a more complex model to predict the diagnosis using **five predictors** of your choosing.
+
+8. Calculate and report two misclassification rates for your complex model: first on the training data and then on the testing data.  
+
+9. Is there any evidence that your model is overfitting? Explain in at least two sentences. 
+
+10. Move back to your simple model for the next few questions.Report the total number of false negatives in the test data set. 
+
+11. What can you change about your classification rule to lower the number of false negatives? 
+
+12. Make the change you identified in the previous question and calculate the new number of false negatives.
+
+13. Calculate the testing misclassification rate using your new classification rule. 
+
+14. Did your misclassification rule go up or down? Answer this question and explain why it went up or down in at least two sentences. 
+
+
