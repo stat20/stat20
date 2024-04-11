@@ -1,5 +1,5 @@
 ---
-title: "Estimating Causal Effects without Randomization"
+title: "Causal Effects in Observational Studies"
 subtitle: "natural experiments and matching"
 format:
   html:

@@ -1,5 +1,5 @@
 ---
-title: "Randomized experiments"
+title: "Randomized Experiments"
 subtitle: "principles of experimental design"
 format:
   html:
