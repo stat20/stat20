@@ -2,6 +2,7 @@
 title: "Logistic Regression"
 subtitle: "A model for binary classification"
 image: images/sigmoid.png
+self-contained: true
 format:
   html:
     code-fold: true
