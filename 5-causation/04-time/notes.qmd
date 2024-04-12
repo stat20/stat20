@@ -307,7 +307,7 @@ checkout |>
 ```
 
 The distance from the red line to the blue line is given by the coefficient of
-\texttt{checkout_policy} and is our estimate
+`checkout_policy` and is our estimate
 of the average treatment effect.  You can think of the dotted red line as the 
 (counterfactual) version of sales had the policy not been instituted, to which
 we are comparing the actual post-treatment sales (in solid blue).

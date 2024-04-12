@@ -365,7 +365,7 @@ one of the treated units has no comparable control available, or not all variabl
 end up balanced well.  In these scenarios, modifications to the matching strategy
 can help, including eliminating some treated units or using a different kind
 of distance.  Although we won't discuss these modifications in detail, the 
-\texttt{MatchIt} package supports many of them and provides a handy online
+`MatchIt` package supports many of them and provides a handy online
 guide: <https://kosukeimai.github.io/MatchIt/articles/matching-methods.html>.
 
 
@@ -481,8 +481,8 @@ seen in a randomized experiment, we report the sample difference in means
 as our estimate of the average treatment effect and conduct a hypothesis test as
 we would have in a randomized trial where we were able to assign Berkeley graduation
 status at random.  To use the data only from the matched individuals, rather than
-everyone in \texttt{grad_job}, we start with the output object from the matching
-step and pipe it to the \texttt{match.data} command to obtain the smaller 
+everyone in `grad_job`, we start with the output object from the matching
+step and pipe it to the `match.data` command to obtain the smaller 
 dataframe.
 
 ```{r}
