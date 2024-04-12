@@ -398,6 +398,7 @@ schedule:
       - topic: "Causal Effects in Observational Studies"
         display-date: Apr 23
         date: 4/24/24
+        items:
           - type: Notes
             href: 5-causation/03-matching/notes.qmd
             render: false
@@ -411,6 +412,7 @@ schedule:
       - topic: "Using Time to Measure Causal effects"
         display-date: Apr 25
         date: 4/25/24
+        items:
           - type: Notes
             href: 5-causation/04-time/notes.qmd
             render: false
