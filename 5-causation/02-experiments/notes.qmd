@@ -1,6 +1,6 @@
 ---
-title: "Experiments"
-subtitle: "The principles of experimental design"
+title: "Randomized Experiments"
+subtitle: "Principles of experimental design"
 format:
   html:
     code-fold: true
@@ -12,102 +12,17 @@ execute:
   message: false
 ---
 
-<!-- Lead out with running example: are you reading these notes as a website or are you reading them as a pdf on a tablet? Do you think your choice in this regard will effect your understanding of the material and the course -->
+<!-- Lead out with running example: are you reading these notes as a website or are you reading them as a pdf on a tablet? Do you think your choice in this regard will affect your understanding of the material and the course -->
 
-[C]{.dropcap}ausation has a tricky relationship with data. We can't observe the precise counterfactual that would allow us to identify an individual cause. Instead, statisticians use a host of methods to find a good approximation of the counterfactual. In the last set of notes, the methods focused on matching each unit with a near-twin; another unit that is similar in every respect except for the variable of interest. In these notes, we consider what can be gained if we zoom out and focus on causation at the group-level.
+[C]{.dropcap}ausation has a tricky relationship with data. We can't observe the precise counterfactual that would allow us to identify an individual cause. Instead, statisticians use a host of methods to find a good approximation of the counterfactual, usually by focusing on a group-level quantity called an average treatment effect. 
 
-The distinction between individual and group level causation is demonstrated in following two statements.
+We now introduce the most important tool for approximating group-level counterfactuals, the randomized experiment.  
+<!--In the last set of notes, randomized experimentation was presented as a method
+for approximating group-level counterfactuals.  Randomized experimentation is a 
+powerful idea but doesn't always work perfectly in practice.  In this set of notes, we will explore a tool called covariate balance which allows us to check how well
+randomized assignment is working.  It will also help us evaluate causal claims 
+in cases where researchers were not able to perform an experiment.-->
 
-1. Evelyn got a good job because she graduated from Cal.
-2. Graduating from Cal helps people get a good job.
-
-The first is a strong statement about a single individual, Evelyn. The second is a much more general statement that compares people who have have graduated from Cal with a counterfactual group who has not.
-
-Group-level causation is the focus of many sciences, which aim to make general claims about the causal mechanisms of the world. The goal is to estimate the average treatment effect.
-
-**Average Treatment Effect**
-:    A population parameter that captures the effect of being administered a particular treatment, averaged over each group. Most often estimated by a difference in sample means or a difference in sample proportions.
-
-In statement two above, a natural estimate for the average treatment effect would be the difference between the proportion of Cal graduates who got a good job and the proportion of non-Cal graduates who got a good job. That can be visualized in a simple example of three students who graduated from Cal and three who did not. The difference in the proportion with a good job is $2/3 - 1/3 = 1/3$.
-
-::: {layout="[-1,5,1,3,-1]" layout-valign="center"}
-
-```{r}
-#| echo: false
-
-library(tidyverse)
-library(gt)
-
-df <- tibble(Name = c("Evelyn", "Grace", "Juan", "Alex", "Monica", "Sriya"),
-                `Cal Grad`= c(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE),
-                 `Good Job` = c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE))
-
-df %>%
-  gt() %>%
-  cols_width(
-    vars(Name) ~ px(70),
-    vars(`Cal Grad`) ~ px(90),
-    vars(`Good Job`) ~ px(90),
-  ) %>%
-  tab_options(data_row.padding = px(4)) %>%
-  tab_style(
-    style = list(
-      cell_fill(color = "lightgoldenrodyellow")
-    ),
-    locations = cells_body(
-      columns = everything(),
-      rows = `Cal Grad` == TRUE
-    )
-  )  %>%
-  tab_style(
-    style = list(
-      cell_fill(color = "lightcyan")
-    ),
-    locations = cells_body(
-      columns = everything(),
-      rows = `Cal Grad` == FALSE
-    )
-  )
-```
-
-{{< fa arrow-right size=2x >}}
-
-```{r}
-#| echo: false
-
-df %>%
-  group_by(`Cal Grad`) %>%
-  summarize(`P(Good Job)` = round(mean(`Good Job`), 2)) %>%
-  slice(2, 1) %>%
-  gt() %>%
-  cols_width(
-    vars(`Cal Grad`) ~ px(90),
-    vars(`P(Good Job)`) ~ px(110),
-  ) %>%
-  tab_options(data_row.padding = px(4)) %>%
-  tab_style(
-    style = list(
-      cell_fill(color = "lightgoldenrodyellow")
-    ),
-    locations = cells_body(
-      columns = everything(),
-      rows = `Cal Grad` == TRUE
-    )
-  )  %>%
-  tab_style(
-    style = list(
-      cell_fill(color = "lightcyan")
-    ),
-    locations = cells_body(
-      columns = everything(),
-      rows = `Cal Grad` == FALSE
-    )
-  )
-```
-
-:::
-
-By broadening our focus to the average treatment effect across groups, we're able to bring to bear one most convincing forms of evidence of a causal link: data from experiments.
 
 ## Principles of Experimental Design
 
@@ -124,17 +39,18 @@ As a running example, consider an immediately relevant question: would reading t
 
 When designing an RCT, an essential decision is the nature of your control group. Our research question is: will reading these notes as a webpage result in a deeper understanding? Deeper . . . than what? Deeper than if you didn't read the notes at all? Deeper than if you read them aloud?
 
-If we're most interested in the difference between reading the notes as a webpage and reading them as a pdf, we could declare those who read the pdf part of the control group and those who read the pdf as part of the treatment group[^control]. Small changes to the control group can make an important difference in the precise question that you'll be answering.
+If we're most interested in the difference between reading the notes as a webpage and reading them as a pdf, we could declare those who read the pdf part of the control group and those who read the pdf as part of the treatment group. Small changes to the control group can make an important difference in the precise question that you'll be answering.
 
 We can visualize the distinction between the two groups in a small example with three people in the control group (pdf) and three people in the treatment group (website).
 
 ```{r}
 #| echo: false
 library(gt)
-df <- data.frame(name = c("Evelyn", "Grace", "Juan", "Alex", "Monica", "Sriya"),
+library(tidyverse)
+format_data <- data.frame(name = c("Evelyn", "Grace", "Juan", "Alex", "Monica", "Sriya"),
                  group = c("pdf", "pdf", "pdf", "website", "website", "website"),
                  understanding = c("deep", "shallow", "deep", "deep", "shallow", "shallow"))
-df %>%
+format_data %>%
   gt() %>%
   cols_width(
     vars(name) ~ px(70),
@@ -162,7 +78,37 @@ df %>%
   )
 ```
 
-We also speak of "controlling for" other variables that might provide alternate explanations for any effect that is found. Based on the schedule of assignments, it is not possible to access the notes on the website before the reading questions are due, so everyone in the treatment group would have to do their work out of order. To rule timing out as a potential cause of different levels of understanding, we would want to control for time by ensuring that the two versions of the notes were released at the same time.
+
+<!--Given a dataset like this, we already know how to compute a difference
+in proportions and conduct a hypothesis test to see whether reader format
+and understanding are associated.  -->
+
+<!--```{r}
+library(infer)
+set.seed(2024-3-25)
+obs_stat <- format_data |>
+   specify(response = understanding,
+          explanatory = group,
+          success = "deep") |>
+  calculate(stat = "diff in props", order = c("website","pdf"))
+
+null <- format_data |>
+  specify(response = understanding,
+          explanatory = group,
+          success = "deep") |>
+  hypothesize(null = "independence") |>
+  generate(reps = 500, type = "permute") |>
+  calculate(stat = "diff in props", order = c("website","pdf"))
+
+null |>
+  visualize() +
+  shade_p_value(obs_stat, direction = 'both')
+  
+null |> get_p_value(obs_stat, direction = 'both')
+
+```-->
+
+The process of computing a difference in proportions and conducting a hypothesis test for this dataset is no different than in the examples from the generalization notes.  What makes this study special is the process that generated this data.  Because this was a randomized control experiment, the difference in proportions provides a good estimate of the average treatment effect, and if it differs significantly from zero we have compelling evidence that reader format has a causal impact on understanding. We now describe some aspects of experimental design that help establish  this stronger interpretation.
 
 ### Random Assignment
 
@@ -185,23 +131,323 @@ The careful reader will have noted a weakness in the brilliance of the random as
 The random assignment mechanism will balance out all possible confounding factors *on average*, but for a given experiment that is not guaranteed. However, it becomes much more likely if we have a large sample size. If you just have four students total in the class, two of whom are early risers, it's quite easy for both of them to end up in the pdf group if they were assigned at random. If instead you have 800 students, 400 of whom are early risers, it's very very unlikely that all 400 will have made their way into the pdf group.
 
 
-### Other considerations
+### Blinding
 
 Randomized controlled trials have long been considered the gold standard for establishing a group-level causal claim, but care must be taken to ensure that your result means what you think it means. Here we reconsider a study where a new drug was used to treat heart attack patients. In particular, researchers wanted to know if the drug reduced deaths in patients.
 
 These researchers designed a randomized control trial because they wanted to draw causal conclusions about the drug’s effect. Study volunteers were randomly assigned to one of two study groups. One group, the treatment group, received the drug. The control group did not receive any drug treatment.
 
-Put yourself in the place of a person in the study. If you are in the treatment group, you are given a fancy new drug that you anticipate will help you. If you are in the control group, you are not treated at all but instead sit by idly, knowing you are missing out on potentially life-saving treatment. These perspectives suggest there are actually two effects in this study: the one of interest is the effectiveness of the drug, and the second is the emotional effect of (not) taking the drug, which is difficult to quantify.
+Put yourself in the place of a person in the study. If you are in the treatment group, you are given a fancy new drug that you anticipate will help you. If you are in the control group, you are not treated at all but instead sit by idly, knowing you are missing out on potentially life-saving treatment. These perspectives suggest there are actually two effects in this study: the one of interest is the effectiveness of the drug, and the second is the emotional effect of (not) taking the drug, which is difficult to quantify. In order to control for the emotional effect of taking a drug, the researchers decide to hide from patients which group they are in. 
 
-In order to control for the emotional effect of taking a drug, the researchers decide to hide from patients which group they are in. When researchers keep the patients uninformed about their treatment, the study is said to be *blind*. But there is one problem: if a patient does not receive a treatment, they will know they’re in the control group. A solution to this problem is to give a fake treatment to patients in the control group. This is called a *placebo*, and an effective placebo is the key to making a study truly blind. A classic example of a placebo is a sugar pill that is made to look like the actual treatment pill. However, offering such a fake treatment may not be ethical in certain experiments. For example, in medical experiments, typically the control group must get the current standard of care. Oftentimes, a placebo results in a slight but real improvement in patients. This effect has been dubbed the placebo effect.
+**Blinding**
+:   The practice of keeping someone uninformed about which subjects in the study
+have been assigned to treatment.
+
+
+When researchers keep the patients uninformed about the treatments they will receive, the study is said to be *single-blind*. But there is one problem: if a patient does not receive a treatment, they will know they’re in the control group. A solution to this problem is to give a fake treatment to patients in the control group. This is called a *placebo*, and an effective placebo is the key to making a study truly blind. A classic example of a placebo is a sugar pill that is made to look like the actual treatment pill. However, offering such a fake treatment may not be ethical in certain experiments. For example, in medical experiments, typically the control group must get the current standard of care. Oftentimes, a placebo results in a slight but real improvement in patients. This effect has been dubbed the placebo effect.
 
 The patients are not the only ones who should be blinded: doctors and researchers can also unintentionally affect the outcome. When a doctor knows a patient has been given the real treatment, they might inadvertently give that patient more attention or care than a patient that they know is on the placebo. To guard against this, which again has been found to have a measurable effect in some instances, most modern studies employ a *double-blind* setup where doctors or researchers who interact with patients are, just like the patients, unaware of who is or is not receiving the treatment.
 
-<!-- ## Correlation and Causation: the history of Smoking and Cancer -->
+<!--## Job training
+
+[clickbait thing about getting a job, e.g. reference to movie or offspring song
+or American Psycho meme]
+
+Unemployment is a complex social problem.  It is not always easy for unemployed individuals
+to ``just get a job."  For example, employers may be wary of hiring someone without
+a recent work history, and job-seekers without advanced training may be offered
+only such low-paid, high-effort work that they prefer to
+sit out the labor market entirely.  
+
+One strategy governments and nonprofit organization have contemplated for getting
+people into the labor market is job training programs.  The idea is to give public
+assistance to
+people who might otherwise struggle to get quality employment while they engage
+in short-term work experiences that also give them employable skills (e.g. construction, painting
+office work, or healthcare aides), boosting their incentive and ability to seek out
+work on their own at the end of the program.  The causal claim associated with this strategy is that
+participation in a job-training program causes increased wages and labor force
+participation after the program's end.  
+
+In the 1970s the US government decided to find out if this strategy actually works as intended, and they
+commissioned a large randomized experiment called the National Supported Work Demonstration.  ALmost 10,000
+individuals --- primarily women who had previously been on government welfare, 
+individuals recovering from drug addiction, individuals with criminal records, and 
+young people without professional credentials --- were enrolled, and half(?) of them
+were randomized to receive a job training opportunity, while the others did not.
+-->
+
+<!-- https://www.ojp.gov/pdffiles1/Digitization/59202NCJRS.pdf-->
+
+## Using additional variables in experimental design
+
+### Covariates
+
+Let's return to our hypothetical pdf vs. website experiment and imagine that
+in addition to our subject's names and understanding level we were able to collect
+some additional information about each of them.
+
+```{r}
+#| echo: false
+library(gt)
+format_data <- data.frame(name = c("Evelyn", "Grace", "Juan", "Alex", "Monica", "Sriya"),
+                 group = c("pdf", "pdf", "pdf", "website", "website", "website"),
+                 understanding = c("deep", "shallow", "deep", "deep", "shallow", 
+                                   "shallow"),
+                 major = c('Statistics', 'Economics', 'Economics', 'Statistics', 
+                           'Economics', 'Statistics'),
+                 GPA = c(3.81, 3.63, 3.20, 2.85, 3.19, 3.80),
+                 native_speaker = c('Yes','No','Yes','No','Yes','Yes'))
+format_data %>%
+  gt() %>%
+  cols_width(
+    vars(name) ~ px(70),
+    vars(group) ~ px(70),
+    vars(understanding) ~ px(110),
+  ) %>%
+  tab_options(data_row.padding = px(4)) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgoldenrodyellow")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = group == "pdf"
+    )
+  )  %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightcyan")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = group == "website"
+    )
+  )
+```
+
+We introduce a new term to draw an important distinction based on when these additional variables were collected.
+ 
+ **Covariate** 
+ :    A variable collected in a randomized experiment that was measured or 
+ determined prior to administering the
+ treatment.
+ 
+Notice that covariates cannot be affected by the treatment since they were measured first.  Variables measured after treatment, including the outcome variable, may be affected by the treatment.
+<!--f these v were collected
+before or after treatment assignment was determined.  Variables measured or 
+determined in value before treatment assignment --- -->
+In our example, it's reasonable to imagine that major, GPA, and native speaker status could all have been measured prior to the assignment, so they are covariates.
+
+<!--It 
+is natural to ask why the government bothered collecting this data.  From the last 
+set of notes, we already know how to estimate the ATE using the  treatment and the outcome
+alone.-->
+
+
+### Covariate balance
+
+Note that many of these covariates seem likely to be associated with the outcome. For example, students with a higher GPA may be more committed to doing class readings and be more likely to gain a deep understanding regardless of format. If one group had more high-GPA students, that group might look like it had benefited from its reading format even if there were no difference between the formats for any single student. This motivates us to look for a quality called balance.
+
+**Covariate balance**
+:   A covariate is balanced if its empirical distribution in the treated group is similar to its empirical distribution in the control group.
+
+On the other hand, if the distributions are very different between the treatment group and the control group, we say that the covariate is imbalanced.
+
+There is a close link between covariate balance and randomized treatment assignment. Because treatment is randomly assigned with equal probability for each individual in our study, there is no way it should be able to systematically move higher-GPA students into one of the two groups. The same is true of all our other covariates. Thus we expect randomization to balance our covariates in general. 
+
+<!--in the treatment group and in the
+control group.-->
+
+To check the balance of our GPA variable we can calculate a measure of difference between groups for a single covariate $x$:
+
+$$
+SMD(x) = \frac{\overline{x}_{treatment} - \overline{x}_{control}}{\sqrt{\frac{1}{2}\widehat{\sigma}_{treatment}^2 + \frac{1}{2}\widehat{\sigma}_{control}^2}}
+$$
+
+This quantity is called the standardized mean difference or SMD.  The numerator is  just the difference in means (subtracting the control mean from the treated mean). To make the differences in means comparable across variables with very different scales, we divide by a `pooled' standard error estimate which comes from averaging the sample variances of the covariate in the two groups and taking its square error.  For GPA in our data frame above, the difference in means between groups is `r  mean(format_data$GPA[format_data$group == 'website'])` $-$ `r  round(mean(format_data$GPA[format_data$group == 'pdf']),2)` $=$  `r  round(mean(format_data$GPA[format_data$group == 'website'])- mean(format_data$GPA[format_data$group == 'pdf']),2)` and the pooled standard error is `r round(sqrt(0.5*var(format_data$GPA[format_data$group == 'website']) + 0.5*var(format_data$GPA[format_data$group == 'pdf'])),2)`, so the SMD is
+<!--`r round(mean(format_data$GPA[format_data$group == 'website'])-
+mean(format_data$GPA[format_data$group == 'pdf']),2)`/`r round(sqrt(0.5*var(format_data$GPA[format_data$group == 'website']) +
+0.5*var(format_data$GPA[format_data$group == 'pdf'])),2)` $=$-->
+`r round((mean(format_data$GPA[format_data$group == 'website'])- mean(format_data$GPA[format_data$group == 'pdf'])) /sqrt(0.5*var(format_data$GPA[format_data$group == 'website']) + 0.5*var(format_data$GPA[format_data$group == 'pdf'])),2)`.
+
+### Evaluating covariate balance across an experiment
+
+To get a quick look at balance across all our variables, we can create a **Love plot**:
+
+```{r}
+#| echo: false
+library(cobalt)
+format_data <- format_data |>
+                mutate(is_website = group == 'website')
+
+bal.tab(is_website ~ major + GPA + native_speaker, data = format_data,
+        s.d.denom = 'pooled', binary = 'std') |>
+  plot()
+```
+
+The Love plot displays standardized mean differences (on a common scale on the x-axis) for all the covariates in our study, highlighting which covariates are most different between groups and in which direction.
+
+Clearly in our experiment not all variables are perfectly balanced.  This alone isn't a red flag --- after all, randomized experiments only balance covariates on average, and some small differences are expected --- but it can be challenging to determine whether the differences are big enough to matter, especially in a  study this small.  
+
+One way to address this problem is by using hypothesis tests. For each covariate, we can test the null hypothesis that this covariate is independent of treatment and produce a p-value.  In code, this looks very similar to our test for association between treatment and outcome, except that we use the covariate instead of the outcome. Here we conduct this test for GPA. 
+
+```{r}
+#| echo: false
+library(infer)
+set.seed(2024-3-25)
+obs_stat <- format_data |>
+   specify(explanatory = group,
+          response = GPA) |>
+  calculate(stat = "diff in means", order = c("website","pdf"))
+
+null <- format_data |>
+  specify(response = GPA,
+          explanatory = group) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 500, type = "permute") |>
+  calculate(stat = "diff in means", order = c("website","pdf"))
+
+null |>
+  visualize() +
+  shade_p_value(obs_stat, direction = 'both')
+```
+
+Clearly the difference in means we observed for GPA is not unexpected under random treatment assignment given our small sample size.
+
+<!--Our null hypothesis is that treatment is independent of every one of the 
+covariates.  If we were focusing on a single covariate, the SMD would be a good
+test statistic, but it would be nice to bring together all the information across
+our covariates.  To do so, we'll apply some of our tools for prediction.  If 
+covariates look systematically different across the groups, it should be possible
+to guess with high accuracy which group a subject is in based on their covariate
+values. So we will fit an ordinary regression model to predict treatment status
+using all our covariates.  Letting $z_i$ represent treatment status for subject
+$i$ and $\widehat{z}_i$ represent our predicted value for subject $i$'s treatment 
+status based on $k$ covariates, we will compute the following test 
+statistic:-->
+
+<!--This is known as an F-statistic and is used more generally to compare how
+much better a regression models predicts than using the sample mean (relative to the
+amount of noise).  [^Fstat]. It will tend to be close to 1 when the covariates are not
+helpful for predicting treatment status and much larger when they are useful.-->
+
+<!--[^Fstat] The formula for the F-statistic may not seem very intuitive.  -->
+
+
+<!--We can use the following \texttt{infer} pipeline to conduct the test in the 
+pdf vs. website problem:
+
+```{r}
+obs_F <- format_data |>
+  mutate(is_website = as.numeric(group == 'website')) |>
+  specify(is_website ~ major + GPA + native_speaker) |>
+  fit()
+```
+
+Notice that the null distribution is very coarse here because there are only
+$\left(\begin{array}{c} 6 \\ 3 \end{array}\right)$ unique treatment assignments,
+and that we conduct a one-tailed test (since our test statistic takes on large
+values when the null hypothesis is false).-->
+
+<!--### What if large imbalances are present?-->
+
+One of the most important reasons to check covariate balance is to catch problems with how the experiment was run. Suppose that we'd intended to sort a spreadsheet in a random order and assign the top half of the subjects to pdf, but that by accident we sorted on GPA instead of randomly. In this case our covariate  balance test would likely have rejected the null hypothesis that treatment was randomly assigned, allowing us to catch the issue. For this reason it is often a good idea to check balance before actually running the experiment!
+ 
+<!-- In our example, there is no particular evidence of improper randomization.  
+ However, it may still bother us that the pdf group has a mean GPA of 3.55 
+ while the website group has a mean GPA of 3.28.  Even if this imbalance is
+ the result of bad luck rather than systematic bad randomization it may still
+ undermine our claims.  For this reason, instead of using a simple difference
+ in proportions to estimate the ATE in this study, we may prefer to fit a multiple
+ least squares regression model that includes both GPA and reader format, and use
+ the coefficient of reader as our estimate [^linkfun].-->
+ 
+<!--```{r}
+obs_reg <- format_data |>
+  mutate(deep_understanding = as.numeric(understanding == 'deep')) |>
+  specify(deep_understanding ~ group + GPA ) |>
+  fit()
+
+null_reg <- format_data |>
+  mutate(deep_understanding = as.numeric(understanding == 'deep')) |>
+  specify(deep_understanding ~ group + GPA ) |>
+  hypothesize(null = 'independence') |>
+  generate(reps = 500, type = "permute") |>
+  fit()
+
+visualize(null_reg) +
+  shade_p_value(obs_reg, direction = 'both')
+
+get_p_value(null_reg, obs_reg, direction = 'both')
+
+```-->
+
+<!--Although this pipeline gives us coefficients and estimates for the GPA 
+coefficient and the intercept we only care about the coefficient of the treatment
+our study set out to measure, in this case ``groupwebsite."  From the plot we
+can see that the ATE estimate using regression is slightly larger in magnitude
+than the ATE estimate using the difference in proportions, but neither estimate
+looks significantly different from zero.-->
+
+
+
+<!--[^linkfun]: It may seem odd to fit a multiple least-squares regression to a binary
+outcome like whether understanding is deep rather than a logistic regression as 
+we might have in the prediction unit.  The reason we do it is because we care
+about extracting and interpreting the model's coefficients rather than its predictions.  
+Logistic regression coefficients have a complex nonlinear relationship with the
+outcome variable and don't provide good estimates for the ATE in general.
+<!--is good for prediction, but its coefficients are harder to interpret and do not
+correspond-->
+
+<!--MOVE THIS PARAGRAPH TO FOOTNOTE? Of course, a better way to deal with the issue of GPA balance is to run your
+experiment on students who all have near-identical GPAs, or divide your students
+into several subgroups each with near-identical GPAS and assign equal numbers of 
+treatment and control subjects in each group.  This is known as blocking and 
+ensures good balance, although it can be complicated to do in practice and cannot
+be done for many variables at once.-->
+
+## The Ideas in Code
+
+The `cobalt` package in R contains the function `bal.tab` to create tables of standardized differences.  By passing its output to `plot` you can create a Love plot.
+
+```{r}
+library(cobalt)
+format_data <- format_data |>
+                mutate(is_website = group == 'website')
+
+bal.tab(is_website ~ major + GPA + native_speaker, data = format_data,
+        s.d.denom = 'pooled', binary = 'std') |>
+  plot()
+```
+
+Running balance tests uses infer much like we did in the generalization unit.  The covariate for which we are testing balance is the response and the treatment is the explanatory variable.  
+
+```{r}
+library(infer)
+set.seed(2024-3-25)
+obs_stat <- format_data |>
+   specify(explanatory = group,
+          response = GPA) |>
+  calculate(stat = "diff in means", order = c("website","pdf"))
+
+null <- format_data |>
+  specify(response = GPA,
+          explanatory = group) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 500, type = "permute") |>
+  calculate(stat = "diff in means", order = c("website","pdf"))
+
+null |>
+  visualize() +
+  shade_p_value(obs_stat, direction = 'both')
+```
 
 ## Summary
 
-You may heard the phrase "Correlation does not imply causation ... unless it's seen in data from a randomized control trial." While this statement is misleading - there is a rich set of methods that, when used correctly, can make compelling causal claims from correlations found in data - it does highlight the particular strength of RCTs. RCTs are able to isolate the effect of interest by creating a carefully selected control group and then assigning subjects to groups at random. When the number of replicates is large enough, we can be confident that our control group on average serves as a close counterfactual to our treatment group.
+You may heard the phrase "Correlation does not imply causation ... unless it's seen in data from a randomized control trial." While it is sometimes possible to make compelling causal claims from correlations found in data - a topic we will explore in depth next week - it does highlight the particular strength of  RCTs. RCTs are able to isolate the effect of interest by creating a carefully selected control group and then assigning subjects to groups at random. By using a large number of replicates and checking balance on measured covariates we can demonstrate convincingly that our control group on average serves as a close  counterfactual to our treatment group.
+
 
 [ ]{.column-margin}
 

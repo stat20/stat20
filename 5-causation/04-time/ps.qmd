@@ -1,0 +1,117 @@
+---
+title: "Causal Claims and Time"
+format: stat20handout-pdf
+---
+
+<!-- ## Case Study 2: Cherry Blossom Run	 -->
+
+<!-- The Cherry Blossom Run is an annual 10-mile race that takes place in April in Washington D.C. when the cherry trees are in bloom. Data were scraped from the Run’s Web pages and include official times and other information, such as the age, sex, and address for all registered runners from 1999 to 2012. Originally designed as a preparatory race for professional runners in the New York Marathon, the Cherry Blossom Run has gained popularity and now over 10,000 people participate each year. An ambitious data scientist used these data to compare the times of 30-year-old runners to 50-year-old runners, to study how run times decreased as people age. 	 -->
+
+<!-- 1. Describe the sample. How large is it ($n$) and what is the unit of observation? -->
+
+<!-- \ -->
+
+<!-- 2. Describe the population. How large is it ($N$)? -->
+
+<!-- \ -->
+
+<!-- 3. Identify the population parameter that researchers are interested in estimating and the corresponding statistic that will serve as the estimate. -->
+
+<!-- \ -->
+
+<!-- 4. Identify possible sources of bias and whether they are selection or measurement bias. How do you expect this will effect the estimate of the parameter? -->
+
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+
+
+<!-- 5. Identify possible sources of variation and whether they are sampling or measurement variability. How do you expect this will effect the estimate of the parameter? -->
+
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+
+<!-- 6. On a separate sheet of paper, make two sketches: an empirical distribution of the data and what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Add a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be. -->
+
+## Case Study: Minimum Wage and the NJ/PA fast food industry, con't.
+
+We continue our analysis of minimum wage and employment using Card and Krueger's
+data about the 1992 New Jersey minimum wage increase.  We now use a different
+version of the data that contains covariate and outcome values for each store
+both before and after New Jersey's policy change.  This dataframe can be loaded
+as `fastfood2` from the `stat20data` package.
+
+
+@. Describe in words how to construct a pre/post estimate for this dataset, and
+how to construct a difference in difference estimate.  What are the differences
+in the assumptions we rely on between these two designs?  Which do you think is
+more plausible?
+
+\
+\
+
+@. What additional data would we need to have available to conduct an
+interrupted time series design?  How would the associated assumptions differ from
+those in a pre/post design?
+
+\
+\
+
+@. Sketch a line plot showing how you anticipate employment levels will change 
+between the two timepoints, with one line  averaging over all New Jersey 
+restaurants and one line averaging over all Pennsylvania restaurants.
+ 
+\
+\
+
+@. Write code to create a line plot like the one in the previous question and
+construct it.  Describe similarities and differences between the hypothesized
+and actual plots.
+
+\
+\
+
+@. Write code to compute the pre/post estimate and difference in difference
+estimators.  Run the code and compare the values obtained to each other and to
+the effects you obtained from the `fastfood1` dataset in the previous problem set.
+
+
+\
+\
+
+
+@. Write code to construct a bootstrap confidence interval or a hypothesis test
+for one of the estimates in the previous question, making sure to permute or 
+bootstrap restaurants rather than individual observations.
+
+\
+\
+
+@. Last week in California a new minimum wage of \$20 per hour went into effect.
+Raising the wage to this level was a politically
+controversial decision.  Give an example of both predictive and causal claims 
+that proponents or
+detractors of the law might make and describe how they are different.  
+
+\
+\
+
+
+@. To what extent is your analysis of Card and
+Krueger's fast food data relevant for evaluating the claims from the previous question?  
+To the 
+degree it is relevant, what does it tell us about the claims?
+

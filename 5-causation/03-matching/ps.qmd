@@ -1,0 +1,119 @@
+---
+title: "Natural Experiments and Matching"
+format: stat20handout-pdf
+---
+
+<!-- ## Case Study 2: Cherry Blossom Run	 -->
+
+<!-- The Cherry Blossom Run is an annual 10-mile race that takes place in April in Washington D.C. when the cherry trees are in bloom. Data were scraped from the Run’s Web pages and include official times and other information, such as the age, sex, and address for all registered runners from 1999 to 2012. Originally designed as a preparatory race for professional runners in the New York Marathon, the Cherry Blossom Run has gained popularity and now over 10,000 people participate each year. An ambitious data scientist used these data to compare the times of 30-year-old runners to 50-year-old runners, to study how run times decreased as people age. 	 -->
+
+<!-- 1. Describe the sample. How large is it ($n$) and what is the unit of observation? -->
+
+<!-- \ -->
+
+<!-- 2. Describe the population. How large is it ($N$)? -->
+
+<!-- \ -->
+
+<!-- 3. Identify the population parameter that researchers are interested in estimating and the corresponding statistic that will serve as the estimate. -->
+
+<!-- \ -->
+
+<!-- 4. Identify possible sources of bias and whether they are selection or measurement bias. How do you expect this will effect the estimate of the parameter? -->
+
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+
+
+<!-- 5. Identify possible sources of variation and whether they are sampling or measurement variability. How do you expect this will effect the estimate of the parameter? -->
+
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+<!-- \ -->
+
+<!-- 6. On a separate sheet of paper, make two sketches: an empirical distribution of the data and what you think the sampling distribution of the statistic might look like given what you know about the data collection. Be sure to label the axes of both plots. Add a vertical line on the sampling distribution that hits the x-axis where you expect the population parameter to be. -->
+
+## Case Study: Minimum Wage and the NJ/PA fast food industry
+
+In 1992, New Jersey raised its minimum wage to \$5.05 per hour, giving it the 
+highest minimum wage in the country.  To study the impact of the new policy
+on employment levels, economists  David Card and Alan Krueger surveyed 410 
+fast-food restaurants in New Jersey and in the neighboring state of Pennsylvania
+(which did not change its minimum wage law).  They collected a variety
+of covariates prior to the institution of the law, and then called back afterwards
+and collected information about the number of full-time workers employed.  A 
+version of their data is available in the dataframe `fastfood1` in the `stat20data`
+package.
+
+
+@. What is the causal question this study seeks to answer?  Identify the treatment
+and control conditions.
+
+\
+\
+
+@. Do you think this study best considered a randomized experiment, a natural experiment,
+or an observational study requiring matching?  Explain your reasoning.
+ 
+\
+\
+
+@. Pick one of the designs that is
+not a good description of the actual data collection and describe how a hypothetical
+study of minimum wage and fast food employment could be conducted using this 
+strategy instead (expensive/impractical hypothetical designs are acceptable).
+
+\
+\
+
+@. Load the `fastfood1` dataframe in R.  Write code to create a new column giving effective
+full-time employment by adding the number of full time employees at each 
+restaurant to half the number of part-time employees at each restaurant.
+
+\
+\
+
+
+@. Examine the covariate names in the `fastfood1` dataframe and the first few
+values of each.  Without looking more deeply at the data,
+sketch a Love plot for a few potentially important covariates showing
+the level of balance across treatment groups you expect to be present.  Remember to label your axes.
+
+\
+\
+
+@. Create a Love plot in R and compare it to your answer from the previous question.  Pick 
+the variable with the largest absolute standardized mean difference and write 
+code to conduct
+a hypothesis test to see if its imbalance differs significantly from zero.
+
+
+\
+\
+
+@. Ignoring for the moment your answer to 
+question 2, write code to conduct nearest-neighbor matching and create a new 
+version of the Love plot showing both pre-match
+and post-match balance.  
+
+\
+\
+
+@. Based on your answer to question 2, compute the associated effect estimate for
+effective full time employment. Write a sentence summarizing the associated causal claim.
+
+
+

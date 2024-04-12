@@ -1,6 +1,6 @@
 ---
 title: "Defining Causality"
-subtitle: "Conditional counterfactuals and two strategies for constructing causal claims"
+subtitle: "Conditional counterfactuals and average treatment effects"
 image: images/causal.png
 format:
   html:
@@ -12,7 +12,6 @@ execute:
   warning: false
   message: false
 ---
-
 :::{style="text-align: center"}
 ## Welcome to Unit III: Causality
 :::
@@ -32,9 +31,7 @@ Each one of these four claims illustrates a different type of claim made using d
 
 This is a claim concerning the nature of the data that is on hand, a *descriptive* claim. While these seem like the most straightforward type of claim, don't underestimate their utility or the challenges involved in crafting them. Deciding which measure is most appropriate is tricky work and the process of wrangling the data takes careful thought and time.
 
-<!-- > 2. The Consumer Price Index will likely rise throughout the summer. -->
 
-<!-- This is a *prediction*, a claim that uses the structure of the data at hand to predict the value of observations about which we have only partial information. In midsummer, we know the date will be July 15th, that's the x-coordinate. But what will the y-coordinate be, the Consumer Price Index?  Now we recognize this as a regression problem. -->
 
 <!-- While there are a host of complex machine learning models that we could use to make our predictions, we could also consider a simple linear model using the method of least squares. The best predictive model will have enough complexity to capture the structure in the data but not so much flexibility that it overfits. One of the most powerful tools for choosing between different predictive models is to compare their test set error using crossvalidation. -->
 
@@ -44,7 +41,11 @@ This claim looks deceptively like the first but there is one important differenc
 
 For a generalization to be sound, we must take several considerations into account. First off: is the sample representative of the population or is it biased in some way? Secondly: what sources of variability are present? When working with a sample that originated from a chance method, it's important to consider the degree to which sampling variability might be able to explain the structure you see in the data. Our primary tools in this area are the confidence interval, to assess the uncertainty in a statistic, and the hypothesis test, to assess whether a particular statistic is consistent with an assertion about the state of the population parameters.
 
-> 3. The Consumer Price Index rose 8.3% because of the war in Ukraine.
+> 3. The Consumer Price Index will likely rise throughout the summer. 
+
+This is a *prediction*, a claim that uses the structure of the data at hand to predict the value of observations about which we have only partial information. In midsummer, we know the date will be July 15th, that's the x-coordinate. But what will the y-coordinate be, the Consumer Price Index?  Now we recognize this as a regression problem. 
+
+> 4. The Consumer Price Index rose 8.3% because of the war in Ukraine.
 
 This bring us to the final claim, which is one concerning *causation*. The claim asserts that the structure in the data (the rise in the CPI) can be attributed to specific cause (the war in Ukraine). Causal claims are often the most challenging claims to craft but they are also some of the most useful. Uncovering causes and effects is at the heart of many sciences from Economics to Biomedicine. They also help guide decision making for individuals (is it worth my time to study for the final?) as well as for organizations (will Twitter's new option to pay for verification result in a net increase in revenue for the company?).
 
@@ -131,7 +132,7 @@ In both of these examples, reasoning about the meaning of causation requires ide
 
 ### The Challenge of Causation
 
-> Counterfactuals have a partcularly problematic relationship wth data because data are, by definition, facts.
+> Counterfactuals have a particularly problematic relationship wth data because data are, by definition, facts.
 > - Judea Pearl
 
 The conditional counterfactual definition of causation is sound in an abstract sense, but it is challenging when you start to think through what sort of data you could collect as evidence of causation. In the second example, we have data on the fact that she found a good job and that she graduated from Berkeley, but the counterfactual - that remains purely hypothetical. In fact, the word counterfactual means counter-to-fact, and "fact" is the meaning of the Latin word "datum" (a single piece of data). That is to say, for airtight evidence of a cause-and-effect, you must observe some data and then something that is somehow also the contrary to what you observed.
@@ -187,136 +188,121 @@ Each one of the three paths is a potential route I could take and each of those 
 
 While our definition of causation prevents us from ever making completely airtight conclusions about cause and effect in scenarios like these, over the years scientists and statisticians have crafted many clever strategies for working around these constraints to build compelling causal claims.
 
-## Strategies for Estimating Causal Effects
+## From individual-level claims to group-level claims
 
-The list of statistical methods for estimating causal effects is vast. Indeed here at Cal, these methods are the sole focus of several courses including Causal Inference in the Statistics Department and Econometrics in the Economics Department. For this class, we focus on just a select few.
 
-### Different units at the same time
+Our inability to observe both counterfactuals makes it hard to make reliable
+claims about causal effects for an individual.  However, it can sometimes be easier
+to make a claim about the typical causal effect among a group of individuals.
+The distinction between individual and group level causation is demonstrated in following two statements.
 
-Imagine that Evelyn Fix had a sister, Eleanor Fix. If Evelyn graduated from Cal and Eleanor did not, then we could observe this data frame.
+1. Evelyn got a good job because she graduated from Cal.
+2. Graduating from Cal helps people get a good job.
+
+The first is a strong statement about a single individual, Evelyn. The second is a much more general statement that compares people who have have graduated from Cal with a counterfactual group who has not.
+
+Group-level causation is the focus of many sciences, which aim to make general claims about the causal mechanisms of the world. The goal is to estimate the         average treatment effect.
+
+**Average Treatment Effect**
+:    A population parameter that captures the effect of being administered a particular treatment, averaged over each group. Most often estimated by a difference in sample means or a difference in sample proportions.
+
+In statement two above, a natural estimate for the average treatment effect would be the difference between the proportion of Cal graduates who got a good job and the proportion of non-Cal graduates who got a good job. That can be visualized in a simple example of three students who graduated from Cal and three who did not. The difference in the proportion with a good job is $2/3 - 1/3 = 1/3$.
+
+::: {layout="[-1,5,1,3,-1]" layout-valign="center"}
 
 ```{r}
 #| echo: false
-#| message: false
-#| warning: false
 
 library(tidyverse)
-library(kableExtra)
-options(kableExtra.html.bsTable = TRUE)
+library(gt)
 
-tab <- tibble(`Student` = c("Evelyn Fix", "Eleanor Fix"),
-              `GPA` = c(3.9, 3.9),
-              `Years exp` = c(3, 3),
-              `Rec` = c("strong", "strong"),
-              `Cal Grad` = c("yes", "no"),
-              `Good Job` = c("yes", "no"))
+df <- tibble(Name = c("Evelyn", "Grace", "Juan", "Alex", "Monica", "Sriya"),
+                `Cal Grad`= c(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE),
+                 `Good Job` = c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE))
+
+df %>%
+  gt() %>%
+  cols_width(
+    vars(Name) ~ px(70),
+    vars(`Cal Grad`) ~ px(90),
+    vars(`Good Job`) ~ px(90),
+  ) %>%
+  tab_options(data_row.padding = px(4)) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgoldenrodyellow")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = `Cal Grad` == TRUE
+    )
+  )  %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightcyan")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = `Cal Grad` == FALSE
+    )
+  )
 ```
 
-::: {.content-hidden unless-format="html"}
+{{< fa arrow-right size=2x >}}
+
 ```{r}
 #| echo: false
-#| message: false
-#| warning: false
-tab %>%
-    kbl(escape = FALSE) %>%
-    kable_styling(bootstrap_options = c("hover", "striped"))
+
+df %>%
+  group_by(`Cal Grad`) %>%
+  summarize(`P(Good Job)` = round(mean(`Good Job`), 2)) %>%
+  slice(2, 1) %>%
+  gt() %>%
+  cols_width(
+    vars(`Cal Grad`) ~ px(90),
+    vars(`P(Good Job)`) ~ px(110),
+  ) %>%
+  tab_options(data_row.padding = px(4)) %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightgoldenrodyellow")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = `Cal Grad` == TRUE
+    )
+  )  %>%
+  tab_style(
+    style = list(
+      cell_fill(color = "lightcyan")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = `Cal Grad` == FALSE
+    )
+  )
 ```
+
 :::
 
-::: {.content-hidden unless-format="pdf"}
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-tab %>%
-    kable(format = "latex")
-```
-:::
 
-How well does Eleanor serve as a counterfactual for Evelyn? Well, it depends on how similar they are to one another in ways that matter to the mechanism of cause and effect. As we see in the table above, they're a perfect match on several variables that probably matter: GPA, the number of years of work experience, and the strength of letters of recommendation.
-
-This general approach is called *matching* and it relies upon the idea of finding a different unit that is a close match for every possible important variable, but differs on the variable of interest. There are many methods for determining which two units in a data set are the closest matches for one another. One time-worn method is called propensity score matching but you can imagine even adapting the method that we used for the k-nearest neighbor algorithm: calculating the (Euclidean) distance between each pair of observations.
-
-Some of the most clever and impactful applications of the matching approach have been studies designed to evaluate whether smoking causes cancer. Imagine you are a doctor with a patient who smokes and has been recently diagnosed with cancer. When you tell them, "I'm afraid your smoking habit has caused your cancer", they protest: "Not at all! I'm quite sure I have a gene that causes me to want to smoke and also causes me to get cancer. If I had stopped smoking, it wouldn't have changed a thing!".
-
-That is a difficult explanation to refute! What would the counterfactual look like? You'd need someone with the exact same genetic makeup who happened to not be a smoker. But surely this close of a match doesn't exist...
-
-Unless your patient is one of an identical pair of twins. While this scenario is rare, there are plenty of pairs of identical twins that can be used to evaluate precisely this kind of scenario. At the end of the 20th century, researchers in Finland compiled a large data base of identical twins where one of them smoked and the other did not. In pair after pair, they found it much more likely that the twin who smoked was more likely to develop cancer. This technique, using identical twins to get perfect matches on genetics, has been a rich source of breakthroughs in understanding genetic determinants of disease[^twins].
-
-[^twins]: There is a rich literature that uses data bases of twins to determine genetic determinants of health outcomes. For a recent study on smoking and cancer, see [https://pubmed.ncbi.nlm.nih.gov/35143046/](Cancer in twin pairs discordant for smoking: The Nordic Twin Study of Cancer) by Korhonen et al., 2022.
-
-Despite this success, in general matching has several challenges. What if the closest match actually isn't very similar? What if you haven't recorded all of the variables that matter? In these scenarios, you might want to consider a different approach.
-
-<!-- Use example of highway overpass study -->
-
-### Same unit at different times
-
-There are certain settings where the closest approximation of the counterfactual comes not from a separate unit, but from the same unit observed at different times. Let's say that we collected data from Evelyn Fix before and after she graduated from Cal.
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-
-library(tidyverse)
-library(kableExtra)
-options(kableExtra.html.bsTable = TRUE)
-
-tab <- tibble(`Student` = c("Evelyn Fix", "Evelyn Fix"),
-              `date` = c("June 2022", "April 2022"),
-              `GPA` = c(3.9, 3.9),
-              `Years exp` = c(3, 3),
-              `Rec` = c("strong", "strong"),
-              `Cal Grad` = c("yes", "no"),
-              `Good Job` = c("yes", "no"))
-```
-
-::: {.content-hidden unless-format="html"}
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-tab %>%
-    kbl(escape = FALSE) %>%
-    kable_styling(bootstrap_options = c("hover", "striped"))
-```
-:::
-
-::: {.content-hidden unless-format="pdf"}
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-tab %>%
-    kable(format = "latex")
-```
-:::
-
-Here, the unit of observation is a student at a particular time, which allows us to compare Evelyn before and after graduating from Cal. How close of a counterfactual is pre-graduation Evelyn? Keep in mind the true counterfactual would be the alternate universe where everything about the world is the same but for one thing: Evelyn hadn't graduated from Cal. Is everything the same in this pre-graduation world?
-
-The answer may be yes. Here we see her GPA is unchanged, she hasn't gained any more work experience, and she's sending out the same strong letter of recommendation. If these are the only other variables involved in getting a good job, then this would be good evidence that the graduation is the cause of the good job.
-
-But what if her GPA had inched up that final semester? Or what if the jobs that she applied for pre-graduation were simply not as good as the jobs that she applied for after graduation? In this setting, there could be multiple reasons that she got the good job because we haven't isolated the variable of interest: graduating from Cal.
-
-There are several study designs that rely upon this form of reasoning. *Longitudinal studies* are common in health and epidemiology, where researchers follow subjects over time, under the idea that a person before an event is the best comparison for what happens to a person after an event. *Difference in differences* are common in economics. In this design, two groups that differ on the variable of interest are compared before and after a particular milestone.
-
-### Experiments
-
-One of the most well-known approaches for using data to make causal claims is to conduct an experiment. This will be the subject of an activity in class tomorrow.
-
-<!-- ## Illustrating Causal Structures with Graphs -->
-
-<!-- - Define what the elements of a DAG are -->
-<!-- - Show several examples -->
-<!-- - Define confounding variable -->
-<!-- - Do this section before Strategies section so that you can illustrate what they do using graphs. -->
+<!-- ## Correlation and Causation: the history of Smoking and Cancer -->
 
 ## Summary
 
-We set the stage for reasoning about causation by defining cause and effect in terms of a conditional counterfactual. We say "A causes B" if, in a world where A didn't happen, B no longer happens.
+We set the stage for reasoning about causation by defining cause and effect in 
+terms of a conditional counterfactual. We say "A causes B" if, in a world where 
+A didn't happen, B no longer happens.  This definition is problematic because we can't simultaneously observe the same
+subjects under A and not-A.  However, there is more hope to say something
+meaningful about average treatment treatment effects, which can also be defined
+using counterfactuals.  
 
-This definition is problematic if we intend to establish causes using only data. While we are never able to actually observe all of the data necessary to prove a causal claim absolutely, there are many methods that have been devised to approximate the counterfactual. One approach is to look at different units across time, and aim to make those units as similar as possible. A second approach is to look at the same unit at two points in time. A third approach is to conduct an experiment, which is the subject of the final set of notes.
-
+In the remainder of the causality unit, we will discuss strategies for estimating
+average treatment effects using carefully-designed comparisons that leverage
+knowledge about how the data was produced.
+<!--While we are never able to actually observe all of the data necessary to prove a 
+causal claim absolutely, there are many methods that have been devised to 
+approximate the counterfactual. Chief among these is the randomized control trial (RCT). RCTs are able to isolate the effect of interest by creating a carefully selected control group and then assigning subjects to groups at random. When the number of replicates is large enough, we can be confident that our control group on average serves as a close counterfactual to our treatment group.-->
 
 \
 

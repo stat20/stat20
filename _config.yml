@@ -424,13 +424,13 @@ schedule:
       - topic: "Quiz 4"
         display-date: Apr 15
 
-      - topic: "Causality I"
+      - topic: "Defining Causality"
         display-date: Apr 16
         date: 4/16/24
         items:
           - type: Notes
             href: 5-causation/01-defining-causality/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 5-causation/01-defining-causality/slides.qmd
             render: false
@@ -438,7 +438,7 @@ schedule:
             href: 5-causation/labs/06-taste-test/lab.qmd
             render: false
             
-      - topic: "Causality II"
+      - topic: "Randomized Experiments"
         display-date: Apr 18
         date: 4/18/24
         items:
@@ -451,18 +451,33 @@ schedule:
             
   - week: 14
     days:
-      - topic: "Lab 7 Workshop"
-        display-date: Apr 22
-        
-      - topic: "Causality III"
+      - topic: "Causal Effects in Observational Studies"
         display-date: Apr 23
         date: 4/24/24
-        items: []
+        items:
+          - type: Notes
+            href: 5-causation/03-matching/notes.qmd
+            render: false
+          - type: Slides
+            href: 5-causation/03-matching/slides.qmd
+            render: false
+          - type: PS
+            href: 5-causation/03-matching/ps.qmd
+            render: false
         
-      - topic: "Causality IV"
+      - topic: "Using Time to Measure Causal effects"
         display-date: Apr 25
         date: 4/25/24
-        items: []
+        items:
+          - type: Notes
+            href: 5-causation/04-time/notes.qmd
+            render: false
+          - type: Slides
+            href: 5-causation/04-time/slides.qmd
+            render: false
+          - type: PS
+            href: 5-causation/04-time/ps.qmd
+            render: false
 
   - week: "RRR"
     days:
