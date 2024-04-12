@@ -22,9 +22,29 @@ format:
 
 ## Agenda
 
+- Announcements
 - Concept Questions
 - Problem Set: Overfitting
-- Lab: Baseball
+- Lab: Cancer Diagnosis
+
+## Announcements
+
+-   Problem Sets:
+    -   PS 18: *Overfitting* releases Tuesday and due next Tuesday at 9am
+    -   Extra Practice: *Logistic Regression* releases Thursday (non-turn in)
+    
+. . . 
+    
+-   Lab 6:
+    -   Lab 6.1 releases Tuesday and due next Tuesday at 9am
+    -   Lab 6.2 releases Thursday and due next Tuesday at 9am
+    
+. . . 
+    
+-   Quiz 4:
+    -   next Monday in-class.
+    -   covers *Wrong By Design* through *Logistic Regression* (Thu/Fri)
+    
 
 # Concept Questions
 
@@ -35,11 +55,11 @@ countdown::countdown(1, top = 0)
 ```
 
 :::{.poll}
-Which one of these is not an example of overfitting (either in real life or in statistics)?
+Which one of these (open `pollev.com`) is not an example of overfitting (either in real life or in statistics)?
 :::
 
 
-
+<!---
 ## Are RSS and R square related?
 
 ```{r}
@@ -53,12 +73,15 @@ If I decrease the RSS (e.g. by fitting a more accurate model) does the $R^2$ val
 
 ## Overfit models
 ```{r}
-countdown::countdown(1, top = 0)
+countdown::countdown(.5, top = 0)
 ```
 
-:::{.poll}
-Ovefit models tend to...
-:::
+Fill in the blanks: overfit models tend to
+
+-   fit the training data (well/poor)
+
+-   fit the testing data  (well/poor)
+-->
 
 
 ## Where is overfitting worse?
@@ -68,7 +91,7 @@ countdown::countdown(1, top = 0)
 ```
 
 :::{.poll}
-Suppose I overfit my model to the training data. In which scenario would I expect the test set performance to be significantly worse?
+Suppose I overfit my model to the training data. In which scenario (for which training data) would I expect the test set performance to be significantly worse? Assume that the testing sets A and B look like their corresponding training sets.
 :::
 
 ```{r}
@@ -78,14 +101,14 @@ library(tidyverse)
 library(patchwork)
 set.seed(1)
 n=200
-plot_A <- tibble(x=runif(n=n, min=0, max=1)) %>% 
-    mutate(y = x + rnorm(n=n, sd=.25))  %>% 
+plot_A <- tibble(x=runif(n=n, min=0, max=1)) |>
+    mutate(y = x + rnorm(n=n, sd=.25))  |>
     ggplot(aes(x=x, y=y)) +
     geom_point() + 
     ggtitle("Training data A")
 
-plot_B <- tibble(x=runif(n=n, min=0, max=1)) %>% 
-    mutate(y = x + rnorm(n=n, sd=.01))  %>% 
+plot_B <- tibble(x=runif(n=n, min=0, max=1)) |>
+    mutate(y = x + rnorm(n=n, sd=.01))  |>
     ggplot(aes(x=x, y=y)) +
     geom_point() + 
     ggtitle("Training data B")
@@ -94,15 +117,28 @@ plot_A + plot_B
 ```
 
 
-# Problem Set: Overfitting
+:::{.notes}
+If you overfit the data to training set A, you will likely have a complex curve (maybe a polynomial). This curve will fit poorly a testing set that looks similar to A. If you overfit to B, since the data has low variance you will have a positively sloping line. The testing set performance will be very similar to the training set performance (it will not be markedly worse).
+
+Answer: Training set A
+:::
+
+# Problem Set
 
 ```{r}
 countdown::countdown(25)
 ```
 
-# Lab: Baseball
+# Break
+
+```{r}
+countdown::countdown(5)
+```
+
+# Lab
 
 ```{r}
 countdown::countdown(25)
 ```
 
+# End of Lecture

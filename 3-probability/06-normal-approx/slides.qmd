@@ -1,0 +1,225 @@
+---
+title: "Normal Approximations"
+format:
+  revealjs:
+    self-contained: true
+    author: "STAT 20: Introduction to Probability and Statistics"
+    height: 900
+    width: 1600
+    theme: ../../assets/slides.scss
+    multiplex: false
+    transition: fade
+    slide-number: c
+    incremental: false
+    center: false
+    menu: false
+    highlight-style: github
+    progress: false
+    code-overflow: wrap
+    title-slide-attributes:
+      data-background-image: ../../assets/stat20-hex-bg.png
+      data-background-size: contain
+---
+
+# Agenda
+
+- Concept Questions
+- Quiz 2 review
+- Break
+- Lab 3.1 and 3.2
+
+
+# Concept Questions
+
+##
+
+```{r}
+countdown::countdown(1, bottom = 0)
+```
+
+A die will be rolled $n$ times and the object is to guess the total number of spots in $n$ rolls, and you choose $n$ to be either 50 or 100. There is a one-dollar penalty for each spot that the guess is off. For instance, if you guess 200, and the total is 215, then you lose 15 dollars. Which do you prefer? 50 throws, or 100?*
+
+:::{.poll}
+Which do you prefer? $n = 50$ rolls, or $n = 100$ rolls?
+:::
+
+<font size="5"> * From the text *Statistics* by Freedman, Pisani, and Purves </font>
+
+:::{.notes}
+Prefer 50 because the square root law tells us the the spread of the distribution will be smaller for fewer rolls. If we were computing the *average* number of spots, then we would pick larger $n$ since $\sqrt{n}$ goes in the denominator of SE.
+:::
+
+
+## 
+
+
+
+```{r}
+countdown::countdown(2, bottom = 0)
+```
+
+One hundred draws will be made with replacement from a box with tickets $\fbox{0}\, \fbox{2}\, \fbox{3} \,\fbox{4}  \,\fbox{6}$. Which of the following statements are true? *
+
+:::{.poll}
+- The expected value of the sum of the one hundred draws is 300, give or take 20 or so. 
+- The expected value of the sum of the one hundred is 300.
+- The sum of the one hundred draws is 300, give or take 20 or so. 
+- The sum of the one hundred draws is 300.
+:::
+
+<font size="5"> * From the text *Statistics* by Freedman, Pisani, and Purves </font>
+
+
+
+:::{.notes}
+The EV is a constant, and note that the box average is (0+2+3+4+6)/5 = 3, so the EV of a single draw is 3, and the EV of the sum of 100 draws is $100\times 4 = 300$. The give or take number given here is the box SD $\times 10 = 2\times 10 = 20$. You can let $X$ be a random variable that is the value of **one** ticket drawn at random from this box, and then we want $S_{100}$. This can be boardwork.
+:::
+
+
+
+## {.smaller}
+
+```{r}
+countdown::countdown(1, right = 0)
+```
+
+We have two random variables: $X \sim$ Binomial($10, 0.2$) and  $Y$ is the random variable that is the value of one ticket drawn at random from a box with tickets $\fbox{0}\, \fbox{2}\, \fbox{3} \,\fbox{4}  \,\fbox{6}$. 
+
+We take the sum of 100 iid random variables for each of $X$ and $Y$, called $SX_{100}$ and $SY_{100}$. The empirical distributions of  $SX_{100}$ and $SY_{100}$  are plotted below.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-width: 20
+#| fig-height: 12
+#| fig-align: center
+
+set.seed(123)
+
+library(tidyverse)
+library(patchwork)
+
+emp_sx = replicate(100000, sum(rbinom(100, 10, 0.2)))
+
+p1 <- data.frame(emp_sx) %>%
+  ggplot(aes(x = emp_sx, y=..density..)) + 
+  geom_histogram(fill = "palevioletred1", color = "white") + 
+  xlab("") +
+  ylab("") + 
+  geom_vline(xintercept = 200, color = "black", lwd = 1.2) + 
+   annotate("text", x = 195, y = -0.0007, label = "200", size = 10) 
+
+box <- c(0,2,3,4,6)
+
+emp_sy <- replicate(100000, sum(sample(box, 100, replace = TRUE)))
+
+
+p2 <- data.frame(emp_sy) %>%
+  ggplot(aes(x = emp_sy, y=..density..)) + 
+  geom_histogram(fill = "cadetblue3", color = "white") + 
+  xlab("") +
+  ylab("") + 
+  ggtitle("") +
+  annotate("text", x = 292, y = -0.0005, label = "300", size = 10) + 
+  geom_vline(xintercept = 300, color = "black", lwd = 1.2)
+
+p2 + p1
+
+```
+
+:::{.poll}
+Which distribution belongs to which random variable?
+:::
+
+:::{.notes}
+They need to remember that the expected value of S_x will be 200, and for S_y 300.
+:::
+
+# Quiz review 
+
+```{r}
+countdown::countdown(25)
+```
+
+
+# Break 
+
+```{r}
+countdown::countdown(5)
+```
+
+<!--
+# Visualizing probability distributions
+
+## 
+
+Recall `geom_bar()`. What does it do? What aesthetics do we need to define?
+
+```r
+ggplot(penguins, aes(x = species)) + 
+geom_bar(fill = "steelblue4") + theme_minimal() 
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-width: 5
+#| fig-align: center
+library(tidyverse)
+library(palmerpenguins)
+
+ggplot(penguins, aes(x = species)) + geom_bar(fill = "steelblue4") + theme_minimal()
+
+```
+## 
+
+What about if we don't want to count instances but want to *plot* probabilities? 
+
+Let $X$ be the number of heads when we toss a fair coin three times. We know that:
+
+$$
+X = \begin{cases}
+			0, & \text{ with probability } 1/8\\
+            1, &  \text{ with probability } 3/8\\
+            2, &  \text{ with probability } 3/8 \\
+            3, & \text{ with probability } 1/8 \\
+		 \end{cases}
+$$
+To plot this, we use a special kind of bar chart, plotted using `geom_col()`, in which the bar heights represent *values* supplied by the data. We have to specify a `y` aesthetic, a column from the data. The values from this column will be the heights of the bars.
+
+##
+
+```r
+x <- c(0, 1, 2, 3)
+fx <- c(1/8, 3/8, 3/8, 1/8)
+coin3_df <- data.frame(x, fx)
+coin3_df %>% ggplot(aes(x = factor(x), y = fx)) +
+geom_col(fill = "goldenrod2") + ???
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-width: 5
+#| fig-align: center
+x <- c(0, 1, 2, 3)
+fx <- c(1/8, 3/8, 3/8, 1/8)
+coin3_df <- data.frame(x, fx)
+coin3_df %>% ggplot(aes(x = factor(x), y = fx)) +
+geom_col(fill = "goldenrod2") + labs(x = "Values taken by X", y = "P(X = x)") +
+  theme_minimal()
+```
+
+-->
+
+
+# Lab 3
+
+```{r}
+countdown::countdown(55)
+```
+

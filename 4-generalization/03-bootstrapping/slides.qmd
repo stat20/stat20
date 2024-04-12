@@ -37,6 +37,7 @@ As students arrive, randomly give ~8 of them an index card.
 
 - Concept Question
 - Activity: The Bootstrap
+- PS: The Bootstrap
 - Bootstrapping with `infer`
 
 # Concept Question
@@ -58,10 +59,10 @@ library(palmerpenguins)
 data(penguins)
 
 set.seed(30)
-a <- penguins %>%
-  sample_n(5) %>%
-  mutate(name = c("Gus", "Luz", "Ida", "Ola", "Abe")) %>%
-  rename(length = bill_length_mm) %>%
+a <- penguins |>
+  sample_n(5) |>
+  mutate(name = c("Gus", "Luz", "Ida", "Ola", "Abe")) |>
+  rename(length = bill_length_mm) |>
   select(name, species, length)
 ```
 
@@ -80,26 +81,26 @@ kable(a, caption = "Original Sample")
 
 ::: {.column width="33%"}
 ```{r}
-a %>%
-  slice_sample(prop = 1, replace = T) %>%
+a |>
+  slice_sample(prop = 1, replace = T) |>
   kable(caption = "BS A")
-a %>%
-  slice_sample(n = 6, replace = T) %>%
+a |>
+  slice_sample(n = 6, replace = T) |>
   kable(caption = "BS B")
 ```
 :::
 
 ::: {.column width="33%"}
 ```{r}
-names_b <- a %>%
-  slice_sample(prop = 1, replace = T) %>%
+names_b <- a |>
+  slice_sample(prop = 1, replace = T) |>
   pull(name)
-a %>%
-  mutate(name = names_b) %>%
+a |>
+  mutate(name = names_b) |>
   kable(caption = "BS C")
   
-a %>%
-  slice_sample(prop = 1, replace = T) %>%
+a |>
+  slice_sample(prop = 1, replace = T) |>
   kable(caption = "BS D")
 ```
 :::
@@ -149,6 +150,13 @@ Ask for a second volunteer to generate the second bootstrap sample. Repeat the p
 Collect the bootstrapped medians and proportions and sketch them as the first few points in a broader density plot that we'll be able to see when we take more and more bootstrap samples. Label this as the "bootstrap distribution" and speak of it as an approximation to the true sampling distribution. You can explain the 1 - alpha bootstrap interval as the interval that captures the middle 95% of bootstrapped statistics.
 :::
 
+# Problem Set
+
+```{r}
+countdown::countdown(20)
+```
+
+
 # Bootstrapping with Infer
 
 ## {background-image="images/infer-plain.jpg" background-size="contain"}
@@ -174,10 +182,10 @@ data(penguins)
 ```{r}
 #| eval: false
 #| echo: true
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(is_adelie = species == "Adelie")
 
-penguins %>%
+penguins |>
   ggplot(aes(x = is_adelie)) +
   geom_bar()
 ```
@@ -193,10 +201,10 @@ penguins %>%
 #| echo: false
 #| fig-height: 10
 
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(is_adelie = species == "Adelie")
 
-penguins %>%
+penguins |>
   ggplot(aes(x = is_adelie)) +
   geom_bar() +
   theme_gray(base_size = 20)
@@ -209,7 +217,7 @@ penguins %>%
 
 ```{r}
 #| echo: true
-obs_stat <- penguins %>%
+obs_stat <- penguins |>
   summarize(p_adelie = mean(is_adelie))
 obs_stat
 ```
@@ -222,9 +230,9 @@ obs_stat
 #| eval: false
 #| echo: true
 library(infer)
-penguins %>%
+penguins |>
   specify(response = is_adelie,
-          success = "TRUE") %>%
+          success = "TRUE") |>
   generate(reps = 1, 
            type = "bootstrap")
 ```
@@ -241,9 +249,9 @@ penguins %>%
 :::{.column width="50%"}
 ```{r}
 #| echo: true
-penguins %>%
+penguins |>
   specify(response = is_adelie,
-          success = "TRUE") %>%
+          success = "TRUE") |>
   generate(reps = 1, 
            type = "bootstrap")
 ```
@@ -252,9 +260,9 @@ penguins %>%
 :::{.column width="50%" .fragment}
 ```{r}
 #| echo: true
-penguins %>%
+penguins |>
   specify(response = is_adelie,
-          success = "TRUE") %>%
+          success = "TRUE") |>
   generate(reps = 1, 
            type = "bootstrap")
 ```
@@ -268,11 +276,11 @@ penguins %>%
 :::{.column width="50%"}
 ```{r bs9, eval = FALSE}
 #| echo: true
-penguins %>%
+penguins |>
   specify(response = is_adelie,
-          success = "TRUE") %>%
+          success = "TRUE") |>
   generate(reps = 9, 
-           type = "bootstrap") %>%
+           type = "bootstrap") |>
   ggplot(aes(x = is_adelie)) +
   geom_bar() +
   facet_wrap(vars(replicate),
@@ -292,11 +300,11 @@ penguins %>%
 :::{.column width="50%"}
 ```{r calc9, eval = FALSE}
 #| echo: true
-penguins %>%
+penguins |>
   specify(response = is_adelie,
-          success = "TRUE") %>%
+          success = "TRUE") |>
   generate(reps = 9, 
-           type = "bootstrap") %>%
+           type = "bootstrap") |>
   calculate(stat = "prop")
 ```
 :::
@@ -320,12 +328,12 @@ penguins %>%
 :::{.column width="50%"}
 ```{r viz500, eval = FALSE}
 #| echo: true
-penguins %>%
+penguins |>
   specify(response = is_adelie,
-          success = "TRUE") %>%
+          success = "TRUE") |>
   generate(reps = 500, 
-           type = "bootstrap") %>%
-  calculate(stat = "prop") %>%
+           type = "bootstrap") |>
+  calculate(stat = "prop") |>
   ggplot(aes(x = stat)) +
   geom_histogram()
 ```
@@ -346,12 +354,12 @@ We can extract the middle 95% by identifying the .025 quantile and the .975 quan
 
 ```{r getci, eval = FALSE}
 #| echo: true
-penguins %>%
+penguins |>
   specify(response = is_adelie,
-          success = "TRUE") %>%
+          success = "TRUE") |>
   generate(reps = 500, 
-           type = "bootstrap") %>%
-  calculate(stat = "prop") %>%
+           type = "bootstrap") |>
+  calculate(stat = "prop") |>
   get_ci(level = .95)
 ```
 

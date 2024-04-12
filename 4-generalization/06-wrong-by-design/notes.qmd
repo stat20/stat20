@@ -146,32 +146,32 @@ If a type II error is relatively more dangerous or much more costly than a type 
 Here we want to be cautious about failing to reject $H_0$ when the null is actually false.
 
 
-## Two-sided hypotheses
+<!-- ## Two-sided hypotheses -->
 
-In the United States vs. Kristen Gilbert, the null hypothesis that the statisticians operated under was that Gilbert was innocent. More specifically, it asserted that the occurrence of a death on a shift at the hospital was independent of whether or not Gilbert was working. This hypothesis can be stated in terms of parameters; that the probability of a death on a shift with Gilbert present is equal to the probability of a death on a shift without her present.
+<!-- In the United States vs. Kristen Gilbert, the null hypothesis that the statisticians operated under was that Gilbert was innocent. More specifically, it asserted that the occurrence of a death on a shift at the hospital was independent of whether or not Gilbert was working. This hypothesis can be stated in terms of parameters; that the probability of a death on a shift with Gilbert present is equal to the probability of a death on a shift without her present. -->
 
-- $H_0$: $p_{gilbert} - p_{no\,gilbert} = 0$
+<!-- - $H_0$: $p_{gilbert} - p_{no\,gilbert} = 0$ -->
 
-There are actually three different ways that the statisticians could have set up their alternative hypotheses.
+<!-- There are actually three different ways that the statisticians could have set up their alternative hypotheses. -->
 
-1) $H_A$: $p_{gilbert} - p_{no\,gilbert} < 0$
-2) $H_A$: $p_{gilbert} - p_{no\,gilbert} \ne 0$
-3) $H_A$: $p_{gilbert} - p_{no\,gilbert} > 0$
+<!-- 1) $H_A$: $p_{gilbert} - p_{no\,gilbert} < 0$ -->
+<!-- 2) $H_A$: $p_{gilbert} - p_{no\,gilbert} \ne 0$ -->
+<!-- 3) $H_A$: $p_{gilbert} - p_{no\,gilbert} > 0$ -->
 
-The first version seems surprising: we're entertaining an alternate explanation where in fact *fewer* deaths would have occurred on Gilbert's shifts. The second version is the one that we used in the previous notes: that it's possible either more or fewer deaths occurred on Gilbert's shifts.
+<!-- The first version seems surprising: we're entertaining an alternate explanation where in fact *fewer* deaths would have occurred on Gilbert's shifts. The second version is the one that we used in the previous notes: that it's possible either more or fewer deaths occurred on Gilbert's shifts. -->
 
-The third version is very tempting. It disregards the extra alternative (that Gilbert could be associated with *fewer* deaths) and that seems natural since the data pointed  in the opposite direction.
-However, there are two dangers if we ignore possibilities that disagree with our data or that conflict with our world view:
+<!-- The third version is very tempting. It disregards the extra alternative (that Gilbert could be associated with *fewer* deaths) and that seems natural since the data pointed  in the opposite direction. -->
+<!-- However, there are two dangers if we ignore possibilities that disagree with our data or that conflict with our world view: -->
 
--   Framing an alternative hypothesis simply to match the direction that the data point will inflate the type I error rate.
-    After all the work we have done (and will continue to do) to rigorously control the error rates in hypothesis tests, careless construction of the alternative hypotheses can disrupt that hard work.
+<!-- -   Framing an alternative hypothesis simply to match the direction that the data point will inflate the type I error rate. -->
+<!--     After all the work we have done (and will continue to do) to rigorously control the error rates in hypothesis tests, careless construction of the alternative hypotheses can disrupt that hard work. -->
 
--   If we only use alternative hypotheses that agree with our worldview, then we are going to be subjecting ourselves to confirmation bias, which means we are looking for data that supports our ideas.
-    That's not very scientific, and we can do better!
+<!-- -   If we only use alternative hypotheses that agree with our worldview, then we are going to be subjecting ourselves to confirmation bias, which means we are looking for data that supports our ideas. -->
+<!--     That's not very scientific, and we can do better! -->
 
-The alternative hypotheses found in 1) and 3) define what are called **one-sided hypothesis tests** because they only explore one direction of possibilities.
-Such hypotheses are appropriate when we are exclusively interested in the single direction, but usually we want to consider all possibilities.
-A better approach is to use **two-sided hypothesis tests**, defined by hypotheses in the form of 2). Let's learn about two-sided hypothesis tests in the context of a new study that examines the impact of using blood thinners on patients who have undergone CPR.
+<!-- The alternative hypotheses found in 1) and 3) define what are called **one-sided hypothesis tests** because they only explore one direction of possibilities. -->
+<!-- Such hypotheses are appropriate when we are exclusively interested in the single direction, but usually we want to consider all possibilities. -->
+<!-- A better approach is to use **two-sided hypothesis tests**, defined by hypotheses in the form of 2). Let's learn about two-sided hypothesis tests in the context of a new study that examines the impact of using blood thinners on patients who have undergone CPR. -->
 
 ### Example: Blood Thinners and Survival
 

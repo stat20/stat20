@@ -37,9 +37,9 @@ $H_A$: A new operating system is **more effective** for Carbon Health to use on 
 
 ### Part C
 
-$H_0$: The results of the 2020 United States presidential election were **legitimate** (the right candidate won).
+$H_0$: The rate of COVID-19 infection on campus has not changed since last month.
 
-$H_A$: The results of the 2020 United States presidential election were **fraudulent** (the wrong candidate won).
+$H_A$: The rate of COVID-19 infection on campus has increased since last month.
 
 \
 \

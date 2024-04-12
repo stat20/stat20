@@ -19,7 +19,7 @@ library(patchwork)
 ```
 
 [W]{.dropcap}e are often interested in the *average* value of a random variable. We might 
-repeat the action that generates a value of a random variable over and over again, and consider the long term average. For example, we might bet on red in roulette, and think about what our average gain would be if we play hundreds of games. Maybe we roll a die four times, record a success if we see at least one six, and repeat this process and take the average - note that we did this last week when we computed the proportion of times we rolled at least 1 6 in 4 rolls, while simulating de Méré's paradox. The proportion is just a special case of an average, when the random variable takes only the values $0$ or $1$. So you can see that we can think of the average as the value we would predict for the random variable - some sort of *typical* or  *expected* value.
+repeat the action that generates a value of a random variable over and over again, and consider the long term average. For example, we might bet on red in roulette, and think about what our average gain would be if we play hundreds of games. Maybe we roll a die four times, record a success if we see at least one six, and repeat this process and take the average - note that we did this when we computed the proportion of times we rolled at least one 6 in 4 rolls, while simulating de Méré's paradox. The proportion is just a special case of an average, when the random variable takes only the values $0$ or $1$. So you can see that we can think of the average as the value we would predict for the random variable - some sort of *typical* or  *expected* value.
 
 ## Expectation of a random variable
 
@@ -31,10 +31,10 @@ E(X) = \sum_x x \times P(X = x) = \sum_x x \times f(x)
 $$
 :::
 
-Note that $E(X)$ is a *weighted* average of the possible values taken by the random variable, where each possible value is weighted by its probability.
+You can see that $E(X)$ is a __*weighted*__ average of the possible values taken by the random variable, where each possible value is weighted by its probability.
 
 
-#### Example: Rolls of a fair die
+### Example: Rolls of a fair die
 
 If $X$ is the spots when we roll a fair six-sided die, then $f(x) = P(x = x) = 1/6$ for $x = 1, 2, \ldots, 6$. In this case, $E(X) = \displaystyle \frac{1 + 2 + 3 + 4 + 5 + 6}{6} = 3.5$.
 
@@ -44,18 +44,39 @@ In general, if we have a discrete uniform random variable on the values $1, 2, 3
 
 \
 
-#### Example: Rolls of an *unfair* die 
- What happens if all the faces are *not* equally likely? Consider the following scenario: let $X$ be the result of rolling a weird six-sided die, which has the probability of rolling a 4 or 6 is double that of rolling an odd number, and the probability of rolling a 2 is three times that of rolling an odd number. The probability mass function of $X$ is as shown below:
+
+### Example: Rolls of an *unfair* die 
+
+What happens if all the faces are *not* equally likely? Consider the following scenario: let $X$ be the result of rolling a weird six-sided die, which has that the probability of rolling a 4 or 6 is __double__ that of rolling any of the odd numbers ($P(X=4) = P(X = 6) = 2\times P(X =1)$ etc), and the probability of rolling a 2 is __three__ times that of rolling any of the odd numbers ($P(X=2) = 3\times P(X =1)$ etc). What is the pmf of $X$? See if you can work it out! Remember that the probabilities have to add to 1. 
  
+<details><summary>Check your answer</summary> 
+
+Writing it as a piecewise function:
+
 $$
 P(X=x) = f(x) = \begin{cases}
-0.1,\: \text{for}\, x = 1, 3, 5 \\
-0.2, \:, \text{for}\, x = 4, 6 \\
-0.3, \: \text{for}\, x = 2
+\frac{1}{10} = 0.1,\: \text{for}\, x = 1, 3, 5 \\
+\frac{2}{10} = 0.2, \:, \text{for}\, x = 4, 6 \\
+\frac{3}{10} = 0.3, \: \text{for}\, x = 2
 \end{cases}
 $$
+In tabular form:
 
-Using the definition,
+| $x$ |  $f(x) = P(X = x)$  |
+|:------:|:---------:|
+|  $1$  | $0.1$ |
+|  $2$  | $0.3$ |
+|  $3$  | $0.1$ | 
+|  $4$  | $0.2$ |
+|  $5$  | $0.1$ |
+|  $6$  | $0.2$ |
+
+</details>
+
+
+Now see if you can figure out the weighted average or the **expected value**, using the definition. Remember, multiply each value by its probability ($x\times f(x)$) and then add them all up. You should be adding up 6 terms.
+
+<details><summary>Check your answer</summary> 
 
 $$
 \begin{aligned}
@@ -64,20 +85,20 @@ E(X) &= \sum_x x \times f(x) \\
      &= 3.5 \\
 \end{aligned}
 $$
-##
 
 
-
+Here is a picture of the probability histogram with the expected value marked in red.
 
 ![](images/weighted-die-ev.png){fig-aligned="center" width="500"}
 
-\
+</details>
+
 
 Notice that the expected value was the *same* for both dice - the fair as well as unfair dice. This illustrates an important way in which the expected value of a random variable is just like the average of a list of numbers. It gives us *some* information about the distribution since we see the ``typical'' value, but not that much information. Two random variables with very different distributions can have the same expected value.
 
 
 
-#### Example: Bernoulli random variables
+### Example: Bernoulli random variables
 
 Recall that a Bernoulli ($p$) random variable is the special case of a binomial random variable when the parameter $n=1$. This random variable takes the value $1$ with probability $p$ and $0$ with probability $1-p$. Then:
 $$ E(X) = 1 \times p + 0 \times (1-p) = p$$
@@ -85,11 +106,11 @@ The expected value of a Bernoulli($p$) random variable is therefore just $p$. In
 
 ![](images/bernoulli-ev.png){fig-aligned="center" width="700"}
 
-In all the figures above, note the red triangle marking the expected value. If you imagine the probability histogram to be a thin lamina - like a thin sheet of metal cut in the shape of the probability histogram, you can imagine the expected value as a "balancing point" -  the point where the lamina would balance. It is the center of mass for the probability distribution. The expected value for a random variable is analogous to the average for sample data. Other terms that we use for the expected value of a random variable are *expectation* and *mean*. These can be used interchangeably.
+In all the figures above, note the red triangle marking the expected value. If you imagine the probability histogram to be a thin lamina - like a thin sheet of metal cut in the shape of the probability histogram, you can imagine the expected value as a "balancing point" -  the point where the lamina would balance. It is the center of mass for the probability distribution. The expected value for a random variable is analogous to the average for sample data. Other terms that we use for the expected value of a random variable are __*expectation*__ and __*mean*__. These can be used interchangeably.
 
 \
 
-#### Exercise: Compute the expectation of the random variable whose distribution is shown below:
+### Exercise: Compute the expectation of the random variable whose distribution is shown below:
 
 Let $X$ be a random variable such that 
 
@@ -113,44 +134,62 @@ E(X) &= 1 \times \frac{4}{15} + 2 \times \frac{7}{30} +  0 \times \frac{1}{3} + 
  &= \frac{17}{30} = 0.5666667
 \end{aligned}
 $$
+</details>
  
+Now we have the definition, let's look at what we can do with it. Most of the properties below are what you would expect when you have a sum, since recall that you can pull constants in and out of sums, for example $2x + 2y = 2(x+y)$.
 
-### Properties of expectation
+## Properties of expectation
 
-1. Expected value of a constant
-: The expected value of a constant is just the constant itself.
+:::{.def} 
+**1. Expected value of a constant**
+ ~ The expected value of a constant is just the constant itself.
 Let $c$ be any constant. The probability mass function can be considered to be $f(c) = 1$. Then 
 $$E(c) = c \cdot f(c) = c $$
-2. Constant multiple of a random variable
-: If $c$ is a constant, and $X$ is a random variable with pmf $f(x)$, then we can consider $cX$ to be the random variable that takes the value $cx$ when $X$ takes the value $x$, so $f(cx) = f(x)$. Therefore, 
+:::
+
+
+:::{.def} 
+**2. Constant multiple of a random variable**
+ ~ If $c$ is a constant, and $X$ is a random variable with pmf $f(x)$, then we can consider $cX$ to be the random variable that takes the value $cx$ when $X$ takes the value $x$, so $f(cx) = f(x)$. Therefore, 
 $$ E(cX) = \sum_x cx \cdot f(x) = c \sum_x x \cdot f(x) = c\cdot E(X) $$
-3. Additivity of expectation
-:  Let $X$ and $Y$ be two random variables, and consider their sum $X + Y$. Then,
+:::
+
+:::{.def} 
+**3. Additivity of expectation**
+ ~ Let $X$ and $Y$ be two random variables, and consider their sum $X + Y$. Then,
 $$ E(X + Y) = E(X) + E(Y)$$
-This is true regardless of whether $X$ and $Y$ are independent or not.
+This is true regardless of whether $X$ and $Y$ are independent or not (we will call random variables independent when the values of one don't affect the probabilities of the other, like coin tosses and die rolls).
+:::
 
-
-4. Linearity of expectation
-: Putting the previous two properties together, we get
+:::{.def} 
+**4. Linearity of expectation**
+ ~ Putting the previous two properties together, we get
 $$ E(aX + bY) = E(aX) + E(bY) = a\cdot E(X) +b \cdot E(Y)$$
-5. Expectation of a function of a random variable
-: Suppose $Y = g(X)$ is a function of the random variable $X$. Then $Y$ is also a random variable taking values $y = g(x)$, and the probabilities are just the probabilities associated with $x$. Then the expected value of $Y$ is given by:
-$$
-E(Y) = E(g(X)) = \sum_x g(x) \times f(x) = \sum_x g(x) \times P(X=x)
-$$
+:::
 
 \
 
-#### Example: Expectation of the square of a random variable
+The next property is very important and a little tricky, so read it carefully. When we have a function of $X$, such as its square, and we want the mean of that function, we have to be careful. We would square the values of $X$, but we would __not__ square the probabilities. This is important! We __never__ touch $f(x)$. 
+
+:::{.def} 
+**5. Expectation of a function of a random variable**
+ ~ Suppose $Y = g(X)$ is a function of the random variable $X$. Then $Y$ is also a random variable taking values $y = g(x)$, and the probabilities are just the probabilities associated with $x$. Then the expected value of $Y$ is given by:
+$$
+E(Y) = E(g(X)) = \sum_x g(x) \times f(x) = \sum_x g(x) \times P(X=x)
+$$
+:::
+
+
+### Example: Expectation of the *square* of a random variable
 
 Let $X$ be a random variable with the following probability distribution:
 
 | $x$ |  $P(X = x)$  |
 |:------:|:---------:|
-|  $-2$  |  $0.2$ |
-|  $-1$  |  $0.1$ |
-|  $0$   |  $0.2$ |
-|  $1$   | $0.3$ |   
+|  $-2$ |  $0.2$ |
+|  $-1$ |  $0.1$ |
+|  $0$  |  $0.2$ |
+|  $1$  |  $0.3$ |   
 |  $3$  |  $0.2$ |  
 
 Let's first add a column with the product $x\times P(X=x)$:
@@ -179,11 +218,16 @@ Summing the last column we get $E(Y) = 0.8 + 0.1 + 0 + 0.3 + 1.8 =$ `r 0.8 + 0.1
 
 
 :::{.callout-warning icon=false}
-Do **not** apply the function to $f(x)$! The probability distribution remains the same, only the variable values change - instead of using $x$, we use $g(x)$.
+Do **not** apply the function to $f(x)$! The probability distribution remains the same, only the values of the variable $X$ change. Instead of using $x$, we use $g(x)$.
 :::
 
+Now with these tools aka properties of expectation in hand, let's compute the expected values of a binomial random variable.
 
-#### Example: Binomial random variables
+## Special distributions
+
+We use a variety of ways to describe the expected value of a random variable. We might use the phrases "mean of the random variable $X$" or "mean of the distribution" or "expected value of the random variable $X$" and they all refer to the same quantity $E(X)$ which describes, in a sense, the *center of mass* of the probability distribution of $X$. Now we will write down the mean of the named distributions we have defined. We have already computed the mean of two special distributions, the discrete uniform and the Bernoulli. 
+
+### Binomial Distribution
 
 Let $X\sim Bin(n, p)$. Recall that $X$ counts the number of successes in $n$ trials, where the probability of success on each trial is $p$. We can define $n$ Bernoulli ($p$) random variables $X_1, X_2, \ldots, X_n$ where $X_k = 1$ with probability $p$, that is, $X_k$ is 1 if the $k$th trial is a success. We see that the binomial random variable $X$ can be written as a sum of these $n$ Bernoulli random variables: 
 
@@ -203,6 +247,51 @@ E(X) &= E( X_1 + X_2 + \ldots + X_n) \\
 $$
 
 Therefore, if $X\sim Bin(n, p)$, then $E(X) = np$. This intuitively makes sense: if I toss a fair coin 100 times, I expect to see about $50$ heads. This is a very neat trick to compute the expected value of a binomial random variable because you can imagine that computing the expected value using the formula $\displaystyle \sum_x x \cdot f(x)$ would be very messy and difficult. Using Bernoulli random variables allowed us to easily calculate the expected value of a binomial random variable.
+
+### Hypergeometric Distribution
+
+It turns out that whether we sample with or without replacement does not matter, and the expected value of a hypergeometric distribution is just the sample size times the number of successes in the population to begin with, so if $X \sim HG(N, G, n)$, then:
+$$
+E(X) = n \times \frac{G}{N}
+$$
+You do not need to know how to derive the expectation for a hypergeometric random variable.
+
+### Poisson Distribution
+
+
+The expected value of a Poisson random variable has a rather nice derivation. It is enough to know that if $X \sim Pois(\lambda)$, then
+
+$$
+E(X) = \lambda
+$$
+
+This makes intuitive sense, if we think of the Poisson random variable as approximating a binomial random variable that has large $n$ and tiny $p$, with $\lambda = np$. Think coin tosses with a very low chance of heads, we still expect to see about $np$ heads on average. You are not expected to know how to derive the expected value of a Poisson random variable, but if you know about Taylor series, you can expand the following to see it.
+
+
+<details><summary> Derivation of $E(X) = \lambda$</summary>
+$$
+\begin{aligned}
+E(X) &= \sum_{k=0}^\infty k\times P(X = k)\\
+    &= \sum_{k=0}^\infty k \times e^{-\lambda}\frac{\lambda^k}{k!}\\ 
+    &= \sum_{k=1}^\infty  k \times e^{-\lambda}\frac{\lambda^k}{k!}\\
+    &=  e^{-\lambda}\lambda \, \times \sum_{k=1}^\infty \frac{\lambda^{k-1}}{(k-1)!} \\
+    &=  e^{-\lambda}\lambda \, \times \sum_{j=0}^\infty \frac{\lambda^j}{j!} \\
+    &= e^{-\lambda}\lambda \times  e^{\lambda} \\ 
+    &= \lambda
+\end{aligned}
+$$
+
+- In the third line, the lower limit for the sum changes because the first term is $0$ since $k = 0$.
+
+- In the fourth line, we take out $e^{-\lambda}$ and $\lambda$, and cancel the $k$ in $k!$.
+
+- In the fifth line, we rewrite the lower limit of the sum and the power of $\lambda$ to be $j$ which begins at $0$.
+
+- In the fifth line, notice that sum is just the Maclaurin series of $ e^{\lambda}$.
+
+</details>
+
+Now, let's look at another constant associated with the random variable.
 
 ## Variance and standard deviation of a random variable
 
@@ -231,9 +320,9 @@ $SD(X)$ is a "give or take" number attached to the mean $E(X)$, so we can say th
  
 \
 
-#### Example: Rolls of a weighted die 
+### Example: Rolls of a weighted (unfair) die 
 
-Recall the example in which we roll an unfair die, and the probability mass function $f$ was given by:
+Recall the example in which we roll an unfair die, and the probability mass function $f(x)$ was given by:
 $$
 P(X=x) = f(x) = \begin{cases}
 0.1,\: \text{for}\, x = 1, 3, 5 \\
@@ -259,7 +348,7 @@ Therefore the standard deviation of $X = SD(X)$ is the square root of the varian
 
 \
 
-#### Example: Rolls of a fair die 
+### Example: Rolls of a fair die 
 
 We have already computed that the expected value of the random variable $X = 3.5$ where $X$ is the result of rolling a fair die. What are $Var(X)$ and $SD(X)$?
 
@@ -277,21 +366,29 @@ Why do you think that $Var(X)$ and $SD(X)$ are greater when $X$ is the result of
 ### Computational formula for $Var(X)$
 
 To compute variance, we usually use a nice shortcut formula:
-$$Var(X) = E\left(X^2\right) - \mu^2$$
 
-### Properties of variance and standard deviation
+$$
+Var(X) = E\left(X^2\right) - \mu^2
+$$
 
-1. The variance of a constant is 0 
-: Remember that the variance measures how spread out the values of $X$ are about the mean. A constant doesn't spread out at all, so it makes sense that the variance is $0$. 
+## Properties of variance and standard deviation
+
+:::{.def}
+**1. The variance of a constant is $0$**
+ ~ Remember that the variance measures how spread out the values of $X$ are about the mean. A constant doesn't spread out at all, so it makes sense that the variance is $0$.
+:::
 
 Let's confirm this. Let $X$ be a random variable such that $X = c$ with $f(c) = 1$ for some real number $c$. (This means that $X$ takes the value $c$ with probability 1, that is, with certainty.)
 
-$$ Var(X) = E(X^2) - \mu^2 = E(c^2) - c^2 = c^2 - c^2 = 0$$.
+$$ 
+Var(X) = E(X^2) - \mu^2 = E(c^2) - c^2 = c^2 - c^2 = 0.
+$$
 Note that $E(c^2) = c^2$ as $c^2$ is a constant. Thus we have that $SD(c) = 0$.
 
 
-2. The variance of a constant multiple of $X$: $Var(cX) = c^2 Var(X)$
-: Note that $E(cX) = c\mu$ by the properties of expectation. Thus we have (using the short cut formula):
+:::{.def}
+**2. The variance of a constant multiple of $X$: $Var(cX) = c^2 Var(X)$**
+ ~ Note that $E(cX) = c\mu$ by the properties of expectation. Thus we have (using the short cut formula):
 
 $$
 \begin{aligned} 
@@ -302,30 +399,50 @@ $$
     &= c^2 Var(X)
 \end{aligned}
 $$
+:::
 
 Thus, $SD(cX) = \sqrt{Var(cX)} = \sqrt{c^2 Var(X)} = \lvert c \rvert SD(X).$ 
 ($SD(X) \ge 0$)
 
-3. The variance of $X$ is unchanged by adding a constant
-: If we add a constant to $X$, the spread of the distribution does not change, only its center changes. Let $c$ be a real number. Then we have:
+:::{.def}
+**3. The variance of $X$ is unchanged by adding a constant**
+ ~ If we add a constant to $X$, the spread of the distribution does not change, only its center changes. Let $c$ be a real number. Then we have:
 
 $$
 Var(X+c) = Var(X)
 $$
+:::
+
+You can verify this using the shortcut formula (we won't ask you to derive this).
+<details><summary>Check your answer</summary>
+
+$$
+\begin{aligned}
+Var(X +c) &= E\left(\left(X+c\right)^2\right) - \left(E\left(X+c\right)\right)^2\\
+          &= E\left(X^2 + 2cX + c^2\right) - \left((E(X))^2 + 2cE(X) + c^2\right) \\
+          &= E\left(X^2\right) + 2cE(X) + c^2 - \left(E(X)\right)^2 -  2cE(X) - c^2\\
+          &= E\left(X^2\right) -  \left(E(X)\right)^2 \\
+          &= Var(X)
+\end{aligned}
+$$
+
+</details>
 
 
-4. Additivity of variance
-: If $X$ and $Y$ are **independent** random variables, that is the events $X = x$ and $Y = y$ are independent for all values of $x$ and $y$, we have that:
+:::{.def}
+**4. Additivity of variance**
+ ~ If $X$ and $Y$ are **independent** random variables, that is the events $X = x$ and $Y = y$ are independent for all values of $x$ and $y$, we have that:
 
 $$
 Var(X + Y) = Var(X) + Var(Y) \text{ and } Var(X - Y) = Var(X) + Var(Y)
 $$
+:::
 
 Note that in this case, $Var(X + Y) = Var(X) + Var(Y)$ implies that $SD(X +Y) = \sqrt{Var(X) + Var(Y)}$ - square roots and therefore SD's are *not* additive.
 
 \
 
-#### Example: Box of tickets
+### Example: Box of tickets
 
 Consider the box with the following $30$ tickets:
 
@@ -340,7 +457,8 @@ What about the variance of $X$?
 $$
 \begin{aligned}
 Var(x) &= E\left[ ( X - \mu)^2 \right] \\
-  &=  \left( \frac{8}{30}\times (1-0.567)^2  + \frac{7}{30} \times (2-0.567)^2 + \frac{10}{30} \times (0-0.567)^2 + \frac{5}{30} \times (-1 - 0.567)^2 \right) \\
+  &=  \left( \frac{8}{30}\times (1-0.567)^2  + \frac{7}{30} \times (2-0.567)^2 \right. \\
+  &+ \left. \frac{10}{30} \times (0-0.567)^2 + \frac{5}{30} \times (-1 - 0.567)^2 \right) \\
   &\approx 1.045\\
 \end{aligned}  
 $$
@@ -350,7 +468,7 @@ The standard deviation $SD(X) = \sqrt{Var(X)} =$ `r round(sqrt(1.045556), 3)`.
 
 
 
-#### Example: Bernoulli random variables
+### Bernoulli random variables
 
 Let $X$ be a Bernoulli ($p$) random variable. We know that $E(X) = \mu = p$. If we compute $E(X^2)$, we get that $E(X^2) = p$. (Make sure you know how to compute $E(X^2)$.) Therefore we have that:
 $$
@@ -358,7 +476,7 @@ Var(X) = E(X^2) - \mu^2 = p - p^2 = p(1-p).
 $$
 
 
-#### Example: Binomial random variables
+### Binomial random variables
 
 We use the same method as we did to compute the expectation of $X\sim Bin(n,p)$. We will write $X$ as a sum of independent Bernoulli random variables:
 $$ X = X_1 + X_2 + \ldots + X_n$$
@@ -366,8 +484,15 @@ where each $X_k \sim$ Bernoulli($p$). Since the $X_k$ are results of independent
 $$Var(X) = Var(X_1) + Var(X_2) + \ldots + Var(X_n) = np(1-p).$$
 Therefore, $SD(X) = \sqrt{np(1-p)}$
 
+### Poisson random variables
 
-## Independent and identically distributed random variables
+Computing the variance of a Poisson random variable is more complicated than computing its expectation, so we will just state the variance as a fact. Let $X \sim Poisson(\lambda)$. Then
+$$
+Var(X) = \lambda.
+$$
+
+
+<!--## Independent and identically distributed random variables
 
 :::{.def}
 **IID random variables**
@@ -379,7 +504,7 @@ This is a very important concept that we have already used to compute the expect
 A common example is when we toss a coin $n$ times and count the number of heads - each coin toss can be considered a Bernoulli random variable, and the total number of heads is a sum of $n$ iid Bernoulli random variables. 
 
 
-#### Example: iid random variables 
+### Example: Drawing tickets with replacement
 
 Consider the box shown below:
 
@@ -396,7 +521,7 @@ $$
 
 \
 
-## Sums and averages of random variables
+<!--## Sums and averages of random variables
 
 ### Sums
 
@@ -642,6 +767,7 @@ p4 <- data.frame(mean_draws_100) %>%
 
 What do we notice in these figures? The black line is the expected value. We see that the center of the distribution for the sample sum grows as the sample size increases (look at the x-axis), but this does not happen for the distribution of the sample mean. You can also see that the spread of the data for the sample sum is much greater when n = 100, but this does not happen for the distribution of the sample mean. We will explore the sample sum and sample mean next week. Now, the $y$ axis has neither counts nor proportion, but it has "density". This makes the histogram have a total area of one, similar to a probability histogram. Now we can think of this density histogram as an *approximation* of the probability histogram.
 
+
 ## Continuous distributions
 
 So far, we have talked about discrete distributions, and the probability mass functions for such distributions. Consider a random variable that takes *any* value in a given interval. Recall that  we call such random variables *continuous*. In this situation, we cannot think about discrete bits of probability mass which are non-zero for certain numbers, but rather we imagine that our total probability mass of $1$ is *smeared* over the interval, giving us a smooth density curve, rather than a histogram. To define the probabilities associated with a continuous random variable, we define a probability *density* function (pdf) rather than a probability mass function. 
@@ -704,14 +830,20 @@ In general, for the $U(0,1)$ distribution, $F(x) = x$.
 
 </details>
 
+-->
+
 ## Summary
 
-We defined the expected value or the mean of a discrete random variable and listed the properties of expectation including linearity and additivity. 
+- We defined the expected value or the mean of a discrete random variable and listed the properties of expectation including linearity and additivity. 
 
-We defined the variance and standard deviation of a random  variable. Both expectation and variance (and therefore standard deviation) are constants associated to the distribution of the random variable. The variance is more convenient than the sd for computation because it doesn't have square roots. However, the units are squared, so you have to be careful while interpreting the variance. We discussed the properties of variance and standard deviation. 
+- We defined the variance and standard deviation of a random  variable. Both expectation and variance (and therefore standard deviation) are constants associated to the distribution of the random variable. The variance is more convenient than the sd for computation because it doesn't have square roots. However, the units are squared, so you have to be careful while interpreting the variance. We discussed the properties of variance and standard deviation. 
 
-We defined the expectation and variance of sums and averages of an iid sample of random variables, and introduced the term *standard error*. We recognized how the mean and variance scale with $n$ and defined the square root law for the standard error of the sum or mean of an iid sample. 
+- We wrote down the expected values and variance for various special random variables.
+
+
+<!-- We defined the expectation and variance of sums and averages of an iid sample of random variables, and introduced the term *standard error*. We recognized how the mean and variance scale with $n$ and defined the square root law for the standard error of the sum or mean of an iid sample. 
 
 We considered the probability distributions of sums and averages. 
 
 Finally, we introduced continuous distributions. In subsequent notes, we will introduce the most celebrated continuous distribution, the normal distribution. 
+-->

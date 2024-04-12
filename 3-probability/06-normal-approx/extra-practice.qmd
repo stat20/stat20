@@ -1,0 +1,91 @@
+---
+title: "Continuous Distributions and Normal Approximations"
+subtitle: "EP"
+format: stat20handout-pdf
+---
+
+\begin{center}
+\textbf{This problem set will not be graded. Its materials will be tested on Quiz 2. We recommend that you work on it as study material.}
+\end{center}
+
+@. The function below is a valid probability density function. *Hint:* The area of a circle is $\pi r^2$ where $r$ is the radius of the circle.
+
+```{r}
+#| echo: false
+#| fig-height: 5
+#| fig-width: 5
+#| fig-align: left
+knitr::include_graphics("images/circle.png")
+```
+
+$\textcolor{white}{space space space}$ $\bigcirc$ True $\textcolor{white}{space space space}$ $\bigcirc$ False
+
+
+We are going to study what I would call a "pessimistic random walk". Say you are in a one-dimensional space, and you can do one of three things, randomly, at any given moment:
+
+-   Go forward one step
+-   Stay put
+-   Go backwards two steps
+
+@. Let $X_1$ be the number of steps taken forward/backward. 
+Write down $f(x)$, the probability mass function for $X_1$.
+
+\
+
+
+@. Calculate $\mathbb{E}(X_1)$ and $SD(X_1)$.
+
+\
+
+\
+
+\
+
+
+@. Suppose you repeat the experiment $n = 10,000$ times, and each decision you make is independent of the last. Calculate $\mathbb{E}(S_{10,000})$ and $SD(S_{10,000})$, as well as  $\mathbb{E}(\bar{X}_{10,000})$ and $SD(\bar{X}_{10,000})$.
+
+\
+
+\
+
+\
+
+
+@. Remember that as $n$ gets large, $S_n$ is approximately $Normal(\mu = E(S_n), \sigma = SD(S_n))$. Find an approximate probability that after $10,000$ experiments, you have taken less than 3200 steps total in the "wrong direction." You may use R to help you calculate this probability. 
+
+\
+
+\
+
+@. In R, create a vector of 10,000 observations. Each of these observations will be one $S_{10,000} = X_1 + X_2 + ... + X_{10,000}$. In other words, to obtain one observation, you should sample 10,000 random variables from the distribution of the pessimistic random walk, and take their sum. 
+
+\
+
+\
+
+@. Now, write R code to create a vector of another 10,000 observations. This time, generate each observation from the approximate distribution of $S_{10,000} = X_1 + X_2 + ... + X_{10,000}$. 
+
+\
+
+@. Put the two vectors from **Question 6** and **Question 7** into a dataframe called `q8`. Then, make one histogram of the observations from **Question 6** and another of the observations from **Question 7**. Finally, save each of these histograms into plot objects. Write the R code you used below.
+
+\
+
+\
+
+@. Finally, use syntax from `patchwork` library to *stack* the two plots on top of one another. Write the code you used below.
+
+\
+
+
+@. What should the two distributions look like in relation to one another? Answer this question and then state if your results match your expectations. If they don't match your expectations, give a possible reason.
+
+\
+
+\
+
+@. Using the column in `q8` of the $S_{10,000}$'s generated from the **Question 6**, write R code to roughly estimate the probability that you have taken less than 3200 steps in the "wrong direction" after 10,000 repetitions of the experiment that you found in **Question 5**. *Hint: see if you can calculate a proportion*.
+
+
+
+

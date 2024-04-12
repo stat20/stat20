@@ -42,7 +42,7 @@ D. n + 6
 C. 6n
 D. 9n
 
-This assesses the 1/sqrt(n) relationship between the SE of a mean and the SD of the population. This relationship is worth reviewing.
+This assesses the 1/sqrt(n) relationship between the SE of a mean and the SD of the population. This relationship is worth reviewing. It's also a good time to underline the definition of SE from the notes, and its link to our notion of "precision".
 :::
 
 ```{r}
@@ -195,6 +195,8 @@ D. It will more closely resemble the population dist.
 E. It will more closely resemble the sampling dist.
 
 The answer is D.
+
+This plot and example are from the notes. It is probably good to remind them than in any practical setting you only get to see the empirical distribution. Here we have the full population and we're simulating drawing many samples to get a sense of what that sampling distribution should look like.
 :::
 
 ##

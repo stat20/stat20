@@ -211,32 +211,56 @@ schedule:
         date: 2/27/24
         items:
           - type: Notes
-            href: 3-probability/04-ev-se/notes.qmd
-            render: false
+            href: 3-probability/05-ev-se/notes.qmd
+            render: true
           - type: Slides
-            href: 3-probability/04-ev-se/slides.qmd
-            render: false
+            href: 3-probability/05-ev-se/slides.qmd
+            render: true
+          - type: PS
+            href: 3-probability/05-ev-se/ps.qmd
+            render: true  
+          - type: Lab
+            href: 3-probability/labs/04-elections/lab.qmd
+            render: true  
             
       - topic: "Normal Approximation"
         display-date: Feb 29
         date: 2/29/24
-        items: []
+        items:
+          - type: Notes
+            href: 3-probability/06-normal-approx/notes.qmd
+            render: true
+          - type: Slides
+            href: 3-probability/06-normal-approx/slides.qmd
+            render: true
+          - type: PS
+            href: 3-probability/06-normal-approx/ps.qmd
+            render: false  
+    
+    resources:
+      - '<a href="https://www.stat20.org/3-probability/06-normal-approx/extra-practice.pdf"">Extra Practice</a>'
         
   - week: 8
     days:
       - topic: "Quiz 2"
         display-date: Mar 4
         
-      - topic: 'Scope, Bias and Variability'
+      - topic: 'Sampling Distributions'
         display-date: Mar 5
         date: 3/05/24
         items:
           - type: Notes
             href: 4-generalization/01-sampling-distributions/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 4-generalization/01-sampling-distributions/slides.qmd
-            render: false
+            render: true
+          - type: PS
+            href: 4-generalization/01-sampling-distributions/ps.qmd
+            render: true
+          - type: Lab
+            href: 4-generalization/labs/05-peoples-park/lab.qmd
+            render: true
             
       - topic: "Confidence Intervals"
         display-date: Mar 7
@@ -244,63 +268,77 @@ schedule:
         items:
           - type: Notes
             href: 4-generalization/02-confidence-intervals/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 4-generalization/02-confidence-intervals/slides.qmd
-            render: false
-          - type: Lab
-            href: 4-generalization/labs/05-peoples-park/lab.qmd
-            render: false
+            render: true
             
   - week: 9
     days:
       - topic: "Lab 4 Workshop"
         display-date: Mar 11
         
-      - topic: "Intro to Hypothesis Tests"
+      - topic: "Bootstrapping"
         display-date: Mar 12
         date: 3/12/24
         items:
           - type: Notes
-            href: 4-generalization/04-hypothesis-tests/notes.qmd
-            render: false
+            href: 4-generalization/03-bootstrapping/notes.qmd
+            render: true
           - type: Slides
-            href: 4-generalization/04-hypothesis-tests/slides.qmd
-            render: false
+            href: 4-generalization/03-bootstrapping/slides.qmd
+            render: true
           - type: PS
-            href: 4-generalization/04-hypothesis-tests/ps.qmd
-            render: false
-            
-      - topic: "Types of Hypothesis Tests"
+            href: 4-generalization/03-bootstrapping/ps.qmd
+            render: true
+        
+      - topic: "Intro to Hypothesis Tests"
         display-date: Mar 14
         date: 3/14/24
         items:
           - type: Notes
-            href: 4-generalization/05-hypothesis-tests-2/notes.qmd
-            render: false
+            href: 4-generalization/04-hypothesis-tests/notes.qmd
+            render: true
           - type: Slides
-            href: 4-generalization/05-hypothesis-tests-2/slides.qmd
-            render: false
+            href: 4-generalization/04-hypothesis-tests/slides.qmd
+            render: true
+          - type: PS
+            href: 4-generalization/04-hypothesis-tests/ps.qmd
+            render: true
             
   - week: 10
     days:
       - topic: "Quiz Review"
         display-date: Mar 18
         
-      - topic: "Wrong By Design"
+      - topic: "Types of Hypothesis Tests"
         display-date: Mar 19
         date: 3/19/24
         items:
           - type: Notes
+            href: 4-generalization/05-hypothesis-tests-2/notes.qmd
+            render: true
+          - type: Slides
+            href: 4-generalization/05-hypothesis-tests-2/slides.qmd
+            render: true
+          - type: PS
+            href: 4-generalization/05-hypothesis-tests-2/ps.qmd
+            render: true
+        
+      - topic: "Quiz 3, Wrong By Design"
+        display-date: "Mar 21/22"
+        date: 3/21/24
+        items:
+          - type: Notes
             href: 4-generalization/06-wrong-by-design/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 4-generalization/06-wrong-by-design/slides.qmd
-            render: false
-            
-      - topic: "Quiz 3"
-        display-date: Mar 21
-        date: 3/21/24
+            render: true
+          - type: PS
+            href: 4-generalization/06-wrong-by-design/ps.qmd
+            render: true
+
         
   - week: "Spring Break"
     days: 
@@ -308,7 +346,7 @@ schedule:
         
   - week: 10
     days:
-      - topic: "Final Review Day"
+      - topic: "Final Review Day/Cheatsheet Pickup"
         display-date: Apr 1
 
       - topic: "The Method of Least Squares"
@@ -317,10 +355,19 @@ schedule:
         items:
           - type: Notes
             href: 6-prediction/01-method-of-least-squares/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 6-prediction/01-method-of-least-squares/slides.qmd
-            render: false
+            render: true
+          - type: PS
+            href: 6-prediction/01-method-of-least-squares/ps.qmd
+            render: true
+          - type: Lab
+            href: 6-prediction/labs/07-baseball/lab.qmd
+            render: true
+          - type: Extra Practice
+            href: 6-prediction/01-method-of-least-squares/extra-practice.qmd
+            render: true
             
       - topic: "Evaluating and Improving Predictions"
         display-date: Apr 4
@@ -328,17 +375,18 @@ schedule:
         items:
           - type: Notes
             href: 6-prediction/02-improving-predictions/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 6-prediction/02-improving-predictions/slides.qmd
-            render: false
-          - type: Lab
-            href: 6-prediction/labs/07-baseball/lab.qmd
-            render: false
+            render: true
+          - type: PS
+            href: 6-prediction/02-improving-predictions/ps.qmd
+            render: true
+          
 
   - week: 12
     days:
-      - topic: "Lab 6 Workshop"
+      - topic: "Lab 5 Workshop"
         display-date: Apr 8
         
       - topic: "Overfitting"
@@ -347,10 +395,16 @@ schedule:
         items:
           - type: Notes
             href: 6-prediction/03-overfitting/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 6-prediction/03-overfitting/slides.qmd
-            render: false
+            render: true
+          - type: PS
+            href: 6-prediction/03-overfitting/ps.qmd
+            render: true
+          - type: Lab
+            href: 6-prediction/labs/08-cancer/lab.qmd
+            render: true
             
       - topic: "Logistic Regression"
         display-date: Apr 11
@@ -358,11 +412,13 @@ schedule:
         items:
           - type: Notes
             href: 6-prediction/05-logistic-regression/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 6-prediction/05-logistic-regression/slides.qmd
-            render: false
-            
+            render: true
+          - type: Extra Practice
+            href: 6-prediction/05-logistic-regression/extra-practice.qmd
+            render: true
   - week: 13
     days:
       - topic: "Quiz 4"

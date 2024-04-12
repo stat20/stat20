@@ -22,12 +22,32 @@ format:
 
 ## Agenda
 
-1. CQ
-2. Lecture: Misclassification
-3. Lab 8
+-   Announcements
+-   Concept Questions
+-   Break
+-   Lab 6.2
+-   Appendix: Logistic Regression with the `penguins` dataset
+
+## Announcements
+
+-   Quiz 4:
+    -   Monday in class. 
+    -   *Wrong By Design* through *Logistic Regression*
+    
+. . . 
+
+-   Problem Sets:
+    -   PS 18 (Overfitting) due next Tuesday at 9am
+    -   Extra Practice (Logistic Regression)
+    
+. . . 
+
+-   Lab 6:
+    -   both parts due Tuesday at 9am
 
 # Concept Questions
 
+<!---
 ##
 
 :::poll
@@ -45,8 +65,22 @@ The first is a classic binary classification task and the second one multi-class
 
 The last one is trying to estimate a population parameter (the mode).
 :::
+--->
 
 ## 
+
+A logistic regression model was fit in an attempt to predict the sex of a penguin `"male"` or `"female"` based on its body mass (grams). 
+
+:::poll
+Assuming that no change to the `penguins` dataset was made, will the model be predicting the probability of the penguin being male or the probability of the penguin being female?
+:::
+
+```{r}
+countdown::countdown(minutes = 1, top = 0)
+```
+
+##
+
 
 ```{r}
 library(tidyverse)
@@ -64,9 +98,7 @@ coef(m1)
 
 
 :::poll
-What is the predicted probability that a penguin that weighs 4000 g is a female?
-
-(As a bonus, try sketching this function on a scatterplot!)
+Which of the expressions given in the poll (math or code) will correctly calculate the predicted probability that a penguin that weighs 4000 g is a female? *Select all that apply*
 :::
 
 ```{r}
@@ -83,14 +115,39 @@ predict(m1, newdata = data.frame(body_mass_g = 4000), type = "response")
 
 The latter is more precise, which is useful here since p-hat (prob of male) is .449 therefore prob of female is .55.
 
+As a bonus, try sketching this function on a scatterplot!
+
 When sketching this, the positive slope means the s-curve goes up and to the right. The negative intercept shifts the whole curve a tiny bit to the left, reflecting the base rate of a couple more males than females (168 vs 165).
 :::
+
+
+## 
+
+:::poll
+What is the misclassification rate of this model?
+:::
+
+
+```{r}
+penguins |>
+  select(sex) |>
+  mutate(p_hat = predict(m1, penguins, type = "response"),
+         y_hat = ifelse(p_hat > .5, "male", "female")) |>
+  group_by(sex, y_hat) |>
+  summarise(n = n())
+```
+
+```{r}
+countdown::countdown(minutes = 1, top = 0)
+```
+
 
 ##
 
 ```{r}
 #| echo: true
-m2 <- glm(sex ~ body_mass_g + bill_length_mm, data = penguins, family = "binomial")
+m2 <- glm(sex ~ body_mass_g + bill_length_mm, 
+          data = penguins, family = "binomial")
 ```
 
 ```{r}
@@ -98,7 +155,7 @@ coef(m2)
 ```
 
 :::poll
-What are the predicted sexes of these two penguins?
+Open up RStudio and fit the model here in the slides. What are the predicted sexes of these two penguins?
 
 A) body mass = 3900 g, bill length = 50
 B) body mass = 4100 g, bill length = 35
@@ -109,6 +166,8 @@ countdown::countdown(1)
 ```
 
 :::notes
+You can have students work on their laptops for this question. 
+
 This one extends the task of the previous one by having them include another covariate and also to do the thresholding procedure to go from p-hat to y-hat. This doesn't specify the threshold, so using .5 is probably a good default.
 
 predict(m2, newdata = data.frame(body_mass_g = 3900, bill_length_mm = 50), type = "response") # male
@@ -116,7 +175,22 @@ predict(m2, newdata = data.frame(body_mass_g = 4100, bill_length_mm = 35), type 
 :::
 
 
-# Misclassification
+
+# Break
+
+```{r}
+countdown::countdown(minutes = 5, top = 0)
+```
+
+# Lab
+
+```{r}
+countdown::countdown(minutes = 45, top = 0)
+```
+
+# End of Lecture
+
+# Misclassification: Appendix
 
 ## Building a predictive model
 
@@ -160,10 +234,10 @@ set_type <- sample(x = c('train', 'test'),
                    replace = TRUE, 
                    prob = c(0.8, 0.2))
 
-train <- penguins %>%
+train <- penguins |>
   filter(set_type == "train")
 
-test <- penguins %>%
+test <- penguins |>
   filter(set_type == "test")
 ```
 
@@ -185,7 +259,7 @@ m2 <- glm(sex ~ body_mass_g + bill_length_mm,
           data = train, family = "binomial")
 p_hat <- predict(m2, test, type = "response")
 
-test %>%
+test |>
   select(sex)
 ```
 
@@ -197,8 +271,8 @@ m2 <- glm(sex ~ body_mass_g + bill_length_mm,
           data = train, family = "binomial")
 p_hat <- predict(m2, test, type = "response")
 
-test %>%
-  select(sex) %>%
+test |>
+  select(sex) |>
   mutate(p_hat = p_hat)
 ```
 
@@ -209,32 +283,20 @@ test %>%
 #| echo: true
 m2 <- glm(sex ~ body_mass_g + bill_length_mm,
           data = train, family = "binomial")
-p_hat <- predict(m2, test, type = "response")
 
-test %>%
-  select(sex) %>%
-  mutate(p_hat = p_hat,
+test |>
+  select(sex) |>
+  mutate(p_hat = predict(m2, test, type = "response"),
          y_hat = ifelse(p_hat > .5, "male", "female"))
 ```
 
-## Classification errors
-
-**False Positives**: Predicting a 1 that is in fact a 0
-
-**False Negatives**: Predicting a 0 that is in fact a 1
-
-. . .
-
-**Misclassification Rate**:
-
-$$ \frac{FP + FN}{total \, number \, of \, predictions} $$
 
 ## Classification errors {auto-animate="true"}
 
 ```{r}
 #| echo: true
-test %>%
-  select(sex) %>%
+test |>
+  select(sex) |>
   mutate(p_hat = p_hat,
          y_hat = ifelse(p_hat > .5, "male", "female"),
          FP = sex == "female" & y_hat == "male",
@@ -245,13 +307,15 @@ test %>%
 
 ```{r}
 #| echo: true
-test %>%
-  select(sex) %>%
+test |>
+  select(sex) |>
   mutate(p_hat = p_hat,
-         y_hat = ifelse(p_hat > .5, "male", "female")) %>%
-  summarize(misclas = mean(sex != y_hat))
+         y_hat = ifelse(p_hat > .5, "male", "female")) |>
+  summarize(MCR = mean(sex != y_hat))
 ```
 
 
-# Lab
+
+
+
 

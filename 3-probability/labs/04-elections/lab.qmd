@@ -1,11 +1,161 @@
 ---
-title: "Lab 4: Elections"
+title: "Lab 3: Elections"
 image: images/iran_green2.jpg
 code-fold: false
 sidebar: false
 ---
 
+```{r}
+#| message: false
+#| echo: false
+library(stat20data)
+library(patchwork)
+library(tidyverse)
+```
+
 {{< include ../../../assets/includes/_labs-header.qmd >}}
+
+## Part I: Understanding the Context of the Data
+
+Please record your answers on the worksheet below and upload it to Gradescope.
+
+- [Part 1: Understanding the Context of the Data](lab-context.qmd)
+
+To help answer this worksheet, consult this snapshot of the original dataset found [here](images/elections-screengrab.png).
+
+<!--
+
+```{r}
+set.seed(1)
+iran |>
+  slice_sample(n = 366, replace = FALSE) 
+```
+
+-->
+
+
+## Part II: Computing on the Data
+
+### Question 1
+
+What is the empirical distribution of the vote counts for Ahmadinejad? Answer with:
+
+-   a plot (label your axes and provide a title), 
+-   numerical summaries of center and spread, 
+-   and a written interpretation.
+
+### Question 2
+
+Create two vectors: 
+
+-   one with the range of values that the Benford's Law probability distribution can take 
+
+-   and the second with the corresponding probabilities for each value. 
+
+### Question 3
+
+What might 366 draws (the amount of rows in the `iran` dataframe) from $X \sim Benford()$ look like? Find out by sampling from the $Benford$ probability distribution. Create a plot of the resulting empirical distribution that you collect. Label your axes and title your plot *Benford's Law Simulation*.
+
+### Question 4
+
+What do the first digit empirical distributions look like for the four candidates in the Iranian presidential election? 
+
+-   Make one plot for each distribution and title them by candidate name.
+-   Combine the four plots into a single visualization using the `patchwork` library.
+
+Inside the `stat20data` package there is a function called `get_first()` that pulls off the first digit of every element in a vector. This will be helpful when creating your plots.
+
+### Question 5
+
+How do the observed first digit distributions of **Question 4** compare to the one you created in **Question 3** by sampling from Benford's Law? Which candidate has a first-digit distribution that is:
+
+-   most similar to 
+-   most different 
+
+from the sampled one?
+
+
+### Question 6
+
+Below are two visualizations using data from the last two presidential elections in California. The last two Democratic candidates for president were Joe Biden in 2020 and Hillary Clinton in 2016.
+
+```{r}
+#| echo: false
+#| message: false
+#| fig-align: center
+
+ca_2020 <- read_csv("https://raw.githubusercontent.com/openelections/openelections-data-ca/master/2020/20201103__ca__general__precinct.csv")
+
+ca_2016 <- read_csv("https://raw.githubusercontent.com/openelections/openelections-data-ca/master/2016/20161108__ca__general__precinct.csv")
+
+plot_2016 <- ca_2016 |>
+  mutate(first_digit = get_first(votes)) |>
+  filter(candidate == "Hillary Clinton",
+         first_digit > 0) |>
+  ggplot(mapping = aes(x = factor(first_digit))) +
+  geom_bar(fill = "darkblue", color = "black") +
+  labs(y = "Count",
+       x = "First Digit",
+       title = "Distribution of Vote Counts for Hillary Clinton",
+       subtitle = "California, 2016 General Election") +
+  theme_bw()
+
+
+plot_2020 <- ca_2020 |>
+  mutate(first_digit = get_first(votes)) |>
+  filter(candidate =="Joe Biden",
+         first_digit > 0) |>
+  ggplot(mapping = aes(x = factor(first_digit))) +
+  geom_bar(fill = "skyblue",color = "black") +
+  labs(y = "Count",
+        x = "First Digit",
+       title = "Distribution of Vote Counts for Joe Biden",
+       subtitle = "California, 2020 General Election") +
+  theme_bw()
+
+plot_2016/plot_2020
+```
+
+Based on these results and the results from **Question 5**, to what extent to you believe the 2009 Iranian election was fraudulent? Explain in three to four sentences. 
+
+<!--
+
+---
+
+### US Elections
+
+The [OpenElections](http://www.openelections.net) project obtains and standardizes precinct-level results from US elections, including the 2020 US Presidential Election. They host datasets containing these results on [Github](https://github.com/openelections). 
+
+You will be analyzing results from *Mississippi* in **Questions 6-9**. Make sure you have loaded in the `tidyverse` library before running the following code, which will bring the dataset into your environment.
+
+
+```{r}
+#| eval: false
+#| warning: false
+miss <- read_csv("https://raw.githubusercontent.com/openelections/openelections-data-ms/master/2020/20201103__ms__general__precinct.csv")
+```
+
+---
+
+### Question 6
+
+What is the unit of observation in the `miss` data frame? What are the dimensions?
+
+### Question 7
+
+Create a `ggplot` of the distribution of the first digit of votes for Joseph Biden by precinct. 
+
+### Question 8
+
+How does the election data you chose appear to fit Benford's distribution as compared to the data from the 2009 Iran election?
+
+### Question 9
+
+Based on the results of **Question 8**, what might you conclude about the utility of Benford's law in detecting election fraud? Explain in one to two sentences.
+
+-->
+
+<!--
 
 This week's lab is a *mini-lab* containing only one part and done in a qmd file. The data for this lab can be found in the `iran` data frame in the `stat20data` package. Run `?iran` at the console to learn more about the columns.
 
@@ -122,3 +272,7 @@ Use this data to create a plot of that state's first digit distribution by preci
 #### Question 13
 
 Does the election you chose appear to fit Benford's distribution better or worse than the Iran election?
+
+-->
+
+
