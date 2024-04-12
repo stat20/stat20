@@ -1,6 +1,6 @@
 ---
 title: "Randomized Experiments"
-subtitle: "principles of experimental design"
+subtitle: "Principles of experimental design"
 format:
   html:
     code-fold: true
@@ -14,19 +14,15 @@ execute:
 
 <!-- Lead out with running example: are you reading these notes as a website or are you reading them as a pdf on a tablet? Do you think your choice in this regard will affect your understanding of the material and the course -->
 
-[C]{.dropcap}ausation has a tricky relationship with data. We can't observe the 
-precise counterfactual that would allow us to identify an individual cause. 
-Instead, statisticians use a host of methods to find a good approximation of the 
-counterfactual, usually by focusing on a group-level quantity called an average
-treatment effect. 
+[C]{.dropcap}ausation has a tricky relationship with data. We can't observe the precise counterfactual that would allow us to identify an individual cause. Instead, statisticians use a host of methods to find a good approximation of the counterfactual, usually by focusing on a group-level quantity called an average treatment effect. 
 
-We now introduce the most important tool for approximating group-level counterfactuals,
-the randomized experiment.  
+We now introduce the most important tool for approximating group-level counterfactuals, the randomized experiment.  
 <!--In the last set of notes, randomized experimentation was presented as a method
 for approximating group-level counterfactuals.  Randomized experimentation is a 
 powerful idea but doesn't always work perfectly in practice.  In this set of notes, we will explore a tool called covariate balance which allows us to check how well
 randomized assignment is working.  It will also help us evaluate causal claims 
 in cases where researchers were not able to perform an experiment.-->
+
 
 ## Principles of Experimental Design
 
@@ -112,13 +108,7 @@ null |> get_p_value(obs_stat, direction = 'both')
 
 ```-->
 
-The process of computing a difference in proportions and conducting a hypothesis test for this dataset is no different than in the examples from the generalization
-notes.  What makes this study special is the process that generated this data.  
-Because this was a randomized control experiment, the difference in proportions provides a good estimate of the 
-average treatment effect, and if it differs significantly from zero we have
-compelling evidence that reader format has a causal impact on understanding.
-We now describe some aspects of experimental design that help establish  this
-stronger interpretation.
+The process of computing a difference in proportions and conducting a hypothesis test for this dataset is no different than in the examples from the generalization notes.  What makes this study special is the process that generated this data.  Because this was a randomized control experiment, the difference in proportions provides a good estimate of the average treatment effect, and if it differs significantly from zero we have compelling evidence that reader format has a causal impact on understanding. We now describe some aspects of experimental design that help establish  this stronger interpretation.
 
 ### Random Assignment
 
@@ -154,13 +144,9 @@ Put yourself in the place of a person in the study. If you are in the treatment 
 have been assigned to treatment.
 
 
-When researchers keep the patients uninformed about the treatments they will
-receive, the study is said to be *single-blind*. 
-But there is one problem: if a patient does not receive a treatment, they will know they’re in the control group. A solution to this problem is to give a fake treatment to patients in the control group. This is called a *placebo*, and an effective placebo is the key to making a study truly blind. A classic example of a placebo is a sugar pill that is made to look like the actual treatment pill. However, offering such a fake treatment may not be ethical in certain experiments. For example, in medical experiments, typically the control group must get the current standard of care. Oftentimes, a placebo results in a slight but real improvement in patients. This effect has been dubbed the placebo effect.
+When researchers keep the patients uninformed about the treatments they will receive, the study is said to be *single-blind*. But there is one problem: if a patient does not receive a treatment, they will know they’re in the control group. A solution to this problem is to give a fake treatment to patients in the control group. This is called a *placebo*, and an effective placebo is the key to making a study truly blind. A classic example of a placebo is a sugar pill that is made to look like the actual treatment pill. However, offering such a fake treatment may not be ethical in certain experiments. For example, in medical experiments, typically the control group must get the current standard of care. Oftentimes, a placebo results in a slight but real improvement in patients. This effect has been dubbed the placebo effect.
 
 The patients are not the only ones who should be blinded: doctors and researchers can also unintentionally affect the outcome. When a doctor knows a patient has been given the real treatment, they might inadvertently give that patient more attention or care than a patient that they know is on the placebo. To guard against this, which again has been found to have a measurable effect in some instances, most modern studies employ a *double-blind* setup where doctors or researchers who interact with patients are, just like the patients, unaware of who is or is not receiving the treatment.
-
-
 
 <!--## Job training
 
@@ -240,25 +226,18 @@ format_data %>%
   )
 ```
 
-We introduce a new term to draw an important distinction based on when these additional
- variables were collected.
+We introduce a new term to draw an important distinction based on when these additional variables were collected.
  
  **Covariate** 
  :    A variable collected in a randomized experiment that was measured or 
  determined prior to administering the
  treatment.
  
- Notice that covariates cannot be affected by the treatment since they were
- measured first.  Variables measured after treatment, including the outcome
- variable, may be affected by the treatment.
+Notice that covariates cannot be affected by the treatment since they were measured first.  Variables measured after treatment, including the outcome variable, may be affected by the treatment.
 <!--f these v were collected
 before or after treatment assignment was determined.  Variables measured or 
 determined in value before treatment assignment --- -->
-In our example, it's reasonable to imagine that major, GPA, and native 
-speaker status could all have been measured prior to the assignment, so they are
-covariates.
-
-
+In our example, it's reasonable to imagine that major, GPA, and native speaker status could all have been measured prior to the assignment, so they are covariates.
 
 <!--It 
 is natural to ask why the government bothered collecting this data.  From the last 
@@ -268,30 +247,17 @@ alone.-->
 
 ### Covariate balance
 
-Note that many of these covariates seem likely to be associated with the outcome.
-For example, students with a higher GPA may be more committed to doing class
-readings and be more likely to gain a deep understanding regardless of format.  If one
-group had more high-GPA students, that group might look like it had benefited from its
-reading format even if there were no difference between the formats for any single student.
-This motivates us to look for a quality called balance.
+Note that many of these covariates seem likely to be associated with the outcome. For example, students with a higher GPA may be more committed to doing class readings and be more likely to gain a deep understanding regardless of format. If one group had more high-GPA students, that group might look like it had benefited from its reading format even if there were no difference between the formats for any single student. This motivates us to look for a quality called balance.
 
 **Covariate balance**
-:   A covariate is balanced if its empirical distribution in the treated group is 
-similar to its empirical distribution in the control group.
+:   A covariate is balanced if its empirical distribution in the treated group is similar to its empirical distribution in the control group.
 
-On the other hand, if the distributions are very different between the treatment group and the control
-group, we say that the covariate is imbalanced.
+On the other hand, if the distributions are very different between the treatment group and the control group, we say that the covariate is imbalanced.
 
-There is a close link between covariate balance and randomized treatment assignment.
-Because treatment is randomly assigned with equal probability for each individual
-in our study, there is no way it should be able to systematically move higher-GPA
-students into one of the two groups. The same is true of all our other covariates.
-Thus we expect randomization to balance our covariates in general. 
+There is a close link between covariate balance and randomized treatment assignment. Because treatment is randomly assigned with equal probability for each individual in our study, there is no way it should be able to systematically move higher-GPA students into one of the two groups. The same is true of all our other covariates. Thus we expect randomization to balance our covariates in general. 
 
 <!--in the treatment group and in the
 control group.-->
-
-
 
 To check the balance of our GPA variable we can calculate a measure of difference between groups for a single covariate $x$:
 
@@ -299,29 +265,15 @@ $$
 SMD(x) = \frac{\overline{x}_{treatment} - \overline{x}_{control}}{\sqrt{\frac{1}{2}\widehat{\sigma}_{treatment}^2 + \frac{1}{2}\widehat{\sigma}_{control}^2}}
 $$
 
-This quantity is called the standardized mean difference or SMD.  The numerator is 
-just the difference in means (subtracting the control mean from the treated mean).
-To make the differences in means comparable across variables with very different
-scales, we divide by a `pooled' standard error estimate which comes from averaging the
-sample variances of the covariate in the two groups and taking its square error.  For GPA in
-our data frame above, the difference in means between groups is `r 
-mean(format_data$GPA[format_data$group == 'website'])` $-$ `r 
-round(mean(format_data$GPA[format_data$group == 'pdf']),2)` $=$  `r 
-round(mean(format_data$GPA[format_data$group == 'website'])-
-mean(format_data$GPA[format_data$group == 'pdf']),2)` and the pooled standard
-error is `r round(sqrt(0.5*var(format_data$GPA[format_data$group == 'website']) +
-0.5*var(format_data$GPA[format_data$group == 'pdf'])),2)`, so the SMD is
+This quantity is called the standardized mean difference or SMD.  The numerator is  just the difference in means (subtracting the control mean from the treated mean). To make the differences in means comparable across variables with very different scales, we divide by a `pooled' standard error estimate which comes from averaging the sample variances of the covariate in the two groups and taking its square error.  For GPA in our data frame above, the difference in means between groups is `r  mean(format_data$GPA[format_data$group == 'website'])` $-$ `r  round(mean(format_data$GPA[format_data$group == 'pdf']),2)` $=$  `r  round(mean(format_data$GPA[format_data$group == 'website'])- mean(format_data$GPA[format_data$group == 'pdf']),2)` and the pooled standard error is `r round(sqrt(0.5*var(format_data$GPA[format_data$group == 'website']) + 0.5*var(format_data$GPA[format_data$group == 'pdf'])),2)`, so the SMD is
 <!--`r round(mean(format_data$GPA[format_data$group == 'website'])-
 mean(format_data$GPA[format_data$group == 'pdf']),2)`/`r round(sqrt(0.5*var(format_data$GPA[format_data$group == 'website']) +
 0.5*var(format_data$GPA[format_data$group == 'pdf'])),2)` $=$-->
-`r round((mean(format_data$GPA[format_data$group == 'website'])-
-mean(format_data$GPA[format_data$group == 'pdf'])) /sqrt(0.5*var(format_data$GPA[format_data$group == 'website']) +
-0.5*var(format_data$GPA[format_data$group == 'pdf'])),2)`.
+`r round((mean(format_data$GPA[format_data$group == 'website'])- mean(format_data$GPA[format_data$group == 'pdf'])) /sqrt(0.5*var(format_data$GPA[format_data$group == 'website']) + 0.5*var(format_data$GPA[format_data$group == 'pdf'])),2)`.
 
-### Evaluating covariate balance across an experiment.
+### Evaluating covariate balance across an experiment
 
-To get a quick look at balance across all our variables, we can 
-create a **Love plot**:
+To get a quick look at balance across all our variables, we can create a **Love plot**:
 
 ```{r}
 #| echo: false
@@ -334,23 +286,11 @@ bal.tab(is_website ~ major + GPA + native_speaker, data = format_data,
   plot()
 ```
 
-The Love plot displays standardized mean differences (on a common scale on the
-x-axis) for all the covariates in our study, highlighting
-which covariates are most different between groups and in which direction.
+The Love plot displays standardized mean differences (on a common scale on the x-axis) for all the covariates in our study, highlighting which covariates are most different between groups and in which direction.
 
-Clearly in our experiment not all variables are perfectly balanced.  This alone
-isn't a red flag --- after all, randomized experiments only balance covariates
-on average, and some small differences are expected --- but it can be challenging
-to determine whether the differences are big enough to matter, especially in a 
-study this small.  
+Clearly in our experiment not all variables are perfectly balanced.  This alone isn't a red flag --- after all, randomized experiments only balance covariates on average, and some small differences are expected --- but it can be challenging to determine whether the differences are big enough to matter, especially in a  study this small.  
 
-One way to address
-this problem is by using hypothesis tests.
-For each covariate, we can test the null hypothesis that this covariate is
-independent of treatment and produce a p-value.  In code, this looks very
-similar to our test for association between treatment and outcome, except that
-we use the covariate instead of the outcome. Here we conduct this test for
-GPA. 
+One way to address this problem is by using hypothesis tests. For each covariate, we can test the null hypothesis that this covariate is independent of treatment and produce a p-value.  In code, this looks very similar to our test for association between treatment and outcome, except that we use the covariate instead of the outcome. Here we conduct this test for GPA. 
 
 ```{r}
 #| echo: false
@@ -373,9 +313,7 @@ null |>
   shade_p_value(obs_stat, direction = 'both')
 ```
 
-Clearly the difference in means we observed for GPA is not unexpected under
- random treatment assignment given our small sample size.
-
+Clearly the difference in means we observed for GPA is not unexpected under random treatment assignment given our small sample size.
 
 <!--Our null hypothesis is that treatment is independent of every one of the 
 covariates.  If we were focusing on a single covariate, the SMD would be a good
@@ -414,13 +352,7 @@ values when the null hypothesis is false).-->
 
 <!--### What if large imbalances are present?-->
 
-One of the most important reasons to check covariate balance is to catch problems
-with how the experiment was run. Suppose that we'd intended to sort a spreadsheet
-in a random order and assign the top half of the subjects to pdf, but that by 
-accident we sorted on GPA instead of randomly.  In this case our covariate 
-balance test would likely have rejected the null hypothesis that treatment was
-randomly assigned, allowing us to catch the issue.  For this reason it is often
- a good idea to check balance before actually running the experiment!
+One of the most important reasons to check covariate balance is to catch problems with how the experiment was run. Suppose that we'd intended to sort a spreadsheet in a random order and assign the top half of the subjects to pdf, but that by accident we sorted on GPA instead of randomly. In this case our covariate  balance test would likely have rejected the null hypothesis that treatment was randomly assigned, allowing us to catch the issue. For this reason it is often a good idea to check balance before actually running the experiment!
  
 <!-- In our example, there is no particular evidence of improper randomization.  
  However, it may still bother us that the pdf group has a mean GPA of 3.55 
@@ -478,8 +410,7 @@ be done for many variables at once.-->
 
 ## The Ideas in Code
 
-The `cobalt` package in R contains the function `bal.tab` to create tables of standardized differences.  By passing its 
-output to `plot` you can create a Love plot.
+The `cobalt` package in R contains the function `bal.tab` to create tables of standardized differences.  By passing its output to `plot` you can create a Love plot.
 
 ```{r}
 library(cobalt)
@@ -491,9 +422,7 @@ bal.tab(is_website ~ major + GPA + native_speaker, data = format_data,
   plot()
 ```
 
-Running balance tests uses infer much like we did in the generalization unit.  The covariate for which we are testing
-balance is the response and the treatment is the explanatory
-variable.  
+Running balance tests uses infer much like we did in the generalization unit.  The covariate for which we are testing balance is the response and the treatment is the explanatory variable.  
 
 ```{r}
 library(infer)
@@ -517,15 +446,7 @@ null |>
 
 ## Summary
 
-You may heard the phrase "Correlation does not imply causation ... unless it's 
-seen in data from a randomized control trial." While it is sometimes possible
-to make compelling causal claims from correlations found in data - a topic we
-will explore in depth next week - it does highlight the particular strength of 
-RCTs. RCTs are able to isolate the effect of interest by creating a carefully 
-selected control group and then assigning subjects to groups at random. By using
-a large number of replicates and checking balance on measured covariates we can
-demonstrate convincintly that  our control group on average serves as a close 
-counterfactual to our treatment group.
+You may heard the phrase "Correlation does not imply causation ... unless it's seen in data from a randomized control trial." While it is sometimes possible to make compelling causal claims from correlations found in data - a topic we will explore in depth next week - it does highlight the particular strength of  RCTs. RCTs are able to isolate the effect of interest by creating a carefully selected control group and then assigning subjects to groups at random. By using a large number of replicates and checking balance on measured covariates we can demonstrate convincingly that our control group on average serves as a close  counterfactual to our treatment group.
 
 
 [ ]{.column-margin}
