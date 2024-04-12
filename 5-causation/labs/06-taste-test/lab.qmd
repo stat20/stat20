@@ -1,5 +1,5 @@
 ---
-title: "Lab 6: A Matter of Taste"
+title: "Lab 7: A Matter of Taste"
 image: images/la-croix-small.png
 code-fold: false
 sidebar: false
