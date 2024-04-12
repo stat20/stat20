@@ -461,6 +461,7 @@ keep track of which differences are treated and which are not, and we compute th
 difference between their means instead of their overall mean:
 
 ```{r}
+#| eval: false
 set.seed(2024-3-28)
 bootstrap_did <- checkout_by_store |>
   specify(response = sales_diff, 
