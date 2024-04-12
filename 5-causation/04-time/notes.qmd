@@ -328,10 +328,11 @@ checkout_by_store |>
 use a similar strategy to the one we used for pre/post: take pre/post differences for all stores,
 (treated and pure control) then bootstrap these.  The only difference is that we
 keep track of which differences are treated and which are not, and we compute the
-difference between their means instead of their overall mean:
+difference between their means instead of their overall mean: -->
 
 ```{r}
 #| eval: false
+
 set.seed(2024-3-28)
 bootstrap_did <- checkout_by_store |>
   specify(response = sales_diff, 
@@ -346,7 +347,8 @@ bootstrap_did |>
   visualize() +
   shade_confidence_interval(bootstrap_confint)
 ```
-This bootstrap distribution suggests there is no strong evidence of a treatment
+
+<!--This bootstrap distribution suggests there is no strong evidence of a treatment
 effect of one particular sign; the data is consistent with a wide range of 
 both positive and negative effects.  This is not surprising given our small 
 sample size.  -->
@@ -418,6 +420,8 @@ checkout_by_store |>
 This code chunk shows how we can create a bootstrap confidence interval for our difference in difference estimate by resampling store differences.
 
 ```{r}
+#| eval: false
+
 set.seed(2024-3-28)
 bootstrap_did <- checkout_by_store |>
   specify(response = sales_diff, 
@@ -433,7 +437,7 @@ bootstrap_did |>
   shade_confidence_interval(bootstrap_confint)
 ```
 
-If we want a hypothesis test instead, we could instead specify an independence null hypothesis for checkout_by_store with the same response and explanatory variables, and generate null draws with `generate()` using the `type = permute` argument.
+If we want a hypothesis test instead, we could instead specify an independence null hypothesis for `checkout_by_store` with the same response and explanatory variables, and generate null draws with `generate()` using the `type = permute` argument.
 
 ## Summary
 
