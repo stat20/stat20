@@ -323,7 +323,7 @@ for(i in 1:20){
 #| echo: false
 head(grad_job, n = 20)
 ```
-We conduct nearest-neighbor mtching, forming five matched pairs.  These plots show how close the treated and control units are matched on our covariates.  <!--We can use the \texttt{plot} function to compare how close paired units lie on each variable.-->
+We conduct nearest-neighbor matching, forming five matched pairs.  These plots show how close the treated and control units are matched on our covariates.  <!--We can use the \texttt{plot} function to compare how close paired units lie on each variable.-->
 
 ```{r}
 #| echo: false
