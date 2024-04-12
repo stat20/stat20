@@ -4,17 +4,23 @@ subtitle: "Lab"
 format: stat20handout-pdf
 ---
 
-One source of data for this lab is the public Lahman database which contains a number of data sets with different units of observation. Below are the first few rows and some of the columns for two of these data sets: Teams and Batting. They contain data going back to 1871.
+One source of data for this lab is the public `Lahman` database which contains a number of data sets with different units of observation. Below are the first few rows and some of the columns for two of these data sets: `Teams` and `Batting`. They contain data going back to 1871. Use these excerpts to help you answer the following questions.
 
 ```{r}
 #| echo: false
+#| warning: false
 library(tidyverse)
 library(Lahman)
+library(infer)
+set.seed(5)
 knitr::kable(head(Teams %>% 
+                    slice_sample(n = 6, replace = FALSE) %>%
                     select(yearID, teamID, franchID, G, W, L, R, RA, name) %>%
                     arrange(desc(yearID))
                   ))
+
 knitr::kable(head(Batting %>% 
+                    slice_sample(n = 6, replace = FALSE) %>%
                     select(playerID, yearID, teamID, G, AB, R, H, BB, SO) %>%
                     arrange(desc(yearID))
                   ))
@@ -46,7 +52,7 @@ knitr::kable(head(Batting %>%
 \
 \
 
-5. Roughly since 1962 MLB Teams have played 162 games in a season. What do you think the distribution of wins (`W`) looks like? Sketch a plot, adding axis tick marks with plausible values, and describe the shape in words.
+5. Roughly since 1962 MLB Teams have played 162 games in a season. What do you think the distribution of wins (`W`) looks like? Sketch a plot of what you think the *entire* wins column looks like, adding axis tick marks with plausible values, and describe the shape in words.
 
 \
 \
@@ -63,7 +69,7 @@ knitr::kable(head(Batting %>%
 \
 \
 
-6. What do you think the relationship between wins and runs looks like? Sketch a plot, adding axis tick marks with plausible values, and describe the shape in words.
+6. What do you think the relationship between wins (`W`) and runs (`R`) looks like? Sketch a plot, adding axis tick marks with plausible values, and describe the shape in words.
 
 
 \
@@ -82,8 +88,8 @@ knitr::kable(head(Batting %>%
 \
 \
 
-7. Some people believe analytics is ruining baseball because Teams are more cautious which makes the games less entertaining. Do you agree or disagree? Why?
-
+7. Some people believe analytics is ruining baseball because Teams are more cautious which makes the games less entertaining. Do you agree or disagree? Why? Answer in two or more sentences. 
+ 
 \
 \
 \

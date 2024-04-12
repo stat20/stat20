@@ -27,6 +27,7 @@ library(patchwork)
 #| fig-height: 2
 #| fig-width: 5
 #| fig-align: center
+#| echo: false
 pop_eager <- data.frame(year = rep(c(1, 2, 3, 4),
                                    times = c(245, 210, 47, 25)),
                         eagerness = rep(c(10, 6, 3, 1),
@@ -85,7 +86,7 @@ p_samp_dist <- many_xbars %>%
 p_samp_dist
 ```
 
-This sampling distribution captures the two sources of error that creep in while generalizing. The horizontal offset from true population parameter (the red line) to the mean of the sampling distribution (the gold triangle) represents the bias. The spread of the sampling distribution represents the variation. In these lecture notes you'll learn how to quantify sampling variability using two common tools.
+This sampling distribution captures the two sources of error that creep in while generalizing. The horizontal offset from the true population parameter (the red line) to the mean of the sampling distribution (the gold triangle) represents the bias. The spread of the sampling distribution represents the variation. In these lecture notes you'll learn how to quantify sampling variability using two common tools.
 
 **Standard Error (SE)**
 : The standard deviation of the sampling distribution of a statistic.
@@ -116,6 +117,7 @@ Our population consists of the restaurants in San Francisco. Since the data are 
 #| fig-width: 4
 #| fig-height: 2.5
 #| fig-align: center
+#| echo: false
 
 load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
 
@@ -151,6 +153,7 @@ The distribution of this sample (an empirical distribution) looks like:
 #| fig-width: 4
 #| fig-height: 2.5
 #| fig-align: center
+#| echo: false
 
 set.seed(103122)
 samp_scores <- sample(fs_scores, 100)
@@ -187,6 +190,7 @@ Ordinarily this distribution takes some work to create, but in this thought-expe
 #| fig-width: 4
 #| fig-height: 2.5
 #| fig-align: center
+#| echo: false
 
 set.seed(10312022)
 samp_means <- replicate(100000, mean(sample(fs_scores, 100)))
@@ -219,6 +223,7 @@ Let's look at these three aspects of this process side-by-side.
 #| warning: false
 #| fig-width: 9
 #| fig-height: 3
+#| echo: false
 
 pop_dist + emp_dist + sampling_dist
 ```
@@ -232,9 +237,10 @@ pop_dist + emp_dist + sampling_dist
 Observe that:
 
 1. $\mu$ and the mean of the sampling distribution are roughly the same.
-2.$\sigma$ and the SE of the sample averages are related in the following way[^finite]:
 
-$$SE(\bar{x}) \approx \frac{\sigma}{\sqrt{n}}$$
+2. $\sigma$ and the SE of the sample averages are related in the following way[^finite]:
+
+   $$SE(\bar{x}) \approx \frac{\sigma}{\sqrt{n}}$$
 
 3. The histogram of the sample averages is not skewed like the histogram of the population, on the contrary, it is symmetric and bell-shaped, like the normal curve.
 
@@ -293,7 +299,7 @@ When presenting our findings, you might say, that based on a SRS of 100 restaura
 
 Suppose someone took a sample of 25 restaurants and provided an estimate of the average food safety score. Is that only 1/4 as accurate because the sample is 1/4 the size of ours?
 
-Suppose someone took a sample of 100 restaurants in New York City where there are 50,000 restaurants (this is a made up number). Is their estimate only 1/10 a accurate because the number of units in the population is 10 times yours?
+Suppose someone took a sample of 100 restaurants in New York City where there are 50,000 restaurants (this is a made up number). Is their estimate only 1/10 as accurate because the number of units in the population is 10 times yours?
 
 We can use the formula for the SE to answer these questions. In the table below, we have calculated SEs for a generic value of $\sigma$ and various choices of the population size and sample size.
 
@@ -314,7 +320,7 @@ What do you notice about the relationship between sample size and population siz
 ### Confidence Intervals
 
 Confidence intervals bring in more information from the thought-experiment.
-The confidence interval provides an interval estimate, instead of a point estimate, that is based on spread of the sampling distribution of the statistic.
+The confidence interval provides an interval estimate, instead of a point estimate, that is based on the spread of the sampling distribution of the statistic.
 
 We have seen that the sampling distribution takes a familiar shape: that of the normal curve (also called the bell curve)[^normalassump]. Therefore we can fill in some of the holes in the thought-experiment with approximations.
 
@@ -322,50 +328,55 @@ We have seen that the sampling distribution takes a familiar shape: that of the 
 
 ![](images/triptych-subs.jpg){fig-align=center width=400} 
 
-The sketch that we have added in the middle panel shows a sampling distribution that looks like the bell curve. To understand how this will be helpful, let's make a quick
-digression to talk about the normal distribution.
+This is the Central Limit Theorem in action. The CLT states that sums of random variables become normally distributed as $n$ increases. Conveniently enough, most useful statistics are some version of a sum: $\bar{x}$ is a sum divided by $n$ and $\hat{p}$ is a sum of variables that take values 0 or 1, divided by $n$. This powerful mathematical result enables one of the most popular methods of constructing confidence intervals.
 
-#### The Normal Distribution
+<!-- #### The Normal Distribution -->
 
-The normal distribution describes a continuous random variable that has a density function with a familiar bell shape[^normalpdf]. 
+<!-- The normal distribution describes a continuous random variable that has a density function with a familiar bell shape[^normalpdf].  -->
 
-[^normalpdf]: For a normally distributed random variable, $f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$. Read more on Wikipedia: <https://en.wikipedia.org/wiki/Normal_distribution>
+<!-- [^normalpdf]: For a normally distributed random variable, $f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$. Read more on Wikipedia: <https://en.wikipedia.org/wiki/Normal_distribution> -->
 
-```{r}
-#| warning: false
-#| fig-width: 4
-#| fig-height: 2
-#| fig-align: center
+<!-- ```{r} -->
+<!-- #| warning: false -->
+<!-- #| fig-width: 4 -->
+<!-- #| fig-height: 2 -->
+<!-- #| fig-align: center -->
 
-data.frame(x = seq(-3, 3, .01)) %>%
-  mutate(y = dnorm(x)) %>%
-  ggplot(aes(x = x, y = y)) +
-  geom_line() +
-  labs(x = "x",
-       y = "f(x)") +
-  scale_y_continuous(breaks = NULL) +
-  theme_bw()
-```
+<!-- data.frame(x = seq(-3, 3, .01)) %>% -->
+<!--   mutate(y = dnorm(x)) %>% -->
+<!--   ggplot(aes(x = x, y = y)) + -->
+<!--   geom_line() + -->
+<!--   labs(x = "x", -->
+<!--        y = "f(x)") + -->
+<!--   scale_y_continuous(breaks = NULL) + -->
+<!--   theme_bw() -->
+<!-- ``` -->
 
-If a random variable $X$ follows a normal distribution, we write
+<!-- If a random variable $X$ follows a normal distribution, we write -->
 
-$$X \sim \textrm{N}(\mu, \sigma)$$
+<!-- $$X \sim \textrm{N}(\mu, \sigma)$$ -->
 
-where $\mu$ is the mean of the distribution and $\sigma$ is its standard deviation. The particular normal distribution shown above is the *standard normal distribution*, where $\mu = 0$ and $\sigma = 1)$.
+<!-- where $\mu$ is the mean of the distribution and $\sigma$ is its standard deviation. The particular normal distribution shown above is the *standard normal distribution*, where $\mu = 0$ and $\sigma = 1)$. -->
 
-We can calculate the probability of any event related to $X$ by finding the area under the curve corresponding to that event. That includes the probability that $X$ falls within a particular interval. In the table below, we record the probabilities of three such intervals.
+<!-- We can calculate the probability of any event related to $X$ by finding the area under the curve corresponding to that event. That includes the probability that $X$ falls within a particular interval. In the table below, we record the probabilities of three such intervals. -->
 
-| Interval | Area under the normal curve |
-| ---- | ---- |
-| Between -1 and 1 | `r round(pnorm(1)-pnorm(-1), 2)` |
-| Between -1.96 and 1.96 | `r round(pnorm(1.96)-pnorm(-1.96), 2)` |
-| Between -2.58 and 2.58 | `r round(pnorm(2.58)-pnorm(-2.58), 2)` |
+<!-- | Interval | Area under the normal curve | -->
+<!-- | ---- | ---- | -->
+<!-- | Between -1 and 1 | `r round(pnorm(1)-pnorm(-1), 2)` | -->
+<!-- | Between -1.96 and 1.96 | `r round(pnorm(1.96)-pnorm(-1.96), 2)` | -->
+<!-- | Between -2.58 and 2.58 | `r round(pnorm(2.58)-pnorm(-2.58), 2)` | -->
 
-So *if* we know a particular distribution is similar in shape to the normal distribution, we're able to calculate the probabilities that the random variable falls within a particular interval. With this observation in hand, let's return to the task of making an interval estimate.
+<!-- So *if* we know a particular distribution is similar in shape to the normal distribution, we're able to calculate the probabilities that the random variable falls within a particular interval. With this observation in hand, let's return to the task of making an interval estimate. -->
 
 #### Normal Confidence Intervals
 
 When the sampling distribution is roughly normal in shape, then we can construct an interval that expresses exactly how much sampling variability there is. Using our single sample of data and the properties of the normal distribution, we can be 95% confident that the population parameter is within the following interval.
+
+:::{.column-margin}
+
+The number 1.96 doesn't come out of thin air. Refer to the notes on the [Normal Distribution](../../3-probability/06-normal-approx/notes.qmd) to understand the origins.
+
+:::
 
 $$[\bar{x} - 1.96 SE, \bar{x} + 1.96SE]$$
 
@@ -386,6 +397,7 @@ Let's simulate it! At the bottom of the plot below, the horizontal line at the $
 #| fig-width: 4
 #| fig-height: 5
 #| fig-align: center
+#| echo: false
 
 set.seed(10312022)
 samp25_means <- replicate(100, mean(sample(fs_scores, 25)))
@@ -431,6 +443,7 @@ The thought-experiment appears as
 #| warning: false
 #| fig-width: 9
 #| fig-height: 3
+#| echo: false
 
 hi_score_dist <- ggplot(as.data.frame(hi_scores), 
                         aes(x=hi_scores, y=..density..)) + 
@@ -449,7 +462,7 @@ hi_samp_dist <- ggplot(as.data.frame(hi_score_samp), aes(x=hi_score_samp, y=..de
 
 hi_sampling_dist <- ggplot(as.data.frame(hi_score_means), 
                         aes(x=hi_score_means, y=..density..)) + 
-      geom_histogram(bins = 20, 
+      geom_histogram(bins = 16, 
                  color="black", fill="gray") + 
       xlab("Proportion excellent") +
       ylab("Proportion") +

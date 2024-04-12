@@ -1,0 +1,128 @@
+---
+title: "The Method of Least Squares"
+format: stat20handout-pdf
+---
+
+```{r}
+#| message: false
+#| echo: false
+library(tidyverse)
+library(stat20data)
+```
+
+Where applicable, answer the following questions using R code and write the code you used in the space below.
+
+@. Create a scatter plot of the relationship between distance traveled and average speed in miles per hour of every flight that left the bay area in 2020 (recall the data set is called `flights`).
+
+\
+
+\
+
+\
+
+@. Is the problem of predicting average speed by distance traveled a regression problem or a classification problem? How about using distance to predict whether a plane travels over 400 miles per hour?
+
+\
+
+\
+
+
+
+@. Use the `lm()` function to fit a linear model by least squares that predicts the average speed of the flight based on the distance and save it to `m1`.
+
+\
+
+@. Write out the equation of the linear model that you have fit.
+
+
+\
+
+@. Imagine that you wanted to predict the average speed for three flights: one in which a plane travels 10 miles, one in which a plane travels 500 miles and another in which the plane travels 5000 miles. Which of these three  predictions, if any, do you expect to be accurate, and why? Comment on each of the three potential predictions.
+
+\
+
+\
+
+<!---
+@. Imagine that you wanted to predict the average speed for two flights: one in which a plane travels 500 miles, and What average speed would does your model predict for a flight travelling 0 miles? 500 miles? 5000 miles? 
+
+@. Which of the three predictions in the last question, if any, do you expect to be accurate and why?
+-->
+
+@. Remake your scatter plot but add a line representing your linear model by adding a layer with `geom_smooth(method = "lm")`. 
+
+\
+
+\
+
+\
+
+@. How could you modify your model to improve the predictions that it makes?
+
+\
+
+<!---
+`lm()` uses the closed form equations to find the least squares estimates but there are other ways to do this optimization; one was discussed in the notes. We will have you go through this method in this problem set. 
+
+The function `rss` below is meant to mirror the formula for $\text{RSS}$ for a simple linear regression model:
+
+$$ \text{RSS}(b_0,b_1) = \sum_{i = 1}^n \left(y_i - (b_{0} + b_1x_i    )\right)^2$$
+```{r}
+#| echo: true
+#| eval: false
+rss <- function(coef) {
+  sum((flights$avg_speed - (coef[1] + coef[2] * flights$distance))^2)
+}
+```
+
+
+`coef[1]` and `coef[2]` represent $b_0$ and $b_1$, respectively and refer to the first two elements of a vector called `coef` which is the argument of the function. 
+
+@. Use `optim()` to find the slope $b_0$ and intercept $b_1$ that minimizes the RSS function. *Play around with starting values of $b_0$ and $b_1$ in the `par` vector until you get something that you like*; **do not plug in the exact estimates you get from using `lm()`.** Comment on whether it matches the estimates that come out of `lm()`. Fill in the template below with the starting values that you settle on. 
+
+
+```{r}
+#| echo: true
+#| eval: false
+optim(par = c( , ), fn = )
+```
+
+\
+
+\
+
+@. Change the `rss` function from the last question so it captures the sum of the *absolute value of the residuals*. This is given by the function below. 
+
+
+$$ \text{RSABS}(b_0,b_1)= \sum_{i = 1}^n \left|y_i - (b_{0} + b_1x_i)    \right|$$
+
+
+
+> Call this new function you make `rsabs`. You can fill in the template below (you do not need to use all of the space, this is just so you have more room to write).
+
+```{r}
+#| echo: true
+#| eval: false
+rsabs <- function(coef) {
+  
+  
+  
+  
+  
+}
+```
+
+@. Use `rsabs` to estimate the parameters $b_0$ and $b_1$ using `optim()` as you did before. *Play around with starting values for the `par` vector until you get something that you like*; **do not plug in the exact estimates you get from using `lm()`.** Fill in the template below with the starting values that you settle on. 
+
+```{r}
+#| echo: true
+#| eval: false
+optim(par = c( , ), fn = )
+```
+
+
+@. Comment on how well the estimates from `rsabs` match the estimates that come out of `lm()` and the estimates that you got from `rss` in two or more sentences.  
+
+\
+-->
+

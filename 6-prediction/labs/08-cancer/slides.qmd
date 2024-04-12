@@ -1,5 +1,5 @@
 ---
-title: "Lab 8: Diagnosing Cancer"
+title: "Lab 6: Diagnosing Cancer"
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
@@ -92,6 +92,8 @@ Most of the visible objects in these images are cell nuclei, not the full cell; 
 
 :::{.notes}
 We compute 10 morphological features for each cell nucleus in the biopsy image.
+
+It may be helpful to first draw one unit (one glass slide, that you would see under the microscope). Then in this slide, you make a data frame with cells, and then group by-summarise. Then the resulting calculations become one row in the final dataset. 
 :::
 
 
