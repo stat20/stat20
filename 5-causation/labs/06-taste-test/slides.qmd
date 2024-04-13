@@ -25,48 +25,36 @@ execute:
 :::notes
 Suggested timeline
 - [10 min] Slides and making teams
-- [40 min] Working on the protocol
+- [45 min] Working on the protocol
 
 General Advice
 - The students have seen *nothing* about experimental design yet in class. The idea is to have them use their own mental models to solve this problem, then later review and revise them. That's to say: coach them only to be precise in their protocol, not to be using best practices in experimental design. Errors made here are great learning opportunities later.
 - The first phase of the lab can all be done with paper and pencil, so you can ask that students stow their laptops.
-- It might be helpful to guide students to start at the end, what they expect their data and plots to look like, then work back towards the hypothesies and claims.
+- It might be helpful to guide students to start at the end, what they expect their data and plots to look like, then work back towards the hypotheses and claims.
 - As written, most null hypotheses will suggest the use of a difference in proportions as the test statistic.
 :::
 
 
 ## Making Claims with Data
 
-- **John Arbuthnot's Question**: What proportion of total births are of girls?
+- **So far**: Pose question -> observe data -> analyze data -> make claim.
 
 . . .
 
-- **The Data**: Christening records from London churches.
+- e.g. Iranian election: 
+    1. Did fraud occur?
+    2. Observe vote counts by city.
+    3. Test of hypothesis that votes follow Benford's law.
+    4. Votes don't follow Benford's law well but not clear that this means fraud.
 
 . . .
 
-- **The Analysis**: In all years studied, the proportion of girls was less than 50%.
-
-. . .
-
-```{r}
-#| echo: false
-#| fig-height: 3
-#| message: false
-#| fig-align: center
-
-library(tidyverse)
-library(stat20data)
-data(arbuthnot)
-arbuthnot <- arbuthnot %>%
-  mutate(p_girls = girls / (boys + girls))
-ggplot(arbuthnot, aes(x = year, y = p_girls)) +
-  geom_line() +
-  ylim(0, 1) +
-  theme_gray(base_size = 14)
-```
-
-- **Potential Claim**: At birth, humans are more likely to be genetically male than genetically female.
+- **This week**: 
+  @. Identify possible claim 
+  @. Imagine analysis that would show it.
+  @. Plan data collection to allow that analysis.
+  @. Carry out data collection + analysis.
+  @. Check claim.
 
 :::notes
 First layout the arc of the Arbuthnot lab from the beginning of the semester. The general theme is: how can we construct claims and answer questions using data?
@@ -76,12 +64,12 @@ This week students will work backwards: start with a claim that they think may b
 
 ## But first
 
-Please get into groups of 4. Take turns introducing yourselves.
+Please get into groups of 3 (or 4). Take turns introducing yourselves.
 
 
 ## A Matter of Taste
 
-**Your challenge**:  Determine whether you can affect one your teammates perception of bubble water by manipulating their experience of tasting.
+**Your challenge**:  Determine whether you can affect one your teammates' perceptions of bubble water by manipulating their experience of tasting.
 
 :::: {.columns}
 
@@ -95,7 +83,6 @@ Please get into groups of 4. Take turns introducing yourselves.
 - 50 minutes (half of next class)
 - 2 cans of soda water, each one from a different flavor
 - small paper cups
-- straws
 - saltine crackers
 - other materials welcome
 :::
@@ -122,7 +109,7 @@ At this point, go over to the pdf of the handout and project each section / ques
 
 - Be precise in your protocol.
 - Be sure your claim corresponds to your protocol corresponds to your data corresponds to your plots.
-- Before leaving today, scan both sides of the handout with a scanner app and upload to Gradescope as Lab 6.1.
+- Before leaving today, scan both sides of the handout with a scanner app and upload to Gradescope as Lab 7.1.
 
 ```{r}
 countdown::countdown(50)

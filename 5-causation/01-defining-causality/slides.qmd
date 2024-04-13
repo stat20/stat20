@@ -22,10 +22,17 @@ execute:
   echo: false
 ---
 
-## Agenda
+# Agenda
 
+-  Announcements
 -  Concept Questions
 -  Lab: A Matter of Taste
+
+# Announcements 
+
+- Lab 7 released today, due next Tuesday
+- 2 problem sets next week, due the Tuesday of R\&R week
+
 
 # Concept Questions
 
@@ -60,46 +67,84 @@ As a postscript, this is likely one reason why firing squads are have multiple s
 
 ## 
 
-In the next slide, you will see the first few rows of a dataset containing demographic information on California counties.
+All of the four people in the table below need to travel from Berkeley to San Francisco today, and are trying to decide whether to take BART or to drive. The table below shows travel times for each individual (assume these are the true, unknown numbers, not just predictions).
 
+| Name | Travel time by car (min) | Travel time by BART (min) |
+|:---:|--:|----:|
+Maria | 35 | 28 |
+Fan   | 30 | 32 |
+Alice |40 |55 |
+Muhammad| 30 |40 |
 . . .
 
-:::poll
-We are interested in determining whether a difference in `median_edu` has a causal effect on `homeownership`. With this in mind, which county serves as the best counterfactual match to Fresno County?
+::: poll
 
+Pick the correct way to fill in the following sentence: "Taking BART instead of driving will cause ___ to arrive more than ___ minutes later."
 
-(A) Kern County
-(B) Marin County
-(C) Contra Costa County 
-(D) Shasta County
-(E) Del Norte County
-:::
-
-:::notes
-
-The answer is (A), since all categorical columns except homeownership have the same entries. 
-
-You may want to mention that this was a final question last year. 
-:::
-
-## {.smaller}
-
-:::poll
-We are interested in determining whether a difference in `median_edu` has a causal effect on `homeownership`. With this in mind, which county serves as the best counterfactual match to Fresno County?
 :::
 
 ```{r}
-library(openintro)
-library(tidyverse)
-set.seed(35)
-county %>%
-  filter(state == "California") %>%
-  drop_na(smoking_ban) %>%
-  slice_sample(n = 10) %>%
-  select(name,homeownership,median_edu,metro, smoking_ban) %>%
-  knitr::kable()
+countdown::countdown(1)
 ```
 
+## 
+
+All of the four people in the table below need to travel from Berkeley to San Francisco today, and are trying to decide whether to take BART or to drive. The table below shows travel times for each individual (assume these are the true, unknown numbers, not just predictions).
+
+| Name | Travel time by car (min) | Travel time by BART (min) |
+|:---:|--:|----:|
+Maria | 35 | 28 |
+Fan   | 30 | 32 |
+Alice |40 |55 |
+Muhammad| 30 |40 |
+. . .
+
+::: poll
+
+What is the average treatment effect of taking BART on travel time for
+these four subjects?
+
+:::
+
 ```{r}
-countdown::countdown(2)
+countdown::countdown(1)
 ```
+
+## 
+
+All of the four people in the table below need to travel from Berkeley to San Francisco today. The table below shows the actual travel times for each individual using the method they chose to use.
+
+| Name | Travel time by car (min) | Travel time by BART (min) |
+|:---:|--:|----:|
+Maria | ? | 28 |
+Fan   | ? | 32 |
+Alice |40 | ? |
+Muhammad| 30 |? |
+. . .
+
+::: poll
+
+What would we most likely estimate the average effect of taking BART (rather than driving) to be if we only observed this data?
+
+:::
+
+::: notes
+
+This is a good chance to talk about why it's hard to measure causal effects.  In the example the people who choose to ride BART are those for whom getting to San Francisco is easiest anyway.  Asking "How would you try to collect data about this causal claim differently to get a better. measure of the causal effect?" provides a nice lead-in to the lab.
+
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+# Break 
+
+```{r}
+countdown::countdown(5, top = 0)
+```
+
+# Lab 7
+
+
+
