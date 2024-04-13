@@ -451,9 +451,11 @@ schedule:
             
   - week: 14
     days:
+      - topic: "Lab 7 Workshop"
+        display-date: Apr 22
       - topic: "Causal Effects in Observational Studies"
         display-date: Apr 23
-        date: 4/24/24
+        date: 4/23/24
         items:
           - type: Notes
             href: 5-causation/03-matching/notes.qmd

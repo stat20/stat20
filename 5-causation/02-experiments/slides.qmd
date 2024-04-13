@@ -23,25 +23,72 @@ execute:
 ---
 
 ## Agenda
+- Announcements
+- Concept Questions
+- Lab 7.2
 
-- A Matter of Taste II
-- Principles of Experimental Design
+##
 
-# A Matter of Taste II
+We run an experiment to see if informative phone calls encourage people to vote.  We obtain phone numbers for 1000 registered voters and randomly assign half of them to receive calls from volunteers.  The volunteers tell them the location of their polling place and the date of the election.  Our outcome is whether or not the subjects vote in the next election.
 
-Please:
+::: poll
 
-1. Conduct your experiment
-2. Record your data
-3. Complete and submit part II as a group
+Which of the following are possible covariates for our study?
 
-If you don't finish in the allotted time, finish up after class.
+A. The party affiliation of the voter (Republican or Democrat).
+B. Whether the next election is a presidential election or not.
+C. Whether the voter voted in the last election.
+D. Whether the voter voted for more Republicans or more Democrats in the next election.
+E. Whether the treated voters hung up on the volunteer.
+:::
+
+::: notes
+
+The point of this question is to get the students thinking about whether variables are measured before or after treatment assignment.A and C are correct answers, D and E are not (although E is measured before the primary outcome, it is still after treatment).  B is technically a covariate but probably not a useful one; unless our experiments spans multiple election cycles, it will have the same value for all subjects.
+
+:::
 
 ```{r}
-countdown::countdown(60)
+countdown::countdown(1)
 ```
 
-# Principles of Experimental Design
+
+##
+::: poll
+
+Which of the following claims about covariate balance are true?
+
+A. Randomized treatment assignment tends to produce covariate balance.
+B. A standardized mean difference that is not equal to zero likely means that randomization was not conducted correctly.
+C.  The Love plot shows the difference in means or proportions 
+for each covariate across treatment groups.
+D. In a hypothesis test for balance, the null hypothesis is that the
+treatment assignment and the covariate are independent.
+
+
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+<!--##
+
+Here is some code used to conduct a balance test for GPA in the 
+experiment discussed in the notes which assigns students to one
+of two groups: pdf or website.
+
+
+::: poll
+
+Which line correctly completes the code chunk?
+specify lines that play with which is explanatory 
+and which is response, whether we use both or not.
+
+
+:::
+
+-->
 
 ## The Essential Question of Our Time
 
@@ -57,6 +104,22 @@ Which is the best flavor?
 This purely for fun. Some people have strong opinions about this.
 :::
 
+
+# Lab 7.2
+
+Please:
+
+1. Conduct your experiment
+2. Record your data
+3. Complete and submit part II as a group
+
+If you don't finish in the allotted time, finish up after class.
+
+```{r}
+countdown::countdown(60)
+```
+
+
 ##
 
 ```{r echo = FALSE, fig.align='center'}
@@ -68,8 +131,10 @@ Could your taster distinguish between flavors?
 
 A. Yes, and it was statistically significant (p < .05).  
 B. Yes, but it was not statistically significant (p > .05).  
-C. No.  
-D. We tested a different claim.  
+C. Yes, but we haven't conducted the test yet.
+D. No.
+E. Not sure, we haven't computed the difference in proportions yet.
+F. We tested a different claim.  
 :::
 
 :::notes

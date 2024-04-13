@@ -28,7 +28,8 @@ in cases where researchers were not able to perform an experiment.-->
 
 An experiment is generally characterized as being a setting where the researcher actively assigns subjects or units to one particular condition or another. The most potent design of an experiment to determine whether one variable, the *treatment*, affects the outcome at the group level is the aptly named *Randomized Controlled Trial (RCT)*. 
 
-As a running example, consider an immediately relevant question: would reading these notes as a webpage (and maybe copying and pasting code cells into RStudio) lead to a deeper understanding and a correspondingly better score on the final exam? Let's run through each term one-by-one to think through how to design an RCT and effectively answers this question.
+As a running example, consider an immediately relevant question: would reading these notes as a PDF lead to a deeper understanding and a correspondingly better score on the final exam than reading them as a 
+webpage? Let's run through each term one-by-one to think through how to design an RCT and effectively answers this question.
 
 ### Control
 
