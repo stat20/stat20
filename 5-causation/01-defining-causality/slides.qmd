@@ -26,6 +26,7 @@ execute:
 
 -  Announcements
 -  Concept Questions
+-  Course Evaluations
 -  Lab: A Matter of Taste
 
 # Announcements 
@@ -50,7 +51,7 @@ D. Soldier 2
 :::
 
 ```{r}
-countdown::countdown(2)
+countdown::countdown(2, bottom = -1)
 ```
 
 :::notes
@@ -83,9 +84,17 @@ Pick the correct way to fill in the following sentence: "Taking BART instead of 
 
 :::
 
+
+
 ```{r}
-countdown::countdown(1)
+countdown::countdown(1, bottom = -1)
 ```
+
+:::notes
+
+This is the first question in a sequence and is kind of a warmup.  It should be quite easy and probably only needs 30 seconds to answer.
+
+:::
 
 ## 
 
@@ -107,7 +116,7 @@ these four subjects?
 :::
 
 ```{r}
-countdown::countdown(1)
+countdown::countdown(1, bottom = -1)
 ```
 
 ## 
@@ -124,19 +133,46 @@ Muhammad| 30 |? |
 
 ::: poll
 
-What would we most likely estimate the average effect of taking BART (rather than driving) to be if we only observed this data?
+What is a natural estimate of the average effect of taking BART (rather than driving) if we only observed this data?
 
 :::
 
+
+
+```{r}
+countdown::countdown(1, bottom = -1)
+```
+
+## 
+
+All of the four people in the table below need to travel from Berkeley to San Francisco today. The table below shows the actual travel times for each individual using the method they chose to use.
+
+| Name | Travel time by car (min) | Travel time by BART (min) |
+|:---:|--:|----:|
+Maria | ? | 28 |
+Fan   | ? | 32 |
+Alice |40 | ? |
+Muhammad| 30 |? |
+. . .
+
+::: poll
+
+What are two different reasons why this estimate of the average treatment effect might not be very reliable?
+
+:::
+
+```{r}
+countdown::countdown(3, bottom = -1)
+```
 ::: notes
+This last question is designed to be a "pair and share" exercise and does not have an associated PollEV item.  After they discuss you can ask a couple of them to share.
 
 This is a good chance to talk about why it's hard to measure causal effects.  In the example the people who choose to ride BART are those for whom getting to San Francisco is easiest anyway.  Asking "How would you try to collect data about this causal claim differently to get a better. measure of the causal effect?" provides a nice lead-in to the lab.
 
 :::
 
-```{r}
-countdown::countdown(1)
-```
+<!--# Course Evaluations-->
+
 
 # Break 
 

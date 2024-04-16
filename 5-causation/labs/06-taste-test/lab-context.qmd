@@ -13,7 +13,7 @@ Write to the right of each role the first and last name of the group member fill
 
 ### Causal Question
 
-In one sentence, write the causal question you intend to test. It should be composed of a *response* variable having to do with perception of bubble water and whether it is effected by a given intervention / *explanatory* variable.
+In one sentence, write the causal question you intend to test. It should be composed of a *response* variable having to do with perception of bubble water and whether it is affected by a given intervention / *explanatory* variable.
 
 \
 
@@ -63,7 +63,7 @@ Sketch a plot that you will use to use to determine how consistent your data are
 \begin{table*}[h]
   \centering
   \begin{tabular}{lr}
-\emph{Scenario 1: Data supports claim} & \emph{Scenario 2: Data does not support claim}
+\emph{Scenario 1: Data supports null hypothesis} & \emph{Scenario 2: Data supports alternative hypothesis}
   \end{tabular}
 \end{table*}
 

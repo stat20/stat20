@@ -433,10 +433,10 @@ schedule:
             render: true
           - type: Slides
             href: 5-causation/01-defining-causality/slides.qmd
-            render: false
+            render: true
           - type: Lab
             href: 5-causation/labs/06-taste-test/lab.qmd
-            render: false
+            render: true
             
       - topic: "Randomized Experiments"
         display-date: Apr 18
@@ -444,7 +444,7 @@ schedule:
         items:
           - type: Notes
             href: 5-causation/02-experiments/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 5-causation/02-experiments/slides.qmd
             render: false
