@@ -283,6 +283,10 @@ df %>%
   )
 ```
 
+
+
+
+
 It is easier to come up with plausible-seeming estimates
 of average treatment effects than individual treatment effects
 because we see subjects under both treatment and control conditions.
@@ -290,10 +294,6 @@ But to decide if estimates like the one we've just given are reliable
 we need to think about how the data for the two groups was generated and
 whether they serve as good approximations to each other's counterfactuals.
 This question will be the focus of the rest of the causality unit.
-
-
-:::
-
 
 <!-- ## Correlation and Causation: the history of Smoking and Cancer -->
 
