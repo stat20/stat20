@@ -26,7 +26,7 @@ execute:
 
 -  Announcements
 -  Concept Questions
--  Course Evaluations
+<!---  Course Evaluations-->
 -  Lab: A Matter of Taste
 
 # Announcements 
