@@ -58,8 +58,8 @@ countdown::countdown(1)
 
 Which of the following claims about covariate balance are true?
 
-A. Randomized treatment assignment tends to produce covariate balance.
-B. A standardized mean difference that is not equal to zero likely means that randomization was not conducted correctly.
+A.  Randomized treatment assignment tends to produce covariate balance.
+B.  A standardized mean difference that is not equal to zero likely means that randomization was not conducted correctly.
 C.  The Love plot shows the difference in means or proportions 
 for each covariate across treatment groups.
 D. In a hypothesis test for balance, the null hypothesis is that the
@@ -129,12 +129,12 @@ knitr::include_graphics("images/la-croix.png")
 ::: poll
 Could your taster distinguish between flavors?
 
-A. Yes, and it was statistically significant (p < .05).  
-B. Yes, but it was not statistically significant (p > .05).  
-C. Yes, but we haven't conducted the test yet.
-D. No.
-E. Not sure, we haven't computed the difference in proportions yet.
-F. We tested a different claim.  
+A.  Yes, and it was statistically significant (p < .05).  
+B.  Yes, but it was not statistically significant (p > .05).  
+C.  Yes, but we haven't conducted the test yet.
+D.  No.    
+E.  Not sure, we haven't computed the difference in proportions yet.
+F.  We tested a different claim.  
 :::
 
 :::notes

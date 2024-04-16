@@ -47,7 +47,7 @@ General Advice
     3. Test of hypothesis that votes follow Benford's law.
     4. Votes don't follow Benford's law well but not clear that this means fraud.
 
-. . .
+## Making Claims with Data
 
 - **This week**: 
   @. Identify possible claim 
@@ -57,7 +57,6 @@ General Advice
   @. Check claim.
 
 :::notes
-First layout the arc of the Arbuthnot lab from the beginning of the semester. The general theme is: how can we construct claims and answer questions using data?
 
 This week students will work backwards: start with a claim that they think may be true, then decide how to collect data in a manner that will be most effective at determining whether or not the claim is true.
 :::
@@ -88,28 +87,64 @@ Please get into groups of 3 (or 4). Take turns introducing yourselves.
 :::
 ::::
 
+
+
+## Group Members
+
+![](images/members.png)
+
+::: notes
+The main reason for the roles here is to dedicate just one person to handling the materials for health safety.
+:::
+
+## Question and Hypotheses
+
+![](images/question.png)
+
+::: notes
+Prompt them to think carefully about their wording here in the question. How ambitious and general do they want to be?
+
+It is also very common for people to suggest non-causal questions.  It will help to underline the idea of intervention on this slide.
+:::
+
+## Hypotheses
+
+![](images/hypothesis.png)
+
+## Protocol  {.nostretch}
+
+![](images/protocol.png){fig-width=150%}
+
 :::notes
+Here they must be very precise. We're spoken about reproducible science in class, so use that language to encourage careful work. They must be able to pass this protocol off to another group, and they should be able to carry out the intended experiment with no ambiguity.
+:::
 
-At this point, go over to the pdf of the handout and project each section / question in turn:
 
-1. The main reason for the roles here is to dedicate just one person to handling the materials for health safety.
+## Data {.nostretch}
 
-2. Prompt them to think carefully about their wording here in the claim. How ambitious and general do they want to be? Encourage a clear causal mechanism using wording like A causes an increase in B.
 
-3. It will be helpful in formulating their hypotheses if they formulate them both in words (i.e. removing a sense of a smell will lead to a drop in ability to detect the difference in two flavors) and also in terms of proportions.
+![](images/data.png){fig-width=150%}
 
-4. The protocols must be very precise. Use the language of reproducibile analyses to encourage careful work. They must be able to pass this protocol off to another group, and they should be able to carry out the intended experiment with no ambiguity.
+:::notes
+This is intended to be a blank table with n rows and at least 1 column. They may plan to record either several extraneous variables or not enough to draw the conclusions they intend. As before, don't correct them. They may discover mid-experiment that they did this part wrong, and that's great.
+:::
 
-5. The dataframe is intended to be a blank table with n rows and at least 1 column. They may plan to record either several extraneous variables or not enough to draw the conclusions they intend. As before, don't correct them. They may discover mid-experiment that they did this part wrong, and that's great.
 
-5. Encourage them to check that their viz is possible given their data frame and their data frame is possible give their protocol, and that their viz bears directly on their hypotheses.
+## Graphics
+
+![](images/eda.png)
+
+
+
+:::notes
+Encourage them to check that their viz is possible given their data frame and their data frame is possible give their protocol, and that their viz bears directly on their hypotheses.
 :::
 
 ## Things to remember
 
 - Be precise in your protocol.
 - Be sure your claim corresponds to your protocol corresponds to your data corresponds to your plots.
-- Before leaving today, scan both sides of the handout with a scanner app and upload to Gradescope as Lab 7.1.
+- **Important**: Lab 7.1 must be fully completed and shown to instructor before beginning Lab 7.2.  Finish today if possible, by Friday night (due date) at latest.
 
 ```{r}
 countdown::countdown(50)

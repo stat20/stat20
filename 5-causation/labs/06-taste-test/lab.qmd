@@ -12,7 +12,7 @@ sidebar: false
 - [Lab 6.1: A Matter of Taste](lab-context.pdf)
 
 
-## Part II: Computing on the Data
+<!--## Part II: Computing on the Data
 
 Be sure to tag your group mates when you submit this to Gradescope!
 
@@ -40,5 +40,5 @@ differs significantly across your experimental groups and interpret the results.
     d. The p-value and your conclusion (use $\alpha = .05$) regarding null hypothesis and original claim.
 
 
-6. A thought experiment: if you did not find a significant effect, speculate as to what you could change about your protocol to increase the chance that you find an effect. If you did find a significant effect, speculate as to what you would change about your protocol if you wanted to decrease the chance that you'd find an effect if you were to repeat the experiment.
+6. A thought experiment: if you did not find a significant effect, speculate as to what you could change about your protocol to increase the chance that you find an effect. If you did find a significant effect, speculate as to what you would change about your protocol if you wanted to decrease the chance that you'd find an effect if you were to repeat the experiment.-->
 x
