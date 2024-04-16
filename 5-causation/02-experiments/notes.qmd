@@ -3,7 +3,7 @@ title: "Randomized Experiments"
 subtitle: "Principles of experimental design"
 format:
   html:
-    code-fold: true
+    code-fold: false
     code-link: true
     code-summary: "."
   pdf: default
@@ -291,7 +291,7 @@ The Love plot displays standardized mean differences (on a common scale on the x
 
 Clearly in our experiment not all variables are perfectly balanced.  This alone isn't a red flag --- after all, randomized experiments only balance covariates on average, and some small differences are expected --- but it can be challenging to determine whether the differences are big enough to matter, especially in a  study this small.  
 
-One way to address this problem is by using hypothesis tests. For each covariate, we can test the null hypothesis that this covariate is independent of treatment and produce a p-value.  In code, this looks very similar to our test for association between treatment and outcome, except that we use the covariate instead of the outcome. Here we conduct this test for GPA. 
+One way to address this problem is by using hypothesis tests. For each covariate, we can test the null hypothesis that this covariate is independent of treatment and produce a p-value.  In practice this is just like the tests from the generalization unit, but it uses the covariate in the test statistic instead of the outcome. Here we conduct this test for GPA. 
 
 ```{r}
 #| echo: false
@@ -314,7 +314,9 @@ null |>
   shade_p_value(obs_stat, direction = 'both')
 ```
 
-Clearly the difference in means we observed for GPA is not unexpected under random treatment assignment given our small sample size.
+The p-value is `r null |> get_pvalue(obs_stat, direction =  'both')`. Clearly the difference in means we observed for GPA is not unexpected under random treatment assignment given our small sample size.  Note that although our ultimate project here is
+investigating a causal claim, this particular step is an example of generalization:
+based on the particular set of treatment assignments we see in this dataset (the sample), we are making a claim about the broader process that generated the treatment assignments.
 
 <!--Our null hypothesis is that treatment is independent of every one of the 
 covariates.  If we were focusing on a single covariate, the SMD would be a good
@@ -411,7 +413,9 @@ be done for many variables at once.-->
 
 ## The Ideas in Code
 
-The `cobalt` package in R contains the function `bal.tab` to create tables of standardized differences.  By passing its output to `plot` you can create a Love plot.
+The `cobalt` package in R contains the function `bal.tab` to create tables of standardized differences.  By passing its output to `plot` you can create a Love plot.  Note
+that `cobalt` expect treatment variables to be numeric or logical, so we begin by
+converting `group` to the logical variable `is_website1`.
 
 ```{r}
 library(cobalt)
