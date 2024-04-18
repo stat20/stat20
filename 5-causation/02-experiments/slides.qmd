@@ -27,6 +27,15 @@ execute:
 - Concept Questions
 - Lab 7.2
 
+## Announcements
+
+- Lab 7.1 due **Friday 4/19** at 11:59 PM.  Aim to finish during class today.
+- Lab 7.2 due Tuesday 4/23 at 9:00 AM.
+- Experiment groups must be of size 3 or 4.
+- 2 problem sets will be assigned next week (both due Tuesday 4/30).
+
+# Concept Questions
+
 ##
 
 We run an experiment to see if informative phone calls encourage people to vote.  We obtain phone numbers for 1000 registered voters and randomly assign half of them to receive calls from volunteers.  The volunteers tell them the location of their polling place and the date of the election.  Our outcome is whether or not the subjects vote in the next election.
@@ -35,11 +44,11 @@ We run an experiment to see if informative phone calls encourage people to vote.
 
 Which of the following are possible covariates for our study?
 
-A. The party affiliation of the voter (Republican or Democrat).
-B. Whether the next election is a presidential election or not.
-C. Whether the voter voted in the last election.
-D. Whether the voter voted for more Republicans or more Democrats in the next election.
-E. Whether the treated voters hung up on the volunteer.
+A.  The party affiliation of the voter (Republican or Democrat).
+B.  Whether the next election is a presidential election or not.
+C.  Whether the voter voted in the last election.
+D.  Whether the voter votes primarily for Republicans or Democrats in the next election.
+E.  Whether the treated voters hung up on the volunteer.
 :::
 
 ::: notes
@@ -58,11 +67,11 @@ countdown::countdown(1)
 
 Which of the following claims about covariate balance are true?
 
-A.  Randomized treatment assignment tends to produce covariate balance.
-B.  A standardized mean difference that is not equal to zero likely means that randomization was not conducted correctly.
-C.  The Love plot shows the difference in means or proportions 
+A.   Randomized treatment assignment tends to produce covariate balance.
+B.   A standardized mean difference that is not equal to zero likely means that randomization was not conducted correctly.
+C.   The Love plot shows the difference in means or proportions 
 for each covariate across treatment groups.
-D. In a hypothesis test for balance, the null hypothesis is that the
+D.  In a hypothesis test for balance, the null hypothesis is that the
 treatment assignment and the covariate are independent.
 
 

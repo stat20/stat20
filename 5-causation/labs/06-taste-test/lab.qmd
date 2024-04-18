@@ -12,11 +12,11 @@ sidebar: false
 - [Lab 6.1: A Matter of Taste](lab-context.pdf)
 
 
-<!--## Part II: Computing on the Data
+## Part II: Computing on the Data
 
-Be sure to tag your group mates when you submit this to Gradescope!
+Be sure to tag your groupmates when you submit this to Gradescope!
 
-1. List any changes that you made to your experimental protocol from when you formulated it on Wednesday and when you executed it Friday.
+1. List any changes that you made to your experimental protocol from when you formulated it on Tuesday/Wednesday and when you executed it on Thursday/Friday.
 
 2. Create a data frame based of the data you collected, listed in the order in which
 it was collected, and print it out into your lab report. You can print all rows your data frame using `slice(my_df, 1:100)`. Consult the notes "A Tool for Computing with Data" for a refresher of how to make a data frame.
@@ -37,8 +37,7 @@ differs significantly across your experimental groups and interpret the results.
     a. The null and alternative hypotheses.
     b. The value of the observed test statistic.
     c. A visualization of the null distribution and observed test statistic with the p-value shaded in.
-    d. The p-value and your conclusion (use $\alpha = .05$) regarding null hypothesis and original claim.
+    d. The p-value and your conclusion (based on the $\alpha$-value you selected in Lab 7.1) regarding the null hypothesis and the original claim.
 
 
-6. A thought experiment: if you did not find a significant effect, speculate as to what you could change about your protocol to increase the chance that you find an effect. If you did find a significant effect, speculate as to what you would change about your protocol if you wanted to decrease the chance that you'd find an effect if you were to repeat the experiment.-->
-x
+6. A thought experiment: if you did not find a significant effect, speculate as to what you could change about your protocol to increase the chance that you find an effect. If you did find a significant effect, speculate as to what you would change about your protocol if you wanted to decrease the chance that you'd find an effect if you were to repeat the experiment.
