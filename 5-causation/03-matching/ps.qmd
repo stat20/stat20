@@ -64,18 +64,20 @@ and control conditions.
 
 \
 \
+\
 
 @. Do you think this study best considered a randomized experiment, a natural experiment,
 or an observational study requiring matching?  Explain your reasoning.
  
 \
 \
+\
 
-@. Pick one of the designs that is
-not a good description of the actual data collection and describe how a hypothetical
-study of minimum wage and fast food employment could be conducted using this 
-strategy instead (expensive/impractical hypothetical designs are acceptable).
+@. For one of the study types that you did NOT select in question 2, describe how a hypothetical
+study of minimum wage and fast food employment could be conducted using this strategy instead (expensive/impractical hypothetical approaches are acceptable for this question).
 
+\
+\
 \
 \
 
@@ -83,6 +85,7 @@ strategy instead (expensive/impractical hypothetical designs are acceptable).
 full-time employment by adding the number of full time employees at each 
 restaurant to half the number of part-time employees at each restaurant.
 
+\
 \
 \
 
@@ -94,15 +97,41 @@ the level of balance across treatment groups you expect to be present.  Remember
 
 \
 \
+\
+\
+\
+\
+\
+\
+\
+\
 
-@. Create a Love plot in R and compare it to your answer from the previous question.  Pick 
+@. Create a Love plot in R and sketch its actual appearance below. Compare it to your answer from the previous question and discuss any differences.
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+
+@. Pick 
 the variable with the largest absolute standardized mean difference and write 
 code to conduct
 a hypothesis test to see if its imbalance differs significantly from zero.
 
+\
+\
+\
+\
+\
+\
 
-\
-\
 
 @. Ignoring for the moment your answer to 
 question 2, write code to conduct nearest-neighbor matching and create a new 
@@ -111,9 +140,15 @@ and post-match balance.
 
 \
 \
+\
+\
+\
+\
 
-@. Based on your answer to question 2, compute the associated effect estimate for
+@. Based on your answer to question 2, compute and report the associated effect estimate for
 effective full time employment. Write a sentence summarizing the associated causal claim.
 
-
-
+\
+\
+\
+\
