@@ -447,7 +447,7 @@ schedule:
             render: true
           - type: Slides
             href: 5-causation/02-experiments/slides.qmd
-            render: false
+            render: true
             
   - week: 14
     days:
