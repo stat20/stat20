@@ -188,11 +188,10 @@ There are many methods for determining which two units in a data set are the clo
 $$
 d_{ij} = \sqrt{\sum^k_{\ell=1}(x_{\ell i} - x_{\ell j})^2}
 $$
-If $k=1$ this reduces to the absolute difference $|x_{1i} - x_{1j}|$.
-If $k=2$, then Euclidean distance is the normal two-dimensional distance we are familiar with i.e. what you would get if you use a ruler to measure distance between two points on a piece of paper[^pythagoras].
 
-After computing the Euclidean distance between each treated unit and each control with the smallest distance, we pair each treated unit to a different control (or if the number of controls is smaller, we pair each control to a different treated unit). We would like the "best" set of pairs according to the Euclidean distance, so we solve an optimization problem to identify the set of pairs with the lowest possible average Euclidean distance.  Conceptually, this is similar to picking a regression line to minimize $RSS$, although we need to use a different kind of algorithm than Nelder-Mead because we are picking sets of pairs instead of coefficient values (we won't go over the algorithm).  This is called
-**optimal matching**. We demonstrate this method of optimal matching using a small synthetic data set based on the college graduation data.  We start with 5 treated units and 15 controls.
+If $k=1$ this reduces to the absolute difference $|x_{1i} - x_{1j}|$. If $k=2$, then Euclidean distance is the normal two-dimensional distance we are familiar with i.e. what you would get if you use a ruler to measure distance between two points on a piece of paper[^pythagoras].
+
+After computing the Euclidean distance between each treated unit and each control with the smallest distance, we pair each treated unit to a different control (or if the number of controls is smaller, we pair each control to a different treated unit). We would like the "best" set of pairs according to the Euclidean distance, so we solve an optimization problem to identify the set of pairs with the lowest possible average Euclidean distance.  Conceptually, this is similar to picking a regression line to minimize $RSS$, although we need to use a different kind of algorithm than Nelder-Mead because we are picking sets of pairs instead of coefficient values (we won't go over the algorithm).  This is called **optimal matching**. We demonstrate this method of optimal matching using a small synthetic data set based on the college graduation data.  We start with 5 treated units and 15 controls.
 
 <!--After computing the Euclidean distance between each treated unit and each control with the smallest distance, we go through the treated units one by one and find for each the control with the smallest distance (that has not already been taken by another treated unit).  This is called ***nearest-neighbor matching***. We demonstrate this method of nearest-neighbor matching using a small synthetic data set based on the college graduation data.  We start with 5 treated units and 15 controls.-->
 
@@ -238,7 +237,6 @@ head(grad_job, n = 20)
 ```
 
 We conduct nearest-neighbor matching.  Since there are 5 treated units and 15 controls, we end up forming five matched pairs and discarding the 10 leftover controls (if we had started with more treated units, we would have discarded some of them instead).  
-
 
 These plots show how covariate balance has improved thanks to matching, using density plots for treated and control groups overlaid on one another (the gray lines give the density of the control distribution for each covariate and the black lines give the density of the treated distributions). <!--We can use the \texttt{plot} function to compare how close paired units lie on each variable.-->
 
