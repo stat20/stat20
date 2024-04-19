@@ -228,6 +228,8 @@ for(i in 1:20){
        bind_rows(grad_job)    
   }
 }
+#save(grad_job, file = 'grad_job.rda')
+#library(stat20data)
 
 ```
 
@@ -237,7 +239,7 @@ for(i in 1:20){
 head(grad_job, n = 20)
 ```
 
-We conduct nearest-neighbor matching.  Since there are 5 treated units and 15 controls, we end up forming five matched pairs and discarding the 10 leftover controls (if we had started with more treated units, we would have discarded some of them instead).  
+We conduct optimal matching.  Since there are 5 treated units and 15 controls, we end up forming five matched pairs and discarding the 10 leftover controls (if we had started with more treated units than controls, we would have discarded treated units instead).  
 
 
 These plots show how covariate balance has improved thanks to matching, using density plots for treated and control groups overlaid on one another (the gray lines give the density of the control distribution for each covariate and the black lines give the density of the treated distributions). <!--We can use the \texttt{plot} function to compare how close paired units lie on each variable.-->
@@ -265,7 +267,7 @@ Prior to matching, students who did not go to Cal looked very different from tho
 
 [^smd_after]: Note that when we compute SMDs after matching, we use the same denominator as for the original SMD (based on the entire dataset). This ensures that the "before matching" and "after matching" SMDs use the same standard deviation measure as units, which allows us to compare them meaningfully.
  
-[^matchit_options]: Nearest-neighbor matching may not always fix balance this effectively.  Sometimes one of the treated units has no comparable control available, or not all variables end up balanced well.  In these scenarios, modifications to the matching strategy can help, including eliminating some treated units or using a different kind of distance.  Although we won't discuss these modifications in detail, the  `MatchIt` package in R supports many of them and provides a handy online guide: <https://kosukeimai.github.io/MatchIt/articles/matching-methods.html>.
+[^matchit_options]: optimal matching may not always fix balance this effectively.  Sometimes one of the treated units has no comparable control available, or not all variables end up balanced well.  In these scenarios, modifications to the matching strategy can help, including eliminating some treated units or using a different kind of distance.  Although we won't discuss these modifications in detail, the  `MatchIt` package in R supports many of them and provides a handy online guide: <https://kosukeimai.github.io/MatchIt/articles/matching-methods.html>.
 
 
 <!--```{r}
@@ -319,7 +321,7 @@ that unobserved variables are not present.  MENTION SENSITIVITY ANALYSIS HERE OR
 
 ## The Ideas in Code
 
-We use the `MatchIt` package in R to conduct nearest-neighbor  matching using the Euclidean distance.  The command `matchit` uses a formula argument much like `lm` to specify the treatment variable and the covariates on which to match.  We also specify that we're
+We use the `MatchIt` package in R to conduct optimal  matching using the Euclidean distance.  The command `matchit` uses a formula argument much like `lm` to specify the treatment variable and the covariates on which to match.  We also specify that we're
 doing optimal matching and using a Euclidean distance. <!--[^order].-->
 
 ```{r}

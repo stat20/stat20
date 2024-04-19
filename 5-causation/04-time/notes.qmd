@@ -3,7 +3,7 @@ title: "Using Time to Measure Causal Effects"
 subtitle: "Pre/post, interrupted time series, and difference-in-difference designs"
 format:
   html:
-    code-fold: true
+    code-fold: false
     code-link: true
     code-summary: "."
   pdf: default
@@ -16,7 +16,7 @@ execute:
 
 ## Causality and variation across time
 
-When we don't have access to a randomized experiment or a natural experiment, creative methods are required to extract evidence about causal claims from data.  In the last set of notes, we looked at matching methods, which approximate unobserved counterfactual outcomes by identifying different that appear very similar based on their covariate values. Today we think about a very different way to approximate missing counterfactuals: repeated observations for the same subject at different times with different treatments.
+When we don't have access to a randomized experiment or a natural experiment, creative methods are required to extract evidence about causal claims from data.  In the last set of notes, we looked at matching methods, which approximate unobserved counterfactual outcomes by identifying different subjects that appear very similar based on their covariate values. Today we think about a very different way to approximate missing counterfactuals: repeated observations for the same subject at different times with different treatments.
 
 ### Same unit at different times
 
@@ -61,7 +61,7 @@ tab %>%
 ```
 :::
 
-Here, the unit of observation is a student at a particular time, which allows us to compare Evelyn before and after graduating from Cal. How close of a counterfactual is pre-graduation Evelyn? Keep in mind the true counterfactual would be the alternate universe where everything about the world is the same but for one thing: Evelyn hadn't graduated from Cal. Is everything the same in this pre-graduation world?
+Here, the unit of observation is a student at a particular time, which allows us to compare Evelyn before and after graduating from Cal. How close a counterfactual is pre-graduation Evelyn? Keep in mind the true counterfactual would be the alternate universe where everything about the world is the same but for one thing: Evelyn hadn't graduated from Cal. Is everything the same in this pre-graduation world?
 
 The answer may be yes. Here we see her GPA is unchanged, she hasn't gained any more work experience, and she's sending out the same strong letter of recommendation. If these are the only other variables involved in getting a good job, then this would be good evidence that the graduation is the cause of the good job.
 
@@ -73,7 +73,8 @@ Data with repeated measures for individual subjects is called *longitudinal* or 
 
 ![](images/supermarket-checkout.png){#fig-inflation fig-align=center width="500px"}[^checkoutpic]
 
-You (as well as any small children you know) have probably noticed that supermarket checkout lines often feature a display of candy, soda, chips, or other "less-healthy" snacks.  Government agencies and consumer advocacy groups have called for supermarket chains to remove such displays, claiming that they lead to unhealthy eating choices and poorer health for consumers.  In the United Kingdom, some supermarkets have responded by instituting 'checkout line' policies under which candy is removed and replaced with healthier options.  We will look at data on the number of purchases of unhealthy foods at four stores that instituted such a policy in the mid-2010s.  
+You (as well as any small children you know) have probably noticed that supermarket checkout lines often feature a display of candy, soda, chips, or other "less-healthy" snacks.  Government agencies and consumer advocacy groups have called for supermarket chains to remove such displays, claiming that they lead to unhealthy eating choices and poorer health for consumers.  In the United Kingdom, some supermarkets have responded by instituting 'checkout line' policies under which candy is removed and replaced with healthier options.  We will look at data[^its_source] on the number of purchases of unhealthy foods at four stores that instituted such a policy in the mid-2010s.  Purchases are measured both
+before and after the policy is instituted.
 
 ```{r}
 #| echo: false
@@ -81,9 +82,13 @@ load('checkout_data.Rdata')
 checkout_concise
 ```
 
+[^its_source]: Data is a modified version of data used in Ejlerskov KT, Sharp SJ, Stead M, Adamson AJ, White M, Adams J. Supermarket policies on less-healthy food at checkouts: Natural experimental evaluation using interrupted time series analyses of purchases. *PLoS Med.* 2018 Dec 18;15(12). Accessed via a repository described
+in Turner, S. L., Korevaar, E., Karahalios, A., Forbes, A. B., & McKenzie, J. E. (2023). Interrupted time series datasets from studies investigating the impact of interventions or exposures in public health and social science: A data note.
+Available at ResearchSquare, https://doi.org/10.21203/rs.3.rs-3669411/v1.
+
 The causal claim here is that consumers would have purchased fewer unhealthy snacks if the candy display had been removed from the checkout line (the broader claims about the impact of this change on public health are not things we can test with data from the supermarkets alone).  A great way to test this theory might be to randomly assign some supermarkets to remove their checkout displays and others to keep theirs, and compare purchases. Unfortunately that study was not conducted, and it's not clear that these stores decided to institute their policies in a quasi-random way (e.g. what if only the stores selling very low levels of candy agreed to participate?).  We could also consider matching stores with the policy to those without the policy and comparing their sales.  But we our dataset doesn't include many store covariates, and in fact  only includes stores that instituted the new policy.
 
-[^checkoutpic]: Image from Shutterstock/SpeedKingz, obtained from <https://www.today.com/parents/kids-cant-resist-candy-stores-try-junk-food-free-healthy-t60621>.
+[^checkoutpic]: Image from Shutterstock/SpeedKingz, obtained from Pawlowski, A. (Dec 2015). Kids can't resist candy? Stores try junk food-free 'healthy checkout lanes.'  *Today.com.* <https://www.today.com/parents/kids-cant-resist-candy-stores-try-junk-food-free-healthy-t60621>.
 
 ## Pre/post design
 
@@ -252,7 +257,7 @@ Interrupted time series do not require unobserved confounders to be stable over 
 ![](images/its_nonlinear.png){#fig-inflation fig-align=center width="500px"}
 [^haber_pic]
 
-Here the red band gives the shape of the actual pattern in the data, which appears to be a smooth and gradually decreasing curve. If the time trend has this kind of shape, the interrupted time series analysis will not be able to recognize it and may instead insist on the presence of large treatment effects (as the lines appear to show) which are unlikely to be real.
+Here the red band gives the shape of the actual pattern in the data, which appears to be a smooth and gradually decreasing curve.  Although there is no apparent treatment effect here (the pattern doesn't experience any jumps or dips at the time of treatment) fitting straight lines to the curve may incorrectly suggest a treatment effect is present.
 
 
 <!--To make a confidence interval, it's important that we keep all units in a trajectory
@@ -273,6 +278,7 @@ Epidemiology}, 190(11), 2474-2486.
 The interrupted time series design relies on additional observations in pre and/or post periods to separate a time trend from a treatment effect. Another kind of data that can help us is data from additional stores during the same time periods that never institute a checkout policy.  Clearly these stores do not experience a treatment effect, but if they are subject to the same time trend as the treated stores, we can use them to estimate the time trend.  Here is a plot illustrating this idea:
 
 ![](images/did.png){#fig-inflation fig-align=center width="500px"}
+
 The dashed line represents a counterfactual average outcome for the treated units if they had not received treatment, and we are interested in learning the difference between this dashed line and the actual outcome for the intervention group. Although we don't have multiple observations prior to treatment to estimate the slope of the dashed line anymore, we can learn it by looking at the pre/post differences in the control group below.  We can then get an effect estimate by subtracting the pure control pre/post difference in the outcome $Y$ from the treated group's  pre/post difference in outcome $Y$:
 
 $$
@@ -331,6 +337,7 @@ keep track of which differences are treated and which are not, and we compute th
 difference between their means instead of their overall mean: -->
 
 ```{r}
+#| echo: false
 #| eval: false
 
 set.seed(2024-3-28)
@@ -367,7 +374,7 @@ However, we have to be careful because in panel data it is usually not reasonabl
 
 For example, if we simply permuted all sales values in our checkout policy dataset, the values we observed for a single store might be scattered across several different stores instead of staying together.  Similarly,  if we took a bootstrap sample from all observations, we might end up with three or more observations from some stores and only one for others. This would make it difficult to compute a pre/post estimate!
 
-The simplest solution is to aggregate our data to form a new data frame with one row per unique subject, then permute or bootstrap the rows of this new data frame.  For pre/post and difference in difference designs, the natural way to aggregate is to take each subject's pre/post difference, since the effectestimate is simply an average (or a difference in means) of these quantities across unique subjects. [^its_inference]
+The simplest solution is to aggregate our data to form a new data frame with one row per unique subject, then permute or bootstrap the rows of this new data frame.  For pre/post and difference in difference designs, the natural way to aggregate is to take each subject's pre/post difference, since the effect estimate is simply an average (or a difference in means) of these quantities across unique subjects. [^its_inference]
 
 A similar strategy is recommended for matching estimators.  Although matched subjects are not actually different copies of the same person, they have been chosen to be more similar to each other than to other subjects; because of this we should permute or bootstrap matched differences rather than individual outcomes.
 

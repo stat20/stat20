@@ -473,7 +473,7 @@ schedule:
         items:
           - type: Notes
             href: 5-causation/04-time/notes.qmd
-            render: false
+            render: true
           - type: Slides
             href: 5-causation/04-time/slides.qmd
             render: false
