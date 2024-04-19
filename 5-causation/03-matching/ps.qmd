@@ -52,11 +52,13 @@ In 1992, New Jersey raised its minimum wage to \$5.05 per hour, giving it the
 highest minimum wage in the country.  To study the impact of the new policy
 on employment levels, economists  David Card and Alan Krueger surveyed 410 
 fast-food restaurants in New Jersey and in the neighboring state of Pennsylvania
-(which did not change its minimum wage law).  They collected a variety
+(which did not change its minimum wage law)[^cardkrueger].  They collected a variety
 of covariates prior to the institution of the law, and then called back afterwards
-and collected information about the number of full-time workers employed.  A 
+and collected information about the number of full-time workers employed. 
+
+A 
 version of their data is available in the dataframe `fastfood1` in the `stat20data`
-package.
+package[^datanotes]. Note that columns labeled with a `_2` suffix are those collected as part of the second callback (after the law went into effect).
 
 
 @. What is the causal question this study seeks to answer?  Identify the treatment
@@ -152,3 +154,7 @@ effective full time employment. Write a sentence summarizing the associated caus
 \
 \
 \
+
+[^cardkrueger]: Card, D., \& Krueger, A. B. (1994). Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania. *The American Economic Review*, 84(4), 772-793.
+
+[^datanotes]: 11 stores that were either permanently closed by the time of Card \& Krueger's second callback or refused to participate in the second callback have been removed from the data.  Missing values have also been filled in with synthetic values for the purposes of this assignment.

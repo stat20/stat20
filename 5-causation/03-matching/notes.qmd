@@ -16,11 +16,11 @@ execute:
 
 Randomized experiments are very useful for learning about causal claims; because comparison groups are guaranteed to be similar on average before the treatment is given, differences in outcomes between the groups must be the result of the treatment.
 
-However, we frequently need to evaluate causal claims without having access to data from a randomized experiment. <!--or an obvious natural experiment.--> Today we'll explore how to take some of the ideas important in understanding and analyzing randomized experiments and use them to make progress in data where treatment assignments are not determined by researchers. Such non-experimental studies are called observational studies, emphasizing that all researchers do is observe treatment assignments rather than making them.  
+However, we frequently need to evaluate causal claims without having access to data from a randomized experiment. <!--or an obvious natural experiment.--> Today we'll explore how to take some of the ideas important in understanding and analyzing randomized experiments and use them to make progress with data where treatment assignments are not determined by researchers. Such non-experimental studies are called *observational studies*, emphasizing that all researchers do is observe treatment assignments rather than making them.  
 
 ## Natural experiments
 
-![](images/nba_foul.jpg){#fig-inflation fig-align=center width="500px"}[^foulpic]
+![](images/nba_foul.jpg){#fig-inflation fig-align="center" width="500px"}[^foulpic]
 
 Do evaluators tend to favor members of the same race?  In the mid-2000s two economists interested in this question, Joseph Price and Justin Wolfers, obtained data on 12 years of referee decisions from professional National Basketball Association (NBA) games. <!--including indicators for whether players and referees were Black or non-Black.--> They compared the rate at which referees gave fouls to players of the same racial category (Black or non-Black) to the rate at which fouls were given to players of the opposite category.
 
@@ -30,11 +30,24 @@ If Price and Wolfers had reached an agreement with the NBA that allowed them to 
 
 > Assignments of referees to crews are made to balance the experience of referees across games, with groups of three referees working together for only a couple of games before being regrouped. According to the NBA, assignments of refereeing crews to specific (regular season) games is "completely arbitrary" with no thought given to the characteristics of the competing teams. Each referee works 70 to 75 games each year, and no referee is allowed to officiate more than nine games for any team, or referee twice in a city within a fourteen-day period. Although these constraints mean that assignment of refereeing crews to  games is not literally random, the more relevant claim for our approach is that assignment decisions are unrelated to the racial characteristics of either team.[^pricewolfers]
 
-To back up their claim, Price and Wolfers presented covariate balance tables.  The first one gives tests for each of the 12 seasons of data for the null hypothesis that the  number of Black starters is independent of the number of non-Black (described in the paper as "white") referees who officiate its games (which would be true if referees were actually randomly  assigned). The second table examines several other variables to see if they  are significantly associated with the number of non-Black referees, including year, attendance, indicator variables for individual teams.  The table suggests that the number of non-Black referees did vary over time (notice the .00 p-values in the first row of the second table) but most of the other p-values are fairly large, suggesting approximate balance.
+To back up their claim, Price and Wolfers conduct hypothesis tests for balance
+on a variety of covariates.  Here is an excerpt from one of their balance tables.
+Each row gives a p-value for a test of the null hypothesis that this covariate
+is independent of the number of non-Black referees.
 
-![](images/balance_table1_price_wolfers.png){#fig-inflation width="600px"}
+|Covariate | P-value from balance test |
+|--------|---------:|
+|Year | 0.00|
+|#Black starters (home team) | 0.75 |
+|#Black starters (away team) | 0.72 |
+|Attendance | 0.49 | 
+|Home team out of contention | 0.94|
+|Away team out of contention | 0.81|
 
-![](images/balance_table2_price_wolfers.png){#fig-inflation fig-align=center width="600px"}
+Although the table suggests that the number of non-Black referees did vary over time (notice the .00 p-value in the first row) the other p-values are fairly large, suggesting approximate balance.
+
+<!--![](images/balance_table1_price_wolfers.png){#fig-inflation width="600px"}
+![](images/balance_table2_price_wolfers.png){#fig-inflation fig-align=center width="600px"}-->
 
 If indeed the process of assigning referees is independent of the race, team, and popularity of any particular team or player, as well as any other covariates that might be good predictors of foul rate, then each group provides a good approximation to the missing counterfactual outcome distribution for the other  group, and the study can be analyzed as though it were from a truly-randomized experiment to produce a good average treatment effect estimate.  
 
@@ -188,11 +201,10 @@ There are many methods for determining which two units in a data set are the clo
 $$
 d_{ij} = \sqrt{\sum^k_{\ell=1}(x_{\ell i} - x_{\ell j})^2}
 $$
-If $k=1$ this reduces to the absolute difference $|x_{1i} - x_{1j}|$.
-If $k=2$, then Euclidean distance is the normal two-dimensional distance we are familiar with i.e. what you would get if you use a ruler to measure distance between two points on a piece of paper[^pythagoras].
 
-After computing the Euclidean distance between each treated unit and each control with the smallest distance, we pair each treated unit to a different control (or if the number of controls is smaller, we pair each control to a different treated unit). We would like the "best" set of pairs according to the Euclidean distance, so we solve an optimization problem to identify the set of pairs with the lowest possible average Euclidean distance.  Conceptually, this is similar to picking a regression line to minimize $RSS$, although we need to use a different kind of algorithm than Nelder-Mead because we are picking sets of pairs instead of coefficient values (we won't go over the algorithm).  This is called
-**optimal matching**. We demonstrate this method of optimal matching using a small synthetic data set based on the college graduation data.  We start with 5 treated units and 15 controls.
+If $k=1$ this reduces to the absolute difference $|x_{1i} - x_{1j}|$. If $k=2$, then Euclidean distance is the normal two-dimensional distance we are familiar with i.e. what you would get if you use a ruler to measure distance between two points on a piece of paper[^pythagoras].
+
+After computing the Euclidean distance between each treated unit and each control with the smallest distance, we pair each treated unit to a different control (or if the number of controls is smaller, we pair each control to a different treated unit). We would like the "best" set of pairs according to the Euclidean distance, so we solve an optimization problem to identify the set of pairs with the lowest possible average Euclidean distance.  Conceptually, this is similar to picking a regression line to minimize $RSS$, although we need to use a different kind of algorithm than Nelder-Mead because we are picking sets of pairs instead of coefficient values (we won't go over the algorithm).  This is called **optimal matching**. We demonstrate this method of optimal matching using a small synthetic data set based on the college graduation data.  We start with 5 treated units and 15 controls.
 
 <!--After computing the Euclidean distance between each treated unit and each control with the smallest distance, we go through the treated units one by one and find for each the control with the smallest distance (that has not already been taken by another treated unit).  This is called ***nearest-neighbor matching***. We demonstrate this method of nearest-neighbor matching using a small synthetic data set based on the college graduation data.  We start with 5 treated units and 15 controls.-->
 
@@ -228,6 +240,8 @@ for(i in 1:20){
        bind_rows(grad_job)    
   }
 }
+#save(grad_job, file = 'grad_job.rda')
+#library(stat20data)
 
 ```
 
@@ -237,8 +251,7 @@ for(i in 1:20){
 head(grad_job, n = 20)
 ```
 
-We conduct nearest-neighbor matching.  Since there are 5 treated units and 15 controls, we end up forming five matched pairs and discarding the 10 leftover controls (if we had started with more treated units, we would have discarded some of them instead).  
-
+We conduct optimal matching.  Since there are 5 treated units and 15 controls, we end up forming five matched pairs and discarding the 10 leftover controls (if we had started with more treated units than controls, we would have discarded treated units instead).  
 
 These plots show how covariate balance has improved thanks to matching, using density plots for treated and control groups overlaid on one another (the gray lines give the density of the control distribution for each covariate and the black lines give the density of the treated distributions). <!--We can use the \texttt{plot} function to compare how close paired units lie on each variable.-->
 
@@ -265,7 +278,7 @@ Prior to matching, students who did not go to Cal looked very different from tho
 
 [^smd_after]: Note that when we compute SMDs after matching, we use the same denominator as for the original SMD (based on the entire dataset). This ensures that the "before matching" and "after matching" SMDs use the same standard deviation measure as units, which allows us to compare them meaningfully.
  
-[^matchit_options]: Nearest-neighbor matching may not always fix balance this effectively.  Sometimes one of the treated units has no comparable control available, or not all variables end up balanced well.  In these scenarios, modifications to the matching strategy can help, including eliminating some treated units or using a different kind of distance.  Although we won't discuss these modifications in detail, the  `MatchIt` package in R supports many of them and provides a handy online guide: <https://kosukeimai.github.io/MatchIt/articles/matching-methods.html>.
+[^matchit_options]: optimal matching may not always fix balance this effectively.  Sometimes one of the treated units has no comparable control available, or not all variables end up balanced well.  In these scenarios, modifications to the matching strategy can help, including eliminating some treated units or using a different kind of distance.  Although we won't discuss these modifications in detail, the  `MatchIt` package in R supports many of them and provides a handy online guide: <https://kosukeimai.github.io/MatchIt/articles/matching-methods.html>.
 
 
 <!--```{r}
@@ -319,7 +332,7 @@ that unobserved variables are not present.  MENTION SENSITIVITY ANALYSIS HERE OR
 
 ## The Ideas in Code
 
-We use the `MatchIt` package in R to conduct nearest-neighbor  matching using the Euclidean distance.  The command `matchit` uses a formula argument much like `lm` to specify the treatment variable and the covariates on which to match.  We also specify that we're
+We use the `MatchIt` package in R to conduct optimal  matching using the Euclidean distance.  The command `matchit` uses a formula argument much like `lm` to specify the treatment variable and the covariates on which to match.  We also specify that we're
 doing optimal matching and using a Euclidean distance. <!--[^order].-->
 
 ```{r}

@@ -413,6 +413,18 @@ be done for many variables at once.-->
 
 ## The Ideas in Code
 
+First we create a data frame to store the pdf vs. website data.
+```{r}
+format_data <- data.frame(name = c("Evelyn", "Grace", "Juan", "Alex", "Monica", "Sriya"),
+                 group = c("pdf", "pdf", "pdf", "website", "website", "website"),
+                 understanding = c("deep", "shallow", "deep", "deep", "shallow", 
+                                   "shallow"),
+                 major = c('Statistics', 'Economics', 'Economics', 'Statistics', 
+                           'Economics', 'Statistics'),
+                 GPA = c(3.81, 3.63, 3.20, 2.85, 3.19, 3.80),
+                 native_speaker = c('Yes','No','Yes','No','Yes','Yes'))
+```
+
 The `cobalt` package in R contains the function `bal.tab` to create tables of standardized differences.  By passing its output to `plot` you can create a Love plot.  Note
 that `cobalt` expect treatment variables to be numeric or logical, so we begin by
 converting `group` to the logical variable `is_website1`.
