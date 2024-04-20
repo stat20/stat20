@@ -108,7 +108,7 @@ the level of balance across treatment groups you expect to be present.  Remember
 \
 \
 
-@. Create a Love plot in R and sketch its actual appearance below. Compare it to your answer from the previous question and discuss any differences.
+@. Create a Love plot in R and sketch its actual appearance below. Compare it to your answer from the previous question and discuss any differences.  
 
 \
 \
@@ -134,9 +134,12 @@ a hypothesis test to see if its imbalance differs significantly from zero.
 \
 \
 
+@. Do the answers to questions 6 and 7 support your answer to question 2, or do they suggest you should revise your answer?  Explain.
 
-@. Ignoring for the moment your answer to 
-question 2, write code to conduct nearest-neighbor matching and create a new 
+\
+\
+
+@. Write code to conduct nearest-neighbor matching and create a new 
 version of the Love plot showing both pre-match
 and post-match balance.  
 
@@ -147,7 +150,7 @@ and post-match balance.
 \
 \
 
-@. Based on your answer to question 2, compute and report the associated effect estimate for
+@. Based on your answer to question 2 (and any revisions to that answer in question 8), compute and report the associated effect estimate for
 effective full time employment. Write a sentence summarizing the associated causal claim.
 
 \
