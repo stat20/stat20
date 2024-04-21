@@ -21,3 +21,212 @@ format:
 execute: 
   echo: false
 ---
+
+
+## Agenda
+- Announcements
+- Concept Questions
+- Problem Set 19
+
+## Announcements
+
+- PS 19 and PS 20 both due Tuesday 4/29 at 9:00 AM
+- Final exam review sessions:
+   - **Summarization**: 12pm-1pm Monday 4/29, Stanley 105
+   - **Causality**: 3pm-4pm Monday 4/29, Stanley 105
+   - **Generalization**: 3pm-4pm Wednesday 5/1, VLSB 2050
+   - **Probability**: 4pm-5pm Wednesday 5/1, VLSB 2050
+   - **Prediction**: 3pm-4pm Friday 5/3, Stanley 105
+- Final exam: 7pm-10pm, Thursday 5/9, room TBA.
+
+
+# Concept Questions
+
+##
+
+To study the impact of receiving permanent resident status on mental health, we compare answers to a psychiatric survey from people who entered and won the US green card lottery to answers from others who entered but did not win.
+
+::: poll
+
+What kind of study is this?
+
+A.  A randomized trial.
+B.  A natural experiment.
+C.  An observational study that requires matching.
+D.  None of the above.
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+
+::: notes
+
+This is the first of a series of questions that each ask students to classify a study.  You may want to consider going through all of these questions before reviewing answers and then having a broader discussion about all the examples.
+:::
+
+##
+
+To study the impact of childhood trauma on later academic performance, we compare GRE scores for students who lost a close family member in an automobile accident before the age of 8 to GRE scores for students who did not lose a close family member before age 8.
+
+::: poll
+
+What kind of study is this?
+
+A.  A randomized trial.
+B.  A natural experiment.
+C.  An observational study that requires matching.
+D.  None of the above.
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+##
+
+To study the effectiveness of a blood pressure medication, we enroll 500 patients.  We take the blood pressure of all patients before anyone receives medication. We assign the 200 patients with the highest blood pressure readings to get the medication, assigning the others to be controls.
+
+::: poll
+
+What kind of study is this?
+
+A.  A randomized trial.
+B.  A natural experiment.
+C.  An observational study that requires matching.
+D.  None of the above.
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+::: notes
+This is a terrible study design, which builds in confounding on an important covariate.  Although you could attempt matching here, it would likely be ineffective since it would be very hard to create many close matches on pre-treatment blood pressure.  So "none of the above" seems like a reasonable answer here.
+:::
+
+
+## 
+
+In the next slide, you will see the first few rows of a dataset containing demographic information on California counties. Scroll to see all of the rows.
+
+. . .
+
+:::poll
+We are interested in determining whether a difference in `median_edu` has a causal effect on `homeownership` using matching Which county serves as the best counterfactual match to Fresno County?
+
+(A) Kern County
+(B) Alameda County
+(C) Contra Costa County 
+(D) Shasta County
+(E) Del Norte County
+:::
+
+:::notes
+
+The answer is (A), since all categorical columns except homeownership have the same entries. 
+
+You may want to mention that this was a final question last year. 
+:::
+
+
+. . . 
+
+```{r}
+countdown::countdown(2)
+```
+
+## {.scrollable}
+
+```{r}
+library(openintro)
+library(tidyverse)
+set.seed(35)
+county %>%
+  filter(state == "California") %>%
+  drop_na(smoking_ban) %>%
+  slice_sample(n = 9) %>%
+  select(name,homeownership,median_edu,metro, smoking_ban) %>%
+  knitr::kable()
+```
+
+##
+
+In this table there are nine counties, five with `some_college` values for `median_edu` and four with `hs_diploma` values.  
+
+:::poll
+How many of each type will remain after we conduct optimal matching on `metro` and `smoking_ban`?
+
+(A) `some_college`: 4, `hs_diploma`: 4.
+(B) `some_college`: 5, `hs_diploma`: 4.
+(C) `some_college`: 2, `hs_diploma`: 2.
+(D) `some_college`: 2, `hs_diploma`: 4.
+(E) Can't tell without more information.
+
+:::
+
+
+```{r}
+countdown::countdown(1)
+```
+
+::: notes
+
+This question is not that difficult but it's a good jumping off point for a mini-lecture about matching.  You could even go through the county example.  It is not ideal because there are not a lot of close matches and because there are a lot of ties among the distances so the best match is not unique, it is useful to 
+point out that Contra Costa County is the one that will get dropped since it looks the least like any of the hs_diploma counties.
+
+:::
+
+##
+
+::: poll
+
+Which of the following R commands correctly performs matching on covariates to measure the impact of `median_edu` on `homeownership`?
+
+(A) matchit(homeownership ~ median_edu, data = county, method = 'optimal', distance = 'euclidean')
+(B) matchit(median_edu ~ homeownership, data = county, method = 'optimal', distance = 'euclidean')
+(C) matchit(median_edu ~ metro + smoking_ban, data = county, method = 'optimal', distance = 'euclidean')
+(D) matchit(homeownership ~ median_edu + metro + smoking_ban, data = county, method = 'optimal', distance = 'euclidean')
+
+:::
+
+```{r}
+countdown::countdown(1)
+```
+
+::: notes
+
+The correct answer is (C).  This is a good chance to underline the
+idea that the response variable is ignored completely when creating matched pairs.
+:::
+
+##
+
+::: poll
+
+Assuming that `metro` and `smoking_ban` variables are the only ones we have measured, name an unmeasured variable that could introduce confounding between `median_edu` and `homeownership`.
+
+:::
+
+```{r}
+countdown::countdown(2)
+```
+
+::: notes
+
+There's a free response question on PollEV if you want to use it; either I think this works best as a "pair-and-share" group discussion question followed by a brief class discussion (either with groups volunteering answers or you reviewing their submitted short-answers from Poll EV). Some interesting variables to discuss might include median age and whether or not a county contains a large university.
+:::
+
+# Break
+
+```{r}
+countdown::countdown(5)
+```
+
+# Problem Set
+
+```{r}
+countdown::countdown(60)
+```
+

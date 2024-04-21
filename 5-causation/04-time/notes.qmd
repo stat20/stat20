@@ -78,7 +78,11 @@ before and after the policy is instituted.
 
 ```{r}
 #| echo: false
-load('checkout_data.Rdata')
+load('checkout.rda')
+checkout_concise <- checkout |>
+  #drop pure controls and all observations but immediate pre/post
+  filter(time > 13 & time < 16 & !(store_id %in% c(244,248))) |>
+  select(store_id, sales, checkout_policy)
 checkout_concise
 ```
 
@@ -86,7 +90,8 @@ checkout_concise
 in Turner, S. L., Korevaar, E., Karahalios, A., Forbes, A. B., & McKenzie, J. E. (2023). Interrupted time series datasets from studies investigating the impact of interventions or exposures in public health and social science: A data note.
 Available at ResearchSquare, https://doi.org/10.21203/rs.3.rs-3669411/v1.
 
-The causal claim here is that consumers would have purchased fewer unhealthy snacks if the candy display had been removed from the checkout line (the broader claims about the impact of this change on public health are not things we can test with data from the supermarkets alone).  A great way to test this theory might be to randomly assign some supermarkets to remove their checkout displays and others to keep theirs, and compare purchases. Unfortunately that study was not conducted, and it's not clear that these stores decided to institute their policies in a quasi-random way (e.g. what if only the stores selling very low levels of candy agreed to participate?).  We could also consider matching stores with the policy to those without the policy and comparing their sales.  But we our dataset doesn't include many store covariates, and in fact  only includes stores that instituted the new policy.
+The causal claim here is that consumers would have purchased fewer unhealthy snacks if the candy display had been removed from the checkout line (the broader claims about the impact of this change on public health are not things we can test with data from the supermarkets alone).  A great way to test this theory might be to randomly assign some supermarkets to remove their checkout displays and others to keep theirs, and compare purchases. Unfortunately that study was not conducted, and it's not clear that these stores decided to institute their policies in a quasi-random way (e.g. what if only the stores selling very low levels of candy agreed to participate?).  We could also consider matching stores with the policy to those without the policy and comparing their sales.  But we our dataset doesn't include many store covariates, and in general datasets like this one may only
+include stores that instituted the policy.
 
 [^checkoutpic]: Image from Shutterstock/SpeedKingz, obtained from Pawlowski, A. (Dec 2015). Kids can't resist candy? Stores try junk food-free 'healthy checkout lanes.'  *Today.com.* <https://www.today.com/parents/kids-cant-resist-candy-stores-try-junk-food-free-healthy-t60621>.
 
@@ -112,6 +117,7 @@ checkout_concise |>
 ```{r}
 #| echo: false
 library(infer)
+
 checkout_concise |>
   specify(response = sales,
           explanatory = checkout_policy) |>
@@ -185,7 +191,9 @@ First note that in addition to measuring sales in the four-week periods immediat
 
 ```{r}
 #| echo: false
-checkout |>
+checkout_its <- checkout |>
+  filter(!store_id %in% c(244,248)) 
+checkout_its |>
   ggplot(mapping = aes(x = time, y = sales, group = store_id)) + 
   geom_line() + labs(title = 'Sales of unhealthy foods did not show a dramatic time trend',
                      x = 'Time (4-week periods)',
@@ -200,14 +208,14 @@ To estimate the treatment effect after separating out the trend, we can fit a  r
 
 ```{r}
 #| echo: false
-its_model <- lm(sales ~ checkout_policy + time, data = checkout)
+its_model <- lm(sales ~ checkout_policy + time, data = checkout_its)
 its_model
 ```
 
 Fitting this model to all our observations will give us two parallel lines, one for the before-treatment periods (drawn in red) and one for the after-treatment periods (drawn in blue).
 
 ```{r}
-checkout |>
+checkout_its |>
   ggplot(mapping = aes(x = time, y = sales, group = store_id)) + 
   geom_line() + labs(title = 'Checkout policy appears to cause small decrease in sales',
                      x = 'Time (4-week periods)',
@@ -292,6 +300,10 @@ We now test out difference-in-difference analysis on the supermarket checkout da
 
 ```{r}
 #| echo: false
+checkout_w_control <- checkout |>
+  filter(time > 13 & time < 16) |>
+  mutate('time' = factor(time, labels = c('pre','post'))) |>
+  select(store_id, sales, time, checkout_policy)
 checkout_w_control |>
   mutate('ever_treated' = !(store_id %in% c(244,248))) |>
   ggplot(mapping = aes(x = time, y = sales, group = store_id, color = ever_treated)) + 
@@ -360,7 +372,7 @@ effect of one particular sign; the data is consistent with a wide range of
 both positive and negative effects.  This is not surprising given our small 
 sample size.  -->
 
-[^simcontrol]: The version of the supermarket checkout data we have does not
+[^simcontrol]: The  original version of the supermarket checkout data does not
 actually contain pure controls, so observations for two control units have been 
 synthetically generated for illustrative purposes.
 
@@ -383,12 +395,26 @@ A similar strategy is recommended for matching estimators.  Although matched sub
 
 ## The Ideas in Code
 
+We use several different filterings of the `checkout` data frame to do the
+analyses above.  Here we define two of them, `checkout_its` (which excludes
+pure controls) and `checkout_w_control` (which excludes timepoints besides
+those immediaately before and after treatment and relabels these timepoints as
+'pre' and 'post'). 
+```{r}
+checkout_its <- checkout |>
+  filter(!store_id %in% c(244,248)) 
+checkout_w_control <- checkout |>
+  filter(time > 13 & time < 16) |>
+  mutate('time' = factor(time, labels = c('pre','post'))) |>
+  select(store_id, sales, time, checkout_policy)
+```
+
 To make plots for panel data designs, it is often helpful to use the 
 `geom_line()` geometry, mapping the unique subject ID to the `group` argument 
 to get a separate line for each unit.
 
 ```{r}
-checkout |>
+checkout_its |>
   ggplot(mapping = aes(x = time, y = sales, group = store_id)) + 
   geom_line() + labs(title = 'Sales of unhealthy foods did not show a dramatic time trend',
                      x = 'Time (4-week periods)',
