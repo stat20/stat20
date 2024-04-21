@@ -1,5 +1,5 @@
 ---
-title: "Matching"
+title: "Causal Effects in Observational Studies"
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
@@ -156,7 +156,7 @@ county %>%
 In this table there are nine counties, five with `some_college` values for `median_edu` and four with `hs_diploma` values.  
 
 :::poll
-How many of each type will remain after we conduct optimal matching on `metro` and `smoking_ban`?
+How many counties of each type will remain after we conduct optimal matching on `metro` and `smoking_ban`?
 
 (A) `some_college`: 4, `hs_diploma`: 4.
 (B) `some_college`: 5, `hs_diploma`: 4.
@@ -182,7 +182,7 @@ point out that Contra Costa County is the one that will get dropped since it loo
 
 ::: poll
 
-Which of the following R commands correctly performs matching on covariates to measure the impact of `median_edu` on `homeownership`?
+Which R command correctly performs matching on covariates to measure the impact of `median_edu` on `homeownership`?
 
 (A) matchit(homeownership ~ median_edu, data = county, method = 'optimal', distance = 'euclidean')
 (B) matchit(median_edu ~ homeownership, data = county, method = 'optimal', distance = 'euclidean')
