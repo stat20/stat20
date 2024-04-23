@@ -1,5 +1,5 @@
 ---
-title: "Causal Claims and Time"
+title: "Using Time to Measure Causal Effects"
 format: stat20handout-pdf
 ---
 

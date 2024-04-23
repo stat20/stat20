@@ -1,5 +1,5 @@
 ---
-title: "Using Time to Measure Causal Effects"
+title: "Causal Effects in Observational Studies"
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
@@ -87,7 +87,7 @@ D.  None of the above.
 countdown::countdown(1)
 ```
 
-::: poll
+::: notes
 The answer is C, since automobile accidents to one's parents are not assigned randomly.  For example, we'd expect children whose parents work in driving-intensive blue-collar occupations such as trucking, driving for rideshare companies, and commercial delivery to be overrepresented in the treated group, and these subjects are also less likely to pursue graduate school at baseline giving that their parents may not have attended college at all.
 :::
 
