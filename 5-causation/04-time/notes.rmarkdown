@@ -14,6 +14,7 @@ execute:
 
 
 
+
 ## Causality and variation across time
 
 When we don't have access to a randomized experiment or a natural experiment, creative methods are required to extract evidence about causal claims from data.  In the last set of notes, we looked at matching methods, which approximate unobserved counterfactual outcomes by identifying different subjects that appear very similar based on their covariate values. Today we think about a very different way to approximate missing counterfactuals: repeated observations for the same subject at different times with different treatments.
@@ -21,6 +22,7 @@ When we don't have access to a randomized experiment or a natural experiment, cr
 ### Same unit at different times
 
 Let's say that we collected data from Evelyn Fix before and after she graduated from Cal.
+
 
 ```{r}
 #| echo: false
@@ -40,7 +42,9 @@ tab <- tibble(`Student` = c("Evelyn Fix", "Evelyn Fix"),
               `Good Job` = c("yes", "no"))
 ```
 
+
 ::: {.content-hidden unless-format="html"}
+
 ```{r}
 #| echo: false
 #| message: false
@@ -49,9 +53,11 @@ tab %>%
     kbl(escape = FALSE) %>%
     kable_styling(bootstrap_options = c("hover", "striped"))
 ```
+
 :::
 
 ::: {.content-hidden unless-format="pdf"}
+
 ```{r}
 #| echo: false
 #| message: false
@@ -59,6 +65,7 @@ tab %>%
 tab %>%
     kable(format = "latex")
 ```
+
 :::
 
 Here, the unit of observation is a student at a particular time, which allows us to compare Evelyn before and after graduating from Cal. How close a counterfactual is pre-graduation Evelyn? Keep in mind the true counterfactual would be the alternate universe where everything about the world is the same but for one thing: Evelyn hadn't graduated from Cal. Is everything the same in this pre-graduation world?
@@ -76,6 +83,7 @@ Data with repeated measures for individual subjects is called *longitudinal* or 
 You (as well as any small children you know) have probably noticed that supermarket checkout lines often feature a display of candy, soda, chips, or other "less-healthy" snacks.  Government agencies and consumer advocacy groups have called for supermarket chains to remove such displays, claiming that they lead to unhealthy eating choices and poorer health for consumers.  In the United Kingdom, some supermarkets have responded by instituting 'checkout line' policies under which candy is removed and replaced with healthier options.  We will look at data[^its_source] on the number of purchases of unhealthy foods at four stores that instituted such a policy in the mid-2010s.  Purchases are measured both
 before and after the policy is instituted.
 
+
 ```{r}
 #| echo: false
 load('checkout.rda')
@@ -85,6 +93,7 @@ checkout_concise <- checkout |>
   select(store_id, sales, checkout_policy)
 checkout_concise
 ```
+
 
 [^its_source]: Data is a modified version of data used in Ejlerskov KT, Sharp SJ, Stead M, Adamson AJ, White M, Adams J. Supermarket policies on less-healthy food at checkouts: Natural experimental evaluation using interrupted time series analyses of purchases. *PLoS Med.* 2018 Dec 18;15(12). Accessed via a repository described
 in Turner, S. L., Korevaar, E., Karahalios, A., Forbes, A. B., & McKenzie, J. E. (2023). Interrupted time series datasets from studies investigating the impact of interventions or exposures in public health and social science: A data note.
@@ -104,6 +113,7 @@ change, an idea called a pre/post design.
 :   A study in which a group of units receiving a treatment is compared to earlier versions of themselves before treatment occurred.
 
 A pre/post design takes the simple approach of subtracting the pre-treatment value from the post-treatment value for each store and taking the average. The following plot shows the change in sales for each of four stores in the data, and the pre/post estimate is computed below. <!-- using the \texttt{infer} package.-->
+
 
 ```{r}
 #| echo: false
@@ -125,6 +135,7 @@ checkout_concise |>
   
 ```
 
+
 ### Pros and cons of pre/post
 
 To see the benefits of a pre/post design, think about what covariate balance looks like on store covariates such as size, geographic location (urban/suburban/rural), demographics of surrounding neighborhood (senior citizens vs. young professionals vs. families with children), and staffing.  Even though we don't have these covariates measured in our dataset, we can be pretty confident that most of them are perfectly or near-perfectly balanced.
@@ -140,6 +151,7 @@ observations for each store; if we take a bootstrap sample from all observations
 we may end up with three or more for some stores and only one for others.  To
 avoid this issue we first convert our observations to pre/post differences in
 sales, and bootstrap the differences.
+
 
 ```{r}
 #create new data frame with one row per store and pre/post sales difference
@@ -177,6 +189,7 @@ bootstrap_checkout |>
 
 ```
 
+
 Although our 95\% confidence interval mostly includes negative values, it also
 includes zero and some positive effects, so these four stores alone don't provide
 a compelling case for a strong causal effect of checkout policies on sales.-->
@@ -188,6 +201,7 @@ Suppose there is a gradual downward trend in purchase of unhealthy snacks over t
 ### More timepoints: interrupted time series
 
 First note that in addition to measuring sales in the four-week periods immediately before and after the policy change, we have data on several more  four-week periods going further back in time before the change, and going further forward in time after the change.  We can now extend the earlier plot for the pre/post design to include the additional timepoints.
+
 
 ```{r}
 #| echo: false
@@ -202,9 +216,11 @@ checkout_its |>
   annotate('text', label = 'Checkout policy enacted', x = 15, y = 50)
 ```
 
+
 By looking at the changes over time before and after the time, we are able to get a sense for the time trend; in addition, by looking at the sudden shift in the  line's height that occurs at the time of the policy change, we can get a separate sense for the average treatment effect.  Because the treatment effect "interrupts" the pattern of the smooth time trend, this design is known as an **interrupted time series**.
 
 To estimate the treatment effect after separating out the trend, we can fit a  regression model for sales  with two independent variables, a numeric variable for time period and a binary indicator for whether the policy change has been instituted:
+
 
 ```{r}
 #| echo: false
@@ -212,7 +228,9 @@ its_model <- lm(sales ~ checkout_policy + time, data = checkout_its)
 its_model
 ```
 
+
 Fitting this model to all our observations will give us two parallel lines, one for the before-treatment periods (drawn in red) and one for the after-treatment periods (drawn in blue).
+
 
 ```{r}
 #| echo: false
@@ -236,6 +254,7 @@ checkout_its |>
            yend = coef(its_model)[1]+coef(its_model)[2]+coef(its_model)[3]*29, 
             color = 'blue') 
 ```
+
 
 The distance from the red line to the blue line is given by the coefficient of `checkout_policy` and is our estimate of the average treatment effect.  You can think of the dotted red line as the (counterfactual) version of sales had the policy not been instituted, to which we are comparing the actual post-treatment sales (in solid blue).
 <!--gives the difference between that counterfactual case and the observed reality
@@ -263,6 +282,7 @@ alone and the other two the after-treatment period alone.-->
 
 Interrupted time series do not require unobserved confounders to be stable over time, but they do require changes in unobserved confounders to affect outcomes only **linearly** (i.e. with a constant slope). To see why this assumption is important, consider the following hypothetical analysis:
 
+
 ```{r}
 #| echo: false
 set.seed(2024-4-22)
@@ -284,6 +304,7 @@ ggplot(mapping = aes(x=timepoint, y = outcome)) +
            color = 'blue') +
   labs(title = 'Nonlinear trends can lead to bias')
 ```
+
 
 
 Here the gray band gives the shape of the actual pattern in the data, which appears to be a smooth and gradually decreasing curve.  Although there is no apparent treatment effect here (the pattern doesn't experience any jumps or dips at the time of treatment) fitting straight lines to the curve incorrectly suggests that a large negative treatment effect (the large gap between the red and blue lines) is present.
@@ -322,6 +343,7 @@ This is called a **difference-in-difference** design.  You can think of it as a 
 
 We now test out difference-in-difference analysis on the supermarket checkout data.  We start by making a pre/post plot with our four treated stores and two additional stores that never instituted a checkout policy [^simcontrol].
 
+
 ```{r}
 #| echo: false
 checkout_w_control <- checkout |>
@@ -336,9 +358,11 @@ checkout_w_control |>
                      y = 'Sales (number of packages sold)')
 ```
 
+
 One thing that immediately jumps out about this plot is that both pure control stores have much larger sales volume in general than the treated stores. This probably means that the pure control stores are much bigger than their treated counterparts. This would be very bad news if we were trying to match treated stores in the post period to control stores in the post period, since we wouldn't succeed in finding close pairs. Fortunately we don't need to construct close matched pairs for this design.  We do need to believe parallel counterfactual time trends (on average) between the treated stores and the pure control stores if neither were to be treated, but this seems more plausible based on the plot[^did_matching].
 
 We now compute pre/post differences for the treated stores and for the pure control stores, and take their difference to get our effect estimate.
+
 
 ```{r}
 #| echo: false
@@ -366,11 +390,13 @@ checkout_by_store |>
 
 ```
 
+
 <!--To make a confidence interval for a difference-in-difference effect, we can
 use a similar strategy to the one we used for pre/post: take pre/post differences for all stores,
 (treated and pure control) then bootstrap these.  The only difference is that we
 keep track of which differences are treated and which are not, and we compute the
 difference between their means instead of their overall mean: -->
+
 
 ```{r}
 #| echo: false
@@ -390,6 +416,7 @@ bootstrap_did |>
   visualize() +
   shade_confidence_interval(bootstrap_confint)
 ```
+
 
 <!--This bootstrap distribution suggests there is no strong evidence of a treatment
 effect of one particular sign; the data is consistent with a wide range of 
@@ -424,6 +451,7 @@ analyses above.  Here we define two of them, `checkout_its` (which excludes
 pure controls) and `checkout_w_control` (which excludes timepoints besides
 those immediately before and after treatment and relabels these timepoints as
 'pre' and 'post'). 
+
 ```{r}
 checkout_its <- checkout |>
   filter(!store_id %in% c(244,248)) 
@@ -433,9 +461,11 @@ checkout_w_control <- checkout |>
   select(store_id, sales, time, checkout_policy)
 ```
 
+
 To make plots for panel data designs, it is often helpful to use the 
 `geom_line()` geometry, mapping the unique subject ID to the `group` argument 
 to get a separate line for each unit.
+
 
 ```{r}
 checkout_its |>
@@ -447,7 +477,9 @@ checkout_its |>
   annotate('text', label = 'Checkout policy enacted', x = 15, y = 50)
 ```
 
+
 To do a hypothesis test or create a confidence interval, we must usually begin by transforming the data frame so each row represents a different unique subject. In the checkout policy example, we call the new data frame `checkout_by_store`. This code chunk shows how we can calculate the effect estimates from store-specific sales differences using `infer` commands.
+
 
 ```{r}
 #create new data frame with one row per store and pre/post sales difference
@@ -474,7 +506,9 @@ checkout_by_store |>
 
 ```
 
+
 This code chunk shows how we can create a bootstrap confidence interval for our difference in difference estimate by resampling store differences.
+
 
 ```{r}
 #| eval: false
@@ -494,10 +528,12 @@ bootstrap_did |>
   shade_confidence_interval(bootstrap_confint)
 ```
 
+
 If we want a hypothesis test instead, we could instead specify an independence null hypothesis for `checkout_by_store` with the same response and explanatory variables, and generate null draws with `generate()` using the `type = permute` argument.
 
 ## Summary
 
 Repeated observations for the same subject across time can be a powerful tool for developing arguments about causal claims.  When all units are measured once before and once after treatment, a pre/post design helps address concerns about unobserved confounders as long as the counterfactual outcomes and any unobserved  confounders remain the same across time.  Even when there is some effect of time on the outcome, we can attempt to estimate that time effect and separate it from our effect estimate, either by using additional measurements for each subject (interrupted time series) or by using subjects who never receive treatment (difference-in-difference). Like any non-randomized study, these approaches require assumptions about the true process that generated the data that you should think carefully about. It is also important to be careful about confidence interval construction for designs with repeated measures to make sure bootstrapped datasets are similar to the original data.
+
 
 

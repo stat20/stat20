@@ -109,7 +109,7 @@ null |> get_p_value(obs_stat, direction = 'both')
 
 ```-->
 
-The process of computing a difference in proportions and conducting a hypothesis test for this dataset is no different than in the examples from the generalization notes.  What makes this study special is the process that generated this data.  Because this was a randomized control experiment, the difference in proportions provides a good estimate of the average treatment effect, and if it differs significantly from zero we have compelling evidence that reader format has a causal impact on understanding. We now describe some aspects of experimental design that help establish  this stronger interpretation.
+The process of computing a difference in proportions and conducting a hypothesis test for this dataset is no different than in the examples from the generalization notes.  What makes this study special is the process that generated this data.  Because this was a randomized controlled experiment, the difference in proportions provides a good estimate of the average treatment effect, and if it differs significantly from zero we have compelling evidence that reader format has a causal impact on understanding. We now describe some aspects of experimental design that help establish  this stronger interpretation.
 
 ### Random Assignment
 

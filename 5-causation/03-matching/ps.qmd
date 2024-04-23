@@ -1,5 +1,5 @@
 ---
-title: "Natural Experiments and Matching"
+title: "Causal Effects in Observational Studies"
 format: stat20handout-pdf
 ---
 
@@ -75,13 +75,7 @@ or an observational study requiring matching?  Explain your reasoning.
 \
 \
 
-@. For one of the study types that you did NOT select in question 2, describe how a hypothetical
-study of minimum wage and fast food employment could be conducted using this strategy instead (expensive/impractical hypothetical approaches are acceptable for this question).
 
-\
-\
-\
-\
 
 @. Load the `fastfood1` dataframe in R.  Write code to create a new column giving effective
 full-time employment by adding the number of full time employees at each 
@@ -139,7 +133,7 @@ a hypothesis test to see if its imbalance differs significantly from zero.
 \
 \
 
-@. Write code to conduct nearest-neighbor matching and create a new 
+@. Write code to conduct optimal matching and create a new 
 version of the Love plot showing both pre-match
 and post-match balance.  
 
@@ -152,6 +146,14 @@ and post-match balance.
 
 @. Based on your answer to question 2 (and any revisions to that answer in question 8), compute and report the associated effect estimate for
 effective full time employment. Write a sentence summarizing the associated causal claim.
+
+\
+\
+\
+\
+
+@. For one of the study types that you did NOT select in question 2 or question 8, describe how a hypothetical
+study of minimum wage and fast food employment could be conducted using this strategy instead (expensive/impractical hypothetical approaches are acceptable for this question).
 
 \
 \
