@@ -100,18 +100,16 @@ bootstrap restaurants rather than individual observations.
 \
 \
 
-@. Last week in California a new minimum wage of \$20 per hour went into effect.
+@. Recently  a new minimum wage of \$20 per hour went into effect in California.
 Raising the wage to this level was a politically
 controversial decision.  Give an example of both predictive and causal claims 
-that proponents or
-detractors of the law might make and describe how they are different.  
+that proponents or detractors of the law might make and describe how they are different.  
 
 \
 \
 
 
 @. To what extent is your analysis of Card and
-Krueger's fast food data relevant for evaluating the claims from the previous question?  
-To the 
+Krueger's fast food data relevant for evaluating the claims from the previous question?  To the 
 degree it is relevant, what does it tell us about the claims?
 
