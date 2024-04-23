@@ -1,5 +1,5 @@
 ---
-title: "Using Time to Measure Causal Effects"
+title: "Causal Effects in Observational Studies"
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
