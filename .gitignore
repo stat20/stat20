@@ -19,6 +19,7 @@
 *.pdf
 _freeze/
 *notes.md
+*.rmarkdown
 lab-contents.yml
 notes-contents.yml
 ps-contents.yml
