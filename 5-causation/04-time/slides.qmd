@@ -241,7 +241,7 @@ B. Some of the observations in the bootstrap sample are exact copies of each oth
 C. Unique subjects in the bootstrap sample do not have one "pre" and one "post" observation
 each.
 
-D. There is no problem, this is a valid use of the bootstrap
+D. There is no problem, this is a valid use of the bootstrap.
 :::
 
 ::: notes
