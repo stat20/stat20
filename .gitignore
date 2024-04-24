@@ -32,7 +32,7 @@ sidebar-nav.yml
 _site
 _partial-site
 _staff-site
-side_libs
+site_libs
 
 # Files derived from _course-settings.yml and scripts
 **/images/tmp
