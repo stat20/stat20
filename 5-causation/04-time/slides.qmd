@@ -43,9 +43,14 @@ execute:
 # Concept Questions
 
 ##
+:::: {.columns}
+
+::: {.column width="50%"}
 
 ![](images/classic_its.png)
+:::
 
+::: {.column width="50%"}
 ::: poll
 
 Based on the plot, which of these analyses will give us a good estimate of the
@@ -62,7 +67,8 @@ D.  None of the above.
 countdown::countdown(1, bottom = -1)
 ```
 
-
+:::
+::::
 ::: notes
 
 This is the first of a series of five questions that each ask students to choose an analysis method for a study with repeated measures.  Each considers a dataset with repeated measures for 8 unique subjects. The response data is plotted with a line for each subject, color-coded by treatment status.
@@ -75,9 +81,14 @@ a jump at the time of treatment).  Neither pre/post nor diff-in-diff works, beca
 
 ##
 
+:::: {.columns}
 
+::: {.column width="50%"}
 ![](images/curved_parallel.png)
 
+:::
+
+::: {.column width="50%"}
 ::: poll
 
 Based on the plot, which of these analyses will give us a good estimate of the
@@ -93,6 +104,9 @@ D.  None of the above.
 ```{r}
 countdown::countdown(1, bottom = -1)
 ```
+
+:::
+::::
 
 
 ::: notes
@@ -102,9 +116,13 @@ The answer here is C.  Neither pre/post nor ITS works because of the curved time
 
 ##
 
+:::: {.columns}
 
+::: {.column width="50%"}
 ![](images/curved_its.png)
+:::
 
+::: {.column width="50%"}
 ::: poll
 
 Based on the plot, which of these analyses will give us a good estimate of the
@@ -121,7 +139,8 @@ D.  None of the above.
 countdown::countdown(1, bottom = -1)
 ```
 
-
+:::
+::::
 ::: notes
 
 The answer here is D.  It's the same setting as the last question except that now we don't have pure controls so diff-in-diff doesn't work either.
@@ -130,9 +149,14 @@ The answer here is D.  It's the same setting as the last question except that no
 
 ##
 
+:::: {.columns}
 
+::: {.column width="50%"}
 ![](images/two_flat.png)
 
+:::
+
+::: {.column width="50%"}
 ::: poll
 
 Based on the plot, which of these analyses will give us a good estimate of the
@@ -149,6 +173,8 @@ D.  None of the above.
 countdown::countdown(1, bottom = -1)
 ```
 
+:::
+::::
 
 ::: notes
 
@@ -158,8 +184,14 @@ The answer here is either A or B.  The trends are flat so pre/post works, but IT
 ##
 
 
-![](images/its_cross.png)
+:::: {.columns}
 
+::: {.column width="50%"}
+
+![](images/its_cross.png)
+:::
+
+::: {.column width="50%"}
 ::: poll
 
 Based on the plot, which of these analyses will give us a good estimate of the
@@ -176,6 +208,8 @@ D.  None of the above.
 countdown::countdown(1, bottom = -1)
 ```
 
+:::
+::::
 
 ::: notes
 
