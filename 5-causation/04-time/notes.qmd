@@ -78,7 +78,7 @@ before and after the policy is instituted.
 
 ```{r}
 #| echo: false
-load('checkout.rda')
+library(stat20data)
 checkout_concise <- checkout |>
   #drop pure controls and all observations but immediate pre/post
   filter(time > 13 & time < 16 & !(store_id %in% c(244,248))) |>
@@ -423,6 +423,7 @@ pure controls) and `checkout_w_control` (which excludes timepoints besides
 those immediately before and after treatment and relabels these timepoints as
 'pre' and 'post'). 
 ```{r}
+library(stat20data)
 checkout_its <- checkout |>
   filter(!store_id %in% c(244,248)) 
 checkout_w_control <- checkout |>

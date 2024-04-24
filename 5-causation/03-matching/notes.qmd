@@ -215,39 +215,38 @@ After computing the Euclidean distance between each treated unit and each contro
 #build the synthetic dataset for matching
 #NB: if we feel comfortable bringing in Maha distance,
 # use shape1=4 and runif min = 2.5 maha, 20 individulas w treat prob. 0.3 for good performance.
-set.seed(2024-3-26)
-grad_job <- data.frame('GPA' = c(), 'years_exp' = c(), 'rec' = c(), 
-                       'cal_grad' = c(), 'good_job' = c())
-for(i in 1:20){
-  this_cal_grad <- runif(1) < 0.3
-  if(this_cal_grad){
-     grad_job <- data.frame('GPA' = round(2+2*rbeta(1,shape1=3, shape2=2),2),
-                'years_exp' = round(4*rbeta(1, shape1=2, shape2=4)),
-                'rec' = sample(c('strong', 'moderate', 'weak'), size=1,
-                                 prob = c(0.6, 0.3, 0.1)),
-                'cal_grad' = this_cal_grad,
-                'good_job' = sample(c('yes','no'), size = 1, 
-                                    prob = c(0.6,0.4))) |>
-        bind_rows(grad_job)
-  }else{
-    grad_job <-  data.frame('GPA' = round(runif(1, min =2.5, max = 4),2),
-                'years_exp' = round(runif(1, min = 0, max = 4)),
-                'rec' = sample(c('strong', 'moderate', 'weak'), size=1,
-                                 prob = c(0.3, 0.4, 0.3)),
-                'cal_grad' = this_cal_grad,
-                'good_job' = sample(c('yes','no'), size = 1, 
-                                    prob = c(0.6,0.4))) |>
-       bind_rows(grad_job)    
-  }
-}
+# set.seed(2024-3-26)
+# grad_job <- data.frame('GPA' = c(), 'years_exp' = c(), 'rec' = c(), 
+#                        'cal_grad' = c(), 'good_job' = c())
+# for(i in 1:20){
+#   this_cal_grad <- runif(1) < 0.3
+#   if(this_cal_grad){
+#      grad_job <- data.frame('GPA' = round(2+2*rbeta(1,shape1=3, shape2=2),2),
+#                 'years_exp' = round(4*rbeta(1, shape1=2, shape2=4)),
+#                 'rec' = sample(c('strong', 'moderate', 'weak'), size=1,
+#                                  prob = c(0.6, 0.3, 0.1)),
+#                 'cal_grad' = this_cal_grad,
+#                 'good_job' = sample(c('yes','no'), size = 1, 
+#                                     prob = c(0.6,0.4))) |>
+#         bind_rows(grad_job)
+#   }else{
+#     grad_job <-  data.frame('GPA' = round(runif(1, min =2.5, max = 4),2),
+#                 'years_exp' = round(runif(1, min = 0, max = 4)),
+#                 'rec' = sample(c('strong', 'moderate', 'weak'), size=1,
+#                                  prob = c(0.3, 0.4, 0.3)),
+#                 'cal_grad' = this_cal_grad,
+#                 'good_job' = sample(c('yes','no'), size = 1, 
+#                                     prob = c(0.6,0.4))) |>
+#        bind_rows(grad_job)    
+#   }
+# }
 #save(grad_job, file = 'grad_job.rda')
-#library(stat20data)
 
 ```
 
 
 ```{r}
-#| echo: false
+library(stat20data)
 head(grad_job, n = 20)
 ```
 
