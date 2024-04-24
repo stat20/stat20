@@ -1,5 +1,5 @@
 ---
-title: "Experiments"
+title: "Using Time to Measure Causal Effects"
 format:
   revealjs:
     author: "STAT 20: Introduction to Probability and Statistics"
@@ -21,3 +21,320 @@ format:
 execute: 
   echo: false
 ---
+
+## Agenda
+- Announcements
+- Concept Questions
+- Problem Set 20
+
+## Announcements
+
+- PS 19 and PS 20 both due Tuesday 4/30 at 9:00 AM
+- Final exam review sessions:
+   - **Summarization**: 12pm-1pm Monday 4/29, Stanley 105
+   - **Causality**: 3pm-4pm Monday 4/29, Stanley 105
+   - **Generalization**: 3pm-4pm Wednesday 5/1, VLSB 2050
+   - **Probability**: 4pm-5pm Wednesday 5/1, VLSB 2050
+   - **Prediction**: 3pm-4pm Friday 5/3, Stanley 105
+- Final exam: 7pm-10pm, Thursday 5/9, room TBA.
+- Please fill out course evals!   
+- Consider applying to join Fall 2024 Stat 20 course staff (deadline 4/26)
+
+# Concept Questions
+
+##
+
+![](images/classic_its.png)
+
+::: poll
+
+Based on the plot, which of these analyses will give us a good estimate of the
+treatment effect?
+
+A.  Pre/post comparison.
+B.  Interrupted time series.
+C.  Difference-in-differences.
+D.  None of the above.
+
+:::
+
+```{r}
+countdown::countdown(1, bottom = -1)
+```
+
+
+::: notes
+
+This is the first of a series of five questions that each ask students to choose an analysis method for a study with repeated measures.  Each considers a dataset with repeated measures for 8 unique subjects. The response data is plotted with a line for each subject, color-coded by treatment status.
+
+Either before diving in or after the first question, you may want to go over some key rules for the three designs. Pre/post requires only two observations per subject but only works with flat time trends; interrupted time series requires more than two observations per subjects and can handle any linear time trend; difference-in-difference reequires units that never get treated and requires those units to have have parallel (not necessarily linear) trends to the treated units.  
+
+For the first question, the best answer is B: there are more than two observations per subject and the trends are linear (it may not look quite linear overall, but that's because there's
+a jump at the time of treatment).  Neither pre/post nor diff-in-diff works, because there is a trend and because all units receive treatment.
+:::
+
+##
+
+
+![](images/curved_parallel.png)
+
+::: poll
+
+Based on the plot, which of these analyses will give us a good estimate of the
+treatment effect?
+
+A.  Pre/post comparison.
+B.  Interrupted time series.
+C.  Difference-in-differences.
+D.  None of the above.
+
+:::
+
+```{r}
+countdown::countdown(1, bottom = -1)
+```
+
+
+::: notes
+
+The answer here is C.  Neither pre/post nor ITS works because of the curved time trend, but there are pure controls available and their curved trend is parallel to that of the treated.
+:::
+
+##
+
+
+![](images/curved_its.png)
+
+::: poll
+
+Based on the plot, which of these analyses will give us a good estimate of the
+treatment effect?
+
+A.  Pre/post comparison.
+B.  Interrupted time series.
+C.  Difference-in-differences.
+D.  None of the above.
+
+:::
+
+```{r}
+countdown::countdown(1, bottom = -1)
+```
+
+
+::: notes
+
+The answer here is D.  It's the same setting as the last question except that now we don't have pure controls so diff-in-diff doesn't work either.
+:::
+
+
+##
+
+
+![](images/two_flat.png)
+
+::: poll
+
+Based on the plot, which of these analyses will give us a good estimate of the
+treatment effect?
+
+A.  Pre/post comparison.
+B.  Interrupted time series.
+C.  Difference-in-differences.
+D.  None of the above.
+
+:::
+
+```{r}
+countdown::countdown(1, bottom = -1)
+```
+
+
+::: notes
+
+The answer here is either A or B.  The trends are flat so pre/post works, but ITS does too.  If we saw only two observations, pre/post would be the only good option.
+:::
+
+##
+
+
+![](images/its_cross.png)
+
+::: poll
+
+Based on the plot, which of these analyses will give us a good estimate of the
+treatment effect?
+
+A.  Pre/post comparison.
+B.  Interrupted time series.
+C.  Difference-in-differences.
+D.  None of the above.
+
+:::
+
+```{r}
+countdown::countdown(1, bottom = -1)
+```
+
+
+::: notes
+
+The answer here is B.  Trends are present so pre/post doesn't work; although we have pure controls their trend is very differently shaped than the treated trend so diff-in-diff doesn't work either.  However, the treated trend is linear and we have more than two observations per subject.
+:::
+
+
+
+##
+
+A statistician conducts a pre/post comparison and attempts to obtain a confidence interval for their treatment effect estimate using the bootstrap.  Shown below is the original data (at left) and one of the bootstrap samples (at right).
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**Original Sample**:
+
+| Subject | Response | Time_Period |
+|--------|-----------:|----|
+|Jimmy | 1.0 | Pre |
+|Jimmy | 1.5 | Post |
+|Sarita | 4.0 | Pre |
+|Sarita | 4.2 | Post |
+|Min | 1.8| Pre |
+|Min | 2.3 | Post |
+
+:::
+
+::: {.column width="50%"}
+
+**Bootstrap Sample**:
+
+| Subject | Response | Time_Period |
+|--------|-----------:|----|
+|Jimmy | 1.5 | Post |
+|Jimmy | 1.5 | Post |
+|Sarita | 4.0 | Pre |
+|Sarita | 4.2 | Post |
+|Sarita | 4.0 | Pre |
+|Min | 2.3 | Post |
+
+:::
+
+::::
+
+
+
+```{r}
+countdown::countdown(1, bottom = -1)
+```
+
+##
+
+::: poll
+
+What is the problem with this way of using the bootstrap? 
+
+A. The bootstrap sample  does not contain the right number of observations.
+
+B. Some of the observations in the bootstrap sample are exact copies of each other.
+
+C. Unique subjects in the bootstrap sample do not have one "pre" and one "post" observation
+each.
+
+D. There is no problem, this is a valid use of the bootstrap
+:::
+
+::: notes
+The point of this question is to illustrate why we get into problems when we bootstrap observations ignoring dependence within subjects.  The correct answer is C; the logic that motivated the entire pre/post approach (compare always within subjects) no longer makes any sense in the bootstrap sample.
+:::
+
+
+##
+
+```{r}
+#| echo: true
+library(tidyverse)
+library(infer)
+toy_example <- data.frame('Subject' = c(rep('Jimmy',2),
+                                        rep('Sarita',2),
+                                        rep('Min',2)),
+                          'Response' = c(1.0,1.5,4.0,4.2,1.8,2.3),
+                          'Time_Period' = rep(c('Pre','Post'),3))
+```
+
+::: notes
+
+This slide sets up to explore the actual bootstrap confidence intervals produced by both the naive bootstrap and the correct "bootstrap differences" approach.  This is here mostly so students can copy in the dataframe and work with it, and you shouldn't need to spend much time on it.
+
+:::
+
+
+##
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**Incorrect**:
+
+
+
+```{r}
+#| echo: true
+toy_example |>
+  specify(response = Response,
+          explanatory = Time_Period) |>
+  generate(reps = 500, 
+           type = 'bootstrap') |>
+  calculate(stat = 'diff in means', 
+            order = c('Post','Pre')) |>
+  visualize()
+
+```
+
+:::
+
+::: {.column width="50%"}
+
+**Correct**:
+
+```{r}
+#| echo: true
+toy_example |>
+  pivot_wider(names_from = Time_Period, 
+              values_from = Response) |>
+  mutate(diff = Post - Pre) |>
+  specify(response = diff) |>
+  generate(reps = 500, 
+           type = 'bootstrap') |>
+  calculate(stat = 'mean') |>
+  visualize(bins=4) + xlim(-2.5,2.5)
+
+```
+:::
+
+::::
+
+::: notes
+
+Oe thing to highlight on this slide is the differences in the code, especially
+the use of pivot_wider on the RHS to create a new data frame with one row per subject.  It's 
+a good idea to break the pipe after that command so students can see exactly what's going on.
+Note also how we don't need both response and explanatory variables in specify after taking the differences.
+
+The other big thing to emphasize is how different the bootstrap distributions look.  Because the subjects look very different from each other in response but have relatively small pre/post changes, the bad bootstrap throws in all kinds of extra noise that muddies up our effect.  
+
+:::
+
+# Break 
+
+```{r}
+countdown::countdown(5)
+```
+
+# Problem Set 
+
+```{r}
+countdown::countdown(60)
+```
+
+
