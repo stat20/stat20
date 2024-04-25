@@ -341,7 +341,7 @@ checkout_w_control |>
                      y = 'Sales (number of packages sold)')
 ```
 
-One thing that immediately jumps out about this plot is that both pure control stores have much larger sales volume in general than the treated stores. This probably means that the pure control stores are much bigger than their treated counterparts. This would be very bad news if we were trying to match treated stores in the post period to control stores in the post period, since we wouldn't succeed in finding close pairs. Fortunately we don't need to construct close matched pairs for this design.  We do need to believe parallel counterfactual time trends (on average) between the treated stores and the pure control stores if neither were to be treated, but this seems more plausible based on the plot[^did_matching].
+One thing that immediately jumps out about this plot is that both pure control stores have much larger sales volume in general than the treated stores. This probably means that the pure control stores are much bigger than their treated counterparts. This would be very bad news if we were trying to match treated stores in the post period to control stores in the post period, since we wouldn't succeed in finding close pairs. Fortunately we don't need to construct close matched pairs for this design.  We do, however, need to believe that we'd have seen parallel counterfactual time trends (on average) between the treated stores and the pure control stores if neither had been treated[^did_matching].
 
 We now compute pre/post differences for the treated stores and for the pure control stores, and take their difference to get our effect estimate.
 
