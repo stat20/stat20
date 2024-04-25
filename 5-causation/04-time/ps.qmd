@@ -62,11 +62,22 @@ more plausible?
 
 \
 \
+\
+\
+\
+\
+\
+\
+
 
 @. What additional data would we need to have available to conduct an
 interrupted time series design?  How would the associated assumptions differ from
 those in a pre/post design?
 
+\
+\
+\
+\
 \
 \
 
@@ -76,6 +87,14 @@ restaurants and one line averaging over all Pennsylvania restaurants.
  
 \
 \
+\
+\
+\
+\
+\
+\
+\
+
 
 @. Write code to create a line plot like the one in the previous question and
 construct it.  Describe similarities and differences between the hypothesized
@@ -83,12 +102,24 @@ and actual plots.
 
 \
 \
+\
+\
+\
+\
+\
+
+
 
 @. Write code to compute the pre/post estimate and difference in difference
 estimators.  Run the code and compare the values obtained to each other and to
 the effects you obtained from the `fastfood1` dataset in the previous problem set.
 
 
+\
+\
+\
+\
+\
 \
 \
 
@@ -99,6 +130,17 @@ bootstrap restaurants rather than individual observations.
 
 \
 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+
 
 @. Recently  a new minimum wage of \$20 per hour went into effect in California.
 Raising the wage to this level was a politically
@@ -107,9 +149,20 @@ that proponents or detractors of the law might make and describe how they are di
 
 \
 \
+\
+\
+\
+\
+\
+\
+\
+
 
 
 @. To what extent is your analysis of Card and
 Krueger's fast food data relevant for evaluating the claims from the previous question?  To the 
 degree it is relevant, what does it tell us about the claims?
+
+
+
 
