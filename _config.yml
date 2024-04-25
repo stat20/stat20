@@ -476,10 +476,10 @@ schedule:
             render: true
           - type: Slides
             href: 5-causation/04-time/slides.qmd
-            render: false
+            render: true
           - type: PS
             href: 5-causation/04-time/ps.qmd
-            render: false
+            render: true
 
   - week: "RRR"
     days:

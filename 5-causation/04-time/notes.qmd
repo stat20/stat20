@@ -78,7 +78,7 @@ before and after the policy is instituted.
 
 ```{r}
 #| echo: false
-load('checkout.rda')
+library(stat20data)
 checkout_concise <- checkout |>
   #drop pure controls and all observations but immediate pre/post
   filter(time > 13 & time < 16 & !(store_id %in% c(244,248))) |>
@@ -326,6 +326,11 @@ We now test out difference-in-difference analysis on the supermarket checkout da
 #| echo: false
 checkout_w_control <- checkout |>
   filter(time > 13 & time < 16) |>
+  mutate('time' = factor(time, labels = c('pre','post'))) |> 
+  pivot_wider(names_from = time, values_from = c(sales,checkout_policy))
+
+checkout_w_control <- checkout |>
+  filter(time > 13 & time < 16) |>
   mutate('time' = factor(time, labels = c('pre','post'))) |>
   select(store_id, sales, time, checkout_policy)
 checkout_w_control |>
@@ -343,17 +348,10 @@ We now compute pre/post differences for the treated stores and for the pure cont
 ```{r}
 #| echo: false
 #create new data frame with one row per store and pre/post sales difference
-checkout_post <- checkout_w_control |>
-  filter(time == 'post') |>
-  mutate('post_sales' = sales)
-checkout_pre_sales <- checkout_w_control |>
-  filter(time == 'pre') |>
-  mutate('pre_sales' = sales) |>
-  select(pre_sales)
-checkout_by_store <- cbind(checkout_post, checkout_pre_sales) |>
-  mutate('sales_diff' = post_sales - pre_sales,
-         'ever_treated' = checkout_policy) |>
-  select(store_id, sales_diff, ever_treated)
+checkout_by_store <- checkout_w_control |>
+  pivot_wider(names_from = time, values_from = c(sales,checkout_policy)) |>
+  mutate('ever_treated' = checkout_policy_post, 
+         'sales_diff' = sales_post - sales_pre)
 
 checkout_by_store |>
   group_by(ever_treated) |>
@@ -425,6 +423,7 @@ pure controls) and `checkout_w_control` (which excludes timepoints besides
 those immediately before and after treatment and relabels these timepoints as
 'pre' and 'post'). 
 ```{r}
+library(stat20data)
 checkout_its <- checkout |>
   filter(!store_id %in% c(244,248)) 
 checkout_w_control <- checkout |>
@@ -447,21 +446,15 @@ checkout_its |>
   annotate('text', label = 'Checkout policy enacted', x = 15, y = 50)
 ```
 
-To do a hypothesis test or create a confidence interval, we must usually begin by transforming the data frame so each row represents a different unique subject. In the checkout policy example, we call the new data frame `checkout_by_store`. This code chunk shows how we can calculate the effect estimates from store-specific sales differences using `infer` commands.
+To do a hypothesis test or create a confidence interval, we must usually begin by transforming the data frame so each row represents a different unique subject.  The `pivot_wider` command does this, creating new pre- and post- versions of our other variables for ecah store.  We call the new data frame `checkout_by_store`. This code chunk shows how we can calculate the effect estimates from store-specific sales differences using `infer` commands.
 
 ```{r}
 #create new data frame with one row per store and pre/post sales difference
-checkout_post <- checkout_w_control |>
-  filter(time == 'post') |>
-  mutate('post_sales' = sales)
-checkout_pre_sales <- checkout_w_control |>
-  filter(time == 'pre') |>
-  mutate('pre_sales' = sales) |>
-  select(pre_sales)
-checkout_by_store <- cbind(checkout_post, checkout_pre_sales) |>
-  mutate('sales_diff' = post_sales - pre_sales,
-         'ever_treated' = checkout_policy) |>
-  select(store_id, sales_diff, ever_treated)
+checkout_by_store <- checkout_w_control |>
+  pivot_wider(names_from = time, values_from = c(sales,checkout_policy)) |>
+  mutate('ever_treated' = checkout_policy_post, 
+         'sales_diff' = sales_post - sales_pre)
+
 
 checkout_by_store |>
   group_by(ever_treated) |>
