@@ -73,7 +73,7 @@ Data with repeated measures for individual subjects is called *longitudinal* or 
 
 ![](images/supermarket-checkout.png){#fig-inflation fig-align=center width="500px"}[^checkoutpic]
 
-You (as well as any small children you know) have probably noticed that supermarket checkout lines often feature a display of candy, soda, chips, or other "less-healthy" snacks.  Government agencies and consumer advocacy groups have called for supermarket chains to remove such displays, claiming that they lead to unhealthy eating choices and poorer health for consumers.  In the United Kingdom, some supermarkets have responded by instituting 'checkout line' policies under which candy is removed and replaced with healthier options.  We will look at data[^its_source] on the number of purchases of unhealthy foods at four stores that instituted such a policy in the mid-2010s.  Purchases are measured both
+You (as well as any small children you know) have probably noticed that supermarket checkout lines often feature a display of candy, soda, chips, or other "less-healthy" snacks.  Government agencies and consumer advocacy groups have called for supermarket chains to remove such displays, claiming that they lead to unhealthy eating choices and poorer health for consumers.  In the United Kingdom, some supermarkets have responded by instituting "checkout line" policies under which candy is removed and replaced with healthier options.  We will look at data[^its_source] on the number of purchases of unhealthy foods at four stores that instituted such a policy in the mid-2010s.  Purchases are measured both
 before and after the policy is instituted.
 
 ```{r}
@@ -86,11 +86,9 @@ checkout_concise <- checkout |>
 checkout_concise
 ```
 
-[^its_source]: Data is a modified version of data used in Ejlerskov KT, Sharp SJ, Stead M, Adamson AJ, White M, Adams J. Supermarket policies on less-healthy food at checkouts: Natural experimental evaluation using interrupted time series analyses of purchases. *PLoS Med.* 2018 Dec 18;15(12). Accessed via a repository described
-in Turner, S. L., Korevaar, E., Karahalios, A., Forbes, A. B., & McKenzie, J. E. (2023). Interrupted time series datasets from studies investigating the impact of interventions or exposures in public health and social science: A data note.
-Available at ResearchSquare, https://doi.org/10.21203/rs.3.rs-3669411/v1.
+[^its_source]: Data is a modified version of data used in Ejlerskov KT, Sharp SJ, Stead M, Adamson AJ, White M, Adams J. Supermarket policies on less-healthy food at checkouts: Natural experimental evaluation using interrupted time series analyses of purchases. *PLoS Med.* 2018 Dec 18;15(12). Accessed via a repository described in Turner, S. L., Korevaar, E., Karahalios, A., Forbes, A. B., & McKenzie, J. E. (2023). Interrupted time series datasets from studies investigating the impact of interventions or exposures in public health and social science: A data note. Available at ResearchSquare, https://doi.org/10.21203/rs.3.rs-3669411/v1.
 
-The causal claim here is that consumers would have purchased fewer unhealthy snacks if the candy display had been removed from the checkout line (the broader claims about the impact of this change on public health are not things we can test with data from the supermarkets alone).  A great way to test this theory might be to randomly assign some supermarkets to remove their checkout displays and others to keep theirs, and compare purchases. Unfortunately that study was not conducted, and it's not clear that these stores decided to institute their policies in a quasi-random way (e.g. what if only the stores selling very low levels of candy agreed to participate?).  We could also consider matching stores with the policy to those without the policy and comparing their sales.  But we our dataset doesn't include many store covariates, and in general datasets like this one may only
+The causal claim here is that consumers would have purchased fewer unhealthy snacks if the candy display had been removed from the checkout line (the broader claims about the impact of this change on public health are not things we can test with data from the supermarkets alone).  A great way to test this theory might be to randomly assign some supermarkets to remove their checkout displays and others to keep theirs, and compare purchases. Unfortunately that study was not conducted, and it's not clear that these stores decided to institute their policies in a quasi-random way (e.g. what if only the stores selling very low levels of candy agreed to participate?).  We could also consider matching stores with the policy to those without the policy and comparing their sales.  But our dataset doesn't include many store covariates, and in general datasets like this one may only
 include stores that instituted the policy.
 
 [^checkoutpic]: Image from Shutterstock/SpeedKingz, obtained from Pawlowski, A. (Dec 2015). Kids can't resist candy? Stores try junk food-free 'healthy checkout lanes.'  *Today.com.* <https://www.today.com/parents/kids-cant-resist-candy-stores-try-junk-food-free-healthy-t60621>.
@@ -108,10 +106,16 @@ A pre/post design takes the simple approach of subtracting the pre-treatment val
 ```{r}
 #| echo: false
 checkout_concise |>
-  ggplot(mapping = aes(x = checkout_policy, y = sales, group = store_id)) + 
-  geom_line() + labs(title = 'Sales of unhealthy foods often decreased post-policy',
-                     x = 'Checkout policy instituted?',
-                     y = 'Sales (number of packages sold)')
+  ggplot(mapping = aes(x = checkout_policy, 
+                       y = sales, 
+                       group = store_id,
+                       col = store_id)) + 
+  geom_line() + 
+  geom_point() +
+  labs(title = 'Sales of unhealthy foods often decreased post-policy',
+       x = 'Checkout policy instituted?',
+       y = 'Sales (number of packages sold)',
+       col = 'Store ID')
 ```
 
 ```{r}
@@ -129,7 +133,7 @@ checkout_concise |>
 
 To see the benefits of a pre/post design, think about what covariate balance looks like on store covariates such as size, geographic location (urban/suburban/rural), demographics of surrounding neighborhood (senior citizens vs. young professionals vs. families with children), and staffing.  Even though we don't have these covariates measured in our dataset, we can be pretty confident that most of them are perfectly or near-perfectly balanced.
 
-Covariate balance also helps identify the biggest weakness of a pre/post design. What would the SMD look like for time (if we measured as a numeric variable counting the number of months starting from January 2016)?  It would probably be quite large since the treated observations are systematically later than the control observations.  So although most covariates will be well-controlled, pre/post designs are highly susceptible to time trends in the outcome (or other outcome-related covariates that shift over time). For example, what if one of the stores rolled out its policy on January 1st, so that the four weeks prior to the policy included the winter holidays, when British consumers traditionally buy and consume a lot of sweets, and the four weeks immediately following the policy included the beginning of the year when many people are starting diet and exercise plans?  A matched study could avoid this particular issue by comparing different stores, one with the policy and one without, during the same time period. So while matched studies require **no unmeasured confounding**, pre/post designs require counterfactual outcomes and unmeasured confounding to be **stable across time**.
+Covariate balance also helps identify the biggest weakness of a pre/post design. What would the SMD look like for `time` (if we measured it as a numeric variable counting the number of months starting from January 2016)?  It would probably be quite large since the treated observations are systematically later than the control observations.  So although most covariates will be well-controlled, pre/post designs are highly susceptible to time trends in the outcome (or other outcome-related covariates that shift over time). For example, what if one of the stores rolled out its policy on January 1st, so that the four weeks prior to the policy included the winter holidays, when British consumers traditionally buy and consume a lot of sweets, and the four weeks immediately following the policy included the beginning of the year when many people are starting diet and exercise plans?  A matched study could avoid this particular issue by comparing different stores, one with the policy and one without, during the same time period. So while matched studies require **no unmeasured confounding**, pre/post designs require counterfactual outcomes and unmeasured confounding to be **stable across time**.
 
 
 <!--### Confidence intervals for pre/post effect estimates
@@ -183,7 +187,7 @@ a compelling case for a strong causal effect of checkout policies on sales.-->
 
 ## Dealing with effects of time
 
-Suppose there is a gradual downward trend in purchase of unhealthy snacks over time, as British consumers become better informed about health risks and gradually switch to healthier options.  This is a problem for our pre/post design, which can't distinguish between reductions in sales due to the nationwide trend and reductions in sales due to the policy change that we're interested in.  Fortunately if we have the right kind of additional data available we can attempt to identify the time trend and distinguish it from our treatment effect.  We'll focus on two approaches, each of which relies on a different kind of additional data.
+Suppose there is a gradual downward trend in purchases of unhealthy snacks over time, as British consumers become better informed about health risks and gradually switch to healthier options.  This is a problem for our pre/post design, which can't distinguish between reductions in sales due to the nationwide trend and reductions in sales due to the policy change that we're interested in.  Fortunately if we have the right kind of additional data available we can attempt to identify the time trend and distinguish it from our treatment effect.  We'll focus on two approaches, each of which relies on a different kind of additional data.
 
 ### More timepoints: interrupted time series
 
@@ -194,10 +198,16 @@ First note that in addition to measuring sales in the four-week periods immediat
 checkout_its <- checkout |>
   filter(!store_id %in% c(244,248)) 
 checkout_its |>
-  ggplot(mapping = aes(x = time, y = sales, group = store_id)) + 
-  geom_line() + labs(title = 'Sales of unhealthy foods did not show a dramatic time trend',
-                     x = 'Time (4-week periods)',
-                     y = 'Sales (number of packages sold)') + 
+  ggplot(mapping = aes(x = time, 
+                       y = sales,
+                       group = store_id,
+                       col = store_id)) + 
+  geom_line() + 
+  geom_point() +
+  labs(title = 'Sales of unhealthy foods did not show a dramatic time trend',
+       x = 'Time (4-week periods)',
+       y = 'Sales (number of packages sold)',
+       col = 'Store ID') + 
   geom_vline(xintercept = 15, linetype = 2) +
   annotate('text', label = 'Checkout policy enacted', x = 15, y = 50)
 ```
