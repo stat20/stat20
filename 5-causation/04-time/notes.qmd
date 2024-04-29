@@ -13,7 +13,6 @@ execute:
 ---
 
 
-
 ## Causality and variation across time
 
 When we don't have access to a randomized experiment or a natural experiment, creative methods are required to extract evidence about causal claims from data.  In the last set of notes, we looked at matching methods, which approximate unobserved counterfactual outcomes by identifying different subjects that appear very similar based on their covariate values. Today we think about a very different way to approximate missing counterfactuals: repeated observations for the same subject at different times with different treatments.
