@@ -40,7 +40,7 @@ webpage? Let's run through each term one-by-one to think through how to design a
 
 When designing an RCT, an essential decision is the nature of your control group. Our research question is: will reading these notes as a webpage result in a deeper understanding? Deeper . . . than what? Deeper than if you didn't read the notes at all? Deeper than if you read them aloud?
 
-If we're most interested in the difference between reading the notes as a webpage and reading them as a pdf, we could declare those who read the pdf part of the control group and those who read the pdf as part of the treatment group. Small changes to the control group can make an important difference in the precise question that you'll be answering.
+If we're most interested in the difference between reading the notes as a webpage and reading them as a pdf, we could declare those who read the pdf part of the control group and those who read the website as part of the treatment group. Small changes to the control group can make an important difference in the precise question that you'll be answering.
 
 We can visualize the distinction between the two groups in a small example with three people in the control group (pdf) and three people in the treatment group (website).
 
