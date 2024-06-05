@@ -4,7 +4,7 @@ on:
   #   - cron: "1 0 * * 5" # Every Friday at 5:01 pm (PDT)
   #   - cron: "1 13 * * 2" # Every Tuesday at 6:01 am (PDT)
   #   - cron: "1 13 * * 4" # Every Thursday at 6:01 am (PDT)
-  
+
 name: "Publish to gh-pages"
 jobs:
   publish:
@@ -14,7 +14,7 @@ jobs:
     container:
       image: stat20/stat20-docker:latest
       # Enables quarto to write output to git work directory
-      options: --user root -v ${{ github.workspace }}:/home/rstudio/stat20
+      options: --user root
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -32,11 +32,18 @@ jobs:
           # exit if any command returns non-zero exit
           set -e
 
+          echo pwd
+          pwd
+
+          echo ls -l
+          ls -l
+
           # execute from the textbook
-          cd /home/rstudio/stat20/
+          cd stat20
+          ls -l
 
           # render partial site
           quarto run partial-render.ts
-            
+
           # publish rendered site
           quarto publish gh-pages --profile partial-site --no-render --no-browser
