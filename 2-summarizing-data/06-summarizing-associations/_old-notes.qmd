@@ -101,7 +101,7 @@ Instead of trying to quantify any possible association between two variables let
 
 #### Digression: residuals
 
-Suppose we observe $n$ observations of a variable $x_1, \dots, x_n$. The residuals quantify how far each observation is from the typical value. In detail, the residuals from the mean are $x_1 - \overline{x}$, $x_2 - \overline{x}$, ..., $x_n - \overline{x}$ where we [recall](https://www.stat20.org/2-describing-data/05-summarizing-numerical-data/notes.html#constructing-numerical-summaries) $\overline{x}$ is the mean.
+Suppose we observe $n$ observations of a variable $x_1, \dots, x_n$. The residuals quantify how far each observation is from the typical value. In detail, the residuals from the mean are $x_1 - \overline{x}$, $x_2 - \overline{x}$, ..., $x_n - \overline{x}$ where we [recall](/2-describing-data/05-summarizing-numerical-data/notes.qmd#constructing-numerical-summaries) $\overline{x}$ is the mean.
 
 ### Sample Covariance
 
