@@ -24,6 +24,11 @@ jobs:
         with:
           path: stat20
 
+      - name: Initialize git
+        run: |
+          git config --local user.email "scf@stat.berkeley.edu"
+          git config --local user.name "GitHub Actions"
+
       # run the container, attaching this repo as a working directory
       - name: Build the website
         env:
@@ -32,15 +37,8 @@ jobs:
           # exit if any command returns non-zero exit
           set -e
 
-          echo pwd
-          pwd
-
-          echo ls -l
-          ls -l
-
           # execute from the textbook
           cd stat20
-          ls -l
 
           # render partial site
           quarto run partial-render.ts
