@@ -431,7 +431,7 @@ countdown::countdown(5, top = 0)
 :::{style="text-align: center"}
 All of the materials and links for the course can be found at:
 
-[[{{< var site-url >}}](index.qmd)]{style="font-size: 1.5em"}
+[[{{< var site-url >}}]({{< var site-url >}})]{style="font-size: 1.5em"}
 :::
 
 ![](images/website-screenshot.png){fig-align=center}
