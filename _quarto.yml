@@ -56,9 +56,9 @@ website:
     right:
       - text: License
         href: license.qmd
-    left:
-      - text: "This site is hosted by Netlify."
-        href: https://www.netlify.com/
+    #left:
+    #  - text: "This site is hosted by Netlify."
+    #    href: https://www.netlify.com/
 
 
 # Format-specific Metadata
