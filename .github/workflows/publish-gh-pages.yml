@@ -26,6 +26,12 @@ jobs:
 
       - name: Initialize git
         run: |
+          # exit if any command returns non-zero exit
+          set -e
+
+          # execute from the textbook
+          cd stat20
+
           git config --local user.email "scf@stat.berkeley.edu"
           git config --local user.name "GitHub Actions"
 
