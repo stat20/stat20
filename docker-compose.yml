@@ -6,6 +6,7 @@ services:
     # `latest` tag is sufficient when developing from master.
     # Pin a SHA when developing production materials.
     image: stat20/stat20-docker:latest
+    platform: "linux/amd64"
     ports:
       - "8787:8787"
     volumes:
