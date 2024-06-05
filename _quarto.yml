@@ -13,7 +13,7 @@ website:
   search:
     location: navbar
     type: overlay
-  site-url: "https://www.stat20.org/"
+  site-url: "https://berkeley.github.io/fall-2024"
   repo-url: "https://github.com/stat20/course-materials"
   favicon: assets/favicon.ico
   image: assets/stat20-hex.png
