@@ -14,7 +14,7 @@ Pick some piece of communication and discuss how it uses the ideas in the effect
 
 - [AirBnB's pitch deck to venture capitalists](https://www.slideshare.net/PitchDeckCoach/airbnb-first-pitch-deck-editable)
 
-- [stat20 website](https://www.stat20.org/)
+- [stat20 website](/index.qmd)
 
 - TikTok
 
