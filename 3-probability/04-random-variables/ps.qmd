@@ -1,7 +1,7 @@
 ---
 title: "Random Variables"
 subtitle: "PS"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 For each of the boxes below, draw one ticket at random, and let $X$ be the value of the ticket that you draw. 

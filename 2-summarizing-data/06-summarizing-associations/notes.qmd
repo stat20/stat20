@@ -5,7 +5,6 @@ from: markdown+emoji
 image: images/association.png
 format:
   html: default
-  pdf: default
 ---
 
 ```{r}

@@ -1,6 +1,6 @@
 ---
 title: "Evaluating and Improving Predictions"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 Today's data is on house pricing in Los Angeles! We have access to data on all of the houses that sold in four cities around west LA in the course of a single month. Our goal is to predict the price of a home based on a few attributes of that home. Check Ed for a link to the data.
 

@@ -1,7 +1,7 @@
 ---
 title: 'A Matter of Taste'
 subtitle: "Lab"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 ### Group Members

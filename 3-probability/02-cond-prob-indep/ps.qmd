@@ -1,6 +1,6 @@
 ---
 title: "Computing Probabilities"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 Consider picking numbers from the following box.

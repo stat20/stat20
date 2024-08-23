@@ -1,7 +1,7 @@
 ---
 title: "Expected Value and Variance"
 subtitle: "PS"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 @. Let $X$ be a Discrete Uniform random variable on $[-4, -1, 0, 1, 2].$ Let $Y = X^2$. Find $\mathbb{E}(Y)$.

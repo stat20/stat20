@@ -1,12 +1,5 @@
 ---
-format:
-  pdf:
-    include-in-header: 
-      text: |
-        \usepackage{fancyhdr}
-    fontsize: 10pt
-    margin-top: .8in
-    margin-bottom: .5in
+format: stat20handout-typst
 ---
 
 \thispagestyle{empty}

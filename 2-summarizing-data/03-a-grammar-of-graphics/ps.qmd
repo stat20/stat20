@@ -1,7 +1,7 @@
 ---
 title: "Communicating with Graphics"
 subtitle: "PS"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 \begin{center}

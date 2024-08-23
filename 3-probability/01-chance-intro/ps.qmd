@@ -1,7 +1,7 @@
 ---
 title: "Introducing Probability"
 subtitle: "PS"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 Consider the seven sided die (with sides 0, 1, 2, 3, 4, 5 and 6) from your reading questions. You roll this die once. Let:

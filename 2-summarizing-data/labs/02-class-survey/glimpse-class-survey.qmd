@@ -1,6 +1,6 @@
 ---
 title: "Class Survey Data Frame"
-format: pdf
+format: typst
 ---
 
 ```{r}

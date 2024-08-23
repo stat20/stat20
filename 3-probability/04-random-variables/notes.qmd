@@ -4,7 +4,6 @@ subtitle: "Discrete random variables, probability mass functions, cumulative dis
 image: images/roulette-us.jpg
 format:
   html: default
-  pdf: default
 editor_options: 
   chunk_output_type: console
 ---

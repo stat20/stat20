@@ -3,7 +3,6 @@ title: "From Samples to Populations"
 subtitle: "The bias and variance of moving from sample to population."
 format:
   html: default
-  pdf: default
 reference-location: margin
 ---
 

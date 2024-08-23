@@ -1,6 +1,6 @@
 ---
 title: "Using Time to Measure Causal Effects"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 <!-- ## Case Study 2: Cherry Blossom Run	 -->

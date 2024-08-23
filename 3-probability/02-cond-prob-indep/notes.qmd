@@ -4,7 +4,6 @@ subtitle: "Conditional probabability, the multiplication rule and independence"
 image: images/sally-clark-headline.jpeg
 format:
   html: default
-  pdf: default
 editor_options: 
   chunk_output_type: console
 ---

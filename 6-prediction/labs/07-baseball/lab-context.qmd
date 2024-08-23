@@ -1,7 +1,7 @@
 ---
 title: "Baseball"
 subtitle: "Lab"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 One source of data for this lab is the public `Lahman` database which contains a number of data sets with different units of observation. Below are the first few rows and some of the columns for two of these data sets: `Teams` and `Batting`. They contain data going back to 1871. Use these excerpts to help you answer the following questions.

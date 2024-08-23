@@ -4,7 +4,6 @@ subtitle: "Connections to boxes, continuous distributions, and a fundamental res
 image: images/front-image.png
 format:
   html: default
-  pdf: default
 ---
 
 :::{.lo .content-hidden unless-profile="staff-site"}

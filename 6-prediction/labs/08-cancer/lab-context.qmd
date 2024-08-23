@@ -1,7 +1,7 @@
 ---
 title: "Cancer Diagnosis"
 subtitle: "Lab"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 In this lab you will train and evaluate a classification algorithm to determine whether or not a [fine needle aspiration biopsy](https://en.wikipedia.org/wiki/Fine-needle_aspiration) is cancerous (malignant) or non-cancerous (benign). The data were downloaded from the [UC Irvine Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29) and lightly processed. Here is a brief glimpse at some of the columns. Use this glimpse to answer the following questions. 

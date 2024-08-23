@@ -1,7 +1,7 @@
 ---
 title: "Summarizing Numerical Associations"
 subtitle: "PS"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 There is a data set built into R called `mtcars` that includes several measures on different types of cars. Learn more about the data set using `?mtcars`. Where applicable, complete the following questions in RStudio and write the code you used below.

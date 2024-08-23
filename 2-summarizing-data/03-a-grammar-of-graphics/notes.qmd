@@ -4,7 +4,6 @@ subtitle: "A unified framework for constructing statistical graphics."
 image: images/penguin-plot.png
 format:
   html: default
-  pdf: default
 ---
 
 
