@@ -5,8 +5,8 @@ resources:
   - "homepage-readings"
 listing:
   id: schedule-listing
-  contents: schedule.yml
-  template: assets/listings/schedule.ejs
+  contents: scheduled-docs_files/schedule.yml
+  template: _extensions/qmd-lab/course-website-ejs/schedule-1.ejs
 ---
 
 :::::{.content-block}

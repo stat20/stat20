@@ -1,10 +1,9 @@
 project:
   type: website
-  pre-render: prep-website.ts
-  post-render: clean-website.ts
   
 metadata-files:
-  - "sidebar-nav.yml"
+  - "scheduled-docs_files/draft-list.yml"
+  - "scheduled-docs_files/sidebar-contents.yml"
 
 # Website Configuration and Layout
 website:
@@ -60,7 +59,6 @@ website:
     #left:
     #  - text: "This site is hosted by Netlify."
     #    href: https://www.netlify.com/
-
 
 # Format-specific Metadata
 format:

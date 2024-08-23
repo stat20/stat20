@@ -1,0 +1,4 @@
+path-to-yaml: '_schedule.yml'
+scheduled-docs-key: 'scheduled-docs'
+docs-key: 'docs'
+temp-files-dir: './scheduled-docs_files'
