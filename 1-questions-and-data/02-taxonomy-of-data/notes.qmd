@@ -5,7 +5,6 @@ image: images/taxonomy-small.png
 code-fold: false
 format:
   html: default 
-  pdf: default
 ---
 
 :::{.lo .content-hidden unless-profile="staff-site"}

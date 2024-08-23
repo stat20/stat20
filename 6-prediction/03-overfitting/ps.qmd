@@ -1,6 +1,6 @@
 ---
 title: "Overfitting"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 

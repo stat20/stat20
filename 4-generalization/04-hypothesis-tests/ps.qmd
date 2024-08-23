@@ -1,6 +1,6 @@
 ---
 title: "Hypothesis Tests"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 #### Is Yawning Contagious?

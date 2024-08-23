@@ -4,7 +4,6 @@ subtitle: "From data frames to tables. From tables to bar charts."
 image: images/two-var-small.png
 format:
   html: default
-  pdf: default
 ---
 
 :::{.lo .content-hidden unless-profile="staff-site"}

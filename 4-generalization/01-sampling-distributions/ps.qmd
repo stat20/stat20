@@ -1,6 +1,6 @@
 ---
 title: "Sampling Distributions"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 <!-- ## Case Study: Cherry Blossom Run -->

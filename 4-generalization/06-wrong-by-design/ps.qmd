@@ -1,6 +1,6 @@
 ---
 title: "Wrong by Design"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 <!-- Revise these to be settings where a hypothesis test makes sense (where there is a source of randomness in the data collection.) -->

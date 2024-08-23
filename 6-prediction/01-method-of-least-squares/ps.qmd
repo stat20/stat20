@@ -1,6 +1,6 @@
 ---
 title: "The Method of Least Squares"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 ```{r}

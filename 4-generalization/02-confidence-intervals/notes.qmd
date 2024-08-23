@@ -4,8 +4,6 @@ subtitle: "Quantifying the sampling variability of a statistic."
 toc-depth: 4
 format:
   html: default
-  pdf:
-    echo: false
 ---
 
 ```{r}

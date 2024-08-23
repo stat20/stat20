@@ -1,6 +1,6 @@
 ---
 title: "Causal Effects in Observational Studies"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 <!-- ## Case Study 2: Cherry Blossom Run	 -->

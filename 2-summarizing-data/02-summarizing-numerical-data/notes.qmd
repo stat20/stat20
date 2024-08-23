@@ -4,7 +4,6 @@ subtitle: "Seeing the forest for the trees."
 image: images/violins-sm.png
 format:
   html: default
-  pdf: default
 ---
 
 - Man feigns madness, contemplates life and death, and seeks revenge.

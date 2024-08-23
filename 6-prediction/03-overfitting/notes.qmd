@@ -8,9 +8,6 @@ format:
     code-fold: true
     code-link: true
     code-summary: "."
-  pdf:
-    echo: false
-    code-fold: false
 execute: 
   warning: false
   message: false

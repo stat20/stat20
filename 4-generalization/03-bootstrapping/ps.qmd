@@ -1,7 +1,7 @@
 ---
 title: "Bootstrapping"
 subtitle: "PS"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 Bootstrapping and the Central Limit Theorem are two ways to approximate the sampling distribution of statistics. But how good of an approximation are they?

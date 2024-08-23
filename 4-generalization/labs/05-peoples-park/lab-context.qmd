@@ -1,7 +1,7 @@
 ---
 title: "People's Park"
 subtitle: "Lab"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 In answering the following questions, it will be helpful to consult the documents linked on the lab page on the course website.

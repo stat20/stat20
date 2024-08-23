@@ -1,6 +1,6 @@
 ---
 title: ""
-format: pdf
+format: stat20handout-typst
 ---
 
 \thispagestyle{empty} 

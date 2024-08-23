@@ -1,6 +1,6 @@
 ---
 title: "Hypothesis Tests II"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
   
 # Case Study 1

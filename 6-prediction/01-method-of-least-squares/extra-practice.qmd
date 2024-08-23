@@ -1,7 +1,7 @@
 ---
 title: "The Method of Least Squares"
 subtitle: "Extra Practice"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
   
 `lm()` uses the closed form equations to find the least squares estimates but there are other ways to do this optimization; one was discussed in the notes. We will have you go through this method here, comparing to the linear model you made in the problem set. Load the `flights` data into your R session. 

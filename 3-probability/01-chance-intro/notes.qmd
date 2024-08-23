@@ -4,7 +4,6 @@ subtitle: "Definitions, axioms, and examples"
 image: images/dice-players-painting.jpeg
 format:
   html: default
-  pdf: default
 editor_options: 
   chunk_output_type: console
 ---

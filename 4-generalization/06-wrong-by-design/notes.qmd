@@ -9,8 +9,6 @@ format:
     code-link: true
     code-summary: "."
     reference-location: document
-  pdf:
-    echo: false
 execute: 
   warning: false
   message: false

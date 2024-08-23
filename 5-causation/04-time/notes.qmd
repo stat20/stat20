@@ -6,7 +6,6 @@ format:
     code-fold: false
     code-link: true
     code-summary: "."
-  pdf: default
 execute: 
   warning: false
   message: false

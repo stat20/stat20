@@ -1,7 +1,7 @@
 ---
 title: "Data Pipelines"
 subtitle: "PS"
-format: stat20handout-pdf
+format: stat20handout-typst
 ---
 
 The following practice problems all deal with a data set that's near and dear to our hearts, the Palmer penguins dataset. Like always, make sure you start your analysis by loading in the necessary packages and data sets. 
