@@ -244,7 +244,7 @@ Humans tend to process hierarchical information better than sequential informati
 
 
 
-Textbooks are organized into: chapters, sections, subsections, paragraphs, sentences etc. Imagine if a textbook were just a straight wall of text! We categorize living creatures into a hierarchical taxonomy (kingdom, phylum, ...). Items in grocery stores are group together in aisles/sections and the aisles are roughly arranged to be similar (e.g. the fruit section is near the vegetable section). The [topics in stat20](https://www.stat20.org/schedule.html) are grouped together into units (e.g. questions, prediction, generalization). The [taxonomy of data](https://www.stat20.org/1-questions-and-data/02-taxonomy-of-data/notes.html#a-taxonomy-of-data) gives a hierarchical organization of data types.
+Textbooks are organized into: chapters, sections, subsections, paragraphs, sentences etc. Imagine if a textbook were just a straight wall of text! We categorize living creatures into a hierarchical taxonomy (kingdom, phylum, ...). Items in grocery stores are group together in aisles/sections and the aisles are roughly arranged to be similar (e.g. the fruit section is near the vegetable section). The [topics in stat20](schedule.qmd) are grouped together into units (e.g. questions, prediction, generalization). The [taxonomy of data](1-questions-and-data/02-taxonomy-of-data/notes.qmd#a-taxonomy-of-data) gives a hierarchical organization of data types.
 <!-- A complex function is composed of many helper functions.  -->
 
 

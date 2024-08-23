@@ -431,7 +431,7 @@ countdown::countdown(5, top = 0)
 :::{style="text-align: center"}
 All of the materials and links for the course can be found at:
 
-[[www.stat20.org](https://www.stat20.org)]{style="font-size: 1.5em"}
+[[{{< var site-url >}}]({{< var site-url >}})]{style="font-size: 1.5em"}
 :::
 
 ![](images/website-screenshot.png){fig-align=center}
@@ -442,7 +442,7 @@ All of the materials and links for the course can be found at:
 Take 4 minutes to read through the syllabus and jot down at least one question that you have.
 
 :::{style="font-size: 1.5em; text-align: center"}
-[www.stat20.org/syllabus.html](https://www.stat20.org/syllabus.html)
+[{{< var site-url >}}syllabus.html](syllabus.qmd)
 :::
 
 ![](images/syllabus-screenshot.png){fig-align=center width="1000"}
@@ -465,7 +465,7 @@ countdown::countdown(4, top = 0)
 - Please answer each other's questions!
 
 :::{.poll .fragment}
-Practice by asking/answering a question on the "Syllabus Discussion" thread on Ed via the link at the top right of <https://www.stat20.org>.
+Practice by asking/answering a question on the "Syllabus Discussion" thread on Ed via the link at the top right of <{{< var site-url >}}>.
 :::
 :::
 

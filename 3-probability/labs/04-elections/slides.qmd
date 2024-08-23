@@ -120,7 +120,7 @@ What is the distribution of the **first digit** of city/town populations in all 
 (these extensive notes were the instructions to TAs when facilitating this spring 2022)
 
 This first component can be done either during Berkeley time or at the start of class along with students. It depends on how long you expect the rest of the lesson to take and what you'd like to emphasize:
-[Write on the board the two "fundamental" distributions that we've covered so far: the Binomial and the Bernoulli. https://www.stat20.org/lectures/14/binomial.html#/bernoulli-distributionl will give you a sense of the notation and layout that's used. Best to replicate each element of these slides, including the plots.] 
+[Write on the board the two "fundamental" distributions that we've covered so far: the Binomial and the Bernoulli. {{< var site-url >}}lectures/14/binomial.html#/bernoulli-distributionl will give you a sense of the notation and layout that's used. Best to replicate each element of these slides, including the plots.] 
 
 It's reasonable to ask students to close their laptops for the first part of class.
 

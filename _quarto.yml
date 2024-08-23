@@ -10,11 +10,12 @@ metadata-files:
 website:
   title: "Stat 20"
   description: "Introduction to Probability and Statistics at UC Berkeley"
+  google-analytics: G-WP7F4QKDC8
   search:
     location: navbar
     type: overlay
-  site-url: "https://www.stat20.org/"
-  repo-url: "https://github.com/stat20/course-materials"
+  site-url: "https://stat20.berkeley.edu/fall-2024"
+  repo-url: "https://github.com/berkeley-stat20/fall-2024"
   favicon: assets/favicon.ico
   image: assets/stat20-hex.png
   open-graph:
@@ -56,9 +57,9 @@ website:
     right:
       - text: License
         href: license.qmd
-    left:
-      - text: "This site is hosted by Netlify."
-        href: https://www.netlify.com/
+    #left:
+    #  - text: "This site is hosted by Netlify."
+    #    href: https://www.netlify.com/
 
 
 # Format-specific Metadata
