@@ -2,14 +2,13 @@
 title: "Syllabus"
 subtitle: "Stat 20: Introduction to Probability and Statistics"
 toc: true
-doi: "Spring 2024"
+doi: "Fall 2024"
 doi-title: Term
 author:
     - Andrew Bray
+    - Adam Lucas
     - Andrea Massari
-    - Sam Pimentel
-    - Jeremy Eli Sanchez
-    - Shobhana Murali Stoyanov
+    - Gaston Sanchez Trujillo
 author-title: Instructors
 abstract: "[Welcome to the Age of Data]{style=\"font-family: Cinzel, serif; font-size: 1.2em\"}, where claims made using data are all around us: in the news, in the pages of scientific journals, in the policies of government, and in the board rooms of companies across the world. In this course you will explore the forms of claims that are made using data. Some of these are subtle claims about the structure of the data at hand. Others are grand claims about scientific truths or predictions of what will happen in the future. This course will train your ability to critique and construct such arguments made using data."
 abstract-title: ""
