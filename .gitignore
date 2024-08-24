@@ -26,6 +26,7 @@ ps-contents.yml
 slides-contents.yml
 schedule.yml
 sidebar-nav.yml
+.luarc.json
 
 # Quarto projects specific
 /.quarto/
