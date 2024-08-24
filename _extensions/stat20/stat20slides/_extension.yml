@@ -12,6 +12,8 @@ contributes:
       width: 1600
       multiplex: false
       transition: fade
+      shortcodes:
+        - countdown
       slide-number: c
       incremental: false
       center: false
@@ -51,3 +53,4 @@ contributes:
                 }
               });
             </script>
+            
