@@ -1,23 +1,6 @@
 ---
 title: "Taxonomy of Data"
-format: 
-  revealjs:
-    author: "STAT 20: Introduction to Probability and Statistics"
-    height: 900
-    width: 1600
-    theme: ../../assets/slides.scss
-    multiplex: false
-    transition: fade
-    slide-number: c
-    incremental: false
-    center: false
-    menu: false
-    highlight-style: github
-    progress: false
-    code-overflow: wrap
-    title-slide-attributes:
-      data-background-image: ../../assets/stat20-hex-bg.png
-      data-background-size: contain
+format: stat20slides-revealjs
 ---
 
 ## Agenda
@@ -28,18 +11,6 @@ format:
 - *Break*
 - Concept Questions: Coding
 - Lab 0 work time
-
-## Announcements
-
--   Problem Set 1 and Lab 0 are both due **Tuesday, January 23rd** at 9am on Gradescope
-
-. . . 
-
--   *RQ: Summarizing Categorical Data* due **Monday, January 22nd** at 11:59pm on Gradescope
-
-. . .
-
--   Please read the Ed expectations post [here](https://edstem.org/us/courses/51198/discussion/4137868) before posting on Ed!
 
 # Concept Questions: Conceptual
 
