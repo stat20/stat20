@@ -29,13 +29,9 @@ If you are concerned about classroom environment issues created by other student
 
 This course is structured as a flipped class, meaning that you will first be encountering new concepts in statistics and data science *outside* of class. Class time is dedicated to expanding on the work you've done outside of class by working through questions solo, in groups, and as a class. 
 
-<!--
-The reason that this course is structured in this manner is that applied data science is a complex field that unites scientific thinking, computing, mathematics, and an understanding of the context of the data. We will be able to tackle more interesting and challenging questions if we make room during class time to work on them while we're all in the same place.
--->
-
 #### Before class
 
-**It is your responsibility to become familiar with the topics that appear in the course notes and to work through the reading questions on Gradescope by 11:59 pm Monday (for Tues/Weds class) and 11:59 pm Wednesday (for Thurs/Fri class)**. You're encouraged to experiment to find the method that works best for you: downloading the notes as a pdf and making notes on them, asking and answering questions over the class forum, etc.
+**It is your responsibility to become familiar with the topics that appear in the course notes and to work through the reading questions on Gradescope by 11:59 pm on the day before class.**
 
 #### During class on Tue/Wed and Thu/Fri
 
@@ -58,14 +54,14 @@ As a part of the graded assignments for the class **you will be asked to attend 
 
 #### Group tutoring
 
-Tutors will offer group tutoring sessions several times each week. This is an opportunity to finish up any assignments that you've started in class or review any topics that are confusing for you. Each group tutoring session will be staffed by 2-4 tutors. You're welcome to attend any session that works well for your schedule.
+Tutors will offer group tutoring sessions several times each week. This is an opportunity to finish up any assignments that you've started in class or review any topics that are confusing for you. Each group tutoring session will be staffed by 2-4 tutors. You're welcome to attend any session that works well for your schedule. Check the [Office Hours](office-hours.qmd) page to see the group tutoring schedule.
 
 Group tutoring is a great place to go to meet other students and collaborate on assignments with tutors on hand to help you get unstuck.
 
 
 #### Instructor Office Hours 
 
-The instructors will offer office hours each week across a range of times. We ask that you only visit the office hours of your instructor, but you are welcome to visit the tutoring sessions of *any* tutors, not just the ones who work in your section. We may adjust the office hour and group tutoring sessions schedule throughout the semester as we understand student needs and preferences. Please check the office hours tab on the syllabus page to see the times of the various office hour/group tutoring sessions.
+The instructors will offer office hours each week across a range of times. We ask that you only visit the office hours of your instructor, but you are welcome to visit the tutoring sessions of *any* tutors, not just the ones who work in your section. We may adjust the office hour and group tutoring sessions schedule throughout the semester as we understand student needs and preferences. Please check the [Office Hours page](office-hours.qmd) to see the times of the various office hour/group tutoring sessions.
 
 Office hours are an opportunity to chat one-on-one with your instructor. Please come to office hours! Coming to office hours does not send a signal that you are behind or need extra help. On the contrary, coming to office hours early and often tends to co-occur with success in the course. Instructors are happy to chat about the course material, statistics in general, careers in statistics, and whatever other statistics or data science topics are on your mind!
 
@@ -77,7 +73,6 @@ Maintaining your health and that of the Berkeley community is of primary importa
 
 The primary materials for the course are the lecture notes, which will be posted to the course website in advance of class. We'll teach you everything you need to know! 
 
-<!--
 The following textbooks are useful supplementary texts but there is no need to purchase them:
 
 - [Introduction to Modern Statistics](https://openintro-ims.netlify.app/) by &#199;etinkaya-Rundel and Hardin (freely available online)
@@ -85,7 +80,6 @@ The following textbooks are useful supplementary texts but there is no need to p
 - [Data Visualization: A Practical Introduction](https://socviz.co/), Healy (freely available online)
 - [Hands-on Programming with R](https://rstudio-education.github.io/hopr/), Grolemund (freely available online)
 - [R for Data Science](https://r4ds.had.co.nz/), Wickham and Grolemund (freely available online)
--->
 
 #### RStudio
 
@@ -95,7 +89,7 @@ The software that we'll be using for our data analysis is the free and open-sour
 
 #### bCourses
 
-We will use bCourses to disseminate announcements for the entire class, such as final exam information. 
+We don't use bCourses for much. It is primarily used to disseminate announcements for the entire class, such as final exam information. 
 
 #### Discussion forum
 
@@ -107,7 +101,7 @@ In a course this large, the instructors have a difficult time responding to indi
 
 #### Course website
 
-All of the assignments will be posted to the course website at [https://stat20.org](https://stat20.org). This also holds the course notes, the syllabus, and links to Gradescope, Ed, and RStudio. 
+All of the assignments will be posted here to the course website. This also holds the course notes, slides, and links to Gradescope, Ed, and RStudio. 
 
 ### Assignments, Exams, and Grading
 
@@ -127,13 +121,9 @@ We will be assessing most questions on labs for correctness but for others we wi
 
 During class, we will give you a second engagement with the day's material in the form of a worksheet. These worksheets will run like traditional homework problems and drill the concepts in the reading notes rather than asking you to apply the concepts with a data set, like the lab does.
 
-<!--
-The problem sets will be procured completely from these in-class worksheets and released in one or two week intervals.
--->
-
 #### Reading Questions
 
-Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per lecture note. These questions be a mix of multiple choice, short answer, and coding questions. You can answer them directly on Gradescope. The reading questions will be **due 11:59 pm on Mondays (for the Tuesday/Wednesday lectures) and Wednesdays (for the Thursday/Friday lectures)**.
+Reading questions serve to check your understanding and engagement while going through the lecture notes prior to class. There will be a handful of questions per lecture note. These questions be a mix of multiple choice, short answer, and coding questions. You can answer them directly on Gradescope. The reading questions will be **due 11:59 pm on the day before class**.
 
 <!--
 #### Plenary Lecture Reviews
@@ -149,11 +139,11 @@ Quizzes reinforce the most important concepts from the lecture notes and provide
 
 There is both an *individual* and *group* component to the quiz.
 
-The *individual* component will last ~25 minutes. You are allowed one, A4, one-sided handwritten sheet of notes. The *group* component will take place immediately after the individual component has been completed and will last ~15 minutes. Your final (composite) quiz grade will be the average of your group and individual quiz scores.
+The *individual* component will last ~25 minutes. You are allowed one, A4, one-sided handwritten sheet of notes with your name in the upper right-hand corner. The *group* component will take place immediately after the individual component has been completed and will last ~15 minutes. Your final (composite) quiz grade will be the average of your group and individual quiz scores.
 
 #### Exam
 
-The final exam will be held in person during finals week. The time and date is **Thursday, May 9 from 7-10pm** (apologies).
+The final exam will be held in person during finals week. The time and date is **Wednesday December 18th, 7 - 10 pm**.
 
 #### Grading
 
