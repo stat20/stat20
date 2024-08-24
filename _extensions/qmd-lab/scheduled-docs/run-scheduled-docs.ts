@@ -1,6 +1,6 @@
 
 // Import external libraries
-import { readConfig, readScheduledDocs, propagateKeys, processSchedule, writeDraftList, writeSchedule, writeListingContents, writeAutonavContents } from "./scheduled-docs.ts";
+import { readConfig, readScheduledDocs, propagateKeys, setDraftStatuses, writeDraftList, writeSchedule, writeListingContents, writeAutonavContents } from "./scheduled-docs.ts";
 console.log("=== Scheduled-docs ===");
 
 // Get parameters
@@ -13,7 +13,7 @@ const tempFilesDir = configParams['temp-files-dir'];
 // Run functions
 let scheduledDocs = await readScheduledDocs(ymlPath, scheduledDocsKey, configParams);
 propagateKeys(scheduledDocs);
-processSchedule(scheduledDocs, itemsKey);
+setDraftStatuses(scheduledDocs, itemsKey);
 await writeDraftList(scheduledDocs, tempFilesDir);
 await writeSchedule(scheduledDocs, tempFilesDir);
 await writeListingContents(scheduledDocs, tempFilesDir);

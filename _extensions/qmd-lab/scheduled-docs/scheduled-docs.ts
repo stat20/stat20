@@ -4,33 +4,66 @@ import { join } from "https://deno.land/std/path/mod.ts";
 import { existsSync } from "https://deno.land/std/fs/mod.ts";
 
 
+// ---------------------- //
+//   Read Scheduled Docs  //
+// ---------------------- //
+
+export async function readScheduledDocs(ymlPath: string, scheduledDocsKey: string, configParams: string): Promise<any> {
+  const yamlContent = await Deno.readTextFile(ymlPath);
+  const parsedYaml = parse(yamlContent);
+  if (!parsedYaml.hasOwnProperty(configParams['scheduled-docs-key'])) {
+    console.log(`> "${configParams['scheduled-docs-key']}" key not found in ${configParams['path-to-yaml']}. Extension is installed but not being used.`);
+    Deno.exit(0); // Exits the script if the extension is added but not used
+  }
+  const scheduledDocs = parsedYaml[scheduledDocsKey];
+  return scheduledDocs;
+}
+
 
 // --------------------- //
 //     Propagate Keys    //
 // --------------------- //
 // Propagate the unignored keys into nested objects, being sure to not overwrite
-// any keys of the same name.
+// any keys of the same name. Also add a `projectProfile` key if one is active.
 
 export function propagateKeys(obj: any, parentProps: Record<string, string> = {}, ignoreKeys = ['debug', 'draft-after', 'timezone', 'this-week', 'grouping-label']) {
+    
+    // if the object is an array, re-call this function on each item
     if (Array.isArray(obj)) {
         obj.forEach(item => {
             if (typeof item === 'object' && item !== null) {
                 propagateKeys(item, parentProps, ignoreKeys);
             }
         });
+        
+    // if it's not an array, then...
     } else if (typeof obj === 'object' && obj !== null) {
+      
+        // prepare new properties of the object that inherit parent properties and..
         const newProps = { ...parentProps };
         
+        // for each key..
         Object.keys(obj).forEach(key => {
             if (!ignoreKeys.includes(key)) {
+              
+                // copy it into the new properties if its a simple key-value pair
                 if (typeof obj[key] === 'string') {
                     newProps[key] = obj[key];
+                    
+                // but if it's has a nested object, re-call this function
                 } else if (typeof obj[key] === 'object' && obj[key] !== null) {
                     propagateKeys(obj[key], newProps, ignoreKeys);
                 }
             }
         });
 
+        // add any project profile that is activated
+        const projectProfile = Deno.env.get("QUARTO_PROFILE");
+        if (projectProfile !== "") {
+          newProps['projectProfile'] = projectProfile;
+        }
+        
+        // then add each of the new properties to the current object
         Object.keys(newProps).forEach(key => {
             if (obj[key] === undefined) {
                 obj[key] = newProps[key];
@@ -41,14 +74,14 @@ export function propagateKeys(obj: any, parentProps: Record<string, string> = {}
 
 
 // ------------------------ //
-//     Process Schedule     //
+//     Set Draft Status     //
 // ------------------------ //
 // Set draft values for all items and collects them
 // into a doclist key in the config file
 
-export function processSchedule(obj, itemsKey: string = "docs") {
+export function setDraftStatuses(obj, itemsKey: string = "docs") {
   
-  console.log("> Processing schedule ...")
+  console.log("> Setting draft status of docs ...")
   const draftAfterStr = obj["draft-after"];
   const timezone = obj["timezone"];
   
@@ -443,17 +476,6 @@ export async function readConfig(): Promise<any> {
 
   const parsedYaml = parse(yamlContent);
   return parsedYaml
-}
-
-export async function readScheduledDocs(ymlPath: string, scheduledDocsKey: string, configParams: string): Promise<any> {
-  const yamlContent = await Deno.readTextFile(ymlPath);
-  const parsedYaml = parse(yamlContent);
-  if (!parsedYaml.hasOwnProperty(configParams['scheduled-docs-key'])) {
-    console.log(`> "${configParams['scheduled-docs-key']}" key not found in ${configParams['path-to-yaml']}. Extension is installed but not being used.`);
-    Deno.exit(0); // Exits the script if the extension is added but not used
-  }
-  const scheduledDocs = parsedYaml[scheduledDocsKey];
-  return scheduledDocs;
 }
 
 function convertDateToISOFormat(dateStr: string, timezone: string): string {
