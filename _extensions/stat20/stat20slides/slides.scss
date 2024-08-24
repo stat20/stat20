@@ -225,20 +225,15 @@ div.meta-el {
   bottom: 8px !important;
 }
 
-.slide-logo {
-  display: block !important;
-  position: fixed !important;
-  top: 0 !important;
-  right: 10px !important;
-  max-height: 40% !important;
-  height: 100% !important;
-  width: auto !important;
-  color: $body-color !important;
-}
+
 
 .slide-menu-button {
   left: 10px !important;
   bottom: 10px !important;
+}
+
+.reveal .slide-number > a[href*='title-slide'] {
+  display: none;
 }
 
 .reveal .slide .inversebox {
@@ -250,3 +245,9 @@ div.meta-el {
   font-weight: bold;
   background: $presentation-heading-color;
 }
+
+.reveal-header .header-logo {
+  height: .55em;
+  cursor: pointer;
+}
+
