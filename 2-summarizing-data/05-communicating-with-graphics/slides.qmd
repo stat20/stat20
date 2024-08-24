@@ -1,7 +1,6 @@
 ---
 title: "Communicating with Graphics"
-format: 
-  stat20-slides-revealjs: default
+format: stat20slides-revealjs
 ---
 
 ```{r}
