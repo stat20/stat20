@@ -1,9 +1,9 @@
 on:
   workflow_dispatch:
   pull_request:
-    branches: next-semester
+    branches: main
   
-name: "Publish to stat20-next-semester.netlify.app"
+name: "Publish to stat20-pr.netlify.app"
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -16,7 +16,6 @@ jobs:
         uses: addnab/docker-run-action@v3
         env:
            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-           QUARTO_PROFILE: full-site
         with:
           image: stat20/stat20-docker:latest
           options: -v ${{ github.workspace }}:/home/rstudio/stat20 -e NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -28,8 +27,5 @@ jobs:
             # execute from the textbook
             cd /home/rstudio/stat20/
             
-            # ignore future files from render list
-            quarto run assets/scripts/autopublish.ts
-            
-            # render site and upload to stat20-next-semester.netlify.app
-            quarto publish netlify --id 71793655-483e-4d50-aec7-de1381435888
+            # render and publish site
+            quarto publish netlify --profile student-site --id 4f93185f-50a9-491c-b86f-3f8e51eb3ae9
