@@ -32,7 +32,6 @@ Staff Site
 A home base for course staff with:
 
 - Draft versions of all [notes](notes.qmd) and [assignments](assignments.qmd).
-- A [guide](staff-guide/index.qmd) with helpful information for course staff.
 - [Documentation](docs/index.qmd) of the structure of the curriculum and website.
 
 :::

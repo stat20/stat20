@@ -16,6 +16,10 @@
       <% for (const doc of day.docs) { %>
         <% if (!doc.draft){ %>
           <a href="<%= doc.href %>" class="btn btn-success btn-sm"><%= doc.type %></a>
+        <% } else if (doc.projectProfile === "staff-site") { %>
+          <a href="<%= doc.href %>" class="btn btn-secondary btn-sm"><%= doc.type %></a>
+        <% } else { %>
+          <button type="button" class="btn btn-success" disabled><%= doc.type %></button>
         <% } %>
       <% } %>
     <% } %>

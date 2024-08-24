@@ -1,0 +1,4 @@
+project:
+  render: 
+    - "*.qmd"
+    - "!docs"

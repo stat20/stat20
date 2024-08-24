@@ -1,6 +1,6 @@
 ---
 title: "Probability practice (subset of last handout)"
-format: pdf
+format: stat20handout-typst
 ---
 
 #### Question 1
