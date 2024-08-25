@@ -1,6 +1,6 @@
 ---
 title: "Summarizing Numerical Data"
-subtitle: "PS"
+title-prefix: "PS"
 format: stat20handout-typst
 ---
 

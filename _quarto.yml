@@ -4,6 +4,11 @@ project:
 metadata-files:
   - "scheduled-docs_files/draft-list.yml"
   - "scheduled-docs_files/sidebar-contents.yml"
+  
+# Course Metadata
+course-name: Stat 20
+semester: Fall 2024
+
 
 # Website Configuration and Layout
 website:
@@ -56,9 +61,6 @@ website:
     right:
       - text: License
         href: license.qmd
-    #left:
-    #  - text: "This site is hosted by Netlify."
-    #    href: https://www.netlify.com/
 
 # Format-specific Metadata
 format:
