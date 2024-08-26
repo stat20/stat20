@@ -15,7 +15,7 @@ website:
   sidebar:
     - id: Docs
       title: "Docs"
-      style: floating
+      style: docked
       align: left
       contents:
         - section: Documention
