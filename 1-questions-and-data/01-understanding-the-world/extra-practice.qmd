@@ -1,6 +1,6 @@
 ---
 title: "Understanding the World With Data"
-subtitle: "PS"
+title-prefix: "WS"
 format: stat20handout-typst
 ---
 
