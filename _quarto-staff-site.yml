@@ -24,7 +24,7 @@ website:
             - docs/website.qmd
             - docs/assignments.qmd
             - docs/slides.qmd
-  footer:
+  page-footer:
     left:
       - text: "This site is hosted by Netlify."
         href: https://www.netlify.com/
