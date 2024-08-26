@@ -1,34 +1,29 @@
 ---
-title: ""
-format: stat20handout-typst
+format: typst
 ---
 
-\thispagestyle{empty} 
+Name:
 
-Name:\
+Contact info:
 
-Contact info:\
+Hometown:
 
-Hometown:\
+\# Siblings + Pets
 
-\# Siblings + Pets\
+\# Semesters in college:
 
-\# Semesters in college:\
+Farthest distance from campus over the break:
 
-Farthest distance from campus over the break:\
 
-\vspace{5cm}
 
-* * *
+Name:
 
-Name:\
+Contact info:
 
-Contact info:\
+Hometown:
 
-Hometown:\
+\# Siblings + Pets
 
-\# Siblings + Pets\
+\# Semesters in college:
 
-\# Semesters in college:\
-
-Farthest distance from campus over the break:\
+Farthest distance from campus over the break:
