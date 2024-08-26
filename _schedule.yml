@@ -9,10 +9,10 @@ scheduled-docs:
         section-label: unit
   schedule:
     - week: 1
+      unit: Understanding the World with Data
       days:
         - topic: "Understanding the World with Data"
-          unit: Understanding the World with Data
-          display-date: Aug 28
+          display-date: Aug 28/29
           date: 8/28/24
           docs:
             - type: Notes
@@ -21,17 +21,10 @@ scheduled-docs:
               href: 1-questions-and-data/01-understanding-the-world/slides.qmd
             - type: Lab
               href: 1-questions-and-data/labs/00-getting-started/lab.qmd
-        - topic: "Taxonomy of Data"
-          unit: Understanding the World with Data
-          display-date: Aug 29/30
-          date: 8/29/24
-          docs:
-            - type: Notes
-              href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
-            - type: Slides
-              href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
-            - type: PS
-              href: 1-questions-and-data/02-taxonomy-of-data/ps.qmd
+            - type: Worksheet
+              href: 1-questions-and-data/labs/00-getting-started/extra-practice.qmd
+        - topic: "No class"
+          display-date: Aug 30
       resources:
         - '<a href="https://markdownlivepreview.com">Markdown Live Preview</a>'
         - '<a href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/extra-practice.pdf">Extra Practice</a>'
@@ -40,9 +33,21 @@ scheduled-docs:
       days:
         - topic: Labor Day (no class)
           display-date: Sep 2
-        - topic: "Summarizing Categorical Data"
+        - topic: "Taxonomy of Data"
+          unit: Understanding the World with Data
           display-date: Sep 3/4
           date: 9/3/24
+          docs:
+            - type: Notes
+              href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
+            - type: Slides
+              href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
+            - type: PS
+              href: 1-questions-and-data/02-taxonomy-of-data/ps.qmd
+        - topic: "Summarizing Categorical Data"
+          Unit: Summarization
+          display-date: Sep 5/5
+          date: 9/5/24
           docs:
             - type: Notes
               href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
@@ -52,9 +57,14 @@ scheduled-docs:
               href: 2-summarizing-data/01-summarizing-categorical-data/ps.qmd
             - type: Lab
               href: 2-summarizing-data/labs/02-class-survey/lab.qmd
+    - week: 3
+      unit: Summarization
+      days:
+        - topic: "Quiz 1"
+          display-date: Sep 9
         - topic: "Summarizing Numerical Data"
-          display-date: Sep 5/6
-          date: 9/5/24
+          display-date: Sep 10/11
+          date: 9/10/24
           docs:
             - type: Notes
               href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
@@ -62,14 +72,9 @@ scheduled-docs:
               href: 2-summarizing-data/02-summarizing-numerical-data/slides.qmd
             - type: PS
               href: 2-summarizing-data/02-summarizing-numerical-data/ps.qmd
-    - week: 3
-      unit: Summarization
-      days:
-        - topic: "Lab 1 Workshop"
-          display-date: Sep 9
         - topic: "Data Pipelines"
-          display-date: Sep 10/11
-          date: 9/10/24
+          display-date: Sep 12/23
+          date: 9/12/24
           docs:
             - type: Notes
               href: 2-summarizing-data/04-conditioning/notes.qmd
@@ -79,14 +84,6 @@ scheduled-docs:
               href: 2-summarizing-data/04-conditioning/ps.qmd
             - type: Lab
               href: 2-summarizing-data/labs/03-flights/lab.qmd
-        - topic: "A Grammar of Graphics"
-          display-date: Sep 12/23
-          date: 9/12/24
-          docs:
-            - type: Notes
-              href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
-            - type: Slides
-              href: 2-summarizing-data/03-a-grammar-of-graphics/slides.qmd
       resources:
         - '<a href="https://www.stat20.org/2-summarizing-data/03-a-grammar-of-graphics/ps.pdf">Extra Practice</a>'
     - week: 4
@@ -94,9 +91,17 @@ scheduled-docs:
       days:
         - topic: "Lab 2 Workshop"
           display-date: Sep 16
-        - topic: "Summarizing Associations"
+        - topic: "A Grammar of Graphics"
           display-date: Sep 17/18
           date: 9/17/24
+          docs:
+            - type: Notes
+              href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
+            - type: Slides
+              href: 2-summarizing-data/03-a-grammar-of-graphics/slides.qmd
+        - topic: "Summarizing Associations"
+          display-date: Sep 19/20
+          date: 9/19/24
           docs:
             - type: Notes
               href: 2-summarizing-data/06-summarizing-associations/notes.qmd
