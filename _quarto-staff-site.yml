@@ -27,5 +27,5 @@ website:
   footer:
     left:
       - text: "This site is hosted by Netlify."
-       href: https://www.netlify.com/
+        href: https://www.netlify.com/
         
