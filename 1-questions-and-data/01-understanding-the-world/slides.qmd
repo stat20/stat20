@@ -421,14 +421,16 @@ Practice by asking/answering a question on the "Syllabus Discussion" thread on E
 
 # Intro to R and RStudio
 
-Visit [stat20.datahub.berkeley.edu](https://stat20.datahub.berkeley.edu)! We will now:
+Click the link below.
 
-. . . 
+[Load Lab Templates into RStudio](https://stat20.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fberkeley-stat20%2Fstat20labs-f24&urlpath=rstudio%2F&branch=master)
 
-1. Log into the Rstudio Server
-2. Open
 
 ## Lab 1: UN Votes
+
+1. Change the country from Turkey to one of your choosing.
+
+2. Form two claims from this visualization and identify them as Summary, Generalization, Casual, or Prediction.
 
 {{< countdown "15:00" >}}
 
