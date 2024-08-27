@@ -44,12 +44,14 @@ website:
         href: notes.qmd
       - text: Assignments
         href: assignments.qmd
+      - text: Tutorials
+        href: tutorials.qmd
     tools:
       - icon: chat-fill
-        href: https://edstem.org/us/courses/51198
+        href: https://edstem.org/
         aria-label: Ed Discussion Forum
       - icon: bar-chart-fill
-        href: https://www.gradescope.com/courses/693050
+        href: https://www.gradescope.com/
         aria-label: Gradescope
       - icon: r-circle-fill
         href: https://stat20.datahub.berkeley.edu/
