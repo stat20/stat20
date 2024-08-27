@@ -19,10 +19,10 @@ scheduled-docs:
               href: 1-questions-and-data/01-understanding-the-world/notes.qmd
             - type: Slides
               href: 1-questions-and-data/01-understanding-the-world/slides.qmd
+            - type: Handout
+              href: 1-questions-and-data/labs/00-getting-started/handout.qmd
             - type: Lab
               href: 1-questions-and-data/labs/00-getting-started/lab.qmd
-            - type: Worksheet
-              href: 1-questions-and-data/labs/00-getting-started/extra-practice.qmd
         - topic: "No class"
           display-date: Aug 30
       resources:
