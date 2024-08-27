@@ -174,11 +174,7 @@ Stat 20 is a course that is designed to allow all students to succeed. If you ha
 
 #### Late Work
 
-tldr: if you dont get your work in by the deadline, don't fret. Fill out this form to request an extension on the deadline. We will be approving all requests that for extensions of three days and less past the assignment deadline.
-
-spirit: deadlines are helpful to stay on track but we understand we're all busy and life happens. no worries, just ask for an extension.
-
-<!-- Unfortunately, with a class of this size, we are unable to keep track of and grade submissions of labs, reading questions, and problem sets that come in very late. If you narrowly miss the standard deadline, you will still be able to submit within an hour for a small penalty (5% reduction in score). If you don't submit within an hour you can still submit for a larger penalty (30% reduction). -->
+If you don't get your work in by the deadline, don't fret. Fill out the extension request form to request an extension on the deadline. We will be approving all requests for extensions that are three days or fewer past the assignment deadline.
 
 ### Collaboration policy
 
