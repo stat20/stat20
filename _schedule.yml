@@ -7,6 +7,9 @@ scheduled-docs:
         landing-page: notes.qmd
         type: Notes
         section-label: unit
+      - title: "Tutorials"
+        landing-page: tutorials.qmd
+        type: Tutorial
   schedule:
     - week: 1
       unit: Understanding the World with Data
@@ -40,6 +43,8 @@ scheduled-docs:
           docs:
             - type: Notes
               href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
+            - type: Tutorial
+              href: 1-questions-and-data/02-taxonomy-of-data/tutorial.qmd
             - type: Slides
               href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
             - type: PS
