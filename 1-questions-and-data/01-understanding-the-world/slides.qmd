@@ -16,7 +16,6 @@ format: stat20slides-revealjs
 
 -   Let us first introduce ourselves!
 
-
    
 # {{< fa pen-to-square >}} Introductions {background-color="#00403d"}
 
@@ -24,9 +23,7 @@ format: stat20slides-revealjs
 
 - Each person should finish with a handout filled-in with info on their groupmates. *Make sure you save this for later this week!*
 
-```{r}
-countdown::countdown(5, top = 0)
-```
+{{< countdown "5:00" top=0 right=0 >}}
 
 # The Data Science Lifecycle
 
@@ -50,36 +47,21 @@ What's going on here?
 
 ::: {.column width="35%"}
 :::{.poll style="font-size: .9em"}
-- As a group, formulate at least **three** possible explanations for what's going on in the picture.  
-- Enter them at [pollev.com](https://pollev.com) or upvote existing explanations if they are very similar to your own.
+- As a group, formulate at least **three** possible explanations for what's going on in the picture.
 :::
 :::
 
 ::::
 
-```{r}
-countdown::countdown(5)
-```
+{{< countdown "3:00" >}}
 
 ## {data-menu-title="Shoebill Pic 2"}
 
-:::: {.columns}
-
-::: {.column width="65%"}
 ![](images/shoebill-2.png){fig-alt="Photo of shoebill with duck in its mouth, at an angle." fig-align="center"}
-:::
 
-::: {.column width="35%"}
-:::{.poll style="font-size: .9em" .fragment}
-Does this image change which claims are more or less likely?
+## {data-menu-title="Shoebill Pic 3"}
 
-Up and down vote explanations at [pollev.com](https://pollev.com). {{< fa thumbs-up >}} / {{< fa thumbs-down >}}
-:::
-:::
-
-::::
-
-## {data-menu-title="Shoebill Pic 3" background-image="images/shoebill-3.png" background-size="contain"}
+![](images/shoebill-3.png){fig-alt="Photo of shoebill with its bill open, having just dropped a duck, who looks surprised."}
 
 :::{.notes}
 These three photos were taken in quick succession by a physician and amateur photographer who was vising the San Diego Zoo Safari Park. He was watching the shoebill as it was walking down a path in the reeds. As the shoebill was ambling along, it encountered a duck in the middle of the path. It leaned down, picked up the duck in its beak, turned to the side, dropped the duck in the reeds, then proceeded to amble down the path.
@@ -299,12 +281,6 @@ We will now re-examine a few pathways in the *data science lifecycle*:
 
 -   Collecting data -> making a claim
 
-. . . 
-
-:::poll
-Now, visit the PollEverywhere site provided by your instructor to answer the following questions.
-:::
-
 
 ## From Questions to Data
 
@@ -315,21 +291,17 @@ Now, visit the PollEverywhere site provided by your instructor to answer the fol
 . . .
 
 :::poll
-Will this question be answered by a summary, a prediction, a generalization, or a causal claim?
+Discuss:
+
+A. What type of *data* can help answer this question? Consider
+
+   - Which different people / institutions collect relevant data
+   - Is certain data not available? Why not?
+
+B. Will this question be answered by a summary, a prediction, a generalization, or a causal claim?
 :::
 
-. . . 
-
-\
-
-Also discuss: what type of *data* can help answer this question? Consider:
-
-- Which different people / institutions collect relevant data
-- Is certain data not available? Why not?
-
-```{r}
-countdown::countdown(6, top = 0)
-```
+{{< countdown "6:00" >}}
 
 
 ## From Data to Claims
@@ -353,17 +325,13 @@ One source of data:
 Formulate one claim that is supported by this data[^1].
 :::
 
-```{r}
-countdown::countdown(3, top = 0)
-```
+{{< countdown "3:00" >}}
 
 [^1]: The positivity rate is the number of positive tests over the total number of tests.
 
 # Break
 
-```{r}
-countdown::countdown(5, top = 0)
-```
+{{< countdown "5:00" >}}
 
 
 # Course Structure
@@ -430,10 +398,7 @@ Take 4 minutes to read through the syllabus and jot down at least one question t
 
 ![](images/syllabus-screenshot.png){fig-align=center width="1000"}
 
-```{r}
-#| echo: false
-countdown::countdown(4, top = 0)
-```
+{{< countdown "4:00" >}}
 
 ## Ed Discussion Forum
 
@@ -559,9 +524,7 @@ R allows all of the standard arithmetic operations.
 What is three times one point two raised to the quantity thirteen divided six?
 :::
 
-```{r}
-countdown::countdown(minutes = 1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 
 ## Looking forward
