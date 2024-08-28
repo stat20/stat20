@@ -20,14 +20,11 @@ scheduled-docs:
             - type: Slides
               href: 1-questions-and-data/01-understanding-the-world/slides.qmd
             - type: Handout
-              href: 1-questions-and-data/labs/00-getting-started/handout.qmd
+              href: 1-questions-and-data/01-understanding-the-world/handout.qmd
             - type: Lab
-              href: 1-questions-and-data/labs/00-getting-started/lab.qmd
+              href: 1-questions-and-data/labs/unvotes/lab.qmd
         - topic: "No class"
           display-date: Aug 30
-      resources:
-        - '<a href="https://markdownlivepreview.com">Markdown Live Preview</a>'
-        - '<a href="https://www.stat20.org/1-questions-and-data/01-understanding-the-world/extra-practice.pdf">Extra Practice</a>'
     - week: 2
       unit: Summarization
       days:
