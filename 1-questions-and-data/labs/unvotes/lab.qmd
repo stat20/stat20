@@ -13,6 +13,8 @@ Since its founding in 1946, the United Nation has regularly put forth resolution
 
 The data set at hand contains the voting records of every nation in the UN from 1946 - 2019 on three different issues: Colonialism, Human Rights, and Nuclean Weapons.
 
+## Computing on the Data
+
 ### Question 1
 
 Create a data visualization the shows the proportion of "yes" votes over time on three different issues: Colonialism, Human Rights, and Nuclear Weapons. Construct the plot to compare the voting patterns of the United States, the United Kingdom, and one other country of your choosing (not Turkey).

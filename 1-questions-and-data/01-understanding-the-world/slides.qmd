@@ -421,9 +421,11 @@ Practice by asking/answering a question on the "Syllabus Discussion" thread on E
 
 # Intro to R and RStudio
 
-Click the link below.
+## Load the Lab 1 Template into RStudio
 
-[Load Lab Templates into RStudio](https://stat20.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fberkeley-stat20%2Fstat20labs-f24&urlpath=rstudio%2F&branch=master)
+Click the link below...
+
+[[Load Lab Templates into RStudio](https://stat20.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fberkeley-stat20%2Fstat20labs-f24&urlpath=rstudio%2F&branch=master)]{style="font-size: 1.3em"}
 
 
 ## Lab 1: UN Votes
@@ -434,6 +436,13 @@ Click the link below.
 
 {{< countdown "15:00" >}}
 
+## General Lab Workflow
+
+1. Lab Questions will be posted to the course website.
+2. You'll author your Lab Reports as Quarto Documents that blend text and code. They should contain only answers.
+3. Render your .qmd file to a .pdf file then download that file from RStudio to your computer.
+4. Go to Gradescope and upload your .pdf lab report, being sure to assign questions to the pages.
+
 
 # Looking forward
 
@@ -443,7 +452,8 @@ Click the link below.
 - Read the lecture notes for *Taxonomy of Data* (released Friday evening).
 - If you have any questions, please leave a comment/question on the *Taxonomy of Data* thread on Ed.
 - Answer the Reading Questions for *Taxonomy of Data* on Gradescope by 11:59 pm Mon/Tues (the night before your class).
-- Lab 1 and Worksheet 1 due Tuesday at 10 am on Gradescope
+- Lab 1 due Tuesday at 10 am on Gradescope.
+- Worksheet Packet 1 (just 2 google surveys) due Tuesday at 10 am on Gradescope.
 :::
 
 ::: {.column width=20%}

@@ -13,7 +13,7 @@ scheduled-docs:
       days:
         - topic: "Understanding the World with Data"
           display-date: Aug 28/29
-          date: 8/28/24
+          date: 8/27/24
           docs:
             - type: Notes
               href: 1-questions-and-data/01-understanding-the-world/notes.qmd
