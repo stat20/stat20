@@ -44,7 +44,7 @@ scheduled-docs:
               href: 1-questions-and-data/02-taxonomy-of-data/tutorial.qmd
             - type: Slides
               href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
-            - type: PS
+            - type: WS
               href: 1-questions-and-data/02-taxonomy-of-data/ps.qmd
         - topic: "Summarizing Categorical Data"
           Unit: Summarization
@@ -55,7 +55,7 @@ scheduled-docs:
               href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
             - type: Slides
               href: 2-summarizing-data/01-summarizing-categorical-data/slides.qmd
-            - type: PS
+            - type: WS
               href: 2-summarizing-data/01-summarizing-categorical-data/ps.qmd
             - type: Lab
               href: 2-summarizing-data/labs/02-class-survey/lab.qmd
@@ -72,7 +72,7 @@ scheduled-docs:
               href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
             - type: Slides
               href: 2-summarizing-data/02-summarizing-numerical-data/slides.qmd
-            - type: PS
+            - type: WS
               href: 2-summarizing-data/02-summarizing-numerical-data/ps.qmd
         - topic: "Data Pipelines"
           display-date: Sep 12/23
@@ -82,7 +82,7 @@ scheduled-docs:
               href: 2-summarizing-data/04-conditioning/notes.qmd
             - type: Slides
               href: 2-summarizing-data/04-conditioning/slides.qmd
-            - type: PS
+            - type: WS
               href: 2-summarizing-data/04-conditioning/ps.qmd
             - type: Lab
               href: 2-summarizing-data/labs/03-flights/lab.qmd
@@ -109,7 +109,7 @@ scheduled-docs:
               href: 2-summarizing-data/06-summarizing-associations/notes.qmd
             - type: Slides
               href: 2-summarizing-data/06-summarizing-associations/slides.qmd
-            - type: PS
+            - type: WS
               href: 2-summarizing-data/06-summarizing-associations/ps.qmd
         - topic: "Multiple Linear Regression"
           display-date: Sep 19/20
@@ -124,7 +124,7 @@ scheduled-docs:
     - week: 5
       unit: Generalization
       days:
-        - topic: "Quiz 1"
+        - topic: "Quiz 2"
           display-date: 9/23/24
         - topic: "Intro to Probability"
           display-date: Sep 24/25
@@ -134,7 +134,7 @@ scheduled-docs:
               href: 3-probability/01-chance-intro/notes.qmd
             - type: Slides
               href: 3-probability/01-chance-intro/slides.qmd
-            - type: PS
+            - type: WS
               href: 3-probability/01-chance-intro/ps.qmd
         - topic: "Conditional Probability"
           display-date: Sep 26/27
@@ -144,12 +144,12 @@ scheduled-docs:
               href: 3-probability/02-cond-prob-indep/notes.qmd
             - type: Slides
               href: 3-probability/02-cond-prob-indep/slides.qmd
-            - type: PS
+            - type: WS
               href: 3-probability/02-cond-prob-indep/ps.qmd
     - week: 6
       unit: Generalization
       days:
-        - topic: "Workshop"
+        - topic: "Lab 3 Workshop"
           display-date: 9/30/24
         - topic: "Probability Distributions"
           display-date: Oct 1/2
@@ -159,7 +159,7 @@ scheduled-docs:
               href: 3-probability/03-probability-dsns/notes.qmd
             - type: Slides
               href: 3-probability/03-probability-dsns/slides.qmd
-            - type: PS
+            - type: WS
               href: 3-probability/03-probability-dsns/ps.qmd
         - topic: "Random Variables"
           display-date: Oct 3/4
@@ -169,12 +169,12 @@ scheduled-docs:
               href: 3-probability/04-random-variables/notes.qmd
             - type: Slides
               href: 3-probability/04-random-variables/slides.qmd
-            - type: PS
+            - type: WS
               href: 3-probability/04-random-variables/ps.qmd
     - week: 7
       unit: Generalization
       days:
-        - topic: "Lab Workshop / Review"
+        - topic: "Quiz 3"
           display-date: Oct 7
         - topic: "Expected Value and Variance"
           display-date: Oct 8/9
@@ -184,7 +184,7 @@ scheduled-docs:
               href: 3-probability/05-ev-se/notes.qmd
             - type: Slides
               href: 3-probability/05-ev-se/slides.qmd
-            - type: PS
+            - type: WS
               href: 3-probability/05-ev-se/ps.qmd
             - type: Lab
               href: 3-probability/labs/04-elections/lab.qmd
@@ -196,14 +196,14 @@ scheduled-docs:
               href: 3-probability/06-normal-approx/notes.qmd
             - type: Slides
               href: 3-probability/06-normal-approx/slides.qmd
-            - type: PS
+            - type: WS
               href: 3-probability/06-normal-approx/ps.qmd
       resources:
         - '<a href="https://www.stat20.org/3-probability/06-normal-approx/extra-practice.pdf"">Extra Practice</a>'
     - week: 8
       unit: Generalization
       days:
-        - topic: "Quiz 2"
+        - topic: "Lab 4"
           display-date: Oct 14
         - topic: 'Sampling Distributions'
           display-date: Oct 15/16
@@ -213,7 +213,7 @@ scheduled-docs:
               href: 4-generalization/01-sampling-distributions/notes.qmd
             - type: Slides
               href: 4-generalization/01-sampling-distributions/slides.qmd
-            - type: PS
+            - type: WS
               href: 4-generalization/01-sampling-distributions/ps.qmd
             - type: Lab
               href: 4-generalization/labs/05-peoples-park/lab.qmd
@@ -228,7 +228,7 @@ scheduled-docs:
     - week: 9
       unit: Generalization
       days:
-        - topic: "Lab 4 Workshop"
+        - topic: "Quiz 4"
           display-date: Oct 21
         - topic: "Bootstrapping"
           display-date: Oct 22/23
@@ -238,7 +238,7 @@ scheduled-docs:
               href: 4-generalization/03-bootstrapping/notes.qmd
             - type: Slides
               href: 4-generalization/03-bootstrapping/slides.qmd
-            - type: PS
+            - type: WS
               href: 4-generalization/03-bootstrapping/ps.qmd
         - topic: "Intro to Hypothesis Tests"
           display-date: Oct 24/25
@@ -248,12 +248,12 @@ scheduled-docs:
               href: 4-generalization/04-hypothesis-tests/notes.qmd
             - type: Slides
               href: 4-generalization/04-hypothesis-tests/slides.qmd
-            - type: PS
+            - type: WS
               href: 4-generalization/04-hypothesis-tests/ps.qmd
     - week: 10
       unit: Generalization
       days:
-        - topic: "Quiz Review"
+        - topic: "Lab 5"
           display-date: Oct 28
         - topic: "Types of Hypothesis Tests"
           display-date: Oct 29/30
@@ -263,9 +263,9 @@ scheduled-docs:
               href: 4-generalization/05-hypothesis-tests-2/notes.qmd
             - type: Slides
               href: 4-generalization/05-hypothesis-tests-2/slides.qmd
-            - type: PS
+            - type: WS
               href: 4-generalization/05-hypothesis-tests-2/ps.qmd
-        - topic: "Quiz 3, Wrong By Design"
+        - topic: "Wrong By Design"
           display-date: Oct 31/Nov 1
           date: 10/31/24
           docs:
@@ -273,12 +273,12 @@ scheduled-docs:
               href: 4-generalization/06-wrong-by-design/notes.qmd
             - type: Slides
               href: 4-generalization/06-wrong-by-design/slides.qmd
-            - type: PS
+            - type: WS
               href: 4-generalization/06-wrong-by-design/ps.qmd
     - week: 11
       unit: Prediction
       days:
-        - topic: "Workshop"
+        - topic: "Quiz 5"
           display-date: Nov 4 
         - topic: "The Method of Least Squares"
           display-date: Nov 5/6
@@ -288,7 +288,7 @@ scheduled-docs:
               href: 6-prediction/01-method-of-least-squares/notes.qmd
             - type: Slides
               href: 6-prediction/01-method-of-least-squares/slides.qmd
-            - type: PS
+            - type: WS
               href: 6-prediction/01-method-of-least-squares/ps.qmd
             - type: Lab
               href: 6-prediction/labs/07-baseball/lab.qmd
@@ -302,7 +302,7 @@ scheduled-docs:
               href: 6-prediction/02-improving-predictions/notes.qmd
             - type: Slides
               href: 6-prediction/02-improving-predictions/slides.qmd
-            - type: PS
+            - type: WS
               href: 6-prediction/02-improving-predictions/ps.qmd
     - week: 12
       unit: Prediction
@@ -317,7 +317,7 @@ scheduled-docs:
               href: 6-prediction/03-overfitting/notes.qmd
             - type: Slides
               href: 6-prediction/03-overfitting/slides.qmd
-            - type: PS
+            - type: WS
               href: 6-prediction/03-overfitting/ps.qmd
             - type: Lab
               href: 6-prediction/labs/08-cancer/lab.qmd
@@ -334,7 +334,7 @@ scheduled-docs:
     - week: 13
       unit: Causation
       days:
-        - topic: "Quiz 4"
+        - topic: "Quiz 6"
           display-date: Nov 18
         - topic: "Defining Causality"
           display-date: Nov 19/20
@@ -359,7 +359,7 @@ scheduled-docs:
       days:
         - topic: "Lab 7 Workshop"
           display-date: Nov 25
-        - topic: "Causal Effects in Observational Studies"
+        - topic: "No Class"
           display-date: Nov 26/27
           date: 11/26/24
           docs:
@@ -367,9 +367,9 @@ scheduled-docs:
               href: 5-causation/03-matching/notes.qmd
             - type: Slides
               href: 5-causation/03-matching/slides.qmd
-            - type: PS
+            - type: WS
               href: 5-causation/03-matching/ps.qmd
-        - topic: "Using Time to Measure Causal effects"
+        - topic: "No Class"
           display-date: Nov 28/29
           date: 11/28/24
           docs:
@@ -377,12 +377,12 @@ scheduled-docs:
               href: 5-causation/04-time/notes.qmd
             - type: Slides
               href: 5-causation/04-time/slides.qmd
-            - type: PS
+            - type: WS
               href: 5-causation/04-time/ps.qmd
     - week: 15
       unit: Causation
       days:
-        - topic: "Lab 7 Workshop"
+        - topic: "Quiz 7"
           display-date: Dec 2
         - topic: "Causal Effects in Observational Studies"
           display-date: Dec 3/4
@@ -392,7 +392,7 @@ scheduled-docs:
               href: 5-causation/03-matching/notes.qmd
             - type: Slides
               href: 5-causation/03-matching/slides.qmd
-            - type: PS
+            - type: WS
               href: 5-causation/03-matching/ps.qmd
         - topic: "Using Time to Measure Causal effects"
           display-date: Dec 5/6
@@ -402,7 +402,7 @@ scheduled-docs:
               href: 5-causation/04-time/notes.qmd
             - type: Slides
               href: 5-causation/04-time/slides.qmd
-            - type: PS
+            - type: WS
               href: 5-causation/04-time/ps.qmd
     - week: "RRR"
       days:
