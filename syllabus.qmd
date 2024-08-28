@@ -157,14 +157,7 @@ Your final grade in the course will be computed as follows:
 
 The grades will not be curved (> 90% is some kind of A, etc.). 
 
-In order to provide flexibility around emergencies that might arise for you throughout the semester (for example, missing a quiz due to COVID), we will apply for everyone:
-
--   one emergency drop for quizzes  
--   one emergency drop for labs
--   two emergency drops for problem sets
--   two emergency drops for reading questions. 
-
-This means, for example, that we will drop your lowest quiz score before computing your average score across all quizzes. 
+In order to provide flexibility around emergencies that might arise for you throughout the semester we will drop everyone's lowest quiz grade before calculating your quiz average at the end of the semester. We will also drop your two lowest Reading Question scores; there are so many of those that it is understandable if you miss one or two.
 
 ### Policies
 
