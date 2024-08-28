@@ -425,14 +425,14 @@ Practice by asking/answering a question on the "Syllabus Discussion" thread on E
 
 Click the link below...
 
-[[Load Lab Templates into RStudio](https://stat20.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fberkeley-stat20%2Fstat20labs-f24&urlpath=rstudio%2F&branch=master)]{style="font-size: 1.3em"}
+\
+\
+\
+
+[[Load Lab Templates into RStudio](https://stat20.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fberkeley-stat20%2FStat20-Labs-Fall24&urlpath=rstudio%2F&branch=master)]{style="font-size: 1.3em"}
 
 
-## Lab 1: UN Votes
-
-1. Change the country from Turkey to one of your choosing.
-
-2. Form two claims from this visualization and identify them as Summary, Generalization, Casual, or Prediction.
+# Lab 1
 
 {{< countdown "15:00" >}}
 
@@ -448,7 +448,7 @@ Click the link below...
 
 :::: {.columns}
 
-::: {.column width="50%" .incremental}
+::: {.column width="65%" .incremental}
 - Read the lecture notes for *Taxonomy of Data* (released Friday evening).
 - If you have any questions, please leave a comment/question on the *Taxonomy of Data* thread on Ed.
 - Answer the Reading Questions for *Taxonomy of Data* on Gradescope by 11:59 pm Mon/Tues (the night before your class).
@@ -456,10 +456,10 @@ Click the link below...
 - Worksheet Packet 1 (just 2 google surveys) due Tuesday at 10 am on Gradescope.
 :::
 
-::: {.column width=20%}
+::: {.column width=10%}
 :::
 
-::: {.column width="30%" .fragment}
+::: {.column width="25%" .fragment}
 ![](https://media.giphy.com/media/XVuBomL9gXMTC/giphy.gif){fig-alt="Animated gif of a shoebill bird."}
 :::
 
