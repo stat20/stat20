@@ -1,0 +1,45 @@
+---
+title: "Lab 1: UN Votes"
+author: Your Name
+format: typst
+editor: visual
+---
+
+```{r}
+#| label: load-packages
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(stat20data)
+```
+
+### Question 1
+
+```{r}
+#| label: plot-yearly-yes-issue
+#| message: false
+#| fig-width: 10
+#| fig-height: 6
+
+unvotes |>
+  filter(country %in% c("United Kingdom", "United States", "Turkey")) |>
+  group_by(country, year, issue) |>
+  summarize(percent_yes = mean(vote == "yes")) |>
+  ggplot(mapping = aes(x = year, y = percent_yes, color = country)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "loess", se = FALSE) +
+  facet_wrap(~issue) +
+  labs(title = "Percentage of 'Yes' votes in the UN General Assembly",
+       subtitle = "1946 to 2019",
+       y = "Proportion Yes",
+       x = "Year",
+       color = "Country") +
+  theme(legend.position = "bottom")
+```
+
+### Question 2
+
+
+### Question 3
+
