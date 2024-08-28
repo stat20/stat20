@@ -45,8 +45,8 @@ website:
         href: notes.qmd
       - text: Assignments
         href: assignments.qmd
-      - text: Tutorials
-        href: tutorials.qmd
+      # - text: Tutorials
+      #   href: tutorials.qmd
     tools:
       - icon: chat-fill
         href: https://edstem.org/
