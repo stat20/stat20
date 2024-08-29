@@ -71,10 +71,6 @@ format:
     theme:
       - sandstone
       - assets/styles.scss
-  stat20notes-html:
-    theme:
-      - sandstone
-      - assets/styles.scss
 
 # General Metadata
 execute:
