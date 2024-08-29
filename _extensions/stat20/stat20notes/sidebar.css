@@ -1,0 +1,22 @@
+
+/* sidebar title in bold */
+.sidebar-menu-container > ul > li:first-child .sidebar-item-container .sidebar-item-text span {
+  font-weight: bold;
+  padding-left: 8px;
+}
+
+/* gray background on outer section titles */
+.sidebar-item.sidebar-item-section > .sidebar-item-container {
+  background-color: #eff0f3;
+  border-radius: 6px;
+  padding: 3px 16px 3px 8px;
+  display: flex;
+  align-items: center;
+}
+
+/* turn off position: sticky on non-mobile so the sidebar scrolls off the page */
+@media (min-width: 992px) {
+    .sidebar.sidebar-navigation {
+      position: static;
+    }
+}

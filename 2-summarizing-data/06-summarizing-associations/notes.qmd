@@ -3,8 +3,7 @@ title: "Summarizing Numerical Associations"
 subtitle: "Overplotting, correlation and the least squares line"
 from: markdown+emoji
 image: images/association.png
-format:
-  html: default
+format: stat20notes-html
 ---
 
 ```{r}

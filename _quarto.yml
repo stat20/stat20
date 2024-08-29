@@ -71,12 +71,10 @@ format:
     theme:
       - sandstone
       - assets/styles.scss
-    toc: true
-    published-title: "class date"
-    reference-location: document
-    code-fold: true
-    code-link: true
-    code-summary: ""
+  stat20notes-html:
+    theme:
+      - sandstone
+      - assets/styles.scss
 
 # General Metadata
 execute:
