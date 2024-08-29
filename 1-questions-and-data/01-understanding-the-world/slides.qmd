@@ -16,7 +16,6 @@ format: stat20slides-revealjs
 
 -   Let us first introduce ourselves!
 
-
    
 # {{< fa pen-to-square >}} Introductions {background-color="#00403d"}
 
@@ -24,9 +23,7 @@ format: stat20slides-revealjs
 
 - Each person should finish with a handout filled-in with info on their groupmates. *Make sure you save this for later this week!*
 
-```{r}
-countdown::countdown(5, top = 0)
-```
+{{< countdown "5:00" top=0 right=0 >}}
 
 # The Data Science Lifecycle
 
@@ -50,36 +47,21 @@ What's going on here?
 
 ::: {.column width="35%"}
 :::{.poll style="font-size: .9em"}
-- As a group, formulate at least **three** possible explanations for what's going on in the picture.  
-- Enter them at [pollev.com](https://pollev.com) or upvote existing explanations if they are very similar to your own.
+- As a group, formulate at least **three** possible explanations for what's going on in the picture.
 :::
 :::
 
 ::::
 
-```{r}
-countdown::countdown(5)
-```
+{{< countdown "3:00" >}}
 
 ## {data-menu-title="Shoebill Pic 2"}
 
-:::: {.columns}
-
-::: {.column width="65%"}
 ![](images/shoebill-2.png){fig-alt="Photo of shoebill with duck in its mouth, at an angle." fig-align="center"}
-:::
 
-::: {.column width="35%"}
-:::{.poll style="font-size: .9em" .fragment}
-Does this image change which claims are more or less likely?
+## {data-menu-title="Shoebill Pic 3"}
 
-Up and down vote explanations at [pollev.com](https://pollev.com). {{< fa thumbs-up >}} / {{< fa thumbs-down >}}
-:::
-:::
-
-::::
-
-## {data-menu-title="Shoebill Pic 3" background-image="images/shoebill-3.png" background-size="contain"}
+![](images/shoebill-3.png){fig-alt="Photo of shoebill with its bill open, having just dropped a duck, who looks surprised."}
 
 :::{.notes}
 These three photos were taken in quick succession by a physician and amateur photographer who was vising the San Diego Zoo Safari Park. He was watching the shoebill as it was walking down a path in the reeds. As the shoebill was ambling along, it encountered a duck in the middle of the path. It leaned down, picked up the duck in its beak, turned to the side, dropped the duck in the reeds, then proceeded to amble down the path.
@@ -299,12 +281,6 @@ We will now re-examine a few pathways in the *data science lifecycle*:
 
 -   Collecting data -> making a claim
 
-. . . 
-
-:::poll
-Now, visit the PollEverywhere site provided by your instructor to answer the following questions.
-:::
-
 
 ## From Questions to Data
 
@@ -315,21 +291,17 @@ Now, visit the PollEverywhere site provided by your instructor to answer the fol
 . . .
 
 :::poll
-Will this question be answered by a summary, a prediction, a generalization, or a causal claim?
+Discuss:
+
+A. What type of *data* can help answer this question? Consider
+
+   - Which different people / institutions collect relevant data
+   - Is certain data not available? Why not?
+
+B. Will this question be answered by a summary, a prediction, a generalization, or a causal claim?
 :::
 
-. . . 
-
-\
-
-Also discuss: what type of *data* can help answer this question? Consider:
-
-- Which different people / institutions collect relevant data
-- Is certain data not available? Why not?
-
-```{r}
-countdown::countdown(6, top = 0)
-```
+{{< countdown "6:00" >}}
 
 
 ## From Data to Claims
@@ -353,17 +325,13 @@ One source of data:
 Formulate one claim that is supported by this data[^1].
 :::
 
-```{r}
-countdown::countdown(3, top = 0)
-```
+{{< countdown "3:00" >}}
 
 [^1]: The positivity rate is the number of positive tests over the total number of tests.
 
 # Break
 
-```{r}
-countdown::countdown(5, top = 0)
-```
+{{< countdown "5:00" >}}
 
 
 # Course Structure
@@ -414,7 +382,7 @@ countdown::countdown(5, top = 0)
 :::{style="text-align: center"}
 All of the materials and links for the course can be found at:
 
-[[{{< var site-url >}}]({{< var site-url >}})]{style="font-size: 1.5em"}
+[[{{< meta site-url >}}]({{< meta site-url >}})]{style="font-size: 1.5em"}
 :::
 
 ![](images/website-screenshot.png){fig-align=center}
@@ -422,18 +390,15 @@ All of the materials and links for the course can be found at:
 
 # {{< fa pen-to-square >}} Syllabus {background-color="#00403d"}
 
-Take 4 minutes to read through the syllabus and jot down at least one question that you have.
+Take a few minutes to read through the syllabus and jot down at least one question that you have.
 
 :::{style="font-size: 1.5em; text-align: center"}
-[{{< var site-url >}}syllabus.html](syllabus.qmd)
+[{{< meta site-url >}}/syllabus.html](syllabus.qmd)
 :::
 
 ![](images/syllabus-screenshot.png){fig-align=center width="1000"}
 
-```{r}
-#| echo: false
-countdown::countdown(4, top = 0)
-```
+{{< countdown "4:00" >}}
 
 ## Ed Discussion Forum
 
@@ -448,7 +413,7 @@ countdown::countdown(4, top = 0)
 - Please answer each other's questions!
 
 :::{.poll .fragment}
-Practice by asking/answering a question on the "Syllabus Discussion" thread on Ed via the link at the top right of <{{< var site-url >}}>.
+Practice by asking/answering a question on the "Syllabus Discussion" thread on Ed via the link on the course website.
 :::
 :::
 
@@ -456,137 +421,46 @@ Practice by asking/answering a question on the "Syllabus Discussion" thread on E
 
 # Intro to R and RStudio
 
-Visit [stat20.datahub.berkeley.edu](https://stat20.datahub.berkeley.edu)! We will now:
+## Load the Lab 1 Template into RStudio
 
-. . . 
+Click the link below...
 
--   Demo the four parts of RStudio
--   Show you how to work with a Quarto Document
--   Walk through the first few questions of Lab 0
+\
+\
+\
 
-## Components of RStudio
-
-1. Console
-
-2. Environment
-
-3. Editor
-
-4. File Directory
-
-> Now we are going to switch over to RStudio to understand these 4 components a bit better.
-
-## Components of RStudio
-
-1. **Console**: Where the live R session lives. Type commands into the prompt `>` and press enter/return to run them. The Console is in the lower-left pane.
-
-2. **Environment**: The space that keeps track of all of the data and objects that you have created or loaded and have access to. Found in the upper right pane.
-
-3. **Editor**: Used to compose and edit text (.qmd files) and R code (.r files). Found in the upper left pane.
-
-4. **File Directory**: Used to navigate between your files/folders on your Rstudio account. Can move, copy, rename, delete, etc. Found in the lower right pane.
+[[Load Lab Templates into RStudio](https://stat20.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fberkeley-stat20%2FStat20-Labs-Fall24&urlpath=rstudio%2F&branch=master)]{style="font-size: 1.3em"}
 
 
-## R as a calculator
+# Lab 1
 
-R allows all of the standard arithmetic operations.
+{{< countdown "15:00" >}}
+
+## General Lab Workflow
+
+1. Lab Questions will be posted to the course website.
+2. You'll author your Lab Reports as Quarto Documents that blend text and code. They should contain only answers.
+3. Render your .qmd file to a .pdf file then download that file from RStudio to your computer.
+4. Go to Gradescope and upload your .pdf lab report, being sure to assign questions to the pages.
+
+
+# Looking forward
 
 :::: {.columns}
 
-::: {.column width="50%"}
-**Addition**
-```{r}
-#| echo: true
-1 + 2
-```
-
-**Subtraction**
-```{r}
-#| echo: true
-1 - 2
-```
+::: {.column width="65%" .incremental}
+- Read the lecture notes for *Taxonomy of Data* (released Friday evening).
+- If you have any questions, please leave a comment/question on the *Taxonomy of Data* thread on Ed.
+- Answer the Reading Questions for *Taxonomy of Data* on Gradescope by 11:59 pm Mon/Tues (the night before your class).
+- Lab 1 due Tuesday at 10 am on Gradescope.
+- Worksheet Packet 1 (just 2 google surveys) due Tuesday at 10 am on Gradescope.
 :::
 
-::: {.column width="50%"}
-**Multiplication**
-```{r}
-#| echo: true
-1 * 2 
-```
-
-**Division**
-```{r}
-#| echo: true
-1 / 2
-```
+::: {.column width=10%}
 :::
 
-::::
-
-
-## R as a calculator, cont.
-
-R allows all of the standard arithmetic operations.
-
-:::: {.columns}
-
-::: {.column width="50%"}
-**Exponents**
-```{r}
-#| echo: true
-2 ^ 3
-```
-:::
-
-::: {.column width="50%"}
-**Parentheses for Order of Ops.**
-```{r}
-#| echo: true
-2 ^ 3 + 1
-```
-
-```{r}
-#| echo: true
-2 ^ (3 + 1)
-```
-:::
-
-::::
-
-## Your turn
-
-:::{.poll}
-What is three times one point two raised to the quantity thirteen divided six?
-:::
-
-```{r}
-countdown::countdown(minutes = 1, top = 0)
-```
-
-
-## Looking forward
-
-:::: {.columns}
-
-::: {.column width="50%" .incremental}
-- Read the lecture notes for *Taxonomy of Data*. 
-- If you have any questions, you may leave a comment/question on the *Taxonomy of Data* thread on Ed.
-- Answer the Reading Questions for *Taxonomy of Data* on Gradescope by 11:59 pm on Wednesday. 
-- Lab 0 (today) and Problem Set 1 (Thursday/Friday) will be due **next Tuesday** at 9am!
-:::
-
-::: {.column width=20%}
-:::
-
-::: {.column width="30%" .fragment}
+::: {.column width="25%" .fragment}
 ![](https://media.giphy.com/media/XVuBomL9gXMTC/giphy.gif){fig-alt="Animated gif of a shoebill bird."}
 :::
 
 ::::
-
-:::{.notes}
-- Readings will be posted Weds night
-- 
-:::
-
-# End of Lecture

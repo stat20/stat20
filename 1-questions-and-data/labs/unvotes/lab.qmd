@@ -1,0 +1,29 @@
+---
+title: "Lab 1: UN Votes"
+image: images/un-logo.png
+format: html
+sidebar: false
+---
+
+Answer the following questions in the Quarto document template linked in the slides for the first day of class. Render the document, download the resulting pdf file, and submit it to Gradescope.
+
+## The Context of the Data
+
+Since its founding in 1946, the United Nation has regularly put forth resolutions that aim to express the will of its members. Impactful historical resolutions have involved the Declaration of Human Rights in 1948, a prohibition on the use of nuclear and thermonuclear weapons in 1968, and the establishment of a no-fly zone in Libya in 2011. After each resolution is proposed, it is voted on in a roll-call vote of the member nations.
+
+The data set at hand contains the voting records of every nation in the UN from 1946 - 2019 on three different issues: Colonialism, Human Rights, and Nuclean Weapons.
+
+## Computing on the Data
+
+### Question 1
+
+Create a data visualization the shows the proportion of "yes" votes over time on three different issues: Colonialism, Human Rights, and Nuclear Weapons. Construct the plot to compare the voting patterns of the United States, the United Kingdom, and one other country of your choosing (not Turkey).
+
+
+### Question 2
+
+Formulate two claims about voting behavior that is supported by this graphic. Categorize each claim as begin a summary, generalization, causal claim, or prediction.
+
+### Question 3
+
+What else would you like to learn about this data set or the context of voting at the United Nations that would allow you to make more informed, accurate, thoughtful, and effective claims? List three specific items.

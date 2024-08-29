@@ -44,9 +44,9 @@ Lab assignments are an opportunity to put the concepts from the notes into pract
 :::
 
 
-## Problem Sets
+## Worksheets
 
-Problem sets are nothing more than the worksheets that we do in class. The goal of the problems sets is simply practice: they help you drill the techniques needed to complete the labs. 
+Worksheets are pen-and-paper practice problems that we work on in class. The goal of the worksheets is simply practice: they help you drill the techniques needed to complete the labs. 
 
 :::{#ps-listing}
 :::
