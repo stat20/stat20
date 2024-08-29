@@ -9,8 +9,12 @@ contributes:
       css: sidebar.css
       published-title: "class date"
       reference-location: document
-      include-in-header:
-      - text: |
-          <script src="collapsing-sidebar-sections.js"></script>
-      format-resources:
-        - "collapsing-sidebar-sections.js"
+      other-links:
+      - text: Slides
+        href: slides.html
+        icon: file-slides-fill
+      # include-in-header:
+      # - text: |
+      #     <script src="collapsing-sidebar-sections.js"></script>
+      # format-resources:
+      #   - "collapsing-sidebar-sections.js"
