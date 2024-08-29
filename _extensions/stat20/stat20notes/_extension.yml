@@ -1,0 +1,20 @@
+title: stat20notes
+author: andrewpbray
+version: 1.0.0
+quarto-required: ">=1.6.0"
+contributes:
+  formats:
+    html:
+      toc: true
+      css: sidebar.css
+      published-title: "class date"
+      reference-location: document
+      other-links:
+      - text: Slides
+        href: slides.html
+        icon: file-slides-fill
+      # include-in-header:
+      # - text: |
+      #     <script src="collapsing-sidebar-sections.js"></script>
+      # format-resources:
+      #   - "collapsing-sidebar-sections.js"

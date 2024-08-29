@@ -2,9 +2,7 @@
 title: "The Taxonomy of Data"
 subtitle: "Types of variables and the data frame"
 image: images/taxonomy-small.png
-code-fold: false
-format:
-  html: default 
+format: stat20notes-html
 ---
 
 :::{.lo .content-hidden unless-profile="staff-site"}

@@ -2,8 +2,7 @@
 title: "Summarizing Categorical Data"
 subtitle: "From data frames to tables. From tables to bar charts."
 image: images/two-var-small.png
-format:
-  html: default
+format: stat20notes-html
 ---
 
 :::{.lo .content-hidden unless-profile="staff-site"}

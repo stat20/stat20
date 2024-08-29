@@ -1,9 +1,7 @@
 ---
 title: "Understanding the World with Data"
 image: images/claims.png
-format:
-  html:
-    code-fold: false
+format: stat20notes-html
 ---
 
 :::{.lo .content-hidden unless-profile="staff-site"}

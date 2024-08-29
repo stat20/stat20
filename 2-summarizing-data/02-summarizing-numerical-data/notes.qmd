@@ -2,8 +2,7 @@
 title: "Summarizing Numerical Data"
 subtitle: "Seeing the forest for the trees."
 image: images/violins-sm.png
-format:
-  html: default
+format: stat20notes-html
 ---
 
 - Man feigns madness, contemplates life and death, and seeks revenge.
