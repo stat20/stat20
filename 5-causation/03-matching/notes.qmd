@@ -1,14 +1,7 @@
 ---
 title: "Causal Effects in Observational Studies"
 subtitle: "Natural experiments and matching"
-format:
-  html:
-    code-fold: false
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
+format: stat20notes-html
 ---
 
 ## Causal claims without randomization

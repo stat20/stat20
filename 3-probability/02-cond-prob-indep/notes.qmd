@@ -2,10 +2,7 @@
 title: "Computing Probabilities"
 subtitle: "Conditional probabability, the multiplication rule and independence"
 image: images/sally-clark-headline.jpeg
-format:
-  html: default
-editor_options: 
-  chunk_output_type: console
+format: stat20notes-html
 ---
 :::{.lo .content-hidden unless-profile="staff-site"}
 

@@ -2,15 +2,9 @@
 title: "Defining Causality"
 subtitle: "Conditional counterfactuals and average treatment effects"
 image: images/causal.png
-format:
-  html:
-    code-fold: true
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
+format: stat20notes-html
 ---
+
 :::{style="text-align: center"}
 ## Welcome to Unit III: Causality
 :::

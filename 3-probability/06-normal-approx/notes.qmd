@@ -2,8 +2,7 @@
 title: "Continuous Distributions and Normal Approximations"
 subtitle: "Connections to boxes, continuous distributions, and a fundamental result"
 image: images/front-image.png
-format:
-  html: default
+format: stat20notes-html
 ---
 
 :::{.lo .content-hidden unless-profile="staff-site"}

@@ -1,14 +1,7 @@
 ---
 title: "Randomized Experiments"
 subtitle: "Principles of experimental design"
-format:
-  html:
-    code-fold: false
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
+format: stat20notes-html
 ---
 
 <!-- Lead out with running example: are you reading these notes as a website or are you reading them as a pdf on a tablet? Do you think your choice in this regard will affect your understanding of the material and the course -->

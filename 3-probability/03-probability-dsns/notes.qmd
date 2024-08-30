@@ -2,10 +2,7 @@
 title: "Probability Distributions"
 subtitle: "Some special distributions and visualizing probabilities"
 image: images/die-emp-prob-dsn.jpg
-format:
-  html: default
-editor_options: 
-  chunk_output_type: console
+format: stat20notes-html
 ---
 
 :::{.lo .content-hidden unless-profile="staff-site"}

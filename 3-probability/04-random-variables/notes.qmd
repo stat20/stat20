@@ -2,10 +2,7 @@
 title: "Random Variables"
 subtitle: "Discrete random variables, probability mass functions, cumulative distribution functions"
 image: images/roulette-us.jpg
-format:
-  html: default
-editor_options: 
-  chunk_output_type: console
+format: stat20notes-html
 ---
 
 :::{.lo .content-hidden unless-profile="staff-site"}

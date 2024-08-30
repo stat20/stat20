@@ -2,8 +2,7 @@
 title: "Expected value and variance of a random variable"
 subtitle: "Measuring the center and spread of a distribution"
 image: images/front-image.png
-format:
-  html: default
+format: stat20notes-html
 ---
 
 ```{r}

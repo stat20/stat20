@@ -2,18 +2,7 @@
 title: "Logistic Regression"
 subtitle: "A model for binary classification"
 image: images/sigmoid.png
-self-contained: true
-format:
-  html:
-    code-fold: true
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
-  fig-width: 5
-  fig-height: 3
-  fig-align: "center"
+format: stat20notes-html
 ---
 
 [T]{.dropcap}he framework that we used to build a predictive model for regression followed four distinct steps:
