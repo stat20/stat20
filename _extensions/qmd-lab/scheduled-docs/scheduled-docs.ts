@@ -363,6 +363,7 @@ async function writeHybridContents(obj: any, tempFilesDir: string) {
 
   // iterate over each hybrid config entry
   for (const hybridConfig of obj.autonav.hybrid) {
+    
     // use a `grouping-label` if defined, otherwise use `type`
     const typeLabel = obj['grouping-label'] ? obj['grouping-label'] : 'type';
     
@@ -384,38 +385,41 @@ async function writeHybridContents(obj: any, tempFilesDir: string) {
         continue;
       }
 
-      if (sectionLabel && doc[sectionLabel]) {
-        const originalSection = doc[sectionLabel];
-        if (!groupedDocs[originalSection]) {
-          groupedDocs[originalSection] = [];
-        }
-        groupedDocs[originalSection].push({ href: `${doc.href}` });
+      const sectionName = doc[sectionLabel] || "default";
+      
+      // if this is the first doc in the section open a contents section
+      if (!groupedDocs[sectionName]) {
+        groupedDocs[sectionName] = { landingPage: null, contents: [] };
+      }
+      
+      // if its not, add on to the contents
+      if (doc['section-landing-page']) {
+        groupedDocs[sectionName].landingPage = doc.href;
       } else {
-        // if no sectionLabel, group all under a generic "default" key
-        if (!groupedDocs['default']) {
-          groupedDocs['default'] = [];
-        }
-        groupedDocs['default'].push({ href: `${doc.href}` });
+        groupedDocs[sectionName].contents.push({ href: doc.href });
       }
     }
 
     // build the contents structure for the current hybrid config
-    const sectionContents: any[] = [
-      { href: landingPage }
-    ];
+    const sectionContents: any[] = [];
 
     if (sectionLabel) {
       for (const [section, docs] of Object.entries(groupedDocs)) {
-        sectionContents.push({
+        const sectionEntry: any = {
           section: section,
-          contents: docs
-        });
+          contents: docs.contents
+        };
+        if (docs.landingPage) {
+          sectionEntry.href = docs.landingPage;
+        }
+        sectionContents.push(sectionEntry);
       }
     } else {
-      sectionContents.push(...groupedDocs['default']);
+      sectionContents.push(...groupedDocs['default'].contents);
     }
 
-    // add the contents array to the sidebar item
+    // add the original landing page and contents array to the sidebar item
+    sidebarItem.href = landingPage;
     sidebarItem.contents = sectionContents;
 
     // add this sidebar item to the final sidebar contents
