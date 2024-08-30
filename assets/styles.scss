@@ -188,7 +188,7 @@ h2 {
 
 /* gray background on outer section titles */
 .sidebar-item-container:has(a.sidebar-item-toggle[data-bs-target^="#quarto-sidebar-section-"][aria-expanded="true"]) {
-  background-color: #eff0f3;
+  background-color: var(--bs-breadcrumb-bg);
   border-radius: 6px;
   padding: 3px 16px 3px 8px;
   display: flex;
