@@ -7,7 +7,7 @@ sidebar: false
 
 Answer the following questions in the Quarto document template linked in the slides for the first day of class. Render the document, download the resulting pdf file, and submit it to Gradescope.
 
-- Link: [Access lab template in RStudio](https://stat20.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fberkeley-stat20%2FStat20-Labs-Fall24&urlpath=rstudio%2F&branch=master)
+- Link: [Load lab template in RStudio](https://stat20.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fberkeley-stat20%2FStat20-Labs-Fall24&urlpath=rstudio%2F&branch=master)
 
 ## The Context of the Data
 
