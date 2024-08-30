@@ -6,7 +6,7 @@ contributes:
   formats:
     html:
       toc: true
-      css: sidebar.css
+      # css: sidebar.css
       published-title: "class date"
       reference-location: document
       other-links:
