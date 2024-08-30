@@ -1,6 +1,7 @@
 ---
 title: "Notes"
 subtitle: "Course notes for STAT 20: Introduction to Probability and Statistics"
+format: stat20notes-html
 ---
 
 \
