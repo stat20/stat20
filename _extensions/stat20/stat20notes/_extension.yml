@@ -6,15 +6,11 @@ contributes:
   formats:
     html:
       toc: true
-      # css: sidebar.css
+      css: sidebar.css
       published-title: "class date"
       reference-location: document
+      bread-crumbs: false
       other-links:
-      - text: Slides
-        href: slides.html
-        icon: file-slides-fill
-      # include-in-header:
-      # - text: |
-      #     <script src="collapsing-sidebar-sections.js"></script>
-      # format-resources:
-      #   - "collapsing-sidebar-sections.js"
+        - text: Slides
+          href: slides.html
+          icon: file-slides-fill
