@@ -1,4 +1,5 @@
 ---
 title: "Prediction"
+format: stat20notes-html
 ---
 
