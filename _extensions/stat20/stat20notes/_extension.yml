@@ -1,0 +1,20 @@
+title: stat20notes
+author: andrewpbray
+version: 1.0.0
+quarto-required: ">=1.6.0"
+contributes:
+  formats:
+    html:
+      toc: true
+      theme:
+        - sandstone
+      # css: sidebar.css
+      published-title: "class date"
+      reference-location: document
+      bread-crumbs: false
+      other-links:
+        - text: Slides
+          href: slides.html
+          icon: file-slides-fill
+      filters:
+        - stat20notes.lua

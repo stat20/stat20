@@ -3,8 +3,7 @@ title: "Data Pipelines"
 subtitle: "Data pipelines, filtering, logical variables and comparison operators"
 image: images/mammals.png
 from: markdown+emoji
-format:
-  html: default
+format: stat20notes-html
 ---
 
 ## Introducing the pipe

@@ -54,6 +54,7 @@ $btn-font-size-sm: .75rem;
 
 /* css styles */
 
+// General
 .dropcap {
   float: left;
   font-family: Georgia;
@@ -72,15 +73,8 @@ h2 {
     color: $primary;
 }
 
-.v-center-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90%;
-}
 
-/* homepage */
-
+/* Homepage */
 .content-block {
   padding-top: 20px;
   padding-bottom: 10px;
@@ -101,12 +95,10 @@ h2 {
   grid-template-columns: 2fr 1fr;
   border-radius: 3px;
   box-shadow: 0 0 0.5rem $gray-300;
-  //filter: drop-shadow(0 0 0.75rem crimson);
   
   .daily-sched {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    //row-gap: 1px; 
     padding: 3px;
     
     .date-cell {
@@ -143,7 +135,7 @@ h2 {
   
 }
 
-
+// Homepage on narrower screen / mobile
 @media (min-width: 900px) {
 .content-block {
   margin-left: 50px;
@@ -168,9 +160,9 @@ h2 {
 .banner-text {
   padding-top: 0em;
 }
+
 #hex {
   order: 1;
-  //padding: 1.5em 3em 0em 3em;
 }
 
 .week-x-box {
@@ -189,4 +181,5 @@ h2 {
     border-top: 1px solid $gray-300;
   }
 }
+
 }

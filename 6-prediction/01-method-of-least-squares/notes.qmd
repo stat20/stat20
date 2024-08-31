@@ -2,14 +2,7 @@
 title: "The Method of Least Squares"
 subtitle: "Fitting a regression model by minimizing RSS"
 image: images/prediction.png
-format:
-  html:
-    code-fold: true
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
+format: stat20notes-html
 ---
 
 :::{.content-hidden unless-profile="staff-guide"}

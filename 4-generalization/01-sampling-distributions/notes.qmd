@@ -1,9 +1,7 @@
 ---
 title: "From Samples to Populations"
 subtitle: "The bias and variance of moving from sample to population."
-format:
-  html: default
-reference-location: margin
+format: stat20notes-html
 ---
 
 [G]{.dropcap}eneralization is the process of using a subset of information to draw conclusions about some broader set or phenomenon. It is powerful - it allows us to draw conclusions about things we have not observed - but it is tricky to do well. In these notes, you will learn the sources of error that can creep in when making a generalization.

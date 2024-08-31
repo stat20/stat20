@@ -2,10 +2,7 @@
 title: "Introducing Probability"
 subtitle: "Definitions, axioms, and examples"
 image: images/dice-players-painting.jpeg
-format:
-  html: default
-editor_options: 
-  chunk_output_type: console
+format: stat20notes-html
 ---
 
 

@@ -1,16 +1,8 @@
 ---
 title: "Hypothesis Tests II"
 subtitle: "Simulating the null by taking draws"
-format:
-  html:
-    toc-depth: 4
-    code-fold: true
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
 image: images/gof.png
+format: stat20notes-html
 ---
 
 [H]{.dropcap}ypothesis tests are a tool for assessing the consistency between data and a proposed model for how the data was generated. There are myriad hypothesis tests, but they all follow the same basic structure.

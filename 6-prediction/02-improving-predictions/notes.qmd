@@ -2,14 +2,7 @@
 title: "Evaluating and Improving Predictions"
 subtitle: "$R^2$, Adding Predictors, Transformations, and Polynomials"
 image: images/polynomial.png
-format:
-  html:
-    code-fold: true
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
+format: stat20notes-html
 ---
 
 :::{.content-hidden unless-profile="staff-guide"}

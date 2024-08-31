@@ -47,4 +47,4 @@ jobs:
           cd stat20
 
           # render and publish site
-          quarto publish gh-pages --profile student-site --no-browser
+          quarto publish gh-pages --no-browser

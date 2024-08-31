@@ -1,9 +1,7 @@
 ---
 title: "Confidence Intervals"
 subtitle: "Quantifying the sampling variability of a statistic."
-toc-depth: 4
-format:
-  html: default
+format: stat20notes-html
 ---
 
 ```{r}

@@ -2,16 +2,7 @@
 title: "Wrong by Design"
 subtitle: "Type I errors, Type II errors, and statistical power"
 image: images/error-table.png
-format:
-  html:
-    toc-depth: 3
-    code-fold: true
-    code-link: true
-    code-summary: "."
-    reference-location: document
-execute: 
-  warning: false
-  message: false
+format: stat20notes-html
 ---
 
 ```{r, include = FALSE}

@@ -2,8 +2,7 @@
 title: "Multiple Linear Regression"
 subtitle: "Summarizing linear relationships in high dimensions"
 image: images/3d-scatterplot.png
-format:
-  html: default
+format: stat20notes-html
 ---
 
 [I]{.dropcap}n the last lecture we built our first linear model: an equation of a line drawn through the scatter plot.

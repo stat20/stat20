@@ -1,15 +1,7 @@
 ---
 title: "Bootstrapping"
 subtitle: "Another Approach to Confidence Intervals"
-format:
-  html:
-    toc-depth: 4
-    code-fold: true
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
+format: stat20notes-html
 ---
 
 ```{r}

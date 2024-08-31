@@ -2,15 +2,7 @@
 title: "Overfitting"
 subtitle: "Training sets and testing sets"
 image: images/poly.png
-self-contained: true
-format:
-  html:
-    code-fold: true
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
+format: stat20notes-html
 ---
 
 <!---

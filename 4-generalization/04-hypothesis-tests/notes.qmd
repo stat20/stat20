@@ -1,15 +1,7 @@
 ---
 title: "Hypothesis Testing"
 subtitle: "Measuring the consistency between a model and data"
-format:
-  html:
-    toc-depth: 4
-    code-fold: true
-    code-link: true
-    code-summary: "."
-execute: 
-  warning: false
-  message: false
+format: stat20notes-html
 ---
 
 [C]{.dropcap}lassical statistics features two primary methods for using a sample of data to make an inference about a more general process. The first is the confidence interval, which expresses the uncertainty in an estimate of a population parameter. The second classical method of generalization is the hypothesis test. 

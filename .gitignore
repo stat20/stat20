@@ -3,6 +3,7 @@
 .Rhistory
 .RData
 .Ruserdata
+*.Rproj
 
 # Dropbox backup files
 .DS_Store
