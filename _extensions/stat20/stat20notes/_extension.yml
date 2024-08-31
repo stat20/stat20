@@ -6,7 +6,9 @@ contributes:
   formats:
     html:
       toc: true
-      css: sidebar.css
+      theme:
+        - sandstone
+      # css: sidebar.css
       published-title: "class date"
       reference-location: document
       bread-crumbs: false
