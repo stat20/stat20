@@ -237,17 +237,13 @@ In the case of data frame above, the unit of observation is a single penguin nea
 
 ### Not a Data Frame
 
-Before you leave thinking that "data frame" = "spreadsheet", consider this data set[^cont-table]:
-
-<!-- Swap out with a table that uses something other than sex since it comes up in lab 2. -->
+Before you leave thinking that "data frame" = "spreadsheet", consider this data set:
 
 ![](images//alternative-contingency-table.png){fig-alt="Contingency table showing the counts of alien color by time of day they were sighted." width="400" fig-align="center"}
 
 For it to be a data frame, we would have to read across the columns and see the names of the variables. You can imagine recording whether or not an alien is green or blue, but those variables would take the values "yes" and "no", not the counts that we see here. Furthermore, total is not a variable that we've recorded a single unit; this column captures aggregate properties of the whole data set.
 
 While this structure might well be called a "table" or possibly a "spreadsheet", it doesn't meet our definition for a data frame. 
-
-[^cont-table]: An image from the Wikipedia article on contingency tables, <https://en.wikipedia.org/wiki/Contingency_table>.
 
 
 ## Summary
