@@ -241,7 +241,7 @@ Before you leave thinking that "data frame" = "spreadsheet", consider this data 
 
 <!-- Swap out with a table that uses something other than sex since it comes up in lab 2. -->
 
-![](images/non-tidy-contingency-table.png){fig-alt="Contingency table showing the counts of handedness by sex at birth." width="400" fig-align="center"}
+![](images//alternative-contingency-table.png){fig-alt="Contingency table showing the counts of alien color by time of day they were sighted." width="400" fig-align="center"}
 
 For it to be a data frame, we would have to read across the columns and see the names of the variables. You can imagine recording whether or not someone is right-handed or left-handed, but those variables would take the values "yes" and "no", not the counts that we see here. Furthermore, total is not a variable that we've recorded a single unit; this column captures aggregate properties of the whole data set.
 
