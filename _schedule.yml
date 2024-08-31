@@ -45,8 +45,10 @@ scheduled-docs:
           docs:
             - type: Notes
               href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
+              draft: false
             - type: Tutorial
               href: 1-questions-and-data/02-taxonomy-of-data/tutorial.qmd
+              draft: false
             - type: Slides
               href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
             - type: WS

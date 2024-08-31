@@ -2,13 +2,72 @@
 title: "Vectors and Data Frames"
 # format: live-html
 format: html
+engine: knitr
 ---
 
-## The Ideas in Code
+{{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
 
 [T]{.dropcap}he concepts of a *variable*, its *type*, and the structure of a *data frame* are useful because they help guide our thinking about the nature of a data. But we need more than definitions.  If our goal is to construct a claim with data, we need a tool to aid in the construction. Our tool must be able to do two things: it must be able to **store** the data and it must be able to perform **computations** on the data. This is where R comes in!
 
 First, we will discuss how R can store and perform computations on data. Then, we will relate these basics to the Taxonomy of Data we have just discussed. 
+
+## R and RStudio
+
+R is one of the most powerful languages for doing statistics and data science. One of the reasons for its power and popularity is that it is both free and open-source.  This turns languages like R into something that resembles Wikipedia: a collaborative effort that is constantly evolving. Extensions to the R language have been authored by professional programmers[^pro], people working in industry and government[^gov], professors[^prof], and students like you[^ug].
+
+[^pro]: The `googlesheets4` package, which reads spreadsheet data into R was authored by Jenny Bryan, a developer at Posit: :<https://googlesheets4.tidyverse.org/>.
+
+[^gov]: The statistics office of the province of British Columbia maintains a public R package with all of their data: <https://bcgov.github.io/bcdata/>
+
+[^prof]: Dr. Christopher Paciorek in the Department of Statistics at UC Berkeley maintains a package to fit a very broad class of statistical models called Bayesian Models: <https://r-nimble.org/>.
+
+[^ug]: Simon Couch wrote the `stacks` package for model ensembling while an undergraduate <https://stacks.tidymodels.org/index.html>.
+
+You'll be writing and running code through an app called RStudio. Beyond writing R code, RStudio allows you to manage your files and author polished documents that weave together code and text. RStudio can be run through a browser and we have set up an account for you that you can access by sending a browser tab to <https://stat20.datahub.berkeley.edu/> or clicking the {{< fa brands r-project >}} link in the upper right corner of the course website.
+
+When you log into RStudio, the place where you can type and run R code is called the **console** and it's located right here:
+
+![The R console in RStudio.](images/rstudio-console.png){#fig-console fig-alt="Screenshot showing RStudio in the browser with the console circled in green." fig-align=center}
+
+:::{.callout-tip}
+
+## Code along
+
+As you read through these notes, keep RStudio open in another window to code along at the console.
+:::
+
+## R as a Calculator
+
+Although R is capable of running sophisticated statistical models, it's also more than able to act as a calculator. Type the sum `1 + 2` into the console (the area to the right of the `>`) and press Enter. What you should see is this:
+
+```{r}
+1 + 2
+```
+
+All of the arithmetic operations work in R.
+
+```{r}
+1 - 2
+1 * 2
+1 / 2
+```
+
+Each of these four lines of code is called a **command** and the response from R is the **output**. The `[1]` at the beginning of the output is there just to indicate that it is the first element of the output. This helps you keep track of things when the output spans many lines.
+
+Although it is easiest to read code when the numbers are separated from the operator by a single space, it's not necessary. R ignores all spaces when it runs your code, so each of the following also work.
+
+```{r}
+1/2
+1   /         2
+```
+
+You can add exponents by using `^`, but don't forget about the order of operations. If you want an alternative ordering, use parentheses.
+
+```{r}
+2 ^ 3 + 1
+2 ^ (3 + 1)
+```
+
 
 ## Saving Objects
 
@@ -277,10 +336,6 @@ species <- factor(c("Chinstrap", "Gentoo", "Chinstrap", "Gentoo", "Adelie",
              "Chinstrap", "Chinstrap", "Adelie"))
 ```
 
-:::{.column-margin}
-Check the class of these vectors by using the as input to `class()`.
-:::
-
 While `bill_length_mm` and `bill_depth_mm` are both being stored as numeric vectors, `species` was first collected into a character vector, then passed directly to the `factor()` function. This is an example of *nesting* one function inside of another and it combined two lines of code into one.
 
 With the three vectors stored in the Environment, all you need to do is staple them together with `data.frame()`.
@@ -289,4 +344,20 @@ With the three vectors stored in the Environment, all you need to do is staple t
 penguins_df <- data.frame(bill_length_mm, bill_depth_mm, species)
 penguins_df
 ```
+
+
+## Summary
+
+This was our first introduction to R, a supercharged calculator for storing and computing on data. We learned how to do basic arithmetic, construct and save a **vector**, call **functions**, query the **class** of an object, and construct a **data frame**. This forms the foundation of our use of R. If that foundation feels shakey, don't fret. We'll get plenty of practice in class.
+
+![The arc of learning R[^horst].](images/r_first_then.png){#fig-r-then-now fig-alt="A playful sketch of first impressions with R with dark clouds and scary R and second impression of sunny skies and happy R." fig-align=center width="400px"}
+
+[^horst]: R monster artwork by \@allison_horst.
+
+### References and further reading
+
+- [Hands on Programming with R](https://rstudio-education.github.io/hopr/) by Garret Grolemund. A friendly introduction to the R language with fun examples.
+- The official (somewhat dense) documentation fo the R language. <https://cran.r-project.org/doc/manuals/r-release/R-lang.html>
+
+- [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund. A comprehensive but approachable guide to doing data science with R. A good reference once you're deeper into this course..
 

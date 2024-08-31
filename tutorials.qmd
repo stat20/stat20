@@ -1,4 +1,6 @@
 ---
-title: "Untitled"
+title: "Tutorials"
 ---
+
+Tutorials serve to introduce you to the fundamentals of the R language.
 
