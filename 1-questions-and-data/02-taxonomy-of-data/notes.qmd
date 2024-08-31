@@ -243,7 +243,7 @@ Before you leave thinking that "data frame" = "spreadsheet", consider this data 
 
 ![](images//alternative-contingency-table.png){fig-alt="Contingency table showing the counts of alien color by time of day they were sighted." width="400" fig-align="center"}
 
-For it to be a data frame, we would have to read across the columns and see the names of the variables. You can imagine recording whether or not someone is right-handed or left-handed, but those variables would take the values "yes" and "no", not the counts that we see here. Furthermore, total is not a variable that we've recorded a single unit; this column captures aggregate properties of the whole data set.
+For it to be a data frame, we would have to read across the columns and see the names of the variables. You can imagine recording whether or not an alien is green or blue, but those variables would take the values "yes" and "no", not the counts that we see here. Furthermore, total is not a variable that we've recorded a single unit; this column captures aggregate properties of the whole data set.
 
 While this structure might well be called a "table" or possibly a "spreadsheet", it doesn't meet our definition for a data frame. 
 
