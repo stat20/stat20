@@ -3,6 +3,8 @@ title: "The Taxonomy of Data"
 subtitle: "Types of variables and the data frame"
 image: images/taxonomy-small.png
 format: stat20notes-html
+filters: 
+  - fontawesome
 ---
 
 :::{.lo .content-hidden unless-profile="staff-site"}
@@ -251,5 +253,7 @@ While this structure might well be called a "table" or possibly a "spreadsheet",
 In this lecture note we have focused on the nature of the data that will serve as the currency from which we'll construct an improved understanding of the world. A first step is to identify the characteristics of the *variables* that are being measured and determine their *type* within the *Taxonomy of Data*. A second step is to organize them into a *data frame* to clearly associate the value that is measured for a variable with a particular observational unit. 
 
 With these ideas in hand, we learned how to bring data onto our computer, so that in our next class, we can begin the process of identifying its structure and communicating that structure numerically and visually.
+
+[Continue on to the tutorial portion of the notes {{< fa arrow-right-long size=xl >}} ](tutorial.qmd){style="fontsize: 1.5em"}
 
 
