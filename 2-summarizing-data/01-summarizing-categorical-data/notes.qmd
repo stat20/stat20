@@ -496,7 +496,7 @@ ggplot(data = penguins,
   geom_bar(position = "fill")
 ```
 
-A side-by-side (dodged) by chart can be produced by replacing `"fill"` with `"dodge"`. To recover the original, stacked bar chart, use `"stack"`!
+A side-by-side (dodged) bar chart can be produced by replacing `"fill"` with `"dodge"`. To recover the original, stacked bar chart, use `"stack"`!
 
 There we have it! Looking forward:
 
