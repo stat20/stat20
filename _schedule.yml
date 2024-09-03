@@ -9,7 +9,7 @@ scheduled-docs:
         type: Notes
         section-label: unit
         collapse-level: 1
-      - title: "Tutorials"
+      - title: "R Tutorials"
         landing-page: tutorials.qmd
         type: Tutorial
   schedule:
@@ -45,14 +45,12 @@ scheduled-docs:
           docs:
             - type: Notes
               href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
-              draft: false
             - type: Tutorial
               href: 1-questions-and-data/02-taxonomy-of-data/tutorial.qmd
-              draft: false
             - type: Slides
               href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
             - type: WS
-              href: 1-questions-and-data/02-taxonomy-of-data/ps.qmd
+              href: 1-questions-and-data/02-taxonomy-of-data/ws.qmd
         - topic: "Summarizing Categorical Data"
           Unit: Summarization
           display-date: Sep 5/5

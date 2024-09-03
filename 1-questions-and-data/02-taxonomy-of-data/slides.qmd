@@ -3,28 +3,7 @@ title: "Taxonomy of Data"
 format: stat20slides-revealjs
 ---
 
-## Agenda
-
-- Announcements
-- Concept Questions: Conceptual
-- Problem Set 1: *Taxonomy of Data*
-- *Break*
-- Concept Questions: Coding
-- Lab 0 work time
-
-# Concept Questions: Conceptual
-
-## Concept Question 1 - Quick Refresher
-
--   Head to PollEverywhere for a quick set of questions regarding *Taxonomy of Data*!
-
-. . . 
-
-```{r}
-countdown::countdown(minutes = 1, top = 0)
-```
-
-# Concept Question 2
+# Concept Questions
 
 There's no escape from the bird...
 
@@ -137,11 +116,9 @@ If you were to put the data from these (8 x 8 grayscale) images into a *data fra
 
 . . . 
 
-```{r}
-countdown::countdown(minutes = 1, top = 0)
-```
+{{< countdown "1:00" >}}
 
-# Concept Question 3
+# Concept Question
 
 ## A note on variables
 
@@ -168,7 +145,7 @@ For each of the following scenarios where age could be a variable, choose the mo
 
 1. Ages of television audiences/demographics
 2. Ages of UC Berkeley students
-3. The weight of a rock
+3. The age of a rock
 
 . . . 
 
@@ -176,24 +153,18 @@ For each of the following scenarios where age could be a variable, choose the mo
 Answer at `pollev.com`.
 :::
 
-```{r}
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 
 # Problem Set 1: *Taxonomy of Data*
 
-```{r}
-countdown::countdown(20, top = 0)
-```
+{{< countdown "20:00" >}}
 
-# *Break*
+# Break
 
-```{r}
-countdown::countdown(5, top = 0)
-```
+{{< countdown "5:00" >}}
 
-# Concept Questions: Coding
+# R Workshop
 
 - Time to make a series of educated guesses. *Close your laptops*! 
 
@@ -213,9 +184,7 @@ Answer at `pollev.com/<name>`
 1 + "one"
 ```
 
-```{r}
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 :::{.notes}
 - "one" is a string with no link at all to the number 1
@@ -242,9 +211,7 @@ a <- c(1, 2, 3, 4)
 sqrt(log(a))
 ```
 
-```{r}
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 :::{.notes}
 Talking points
@@ -274,9 +241,7 @@ a <- 1 + 2
 a + 1
 ```
 
-```{r}
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 :::{.notes}
 - a is a not a string, it's the name of an object that's a number
@@ -305,9 +270,7 @@ a <- c(1, 3.14, "seven")
 class(a)
 ```
 
-```{r}
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 :::{.notes}
 - the definition of a vector requires every element to be of the same type
@@ -315,48 +278,3 @@ countdown::countdown(1, top = 0)
 - there's no way to translate "seven" into 7, so instead 1 and 3.14 must be translated into strings
 - they will likely encounter this when looking at a data set in R (or other languages) and finding that vectors with what looked like numbers are stored as strings. This usually happens because there's a single errant character that the language doesn't know how to parse as a number.
 :::
-
-
-# Time to work on Lab 0
-
-```{r}
-countdown::countdown(minutes = 25, top = 0)
-```
-
-
-# End of Lecture
-
-
-<!--
-# Writing in RStudio
-
-. . .
-
-:::{.bigadage}
-Goal: write a brief memo about your home county.
-:::
-
-## Step-by-step
-
-1. Create and save a new .qmd file.
-1. Add a title and author.
-1. Add a header with the name of the county and state (if you are from abroad, provide the name of a county and state that you would like to visit)
-1. Add 1-3 paragraphs about this county in text, as described by Wikipedia.
-1. An example of **bold** and *italics* text.
-1. A bulleted list of your top three favorite things about this county.
-1. A sentence at the bottom with an acknowledgement that text came from Wikipedia along with a link to that source.
-
-## Step-by-step
-
-1. Create and save a new .qmd file.
-1. Add a title and author.
-1. Add a header with the name of the county and state (if you are from abroad, provide the name of a county and state that you would like to visit)
-1. Add 1-3 paragraphs about this county in text, as described by Wikipedia.
-1. An example of **bold** and *italics* text.
-1. A bulleted list of your top three favorite things about this county.
-1. A sentence at the bottom with an acknowledgement that text came from Wikipedia along with a link to that source.
-
-```{r}
-countdown::countdown(20, top = 0)
-```
--->
