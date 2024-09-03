@@ -5,7 +5,7 @@ on:
   #   - cron: "1 13 * * 2" # Every Tuesday at 6:01 am (PDT)
   #   - cron: "1 13 * * 4" # Every Thursday at 6:01 am (PDT)
 
-name: "Publish to gh-pages"
+name: "Publish to stat20.berkeley.edu"
 jobs:
   publish:
     runs-on: ubuntu-latest
