@@ -45,6 +45,6 @@ format: stat20handout-typst
 
 @. As discussed in the lecture notes, this is not a data frame:
 
-   ![](images/non-tidy-contingency-table.png){fig-alt="Contingency table showing the counts of handedness by sex at birth." width="260" fig-align="center"}
+   ![](images/alien-contingency-table.png){fig-alt="Contingency table showing the counts of alien color by time of day they were sighted." width="260" fig-align="center"}
 
    It does, however, depict a data set, just in a different format. Sketch the data that is summarized here but structured as a data frame. Think through: what was the unit of observation? What were the variables? How many rows are there? How many columns? (you need not fill out the entire data frame; just a schematic)
