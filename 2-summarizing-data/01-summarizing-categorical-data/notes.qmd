@@ -35,7 +35,7 @@ When Dr. Gorman collected data near Palmer Station, Antarctica, she recorded a t
 
 library(tidyverse)
 library(stat20data)
-library(DT)
+library(knitr)
 set.seed(340)
 penguins |>
   sample_n(10) |>
