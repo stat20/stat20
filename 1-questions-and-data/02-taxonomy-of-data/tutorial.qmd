@@ -1,5 +1,6 @@
 ---
-title: "Vectors and Data Frames"
+title: "The Taxonomy of Data"
+subtitle: "Vectors and Data Frames"
 format: live-html
 engine: knitr
 ---
