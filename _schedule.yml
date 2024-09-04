@@ -59,8 +59,13 @@ scheduled-docs:
             - type: Notes
               href: 2-summarizing-data/notes.qmd
               section-landing-page: true
+              draft: false
             - type: Notes
               href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
+              draft: false
+            - type: Tutorial
+              href: 2-summarizing-data/01-summarizing-categorical-data/tutorial.qmd
+              draft: false
             - type: Slides
               href: 2-summarizing-data/01-summarizing-categorical-data/slides.qmd
             - type: WS
