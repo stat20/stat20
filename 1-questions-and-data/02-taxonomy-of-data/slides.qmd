@@ -278,3 +278,95 @@ class(a)
 - there's no way to translate "seven" into 7, so instead 1 and 3.14 must be translated into strings
 - they will likely encounter this when looking at a data set in R (or other languages) and finding that vectors with what looked like numbers are stored as strings. This usually happens because there's a single errant character that the language doesn't know how to parse as a number.
 :::
+
+## Functions on vectors
+
+A *vector* is the simplest structure used in R to store data. It can be created using the function `c()`.
+
+```{r}
+#| echo: true
+my_vector <- c(1, 3, 4)
+my_vector
+```
+
+. . .
+
+A *function* operates on an R object and produces output. R has many of the mathematical functions that you would expect.
+
+```{r}
+#| echo: true
+sum(my_vector)
+```
+
+
+## Your Turn
+
+:::{.poll}
+1. Create a vector named `vec` with the even integers between 1 and 10 as well as the number 99 (six elements total).
+
+2. Find the sum of that vector.
+
+3. Find the max of that vector.
+
+4. Take the mean of that vector and round it to the nearest integer.
+:::
+
+These should all be solved with R code. If you don't know the name of a function to use, with hazard a guess by looking for a help file (e.g. `?sum`) or google it.
+
+{{< countdown "5:00" >}}
+  
+:::{.notes}
+vec <- c(2, 4, 6, 8, 10, 99)
+sum(vec)
+max(vec)
+?round
+round(mean(vec))
+:::
+
+## Working in a qmd file
+
+Working in a new .qmd file allows you to save your code for later.
+
+**Demo**
+
+1. Create a new qmd file from the RStudio menu, name it, and save it.
+2. Insert a new code cell.
+3. Write your code into the cell.
+4. Render the document.
+
+
+## Building a data frame
+
+You can combine vectors into a data frame using `data.frame()`[^1]
+
+```{r echo = TRUE}
+bill_depth_mm <- c(15.0, 17.1, 18.7, 18.9)
+bill_length_mm <- c(47.5, 40.2, 39.0, 35.3)
+species <- c("Gentoo", "Adelie", "Adelie", "Adelie")
+```
+
+\
+
+. . .
+
+```{r echo = TRUE}
+penguins_df <- data.frame(bill_depth_mm, bill_length_mm, species)
+penguins_df
+```
+
+[^1]: You can also use the `tibble()` function from the `tidyverse` package.
+
+
+## Your Turn
+
+:::{.poll}
+1. Create a new .qmd file, name it, and save it.
+
+2. Insert a new code cell.
+
+2. Create three vectors, `name`, `hometown`, and `sibs_and_pets` that contain observations on those variables from 6 people in this class.
+
+3. Combine them into a data frame called `my_classmates`.
+:::
+
+{{< countdown "6:00" >}}
