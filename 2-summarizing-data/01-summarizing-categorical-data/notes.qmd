@@ -23,40 +23,6 @@ Todo.
 
 :::
 
-\
-
-:::{style="text-align: center"}
-## Welcome to Unit I: Summarizing Data
-:::
-
-In spring of 2022, the New York Times ran the following story[^nyt].
-
-![An article from the New York times entitled consumer prices are still climbing rapidly with an associated line graph showing the inflation rate (as measured by the change in the consumer price index) over the last 40 years with a spike upwards in spring of 2022.](images/nyt-inflation.png){#fig-inflation fig-align=center width="500px"}
-
-"Consumer Prices" refers to the Consumer Price Index[^cpi], a weighted average of the prices of thousands of everyday consumer goods: sports equipment, soft drinks, sneakers, internet service, etc. An increase in that index is thought to correspond to rising inflation.
-
-Look carefully at the line plot. Which of the following four claims does it support?
-
-1. The CPI rose 8.3% in April, 2022.
-2. The CPI will likely rise throughout the summer of 2022.
-3. The global consumer price index rose in April, 2022.
-4. The CPI rose 8.3% because of the war in Ukraine.
-
-In truth, this plot could be consistent with all these claims. They are, in turn, a summary, a prediction, a generalization, and a causal claim. This newspaper headline falls squarely in the first category, a **summary**, which seeks only to describe the data set that is on hand.
-
-Although 8.3% seems like a simple enough number, it is actually *summarizing* a vast data set of thousands of prices. The process of describing a data set invariably involves summarizing it, either with **numerical summaries** like 8.3% or with **graphical summaries** like the line plot show above. 
-
-In this unit, we will learn to critique and construct descriptive claims made with data. Although they sound elementary, descriptive claims are the most common form of claim made using data. They have the power to move, if not mountains, at least markets.
-
-![Four types of claims made with data covered in this class.](images/claims-only.png){#fig-claims width="500px"}
-
-[^cpi]: To learn more, check out the Wikipedia page on the [CPI in the US](https://en.wikipedia.org/wiki/United_States_Consumer_Price_Index) and the exhaustive description of how the data is collected at the [US Bureau of Labor Statistics](https://www.bls.gov/cpi/overview.htm#:~:text=The%20CPI%20represents%20changes%20in,life%20insurance)
-
-[^nyt]: Smialek, Jeanna (2022, May 11). Consumer Prices are Still Climbing Rapidly. *The New York Times*. <https://www.nytimes.com/2022/05/11/business/economy/april-2022-cpi.html>
-
-
-## Summarizing Categorical Data
-
 [T]{.dropcap}he tools for calculating numerical summaries and graphical summaries can be cleanly divided between tools developed for categorical data and tools for numerical data. We'll discuss each in turn, starting with categorical data.
 
 When Dr. Gorman collected data near Palmer Station, Antarctica, she recorded a total of eight variables on 333 penguins, presented here in a data frame.
@@ -79,7 +45,6 @@ If I asked you to look at this data frame and describe what these two variables 
 
 <!-- Remake very polished tables using gt -->
 
-::: {.content-visible when-format="html"}
 ```{r}
 #| echo: false
 #| warning: false
@@ -97,28 +62,6 @@ table(penguins$species, penguins$island) %>%
 ```
 
 \
-
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-
-library(tidyverse)
-library(stat20data)
-library(knitr)
-library(kableExtra)
-
-table(penguins$species, penguins$island) %>%
-    kbl(format = "latex") %>%
-    kable_paper(full_width = F) %>%
-    kable_styling(latex_options = "HOLD_position") %>%
-    column_spec(1, bold = T, border_right = T) %>%
-    row_spec(0, bold = T)
-```
-:::
 
 After a few moments of looking at this table, a few features emerge:
 
