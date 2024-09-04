@@ -327,7 +327,9 @@ round(mean(vec))
 
 Working in a new .qmd file allows you to save your code for later.
 
-**Demo**
+. . .
+
+### Demo
 
 1. Create a new qmd file from the RStudio menu, name it, and save it.
 2. Insert a new code cell.
