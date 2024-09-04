@@ -23,52 +23,23 @@ Todo.
 
 :::
 
-\
-
-:::{style="text-align: center"}
-## Welcome to Unit I: Summarizing Data
-:::
-
-In spring of 2022, the New York Times ran the following story[^nyt].
-
-![An article from the New York times entitled consumer prices are still climbing rapidly with an associated line graph showing the inflation rate (as measured by the change in the consumer price index) over the last 40 years with a spike upwards in spring of 2022.](images/nyt-inflation.png){#fig-inflation fig-align=center width="500px"}
-
-"Consumer Prices" refers to the Consumer Price Index[^cpi], a weighted average of the prices of thousands of everyday consumer goods: sports equipment, soft drinks, sneakers, internet service, etc. An increase in that index is thought to correspond to rising inflation.
-
-Look carefully at the line plot. Which of the following four claims does it support?
-
-1. The CPI rose 8.3% in April, 2022.
-2. The CPI will likely rise throughout the summer of 2022.
-3. The global consumer price index rose in April, 2022.
-4. The CPI rose 8.3% because of the war in Ukraine.
-
-In truth, this plot could be consistent with all these claims. They are, in turn, a summary, a prediction, a generalization, and a causal claim. This newspaper headline falls squarely in the first category, a **summary**, which seeks only to describe the data set that is on hand.
-
-Although 8.3% seems like a simple enough number, it is actually *summarizing* a vast data set of thousands of prices. The process of describing a data set invariably involves summarizing it, either with **numerical summaries** like 8.3% or with **graphical summaries** like the line plot show above. 
-
-In this unit, we will learn to critique and construct descriptive claims made with data. Although they sound elementary, descriptive claims are the most common form of claim made using data. They have the power to move, if not mountains, at least markets.
-
-![Four types of claims made with data covered in this class.](images/claims-only.png){#fig-claims width="500px"}
-
-[^cpi]: To learn more, check out the Wikipedia page on the [CPI in the US](https://en.wikipedia.org/wiki/United_States_Consumer_Price_Index) and the exhaustive description of how the data is collected at the [US Bureau of Labor Statistics](https://www.bls.gov/cpi/overview.htm#:~:text=The%20CPI%20represents%20changes%20in,life%20insurance)
-
-[^nyt]: Smialek, Jeanna (2022, May 11). Consumer Prices are Still Climbing Rapidly. *The New York Times*. <https://www.nytimes.com/2022/05/11/business/economy/april-2022-cpi.html>
-
-
-## Summarizing Categorical Data
-
 [T]{.dropcap}he tools for calculating numerical summaries and graphical summaries can be cleanly divided between tools developed for categorical data and tools for numerical data. We'll discuss each in turn, starting with categorical data.
 
-When Dr. Gorman collected data near Palmer Station, Antarctica, she recorded a total of eight variables on 333 penguins, presented here in a data frame.
+When Dr. Gorman collected data near Palmer Station, Antarctica, she recorded a total of eight variables on 333 penguins, 10 rows of which are presented here in a data frame.
 
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
+#| output:  asis
 
 library(tidyverse)
 library(stat20data)
-penguins
+library(knitr)
+set.seed(340)
+penguins |>
+  sample_n(10) |>
+  knitr::kable()
 ```
 
 The first two of these you'll recognize as *nominal categorical* variables. The `species` of each penguin can take one of three levels: Adelie, Chinstrap, or Gentoo; and the `island` on which they were found can also take three levels: Biscoe, Dream, or Torgersen.
@@ -79,7 +50,6 @@ If I asked you to look at this data frame and describe what these two variables 
 
 <!-- Remake very polished tables using gt -->
 
-::: {.content-visible when-format="html"}
 ```{r}
 #| echo: false
 #| warning: false
@@ -89,36 +59,14 @@ library(tidyverse)
 library(knitr)
 library(kableExtra)
 
-table(penguins$species, penguins$island) %>%
-    kbl() %>%
-    kable_paper(full_width = F) %>%
-    column_spec(1, bold = T, border_right = T) %>%
+table(penguins$species, penguins$island) |>
+    kbl() |>
+    kable_paper(full_width = F) |>
+    column_spec(1, bold = T, border_right = T) |>
     row_spec(0, bold = T)
 ```
 
 \
-
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-
-library(tidyverse)
-library(stat20data)
-library(knitr)
-library(kableExtra)
-
-table(penguins$species, penguins$island) %>%
-    kbl(format = "latex") %>%
-    kable_paper(full_width = F) %>%
-    kable_styling(latex_options = "HOLD_position") %>%
-    column_spec(1, bold = T, border_right = T) %>%
-    row_spec(0, bold = T)
-```
-:::
 
 After a few moments of looking at this table, a few features emerge:
 
@@ -158,7 +106,6 @@ So with two similar to charts to choose from, which one should you pick? The sta
 
 When you count the number of observations in each level of a categorical variable, you're encoding the overall magnitude of each. But often what is more important is the *relative* magnitude of each. We can emphasize this by converting counts into proportions.
 
-::: {.content-visible when-format="html"}
 ```{r}
 #| echo: false
 #| warning: false
@@ -170,50 +117,28 @@ library(stat20data)
 library(knitr)
 library(kableExtra)
 
-table(penguins$species, penguins$island) %>%
-    kbl() %>%
-    kable_paper(full_width = F) %>%
-    column_spec(1, bold = T, border_right = T) %>%
+table(penguins$species, penguins$island) |>
+    kbl() |>
+    kable_paper(full_width = F) |>
+    column_spec(1, bold = T, border_right = T) |>
     row_spec(0, bold = T)
 
 df <- data.frame(Biscoe = c(0.132, 0, 0.357, 0.489),
            Dream = c(0.165, 0.204, 0.000, 0.369),
-           Torgersen = c(0.142, 0.000, 0.000, 0.142)) %>%
+           Torgersen = c(0.142, 0.000, 0.000, 0.142)) |>
     mutate(rowsum = Biscoe + Dream + Torgersen)
 species = c("Adelie", "Chinstrap", "Gentoo", "")
 df <- data.frame(species, df)
 names(df) <- c("", "Biscoe", "Dream", "Torgersen", "")
 
-df %>%
-    kbl() %>%
-    kable_paper(full_width = F) %>%
-    column_spec(1, bold = T, border_right = T) %>%
-    column_spec(5, bold = T, border_left = T) %>%
-    row_spec(0, bold = T) %>%
+df |>
+    kbl() |>
+    kable_paper(full_width = F) |>
+    column_spec(1, bold = T, border_right = T) |>
+    column_spec(5, bold = T, border_left = T) |>
+    row_spec(0, bold = T) |>
     row_spec(4, bold = T)
 ```
-:::
-
-::: {.content-visible when-format="pdf"}
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-
-library(tidyverse)
-library(stat20data)
-library(knitr)
-library(kableExtra)
-
-df %>%
-    kbl(format = "latex") %>%
-    kable_paper(full_width = F) %>%
-    column_spec(1, bold = T, border_right = T) %>%
-    column_spec(5, bold = T, border_left = T) %>%
-    row_spec(0, bold = T) %>%
-    row_spec(4, bold = T)
-```
-:::
 
 The second table contains two different types of proportions that can be found in the middle and margins of the table, respectively.
 
@@ -321,188 +246,9 @@ This stands in stark contrast to the plot of the real data on the left. On Bisco
 
 <!-- ![](images/one-var.jpg){fig-alt="Sketch showing the flow for one variable from raw data to contingency table to barchart." fig-align=center} -->
 
-
-## The Ideas in Code
-
-### Help and Arguments
-
-Every function in R has a built-in help file that tells you about how it works. It can be accessed using `?`.
-
-```{r}
-#| code-fold: false
-?mean
-```
-
-This will pop up the help file in a tab next to your Files tab in the lower right hand corner of RStudio. In addition to describing what the function does, the help file lists out the function's **arguments**. Arguments are the separate pieces of input that you can supply to a function and they can be *named* or *unnamed*.
-
-In *Taxonomy of Data*, we created a vector called `my_fav_numbers` and then calculated its mean using the `mean()` function.
-
-```{r}
-#| code-fold: false
-my_fav_numbers <- c(9, 11, 19, 28)
-mean(my_fav_numbers)
-```
-
-In the second command that we entered above, we used a single *unnamed argument*, `my_fav_numbers`. We could have alternatively written this with a *named argument*:
-
-```{r}
-#| code-fold: false
-mean(x = my_fav_numbers)
-```
-
-As the help file suggests, `x` is the R object (here a vector of numbers) that you want to take the mean of. You can always pass objects to a function as named arguments, or if you want to be more concise, you can pass it unnamed and R will rely on the *order* to figure things out.
-
-:::{.content-hidden when-format="pdf"}
-:::{.column-margin}
-![Help file for `mean()`.](images/mean-help.png){#fig-mean-help fig-alt="Screenshot of the helpfile from the mean function." fig-align=center width="300px"}
-:::
-:::
-
-To test how this actually works, let's add a second unnamed argument to our function. From reading the help file, you learn that you can supply it a `trim` argument to trim off some percent of the highest and lowest values before computing the mean. The **default value** of this argument is 0, but we can change this. Let's trim off 25% from the lower end and 25% from the upper end.
-
-```{r}
-#| code-fold: false
-mean(my_fav_numbers, .25)
-```
-
-It worked! We trim off the 9 and the 28, then take $(11 + 19) / 2 = 15$. We can also write the command using named arguments. The code will be a bit more verbose but the answer will be the same.
-
-```{r}
-#| code-fold: false
-mean(x = my_fav_numbers, trim = .25)
-```
-
-What happens if we use unnamed arguments but change the order? Let's find out.
-
-```{r}
-#| error: true
-#| code-fold: false
-mean(.25, my_fav_numbers)
-```
-
-Since there are no names, R looks at the second argument and expects it to be the a proportion between 0 and .5 that it will use to trim. You have passed it a vector of three integers instead, so it's justified in complaining.
-
-### Libraries
-
-![The `tidyverse` library, which contains many useful packages for data science](images/tidyverse-hex.png){fig-align=center height=50% width=50%}
-
-In *Taxonomy of Data*, we learned about a few different functions that can be used on vectors, such as `mean()`. We also learned about a function called `data.frame()`, which allowed us to bring vectors together as part of a new structure called a data frame, with each of the vectors used as columns. 
-
-While the base functionality provided by R is powerful, developers often seek to find more efficient ways to complete tasks. In doing so, they push the power of R forward. R has a vast ecosystem of **libraries** that add new functions. Any installed library can be loaded with the `library()` function. Here, we will load the `tidyverse` library, one of the core external libraries that we will be using this semester.  
-
-```{r}
-#| code-fold: false
-library(tidyverse)
-```
-
-To use these functions within this library (or any other library), you will need to run the above line of code *each time you start an RStudio session!*
-
-The `tidyverse` library has many different **packages** which contain smaller pieces of functionality. Today, our focus is to summarize categorical data, and one avenue we have explored already is a visual summary; a bar chart. Let's explore how the plots shown earlier in this set of notes were made. We will use `ggplot2`, `tidyverse`'s resident visualization package.
-
-First, we should load the `penguins` data into our environment. The `penguins` data is actually located in a special library made just for this course called `stat20data`. This library hosts the datasets which will be the subjects of your labs. Therefore, we need to load this library first.
-
-```{r}
-#| code-fold: false
-library(stat20data)
-```
-
-Then, we can load in the `penguins` data by using the aptly named `data` function.
-
-```{r}
-#| code-fold: false
-data(penguins)
-```
-
-Once you do this, you will see the `penguins` dataset, in all of its glory, appear in the environment pane at the top right of your RStudio session (you may need to click in the area once or twice). 
-
-![](images/environment.png){fig-align=center height=50% width=50%}
-
-You can click the blue dropdown arrow to see each variable in the dataset, or for a more traditional view, you can click the white spreadsheet icon to the right:
-
-![](images/viewer.png){fig-align=center height=50% width=50%}
-
-
-Now, we're ready to write some `ggplot2` code and make our first visualization of the year! We will create the exact stacked, normalized bar chart you saw earlier in the notes.
-
-### A first visualization with `ggplot2`
-
-The main function within the `ggplot2` package is, well, `ggplot()`.
-
-```{r}
-#| fig-width: 5.2
-#| fig-height: 3.8
-#| fig-align: center
-#| code-fold: false
-ggplot(data = penguins)
-```
- 
-The `ggplot()` function takes as its first argument a data frame (the `data` argument). By itself, there's not much to look at; it just creates a blank canvas.
-
-Let's now indicate how we want to map our *variables* to each area of the plot. For now, let's just focus on the species of penguin; we'll handle the island later.
-
-We had species of penguin on the horizontal (`x`) axis. This piece of information (which is known as an **aesthetic attribute** of the plot), goes into a second argument called `mapping` and within a function called `aes()`. 
-
-```{r}
-#| fig-align: center
-#| fig-width: 5
-#| fig-height: 3.5
-#| code-fold: false
-ggplot(data = penguins, 
-       mapping = aes(x = species))
-```
-
-Now we're getting somewhere. We can see the x axis has been set up with labels for the species of penguins. 
-
-All that is left is to actually put the observations on the plot. We do this by declaring what **geometry** we want and adding this information to our existing code. We can add this information via a new *layer*, which can be added on by using the `+` syntax and taking a newline. 
-
-```{r}
-#| fig-align: center
-#| fig-width: 5
-#| fig-height: 3.5
-#| code-fold: false
-ggplot(data = penguins, 
-       mapping = aes(x = species)) +
-  geom_bar()
-```
- 
-The layer we added was a geometry layer corresponding to the bar chart, called `geom_bar()`. In tomorrow's notes, you will similarly named geometry layers relating to visualizations for numerical data. 
-
-Note that the bars are not colored like before, but are just gray. This is because we are missing the island variable! Island was represented by coloring in (filling) the bars for us according to the *conditional proportions* of penguins within a specific species belonging to a specific island. We can include this by adding to our `aes()` function in the original layer. 
-
-
-```{r}
-#| fig-align: center
-#| fig-width: 5
-#| fig-height: 3.5
-#| code-fold: false
-ggplot(data = penguins, 
-       mapping = aes(x = species, 
-                     fill = island)) +
-  geom_bar()
-```
-
-Almost there! Note that what we have right now is just a *stacked* bar chart. There's one more fix that we need to apply. Note that `geom_bar()` can be thought of as a function as well. One of its arguments, `position`, will help us solve this issue[^position]. `position` defaults to a stacked bar chart, but we can fix this by supplying it with `"fill"`!
-
-[^position]: This argument is generally not important for the other plots we create in this course, which is why in the initial piece of code featuring `geom_bar()`, it was not specified at all. 
-
-```{r}
-#| fig-align: center
-#| fig-width: 5
-#| fig-height: 3.5
-#| code-fold: false
-ggplot(data = penguins, 
-       mapping = aes(x = species, 
-                     fill = island)) +
-  geom_bar(position = "fill")
-```
-
-A side-by-side (dodged) bar chart can be produced by replacing `"fill"` with `"dodge"`. To recover the original, stacked bar chart, use `"stack"`!
-
-There we have it! Looking forward:
-
-1. In our very next lecture, you'll learn how to use `ggplot2` to make visualizations of numerical variables. 
-2. We will also learn more about the machinery behind `ggplot2` through a dedicated lecture in a couple of weeks.
-
 ## Summary
 
 A wise statistician once said, "In statistics, most of what we do is add things up. Sometimes we divide. The challenging part is deciding *what* to add and divide." This captures the deceptive simplicity of summarizing categorical data. Categorical summaries involve counts of categories or proportions. Those proportions can be joint proportions, marginal proportions, or conditional proportions. Those counts and proportions are commonly displayed in contingency tables or in bar charts. Subtle choices of which proportion to present results in the telling of dramatically different stories. 
+
+[Continue on to the tutorial portion of the notes {{< fa arrow-right-long size=xl >}} ](tutorial.qmd){style="fontsize: 1.5em"}
+
