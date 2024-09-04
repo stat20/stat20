@@ -1,7 +1,6 @@
 ---
 title: "Vectors and Data Frames"
-# format: live-html
-format: html
+format: live-html
 engine: knitr
 ---
 
@@ -354,10 +353,321 @@ This was our first introduction to R, a supercharged calculator for storing and 
 
 [^horst]: R monster artwork by \@allison_horst.
 
+
+## Exercises
+
+### Ex: R as a Calculator
+
+Meet Leia, a fictitious undergrad student taking Stat 20. Leia loves to drink
+coffee in the morning, and she brews her own coffee at home. She even has a 
+monthly budget of $20 to cover this type of expense. As you know, we can use
+R to create an object or variable `coffee` for Leia's budget:
+
+```{r}
+coffee <- 20
+```
+
+Alternatively, you can also use the equals sign `=` as an assignment 
+operator:
+
+```{r}
+coffee = 20
+```
+
+
+### Your Turn: Leia's Expenses
+
+Consider the bills of Leia's fixed monthly expenses:
+
+- phone $80
+- transportation $20
+- groceries $600
+- rent $1800
+
+a) Make more assignments to create variables `phone`, `transportation`, 
+`groceries`, and `rent` with their corresponding amounts.
+
+```{webr}
+#| exercise: ex1_1a
+# create your variables
+______
+```
+
+::: { .solution exercise="ex1_1a" }
+::: { .callout-tip collapse="false"}
+## Solution:
+
+```r
+phone <- 80
+transportation <- 20
+groceries <- 600
+rent <- 1800
+```
+:::
+:::
+
+/
+
+b) Now that you have all the variables, create a `total` object with the 
+sum of her fixed monthly expenses.
+
+```{webr}
+#| exercise: ex1_1b
+# create your total object
+______
+```
+
+::: { .solution exercise="ex1_1b" }
+::: { .callout-tip collapse="false"}
+## Solution:
+
+```r
+total <- phone + transportation + groceries + rent
+total
+```
+:::
+:::
+
+/
+
+c) Assuming that Leia has the same expenses every month, how much would she 
+spend during a school "semester"? (assume the semester involves five months).
+
+```{webr}
+#| exercise: ex1_1c
+# compute expenses over 5 months
+______
+```
+
+::: { .solution exercise="ex1_1c" }
+::: { .callout-tip collapse="false"}
+## Solution:
+
+```r
+total * 5
+```
+:::
+:::
+
+/
+
+d) Maintaining the same assumption about the monthly expenses, how much would Leia
+spend during a school "year"? (assume the academic year is 10 months).
+
+```{webr}
+#| exercise: ex1_1d
+# compute expenses over an academic year
+______
+```
+
+::: { .solution exercise="ex1_1d" }
+::: { .callout-tip collapse="false"}
+## Solution:
+
+```r
+total * 10
+```
+:::
+:::
+
+
+/
+
+
+### Ex: Taxonomy of Data and R Vectors
+
+From the _taxonomy of data_, you know that we have 4 flavors of variables,
+and their corresponding classes in R (shown below inside parenthesis) 
+illustrated in the following examples:
+
+```{r}
+# continuous (numeric)
+x1 <- c(1.2, 3.3, -0.5)
+
+# discrete (numeric)
+x2 <- c(2, 4, 6)
+
+# ordinal (ordered factor)
+x3 <- factor(c("sm", "md", "lg", "sm"), levels = c("sm", "md", "lg"))
+
+# nominal (character or factor)
+x4 <- c("strawberry", "lemon", "vanilla")
+x4bis <- factor(c("strawberry", "lemon", "vanilla"))
+```
+
+
+### Your Turn: Terrestrial Planets
+
+Consider the following data set---shown in the table below---containing 
+variables of so-called __Terrestrial__ planets. These planets include Mercury, 
+Venus, Earth, and Mars. They are called like this because they are "Earth-like"
+planets: relatively small in size and in mass, with a solid rocky surface, 
+and metals deep in its interior.
+
+| name    | gravity | moons |
+|:-------:|:-------:|:-----:|
+| Mercury |  3.7    |   0   |
+| Venus   |  8.9    |   0   |
+| Earth   |  9.8    |   1   |
+| Mars    |  3.7    |   2   |
+
+/
+
+a) Consider the column _name_ in the provided table of terrestrial planets.
+Use the `c()` function to create a __character__ vector `name` containing 
+the names of the Terrestrial planets.
+
+```{webr}
+#| exercise: ex1_2a
+name = ______
+```
+
+::: { .solution exercise="ex1_2a" }
+::: { .callout-tip collapse="false"}
+## Solution:
+
+```r
+name = c("Mercury", "Venus", "Earth", "Mars")
+```
+:::
+:::
+
+/
+
+b) Consider the column _gravity_ in the provided table of terrestrial planets.
+Use the combine function `c()` to make a __numeric__ vector `gravity` for the Terrestrial planets.
+
+```{webr}
+#| exercise: ex1_2b
+gravity = ______
+```
+
+
+::: { .solution exercise="ex1_2b" }
+::: { .callout-tip collapse="false"}
+## Solution
+
+```r
+gravity = c(3.7, 8.9, 9.8, 3.7)
+```
+:::
+:::
+
+
+/
+
+c) Consider the column _moons_ in the provided table of terrestrial planets.
+Use the combine function `c()` to make an __ordinal factor__ `moons`.
+
+```{webr}
+#| exercise: ex1_2c
+moons = ______
+```
+
+::: { .solution exercise="ex1_2c" }
+::: { .callout-tip collapse="false"}
+## Solution
+
+```r
+moons = factor(c(0, 0, 1, 2), ordered = TRUE)
+```
+:::
+:::
+
+
+/
+
+
+### Ex: Data Frames in R
+
+Consider again the data set of __Terrestrial__ planets---shown in the table below. 
+
+| name    | gravity | moons |
+|:-------:|:-------:|:-----:|
+| Mercury |  3.7    |   0   |
+| Venus   |  8.9    |   0   |
+| Earth   |  9.8    |   1   |
+| Mars    |  3.7    |   2   |
+
+/
+
+Use the vectors that you defined in the previous section in order to create
+a data frame `planets`:
+
+```{webr}
+#| exercise: ex1_3
+planets = ______
+```
+
+::: { .solution exercise="ex1_3" }
+::: { .callout-tip collapse="false"}
+## Solution
+
+```r
+planets = data.frame(
+  "name" = name,
+  "gravity" = gravity,
+  "moons" = moons,
+  "haswater" = haswater
+)
+```
+:::
+:::
+
+
+/
+
+### Ex: Challenge
+
+Let's apply everything that you've learned so far in order to create a data
+frame `students` containing the following data, and the provided specifications
+listed below:
+
+| name  | height  | year      | resident |
+|:-----:|:-------:|:---------:|:--------:|
+| Leia  |  160    | sophomore |  TRUE    |
+| Luke  |  170    | freshman  |  FALSE   |
+| Han   |  182    | senior    |  TRUE    |
+| Lando |  178    | junior    |  FALSE   |
+
+/
+
+- `name`: nominal variable (character)
+- `height` continuous variable (numeric)
+- `year`: ordinal variable (ordered factor)
+- `resident`: nominal variable (logical)
+
+```{webr}
+#| exercise: ex1_4
+students = ______
+```
+
+::: { .solution exercise="ex1_4" }
+::: { .callout-tip collapse="false"}
+## Solution
+
+```r
+students = data.frame(
+  "name" = c("Leia", "Luke", "Han", "Lando"),
+  "height" = c(160, 170, 182, 178),
+  "year" = factor(x = c("sophomore", "freshman", "senior", "junior"),
+                  levels = c("freshman", "sophomore", "junior", "senior")),
+  "resident" = c(TRUE, FALSE, TRUE, FALSE)
+)
+```
+:::
+:::
+
+
+
+
+
+
 ### References and further reading
 
 - [Hands on Programming with R](https://rstudio-education.github.io/hopr/) by Garret Grolemund. A friendly introduction to the R language with fun examples.
 - The official (somewhat dense) documentation fo the R language. <https://cran.r-project.org/doc/manuals/r-release/R-lang.html>
 
 - [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund. A comprehensive but approachable guide to doing data science with R. A good reference once you're deeper into this course..
+
 
