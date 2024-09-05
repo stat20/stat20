@@ -1,5 +1,5 @@
 ---
-title: "Lab 1: Arbuthnot"
+title: "Arbuthnot"
 image: images/christenings-sm.png
 sidebar: false
 ---
