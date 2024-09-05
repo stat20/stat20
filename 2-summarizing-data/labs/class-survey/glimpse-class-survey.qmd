@@ -4,7 +4,7 @@ format: typst
 ---
 
 ```{r}
-#| eval: true
+#| eval: false
 #| echo: false
 #| message: false
 #| warning: false
@@ -61,6 +61,8 @@ df |>
 ```{r}
 #| echo: false
 #| eval: true
+
+library(tidyverse)
 library(stat20data)
 class_survey |>
   glimpse()
