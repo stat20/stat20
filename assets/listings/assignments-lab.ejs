@@ -1,0 +1,25 @@
+:::: {.grid .text-center .list}
+
+<% for (let i = 0; i < items.length; i++) { %>
+
+:::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+
+:::: {.card .hovercard}
+![](<%- items[i].image %>){.card-img-top loading="lazy" style="border-radius: 40%;" fig-alt="<%= items[1].title %> logo"}
+
+:::: {.card-body}
+[Lab <%= i+1 %>: <%- items[i].title %>]{.card-title .listing-title style="font-weight: bold;"}
+
+[
+  Hello there
+]{.card-text}
+:::
+
+:::
+
+
+:::
+
+<% } %>
+
+:::
