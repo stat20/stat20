@@ -3,38 +3,9 @@ title: "Summarizing Categorical Data"
 format: stat20slides-revealjs
 ---
 
-## Agenda
-
-- Announcements
-- Concept Questions
-- Problem Set 2: *Summarizing Categorical Data*
-- *Break*
-- Introducing Lab 1
-- Work time for Lab 1: Understanding Context
-
-## Announcements
-
--   RQ: Summarizing Numerical Data due **Wednesday at 11:59pm** on Gradescope.
-
-. . . 
-
--   Quiz 1 next **Monday, January 29th** in-class. Topics covered:
-    -   Understanding the World with Data
-    -   Taxonomy of Data
-    -   Summarizing Categorical Data (today)
-    -   Summarizing Numerical Data (next class)
-    
-. . . 
-
--   Lab 1 (Class Survey) due **Tuesday, January 29th at 9am** on Gradescope.  Make sure you read the Lab Submission Guidelines posted to Ed! 
-
-. . .
-
--   Problem Set 2 due **Tuesday, January 29th at 9am** on Gradescope
-
 # Concept Questions
 
-# Concept Question 1
+## CQ 1
 
 -   The next four subquestions are based on the same table.
 
@@ -48,9 +19,7 @@ The table below displays data from a survey on a class of students.
 What proportion of the class was in the marching band?
 :::
 
-```{r}
-countdown::countdown(.5, top = 0)
-```
+{{< countdown "00:30" >}}
 
 
 :::notes
@@ -65,9 +34,7 @@ An example of a marginal proportion.
 What proportion of those in the marching band where juniors?
 :::
 
-```{r}
-countdown::countdown(.5, top = 0)
-```
+{{< countdown "00:30" >}}
 
 :::notes
 An example of a conditional proportion.
@@ -81,9 +48,7 @@ An example of a conditional proportion.
 What proportion were sophomores not in the marching band?
 :::
 
-```{r}
-countdown::countdown(.5, top = 0)
-```
+{{< countdown "00:30" >}}
 
 :::notes
 An example of a joint proportion.
@@ -97,9 +62,7 @@ An example of a joint proportion.
 What were the dimensions of the raw data from which this table was constructed?
 :::
 
-```{r}
-countdown::countdown(.5, top = 0)
-```
+{{< countdown "00:30" >}}
 
 
 ## 
@@ -110,12 +73,10 @@ countdown::countdown(.5, top = 0)
 How would you characterize the association between these two variables?
 :::
 
-```{r}
-countdown::countdown(.5, top = 0)
-```
+{{< countdown "00:30" >}}
 
 
-## Concept Question 2
+## CQ 2
 
 Political affiliation and college degree status of 500 survey participants.
 
@@ -142,12 +103,10 @@ Cannot tell which group is the largest since this plot as been normalized so tha
 The unnormalized bar chart of counts preserves original counts and thus is good at comparing joint proportions. The normalized bar count shows condition proportions and thus is good for showing associations between variables.
 :::
 
-```{r}
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 
-# Concept Question 3
+# CQ 3
 
 ## {background-image="images/world-energy-supply.jpeg" background-size="contain"}
 
@@ -164,66 +123,18 @@ This is a confusing stacked bar chart! (unfortunately I wasn't able to track dow
 The height of each total bar appears to be the energy supply from renewables worldwide in each of these years. The proportion on top, however, appears to be that number divided by the global *total* energy supply, which changes every year. The fact that those proportions are decreasing left to right as the bar heights are increasing suggests that renewables are increasing every year (the numerator) but the total energy supply (the denominator) is increasing at a faster rate.
 :::
 
-```{r}
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 
-# Problem Set 2: *Summarizing Categorical Data*
+# Worksheet: *Summarizing Categorical Data*
 
-```{r}
-countdown::countdown(25, top = 0)
-```
+{{< countdown "20:00" >}}
 
 # Break
 
-```{r}
-countdown::countdown(5, top = 0)
-```
+{{< countdown "5:00" >}}
 
-# Introducing Lab 1
+# Lab Part 1: Class Survey
 
-Let's visit the lab slides, which are available on stat20.org!
-
-# Lab 1: Understanding the Context of The Data
-
-```{r}
-countdown::countdown(25, top = 0)
-```
-
-# End of Lecture
-
-<!--
-# Lab 1: Arbuthnot
-
-```{r}
-countdown::countdown(20)
-```
-
-
-## Your first plot
-
-. . .
-
-A template for a line plot:
-
-\
-
-```{r style="font-size: 1.15em"}
-#| eval: FALSE
-#| echo: TRUE
-#| error: TRUE
-
-ggplot(DATAFRAME, aes(x = XVARIABLE, y = YVARIABLE)) +
-  geom_line()
-```
-
-\
-
-Where:
-
-- `DATAFRAME` is the name of your data frame
-- `XVARIABLE` is the name of the variable of that data frame that you want on the x-axis
-- `YVARIABLE` is the name of the variable of that data frmae that you want on the y-axis
--->
+{{< countdown "1:00" >}}
 

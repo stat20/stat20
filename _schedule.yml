@@ -59,19 +59,16 @@ scheduled-docs:
             - type: Notes
               href: 2-summarizing-data/notes.qmd
               section-landing-page: true
-              draft: false
             - type: Notes
               href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
-              draft: false
             - type: Tutorial
               href: 2-summarizing-data/01-summarizing-categorical-data/tutorial.qmd
-              draft: false
             - type: Slides
               href: 2-summarizing-data/01-summarizing-categorical-data/slides.qmd
             - type: WS
               href: 2-summarizing-data/01-summarizing-categorical-data/ws.qmd
             - type: Lab
-              href: 2-summarizing-data/labs/02-class-survey/lab.qmd
+              href: 2-summarizing-data/labs/class-survey/lab.qmd
     - week: 3
       unit: Summarization
       days:

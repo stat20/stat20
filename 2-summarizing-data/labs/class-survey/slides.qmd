@@ -1,0 +1,13 @@
+---
+title: "Lab: Class Survey"
+format: stat20slides-revealjs
+---
+
+# Part 1: Understanding the Context of the Data
+
+{{< countdown "25:00" >}}
+
+# Part 2: Computing on the Data
+
+{{< countdown "25:00" >}}
+
