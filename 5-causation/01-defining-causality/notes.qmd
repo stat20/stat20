@@ -11,6 +11,25 @@ execute:
   warning: false
   message: false
 ---
+
+:::{.lo .content-hidden unless-profile="staff-site"}
+
+#### Concept Acquisition
+
+Todo.
+
+#### Tool Acquisition
+
+Todo.
+
+#### Concept Application
+
+Todo.
+
+----------------------------------------------------
+
+:::
+
 :::{style="text-align: center"}
 ## Welcome to Unit III: Causality
 :::

@@ -19,9 +19,9 @@ However, we frequently need to evaluate causal claims without having access to d
 
 ## Natural experiments
 
-![](images/nba_foul.jpg){#fig-inflation fig-align="center" width="500px"}[^foulpic]
+![](images/nba_foul.jpg){#fig-inflation fig-align="center" width="500px"}
 
-Do evaluators tend to favor members of the same race?  In the mid-2000s two economists interested in this question, Joseph Price and Justin Wolfers, obtained data on 12 years of referee decisions from professional National Basketball Association (NBA) games. <!--including indicators for whether players and referees were Black or non-Black.--> They compared the rate at which referees gave fouls to players of the same racial category (Black or non-Black) to the rate at which fouls were given to players of the opposite category.
+Do evaluators tend to favor members of the same race[^foulpic]?  In the mid-2000s two economists interested in this question, Joseph Price and Justin Wolfers, obtained data on 12 years of referee decisions from professional National Basketball Association (NBA) games. <!--including indicators for whether players and referees were Black or non-Black.--> They compared the rate at which referees gave fouls to players of the same racial category (Black or non-Black) to the rate at which fouls were given to players of the opposite category.
 
 This study aims to investigate a causal claim: for a given player in a given game, would the player's foul rate have been different if a different referee had been assigned whose racial categorization did (or did not) match the player's racial categorization?
 
