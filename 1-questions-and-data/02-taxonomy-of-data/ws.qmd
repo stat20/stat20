@@ -8,7 +8,7 @@ format: stat20handout-typst
 
    ![](images/variable-types.png)
 
-@. Last class you collected data on six different variables on your classmates. List the data types of each of those variables, the units that they were measured in, and the range of possible values that you would expect them to take.
+@. Last class you collected data on six different variables on your classmates. List the data types of each of those variables, the units that they were measured in (if it's continuous numerical), and the range of possible values that you would expect them to take.
    
    - Name:
    - Contact info:
