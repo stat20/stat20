@@ -69,7 +69,7 @@ scheduled-docs:
             - type: Slides
               href: 2-summarizing-data/01-summarizing-categorical-data/slides.qmd
             - type: WS
-              href: 2-summarizing-data/01-summarizing-categorical-data/ps.qmd
+              href: 2-summarizing-data/01-summarizing-categorical-data/ws.qmd
             - type: Lab
               href: 2-summarizing-data/labs/02-class-survey/lab.qmd
     - week: 3
