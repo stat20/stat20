@@ -69,7 +69,6 @@ For our first graphic, let's set a high bar.
 The most commonly used graphic that fulfills this criterion is the **dot plot**. 
 
 ```{r}
-#| fig-align: center
 #| fig-height: 2
 #| fig-width: 5
 bill_16 |>
@@ -94,7 +93,6 @@ There are several types of graphics that meet this criterion: the histogram, the
 ### Histograms
 
 ```{r}
-#| fig-align: center
 #| fig-height: 2
 #| fig-width: 5
 bill_16 |>
@@ -159,7 +157,6 @@ Besides the shift from bars to a smooth line, the density plot also changes the 
 The density plot, like the histogram, offers the ability to balance fidelity to the individual observations against a more general shape of the distribution. You can tip the balance to feature what you find most interesting by adjusting the *bandwidth* of the density plot.
 
 ```{r}
-#| fig-align: center
 #| fig-height: 7
 #| fig-width: 5
 p1 <- bill_16 |>
@@ -239,7 +236,6 @@ A good example of a distribution that would be described as unimodal is the orig
 #| warning: false
 #| fig-height: 2
 #| fig-width: 7
-#| fig-align: center
 p1 <- bill_16 |>
   ggplot(aes(x = bill_length_mm)) +
   geom_density()
