@@ -190,7 +190,6 @@ To keep all of this data organized, we need a structure. While there are several
 While this definition might seem opaque, you are already familiar with a data frame. You are you just more accustomed to seeing it laid out this like this:
 
 ```{r}
-#| echo: false
 #| message: false
 #| warning: false
 
@@ -206,7 +205,6 @@ tab <- penguins %>%
 
 ::: {.content-hidden unless-format="html"}
 ```{r}
-#| echo: false
 #| message: false
 #| warning: false
 tab %>%
@@ -217,7 +215,6 @@ tab %>%
 
 ::: {.content-hidden unless-format="pdf"}
 ```{r}
-#| echo: false
 #| message: false
 #| warning: false
 tab %>%

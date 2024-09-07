@@ -28,7 +28,6 @@ Todo.
 When Dr. Gorman collected data near Palmer Station, Antarctica, she recorded a total of eight variables on 333 penguins, 10 rows of which are presented here in a data frame.
 
 ```{r}
-#| echo: false
 #| warning: false
 #| message: false
 #| output:  asis
@@ -51,7 +50,6 @@ If I asked you to look at this data frame and describe what these two variables 
 <!-- Remake very polished tables using gt -->
 
 ```{r}
-#| echo: false
 #| warning: false
 #| message: false
 
@@ -82,7 +80,6 @@ This method of displaying data is called a contingency table.
 We can also opt to present these counts in graphical form by constructing a **bar chart**. There are two common methods for laying out counts across two variables in a bar chart.
 
 ```{r}
-#| echo: false
 #| layout-ncol: 2
 #| fig-cap: [Stacked bar chart, Dodged bar chart]
 #| eval: true
@@ -107,7 +104,6 @@ So with two similar to charts to choose from, which one should you pick? The sta
 When you count the number of observations in each level of a categorical variable, you're encoding the overall magnitude of each. But often what is more important is the *relative* magnitude of each. We can emphasize this by converting counts into proportions.
 
 ```{r}
-#| echo: false
 #| warning: false
 #| message: false
 #| layout-ncol: 2
@@ -164,7 +160,6 @@ The first observation refers to a conditional proportion: of the 68 total Chinst
 With these distinctions in hand, we can construct a useful variant of the bar chart: the normalized stacked bar chart.
 
 ```{r}
-#| echo: false
 #| fig-align: center
 #| fig-width: 5
 #| fig-height: 3.5
@@ -181,7 +176,6 @@ If you look back and forth between this bar chart and the table of proportions, 
 We can take the same data and get a very different story if instead we condition on `island`.
 
 ```{r}
-#| echo: false
 #| fig-align: center
 #| fig-width: 5
 #| fig-height: 3.5
@@ -209,7 +203,6 @@ Is there an association between species and which island they are found on? With
 This is best illustrated by showing the previous plot of the real data right next to an example of what a penguins data set would look like that exhibits *no* association between `species` and `island`.
 
 ```{r}
-#| echo: false
 #| layout-ncol: 2
 
 p2 <- data.frame(species = rep(rep(c("Adelie", "Chinstrap", "Gentoo"), c(1, 2, 3)), 3),
