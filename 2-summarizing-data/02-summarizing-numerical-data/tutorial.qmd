@@ -9,6 +9,13 @@ engine: knitr
 
 Once you have your data in front of you, you've seen how we can form visual summaries with `ggplot2`. But how can we calculate numerical summaries? Furthermore, what if we are concerned about summarizing a portion of our data, like just one species of penguin at a time? We will answer these questions below, and introduce some new functions from the `dplyr` package (within the `tidyverse` library) along the way. We'll also look at how `factor()` can come in handy while plotting.
 
+If you are playing along in RStudio while reading these notes (which we strongly recommend!), be sure to start off by loading the two packages that are necessary for the tutorial by running the following code.
+
+```{r}
+library(tidyverse)
+library(stat20data)
+```
+
 ### Calculating Numerical Summaries
 
 One example of a numerical variable we could have examine  is the body mass of a particular penguin (measured in grams). Let's calculate both a measure of center and spread for this variable.
