@@ -2,10 +2,12 @@
 ```{=html}
 <div class="calendar">
 <% for (const week of items) { %>
+  <!-- Create each week -->
   <h4>Week <%= week.week %></h4>
   <div class="week-x-box">
 
   <% for (const day of week.days) { %>
+    <!-- Create each day -->
     <div class="daily-sched">
     <div class="date-cell">
     <span><%= day['display-date'] %></span>
@@ -13,30 +15,16 @@
     <div class="daily-topic-cell">
     <span class="daily-topic"><%= day.topic %></span>
     </div>
-    <!-- Determine many before and during items -->
-    <% let nBefore = 0; %>
-    <% let nDuring = 0; %>
-    <% if (day.docs && day.docs.length > 0) { %>
-      <% for (const doc of day.docs) { %>
-        <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
-          <% if (doc.type === 'Notes' || doc.type === 'Tutorial'){ %>
-            <% nBefore ++; %>
-          <% } else if (doc.type === 'Slides' || doc.type === 'WS' || doc.type === 'Labs'){ %>
-            <% nDuring ++; %>
-          <% } %>
-        <% } %>
-      <% } %>
-    <% } %>
 
     <div class="items-cell">
     <p>
-    <!-- Create item badges -->
-    <% if (day.docs && day.docs.length > 0) { %>
-      <span class="before-during-class">Before class:</span>
+    <!-- Create badges for docs -->
+    <% if (day['before-class'] !== undefined) { %>
+      <span class="before-in-class">Before class:</span>
       <br>
-      <% for (const doc of day.docs) { %>
-        <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
-          <% if (doc.type === 'Notes' || doc.type === 'Tutorial'){ %>
+      <% if (day['before-class'].docs && day['before-class'].docs.length > 0) { %>
+        <% for (const doc of day['before-class'].docs) { %>
+          <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
             <% if (!doc.draft){ %>
               <a href="<%= doc.href %>" class="badge bg-success"><%= doc.type %></a>
             <% } else if (doc.projectProfile === "staff-site") { %>
@@ -48,11 +36,13 @@
         <% } %>
       <% } %>
       <br>
-      <span class="before-during-class">During class:</span>
+    <% } %>
+    <% if (day['in-class'] !== undefined) { %>
+      <span class="before-in-class">In class:</span>
       <br>
-      <% for (const doc of day.docs) { %>
-        <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
-          <% if (doc.type === 'Slides' || doc.type === 'WS' || doc.type === 'Labs'){ %>
+      <% if (day['in-class'].docs && day['in-class'].docs.length > 0) { %>
+        <% for (const doc of day['in-class'].docs) { %>
+          <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
             <% if (!doc.draft){ %>
               <a href="<%= doc.href %>" class="badge bg-success"><%= doc.type %></a>
             <% } else if (doc.projectProfile === "staff-site") { %>
@@ -60,6 +50,20 @@
             <% } else { %>
               <span class="badge bg-success" disabled><%= doc.type %></span>
             <% } %>
+          <% } %>
+        <% } %>
+      <% } %>
+      <br>
+    <% } %>
+    <% if (day.docs && day.docs.length > 0) { %>
+      <% for (const doc of day.docs) { %>
+        <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
+          <% if (!doc.draft){ %>
+            <a href="<%= doc.href %>" class="badge bg-success"><%= doc.type %></a>
+          <% } else if (doc.projectProfile === "staff-site") { %>
+            <a href="<%= doc.href %>" class="badge bg-secondary"><%= doc.type %></a>
+          <% } else { %>
+            <span class="badge bg-success" disabled><%= doc.type %></span>
           <% } %>
         <% } %>
       <% } %>

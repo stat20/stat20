@@ -21,18 +21,21 @@ scheduled-docs:
         - topic: "Understanding the World with Data"
           display-date: Aug 28/29
           date: 8/27/24
-          docs:
-            - type: Notes
-              href: 1-questions-and-data/notes.qmd
-              hide-from-schedule: true
-            - type: Notes
-              href: 1-questions-and-data/01-understanding-the-world/notes.qmd
-            - type: Slides
-              href: 1-questions-and-data/01-understanding-the-world/slides.qmd
-            - type: Handout
-              href: 1-questions-and-data/01-understanding-the-world/handout.qmd
-            - type: Lab
-              href: 1-questions-and-data/labs/unvotes/lab.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 1-questions-and-data/notes.qmd
+                hide-from-schedule: true
+              - type: Notes
+                href: 1-questions-and-data/01-understanding-the-world/notes.qmd
+              - type: Slides
+                href: 1-questions-and-data/01-understanding-the-world/slides.qmd
+          in-class:
+            docs:
+              - type: Handout
+                href: 1-questions-and-data/01-understanding-the-world/handout.qmd
+              - type: Lab
+                href: 1-questions-and-data/labs/unvotes/lab.qmd
         - topic: "No class"
           display-date: Aug 30
     - week: 2
@@ -40,52 +43,67 @@ scheduled-docs:
       days:
         - topic: Labor Day (no class)
           display-date: Sep 2
+
         - topic: "Taxonomy of Data"
           unit: Questions and Data
           display-date: Sep 3/4
           date: 9/3/24
-          docs:
-            - type: Notes
-              href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
-            - type: Tutorial
-              href: 1-questions-and-data/02-taxonomy-of-data/tutorial.qmd
-            - type: Slides
-              href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
-            - type: WS
-              href: 1-questions-and-data/02-taxonomy-of-data/ws.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 1-questions-and-data/02-taxonomy-of-data/notes.qmd
+              - type: Tutorial
+                href: 1-questions-and-data/02-taxonomy-of-data/tutorial.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 1-questions-and-data/02-taxonomy-of-data/slides.qmd
+              - type: WS
+                href: 1-questions-and-data/02-taxonomy-of-data/ws.qmd
         - topic: "Summarizing Categorical Data"
           Unit: Summarization
           display-date: Sep 5/5
           date: 9/5/24
-          docs:
-            - type: Notes
-              href: 2-summarizing-data/notes.qmd
-              hide-from-schedule: true
-            - type: Notes
-              href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
-            - type: Tutorial
-              href: 2-summarizing-data/01-summarizing-categorical-data/tutorial.qmd
-            - type: Slides
-              href: 2-summarizing-data/01-summarizing-categorical-data/slides.qmd
-            - type: WS
-              href: 2-summarizing-data/01-summarizing-categorical-data/ws.qmd
-            - type: Lab
-              href: 2-summarizing-data/labs/class-survey/lab.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 2-summarizing-data/notes.qmd
+                hide-from-schedule: true
+              - type: Notes
+                href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
+              - type: Tutorial
+                href: 2-summarizing-data/01-summarizing-categorical-data/tutorial.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 2-summarizing-data/01-summarizing-categorical-data/slides.qmd
+              - type: WS
+                href: 2-summarizing-data/01-summarizing-categorical-data/ws.qmd
+              - type: Lab
+                href: 2-summarizing-data/labs/class-survey/lab.qmd
     - week: 3
       unit: Summarization
       days:
         - topic: "Quiz 1"
           display-date: Sep 9
+          date: 9/9/24
+          in-class:
+            docs:
+              - type: Quiz Slides
+                href: assets/quiz-slides.qmd
         - topic: "Summarizing Numerical Data"
           display-date: Sep 10/11
           date: 9/10/24
-          docs:
-            - type: Notes
-              href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
-              draft: false
-            - type: Tutorial
-              href: 2-summarizing-data/02-summarizing-numerical-data/tutorial.qmd
-              draft: false
+          before-class:
+            docs:
+              - type: Notes
+                href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
+                draft: false
+              - type: Tutorial
+                href: 2-summarizing-data/02-summarizing-numerical-data/tutorial.qmd
+                draft: false
+          in-class:
+            docs:
             - type: Slides
               href: 2-summarizing-data/02-summarizing-numerical-data/slides.qmd
             - type: WS
@@ -110,29 +128,38 @@ scheduled-docs:
         - topic: "A Grammar of Graphics"
           display-date: Sep 17/18
           date: 9/17/24
-          docs:
-            - type: Notes
-              href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
-            - type: Slides
-              href: 2-summarizing-data/03-a-grammar-of-graphics/slides.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 2-summarizing-data/03-a-grammar-of-graphics/slides.qmd
         - topic: "Summarizing Associations"
           display-date: Sep 19/20
           date: 9/19/24
-          docs:
-            - type: Notes
-              href: 2-summarizing-data/06-summarizing-associations/notes.qmd
-            - type: Slides
-              href: 2-summarizing-data/06-summarizing-associations/slides.qmd
-            - type: WS
-              href: 2-summarizing-data/06-summarizing-associations/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 2-summarizing-data/06-summarizing-associations/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 2-summarizing-data/06-summarizing-associations/slides.qmd
+              - type: WS
+                href: 2-summarizing-data/06-summarizing-associations/ps.qmd
         - topic: "Multiple Linear Regression"
           display-date: Sep 19/20
           date: 9/19/24
-          docs:
-            - type: Notes
-              href: 2-summarizing-data/07-multiple-linear-regression/notes.qmd
-            - type: Slides
-              href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 2-summarizing-data/07-multiple-linear-regression/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
       resources:
         - '<a href="https://www.stat20.org/2-summarizing-data/07-multiple-linear-regression/extra-practice.pdf"">Extra Practice</a>'
     - week: 5
@@ -140,29 +167,39 @@ scheduled-docs:
       days:
         - topic: "Quiz 2"
           display-date: 9/23/24
+          date: 9/23/24
+          docs:
+            - type: Quiz
+              href: assets/quiz-slides.qmd
         - topic: "Intro to Probability"
           display-date: Sep 24/25
           date: 9/24/24
-          docs:
-            - type: Notes
-              href: 3-probability/notes.qmd
-              hide-from-schedule: true
-            - type: Notes
-              href: 3-probability/01-chance-intro/notes.qmd
-            - type: Slides
-              href: 3-probability/01-chance-intro/slides.qmd
-            - type: WS
-              href: 3-probability/01-chance-intro/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 3-probability/notes.qmd
+                hide-from-schedule: true
+              - type: Notes
+                href: 3-probability/01-chance-intro/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 3-probability/01-chance-intro/slides.qmd
+              - type: WS
+                href: 3-probability/01-chance-intro/ps.qmd
         - topic: "Conditional Probability"
           display-date: Sep 26/27
           date: 9/26/24
-          docs:
-            - type: Notes
-              href: 3-probability/02-cond-prob-indep/notes.qmd
-            - type: Slides
-              href: 3-probability/02-cond-prob-indep/slides.qmd
-            - type: WS
-              href: 3-probability/02-cond-prob-indep/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 3-probability/02-cond-prob-indep/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 3-probability/02-cond-prob-indep/slides.qmd
+              - type: WS
+                href: 3-probability/02-cond-prob-indep/ps.qmd
     - week: 6
       unit: Generalization
       days:
@@ -171,50 +208,66 @@ scheduled-docs:
         - topic: "Probability Distributions"
           display-date: Oct 1/2
           date: 10/1/24
-          docs:
-            - type: Notes
-              href: 3-probability/03-probability-dsns/notes.qmd
-            - type: Slides
-              href: 3-probability/03-probability-dsns/slides.qmd
-            - type: WS
-              href: 3-probability/03-probability-dsns/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 3-probability/03-probability-dsns/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 3-probability/03-probability-dsns/slides.qmd
+              - type: WS
+                href: 3-probability/03-probability-dsns/ps.qmd
         - topic: "Random Variables"
           display-date: Oct 3/4
           date: 10/3/24
-          docs:
-            - type: Notes
-              href: 3-probability/04-random-variables/notes.qmd
-            - type: Slides
-              href: 3-probability/04-random-variables/slides.qmd
-            - type: WS
-              href: 3-probability/04-random-variables/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 3-probability/04-random-variables/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 3-probability/04-random-variables/slides.qmd
+              - type: WS
+                href: 3-probability/04-random-variables/ps.qmd
     - week: 7
       unit: Generalization
       days:
         - topic: "Quiz 3"
           display-date: Oct 7
+          date: 10/7/24
+          docs:
+            - type: Quiz
+              href: assets/quiz-slides.qmd
         - topic: "Expected Value and Variance"
           display-date: Oct 8/9
           date: 10/8/24
-          docs:
-            - type: Notes
-              href: 3-probability/05-ev-se/notes.qmd
-            - type: Slides
-              href: 3-probability/05-ev-se/slides.qmd
-            - type: WS
-              href: 3-probability/05-ev-se/ps.qmd
-            - type: Lab
-              href: 3-probability/labs/04-elections/lab.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 3-probability/05-ev-se/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 3-probability/05-ev-se/slides.qmd
+              - type: WS
+                href: 3-probability/05-ev-se/ps.qmd
+              - type: Lab
+                href: 3-probability/labs/04-elections/lab.qmd
         - topic: "Normal Approximation"
           display-date: Oct 10/11
           date: 10/10/24
-          docs:
-            - type: Notes
-              href: 3-probability/06-normal-approx/notes.qmd
-            - type: Slides
-              href: 3-probability/06-normal-approx/slides.qmd
-            - type: WS
-              href: 3-probability/06-normal-approx/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 3-probability/06-normal-approx/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 3-probability/06-normal-approx/slides.qmd
+              - type: WS
+                href: 3-probability/06-normal-approx/ps.qmd
       resources:
         - '<a href="https://www.stat20.org/3-probability/06-normal-approx/extra-practice.pdf"">Extra Practice</a>'
     - week: 8
@@ -225,48 +278,64 @@ scheduled-docs:
         - topic: 'Sampling Distributions'
           display-date: Oct 15/16
           date: 10/15/24
-          docs:
-            - type: Notes
-              href: 4-generalization/01-sampling-distributions/notes.qmd
-            - type: Slides
-              href: 4-generalization/01-sampling-distributions/slides.qmd
-            - type: WS
-              href: 4-generalization/01-sampling-distributions/ps.qmd
-            - type: Lab
-              href: 4-generalization/labs/05-peoples-park/lab.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 4-generalization/01-sampling-distributions/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 4-generalization/01-sampling-distributions/slides.qmd
+              - type: WS
+                href: 4-generalization/01-sampling-distributions/ps.qmd
+              - type: Lab
+                href: 4-generalization/labs/05-peoples-park/lab.qmd
         - topic: "Confidence Intervals"
           display-date: Oct 17/18
           date: 10/17/24
-          docs:
-            - type: Notes
-              href: 4-generalization/02-confidence-intervals/notes.qmd
-            - type: Slides
-              href: 4-generalization/02-confidence-intervals/slides.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 4-generalization/02-confidence-intervals/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 4-generalization/02-confidence-intervals/slides.qmd
     - week: 9
       unit: Generalization
       days:
         - topic: "Quiz 4"
           display-date: Oct 21
+          date: 10/21/24
+          docs:
+            - type: Quiz
+              href: assets/quiz-slides.qmd
         - topic: "Bootstrapping"
           display-date: Oct 22/23
           date: 10/22/24
-          docs:
-            - type: Notes
-              href: 4-generalization/03-bootstrapping/notes.qmd
-            - type: Slides
-              href: 4-generalization/03-bootstrapping/slides.qmd
-            - type: WS
-              href: 4-generalization/03-bootstrapping/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 4-generalization/03-bootstrapping/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 4-generalization/03-bootstrapping/slides.qmd
+              - type: WS
+                href: 4-generalization/03-bootstrapping/ps.qmd
         - topic: "Intro to Hypothesis Tests"
           display-date: Oct 24/25
           date: 10/24/24
-          docs:
-            - type: Notes
-              href: 4-generalization/04-hypothesis-tests/notes.qmd
-            - type: Slides
-              href: 4-generalization/04-hypothesis-tests/slides.qmd
-            - type: WS
-              href: 4-generalization/04-hypothesis-tests/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 4-generalization/04-hypothesis-tests/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 4-generalization/04-hypothesis-tests/slides.qmd
+              - type: WS
+                href: 4-generalization/04-hypothesis-tests/ps.qmd
     - week: 10
       unit: Generalization
       days:
@@ -275,55 +344,71 @@ scheduled-docs:
         - topic: "Types of Hypothesis Tests"
           display-date: Oct 29/30
           date: 10/29/24
-          docs:
-            - type: Notes
-              href: 4-generalization/05-hypothesis-tests-2/notes.qmd
-            - type: Slides
-              href: 4-generalization/05-hypothesis-tests-2/slides.qmd
-            - type: WS
-              href: 4-generalization/05-hypothesis-tests-2/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 4-generalization/05-hypothesis-tests-2/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 4-generalization/05-hypothesis-tests-2/slides.qmd
+              - type: WS
+                href: 4-generalization/05-hypothesis-tests-2/ps.qmd
         - topic: "Wrong By Design"
           display-date: Oct 31/Nov 1
           date: 10/31/24
-          docs:
-            - type: Notes
-              href: 4-generalization/06-wrong-by-design/notes.qmd
-            - type: Slides
-              href: 4-generalization/06-wrong-by-design/slides.qmd
-            - type: WS
-              href: 4-generalization/06-wrong-by-design/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 4-generalization/06-wrong-by-design/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 4-generalization/06-wrong-by-design/slides.qmd
+              - type: WS
+                href: 4-generalization/06-wrong-by-design/ps.qmd
     - week: 11
       unit: Prediction
       days:
         - topic: "Quiz 5"
           display-date: Nov 4 
+          date: 11/4/24
+          docs:
+            - type: Quiz
+              href: assets/quiz-slides.qmd
         - topic: "The Method of Least Squares"
           display-date: Nov 5/6
           date: 11/5/24
-          docs:
-            - type: Notes
-              href: 6-prediction/notes.qmd
-              hide-from-schedule: true
-            - type: Notes
-              href: 6-prediction/01-method-of-least-squares/notes.qmd
-            - type: Slides
-              href: 6-prediction/01-method-of-least-squares/slides.qmd
-            - type: WS
-              href: 6-prediction/01-method-of-least-squares/ps.qmd
-            - type: Lab
-              href: 6-prediction/labs/07-baseball/lab.qmd
-            - type: Extra Practice
-              href: 6-prediction/01-method-of-least-squares/extra-practice.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 6-prediction/notes.qmd
+                hide-from-schedule: true
+              - type: Notes
+                href: 6-prediction/01-method-of-least-squares/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 6-prediction/01-method-of-least-squares/slides.qmd
+              - type: WS
+                href: 6-prediction/01-method-of-least-squares/ps.qmd
+              - type: Lab
+                href: 6-prediction/labs/07-baseball/lab.qmd
+              - type: Extra Practice
+                href: 6-prediction/01-method-of-least-squares/extra-practice.qmd
         - topic: "Evaluating and Improving Predictions"
           display-date: Nov 7/8
           date: 11/7/24
-          docs:
-            - type: Notes
-              href: 6-prediction/02-improving-predictions/notes.qmd
-            - type: Slides
-              href: 6-prediction/02-improving-predictions/slides.qmd
-            - type: WS
-              href: 6-prediction/02-improving-predictions/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 6-prediction/02-improving-predictions/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 6-prediction/02-improving-predictions/slides.qmd
+              - type: WS
+                href: 6-prediction/02-improving-predictions/ps.qmd
     - week: 12
       unit: Prediction
       days:
@@ -332,51 +417,67 @@ scheduled-docs:
         - topic: "Overfitting"
           display-date: Nov 12/13
           date: 11/12/24
-          docs:
-            - type: Notes
-              href: 6-prediction/03-overfitting/notes.qmd
-            - type: Slides
-              href: 6-prediction/03-overfitting/slides.qmd
-            - type: WS
-              href: 6-prediction/03-overfitting/ps.qmd
-            - type: Lab
-              href: 6-prediction/labs/08-cancer/lab.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 6-prediction/03-overfitting/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 6-prediction/03-overfitting/slides.qmd
+              - type: WS
+                href: 6-prediction/03-overfitting/ps.qmd
+              - type: Lab
+                href: 6-prediction/labs/08-cancer/lab.qmd
         - topic: "Logistic Regression"
           display-date: Nov 14/15
           date: 11/14/24
-          docs:
-            - type: Notes
-              href: 6-prediction/05-logistic-regression/notes.qmd
-            - type: Slides
-              href: 6-prediction/05-logistic-regression/slides.qmd
-            - type: Extra Practice
-              href: 6-prediction/05-logistic-regression/extra-practice.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 6-prediction/05-logistic-regression/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 6-prediction/05-logistic-regression/slides.qmd
+              - type: Extra Practice
+                href: 6-prediction/05-logistic-regression/extra-practice.qmd
     - week: 13
       unit: Causation
       days:
         - topic: "Quiz 6"
           display-date: Nov 18
+          date: 11/18/24
+          docs:
+            - type: Quiz
+              href: assets/quiz-slides.qmd
         - topic: "Defining Causality"
           display-date: Nov 19/20
           date: 11/19/24
-          docs:
-            - type: Notes
-              href: 5-causation/notes.qmd
-              hide-from-schedule: true
-            - type: Notes
-              href: 5-causation/01-defining-causality/notes.qmd
-            - type: Slides
-              href: 5-causation/01-defining-causality/slides.qmd
-            - type: Lab
-              href: 5-causation/labs/06-taste-test/lab.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 5-causation/notes.qmd
+                hide-from-schedule: true
+              - type: Notes
+                href: 5-causation/01-defining-causality/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 5-causation/01-defining-causality/slides.qmd
+              - type: Lab
+                href: 5-causation/labs/06-taste-test/lab.qmd
         - topic: "Randomized Experiments"
           display-date: Nov 21/22
           date: 11/21/24
-          docs:
-            - type: Notes
-              href: 5-causation/02-experiments/notes.qmd
-            - type: Slides
-              href: 5-causation/02-experiments/slides.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 5-causation/02-experiments/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 5-causation/02-experiments/slides.qmd
     - week: 14
       unit: Causation
       days:
@@ -385,19 +486,25 @@ scheduled-docs:
         - topic: "No Class"
           display-date: Nov 26/27
           date: 11/26/24
-          docs:
-            - type: Notes
-              href: 5-causation/03-matching/notes.qmd
-            - type: Slides
-              href: 5-causation/03-matching/slides.qmd
-            - type: WS
-              href: 5-causation/03-matching/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 5-causation/03-matching/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 5-causation/03-matching/slides.qmd
+              - type: WS
+                href: 5-causation/03-matching/ps.qmd
         - topic: "No Class"
           display-date: Nov 28/29
           date: 11/28/24
-          docs:
-            - type: Notes
-              href: 5-causation/04-time/notes.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 5-causation/04-time/notes.qmd
+          in-class:
+            docs:
             - type: Slides
               href: 5-causation/04-time/slides.qmd
             - type: WS
@@ -407,26 +514,36 @@ scheduled-docs:
       days:
         - topic: "Quiz 7"
           display-date: Dec 2
+          date: 12/2/24
+          docs:
+            - type: Quiz
+              href: assets/quiz-slides.qmd
         - topic: "Causal Effects in Observational Studies"
           display-date: Dec 3/4
           date: 12/3/24
-          docs:
-            - type: Notes
-              href: 5-causation/03-matching/notes.qmd
-            - type: Slides
-              href: 5-causation/03-matching/slides.qmd
-            - type: WS
-              href: 5-causation/03-matching/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 5-causation/03-matching/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 5-causation/03-matching/slides.qmd
+              - type: WS
+                href: 5-causation/03-matching/ps.qmd
         - topic: "Using Time to Measure Causal effects"
           display-date: Dec 5/6
           date: 12/5/24
-          docs:
-            - type: Notes
-              href: 5-causation/04-time/notes.qmd
-            - type: Slides
-              href: 5-causation/04-time/slides.qmd
-            - type: WS
-              href: 5-causation/04-time/ps.qmd
+          before-class:
+            docs:
+              - type: Notes
+                href: 5-causation/04-time/notes.qmd
+          in-class:
+            docs:
+              - type: Slides
+                href: 5-causation/04-time/slides.qmd
+              - type: WS
+                href: 5-causation/04-time/ps.qmd
     - week: "RRR"
       days:
         - topic: "No Class"
