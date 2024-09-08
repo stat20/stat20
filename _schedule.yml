@@ -17,6 +17,7 @@ scheduled-docs:
       unit: Questions and Data
       days:
         - topic: "No class"
+          display-date: Aug 26
         - topic: "Understanding the World with Data"
           display-date: Aug 28/29
           date: 8/27/24
