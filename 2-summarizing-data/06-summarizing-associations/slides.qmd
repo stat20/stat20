@@ -417,7 +417,7 @@ When considering the structure in a scatter plot, pay attention to:
 3. The direction of the (linear) association
    - *Positive or negative?*
 
-<!--
+
 ## 
 
 ```{r}
@@ -425,7 +425,7 @@ When considering the structure in a scatter plot, pay attention to:
 #| fig-height: 3
 #| fig-align: center
 
-poverty <- read_delim("https://www.dropbox.com/s/0z45xgms0sie7l9/poverty.csv?dl=1")
+poverty <- read_delim("poverty.csv")
 
 m1 <- lm(Graduates ~ Poverty, data = poverty)
 
@@ -475,7 +475,6 @@ This is an equally-useful set of plots to answer the previous question.
 
 If we want to ask a question that requires a scatter plot (and a linear model) to answer, we need to ask a conditional question.
 :::
--->
 
 ##
 
