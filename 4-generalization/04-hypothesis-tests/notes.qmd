@@ -47,7 +47,7 @@ Here are the first 10 observations.
 #| echo: false
 library(tidyverse)
 set.seed(3224)
-code_blue <- read_csv("https://www.dropbox.com/s/yj3grtilupyj9pv/code_blue.csv?dl=1") %>%
+code_blue <- read_csv("code_blue.csv") %>%
   slice_sample(prop = 1)
 code_blue
 ```
