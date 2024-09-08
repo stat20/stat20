@@ -1,0 +1,25 @@
+
+/* standarize the section spacing */
+.sidebar-item-container:has(a.sidebar-item-toggle[data-bs-target^="#quarto-sidebar-section-"]) {
+  padding: 3px 16px 3px 8px;
+  display: flex;
+  align-items: center;
+}
+
+/* add background on active section title */
+.sidebar-item-container:has(a.sidebar-item-toggle[data-bs-target^="#quarto-sidebar-section-"][aria-expanded="true"]) {
+  background-color: #f8f5f0;
+  border-radius: 6px;
+}
+
+/* indent individual notes */
+.sidebar-item-container:has(a.sidebar-item-text.sidebar-link):not(:has(a.sidebar-item-toggle)) {
+  padding-left: 8px;
+}
+
+/* turn off position: sticky on non-mobile so the sidebar scrolls off the page */
+@media (min-width: 992px) {
+    .sidebar.sidebar-navigation {
+      position: static;
+    }
+}
