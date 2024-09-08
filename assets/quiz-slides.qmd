@@ -1,23 +1,6 @@
 ---
 title: "Quiz"
-format:
-  revealjs:
-    author: "STAT 20: Introduction to Probability and Statistics"
-    height: 900
-    width: 1600
-    theme: slides.scss
-    multiplex: false
-    transition: fade
-    slide-number: c
-    incremental: false
-    center: false
-    menu: false
-    highlight-style: github
-    progress: false
-    code-overflow: wrap
-    title-slide-attributes:
-      data-background-image: stat20-hex-bg.png
-      data-background-size: contain
+format: stat20slides-revealjs
 ---
 
 ## Individual Quiz
@@ -29,7 +12,7 @@ format:
 1. 🧹 Clear your desk of everything except a pen/pencil and your cheat sheet.
 2. 🧢 Remove hats, hoods, and sunglasses.
 2. 📱 All electronic devices (laptop, phone, airbuds, smart watch) should be remain in your bag for the entire class period.
-3. Spread out as much as possible: one 1 student to a triangle desk, 2 to a tall desk.
+3. Spread out as much as possible: 1 student to a triangle desk, 2 to a tall desk.
 4. When you get a quiz, cover it with your cheat sheet and do not begin.
 :::
 :::{.column width="43%"}
@@ -37,7 +20,7 @@ format:
 
 1. 👀 Keep your eyes on your own quiz.
 2. If you need to use the bathroom, bring phone and quiz to the front of the class.
-3. ⌛If you finish early, please hold on to your quiz and wait.
+3. ⌛If you finish early, please raise your hand and we will pick it up.
 4. ❗You must stop writing when time is called or risk a 0.
 
 Good luck! 🍀
@@ -45,14 +28,30 @@ Good luck! 🍀
 :::
 :::
 
-```{r}
-countdown::countdown(25, top = 0, font_size = "1.5em")
-```
+{{< countdown "25:00" font-size="1.5em" top="0" >}}
 
 
 ## Group Quiz
 
-```{r}
-countdown::countdown(15, top = 0, font_size = "1.5em")
-```
+:::columns
+:::{.column width="57%"}
+#### Before the quiz begins
 
+1. Form groups of 2-3 people.
+2. 🧹 Everything except a pen/pencil and your cheat sheet must remain off your desk.
+3. 📱 All electronic devices (laptop, phone, airbuds, smart watch) should be remain in your bag for the entire class period.
+4. When you get a group quiz, write all group members names on it but do not begin.
+:::
+:::{.column width="43%"}
+#### During the quiz
+
+1. 🗣️Discuss each of the problems and decide as a group which answer is best.
+2. ⌛If you finish early, please raise your hand and we will pick it up.
+2. ❗You must stop writing when time is called or risk a 0.
+
+Good luck! 🍀
+
+:::
+:::
+
+{{< countdown "15:00" font-size="1.5em" top="0" >}}
