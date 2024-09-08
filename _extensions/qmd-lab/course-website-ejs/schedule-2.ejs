@@ -1,43 +1,75 @@
 
 ```{=html}
-
+<div class="calendar">
 <% for (const week of items) { %>
   <h4>Week <%= week.week %></h4>
   <div class="week-x-box">
-  <div class="daily-sched">
 
   <% for (const day of week.days) { %>
+    <div class="daily-sched">
     <div class="date-cell">
     <p><%= day['display-date'] %></p>
     </div>
     <div class="materials-cell">
     <p><span class="daily-topic"><%= day.topic %></span><br>
+    
+    <!-- Determine many before and during items -->
+    <% let nBefore = 0; %>
+    <% let nDuring = 0; %>
     <% if (day.docs && day.docs.length > 0) { %>
       <% for (const doc of day.docs) { %>
-        <% if (!doc.draft){ %>
-          <a href="<%= doc.href %>" class="btn btn-success btn-sm"><%= doc.type %></a>
+        <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
+          <% if (doc.type === 'Notes' || doc.type === 'Tutorial'){ %>
+            <% nBefore ++; %>
+          <% } else if (doc.type === 'Slides' || doc.type === 'WS' || doc.type === 'Labs'){ %>
+            <% nDuring ++; %>
+          <% } %>
         <% } %>
       <% } %>
     <% } %>
+
+    <!-- Create item badges -->
+    <% if (day.docs && day.docs.length > 0) { %>
+      <p>Before class:
+      <% for (const doc of day.docs) { %>
+        <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
+          <% if (doc.type === 'Notes' || doc.type === 'Tutorial'){ %>
+            <% if (!doc.draft){ %>
+              <a href="<%= doc.href %>" class="badge bg-success"><%= doc.type %></a>
+            <% } else if (doc.projectProfile === "staff-site") { %>
+              <a href="<%= doc.href %>" class="badge bg-secondary"><%= doc.type %></a>
+            <% } else { %>
+              <span class="badge bg-success" disabled><%= doc.type %></span>
+            <% } %>
+          <% } %>
+        <% } %>
+      <% } %>
+      </p>
+      <p>During class:
+      <% for (const doc of day.docs) { %>
+        <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
+          <% if (doc.type === 'Slides' || doc.type === 'WS' || doc.type === 'Labs'){ %>
+            <% if (!doc.draft){ %>
+              <a href="<%= doc.href %>" class="badge bg-success"><%= doc.type %></a>
+            <% } else if (doc.projectProfile === "staff-site") { %>
+              <a href="<%= doc.href %>" class="badge bg-secondary"><%= doc.type %></a>
+            <% } else { %>
+              <span class="badge bg-success" disabled><%= doc.type %></span>
+            <% } %>
+          <% } %>
+        <% } %>
+      <% } %>
+      </p>
+    <% } %>
     </p>
+    </div>
     </div>
     
   <% } %>
   
   </div>
-  <div class="resources">
-  <p><span">Resources</span></p>
-  <ul>
-  <% if (week.resources && week.resources.length > 0) { %>
-    <% for (const item of week.resources) { %>
-      <li><%= item %></li>
-    <% } %>
-  <% } else { %>
-    <li>None this week</li>
-  <% } %>
-  </ul>
-  </div>
-  </div>
 <% } %>
+
+</div>
 
 ```
