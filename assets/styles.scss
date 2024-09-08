@@ -89,97 +89,108 @@ h2 {
     padding-top: .6em;
 }
 
-.week-x-box {
-  display: grid;
-  gap: 8px;
-  grid-template-columns: 2fr 1fr;
-  border-radius: 3px;
-  box-shadow: 0 0 0.5rem $gray-300;
-  
-  .daily-sched {
+.calendar {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  .week-x-box {
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    padding: 3px;
+    gap: 8px;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-radius: 3px;
+    box-shadow: 0 0 0.5rem $gray-300;
     
-    .date-cell {
-      border-bottom: 1px solid $gray-300;
-      padding: 2px;
-    }
-    
-    .materials-cell {
-      border-bottom: 1px solid $gray-300;
-      padding: 2px;
+    .daily-sched {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 3px;
+      align-items: start;
       
-      .daily-topic {
-        font-size: 1em;
+      .date-cell {
+        border-bottom: 1px solid $gray-300;
+        padding: 2px;
+        text-align: center;
+        font-variant: small-caps;
       }
       
+      .materials-cell {
+        border-bottom: 1px solid $gray-300;
+        padding: 2px;
+        align-self: start;
+        
+        .daily-topic {
+          font-size: 1.2em;
+        }
+        
+      }
+      
+      .date-cell:nth-last-child(-n+2) {
+        border-bottom: none; /* Removes the border from the last two items (the last row) */
+      }
+  
+      .materials-cell:nth-last-child(-n+2) {
+        border-bottom: none; /* Removes the border from the last two items (the last row) */
+      }
     }
     
-    .date-cell:nth-last-child(-n+2) {
-      border-bottom: none; /* Removes the border from the last two items (the last row) */
+    .resources {
+      border-left: 1px solid $gray-300;
+      padding: 3px;
     }
-
-    .materials-cell:nth-last-child(-n+2) {
-      border-bottom: none; /* Removes the border from the last two items (the last row) */
-    }
+    
   }
   
-  .resources {
-    border-left: 1px solid $gray-300;
-    padding: 3px;
+  // Homepage on narrower screen / mobile
+  @media (min-width: 900px) {
+  .content-block {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
   }
   
-}
-
-// Homepage on narrower screen / mobile
-@media (min-width: 900px) {
-.content-block {
-  margin-left: 50px;
-  margin-right: 50px;
-}
-}
-
-@media (min-width: 1200px) {
-.content-block {
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-}
-}
-
-@media (max-width: 768px) {
-#banner {
-  order: 2;
-  margin: 0em 1em 0em 1em !important;
-  padding-top: 0em;
-}
-.banner-text {
-  padding-top: 0em;
-}
-
-#hex {
-  order: 1;
-}
-
-.week-x-box {
-  grid-template-columns: 1fr;
+  @media (min-width: 1200px) {
+  .content-block {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  }
   
-  .daily-sched {
+  @media (max-width: 768px) {
+  #banner {
+    order: 2;
+    margin: 0em 1em 0em 1em !important;
+    padding-top: 0em;
+  }
+  .banner-text {
+    padding-top: 0em;
+  }
+  
+  #hex {
+    order: 1;
+  }
+  
+  .week-x-box {
     grid-template-columns: 1fr;
     
-    .date-col {
-      border-bottom: none
+    .daily-sched {
+      grid-template-columns: 1fr;
+      
+      .date-col {
+        border-bottom: none
+      }
+    }
+    
+    .resources {
+      border-left: none;
+      border-top: 1px solid $gray-300;
     }
   }
   
-  .resources {
-    border-left: none;
-    border-top: 1px solid $gray-300;
   }
 }
 
-}
+
 
 // Assignments Page
 
