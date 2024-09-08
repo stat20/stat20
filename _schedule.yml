@@ -16,13 +16,14 @@ scheduled-docs:
     - week: 1
       unit: Questions and Data
       days:
+        - topic: "No class"
         - topic: "Understanding the World with Data"
           display-date: Aug 28/29
           date: 8/27/24
           docs:
             - type: Notes
               href: 1-questions-and-data/notes.qmd
-              section-landing-page: true
+              hide-from-schedule: true
             - type: Notes
               href: 1-questions-and-data/01-understanding-the-world/notes.qmd
             - type: Slides
@@ -58,7 +59,7 @@ scheduled-docs:
           docs:
             - type: Notes
               href: 2-summarizing-data/notes.qmd
-              section-landing-page: true
+              hide-from-schedule: true
             - type: Notes
               href: 2-summarizing-data/01-summarizing-categorical-data/notes.qmd
             - type: Tutorial
@@ -144,7 +145,7 @@ scheduled-docs:
           docs:
             - type: Notes
               href: 3-probability/notes.qmd
-              section-landing-page: true
+              hide-from-schedule: true
             - type: Notes
               href: 3-probability/01-chance-intro/notes.qmd
             - type: Slides
@@ -301,7 +302,7 @@ scheduled-docs:
           docs:
             - type: Notes
               href: 6-prediction/notes.qmd
-              section-landing-page: true
+              hide-from-schedule: true
             - type: Notes
               href: 6-prediction/01-method-of-least-squares/notes.qmd
             - type: Slides
@@ -360,7 +361,7 @@ scheduled-docs:
           docs:
             - type: Notes
               href: 5-causation/notes.qmd
-              section-landing-page: true
+              hide-from-schedule: true
             - type: Notes
               href: 5-causation/01-defining-causality/notes.qmd
             - type: Slides

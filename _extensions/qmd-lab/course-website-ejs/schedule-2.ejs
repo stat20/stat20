@@ -8,11 +8,11 @@
   <% for (const day of week.days) { %>
     <div class="daily-sched">
     <div class="date-cell">
-    <p><%= day['display-date'] %></p>
+    <span><%= day['display-date'] %></span>
     </div>
-    <div class="materials-cell">
-    <p><span class="daily-topic"><%= day.topic %></span><br>
-    
+    <div class="daily-topic-cell">
+    <span class="daily-topic"><%= day.topic %></span>
+    </div>
     <!-- Determine many before and during items -->
     <% let nBefore = 0; %>
     <% let nDuring = 0; %>
@@ -28,9 +28,12 @@
       <% } %>
     <% } %>
 
+    <div class="items-cell">
+    <p>
     <!-- Create item badges -->
     <% if (day.docs && day.docs.length > 0) { %>
-      <p>Before class:
+      <span class="before-during-class">Before class:</span>
+      <br>
       <% for (const doc of day.docs) { %>
         <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
           <% if (doc.type === 'Notes' || doc.type === 'Tutorial'){ %>
@@ -44,8 +47,9 @@
           <% } %>
         <% } %>
       <% } %>
-      </p>
-      <p>During class:
+      <br>
+      <span class="before-during-class">During class:</span>
+      <br>
       <% for (const doc of day.docs) { %>
         <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
           <% if (doc.type === 'Slides' || doc.type === 'WS' || doc.type === 'Labs'){ %>
@@ -59,7 +63,6 @@
           <% } %>
         <% } %>
       <% } %>
-      </p>
     <% } %>
     </p>
     </div>
