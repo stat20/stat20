@@ -94,14 +94,13 @@ There's still no sign of a strong association between these variables, but at le
 
 [W]{.dropcap}hich of the following plots do you think depicts the relationship between the high school graduation rate and the poverty rate among the 50 US states?
 
-:::{.content-visible when-format="html"}
 ```{r}
 #| fig-height: 3
 #| fig-width: 6.2
 #| fig-align: center
 #| code-fold: false
 #| echo: false
-poverty <- read_delim("https://www.dropbox.com/s/0z45xgms0sie7l9/poverty.csv?dl=1")
+poverty <- read_delim("poverty.csv")
 
 poverty <- poverty %>%
   mutate(group = case_when(
@@ -131,47 +130,6 @@ pB <- ggplot(poverty_shuffled, aes(x = Poverty,
 library(patchwork)
 pA + pB
 ```
-:::
-
-:::{.content-visible when-format="pdf"}
-```{r}
-#| fig-height: 3
-#| fig-width: 6.2
-#| fig-align: center
-#| echo: false
-#| code-fold: false
-
-poverty <- read_delim("https://www.dropbox.com/s/0z45xgms0sie7l9/poverty.csv?dl=1")
-
-poverty <- poverty %>%
-  mutate(group = case_when(
-    Poverty < 9 ~ "low",
-    Poverty >= 9 & Poverty <= 13 ~ "med",
-    Poverty > 13 ~ "hi"
-  )) 
-
-pA <- ggplot(poverty, aes(x = Poverty, 
-                    y = Graduates)) +
-  geom_point() +
-  labs(x = "Poverty Rate",
-       y = "Graduation Rate") +
-  theme_bw()
-
-set.seed(50)
-poverty_shuffled <- poverty
-poverty_shuffled$Graduates <- sample(poverty$Graduates)
-
-pB <- ggplot(poverty_shuffled, aes(x = Poverty, 
-                    y = Graduates)) +
-  geom_point() +
-  labs(x = "Poverty Rate",
-       y = "Graduation Rate") +
-  theme_bw()
-
-library(patchwork)
-pA + pB
-```
-:::
 
 If you guessed the plot on the left, you are correct :tada:.
 
