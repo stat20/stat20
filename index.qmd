@@ -1,12 +1,15 @@
 ---
+format:
+  html:
+    grid:
+      body-width: 1200px
 toc: false
-page-layout: custom
 resources:
   - "homepage-readings"
 listing:
   id: schedule-listing
   contents: scheduled-docs_files/schedule.yml
-  template: _extensions/qmd-lab/course-website-ejs/schedule-1.ejs
+  template: _extensions/qmd-lab/course-website-ejs/schedule-2.ejs
 ---
 
 :::::{.content-block}
