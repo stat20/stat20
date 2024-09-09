@@ -101,7 +101,6 @@ h2 {
     box-shadow: 0 0 0.5rem $gray-300;
     
     .daily-sched {
-      padding: 3px;
       border-bottom: 1px solid $gray-300;
       border-right: 1px solid $gray-300;
       
@@ -112,7 +111,6 @@ h2 {
       }
       
       .daily-topic-cell {
-        background-color: $light;
         
         .daily-topic {
           font-size: 1.2em;
@@ -120,11 +118,28 @@ h2 {
       }
         
       .items-cell {
-        padding-left: 5px;
+        padding-left: 12px;
 
-        .before-during-class {
-          font-size: .9em;
+        .before-in-class {
+          font-size: .8em;
         }
+
+        .badge {
+          background-color: $primary;
+        }
+
+        .badge.Notes-badge {
+          background-color: $black;
+        }
+
+        .badge.Tutorial-badge {
+          background-color: $orange;
+        }
+
+        .badge.Slides-badge {
+          background-color: $cyan;
+        }
+
       }
     }
   }
