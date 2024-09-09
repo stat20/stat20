@@ -1,13 +1,8 @@
 ---
 title: "Communicating with Graphics"
-subtitle: "PS"
+subtitle: "WS"
 format: stat20handout-typst
 ---
-
-\begin{center}
-\textbf{This is ungraded additional practice. We recommend that you work on it as study material.}
-\end{center}
-
 
 Complete the following two questions in a Quarto Document.
 

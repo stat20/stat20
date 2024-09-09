@@ -1,6 +1,6 @@
 ---
 title: "Summarizing Numerical Data"
-title-prefix: "PS"
+title-prefix: "WS"
 format: stat20handout-typst
 ---
 
@@ -49,9 +49,8 @@ flights %>%
 (A) The carrier with the most heavily skewed distance distribution is HA.
 (B) The median distance of the flights operated by DL, G4, and OO are roughly equivalent.
 (C) The minimum distance traveled in this data set is roughly 200.
-(D) There is no clear association between the carrier and the distance of their flights.
-(E) The carrier with the greatest variability in distance, as measured by the IQR, is AS.
-
+<!-- (D) There is no clear association between the carrier and the distance of their flights. -->
+(D) The carrier with the greatest variability in distance, as measured by the IQR, is AS.
 
 
 
@@ -84,6 +83,13 @@ Make a note of any assumptions you're making in interpreting these variable name
 \
 \
 \
+\
+\
+\
+\
+\
+\
+\
 
 *Scores on an easy quiz* among Stat 20 students
 
@@ -97,7 +103,7 @@ Make a note of any assumptions you're making in interpreting these variable name
 \
 \
 
-The `mpg` dataset is available as a part of the `tidyverse` library. It contains information on fuel consumption for 38 models of car between 1999 and 2008. *Datasets can have help files, too!* You do not need to include code for loading in libraries or accessing help files in your answers to the below questions. 
+<!-- The `mpg` dataset is available as a part of the `tidyverse` library. It contains information on fuel consumption for 38 models of car between 1999 and 2008. *Datasets can have help files, too!* You do not need to include code for loading in libraries or accessing help files in your answers to the below questions. 
 
 @. Write `dplyr` code to calculate the median and IQR city miles per gallon for the vehicles in the dataset and copy it below. The result of your code should be one data structure. 
 
@@ -108,4 +114,4 @@ The `mpg` dataset is available as a part of the `tidyverse` library. It contains
 \
 \
 
-@. Write `dplyr` code to calculate the mean and standard deviation city miles per gallon for the vehicles in the dataset *for each class of car* and copy it below. The result of your code should be one data structure. 
+@. Write `dplyr` code to calculate the mean and standard deviation city miles per gallon for the vehicles in the dataset *for each class of car* and copy it below. The result of your code should be one data structure.  -->
