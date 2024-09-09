@@ -1,5 +1,5 @@
 ---
-title: "Lab 2: Class Survey"
+title: "Class Survey"
 image: images/dog-pants.png
 sidebar: false
 ---

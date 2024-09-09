@@ -89,60 +89,14 @@ h2 {
     padding-top: .6em;
 }
 
-.week-x-box {
-  display: grid;
-  gap: 8px;
-  grid-template-columns: 2fr 1fr;
-  border-radius: 3px;
-  box-shadow: 0 0 0.5rem $gray-300;
-  
-  .daily-sched {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    padding: 3px;
-    
-    .date-cell {
-      border-bottom: 1px solid $gray-300;
-      padding: 2px;
-    }
-    
-    .materials-cell {
-      border-bottom: 1px solid $gray-300;
-      padding: 2px;
-      
-      .daily-topic {
-        font-size: 1em;
-      }
-      
-      .PS-btn {
-        
-      }
-    }
-    
-    .date-cell:nth-last-child(-n+2) {
-      border-bottom: none; /* Removes the border from the last two items (the last row) */
-    }
-
-    .materials-cell:nth-last-child(-n+2) {
-      border-bottom: none; /* Removes the border from the last two items (the last row) */
-    }
-  }
-  
-  .resources {
-    border-left: 1px solid $gray-300;
-    padding: 3px;
-  }
-  
-}
-
 // Homepage on narrower screen / mobile
 @media (min-width: 900px) {
-.content-block {
-  margin-left: 50px;
-  margin-right: 50px;
-}
-}
-
+  .content-block {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  }
+  
 @media (min-width: 1200px) {
 .content-block {
   max-width: 1100px;
@@ -150,7 +104,7 @@ h2 {
   margin-right: auto;
 }
 }
-
+  
 @media (max-width: 768px) {
 #banner {
   order: 2;
@@ -164,22 +118,99 @@ h2 {
 #hex {
   order: 1;
 }
+}
 
-.week-x-box {
-  grid-template-columns: 1fr;
-  
-  .daily-sched {
-    grid-template-columns: 1fr;
+.calendar {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  .week-x-box {
+    display: grid;
+    grid-auto-flow: column; // grid flow across columns only
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); 
+    border-radius: 3px;
+    box-shadow: 0 0 0.5rem $gray-300;
+    min-height: 200px;
     
-    .date-col {
-      border-bottom: none
+    .daily-sched {
+      border-bottom: 1px solid $gray-300;
+      border-right: 1px solid $gray-300;
+      padding: 3px 8px 17px 8px;
+      
+      .date-cell {
+        text-align: center;
+        font-variant: small-caps;
+        font-size: .8em;
+      }
+      
+      .daily-topic-cell {
+        padding-bottom: 2px;
+        
+        .daily-topic {
+          font-size: 1.1em;
+        }
+      }
+        
+      .items-cell {
+        padding-left: 12px;
+
+        .before-in-class {
+          font-size: .8em;
+        }
+
+        .badge {
+          background-color: $green;
+        }
+
+        // .badge.Notes-badge {
+        //   background-color: $black;
+        // }
+
+        // .badge.Tutorial-badge {
+        //   background-color: $orange;
+        // }
+
+        // .badge.Slides-badge {
+        //   background-color: $cyan;
+        // }
+
+        .badge.unpublished {
+          background-color: $gray-300;
+        }
+
+        .assignment-list {
+          font-size: .8em;
+        }
+
+      }
     }
   }
   
-  .resources {
-    border-left: none;
-    border-top: 1px solid $gray-300;
+  @media (max-width: 768px) {
+  .week-x-box {
+    grid-auto-flow: row; /* Ensures it flows in one column */
+    grid-template-columns: 1fr;
+    
+  }
   }
 }
 
+
+
+// Assignments Page
+
+/*-- scss:defaults --*/
+
+/*-- scss:rules --*/
+.hovercard {
+  // flex: 0 50%;
+  background: $light;
+  box-shadow: 0 2px 4px 0 rgba($gray-300, 0.2), 0 5px 15px 0 rgba($gray-700, 0.15);
+  border-radius: 15px;
+  margin: 8px;
+  padding: 10px 15px;
+  // position: relative;
+  // z-index: 1;
+  overflow: hidden;
+  min-height: 265px;
 }

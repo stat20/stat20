@@ -15,26 +15,9 @@ listing:
     template: assets/listings/assignments-ws.ejs
     contents:
       - scheduled-docs_files/ws-listing.yml
-    sort: "date desc"
-    type: table
-    fields:
-      - title
-    categories: false
-    sort-ui: false
-    filter-ui: false
 sidebar: false
 toc: false
 ---
-
-:::{.content-hidden unless-profile="staff-guide"}
-
-:::{.callout-caution}
-## Under Construction
-
-Any labs that have not yet been released should still be considered as draft and might change before being released. Any labs already released are identical to how they look on the main course website.
-:::
-
-:::
 
 ## Labs
 

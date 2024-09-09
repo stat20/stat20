@@ -128,7 +128,7 @@ countdown::countdown(2)
 library(tidyverse)
 library(patchwork)
 
-load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
+load("fs_scores.rda")
 
 set.seed(103122)
 samp_scores <- sample(fs_scores, 100)
@@ -190,8 +190,6 @@ This plot and example are from the notes. It is probably good to remind them tha
 
 library(tidyverse)
 library(patchwork)
-
-load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
 
 set.seed(103122)
 samp_scores <- sample(fs_scores, 100)

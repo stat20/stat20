@@ -1,12 +1,12 @@
 ---
-toc: false
 page-layout: custom
+toc: false
 resources:
   - "homepage-readings"
 listing:
   id: schedule-listing
   contents: scheduled-docs_files/schedule.yml
-  template: _extensions/qmd-lab/course-website-ejs/schedule-1.ejs
+  template: _extensions/qmd-lab/course-website-ejs/schedule-2.ejs
 ---
 
 :::::{.content-block}
@@ -44,9 +44,6 @@ A home base for course staff with:
 ![](assets/stat20-hex.png){fig-alt="Hex logo of Stat 20 showing a golden bear." .img-fluid width=250}
 :::
 ::::
-:::::
-
-:::::{.content-block}
 
 :::{#schedule-listing}
 :::

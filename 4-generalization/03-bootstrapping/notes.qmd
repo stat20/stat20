@@ -71,7 +71,7 @@ Let's create the bootstrap sampling distribution for the example of food safety 
 #| code-fold: false
 #| echo: false
 
-load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
+load("fs_scores.rda")
 
 set.seed(103122)
 food_scores <- data.frame(score = sample(fs_scores, 100))

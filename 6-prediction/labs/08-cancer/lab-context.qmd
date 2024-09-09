@@ -10,7 +10,7 @@ In this lab you will train and evaluate a classification algorithm to determine 
 #| echo: false
 #| warning: false
 library(tidyverse)
-cells <- read_csv("https://www.dropbox.com/s/0rbzonyrzramdgl/cells.csv?dl=1") %>%
+cells <- read_csv("https://raw.githubusercontent.com/berkeley-stat20/fall-2024/main/6-prediction/labs/08-cancer/cells.csv") %>%
   mutate(diagnosis = factor(diagnosis, levels = c("B", "M")))
 
 

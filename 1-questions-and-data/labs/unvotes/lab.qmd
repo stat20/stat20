@@ -1,5 +1,5 @@
 ---
-title: "Lab 1: UN Votes"
+title: "UN Votes"
 image: images/un-logo.png
 format: html
 sidebar: false

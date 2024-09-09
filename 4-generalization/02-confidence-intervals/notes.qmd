@@ -115,7 +115,7 @@ Our population consists of the restaurants in San Francisco. Since the data are 
 #| fig-align: center
 #| echo: false
 
-load(url("https://www.dropbox.com/s/nbgw1uzj5ccwce2/fs_scores.rda?dl=1"))
+load("fs_scores.rda")
 
 pop_dist <- ggplot(as.data.frame(fs_scores), aes(x=fs_scores, y=..density..)) + 
       geom_histogram(breaks=seq(47.5, 100.5, by = 1), 

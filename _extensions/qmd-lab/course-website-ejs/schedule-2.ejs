@@ -1,43 +1,98 @@
 
 ```{=html}
-
+<div class="calendar">
 <% for (const week of items) { %>
+  <!-- Create each week -->
   <h4>Week <%= week.week %></h4>
   <div class="week-x-box">
-  <div class="daily-sched">
 
   <% for (const day of week.days) { %>
+    <!-- Create each day -->
+    <div class="daily-sched">
     <div class="date-cell">
-    <p><%= day['display-date'] %></p>
+    <span><%= day['display-date'] %></span>
     </div>
-    <div class="materials-cell">
-    <p><span class="daily-topic"><%= day.topic %></span><br>
-    <% if (day.docs && day.docs.length > 0) { %>
-      <% for (const doc of day.docs) { %>
-        <% if (!doc.draft){ %>
-          <a href="<%= doc.href %>" class="btn btn-success btn-sm"><%= doc.type %></a>
+    <div class="daily-topic-cell">
+    <span class="daily-topic"><%= day.topic %></span>
+    </div>
+
+    <div class="items-cell">
+    <!-- Create badges for docs -->
+    <!-- ...docs listed under before-class key -->
+    <% if (day['before-class'] !== undefined) { %>
+      <div>
+      <span class="before-in-class">Before class:</span><br>
+      <% if (day['before-class'].docs && day['before-class'].docs.length > 0) { %>
+        <% for (const doc of day['before-class'].docs) { %>
+          <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
+            <% if (!doc.draft){ %>
+              <a href="<%= doc.href %>" class="badge <%=`${doc.type}-badge`%>" ><%= doc.type %></a>
+            <% } else if (doc.projectProfile === "staff-site") { %>
+              <a href="<%= doc.href %>" class="badge <%=`${doc.type}-badge`%>"><%= doc.type %></a>
+            <% } else { %>
+              <span class="badge unpublished"><%= doc.type %></span>
+            <% } %>
+          <% } %>
         <% } %>
       <% } %>
+      </div>
     <% } %>
-    </p>
+    <!-- ...docs listed under in-class key -->
+    <% if (day['in-class'] !== undefined) { %>
+      <div>
+      <span class="before-in-class">In class:</span><br>
+      <% if (day['in-class'].docs && day['in-class'].docs.length > 0) { %>
+        <% for (const doc of day['in-class'].docs) { %>
+          <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
+            <% if (!doc.draft){ %>
+              <a href="<%= doc.href %>" class="badge <%=`${doc.type}-badge`%>" ><%= doc.type %></a>
+            <% } else if (doc.projectProfile === "staff-site") { %>
+              <a href="<%= doc.href %>" class="badge <%=`${doc.type}-badge`%>"><%= doc.type %></a>
+            <% } else { %>
+              <span class="badge unpublished"><%= doc.type %></span>
+            <% } %>
+          <% } %>
+        <% } %>
+      <% } %>
+      </div>
+    <% } %>
+    <!-- ...docs listed directly under day item -->
+    <% if (day.docs && day.docs.length > 0) { %>
+      <div>
+      <% for (const doc of day.docs) { %>
+        <% if (doc['hide-from-schedule'] === undefined || doc['hide-from-schedule'] === false){ %>
+          <% if (!doc.draft){ %>
+            <a href="<%= doc.href %>" class="badge <%=`${doc.type}-badge`%>" ><%= doc.type %></a>
+          <% } else if (doc.projectProfile === "staff-site") { %>
+            <a href="<%= doc.href %>" class="badge <%=`${doc.type}-badge`%>"><%= doc.type %></a>
+          <% } else { %>
+            <span class="badge unpublished"><%= doc.type %></span>
+          <% } %>
+        <% } %>
+      <% } %>
+      </div>
+    <% } %>
+    <!-- ...things that are due tomorrow -->
+    <% if (day['due-tomorrow'] !== undefined) { %>
+      <div>
+      <span class="before-in-class">Due tomorrow:</span><br>
+      <% if (day['due-tomorrow'].length > 0) { %>
+        <ul class="assignment-list">
+        <% for (const assignment of day['due-tomorrow']) { %>
+          <li><%= assignment %></li>
+        <% } %>
+        </ul>
+      <% } %>
+      </div>
+    <% } %>
+    </div>
     </div>
     
   <% } %>
   
   </div>
-  <div class="resources">
-  <p><span">Resources</span></p>
-  <ul>
-  <% if (week.resources && week.resources.length > 0) { %>
-    <% for (const item of week.resources) { %>
-      <li><%= item %></li>
-    <% } %>
-  <% } else { %>
-    <li>None this week</li>
-  <% } %>
-  </ul>
-  </div>
-  </div>
 <% } %>
+
+</div>
 
 ```

@@ -60,7 +60,7 @@ To answer these questions, we need more data. The data frame below contains Zaga
 
 ```{r}
 library(tidyverse)
-zagat <- read_csv("https://www.dropbox.com/s/c797oanmvdzjegt/zagat.csv?dl=1")
+zagat <- read_csv("zagat.csv")
 zagat
 ```
 
