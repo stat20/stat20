@@ -1,5 +1,5 @@
 ---
-layout: custom
+page-layout: custom
 toc: false
 resources:
   - "homepage-readings"
