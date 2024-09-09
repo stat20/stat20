@@ -1,8 +1,5 @@
 ---
-format:
-  html:
-    grid:
-      body-width: 1200px
+layout: custom
 toc: false
 resources:
   - "homepage-readings"
