@@ -14,116 +14,111 @@ Please record your answers on the worksheet below and upload it to Gradescope.
 
 To answer this worksheet, consult the printout of the original survey found [here](glimpse-class-survey.qmd).
 
+## Part II: Computing on the Data
 
-<!-- ## Part II: Computing on the Data -->
+The real data from your surveys is available in the `stat20data` package as `class_survey`. To complete the following questions, you will need to find the columns in the `class_survey` data frame associated with each variable mentioned.
 
-<!-- The real data from your surveys is available in the `stat20data` package as `class_survey`. To complete the following questions, you will need to find the columns in the `class_survey` data frame associated with each variable mentioned. -->
+#### Question 1
 
-<!-- #### Question 1 -->
+> How much coding experience do students have?
 
-<!-- > How much coding experience do students have? -->
+Use the "scale" version for this question.
 
-<!-- Use the "scale" version for this question. -->
+##### part a
 
-<!-- ##### part a -->
+Construct an appropriate plot for this variable using `ggplot2`.
 
-<!-- Construct an appropriate plot for this variable using `ggplot2`. -->
+##### part b
 
-<!-- ##### part b -->
+Then calculate *one* appropriate measure of a spread and *one* appropriate measure of center for this variable.
 
-<!-- Then calculate *one* appropriate measure of a spread and *one* appropriate measure of center for this variable. -->
+##### part c
 
-<!-- ##### part c -->
+Use these summaries to answer the survey question in a sentence or two.
 
-<!-- Use these summaries to answer the survey question in a sentence or two. -->
+#### Question 2
 
-<!-- #### Question 2 -->
+For this question only, you may use the following, modified dataset, which can be obtained by running the following code in R. 
 
-<!-- For this question only, you may use the following, modified dataset, which can be obtained by running the following code in R.  -->
+```{r}
+#| eval: false
+#| echo: true
+#| code-fold: false
+filtered_survey <- filter(class_survey,
+                          new_COVID_variant >= 0,
+                          new_COVID_variant < 1)
+```
 
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- #| echo: true -->
-<!-- #| code-fold: false -->
-<!-- filtered_survey <- filter(class_survey,  -->
-<!--                           new_COVID_variant >= 0, -->
-<!--                           new_COVID_variant < 1) -->
-<!-- ``` -->
+> What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022?
 
-<!-- > What are students' perceptions of the chance that there is a new COVID variant that disrupts instruction in Fall 2022? -->
+##### part a
 
-<!-- ##### part a -->
+Construct an appropriate plot for this variable using `ggplot2`.
 
-<!-- Construct an appropriate plot for this variable using `ggplot2`. -->
+##### part b
 
-<!-- ##### part b -->
+Then calculate *one* appropriate measure of a spread and *one* appropriate measure of center for this variable.
 
-<!-- Then calculate *one* appropriate measure of a spread and *one* appropriate measure of center for this variable. -->
+##### part c
 
-<!-- ##### part c -->
+Use these summaries to answer the survey question in a sentence or two.
 
-<!-- Use these summaries to answer the survey question in a sentence or two. -->
+#### Question 3
 
-<!-- #### Question 3 -->
+> Is there an association between students' favorite season and terrain preference (beach or mountains)?
 
-<!-- > Is there an association between students' favorite season and terrain preference (beach or mountains)? -->
+##### part a
 
-<!-- ##### part a -->
+Construct the plot that you proposed in **Part I** using `ggplot2`. *Ensure that the seasons are plotted in the order: spring, summer, fall, winter*.
 
-<!-- Construct the plot that you proposed in **Part I** using `ggplot2`. *Ensure that the seasons are plotted in the order: spring, summer, fall, winter*. -->
+##### part b
 
-<!-- ##### part b -->
+Then, state a measure of a typical observation of the terrain preference variable for each season group (what terrain does a typical student whose favorite season is fall prefer, and so on).
 
-<!-- Then, state a measure of a typical observation of the terrain preference variable for each season group (what terrain does a typical student whose favorite season is fall prefer, and so on). -->
+##### part c
 
-<!-- ##### part c -->
-
-<!-- Use these summaries to answer the survey question in a sentence or two. -->
-
-
-<!-- #### Question 4 -->
-
-<!-- > Is there an association between students most identifying as an entrepreneur and their optimism for cryptocurrency? -->
+Use these summaries to answer the survey question in a sentence or two.
 
 
-<!-- You may treat the `entrepreneur` variable categorically. -->
+#### Question 4
 
-<!-- ##### part a -->
-
-<!-- Construct an appropriate plot including both of these variables using `ggplot2`. -->
-
-<!-- ##### part b -->
-
-<!-- Then calculate *one* appropriate measure of a spread and *one* appropriate measure of center for the cryptocurrency variable, grouping by the levels of the `entrepreneur` variable. -->
-
-<!-- ##### part c -->
-
-<!-- Use these summaries to answer the survey question in a sentence or two. -->
-
-<!-- #### Question 5 -->
-
-<!-- Six variables appear in the survey data frame that were derived from the original `title` question: `artist`, `humanist`, `natural_scientist`, `social_scientist`, `comp_scientist` and `entrepreneur`. The `artist` variable is `TRUE` for those students who most identified as an artist and `FALSE` otherwise. The other five variables are defined similarly. You may treat these variables categorically. -->
-
-<!-- ##### part a -->
-
-<!-- Propose your own question involving any two variables in the dataset--*one* of which comes from the `title` variable group mentioned above. -->
-
-<!-- ##### part b -->
-
-<!-- Construct a plot which would aid in answering this question using `ggplot2`. -->
+> Is there an association between students most identifying as an entrepreneur and their optimism for cryptocurrency?
 
 
-<!-- ##### part c -->
+You may treat the `entrepreneur` variable categorically.
 
-<!-- Grouping by the levels of the `title` group variable, -->
-<!-- calculate or state *one* appropriate measure of center for -->
-<!-- your second variable. -->
+##### part a
 
-<!-- ##### part d -->
+Construct an appropriate plot including both of these variables using `ggplot2`.
 
-<!-- Use these summaries to answer your question in **part a** in a sentence or two. -->
+##### part b
+
+Then calculate *one* appropriate measure of a spread and *one* appropriate measure of center for the cryptocurrency variable, grouping by the levels of the `entrepreneur` variable.
+
+##### part c
+
+Use these summaries to answer the survey question in a sentence or two.
+
+#### Question 5
+
+Six variables appear in the survey data frame that were derived from the original `title` question: `artist`, `humanist`, `natural_scientist`, `social_scientist`, `comp_scientist` and `entrepreneur`. The `artist` variable is `TRUE` for those students who most identified as an artist and `FALSE` otherwise. The other five variables are defined similarly. You may treat these variables categorically.
+
+##### part a
+
+Propose your own question involving any two variables in the dataset--*one* of which comes from the `title` variable group mentioned above.
+
+##### part b
+
+Construct a plot which would aid in answering this question using `ggplot2`.
 
 
+##### part c -->
 
+Grouping by the levels of the `title` group variable,
+calculate or state *one* appropriate measure of center for
+your second variable.
 
+##### part d
+
+Use these summaries to answer your question in **part a** in a sentence or two.
 
