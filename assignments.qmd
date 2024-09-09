@@ -2,9 +2,15 @@
 title: Assignments
 listing:
   - id: lab-listing
-    template: assets/listings/assignments-lab.ejs
     contents: 
       - scheduled-docs_files/lab-listing.yml
+    sort: "date desc"
+    type: grid
+    fields: 
+      - title
+      - subtitle
+      - image
+    categories: false
   - id: ws-listing
     template: assets/listings/assignments-ws.ejs
     contents:
