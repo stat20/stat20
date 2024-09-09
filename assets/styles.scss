@@ -89,6 +89,37 @@ h2 {
     padding-top: .6em;
 }
 
+// Homepage on narrower screen / mobile
+@media (min-width: 900px) {
+  .content-block {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  }
+  
+@media (min-width: 1200px) {
+.content-block {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+}
+  
+@media (max-width: 768px) {
+#banner {
+  order: 2;
+  margin: 0em 1em 0em 1em !important;
+  padding-top: 0em;
+}
+.banner-text {
+  padding-top: 0em;
+}
+
+#hex {
+  order: 1;
+}
+}
+
 .calendar {
   padding-left: 15px;
   padding-right: 15px;
@@ -155,42 +186,12 @@ h2 {
     }
   }
   
-  // Homepage on narrower screen / mobile
-  @media (min-width: 900px) {
-  .content-block {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  }
-  
-  @media (min-width: 1200px) {
-  .content-block {
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  }
-  
   @media (max-width: 768px) {
-  #banner {
-    order: 2;
-    margin: 0em 1em 0em 1em !important;
-    padding-top: 0em;
-  }
-  .banner-text {
-    padding-top: 0em;
-  }
-  
-  #hex {
-    order: 1;
-  }
-  
   .week-x-box {
     grid-auto-flow: row; /* Ensures it flows in one column */
     grid-template-columns: 1fr;
     
   }
-  
   }
 }
 

@@ -44,9 +44,6 @@ A home base for course staff with:
 ![](assets/stat20-hex.png){fig-alt="Hex logo of Stat 20 showing a golden bear." .img-fluid width=250}
 :::
 ::::
-:::::
-
-:::::{.content-block}
 
 :::{#schedule-listing}
 :::
