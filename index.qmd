@@ -2,7 +2,7 @@
 format:
   html:
     grid:
-      body-width: 1200px
+      body-width: 1100px
 toc: false
 resources:
   - "homepage-readings"
