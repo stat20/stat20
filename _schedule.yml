@@ -43,7 +43,9 @@ scheduled-docs:
       days:
         - topic: Labor Day (no class)
           display-date: Sep 2
-
+          due-tomorrow:
+            - Lab 1
+            - WSP 1
         - topic: "Taxonomy of Data"
           unit: Questions and Data
           display-date: Sep 3/4
@@ -62,7 +64,7 @@ scheduled-docs:
                 href: 1-questions-and-data/02-taxonomy-of-data/ws.qmd
         - topic: "Summarizing Categorical Data"
           Unit: Summarization
-          display-date: Sep 5/5
+          display-date: Sep 5/6
           date: 9/5/24
           before-class:
             docs:
@@ -92,6 +94,8 @@ scheduled-docs:
               - type: Slides
                 href: assets/quiz-slides.qmd
                 draft: false
+          due-tomorrow:
+            - WSP 2
         - topic: "Summarizing Numerical Data"
           display-date: Sep 10/11
           date: 9/10/24
@@ -110,7 +114,7 @@ scheduled-docs:
               - type: WS
                 href: 2-summarizing-data/02-summarizing-numerical-data/ps.qmd
         - topic: "Data Pipelines"
-          display-date: Sep 12/23
+          display-date: Sep 12/13
           date: 9/12/24
           before-class:
             docs:
@@ -129,6 +133,9 @@ scheduled-docs:
       days:
         - topic: "Lab 2 Workshop"
           display-date: Sep 16
+          due-tomorrow:
+            - Lab 2.1
+            - Lab 2.2
         - topic: "A Grammar of Graphics"
           display-date: Sep 17/18
           date: 9/17/24
@@ -153,29 +160,32 @@ scheduled-docs:
                 href: 2-summarizing-data/06-summarizing-associations/slides.qmd
               - type: WS
                 href: 2-summarizing-data/06-summarizing-associations/ps.qmd
-        - topic: "Multiple Linear Regression"
-          display-date: Sep 19/20
-          date: 9/19/24
-          before-class:
-            docs:
-              - type: Notes
-                href: 2-summarizing-data/07-multiple-linear-regression/notes.qmd
-          in-class:
-            docs:
-              - type: Slides
-                href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
+        # - topic: "Multiple Linear Regression"
+        #   display-date: Sep 19/20
+        #   date: 9/19/24
+        #   before-class:
+        #     docs:
+        #       - type: Notes
+        #         href: 2-summarizing-data/07-multiple-linear-regression/notes.qmd
+        #   in-class:
+        #     docs:
+        #       - type: Slides
+        #         href: 2-summarizing-data/07-multiple-linear-regression/slides.qmd
       resources:
         - '<a href="https://www.stat20.org/2-summarizing-data/07-multiple-linear-regression/extra-practice.pdf"">Extra Practice</a>'
     - week: 5
       unit: Generalization
       days:
         - topic: "Quiz 2"
-          display-date: 9/23/24
+          display-date: Sep 23
           date: 9/23/24
-          docs:
-            - type: Slides
-              href: assets/quiz-slides.qmd
-              draft: false
+          in-class:
+            docs:
+              - type: Slides
+                href: assets/quiz-slides.qmd
+                draft: false
+          due-tomorrow:
+            - WSP 3
         - topic: "Intro to Probability"
           display-date: Sep 24/25
           date: 9/24/24
@@ -209,7 +219,10 @@ scheduled-docs:
       unit: Generalization
       days:
         - topic: "Lab 3 Workshop"
-          display-date: 9/30/24
+          display-date: Sep 30
+          due-tomorrow:
+            - Lab 3.1
+            - Lab 3.2
         - topic: "Probability Distributions"
           display-date: Oct 1/2
           date: 10/1/24
@@ -242,10 +255,13 @@ scheduled-docs:
         - topic: "Quiz 3"
           display-date: Oct 7
           date: 10/7/24
-          docs:
-            - type: Slides
-              href: assets/quiz-slides.qmd
-              draft: false
+          in-class:
+            docs:
+              - type: Slides
+                href: assets/quiz-slides.qmd
+                draft: false
+          due-tomorrow:
+            - WSP 4
         - topic: "Expected Value and Variance"
           display-date: Oct 8/9
           date: 10/8/24
@@ -281,6 +297,9 @@ scheduled-docs:
       days:
         - topic: "Lab 4"
           display-date: Oct 14
+          due-tomorrow:
+           - Lab 4.1
+           - Lab 4.2
         - topic: 'Sampling Distributions'
           display-date: Oct 15/16
           date: 10/15/24
@@ -313,10 +332,13 @@ scheduled-docs:
         - topic: "Quiz 4"
           display-date: Oct 21
           date: 10/21/24
-          docs:
-            - type: Slides
-              href: assets/quiz-slides.qmd
-              draft: false
+          in-class:
+            docs:
+              - type: Slides
+                href: assets/quiz-slides.qmd
+                draft: false
+          due-tomorrow:
+            - WSP 5
         - topic: "Bootstrapping"
           display-date: Oct 22/23
           date: 10/22/24
@@ -348,6 +370,9 @@ scheduled-docs:
       days:
         - topic: "Lab 5"
           display-date: Oct 28
+          due-tomorrow:
+            - Lab 5.1
+            - Lab 5.2
         - topic: "Types of Hypothesis Tests"
           display-date: Oct 29/30
           date: 10/29/24
@@ -380,10 +405,13 @@ scheduled-docs:
         - topic: "Quiz 5"
           display-date: Nov 4 
           date: 11/4/24
-          docs:
-            - type: Slides
-              href: assets/quiz-slides.qmd
-              draft: false
+          in-class:
+            docs:
+              - type: Slides
+                href: assets/quiz-slides.qmd
+                draft: false
+          due-tomorrow:
+            - WSP 6
         - topic: "The Method of Least Squares"
           display-date: Nov 5/6
           date: 11/5/24
@@ -422,6 +450,9 @@ scheduled-docs:
       days:
         - topic: "Veterans Day (no class)"
           display-date: Nov 11
+          due-tomorrow:
+            - Lab 6.1
+            - Lab 6.2
         - topic: "Overfitting"
           display-date: Nov 12/13
           date: 11/12/24
@@ -456,10 +487,13 @@ scheduled-docs:
         - topic: "Quiz 6"
           display-date: Nov 18
           date: 11/18/24
-          docs:
-            - type: Slides
-              href: assets/quiz-slides.qmd
-              draft: false
+          in-class:
+            docs:
+              - type: Slides
+                href: assets/quiz-slides.qmd
+                draft: false
+          due-tomorrow:
+            - WSP 7
         - topic: "Defining Causality"
           display-date: Nov 19/20
           date: 11/19/24
@@ -492,6 +526,9 @@ scheduled-docs:
       days:
         - topic: "Lab 7 Workshop"
           display-date: Nov 25
+          due-tomorrow:
+            - Lab 7.1
+            - Lab 7.2
         - topic: "No Class"
           display-date: Nov 26/27
           date: 11/26/24
@@ -524,10 +561,13 @@ scheduled-docs:
         - topic: "Quiz 7"
           display-date: Dec 2
           date: 12/2/24
-          docs:
-            - type: Slides
-              href: assets/quiz-slides.qmd
-              draft: false
+          in-class:
+            docs:
+              - type: Slides
+                href: assets/quiz-slides.qmd
+                draft: false
+          due-tomorrow:
+            - WSP 8
         - topic: "Causal Effects in Observational Studies"
           display-date: Dec 3/4
           date: 12/3/24
@@ -557,8 +597,12 @@ scheduled-docs:
     - week: "RRR"
       days:
         - topic: "No Class"
+        - topic: "No Class"
+        - topic: "No Class"
     - week: "Final Exams"
       days:
+        - topic: ""
         - topic: "Stat 20 Final"
           display-date: Dec 18 7-10 pm
+        - topic: ""
   

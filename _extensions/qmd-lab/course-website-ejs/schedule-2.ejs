@@ -72,6 +72,19 @@
       <% } %>
       </div>
     <% } %>
+    <!-- ...things that are due tomorrow -->
+    <% if (day['due-tomorrow'] !== undefined) { %>
+      <div>
+      <span class="before-in-class">Due tomorrow:</span><br>
+      <% if (day['due-tomorrow'].length > 0) { %>
+        <ul class="assignment-list">
+        <% for (const assignment of day['due-tomorrow']) { %>
+          <li><%= assignment %></li>
+        <% } %>
+        </ul>
+      <% } %>
+      </div>
+    <% } %>
     </div>
     </div>
     

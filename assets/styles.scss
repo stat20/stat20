@@ -95,14 +95,16 @@ h2 {
 
   .week-x-box {
     display: grid;
-    gap: 8px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-flow: column; // grid flow across columns only
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); 
     border-radius: 3px;
     box-shadow: 0 0 0.5rem $gray-300;
+    min-height: 200px;
     
     .daily-sched {
       border-bottom: 1px solid $gray-300;
       border-right: 1px solid $gray-300;
+      padding: 3px 8px 15px 8px;
       
       .date-cell {
         text-align: center;
@@ -111,9 +113,10 @@ h2 {
       }
       
       .daily-topic-cell {
+        padding-bottom: 2px;
         
         .daily-topic {
-          font-size: 1.2em;
+          font-size: 1.1em;
         }
       }
         
@@ -125,19 +128,27 @@ h2 {
         }
 
         .badge {
-          background-color: $primary;
+          background-color: $green;
         }
 
-        .badge.Notes-badge {
-          background-color: $black;
+        // .badge.Notes-badge {
+        //   background-color: $black;
+        // }
+
+        // .badge.Tutorial-badge {
+        //   background-color: $orange;
+        // }
+
+        // .badge.Slides-badge {
+        //   background-color: $cyan;
+        // }
+
+        .badge.unpublished {
+          background-color: $gray-300;
         }
 
-        .badge.Tutorial-badge {
-          background-color: $orange;
-        }
-
-        .badge.Slides-badge {
-          background-color: $cyan;
+        .assignment-list {
+          font-size: .8em;
         }
 
       }
@@ -175,20 +186,9 @@ h2 {
   }
   
   .week-x-box {
+    grid-auto-flow: row; /* Ensures it flows in one column */
     grid-template-columns: 1fr;
     
-    .daily-sched {
-      grid-template-columns: 1fr;
-      
-      .date-col {
-        border-bottom: none
-      }
-    }
-    
-    .resources {
-      border-left: none;
-      border-top: 1px solid $gray-300;
-    }
   }
   
   }
