@@ -3,37 +3,7 @@ title: "Summarizing Numerical Data"
 format: stat20slides-revealjs
 ---
 
-## Agenda
-
-- Announcements
-- Concept Questions and Activity
-- Problem Set 3
-- *Break*
-- Coding Refresher
-- Lab 1.2: Computing on the Data
-
-## Announcements
-
--   *RQ: Data Pipelines* released Friday afternoon and due **Monday at 11:59pm**
-
-. . . 
-
--   Problem Sets 2 (Tue/Wed) and 3 (today) due **Tuesday at 9am**
-
-. . . 
-
--   Lab 1: Class Survey (both parts) due **Tuesday at 9am**
-
-. . . 
-
--   Group Tutoring Sessions started yesterday in Evans Hall!
-
-. . . 
-
--   We slightly changed Problem 7, Lab 1.1
-
-
-# Concept Question
+# Concept Questions
 
 ## Describing Shape
 
@@ -48,16 +18,20 @@ Which of these variables do you expect to be uniformly distributed?
 Please vote at `pollev.com`.
 :::
 
-```{r}
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
+:::{.notes}
+Correct answer: 4.T
 
-<!-- ## -->
+This lends itself very well to boardwork: you can ask a student to tell you how to draw the distribution birthdays. Topics to bring up:
 
-<!-- <center> -->
-<!-- <iframe src="https://embed.polleverywhere.com/multiple_choice_polls/TRiILsvQV3qxeV1F8qoAq?controls=none&short_poll=true" width="800px" height="600px"></iframe> -->
-<!-- </center> -->
+1. Barchart shows more information than a histgram (which would aggregate)
+2. For discrete numerical, barchart is fine as long as the number of categories isn't too great.
+3. Birthdays isn't quite uniform: you would expect 29, 30, 31 to have fewer since not all months have those dayes.
+
+You can continue the same approach to drawing the remaining three distribution: 1) bimodal (separated out by species) and symmetric (as demonstrated on the next slide) 2) unimodal and heavily right skewed 3) unimodal and right skewed.
+:::
+
 
 ## {data-menu-title="Bill Length Distribution"}
 
@@ -96,6 +70,9 @@ Get out a piece of paper. You'll be watching a 3 minute video that discusses cha
 <center>
 <iframe width="1568" height="1022" src="https://www.youtube.com/embed/4B2xOvKFFz4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
 
+:::{.notes}
+After the video, you can write on the board each of mean, median, mode and have students list measure that were reported. There are many modes because lots of the data that they collect is categorical.
+:::
 
 ## General Advice
 
@@ -118,10 +95,17 @@ But there are other notions of typical... *what about a maximum*?
 
 ## {data-menu-title="Max temp" background-image="images/max-temp.png" background-size="contain"}
 
+:::{.notes}
+This is an interesting example of when we don't use a measure of central tendency to characterize the distribution. The answer to, "What will the temperature be tomorrow?" is generally answered not with an average but with a max. This is a good question to put to students: why do we characterize daily temperatures by their max?
+:::
+
 ## {data-menu-title="Heat Dome 1" background-image="images/heat-dome-1.png" background-size="contain"}
 
 ## {data-menu-title="Heat Dome 2" background-image="images/heat-dome-2.png" background-size="contain"}
 
+:::{.notes}
+This is a nice but not necessary example of an excellent visualization of summary statistics. Every dot is a max temp on a day of the year over a 40 year span. The annotations of the PWN heat dome are very effective in showing by how much they are the max of a distribution of maxes.
+:::
 
 # Concept Question 3 - Measures of Spread
 
@@ -135,13 +119,9 @@ But there are other notions of typical... *what about a maximum*?
 There are two new food delivery services that open in Berkeley: Oski Eats and Cal Cravings. A friend of yours that took Stat 20 collected data on each and noted that Oski Eats has a mean delivery time of 29 minutes and Cal Cravings a mean delivery time of 27 minutes. Which would would you rather order from?
 :::
 
--   Discuss this question with your classmates! (no poll question).
-
-. . . 
-
-```{r}
-countdown::countdown(minutes = 1, top = 0)
-```
+:::{.notes}
+This starts off as a softball, so you probably don't want to give too much time or bother with a poll. Simply ask students why they voted for Cal Cravings and then give them a bit more information...
+:::
 
 ## One possible reality
 
@@ -176,15 +156,19 @@ p1 +
   geom_vline(xintercept = 29, color = "goldenrod", lty = 1, lwd = 2)
 ```
 
-> Would you still prefer to order from Cal?
+:::{.poll}
+Which would would you rather order from?
+:::
 
-# Problem Set 3: Summarizing Numerical Data
+{{< countdown "1:00" >}}
 
-Work on the problem set in **groups of 2.** We will discuss some questions toward the end of the period!
+:::{.notes}
+Now you can ask students to make a good argument for both options. Cal Cravings is shorter on average but is very variable; its good for the gamblers. For students who value predictability, Oski Eats is better because of its smaller spread.
+:::
 
-```{r}
-countdown::countdown(minutes = 25, top = 0)
-```
+# Worksheet: Summarizing Numerical Data
+
+{{< countdown "25:00" >}}
 
 # Break
 
@@ -192,248 +176,7 @@ countdown::countdown(minutes = 25, top = 0)
 countdown::countdown(minutes = 5, top = 0)
 ```
 
-# Coding Refresher
+# Lab: Computing on the Data
 
-Head to PollEverywhere for a competition!
-
-# Lab 1.2 - Computing on the Data
-
-Work on the lab. We will discuss some questions toward the end of the period!
-
-```{r}
-countdown::countdown(minutes = 30, top = 1)
-```
-
-# End of Lecture
-
-<!--
-## Summarizing Distributions of Data
-
-You can construct a **statistical graphic** to show the **shape**, which you can describe in terms of **modality** and **skew**... [you can calculate a **measure of center** to convey a sense of a typical observation...]{.fragment}[and you can calculate a **measure of spread** to capture how much variability there is in the data.]{.fragment}
-
-## Statistics as Engineering
-
-. . .
-
-:::: {.columns}
-
-::: {.column width="50%"}
-<iframe src="https://giphy.com/embed/xThuWbe1xJ4jv5Cszm" width="700" height="700" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-:::
-
-::: {.column width="50%" .fragment}
-> We construct tools (statistics, graphics) that produce useful summaries of raw data.
-:::
-
-::::
-
-##
-
-How can we express the variability in this data set using a single number?
-
-$$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11  \quad 11$$
-
-::::columns
-
-:::{.column width="45%"}
-
-:::{.callout-warning appearance="simple" icon=false}
-
-## Desiderata
-
-- The statistic should be *low* when the numbers are the same or very similar to one another.
-- The statistic should be *high* when the numbers are very different.
-- The statistic should not grow or shrink with the sample size ( $n$ ).
-:::
-:::
-
-:::{.column width="10%"}
-:::
-
-:::{.column width="45%"}
-
-#### Existing statistics to utilize:
-
-- sample size ( $n$ ): 11
-- sample mean ( $\bar{x}$ ): 8.45
-- sample median: 8
-- sample mode: 7
-
-:::
-::::
-
-##
-
-$$ {\Large 6} \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11  \quad {\Large 11}$$
-
-. . .
-
-### The Range
-
-$$\textrm{range:} \quad max - min$$
-
-$$ 11 - 6 = 5$$
-
-**Characteristics**
-
-- Very sensitive to extreme values!
-
-
-##
-
-$$ 6 \quad 7 \quad {\Large 7 \quad  7} \quad 8 \quad  {\large 8} \quad 9 \quad {\Large 9 \quad 10} \quad 11  \quad 11$$
-
-. . .
-
-### The Inner Quartile Range (IQR)
-
-The difference between the median of the larger half of the sorted data set, $Q_3$, and the median of the smaller half, $Q_1$.
-
-$$\textrm{IQR:} \quad Q_3 - Q_1$$
-
-$$ 9.5 - 7 = 2.5 $$
-
-**Characteristics**
-
-- Robust to outliers
-- Used to set the width of the box in a boxplot
-
-##
-
-$$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11  \quad 11$$
-
-. . .
-
-### Mean Absolute Deviation
-
-Take the differences from each observation, $x_i$, to the sample mean, $\bar{x}$, take their absolute values, add them up, and divide by $n$ .
-
-$$MAD: \quad \frac{1}{n}\sum_{i = 1}^n |x_i - \bar{x}| $$
-
-```{r eval = FALSE}
-x <- c(6, 7, 7, 7, 8, 8, 9, 9, 10, 11, 11)
-sum(abs(x - mean(x)))/11
-```
-
-$$ MAD = 1.4 $$
-
-**Characteristics**
-
-- Incorporates information from all observations
-- Robust to extreme values
-
-
-##
-
-$$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11  \quad 11$$
-
-. . .
-
-### Sample Variance
-
-Take the differences from each observation, $x_i$, to the sample mean, $\bar{x}$, square them, add them up, and divide by $n - 1$ .
-
-$$s^2: \quad \frac{1}{n - 1}\sum_{i = 1}^n (x_i - \bar{x})^2 $$
-
-```{r eval = FALSE}
-x <- c(6, 7, 7, 7, 8, 8, 9, 9, 10, 11, 11)
-sum((x - mean(x))^2)/(11-1)
-var(x)
-```
-
-$$ s^2 = 2.87 $$
-
-:::: {.columns}
-
-**Characteristics**
-
-::: {.column width="33%"}
-- Incorporates information from all observations
-:::
-
-::: {.column width="33%"}
-- Moderately sensitive to extreme values
-:::
-
-
-::::
-
-
-##
-
-$$ 6 \quad 7 \quad 7 \quad  7 \quad 8 \quad  8 \quad 9 \quad 9 \quad 10 \quad 11  \quad 11$$
-
-. . .
-
-### Sample Standard Deviation
-
-Take the differences from each observation, $x_i$, to the sample mean, $\bar{x}$, square them, add them up, divide by $n - 1$, then take the square root.
-
-$$s: \quad \sqrt{\frac{1}{n - 1}\sum_{i = 1}^n (x_i - \bar{x})^2} $$
-
-```{r eval = FALSE}
-x <- c(6, 7, 7, 7, 8, 8, 9, 9, 10, 11, 11)
-sqrt(sum((x - mean(x))^2)/(11-1))
-sd(x)
-```
-
-$$ s = 1.70 $$
-
-:::: {.columns}
-
-**Characteristics**
-
-::: {.column width="33%"}
-- Incorporates info from all observations
-:::
-
-::: {.column width="33%"}
-- Moderately sensitive to extreme values
-:::
-
-::: {.column width="33%"}
-- Measured in units of the original data
-:::
-
-::::
-
-## Deliveries revisited
-
-:::: {.columns}
-
-::: {.column width="50%"}
-```{r}
-#| fig-height: 7.5
-#| fig-width: 12
-library(kableExtra)
-p1 + 
-  geom_vline(xintercept = 27, color = "blue", lty = 1, lwd = 2) +
-  geom_vline(xintercept = 29, color = "goldenrod", lty = 1, lwd = 2)
-```
-:::
-
-::: {.column width="50%"}
-```{r}
-df %>%
-  group_by(service) %>%
-  summarize(range = diff(range(time)),
-            IQR = IQR(time),
-            var = var(time),
-            sd = sd(time)) %>%
-  kbl(digits = 1)
-```
-
-:::{.callout-warning appearance="simple" icon=false}
-
-## Desiderata
-
-- The statistic should be *low* when the numbers are the same or very similar to one another.
-- The statistic should be *high* when the numbers are very different.
-- The statistic should not grow or shrink with the sample size ( $n$ ).
-:::
-
-:::
-
-::::
--->
+{{< countdown "25:00" >}}
 
