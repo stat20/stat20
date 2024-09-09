@@ -113,19 +113,17 @@ scheduled-docs:
                 href: 2-summarizing-data/02-summarizing-numerical-data/slides.qmd
               - type: WS
                 href: 2-summarizing-data/02-summarizing-numerical-data/ps.qmd
-        - topic: "Data Pipelines"
+        - topic: "A Grammar of Graphics"
           display-date: Sep 12/13
           date: 9/12/24
           before-class:
             docs:
               - type: Notes
-                href: 2-summarizing-data/04-conditioning/notes.qmd
+                href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
           in-class:
             docs:
               - type: Slides
-                href: 2-summarizing-data/04-conditioning/slides.qmd
-              - type: WS
-                href: 2-summarizing-data/04-conditioning/ps.qmd
+                href: 2-summarizing-data/03-a-grammar-of-graphics/slides.qmd
       resources:
         - '<a href="https://www.stat20.org/2-summarizing-data/03-a-grammar-of-graphics/ps.pdf">Extra Practice</a>'
     - week: 4
@@ -136,17 +134,19 @@ scheduled-docs:
           due-tomorrow:
             - Lab 2.1
             - Lab 2.2
-        - topic: "A Grammar of Graphics"
+        - topic: "Data Pipelines"
           display-date: Sep 17/18
           date: 9/17/24
           before-class:
             docs:
               - type: Notes
-                href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
+                href: 2-summarizing-data/04-conditioning/notes.qmd
           in-class:
             docs:
               - type: Slides
-                href: 2-summarizing-data/03-a-grammar-of-graphics/slides.qmd
+                href: 2-summarizing-data/04-conditioning/slides.qmd
+              - type: WS
+                href: 2-summarizing-data/04-conditioning/ps.qmd
         - topic: "Summarizing Associations"
           display-date: Sep 19/20
           date: 9/19/24
