@@ -4,7 +4,7 @@ format: typst
 ---
 
 ```{r}
-#| eval: true
+#| eval: false
 #| echo: false
 #| message: false
 #| warning: false
@@ -39,6 +39,7 @@ df <- df |>
 
 ```{r}
 #| echo: false
+#| eval: false
 # Some data wrangling we should prevent in the future by redoing the survey
 df <- df %>%
   mutate(is_artist = prof_label == "Artist",
