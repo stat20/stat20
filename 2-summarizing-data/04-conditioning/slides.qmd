@@ -3,7 +3,6 @@ title: "Data Pipelines"
 format: stat20slides-revealjs
 execute:
   echo: true
-  eval: false
 ---
 
 ## Agenda
@@ -102,7 +101,7 @@ Which observations will be included in the following data frame?
 class_survey |>
   filter(coding_exp_scale < 3,
         olympics %in% c("Ice skating", "Speed skating"),
-        entrepreneur == TRUE)
+        is_entrepreneur == TRUE)
 ```
 
 :::{.poll}
@@ -169,8 +168,8 @@ Let's look at three different ways to answer this question
 #| eval: false
 filter(class_survey, 
        coding_exp_scale < 3,
-       olympic_sport %in% c("Ice skating", "Speed skating"),
-       entrepreneur == TRUE)
+       olympics %in% c("Ice skating", "Speed skating"),
+       is_entrepreneur == TRUE)
 ```
 
 
@@ -181,12 +180,12 @@ filter(class_survey,
 #| eval: false
 select(filter(class_survey, 
        coding_exp_scale < 3,
-       olympic_sport %in% c("Ice skating", "Speed skating"),
-       entrepreneur == TRUE),
+       olympics %in% c("Ice skating", "Speed skating"),
+       is_entrepreneur == TRUE),
        coding_exp_xcale,
-       olympic_sport,
-       entrepreneur,
-       new_COVID_variant)
+       olympics,
+       is_entrepreneur,
+       covid)
 ```
 
 ## Nesting {auto-animate=true}
@@ -196,13 +195,13 @@ select(filter(class_survey,
 #| eval: false
 summarize(select(filter(class_survey, 
        coding_exp_scale < 3,
-       olympic_sport %in% c("Ice skating", "Speed skating"),
-       entrepreneur == TRUE),
+       olympics %in% c("Ice skating", "Speed skating"),
+       is_entrepreneur == TRUE),
        coding_exp_scale,
-       olympic_sport,
-       entrepreneur,
-       new_COVID_variant),
-       covid_avg = mean(new_COVID_variant))
+       olympics,
+       is_entrepreneur,
+       covid),
+       covid_avg = mean(covid))
 ```
 
 ## Nesting {auto-animate=true}
@@ -210,13 +209,13 @@ summarize(select(filter(class_survey,
 ```{r}
 summarize(select(filter(class_survey, 
        coding_exp_scale < 3,
-       olympic_sport %in% c("Ice skating", "Speed skating"),
-       entrepreneur == TRUE),
+       olympics %in% c("Ice skating", "Speed skating"),
+       is_entrepreneur == TRUE),
        coding_exp_scale,
-       olympic_sport,
-       entrepreneur,
-       new_COVID_variant),
-       covid_avg = mean(new_COVID_variant))
+       olympics,
+       is_entrepreneur,
+       covid),
+       covid_avg = mean(covid))
 ```
 
 
@@ -240,13 +239,13 @@ Most claims about data start with a *raw* data set, undergo many subsetting, agg
 ```{r eval = FALSE, echo = TRUE}
 summarize(select(filter(class_survey, 
        coding_exp_scale < 3,
-       olympic_sport %in% c("Ice skating", "Speed skating"),
-       entrepreneur == TRUE),
+       olympics %in% c("Ice skating", "Speed skating"),
+       is_entrepreneur == TRUE),
        coding_exp_scale,
-       olympic_sport,
-       entrepreneur,
-       new_COVID_variant),
-       covid_avg = mean(new_COVID_variant))
+       olympics,
+       is_entrepreneur,
+       covid),
+       covid_avg = mean(covid))
 ```
 
 . . .
@@ -277,15 +276,15 @@ summarize(select(filter(class_survey,
 ```{r eval = FALSE, echo = TRUE}
 df1 <- filter(class_survey, 
               coding_exp_scale < 3,
-              olympic_sport %in% c("Ice skating", "Speed skating"),
-              entrepreneur == TRUE)
+              olympics %in% c("Ice skating", "Speed skating"),
+              is_entrepreneur == TRUE)
 df2 <- select(df1, 
               coding_exp_scale,
-              olympic_sport,
-              entrepreneur,
-              new_COVID_variant)
+              olympics,
+              is_entrepreneur,
+              covid)
 summarize(df2,
-          covid_avg = mean(new_COVID_variant))
+          covid_avg = mean(covid))
 ```
 
 . . .
@@ -321,13 +320,13 @@ summarize(df2,
 ```{r eval = FALSE, echo = TRUE}
 class_survey |>
   filter(coding_exp_scale < 3,
-         olympic_sport %in% c("Ice skating", "Speed skating"),
-         entrepreneur == TRUE) |>
+         olympics %in% c("Ice skating", "Speed skating"),
+         is_entrepreneur == TRUE) |>
   select(coding_exp_scale,
-         olympic_sport,
-         entrepreneur,
-         new_COVID_variant) |>
-  summarize(covid_avg = mean(new_COVID_variant))
+         olympics,
+         is_entrepreneur,
+         covid) |>
+  summarize(covid_avg = mean(covid))
 ```
 
 :::: {.columns}
@@ -364,7 +363,7 @@ It's good practice to understand the output of each line of code by *breaking th
 #| echo: true
 #| error: true
 class_survey |>
-  select(new_COVID_variant) |>
+  select(covid) |>
   filter(year == "It's my first year.")
 ```
 :::
@@ -373,7 +372,7 @@ class_survey |>
 ```{r}
 #| echo: true
 class_survey |>
-  select(new_COVID_variant)
+  select(covid)
 ```
 :::
 
@@ -387,14 +386,14 @@ class_survey |>
 #| eval: false
 class_survey |> # A #<<
   filter(coding_exp_scale < 3,
-         olympic_sport %in% c("Ice skating", 
+         olympics %in% c("Ice skating", 
                          "Speed skating"),
-         entrepreneur == TRUE) |> # B #<<
+         is_entrepreneur == TRUE) |> # B #<<
   select(coding_exp_scale,
-         olympic_sport,
-         entrepreneur,
-         new_COVID_variant) |> # C #<<
-  summarize(covid_avg = mean(new_COVID_variant)) # D #<<
+         olympics,
+         is_entrepreneur,
+         covid) |> # C #<<
+  summarize(covid_avg = mean(covid)) # D #<<
 ```
 
 :::{.poll}

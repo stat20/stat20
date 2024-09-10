@@ -3,7 +3,6 @@ title: "Hypothesis Testing"
 format: stat20slides-revealjs
 execute: 
   echo: true
-  eval: false
 ---
 
 ## Agenda
@@ -208,6 +207,7 @@ library(stat20data)
 Create new column with just two levels and drop NAs.
 
 ```{r}
+#| eval: false
 class_survey <- class_survey %>%
   mutate(warm_fav = season%in% c("Summer", "Fall")) %>%
   drop_na(beach_or_mtns, warm_fav)
@@ -223,6 +223,7 @@ class_survey <- class_survey %>%
 :::columns
 :::{.column width="50%"}
 ```{r}
+#| eval: false
 class_survey %>%
   select(beach_or_mtns, warm_fav)
 ```
@@ -230,6 +231,7 @@ class_survey %>%
 
 :::{.column width="50%" .fragment}
 ```{r, fig.height=4}
+#| eval: false
 ggplot(class_survey, aes(x = beach_or_mtns,
                          fill = warm_fav)) +
   geom_bar(position = "fill")
@@ -245,6 +247,7 @@ ggplot(class_survey, aes(x = beach_or_mtns,
 . . .
 
 ```{r}
+#| eval: false
 library(infer)
 obs_stat <- class_survey %>%
   specify(response = warm_fav,
@@ -262,6 +265,7 @@ obs_stat
 ## Hypothesis Test Pipeline {auto-animate="true"}
 
 ```{r}
+#| eval: false
 class_survey %>%
   specify(response = warm_fav,  
           explanatory = beach_or_mtns,  
@@ -272,6 +276,7 @@ class_survey %>%
 ## Hypothesis Test Pipeline {auto-animate="true"}
 
 ```{r}
+#| eval: false
 class_survey %>%
   specify(response = warm_fav,
           explanatory = beach_or_mtns,
@@ -283,6 +288,7 @@ class_survey %>%
 ## Hypothesis Test Pipeline {auto-animate="true"}
 
 ```{r}
+#| eval: false
 class_survey %>%
   specify(response = warm_fav,
           explanatory = beach_or_mtns,
@@ -297,6 +303,7 @@ class_survey %>%
 ## Hypothesis Test Pipeline {auto-animate="true"}
 
 ```{r}
+#| eval: false
 class_survey %>%
   specify(response = warm_fav,
           explanatory = beach_or_mtns,
@@ -310,6 +317,7 @@ class_survey %>%
 ## Hypothesis Test Pipeline {auto-animate="true"}
 
 ```{r}
+#| eval: false
 class_survey %>%
   specify(response = warm_fav,
           explanatory = beach_or_mtns,
@@ -323,6 +331,7 @@ class_survey %>%
 ## Hypothesis Test Pipeline {auto-animate="true"}
 
 ```{r}
+#| eval: false
 class_survey %>%
   specify(response = warm_fav,
           explanatory = beach_or_mtns,
@@ -336,6 +345,7 @@ class_survey %>%
 ## Hypothesis Test Pipeline {auto-animate="true"}
 
 ```{r}
+#| eval: false
 class_survey %>%
   specify(response = warm_fav,
           explanatory = beach_or_mtns,
@@ -350,6 +360,7 @@ class_survey %>%
 ## Hypothesis Test Pipeline {auto-animate="true"}
 
 ```{r fig.height=4}
+#| eval: false
 class_survey %>%
   specify(response = warm_fav,
           explanatory = beach_or_mtns,
@@ -365,6 +376,7 @@ class_survey %>%
 ## Hypothesis Test Pipeline {auto-animate="true"}
 
 ```{r fig.height=4}
+#| eval: false
 class_survey %>%
   specify(response = warm_fav,
           explanatory = beach_or_mtns,
@@ -387,6 +399,7 @@ set.seed(30)
 
 
 ```{r fig.height=4}
+#| eval: false
 class_survey %>%
   specify(response = warm_fav,
           explanatory = beach_or_mtns,

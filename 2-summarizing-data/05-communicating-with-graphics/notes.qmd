@@ -3,8 +3,6 @@ title: "Communicating with Graphics"
 subtitle: "Six ways to hone the message of a data visualization."
 image: images/english-civil-war.png
 format: stat20notes-html
-execute:
-  eval: false
 ---
 
 <!-- hack a margin on the right side -->
@@ -289,7 +287,7 @@ The result was a data frame with 707 rows (one for every respondent) and 2 colum
 #| fig-width: 5
 #| fig-height: 4
 
-ggplot(class_survey, aes(x = tech,
+ggplot(class_survey, aes(x = tech_relationships,
                          y = crypto)) +
     geom_point() +
     labs(x = "Technology is destructive to relationships",
@@ -313,7 +311,7 @@ One approach to fixing the problem of points piled on top of one another is to u
 #| fig-height: 4
 
 set.seed(20)
-ggplot(class_survey, aes(x = tech,
+ggplot(class_survey, aes(x = tech_relationships,
                          y = crypto)) +
     geom_jitter() +
     labs(x = "Technology is destructive to relationships",
@@ -331,7 +329,7 @@ The second technique is to make the points transparent by changing an aestheric 
 #| fig-height: 4
 #| 
 set.seed(20)
-ggplot(class_survey, aes(x = tech,
+ggplot(class_survey, aes(x = tech_relationships,
                          y = crypto)) +
     geom_jitter(alpha = .3) +
     labs(x = "Technology is destructive to relationships",
