@@ -16,7 +16,16 @@ To answer this worksheet, consult the printout of the original survey found [her
 
 ## Part II: Computing on the Data
 
-The real data from your surveys is available in the `stat20data` package as `class_survey`. To complete the following questions, you will need to find the columns in the `class_survey` data frame associated with each variable mentioned.
+You can access the real data from the Stat 20 Class Survey by adding the following line of code to a code cell at the top of your Quarto document.
+
+```{r}
+#| eval: false
+
+library(tidyverse)
+class_survey <- read_csv("https://tinyurl.com/stat20-survey")
+```
+
+To complete the following questions, you will need to find the columns in the `class_survey` data frame associated with each variable mentioned.
 
 #### Question 1  
 
