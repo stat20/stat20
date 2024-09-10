@@ -75,7 +75,7 @@ This last one is a full choose-your-own adventure: propose your own question inv
 
 #### Last Question
 
-Will ensure that your submission to Gradescope...
+Will you ensure that your submission to Gradescope...
 
 1. is of a pdf generated from a qmd file,
 2. has all of your code visible to readers,
