@@ -21,7 +21,7 @@ website:
     type: overlay
   site-url: "https://stat20.berkeley.edu/fall-2024"
   repo-url: "https://github.com/berkeley-stat20/fall-2024"
-  favicon: assets/favicon.ico
+  favicon: assets/stat20-hex.png
   image: assets/stat20-hex.png
   open-graph:
     site-name: "Stat 20"
