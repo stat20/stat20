@@ -111,8 +111,10 @@ scheduled-docs:
             docs:
               - type: Slides
                 href: 2-summarizing-data/02-summarizing-numerical-data/slides.qmd
+                draft: false
               - type: WS
                 href: 2-summarizing-data/02-summarizing-numerical-data/ws.qmd
+                draft: false
         - topic: "A Grammar of Graphics"
           display-date: Sep 12/13
           date: 9/12/24
