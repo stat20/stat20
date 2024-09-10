@@ -4,7 +4,7 @@ format: typst
 ---
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: false
 #| message: false
 #| warning: false
@@ -14,56 +14,57 @@ df <- read_csv("class-survey-raw.csv")
 
 # Drop a few cols that are inappropriate for analysis
 df <- df |>
-  select(-1, -2, -7, -8, -29)
+  select(-1, -2, -7, -8, -19, -29)
 
 # Provide more concise column names
 names(df) <- c("time_at_cal", "major", "coding_exp_words", "coding_exp_scale",
-               "languages", "favorite_cal", "piercings", "pets_and_sibs", 
+               "cal_fav", "piercings", "pets_and_sibs", 
                "diet", "prof_label", "study_place", "olympics", "season", "mts_beach",
                "coffee_tea", "tech_relationships", "climate", "crypto", "ai",
                "covid", "fire_alarm", "election", "hotdogs", "horse_duck")
 
-# Create tech, health, and business variables
-#Create the Health variable with all No's
-df$health <- "No"
-#Find the row indices of health-related majors.
-ind_health <- which(stringr::str_detect(unlist(df$major), "[B|b]io|[H|h]ealth|[P|p]sycho|[C|c]og|[N|n]utrition|MEB|[M|m][C|c][B|b]"))
-#Update the Health variable to Yes for these rows.
-df$health[ind_health] <- "Yes"
-
-# Similarly create the variables for tech and business related majors.
-df$tech <- "No"
-ind_tech <- which(str_detect(unlist(df$major), "[S|s]tat|[C|c]omputer|CS|EECS|eecs|[E|e]ngineering|[D|d]ata|DS|[A|a]pplied [M|m]ath|Compsci"))
-df$tech[ind_tech] <- "Yes"
-
-# Business
-df$business <- "No"
-ind_business <- which(str_detect(unlist(df$major), "[E|e]con|[B|b]usiness|[H|h]aas | [M]management |Polecon"))
-df$business[ind_business] <- "Yes"
-
-
-##Clean up Covid probability related variables
-#Find row indices of all entries not between zero and one. 
-#Update them to zero.
-#Unlist the column and convert it to numeric.
-
+# Make factors
+df <- df |>
+  mutate(time_at_cal = factor(time_at_cal),
+         coding_exp_words = factor(coding_exp_words),
+         diet = factor(diet),
+         prof_label = factor(prof_label),
+         olympics = factor(olympics),
+         season = factor(season),
+         mts_beach = factor(mts_beach),
+         coffee_tea = factor(coffee_tea),
+         hotdogs = factor(hotdogs),
+         horse_duck = factor(horse_duck))
 ```
 
 ```{r}
 #| echo: false
-#| eval: false
-df |>
-  drop_na() |>
-  glimpse()
-```
+# Some data wrangling we should prevent in the future by redoing the survey
+df <- df %>%
+  mutate(is_artist = prof_label == "Artist",
+         is_comp_sci = prof_label == "Computational Scientist",
+         is_entrepreneur = prof_label == "Entrepreneur",
+         is_humanist = prof_label == "Humanist",
+         is_nat_sci = prof_label == "Natural Scientist",
+         is_other = prof_label == "Other",
+         is_soc_sci = prof_label == "Social Scientist")
 
+# Filter out characters
+df <- df %>%
+  mutate(covid = ifelse(grepl("^[0-9\\.\\s]+$", covid), covid, NA),
+         fire_alarm = ifelse(grepl("^[0-9\\.\\s]+$", fire_alarm), fire_alarm, NA),
+         election = ifelse(grepl("^[0-9\\.\\s]+$", election), election, NA))
+
+# Write out wrangled CSV
+write_csv(df, "class_survey.csv")
+```
 
 ```{r}
 #| echo: false
 #| eval: true
-
-library(tidyverse)
 library(stat20data)
+library(tidyverse)
+
 class_survey |>
   glimpse()
 ```
