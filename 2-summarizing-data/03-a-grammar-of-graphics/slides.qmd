@@ -1,11 +1,12 @@
 ---
 title: "A Grammar of Graphics"
 format: stat20slides-revealjs
-execute:
-  eval: false
 ---
 
-## Agenda
+    
+# Concept Questions
+    
+## What code was used to make the following plot?
 
 ```{r}
 #| echo: false
@@ -14,39 +15,6 @@ library(stat20data)
 library(tidyverse)
 ```
 
-- Announcements
-- Concept Question
-- Concept Activity
-- Quiz Review
-- *Break*
-- Lab 2.2: Computing on the Data
-
-## Announcements {.scrollable}
-
-- Quiz 1 is **not** this upcoming Monday, but *next* Monday(2/12) in-class.  This Monday will be a workshop to complete Lab 2 and PS 4.
-
-. . . 
-
--   Lab 2 (both parts) due Tuesday Feb 13 at 9am.
-
-. . . 
-
--   Problem Set 4 due Tuesday Feb 13 at 9am. 
-
-. . . 
-
--   Two problem sets without numbers relating to the *Understanding the World with Data* and *A Grammar of Graphics* will be posted to the resources tab on the home page of the course website. These are *not* for a grade and are for studying purposes. 
-
-. . . 
-
--   Quiz 1 on Monday Feb 12, in class. 
-    -   Individual portion [25 minutes]
-    -   Group (max. 3) portion [15 minutes]
-    -   Please consult the Quiz Megathread and Syllabus for content and logistical questions.
-    
-# Concept Question
-    
-## What code was used to make the following plot?
 
 ```{r}
 penguins |>
@@ -223,9 +191,9 @@ What was the unit of observation? What were the variables? What were their type?
 ```{r echo = FALSE, eval = FALSE}
 ## don't use the gapminder package data. Remake to have the original vars: life expectancy and fertility rate
 library(gapminder)
-gapminder %>%
-  slice(1, 10) %>%
-  kable() %>%
+gapminder |>
+  slice(1, 10) |>
+  kable() |>
   kable_styling(latex_options = "striped")
 ```
 
@@ -296,9 +264,9 @@ p1 <- penguins |>
 
 
 p2 <- class_survey |>
-  filter(new_COVID_variant >0,
-         new_COVID_variant < 1) |>
-  ggplot(mapping = aes(x = new_COVID_variant)) +
+  filter(covid >0,
+         covid < 1) |>
+  ggplot(mapping = aes(x = covid)) +
   geom_histogram(color = "white", bins = 10) +
   labs(title = "Image 2")
 
