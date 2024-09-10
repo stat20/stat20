@@ -362,7 +362,6 @@ It's good practice to understand the output of each line of code by *breaking th
 
 ```{r}
 #| echo: true
-#| eval: true
 #| error: true
 class_survey |>
   select(new_COVID_variant) |>
@@ -373,7 +372,6 @@ class_survey |>
 ::: {.column width="50%"}
 ```{r}
 #| echo: true
-#| eval: true
 class_survey |>
   select(new_COVID_variant)
 ```
