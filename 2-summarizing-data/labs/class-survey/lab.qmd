@@ -73,3 +73,13 @@ Propose your own question involving one of the `is_` variables and numerical var
 
 This last one is a full choose-your-own adventure: propose your own question involving two or three variables and answer it using a plot with a written interpretation.
 
+#### Last Question
+
+Will ensure that your submission to Gradescope...
+
+1. is of a pdf generated from a qmd file,
+2. has all of your code visible to readers,
+3. and assigns each of the questions to all pages that show your work for that question?
+
+(This one is easy! Just answer "yes" or "no")
+
