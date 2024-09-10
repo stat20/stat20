@@ -3,6 +3,7 @@ title: "Hypothesis Testing"
 format: stat20slides-revealjs
 execute: 
   echo: true
+  eval: false
 ---
 
 ## Agenda
