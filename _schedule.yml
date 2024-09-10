@@ -103,18 +103,14 @@ scheduled-docs:
             docs:
               - type: Notes
                 href: 2-summarizing-data/02-summarizing-numerical-data/notes.qmd
-                draft: false
               - type: Tutorial
                 href: 2-summarizing-data/02-summarizing-numerical-data/tutorial.qmd
-                draft: false
           in-class:
             docs:
               - type: Slides
                 href: 2-summarizing-data/02-summarizing-numerical-data/slides.qmd
-                draft: false
               - type: WS
                 href: 2-summarizing-data/02-summarizing-numerical-data/ws.qmd
-                draft: false
         - topic: "A Grammar of Graphics"
           display-date: Sep 12/13
           date: 9/12/24
@@ -122,6 +118,7 @@ scheduled-docs:
             docs:
               - type: Notes
                 href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
+                draft: false
           in-class:
             docs:
               - type: Slides
