@@ -4,6 +4,8 @@ subtitle: "Overplotting, correlation and the least squares line"
 from: markdown+emoji
 image: images/association.png
 format: stat20notes-html
+execute:
+  eval: false
 ---
 
 ```{r}

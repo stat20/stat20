@@ -3,6 +3,8 @@ title: "A Grammar of Graphics"
 subtitle: "A unified framework for constructing statistical graphics."
 image: images/penguin-plot.png
 format: stat20notes-html
+execute:
+  eval: false
 ---
 
 

@@ -1,6 +1,8 @@
 ---
 title: "A Grammar of Graphics"
 format: stat20slides-revealjs
+execute:
+  eval: false
 ---
 
 ## Agenda

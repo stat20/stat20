@@ -3,6 +3,8 @@ title: "Communicating with Graphics"
 subtitle: "Six ways to hone the message of a data visualization."
 image: images/english-civil-war.png
 format: stat20notes-html
+execute:
+  eval: false
 ---
 
 <!-- hack a margin on the right side -->
