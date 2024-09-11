@@ -67,11 +67,10 @@ Get out a piece of paper. You'll be watching a 3 minute video that discusses cha
 
 ##
 
-<center>
-<iframe width="1568" height="1022" src="https://www.youtube.com/embed/4B2xOvKFFz4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+{{< video https://www.youtube.com/embed/4B2xOvKFFz4 width="1568" height="1022" title="The World's Most Typical Person" >}}
 
 :::{.notes}
-After the video, you can write on the board each of mean, median, mode and have students list measure that were reported. There are many modes because lots of the data that they collect is categorical.
+After the video, you can write on the board each of mean, median, mode and have students list measures that were reported. There are many modes because lots of the data that they collect is categorical.
 :::
 
 ## General Advice
