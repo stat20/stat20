@@ -161,9 +161,9 @@ During EDA, the aim is to uncover the shape and structure of your data and to un
 
 At some point, you'll find yourself confident in the claim that can be supported by your data and the focus changes to communicating that claim as effectively as possible with a graphic. Here, your audience shifts from yourself to someone else: other scientists, customers, co-workers in a different part of your company, or casual readers. You must consider the context in which they'll be viewing your graphic: what they know, what they expect, what they want.
 
-In this tutorial we'll focus on two ways to hone the message of your data visualization.
+In this tutorial we'll focus on three ways to hone the message of your data visualization.
 
-<!-- @. Mapping versus setting -->
+@. Mapping versus setting
 @. Labels for clarity
 <!-- @. The importance of scale -->
 <!--
@@ -203,38 +203,20 @@ p1 + p2
 ```
 
 
-<!-- 
 ### Mapping vs Setting
 
 Once you have your first draft of a plot complete and you're thinking about how to fine tune it for your audience, your eye will turn to the aesthetic attributes. Is that color right? What about the size of the points?
 
-Consider the first draft of the penguins plot above. It might feel a bit drab to have a large mass of points all in black, the same color as the labels and surrounding text. Let's make the points blue instead to make them stand out a bit more.
+Consider the first draft of the penguins plot above. It might feel a bit drab to have a large mass of points all in black, the same color as the labels and surrounding text. Let's make the points blue instead to make them stand out a bit more. Click "Run Code" to see the new plot.
 
-```{r}
-#| eval: false
-#| echo: false
-ggplot(penguins, aes(x = bill_length_mm,
-                     y = bill_depth_mm,
-                     color = "blue")) +
-    geom_point()
-```
-
-
-<details><summary>Click here when you're ready to see the result.</summary>
-```{r}
-#| echo: false
+```{webr}
+#| autorun: false
 #| fig-align: center
-#| fig-width: 5
-#| fig-height: 3
-#| eval: false
-
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm,
                      color = "blue")) +
     geom_point()
 ```
-
-</details>
 
 This is . . . unexpected. Why did it color the points red? Is this a bug?
 
@@ -248,13 +230,9 @@ To set the color to blue[^colors], we need to make just a small change to the sy
 
 [^colors]: To see the vast (and somewhat strange) palette of color names that R knows, type `colors()` at the console.
 
-```{r}
-#| code-fold: false
+```{webr}
+#| autorun: false
 #| fig-align: center
-#| fig-width: 5
-#| fig-height: 3
-#| eval: false
-
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm)) +
     geom_point(color = "blue")
@@ -264,13 +242,9 @@ Ah, that looks much better!
 
 Color isn't the only aesthetic attribute that you can set. Let's increase slightly the size of our points by setting the size to three times the size of the default.
 
-```{r}
-#| code-fold: false
+```{webr}
+#| autorun: false
 #| fig-align: center
-#| fig-width: 5
-#| fig-height: 3
-#| eval: false
-
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm)) +
     geom_point(color = "blue", size = 3)
@@ -278,13 +252,9 @@ ggplot(penguins, aes(x = bill_length_mm,
 
 It's not clear that that improves the readability of the plot - there is more overlap between the points now - but the setting worked. One thing we might do to get more visibility on some of the points that were clumped is to use the `alpha` mapping!
 
-```{r}
-#| code-fold: false
+```{webr}
+#| autorun: false
 #| fig-align: center
-#| fig-width: 5
-#| fig-height: 3
-#| eval: false
-
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm,
                      size = species)) +
@@ -295,14 +265,9 @@ ggplot(penguins, aes(x = bill_length_mm,
 
 How would it have looked if instead we had mapped the size? When you map, you need a map to a column in your data frame, so let's map size to species.
 
-```{r}
-#| code-fold: false
+```{webr}
+#| autorun: false
 #| fig-align: center
-#| fig-width: 5
-#| fig-height: 3
-#| eval: false
-#| echo: false
-
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm,
                      size = species)) +
@@ -311,7 +276,7 @@ ggplot(penguins, aes(x = bill_length_mm,
 
 We've made a mess of our plot now, but it is clear what happened. R looked inside the `species` column, found a categorical variable with three levels and selected a distinct size for each of those levels. 
 
-All in all, this is another area in which the grammar of graphic guides clear thinking when constructing a graphic. The aesthetic attributes of a plot can be determined either by variability found in a data set or by fixed values that we set. The former is present in all data visualization but it's the latter that comes into play when fine-tuning your plot for an audience. -->
+All in all, this is another area in which the grammar of graphic guides clear thinking when constructing a graphic. The aesthetic attributes of a plot can be determined either by variability found in a data set or by fixed values that we set. The former is present in all data visualization but it's the latter that comes into play when fine-tuning your plot for an audience.
 
 ### Adding Labels for Clarity
 
@@ -322,10 +287,6 @@ You can change the labels of your plot by adding a `labs()` layer.
 ```{webr}
 #| autorun: false
 #| fig-align: center
-#| fig-width: 5
-#| fig-height: 3
-#| code-fold: false
-
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm)) +
     geom_point(color = "blue") +
@@ -340,10 +301,6 @@ Speaking of captions, those a can be added too, as well as a title.
 ```{webr}
 #| autorun: false
 #| fig-align: center
-#| fig-width: 5
-#| fig-height: 3
-#| code-fold: false
-
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm)) +
     geom_point(color = "blue") +
@@ -358,10 +315,6 @@ The title of a plot is valuable real estate for communicating the primary story 
 ```{webr}
 #| autorun: false
 #| fig-align: center
-#| fig-width: 6
-#| fig-height: 4
-#| code-fold: false
-
 ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm,
                      color = species)) +
@@ -647,4 +600,4 @@ So if the drop after 1642 corresponds to the English Civil War, what about the s
 
 Over the coming weeks, you'll get lots of practice with ggplot2. It is an incredibly flexible and powerful piece of software that helps you not just *build* plots, but *think* about each of the design decisions that you make. Throughout your journey it is helpful to have a source of documentation to learn about the functionality of the tool. The help files on each function are only so useful. A better option is the official `ggplot2` documentation: <https://ggplot2.tidyverse.org/>.
 
-There are two main uses for data visualization. The first is as part of exploratory data analysis, when you are constructing plots for yourself to better understand the structure of the data. When you're ready to communicate with an outside audience using graphics, more thought is needed: you must think about the difference between mapping and setting, the use of labels for clarity, the importance of scale, overplotting, themes, and annotations.
+There are two main uses for data visualization. The first is as part of exploratory data analysis, when you are constructing plots for yourself to better understand the structure of the data. When you're ready to communicate with an outside audience using graphics, more thought is needed: you must think about the difference between mapping and setting, the use of labels for clarity, and themes.
