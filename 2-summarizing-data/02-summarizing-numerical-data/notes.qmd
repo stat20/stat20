@@ -400,8 +400,7 @@ The sample variance:
 -   Takes the differences from each observation, $x_i$, to the sample mean $\bar{x}$;
 -   squares them;
 -   adds them all up;
--   divides by $n - 1$;
--   then finally, takes the square root.
+-   then divides by $n - 1$.
 
 :::{.column-margin}
 The function in R: `var()`
