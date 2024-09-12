@@ -1,10 +1,8 @@
 ---
-title: "Communicating with Graphics"
+title: "A Grammar of Graphics"
 subtitle: "WS"
 format: stat20handout-typst
 ---
-
-Complete the following two questions in a Quarto Document.
 
 ## Question 1
 
@@ -12,40 +10,28 @@ Use the `gapminder` data set in the `gapminder` library to recreate a version of
 
 -   You can see at a glance which years are available by running `count(gapminder, year)` in an R chunk. 
 
--   You may use GDP per capita rather than fertility rate.
+-   In place of fertility rate use GDP per capita.
 
-You will need to take the following steps.
+Constructing this plot requires several distinct steps.
 
-### Step A
+1. Determine the correct geometry for the plot and make an initial `ggplot` with the two variables on the x and y axis.
 
-Determine the correct geometry for the plot and make an initial `ggplot` with the two variables on the x and y axis.
+2. Distinguish the continents by either shape or color. Which ever one you do not use, *set* its value to something other than the default. *Hint: use the help_file for `geom_point()` to find options you can set to!*
 
-### Step B
+3. Alter the x and y axis labels so that they're more descriptive than just the variable given names in `gapminder`. 
 
-Distinguish the continents by either shape or color. Which ever one you do not use, *set* its value to something other than the default. *Hint: use the help_file for `geom_point()` to find options you can set to!*
+4. Add an annotation that draws attention to a particular feature of the data (of your choosing).
 
-### Step C
+5. Title your plot with a claim based on your data. 
 
-Alter the x and y axis labels so that they're more descriptive than just the variable given names in `gapminder`. 
+6. Apply a theme of your choosing.
 
-### Step D
-
-Apply a theme of your choosing.
-
-### Step E
-
-Add an annotation that draws attention to a particular feature of the data (of your choosing).
-
-### Step F
-
-Title your plot with a claim based on your data. 
-
-### Step G
-
-Apply a theme of your choosing.
+Use RStudio to write the code and see your visualization. Once you are happy with it, handwrite your code in the space below.
 
 
+{{< pagebreak >}}
 
 ## Question 2
 
-Recreate one of the plots that you created for Lab 1.2, but incorporate at least 3 of the 6 elements of Communicating with Graphics to polish your plot into one that tells a particular story.
+Revisit one of the plots that you created for the Class Survey Lab, but incorporate at least 2 of the elements from the Communicating with Graphics section of the Grammar of Graphics tutorial to polish your plot into one that tells a particular story.
+
