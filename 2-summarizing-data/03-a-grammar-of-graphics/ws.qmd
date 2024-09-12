@@ -33,5 +33,5 @@ Use RStudio to write the code and see your visualization. Once you are happy wit
 
 ## Question 2
 
-Revisit one of the plots that you created for the Class Survey Lab, but incorporate at least 2 of the elements from the Communicating with Graphics section of the Grammar of Graphics tutorial to polish your plot into one that tells a particular story.
+Revisit one of the plots that you created for the Class Survey Lab, but incorporate at least 2 of the elements from the Communicating with Graphics section of the Grammar of Graphics tutorial to polish your plot into one that tells a more focused story. No need to copy that code here but in the space below write a list of the elements that you applied to each plot.
 
