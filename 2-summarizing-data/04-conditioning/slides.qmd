@@ -5,39 +5,9 @@ execute:
   echo: true
 ---
 
-## Agenda
-
-```{r}
-#| echo: false
-library(tidyverse)
-library(stat20data)
-```
-
-- Concept Questions
-- Problem Set 4
-- *Break*
-- Lab 2.1: Flights 
-
-## Announcements
-
-- *RQ: A Grammar of Graphics* due Wednesday at 11:59pm
-
-. . . 
-
-- *Problem Set 4* (paper, max. 3) due next Tuesday at 9am 
-
-. . . 
-
-- *Lab 2.1* (paper, max. 2) due next Tuesday at 9am
-
-. . . 
-
-- *Quiz 1* next Monday at 11:59pm (direct logistical and content questions to the syllabus and megathread on Ed). 
-
-
 # Concept Questions
 
-## Question 1
+## 
 
 ```{r}
 #| eval: false
@@ -50,10 +20,7 @@ What will this line of code return?
 Respond at `pollev.com`.
 :::
 
-```{r}
-#| echo: false
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 
 ## Evaluating equivalence, cont.
@@ -108,10 +75,7 @@ class_survey |>
 Please respond at `pollev.com`.
 :::
 
-```{r}
-#| echo: false
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 <!--
 ## Question 3: Opinion
@@ -149,10 +113,7 @@ class_survey |>
   filter(first_sem)
 ```
 
-```{r}
-#| echo: false
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 
 # Concept Question 2 Redux - Building data pipelines
@@ -402,10 +363,7 @@ What are the dimensions (rows x columns) of the data frames output at each stage
 
 . . . 
 
-```{r}
-#| echo: false
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 
 ## Concept Question 4
@@ -441,29 +399,14 @@ TRUE * TRUE
 
 # Break
 
-# Problem Set 5: Data Pipelines
+# Worksheet: Data Pipelines
 
-```{r}
-#| echo: false
-countdown::countdown(25, top = 0)
-```
+{{< countdown "20:00" >}}
 
 # Break
 
-```{r}
-#| echo: false
-countdown::countdown(5, top = 0)
-```
+{{< countdown "5:00" >}}
 
-# Lab 2.1: Flights
+# Lab Part 1: Flights
 
-Let's move to the lab slides on the course website!
-
-. . . 
-
-```{r}
-#| echo: false
-countdown::countdown(25, top = 0)
-```
-
-# End of Lecture
+{{< countdown "25:00" >}}

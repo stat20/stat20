@@ -1,5 +1,5 @@
 ---
-title: "Data Pipelines"
+title: "Conditioning"
 subtitle: "Data pipelines, filtering, logical variables and comparison operators"
 image: images/mammals.png
 from: markdown+emoji

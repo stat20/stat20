@@ -3,43 +3,9 @@ title: "Summarizing Numerical Associations"
 format: stat20slides-revealjs
 ---
 
-## Agenda
-
--   Announcements
--   Concept Questions
--   Problem Set 5
--   *Break*
--   Lab 2.2 (extended): Computing on The Data
-
-
-## Announcements
-
--   RQ: *Multiple Linear Regression* due Wed/Thu night at 11:59pm
-
-. . . 
-
--   Lab 2.2 *extended* and due Tuesday, February 13 at 9am
-
-. . . 
-
--   Problem Set 5 due Tuesday, February 13 at 9am, along with Problem Set 4
-
-. . . 
-
--   Please read updated Lab Submission Guidelines on Ed! (titling and labeling plots)
-
-. . . 
-
--   Quiz 1 next Monday in-class. Covers all lectures from the beginning of the year until Thursday/Friday!
-
-
 # Concept Questions
 
 ## Estimate the correlation
-
-```{r}
-countdown::countdown(1, top = 0)
-```
 
 :::{.poll}
 What is the (Pearson) correlation coefficient between these two variables?
@@ -70,6 +36,8 @@ The goal of this exercise is threefold:
 - Make it clear that this is still just an informal eye-balling procedure (therefore multiple answers can be reasonable, but some are un-reasonable).
 - Set some of them up for a challenge on the next one; some will conflate correlation with association.
 :::
+
+{{< countdown "1:00" >}}
 
 
 ## 
@@ -193,9 +161,7 @@ library(patchwork)
 Which *four* plots exhibit the strongest association?
 :::
 
-```{r}
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 :::{.notes}
 Student will likely identify A, B, E, and F. F only appears to be highly associated because of the scaling of the y-axis. This is a good opportunity to review definition of association. The following slides demonstrate the effects of that scaling.
@@ -478,9 +444,7 @@ If we want to ask a question that requires a scatter plot (and a linear model) t
 
 ##
 
-```{r}
-countdown::countdown(1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 
 ```{r}
@@ -503,23 +467,15 @@ Which state has the highest graduation rate given its poverty rate?
 This assesses whether or not students have an informal sense of what a residual is.
 :::
 
-# Problem Set 5: Summarizing Numerical Associations 
+# Worksheet: Summarizing Numerical Associations 
 
-```{r}
-countdown::countdown(minutes = 25, top = 1)
-```
+{{< countdown "20:00" >}}
 
 # Break
 
-```{r}
-countdown::countdown(minutes = 5, top = 0)
-```
+{{< countdown "5:00" >}}
 
-# Lab 2.2 (extended): Computing on The Data
+# Lab Part 2: Flights
 
-```{r}
-countdown::countdown(minutes = 35, top = 1)
-```
-
-# End of Lecture
+{{< countdown "25:00" >}}
 
