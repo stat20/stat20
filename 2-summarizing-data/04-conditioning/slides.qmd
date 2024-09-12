@@ -406,8 +406,6 @@ TRUE * TRUE
 
 > Taking the mean of a logical vector is equivalent to find the proportion of rows that are `TRUE` (i.e. the proportion of rows that meet the condition).
 
-# Break
-
 # Worksheet: Conditioning
 
 {{< countdown "20:00" >}}
