@@ -6,47 +6,7 @@ format: stat20slides-revealjs
     
 # Concept Questions
     
-## What code was used to make the following plot?
-
-```{r}
-#| echo: false
-#| message: false
-library(stat20data)
-library(tidyverse)
-```
-
-
-```{r}
-penguins |>
-  filter(species == "Gentoo") |>
-  mutate(is_male = (sex == "male")) |>
-  ggplot(mapping = 
-           aes(x = body_mass_g,
-               y = is_male)) +
-  geom_boxplot() +
-  labs(x = "Body Mass (in grams)",
-      y =  "Male Penguin?",
-      title = "Male Gentoo penguins have larger body masses")
-  
-```
-
-. . .
-
--   Choose an answer at `pollev.com`. 
-
-
-    
-# Concept Activity
-
-<!--
-
 ##
-
-:::{.poll}
-What are the aesthetics and geometry of this plot?
-
-Answer at `pollev.com`
-:::
 
 ```{r}
 #| fig-align: center
@@ -55,14 +15,80 @@ library(tidyverse)
 library(palmerpenguins)
 
 ggplot(penguins, aes(x = bill_length_mm,
-                     fill = species)) +
-    geom_density() +
+                     y = species)) +
+    geom_boxplot() +
     theme_gray(base_size = 20)
 ```
 
+:::{.poll}
+1. What are the aesthetics and geometry of this plot?
+:::
+
+{{< countdown "1:00" >}}
+
+
+:::{.notes}
+Correct answer: see code above.
+
+This is a warm up to get them thinking about the fundamental concept of aesthetic mappings and geometries on a plot style and data set they'll be familiar with. This should be quite easy.
+:::
+
+## 
+
 ```{r}
-countdown::countdown(1, top = 0)
+ggplot(penguins, aes(x = island,
+                     fill = island)) +
+  geom_bar() +
+  theme_gray(base_size = 20)
 ```
+
+:::{.poll}
+What code was used to make this plot?
+:::
+
+{{< countdown "1:00" >}}
+
+:::{.notes}
+Correct answer: see above.
+
+This demonstrates a practice called "double-mapping", when the same column is mapped to two different aesthetic attributes. Most consider this a bad practice.
+
+In a setting like this, usually the author is really just trying to get more color onto the plot. That can be accomplished by _setting_ the color of the bars using something like:
+
+```{r}
+#| eval: false
+ggplot(penguins, aes(x = island)) +
+  geom_bar(fill="blue")
+```
+:::
+
+##
+
+#### Global infectious disease prevalence in 1989
+
+![](images/bubble-chart.png){fig-align="center" fig-alt="A bubble chart showing the prevalence of different infectious diseases. Each disease is represented by a bubble, its size is mapped to the prevalance, and it's biological family is mapped to color. The largest bubble is labeled HIV and is green, representing viruses."}
+
+:::{.poll}
+2. What are the aesthetics and geometry of this plot?
+:::
+
+{{< countdown "1:00" >}}
+
+:::{.notes}
+Correct answer: Color is mapped to taxonomic family, size is mapped to prevalence, the diseases are represented using the point geometry.
+
+Good follow up questions and boardwork include:
+
+- What does the data frame look like that made this plot?
+- What determines where the bubbles are placed in the chart? Answer: bubble charts have different methods of doing this. This one appears to use a packing algorithm so get them close together. Important, none of those methods refer to a column in the data frame therefore are not aesthetic mappings.
+- If you really want to go far afield, you could show an example of a beeswarm chart, which is a bubble chart that uses one of the x or the y to map a numerical variable and then uses a packing algorithm to determine placement on the other axis.
+- One of the lessons of this bubble chart is that our "named" charts correspond to particular combos of aesthetic mappings and geometriess. A "scatterplot" uses the point geometry and maps numerical data to the x and y axes. A "bubble chart" uses the point geometry too, but maps size to a numerical variable (and often uses color too).
+:::
+
+    
+# Concept Activity
+
+<!--
 
 
 ##
@@ -217,7 +243,7 @@ gapminder |>
 
 ## What type of variable is listeners?
 
-![]("images/spotify.png"){fig-alt="A dataframe with a column labelled 'Listeners (in million)' with values 40, 66, 60, 73, 57, 75, and 13'}
+![](images/spotify.png){fig-alt="A dataframe with a column labelled 'Listeners (in million)' with values 40, 66, 60, 73, 57, 75, and 13'}
 
 . . . 
 
@@ -226,7 +252,7 @@ gapminder |>
 
 ## What type of proportion is used?
 
-![]("images/q1.png"){fig-alt="An image of a stacked bar chart with the classes along the x-asis - 1, 2, and 3 - and the bars filled with black or gray based the proportion that survived or perished."}
+![](images/q1.png){fig-alt="An image of a stacked bar chart with the classes along the x-asis - 1, 2, and 3 - and the bars filled with black or gray based the proportion that survived or perished."}
 
 . . . 
 
@@ -240,6 +266,7 @@ gapminder |>
 
 ```{r}
 library(patchwork)
+library(stat20data)
 
 p1 <- penguins |>
   filter(species == "Gentoo",
