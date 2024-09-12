@@ -1,5 +1,5 @@
 ---
-title: "Data Pipelines"
+title: "Conditioning"
 format: stat20slides-revealjs
 execute:
   echo: true
@@ -16,8 +16,6 @@ c("fruit", "fruit", "vegetable") == "fruit"
 
 :::{.poll}
 What will this line of code return?
-
-Respond at `pollev.com`.
 :::
 
 {{< countdown "1:00" >}}
@@ -62,9 +60,14 @@ c("fruit", "vegetable", "boba") %in% c("fruit", "vegetable")
 
 ## Question 2
 
-Which observations will be included in the following data frame?
+```{r}
+#| echo: false
+library(tidyverse)
+library(stat20data)
+```
 
-```{r echo = TRUE, eval = FALSE}
+```{r}
+#| eval: false
 class_survey |>
   filter(coding_exp_scale < 3,
         olympics %in% c("Ice skating", "Speed skating"),
@@ -72,7 +75,7 @@ class_survey |>
 ```
 
 :::{.poll}
-Please respond at `pollev.com`.
+Which observations will be included in the following data frame?
 :::
 
 {{< countdown "1:00" >}}
@@ -102,8 +105,9 @@ Which data frame will have fewer rows?
 
 . . .
 
-```{r echo = TRUE}
+```{r}
 #| eval: false
+#| echo: true
 # this one
 filter(class_survey, year == "This is my first semester!")
 
@@ -116,9 +120,13 @@ class_survey |>
 {{< countdown "1:00" >}}
 
 
-# Concept Question 2 Redux - Building data pipelines
+## Concept Question 2 Redux
+
+### Building data pipelines
 
 > How do we extract the average of these students' chance that class will be disrupted by a new COVID variant?
+
+. . .
 
 Let's look at three different ways to answer this question
 
@@ -197,7 +205,8 @@ Most claims about data start with a *raw* data set, undergo many subsetting, agg
 
 ## Nesting
 
-```{r eval = FALSE, echo = TRUE}
+```{r}
+#| eval: false
 summarize(select(filter(class_survey, 
        coding_exp_scale < 3,
        olympics %in% c("Ice skating", "Speed skating"),
@@ -234,7 +243,8 @@ summarize(select(filter(class_survey,
 
 . . .
 
-```{r eval = FALSE, echo = TRUE}
+```{r}
+#| eval: false
 df1 <- filter(class_survey, 
               coding_exp_scale < 3,
               olympics %in% c("Ice skating", "Speed skating"),
@@ -278,7 +288,8 @@ summarize(df2,
 
 . . .
 
-```{r eval = FALSE, echo = TRUE}
+```{r}
+#| eval: false
 class_survey |>
   filter(coding_exp_scale < 3,
          olympics %in% c("Ice skating", "Speed skating"),
@@ -321,7 +332,6 @@ It's good practice to understand the output of each line of code by *breaking th
 ::: {.column width="50%"}
 
 ```{r}
-#| echo: true
 #| error: true
 class_survey |>
   select(covid) |>
@@ -331,7 +341,6 @@ class_survey |>
 
 ::: {.column width="50%"}
 ```{r}
-#| echo: true
 class_survey |>
   select(covid)
 ```
@@ -343,7 +352,6 @@ class_survey |>
 ## Concept Question 2 Redux
 
 ```{r}
-#| echo: true
 #| eval: false
 class_survey |> # A #<<
   filter(coding_exp_scale < 3,
@@ -368,7 +376,8 @@ What are the dimensions (rows x columns) of the data frames output at each stage
 
 ## Concept Question 4
 
-```{r echo = TRUE, eval = FALSE}
+```{r}
+#| eval: false
 summarize(class_survey, mean(year == "I'm in my first year."))
 ```
 
@@ -383,7 +392,7 @@ Respond at `pollev.com`.
 
 Logical vectors have a dual representation as `TRUE` `FALSE` and `1`, `0`, so you can do math on logicals accordingly.
 
-```{r echo = TRUE}
+```{r}
 TRUE + TRUE
 ```
 
@@ -399,7 +408,7 @@ TRUE * TRUE
 
 # Break
 
-# Worksheet: Data Pipelines
+# Worksheet: Conditioning
 
 {{< countdown "20:00" >}}
 
@@ -407,6 +416,6 @@ TRUE * TRUE
 
 {{< countdown "5:00" >}}
 
-# Lab Part 1: Flights
+# Lab Part I: Flights
 
 {{< countdown "25:00" >}}
