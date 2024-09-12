@@ -1,0 +1,111 @@
+---
+title: "Conditioning"
+subtitle: "Filtering, groupwise operations, and data pipelines."
+format: live-html
+toc: true
+toc-depth: 4
+engine: knitr
+webr:
+  packages:
+    - dplyr
+    - palmerpenguins
+    - ggplot2
+    - ggthemes
+    - openintro
+---
+
+{{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ../../_extensions/r-wasm/live/_gradethis.qmd >}}
+
+Some notes rely heavily on code to augment your learning and understanding of the main concepts. This "Ideas in Code" section is meant to expand more on concepts and functions that the notes utilize but may not fully explain. 
+
+This specific set of notes contains references to many functions from the `tidyverse` library such as `mutate()`, `select()` `filter()`, `arrange()`, `ggplot()`, `group_by()`, `summarize()`. We delve more into some of these functions here.
+
+#### `mutate()`
+
+This function allows you to create a new column in a dataframe. In typical `tidyverse` fashion, the first argument is a dataframe. The second argument names and defines how that new column is created. Above, we saw:
+
+```{r}
+#| code-fold: false
+library(tidyverse)
+library(openintro)
+library(palmerpenguins)
+arbuthnot |>
+    mutate(total = boys + girls) |>
+    arrange(desc(total)) |>
+    select(year, total)
+```
+
+Here, the first argument, `arbuthnot`, is piped to `mutate()` and the second argument, `total = boys + girls`, creates a new column named `total` by adding together the columns `boys` and `girls`. You can use `mutate()` to create multiple columns at the same time:
+
+```{r}
+#| code-fold: false
+arbuthnot |>
+    mutate(total = boys + girls,
+           girl_proportion = girls / total) |>
+    arrange(desc(total)) |>
+    select(year, total, girl_proportion)
+```
+
+Note that switching the order of the two new columns created above such that `girl_proportion = girls / total` comes before `total = boys + girls` will produce an error because `total` is used before it is created. 
+
+#### `select()`
+
+This function is defined above as "selecting a subset of the columns of a data frame." You've seen how to use `select()` to select or "grab" certain columns, but you can also use `select()` to *omit* certain columns. The last block of code can be rewritten to produce the same output by placing a minus sign, `-`, in front of the columns to omit:
+
+```{r}
+#| code-fold: false
+arbuthnot |>
+    mutate(total = boys + girls,
+           girl_proportion = girls / total) |>
+    arrange(desc(total)) |>
+    select(-c(boys, girls))
+```
+
+#### `arrange()`
+
+This function arranges the rows of a data frame according to some logical ordering of a column. This ordering is straightforward for numeric columns; the smallest numbers are placed first and ascend to the larger ones. That is, unless you use `desc()` (which stands for descending). 
+
+But what if you pass a column of characters to `arrange()`? Let's take a look:
+
+```{r}
+#| code-fold: false
+penguins |>
+  arrange(species) |>
+  select(species, island, bill_length_mm)
+```
+
+When arranged by species, `Adelie` penguins come first, followed by `Chinstrap`, then `Gentoo`. The penguins aren't arranged in any specific order within a species, but we can change that by passing another column to `arrange()`. Passing additional columns to `arrange()` will systematically break ties. The below code arranges the data frame first by species (alphabetically) and then breaks ties by (ascending) bill length:
+
+```{r}
+#| code-fold: false
+penguins |>
+  arrange(species, bill_length_mm) |>
+  select(species, island, bill_length_mm)
+```
+
+#### `summarize()`
+
+This function summarizes a data frame into a single row. We can summarize a data frame by taking means or calculating the number of rows as above. We can also do other calculations like taking a median or calculating the variance of a column:
+
+```{r}
+#| code-fold: false
+msleep |>
+    summarize(median_sleep = median(sleep_total),
+              variance_sleep = var(sleep_total),
+              n = n())
+```
+
+
+However, if `summarize()` is preceded by `group_by()`, then it will output multiple rows according to groups specified by `group_by()`:
+
+```{r}
+#| code-fold: false
+msleep |>
+    group_by(vore) |>
+    summarize(median_sleep = median(sleep_total),
+              variance_sleep = var(sleep_total),
+              n = n())
+```
+
+This syntax looks a lot like the syntax used for `mutate()`! Like in `mutate()`, we name and define new columns: `new_column = formula`. The difference is that `summarize()` returns a brand new data frame that does not contain the columns of the original data frame where `mutate()` returns a data frame with all columns of the original data frame in addition to the newly defined ones.

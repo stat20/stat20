@@ -146,6 +146,9 @@ scheduled-docs:
               - type: Notes
                 date: 9/13/24
                 href: 2-summarizing-data/04-conditioning/notes.qmd
+              - type: Tutorial
+                date: 9/13/24
+                href: 2-summarizing-data/04-conditioning/tutorial.qmd
           in-class:
             docs:
               - type: Slides
