@@ -331,11 +331,3 @@ p1 + p2
 ```{r}
 countdown::countdown(minutes = 5, top = 0)
 ```
-
-# Lab 2.2: Flights
-
-```{r}
-countdown::countdown(minutes = 40, top = 0)
-```
-
-# End of Lecture
