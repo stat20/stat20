@@ -12,6 +12,7 @@ webr:
     - palmerpenguins
     - ggplot2
     - ggthemes
+    - openintro
 ---
 
 {{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -170,12 +171,12 @@ In this tutorial we'll focus on three ways to hone the message of your data visu
 @. Overplotting
 -->
 @. Choosing a theme
-<!-- @. Annotations -->
+@. Annotations
 
-<!-- We will use two running examples: a line plot of the number of christenings in 17th century London which were collected by a man named John Arbuthnot, [^arbuthnot] and a scatter plot showing the bill sizes of penguins near Palmer Station, Antarctica[^palmer]. -->
+We will use two running examples: a line plot of the number of christenings in 17th century London which were collected by a man named John Arbuthnot, [^arbuthnot] and a scatter plot showing the bill sizes of penguins near Palmer Station, Antarctica[^palmer].
 
-<!-- [^arbuthnot]: For data documentation, see the `stat20data` R package.
-[^palmer]: For data documentation, see the `palmerpenguins` R package.  -->
+[^arbuthnot]: For data documentation, see the `stat20data` R package.
+[^palmer]: For data documentation, see the `palmerpenguins` R package.
 
 ```{r}
 #| message: false
@@ -183,7 +184,7 @@ In this tutorial we'll focus on three ways to hone the message of your data visu
 #| fig-width: 8
 #| fig-height: 3
 #| echo: false
-#| eval: false
+#| eval: true
 
 library(tidyverse)
 library(stat20data)
@@ -560,19 +561,28 @@ Themeing your plots is an easy way to change the look of your plot. Tinker with 
 
 [^themes]: Explore the themes available within `ggplot2` by reading the documentation <https://ggplot2.tidyverse.org/reference/ggtheme.html>. For the additional themes held in the `ggthemes` package, read this: <https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/>.
 
-<!-- ### Annotations
+### Annotations
 
 In the same way that a title highlights the main message of a plot, you can rely upon visual cues to draw attention to certain components or provide helpful context.
 
-Although the Arbuthnot records seem very simple, they actually capture a wealth of historical information. We can add this information to our plot by adding **annotations**.
+In the plot below, we visualize the change in total births recorded in London, England in the 17^th^ century, stored in the `arbuthnot` data frame. Although these records seem very simple, they actually capture a wealth of historical information. We can add this information to our plot by adding *annotations*.
 
-```{r}
+```{webr}
 #| fig-align: center
 #| fig-width: 6
 #| fig-height: 4
-#| eval: false
 #| echo: false
+#| edit: false
+#| message: false
+library(openintro)
+arbuthnot <- mutate(arbuthnot, total = girls + boys)
+```
 
+```{webr}
+#| autorun: false
+#| fig-align: center
+#| fig-width: 6
+#| fig-height: 4
 ggplot(arbuthnot, aes(x = year,
                       y = total)) +
     geom_line(color = "steelblue") +
@@ -586,13 +596,13 @@ ggplot(arbuthnot, aes(x = year,
              y = 12600, yend = 10900)
 ```
 
-Were you curious about what caused that dip in the number of christenings in 17th century London? It happens to correspond to the duration of the English Civil War, when the monarchy was overthrown by a dictator named Oliver Cromwell. This very important context can be conveyed by adding a text label and a line segment through two new `annotate()` layers.
+Were you curious about what caused that dip in the number of births in 17^th^ century London? It happens to correspond to the duration of the English Civil War, when the monarchy was overthrown by a dictator named Oliver Cromwell. This very important context can be conveyed by adding a text label and a line segment through two new `annotate()` layers.
 
 Within `ggplot2`, annotations are a flexible way to add the context or comparisons that help guide readers in interpreting your data.  You can add text, shapes, lines, points. To learn more, consult the documentation[^annotate].
 
 So if the drop after 1642 corresponds to the English Civil War, what about the spike down around 1666? What about 1703? If you're curious, explore Wikipedia to find out and add those events as annotations to this plot.
 
-[^annotate]: Documentation for annotation layers in ggplot2: <https://ggplot2.tidyverse.org/reference/annotate.html>. -->
+[^annotate]: Documentation for annotation layers in ggplot2: <https://ggplot2.tidyverse.org/reference/annotate.html>.
 
 <!-- ## 7. Drill Down using Facets -->
 
@@ -600,4 +610,4 @@ So if the drop after 1642 corresponds to the English Civil War, what about the s
 
 Over the coming weeks, you'll get lots of practice with ggplot2. It is an incredibly flexible and powerful piece of software that helps you not just *build* plots, but *think* about each of the design decisions that you make. Throughout your journey it is helpful to have a source of documentation to learn about the functionality of the tool. The help files on each function are only so useful. A better option is the official `ggplot2` documentation: <https://ggplot2.tidyverse.org/>.
 
-There are two main uses for data visualization. The first is as part of exploratory data analysis, when you are constructing plots for yourself to better understand the structure of the data. When you're ready to communicate with an outside audience using graphics, more thought is needed: you must think about the difference between mapping and setting, the use of labels for clarity, and themes.
+There are two main uses for data visualization. The first is as part of exploratory data analysis, when you are constructing plots for yourself to better understand the structure of the data. When you're ready to communicate with an outside audience using graphics, more thought is needed: you must think about the difference between mapping and setting, the use of labels for clarity, choosing a theme, and emphasizing elements of the plot using annotations.
