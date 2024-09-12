@@ -126,9 +126,7 @@ Discuss what you came up with in terms of . . .
 - the geometry
 :::
 
-```{r}
-countdown::countdown(4, top = 0)
-```
+{{< countdown "1:00" >}}
 
 
 ## What were the variables and aesthetic attributes?
@@ -188,7 +186,9 @@ What was the unit of observation? What were the variables? What were their type?
 
 ::::
 
-```{r echo = FALSE, eval = FALSE}
+```{r}
+#| echo: false
+#| eval: false
 ## don't use the gapminder package data. Remake to have the original vars: life expectancy and fertility rate
 library(gapminder)
 gapminder |>
@@ -204,40 +204,29 @@ gapminder |>
 
 - Points
 
-# Quiz Review
+# Quiz Recap
 
 -   Head to `pollev.com` for a series of former quiz questions and quiz-level questions! *Make sure you take notes*. 
 
 ## What type of claim was made?
 
-```{r}
-knitr::include_graphics("images/poll.png")
-```
-
+> The group *Morning Consult* conducted a poll of a representative sample of registered 1,256 Republican voters on August 24, 2023, asking them who they planned to vote for in the primary eleection. 58% of respondents replied "Trump" and 14% replied "DeSantis". A major news outlet ran a headline, "Trump leads DeSantis by 44 points among registered Republican voters."
 . . . 
 
-```{r}
-countdown::countdown(minutes = 1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 ## What type of variable is listeners?
 
-```{r}
-knitr::include_graphics("images/spotify.png")
-```
+![]("images/spotify.png"){fig-alt="A dataframe with a column labelled 'Listeners (in million)' with values 40, 66, 60, 73, 57, 75, and 13'}
 
 . . . 
 
-```{r}
-countdown::countdown(minutes = 1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 
 ## What type of proportion is used?
 
-```{r}
-knitr::include_graphics("images/q1.png")
-```
+![]("images/q1.png"){fig-alt="An image of a stacked bar chart with the classes along the x-asis - 1, 2, and 3 - and the bars filled with black or gray based the proportion that survived or perished."}
 
 . . . 
 
@@ -245,9 +234,7 @@ knitr::include_graphics("images/q1.png")
 
 . . . 
 
-```{r}
-countdown::countdown(minutes = 1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 ## Which measure of center/spread is least appropriate?
 
@@ -274,9 +261,7 @@ p1 / p2
 
 ```
 
-```{r}
-countdown::countdown(minutes = 1, top = 0)
-```
+{{< countdown "1:00" >}}
 
 ## What are the aesthetics and geometry of this plot?
 
@@ -294,9 +279,7 @@ ggplot(penguins, aes(x = bill_length_mm,
 
 . . . 
 
-```{r}
-countdown::countdown(1, top = 1)
-```
+{{< countdown "1:00" >}}
 
 ## What has not changed when moving from left to right?
 
@@ -328,6 +311,8 @@ p1 + p2
 
 # Break
 
-```{r}
-countdown::countdown(minutes = 5, top = 0)
-```
+{{< countdown "5:00" >}}
+
+# Worksheet: A Grammar of Graphics
+
+{{< countdown "15:00" >}}
