@@ -167,9 +167,7 @@ In this tutorial we'll focus on three ways to hone the message of your data visu
 @. Mapping versus setting
 @. Labels for clarity
 <!-- @. The importance of scale -->
-<!--
-@. Overplotting
--->
+<!-- @. Overplotting -->
 @. Choosing a theme
 @. Annotations
 
@@ -407,8 +405,7 @@ The importance of scale extends beyond scatter and line plots. Barcharts are oft
 
 [^ft2]: Graphics from the keynote of John Burn-Murdoch at rstudio::conf() 2021. -->
 
-<!--
-## 4. Overplotting
+<!-- ### Overplotting
 
 Introductory statistics students filled out a survey that asked them their opinion on several topics including:
 
@@ -419,12 +416,8 @@ Introductory statistics students filled out a survey that asked them their opini
 The result was a data frame with 707 rows (one for every respondent) and 2 columns of discrete numerical data. A natural way to visualize this data is by creating a scatter plot.
 
 ```{webr}
-#| fig-align: center
-#| fig-width: 5
-#| fig-height: 4
-#| eval: false
-
-ggplot(class_survey, aes(x = tech,
+#| autorun: false
+ggplot(class_survey, aes(x = tech_relationships,
                          y = crypto)) +
     geom_point() +
     labs(x = "Technology is destructive to relationships",
@@ -443,12 +436,7 @@ This phenomenon is called *overplotting* and it is very common in large data set
 One approach to fixing the problem of points piled on top of one another is to unpile them by adding just a little bit of random noise to their x- and y-coordinate. This technique is called *jittering* and can be done in `ggplot2` by replacing `geom_point()` with `geom_jitter()`.
 
 ```{webr}
-#| fig-align: center
-#| fig-width: 5
-#| fig-height: 4
-#| eval: false
-
-set.seed(20)
+#| autorun: false
 ggplot(class_survey, aes(x = tech,
                          y = crypto)) +
     geom_jitter() +
@@ -462,11 +450,7 @@ Ahh . . . there are those previously hidden students. Interestingly, the title o
 The second technique is to make the points transparent by changing an aestheric attribute called the *alpha* value. Let's combine tranparency with jittering to understand the effect.
 
 ```{webr}
-#| fig-align: center
-#| fig-width: 5
-#| fig-height: 4
-#| eval: false
-set.seed(20)
+#| autorun: false
 ggplot(class_survey, aes(x = tech,
                          y = crypto)) +
     geom_jitter(alpha = .3) +
@@ -477,8 +461,8 @@ ggplot(class_survey, aes(x = tech,
 
 Alpha is a number between 0 and 1, where 1 is fully opaque and 0 is fully see-through. Here, `alpha = .3`, which changes all observations from black to gray. Where the points overlap, their alpha values add to create a dark blob.
 
-There's still no sign of a strong association between these variables, but at least, by taking overplotting into consideration, we've made that determination after incorporating all of the data.
--->
+There's still no sign of a strong association between these variables, but at least, by taking overplotting into consideration, we've made that determination after incorporating all of the data. -->
+
 
 ### Choosing a Theme
 
