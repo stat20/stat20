@@ -3,6 +3,8 @@ title: "Summarizing Numerical Data"
 subtitle: "Seeing the forest for the trees."
 format: live-html
 engine: knitr
+execute:
+  echo: true
 ---
 
 {{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -11,11 +13,6 @@ Once you have your data in front of you, you've seen how we can form visual summ
 
 If you are playing along in RStudio while reading these notes (which we strongly recommend!), be sure to start off by loading the two packages that are necessary for the tutorial by running the following code.
 
-```{r}
-library(tidyverse)
-library(stat20data)
-```
-
 ### Calculating Numerical Summaries
 
 One example of a numerical variable we could have examine  is the body mass of a particular penguin (measured in grams). Let's calculate both a measure of center and spread for this variable.
@@ -23,9 +20,6 @@ One example of a numerical variable we could have examine  is the body mass of a
 To get an idea of what summaries we should pick, let's revisit the density plot from earlier.
 
 ```{r}
-#| echo: false
-#| eval: true
-#| code-fold: false
 library(tidyverse)
 library(stat20data)
 
@@ -41,9 +35,6 @@ If we take an average, it is likely to be pulled to the right by the larger, but
 Now, let's calculate these values. We should first isolate our variable of interest. We can do this in code by using the `dplyr` function **`select()`**.
 
 ```{r}
-#| echo: true
-#| eval: true
-#| code-fold: false
 body_mass <- select(penguins, body_mass_g)
 body_mass
 ```
@@ -54,9 +45,6 @@ Now, we can calculate our summaries. When working with a vector, we could use fu
 
 
 ```{r}
-#| echo: true
-#| eval: true
-#| code-fold: false
 summarise(body_mass, 
           body_mass_median = median(body_mass_g),
           body_mass_IQR = IQR(body_mass_g))
@@ -72,9 +60,6 @@ Based on what we've found, the median here supports the claim we made above: tha
 Let's return to the bill length examine of a particular penguin, measured in millimeters. Here is the density plot for *all of the data*; for simplicity, earlier we showed you the plot for only the first 16 observations.
 
 ```{r}
-#| echo: false
-#| eval: true
-#| code-fold: false
 ggplot(data = penguins, 
        mapping = aes(x= bill_length_mm)) +
   geom_density()
@@ -83,9 +68,6 @@ ggplot(data = penguins,
 This plot is interesting. It appears we have a bimodal shape! While it's tempting to state that the data is roughly symmetric and calculate an overall mean, we should first see if there are any other variables at play. It stands to reason that different species of penguin might have different anatomical features. Let's add species to the mix by using the `color` aesthetic (see if you can code along)!
 
 ```{r}
-#| echo: false
-#| eval: true
-#| code-fold: false
 ggplot(data = penguins, 
        mapping = aes(x= bill_length_mm,
                      color = species)) +
@@ -99,9 +81,6 @@ The example above demonstrates a very common scenario: you want to perform some 
 This task - performing an operation on all groups of a data set one-by-one - is such a common data science task that nearly every software tool has a good solution. In the `dplyr` package, the solution is the **`group_by()`** function. Let’s see it in action.
 
 ```{r}
-#| echo: true
-#| eval: true
-#| code-fold: false
 grouped_penguins <- group_by(penguins, species)
 ```
 
@@ -110,9 +89,6 @@ Like most `tidyverse` functions, the first argument to `group_by()` is a data fr
 Now, assuming we roll with our new `grouped_penguins` data frame, we can use `summarise()` like we did before!
 
 ```{r}
-#| echo: true
-#| eval: true
-#| code-fold: false
 summarise(grouped_penguins, 
           bill_length_mean = mean(bill_length_mm),
           bill_length_sd = sd(bill_length_mm))
@@ -125,9 +101,6 @@ From both the visuals and the numbers, we can see that Adelie penguins have much
 Finally, let's return to the violin plot of bill lengths grouped by species of penguin.
 
 ```{r}
-#| echo: false
-#| eval: true
-#| code-fold: false
 ggplot(data = penguins, 
        mapping = aes(x= bill_length_mm,
                      y = species)) +
@@ -142,24 +115,16 @@ As before, `bill_length_mm` is not a standalone vector but a column in a data fr
 Therefore, we use the `dplyr` function **`mutate()`**. A **mutation** involves changing the properties of an existing column, or adding a new one altogether (which we will explore next week). 
 
 ```{r}
-#| echo: true
-#| eval: true
-#| code-fold: false
-reordered_penguins <- 
-  mutate(penguins, 
-  species = 
-    factor(species, levels = c("Gentoo", "Chinstrap", "Adelie")))
+penguins_2 <- mutate(penguins, 
+                     species = factor(species, levels = c("Gentoo", "Chinstrap", "Adelie")))
 ```
 
 The first argument of `mutate()` is dedicated to our data frame, `penguins`. The second argument can be the name of an existing column or the name of a new column (next week). We want to change `species` to be an altered version of itself, hence we name the second argument `species`. Make sure you understand where each set of parentheses closes and ends.
 
-Now, assuming we roll with our new `reordered_penguins` data frame, we can use `ggplot()` like we did before!
+Now, assuming we roll with our new `penguins_2` data frame, we can use `ggplot()` like we did before!
 
 ```{r}
-#| echo: false
-#| eval: true
-#| code-fold: false
-ggplot(data = reordered_penguins, 
+ggplot(data = penguins_2, 
        mapping = aes(x= bill_length_mm,
                      y = species)) +
   geom_violin()
