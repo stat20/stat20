@@ -7,6 +7,12 @@ execute:
 
 # Concept Questions
 
+:::{.notes}
+This is a code heavy day, so it can be helpful to write up the names of the key dplyr verbs - mutate, arrange, select, filter, summarize, group_by - on side boards at the beginning when write short definitions as they come up. They can serve as references for the rest of the class period.
+
+It can also be helpful to have RStudio open so that you can copy and paste from these cells into RStudio and run them.
+:::
+
 ## 
 
 ```{r}
@@ -70,8 +76,8 @@ library(stat20data)
 #| eval: false
 class_survey |>
   filter(coding_exp_scale < 3,
-        olympics %in% c("Ice skating", "Speed skating"),
-        is_entrepreneur == TRUE)
+         olympics %in% c("Ice skating", "Speed skating"),
+         is_entrepreneur == TRUE)
 ```
 
 :::{.poll}
@@ -120,13 +126,20 @@ class_survey |>
 {{< countdown "1:00" >}}
 
 
-## Concept Question 2 Redux
+## Building data pipelines
 
-### Building data pipelines
+Consider the subset of students here:
+
+```{r}
+#| eval: false
+class_survey |>
+  filter(coding_exp_scale < 3,
+         olympics %in% c("Ice skating", "Speed skating"),
+         is_entrepreneur == TRUE)
+```
 
 > How do we extract the average of these students' chance that class will be disrupted by a new COVID variant?
 
-. . .
 
 Let's look at three different ways to answer this question
 
@@ -140,6 +153,10 @@ filter(class_survey,
        olympics %in% c("Ice skating", "Speed skating"),
        is_entrepreneur == TRUE)
 ```
+
+:::{.notes}
+This set of slides walks through the three different approaches to stringing together functions in R, identifies the pros and cons of each, and encourages students to use the pipe.
+:::
 
 
 ## Nesting {auto-animate=true}
@@ -187,21 +204,6 @@ summarize(select(filter(class_survey,
        covid_avg = mean(covid))
 ```
 
-
-<!--
-## Data Pipelines
-
-. . .
-
-Most claims about data start with a *raw* data set, undergo many subsetting, aggregating, and cleaning operations, then return a *data product*.
-
-![](images/pipeline-1.png)
-
-. . .
-
-> Let's look at three equivalent ways to build a pipeline
-
--->
 
 ## Nesting
 
@@ -349,7 +351,7 @@ class_survey |>
 ::::
 
 
-## Concept Question 2 Redux
+## Concept Question
 
 ```{r}
 #| eval: false
@@ -365,16 +367,19 @@ class_survey |> # A #<<
   summarize(covid_avg = mean(covid)) # D #<<
 ```
 
+```{r}
+# note
+dim(class_survey)
+```
+
 :::{.poll}
 What are the dimensions (rows x columns) of the data frames output at each stage of this pipe?
 :::
 
-. . . 
-
 {{< countdown "1:00" >}}
 
 
-## Concept Question 4
+##
 
 ```{r}
 #| eval: false
@@ -383,9 +388,9 @@ summarize(class_survey, mean(year == "I'm in my first year."))
 
 :::{.poll}
 What is will this line of code return?
-
-Respond at `pollev.com`.
 :::
+
+{{< countdown "20:00" >}}
 
 
 ## Boolean Algebra
