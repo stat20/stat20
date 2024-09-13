@@ -275,11 +275,11 @@ This code results in the same output as the first version, but it now reads a bi
 This poem is admittedly not particularly poetic.
 :::
 
-Let's look at a few examples to understand the power of such a simple piece of syntax.
+Let's look at an example to understand the power of such a simple piece of syntax.
 
-### Examples
+### Example
 
-*What year had the greatest total number of christenings?*
+<!-- *What year had the greatest total number of christenings?*
 
 In Lab 1, this question was tacked with two or three separate lines of code, one to `mutate()` and the other to `arrange()` (and possibly `select()`). As one pipeline, it is:
 
@@ -302,6 +302,7 @@ arbuthnot |>
 ```
 
 This demonstrates that you can pipe a data frame directly into a ggplot - the first argument is a data frame after all! The main thing to note is that when moving into a ggplot, the layers are added with the `+` operator instead of the pipe, `|>`.
+-->
 
 *What proportion of carnivores sleep more than 8 hours per night?*
 
