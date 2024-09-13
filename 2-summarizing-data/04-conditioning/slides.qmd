@@ -108,10 +108,10 @@ Which data frame will have fewer rows?
 ```{r}
 #| eval: false
 #| echo: true
-# this one
+# A
 filter(class_survey, year == "This is my first semester!")
 
-# or this one
+# B
 class_survey |>
   mutate(first_sem = (year == "This is my first semester!")) |>
   filter(first_sem)
