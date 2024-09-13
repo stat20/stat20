@@ -18,61 +18,24 @@ Randomized experiments are very useful for learning about causal claims; because
 
 However, we frequently need to evaluate causal claims without having access to data from a randomized experiment. <!--or an obvious natural experiment.--> Today we'll explore how to take some of the ideas important in understanding and analyzing randomized experiments and use them to make progress with data where treatment assignments are not determined by researchers. Such non-experimental studies are called *observational studies*, emphasizing that all researchers do is observe treatment assignments rather than making them.  
 
-## Natural experiments
-
-![](images/nba_foul.jpg){#fig-inflation fig-align="center" width="500px"}[^foulpic]
-
-Do evaluators tend to favor members of the same race?  In the mid-2000s two economists interested in this question, Joseph Price and Justin Wolfers, obtained data on 12 years of referee decisions from professional National Basketball Association (NBA) games. <!--including indicators for whether players and referees were Black or non-Black.--> They compared the rate at which referees gave fouls to players of the same racial category (Black or non-Black) to the rate at which fouls were given to players of the opposite category.
-
-This study aims to investigate a causal claim: for a given player in a given game, would the player's foul rate have been different if a different referee had been assigned whose racial categorization did (or did not) match the player's racial categorization?
-
-If Price and Wolfers had reached an agreement with the NBA that allowed them to assign referees to games at random, they could have conducted a randomized experiment to answer this question using the ideas from the last set of notes. This did not happen; however, Price and Wolfers argue that the actual manner in which referees were assigned to games closely resemble what they would have done in their ideal hypothetical experiment:
-
-> Assignments of referees to crews are made to balance the experience of referees across games, with groups of three referees working together for only a couple of games before being regrouped. According to the NBA, assignments of refereeing crews to specific (regular season) games is "completely arbitrary" with no thought given to the characteristics of the competing teams. Each referee works 70 to 75 games each year, and no referee is allowed to officiate more than nine games for any team, or referee twice in a city within a fourteen-day period. Although these constraints mean that assignment of refereeing crews to  games is not literally random, the more relevant claim for our approach is that assignment decisions are unrelated to the racial characteristics of either team.[^pricewolfers]
-
-To back up their claim, Price and Wolfers conduct hypothesis tests for balance
-on a variety of covariates.  Here is an excerpt from one of their balance tables.
-Each row gives a p-value for a test of the null hypothesis that this covariate
-is independent of the number of non-Black referees.
-
-|Covariate | P-value from balance test |
-|--------|---------:|
-|Year | 0.00|
-|#Black starters (home team) | 0.75 |
-|#Black starters (away team) | 0.72 |
-|Attendance | 0.49 | 
-|Home team out of contention | 0.94|
-|Away team out of contention | 0.81|
-
-Although the table suggests that the number of non-Black referees did vary over time (notice the .00 p-value in the first row) the other p-values are fairly large, suggesting approximate balance.
-
-<!--![](images/balance_table1_price_wolfers.png){#fig-inflation width="600px"}
-![](images/balance_table2_price_wolfers.png){#fig-inflation fig-align=center width="600px"}-->
-
-If indeed the process of assigning referees is independent of the race, team, and popularity of any particular team or player, as well as any other covariates that might be good predictors of foul rate, then each group provides a good approximation to the missing counterfactual outcome distribution for the other  group, and the study can be analyzed as though it were from a truly-randomized experiment to produce a good average treatment effect estimate.  
-
-At this point the problem has been reduced to one of generalization (what does the difference in foul rates in this sample say about the true difference in counterfactual foul rates for all NBA players and games?), and Price and Wolfers use a hypothesis test to address it. They find a significant discrimination effect: on average basketball players facing an officiating referee of the same racial category enjoyed a foul rate 4\% lower than when facing an officiating referee of the opposite category, and also scored 2.5\% more points.[^pricewolfers2]
-
-Studies like this are often known as natural experiments (or quasi-experiments).
-
-**Natural experiment**
-:   A study in which researchers did not randomly assign treatment but claim that the treatment process is sufficiently independent of covariates to justify treatment effect estimation.
-
-[^foulpic]: Image credit Keith Allison, obtained from Wikimedia Commons.
-
-[^pricewolfers]: From Price, J., & Wolfers, J. (2010). Racial discrimination  among NBA referees. \emph{The Quarterly Journal of Economics}, 125(4), 1859-1887.
-
-[^pricewolfers2]: Interestingly, after Price's and Wolfers' study led to a back-and-forth debate with NBA statisticians and received significant media attention, they repeated their study on mid-2010s data and found that the effect had disappeared.  Based on these results, they claimed that awareness of the potential for racial bias can  cause evaluators to eliminate it from their process. You can read about their follow-up study in Pope, D. G., Price, J., & Wolfers, J. (2018). Awareness reduces racial bias. 
-*Management Science*, 64(11), 4988-4995.
 
 
 ## Similar units with different treatments
 
-While in natural experiments we can learn about causal effects from purely observational data, only rarely are treatments we care about known to be quasi-randomly assigned as in the NBA refereeing example. More generally, we may have only amorphous knowledge of how treatment assignment occurs, or we may have compelling reasons to believe that treated and control individuals differ systematically. In this setting we need a new strategy for causal effect estimation.
+When we do not get to assign treatments randomly, treated and control subjects may
+look systematically different even before the treatment takes effect. Let's return to our example of evaluating the impact of graduating from Cal on obtaining a good job.
+The treated group of students (who choose to go to Cal) probably look different from the 
+control group (who choose not to) even before entering college; for example, the
+Cal students may have studied more in high school, and more of them may live in
+California.  These covariate imbalances threaten our ability to learn about
+the effect of Cal graduation, since treated-control differences in our outcome
+(getting a good job) could instead be explained by high school performance or state of
+residence.  Since we can't induce covariate balance by choosing who graduates from
+Cal, we need another approach to learn about the causal effect.
 
 ### Siblings
 
-Let's return to our example of evaluating the impact of graduating from Cal on obtaining a good job. Imagine that Cal student Evelyn Fix had a sister, Eleanor Fix. If Evelyn graduated from Cal and Eleanor did not, then we could observe this data frame.
+ Imagine that Cal student Evelyn Fix had a sister, Eleanor Fix. If Evelyn graduated from Cal and Eleanor did not, then we could observe this data frame.
 
 ```{r}
 #| echo: false
@@ -316,9 +279,10 @@ status and holding a good job are independent.-->
 
 ## Unobserved confounding
 
-There is at least one important difference between the matched studies discussed above and a natural experiment. In the matched study, we don't have any compelling reason to believe that graduation from Cal was randomly assigned between siblings or matched subjects. It's possible that the decision was random, but it's also possible that some hidden factor drove the decision. For example, we don't have any information about the career goals or interests of these students. If the Berkeley students all chose to attend because they love statistics and their siblings or matched controls all skipped college and spent their time practicing the guitar because they dream of becoming rock stars then maybe the real reason the former group is employed is because of their interest in a field with good job opportunities, not because of the college they attended. In the smoking twins study, it could be that the smoking twins pursued other kinds of risky behaviors (e.g. drug use, poor diet, working in dangerous jobs) at a higher rate than the non-smoking twins despite their genetic similarity. In either case, we can't be sure whether any apparent effect we observe is due to our treatment or due to these hidden differences.
+Even in studies where we can obtain very close matches between treated and control subjects, matched observational studies have at least one important weakness compared to randomized trials: they only correct imbalances in the covariates we happened to measure.
+There is at least one important difference between the matched studies discussed above and a natural experiment. In the matched study of graduation from Cal, for example, we don't have any information about the career goals or interests of these students. If the Berkeley students all chose to attend because they love statistics and their siblings or matched controls all skipped college and spent their time practicing the guitar because they dream of becoming rock stars then maybe the real reason the former group is employed is because of their interest in a field with good job opportunities, not because of the college they attended. In the smoking twins study, it could be that the smoking twins pursued other kinds of risky behaviors (e.g. drug use, poor diet, working in dangerous jobs) at a higher rate than the non-smoking twins despite their genetic similarity. In either case, we can't be sure whether any apparent effect we observe is due to our treatment or due to these hidden differences.  <!--Contrast this with a randomized trial: assigning subjects at random will tend to balance *all* covariates, observed and unobserved.-->
 
-Unless we happened to measure these covariates, the data does not help us much to refute these considerations. We have to rely on our judgment about the context to evaluate whether they are more plausible than the treatment effect. This situation is called unobserved confounding, and if it is present it can lead to substantially biased treatment effect estimates.
+The data does not help us much to refute concerns about variables that it does not contain. We have to rely on our judgment about the context to evaluate whether such hidden imbalances are more plausible than the treatment effect. This situation is called unobserved confounding, and if it is present it can lead to substantially biased treatment effect estimates.
 
 **Unobserved confounding**
 :   When unmeasured covariates predictive of our outcome variable are present and
@@ -328,6 +292,64 @@ In order to trust the causal claims arising from a matched observational study, 
 
 Notice that if we had been able to randomly assign college graduation or smoking status and had a large number of replicates, unobserved confounding would not be a concern.  Because we know randomized treatment assignment is independent of everything about study subjects, whether observed or unobserved, we expect it to balance unobserved quantities on average and can ignore them. This is the biggest thing you give up when you don't run an RCT. <!-- You need to assume
 that unobserved variables are not present.  MENTION SENSITIVITY ANALYSIS HERE OR LATER?-->
+
+
+## Natural experiments
+
+Some observational studies carry much greater concerns about unobserved confounding than others. In the Cal graduation study, subjects had a high degree of agency about whether they ended up in the treatment or the control group (since nobody is forced to graduate from Cal).  This is usually problematic for determining causal relationships, since people who know they will benefit from treatment may choose to take it, while those who know it will not help them may decide not to: this kind of difference is a major unobserved confounder! 
+
+However, in some observational studies treatment is assigned by a process that cannot easily be influenced by the subjects themselves and may ignore differences between subjects so completely as to be almost random. Causal conclusions drawn from these 
+studies, which are sometimes called \emph{natural experiments} or quasi-experiments, are more reliable than those in other observational studies..
+
+**Natural experiment**
+:   A study in which researchers did not randomly assign treatment but claim that the treatment process is sufficiently independent of covariates to justify treatment effect estimation.
+
+
+![](images/nba_foul.jpg){#fig-inflation fig-align="center" width="500px"}[^foulpic]
+
+Do evaluators tend to favor members of the same race?  In the mid-2000s two economists interested in this question, Joseph Price and Justin Wolfers, obtained data on 12 years of referee decisions from professional National Basketball Association (NBA) games. <!--including indicators for whether players and referees were Black or non-Black.--> They compared the rate at which referees gave fouls to players of the same racial category (Black or non-Black) to the rate at which fouls were given to players of the opposite category.
+
+This study aims to investigate a causal claim: for a given player in a given game, would the player's foul rate have been different if a different referee had been assigned whose racial categorization did (or did not) match the player's racial categorization?
+
+If Price and Wolfers had reached an agreement with the NBA that allowed them to assign referees to games at random, they could have conducted a randomized experiment to answer this question using the ideas from the last set of notes. This did not happen; however, Price and Wolfers argue that the actual manner in which referees were assigned to games closely resemble what they would have done in their ideal hypothetical experiment:
+
+> Assignments of referees to crews are made to balance the experience of referees across games, with groups of three referees working together for only a couple of games before being regrouped. According to the NBA, assignments of refereeing crews to specific (regular season) games is "completely arbitrary" with no thought given to the characteristics of the competing teams. Each referee works 70 to 75 games each year, and no referee is allowed to officiate more than nine games for any team, or referee twice in a city within a fourteen-day period. Although these constraints mean that assignment of refereeing crews to  games is not literally random, the more relevant claim for our approach is that assignment decisions are unrelated to the racial characteristics of either team.[^pricewolfers]
+
+To back up their claim, Price and Wolfers conduct hypothesis tests for balance
+on a variety of covariates.  Here is an excerpt from one of their balance tables.
+Each row gives a p-value for a test of the null hypothesis that this covariate
+is independent of the number of non-Black referees.
+
+|Covariate | P-value from balance test |
+|--------|---------:|
+|Year | 0.00|
+|#Black starters (home team) | 0.75 |
+|#Black starters (away team) | 0.72 |
+|Attendance | 0.49 | 
+|Home team out of contention | 0.94|
+|Away team out of contention | 0.81|
+
+Although the table suggests that the number of non-Black referees did vary over time (notice the .00 p-value in the first row) the other p-values are fairly large, suggesting approximate balance.
+
+<!--![](images/balance_table1_price_wolfers.png){#fig-inflation width="600px"}
+![](images/balance_table2_price_wolfers.png){#fig-inflation fig-align=center width="600px"}-->
+
+If indeed the process of assigning referees is independent of the race, team, and popularity of any particular team or player, as well as any other covariates that might be good predictors of foul rate, then each group provides a good approximation to the missing counterfactual outcome distribution for the other  group, and the study can be analyzed as though it were from a truly-randomized experiment to produce a good average treatment effect estimate.  
+
+At this point the problem has been reduced to one of generalization (what does the difference in foul rates in this sample say about the true difference in counterfactual foul rates for all NBA players and games?), and Price and Wolfers use a hypothesis test to address it. They find a significant discrimination effect: on average basketball players facing an officiating referee of the same racial category enjoyed a foul rate 4\% lower than when facing an officiating referee of the opposite category, and also scored 2.5\% more points.[^pricewolfers2]
+
+<!--Studies like this are often known as natural experiments (or quasi-experiments).-->
+
+
+[^foulpic]: Image credit Keith Allison, obtained from Wikimedia Commons.
+
+[^pricewolfers]: From Price, J., & Wolfers, J. (2010). Racial discrimination  among NBA referees. \emph{The Quarterly Journal of Economics}, 125(4), 1859-1887.
+
+[^pricewolfers2]: Interestingly, after Price's and Wolfers' study led to a back-and-forth debate with NBA statisticians and received significant media attention, they repeated their study on mid-2010s data and found that the effect had disappeared.  Based on these results, they claimed that awareness of the potential for racial bias can  cause evaluators to eliminate it from their process. You can read about their follow-up study in Pope, D. G., Price, J., & Wolfers, J. (2018). Awareness reduces racial bias. 
+*Management Science*, 64(11), 4988-4995.
+
+
+
 
 ## The Ideas in Code
 
