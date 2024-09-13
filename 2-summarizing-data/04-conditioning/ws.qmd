@@ -1,12 +1,12 @@
 ---
-title: "Data Pipelines"
-subtitle: "PS"
+title: "Conditioning"
+subtitle: "WS"
 format: stat20handout-typst
 ---
 
 The following practice problems all deal with a data set that's near and dear to our hearts, the Palmer penguins dataset. Like always, make sure you start your analysis by loading in the necessary packages and data sets. 
 
-1. For each question, write R code and copy the code used in the space provided. **Unless otherwise specified, your answer to each question should consist of one `dplyr` data pipeline!!**
+1. For each question, write R code and copy the code used in the space provided. *Unless otherwise specified, your answer to each question should consist of one `dplyr` data pipeline!!*
 
 2. *For the questions below that ask you to extract a subset of the data (marked with an asterisk)*, check your answer by using the new data frame you make to modify the plot made using the code provided below.
 
