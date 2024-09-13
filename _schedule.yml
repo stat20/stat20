@@ -155,6 +155,8 @@ scheduled-docs:
                 href: 2-summarizing-data/04-conditioning/slides.qmd
               - type: WS
                 href: 2-summarizing-data/04-conditioning/ws.qmd
+              - type: Lab
+                href: 2-summarizing-data/labs/flights/lab.qmd
         - topic: "Summarizing Associations"
           display-date: Sep 19/20
           date: 9/19/24
