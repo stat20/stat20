@@ -245,7 +245,7 @@ msleep_large <- filter(msleep, log_bodywt > 12)
 arrange(msleep_large, desc(log_bodywt))
 ```
 
-An approach that is more concise, easier to read, and generally faster to run is to compose these functions together with "the pipe". The pipe, written `|>`, is an operator that you have access to when you load the tidyverse package. If you have two functions, `f1` and `f2`, both of which take a data frame as the first argument, you can pipe the output of `f1` directly into `f2` using.
+An approach that is more concise, easier to read, and generally faster to run is to compose these functions together with "the pipe", written `|>`. If you have two functions, `f1` and `f2`, both of which take a data frame as the first argument, you can pipe the output of `f1` directly into `f2` using.
 
 :::{style="font-size: 1.5em; text-align: center"}
 ```
