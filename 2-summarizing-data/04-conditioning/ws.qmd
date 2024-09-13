@@ -6,23 +6,20 @@ format: stat20handout-typst
 
 The following practice problems all deal with a data set that's near and dear to our hearts, the Palmer penguins dataset. Like always, make sure you start your analysis by loading in the necessary packages and data sets. 
 
-1. For each question, write R code and copy the code used in the space provided. *Unless otherwise specified, your answer to each question should consist of one `dplyr` data pipeline!!*
+1. For each question, write R code and copy the code used in the space provided. *Unless otherwise specified, your answer to each question should consist of one `dplyr` data pipeline.*
 
 2. *For the questions below that ask you to extract a subset of the data (marked with an asterisk)*, check your answer by using the new data frame you make to modify the plot made using the code provided below.
 
 ```{r}
 #| echo: true
 #| eval: false
-ggplot(data = penguins,
-       mapping = aes(x = bill_length_mm,
+ggplot(penguins, aes(x = bill_length_mm,
                      y = bill_depth_mm,
                      color = species)) +
     geom_point() +
-  lims(x = c(30, 60),
-       y = c(12, 23))
+    lims(x = c(30, 60),
+         y = c(12, 23))
 ```
-
-## Questions 1-3
 
 #### Question 1*
 
@@ -52,16 +49,9 @@ Extract a data frame that excludes the Adelie penguins and retains penguins with
 
 Sort the data frame from **Question 2** in decreasing order by bill length.
 
-\
-\
-\
-\
-\
-\
+
 
 {{< pagebreak >}}
-
-## Questions 4-6
 
 
 #### Question 4
@@ -78,7 +68,7 @@ Calculate the mean bill length and bill depth *for each of the three species of 
 
 #### Question 5
 
-Consider a new metric called `bill_size` that's the sum of the length and depth. What is the average bill size and it's standard deviation among each species, broken out among each of the island? You may end up with potentially nine pairs of statistics. Sort your resulting data structure in decreasing order by average bill size.
+Consider a new metric called `bill_size` that's the sum of the length and depth. What is the average bill size and its standard deviation among each species, broken out among each of the island? Sort your resulting data structure in decreasing order by average bill size.
 
 \
 \
@@ -88,7 +78,7 @@ Consider a new metric called `bill_size` that's the sum of the length and depth.
 
 #### Question 6
 
-What are the total number of penguins in the data set belonging to each species-island combination? Why may have you not gotten nine pairs of statistics in the last question?
+What are the total number of penguins in the data set belonging to each species-island combination?
 
 \
 \
