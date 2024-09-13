@@ -17,7 +17,7 @@ webr:
 {{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
 {{< include ../../_extensions/r-wasm/live/_gradethis.qmd >}}
 
-This specific set of notes contains references to many functions from the `tidyverse` library such as `mutate()`, `select()`, `arrange()`, `summarize()`. We delve more into some of these functions here.
+This specific set of notes contains references to many functions from the `tidyverse` library such as `mutate()`, `select()`, `arrange()`, `summarize()`. We delve more into some of these functions here. Each one of these are code cells are editable so after running them to see the output, play with them by modifying the code and understanding how these functions work -- and how they break!
 
 #### `mutate()`
 
@@ -25,6 +25,7 @@ This function allows you to create a new column in a dataframe. In typical `tidy
 
 ```{webr}
 #| autorun: false
+#| messsage: false
 library(tidyverse)
 library(openintro)
 arbuthnot |>
