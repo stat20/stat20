@@ -4,6 +4,8 @@ subtitle: "Filtering, groupwise operations, and data pipelines."
 image: images/mammals.png
 from: markdown+emoji
 format: stat20notes-html
+execute: 
+  echo: true
 ---
 
 [I]{.dropcap}n the world of data, bigger is not always better. Sometimes there are real benefits to working with a subset of your observations that meet some particular condition. One use of conditioning is to add specificity to a claim. Another use of conditioning is to illuminate the relationship between variables.
@@ -11,8 +13,8 @@ format: stat20notes-html
 To gain practice with conditioning, let's turn to a data set that begins with a very general focus. In 2007, Savage and West published *A qualitative, theoretical framework for understanding mammalian sleep*[^msleep], wherein they "develop a general, quantitative theory for mammalian sleep that relates many of its fundamental parameters to metabolic rate and body size". Characterizing the sleep patterns of *all* mammals is a broad task and their data set is corresponding diverse. Take a look at the first ten rows of their data below.
 
 ```{r}
+#| echo: false
 library(tidyverse)
-
 msleep <- msleep |>
     mutate(log_bodywt = log(bodywt * 1000)) |>
     select(name, sleep_total, log_bodywt, 
@@ -24,6 +26,7 @@ msleep
 In this data set, the unit of observation is a single species and the variables observed on each are its name, the average length of sleep each day, the natural log of the average weight, its dietary pattern, and its conservation status. We can visualize the relationship between sleep and body size in all 83 species using a scatter plot.
 
 ```{r}
+#| echo: false
 df_labels <- filter(msleep, 
                     name %in% c("Little brown bat",
                                 "African elephant"))
@@ -67,8 +70,6 @@ In the tidyverse, these functions are named `select()`, `slice()`, and `filter()
 Filters are powerful because they comb through the values of the data frame, which is where most of the information is. The key part of any filter is the condition that you assert for the rows that are retained in your data frame. Let's set up a filter to return only the little brown bat.
 
 ```{r}
-#| code-fold: false
-
 filter(msleep, name == "Little brown bat")
 ```
 
@@ -104,8 +105,6 @@ At first, the `==` operator looks like a typo. Why doesn't we use `=`? The reaso
 Let's return only the rows with large animals, defined as those with a log body weight greater than 12.
 
 ```{r}
-#| code-fold: false
-
 filter(msleep, log_bodywt > 12)
 ```
 
@@ -118,8 +117,6 @@ What if you want both the little brown bat and the African elephant? What if you
 This filter returns the creatures who are large and who sleep little.
 
 ```{r}
-#| code-fold: false
-
 filter(msleep, log_bodywt > 12 & sleep_total < 5)
 ```
 
@@ -128,8 +125,6 @@ This can be read as "filter the `msleep` data frame to return the rows where bot
 Using `&` to represent "and" is common across most computer languages but you can alternatively use the somewhat more compact syntax of simply adding the second filter after a comma.
 
 ```{r}
-#| code-fold: false
-
 filter(msleep, log_bodywt > 12, sleep_total < 5)
 ```
 
@@ -138,8 +133,6 @@ These two methods are equivalent.
 To return all rows that either have a high body weight or low sleep time or both, use the `|` operator (sometimes called "vertical bar").
 
 ```{r}
-#| code-fold: false
-
 filter(msleep, log_bodywt > 12 | sleep_total < 5)
 ```
 
@@ -150,6 +143,7 @@ One way to keep them straight is to keep an eye on the number of observations th
 ```{r}
 #| fig-height: 3
 #| fig-align: center
+#| echo: false
 
 library(patchwork)
 
@@ -172,16 +166,12 @@ p_and + p_or
 When working with nominal categorical variables, the only operator that you'll be using is `==`. You can return a union like normal using `|`,
 
 ```{r}
-#| code-fold: false
-
 filter(msleep, name == "Little brown bat" | name == "African elephant")
 ```
 
 Or you can save some typing (and craft more readable code) by using `%in%` instead:
 
 ```{r}
-#| code-fold: false
-
 filter(msleep, name %in% c("Little brown bat", "African elephant"))
 ```
 
@@ -193,32 +183,24 @@ It is useful to pause here to look under the hood of this code. Once you get acc
 To answer this question, consider a simple numeric vector of four integers.
 
 ```{r}
-#| code-fold: false
-
 a <- c(2, 4, 6, 8)
 ```
 
 We can apply a comparison operator to this vector using the same syntax as above. Let's compare each value in this vector to see if its less than 5.
 
 ```{r}
-#| code-fold: false
-
 a < 5
 ```
 
 The result is a vector of the same length as `a` where each value indicates whether the comparison to each element was true or false. While it looks like a factor or a character vector `TRUE` and `FALSE`, this is actually our newest entry into the Taxonomy of Data: the **logical vector**.
 
 ```{r}
-#| code-fold: false
-
 class(a < 5)
 ```
 
 A logical vector can only take two values, `TRUE` and `FALSE` (R also recognizes `T` and `F` but not `True` or `true`). While it might seem like a categorical variable with only two levels, a logical vector has an important property that makes it behave like a numerical variable.
 
 ```{r}
-#| code-fold: false
-
 sum(a < 5)
 ```
 
@@ -227,8 +209,6 @@ In a logical vector, a value of true is represented both by `TRUE` and by the nu
 This dual representation is very useful because it allows us to compute a proportion using, paradoxically, the `mean()` function.
 
 ```{r}
-#| code-fold: false
-
 mean(a < 5)
 ```
 
@@ -261,8 +241,6 @@ An an example, to create a sorted data frame containing just the large animals, 
 A conventional approach breaks this process into two distinct lines of code and saves the output mid-way through.
 
 ```{r}
-#| code-fold: false
-
 msleep_large <- filter(msleep, log_bodywt > 12)
 arrange(msleep_large, desc(log_bodywt))
 ```
@@ -278,8 +256,6 @@ f1(DF) |> f2()
 Let's use the pipe to rewrite the code shown above.
 
 ```{r}
-#| code-fold: false
-
 filter(msleep, log_bodywt > 12) |> arrange(desc(log_bodywt))
 ```
 
@@ -288,7 +264,6 @@ What has changed? Most immediately, we have reduced two lines of code to one. Th
 While this is a fine way to use the pipe, your code is made much more readable if you format it like this:
 
 ```{r}
-#| code-fold: false
 msleep |>
     filter(log_bodywt > 12) |> 
     arrange(desc(log_bodywt))
@@ -309,7 +284,6 @@ Let's look at a few examples to understand the power of such a simple piece of s
 In Lab 1, this question was tacked with two or three separate lines of code, one to `mutate()` and the other to `arrange()` (and possibly `select()`). As one pipeline, it is:
 
 ```{r}
-#| code-fold: false
 library(stat20data)
 
 arbuthnot |>
@@ -321,8 +295,6 @@ arbuthnot |>
 *What is the trend in the total number of christenings over time?*
 
 ```{r}
-#| code-fold: false
-
 arbuthnot |>
     mutate(total = boys + girls) |>
     ggplot(aes(x = year, y = total)) +
@@ -336,14 +308,13 @@ This demonstrates that you can pipe a data frame directly into a ggplot - the fi
 Answering this requires two steps: `filter()`ing to focus on carnivores and `summarize()`ing with a proportion that meet a condition (recall that a comparison results in a logical vector of 0s and 1s). It is often a good idea to record the number of observations that go into a summary statistic, which we do here with `n()`.
 
 ```{r}
-#| code-fold: false
 msleep |>
     filter(vore == "carni") |>
     summarize(p_gt_8hrs = mean(sleep_total > 8),
               n = n())
 ```
 
-## Groupwise Operations
+## Groupwise Operations Revisited...
 
 The last example above demonstrates a very common scenario: you want to perform some calculations on one particular group of observations in your data set. But what if you want to do that same calculation for every group?
 
@@ -352,7 +323,6 @@ The `vore` variable has four levels: `carni`, `herbi`, `insecti`, and `omni`. It
 This task - performing an operation on all groups of a data set one-by-one - is such a common data science task that nearly every software tool has a good solution. In the tidyverse, the solution is the `group_by()` function. Let's see it in action.
 
 ```{r}
-#| code-fold: false
 msleep |>
     group_by(vore) |>
     summarize(p_gt_8hrs = mean(sleep_total > 8),
@@ -364,7 +334,6 @@ Like most tidyverse functions, the first argument to `group_by()` is a data fram
 `group_by()` is an incredibly powerful function because it changes the behavior of downstream functions. Lets break our pipeline and inspect the data frame that comes out of it.
 
 ```{r}
-#| code-fold: false
 msleep |>
     group_by(vore)
 ```
