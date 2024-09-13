@@ -277,11 +277,22 @@ This poem is admittedly not particularly poetic.
 
 Let's look at an example to understand the power of such a simple piece of syntax.
 
-### Example
+### Example 2
 
-<!-- *What year had the greatest total number of christenings?*
+*What proportion of carnivores sleep more than 8 hours per night?*
 
-In Lab 1, this question was tacked with two or three separate lines of code, one to `mutate()` and the other to `arrange()` (and possibly `select()`). As one pipeline, it is:
+Answering this requires two steps: `filter()`ing to focus on carnivores and `summarize()`ing with a proportion that meet a condition (recall that a comparison results in a logical vector of 0s and 1s). It is often a good idea to record the number of observations that go into a summary statistic, which we do here with `n()`.
+
+```{r}
+msleep |>
+    filter(vore == "carni") |>
+    summarize(p_gt_8hrs = mean(sleep_total > 8),
+              n = n())
+```
+
+*What year had the greatest total number of christenings?*
+
+The original `arbuthnot` data frame, which captures birth records in 17^th^ century London, in fact records the numbers of boys and girls names that appear in church christening records. To find the year with the greatest total number of christenings requires first the creation of a new column with `mutate()`, then `arrange()`ing the rows of that data frame, then `select()`ing just the rows of interst. As one pipeline, that is:
 
 ```{r}
 library(stat20data)
@@ -302,18 +313,6 @@ arbuthnot |>
 ```
 
 This demonstrates that you can pipe a data frame directly into a ggplot - the first argument is a data frame after all! The main thing to note is that when moving into a ggplot, the layers are added with the `+` operator instead of the pipe, `|>`.
--->
-
-*What proportion of carnivores sleep more than 8 hours per night?*
-
-Answering this requires two steps: `filter()`ing to focus on carnivores and `summarize()`ing with a proportion that meet a condition (recall that a comparison results in a logical vector of 0s and 1s). It is often a good idea to record the number of observations that go into a summary statistic, which we do here with `n()`.
-
-```{r}
-msleep |>
-    filter(vore == "carni") |>
-    summarize(p_gt_8hrs = mean(sleep_total > 8),
-              n = n())
-```
 
 ## Groupwise Operations Revisited...
 
