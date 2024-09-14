@@ -1,5 +1,5 @@
 ---
-title: "Lab 2.1: Class Survey"
+title: "Lab Part I: Class Survey"
 format: stat20handout-typst
 ---
 
