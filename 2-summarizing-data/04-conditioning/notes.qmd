@@ -348,7 +348,7 @@ Well, not *exactly* like it: there is now a note at the top that the data frame 
 
 ## Summary
 
-There are several ways to subset a data frame but the most important for data analysis is filtering: subsetting the rows according to a condition. In R, that condition is framed in terms of a comparison between a variable and a value (or set of values). Comparisons take many forms and can be combined using logical operators. The result is a logical vector that can be used for filtering or computing summary statistics. You can perform simulataneous analyses on multiple subsets by doing groupwise operations with `group_by()`.
+There are several ways to subset a data frame but the most important for data analysis is filtering: subsetting the rows according to a condition. In R, that condition is framed in terms of a comparison between a variable and a value (or set of values). Comparisons take many forms and can be combined using logical operators. The result is a logical vector that can be used for filtering or computing summary statistics. You can perform simultaneous analyses on multiple subsets by doing groupwise operations with `group_by()`.
 
 As we begin to do analyses that require multiple operations, the pipe operator, `|>`, can be used to stitch the functions together into a single pipeline.
 
