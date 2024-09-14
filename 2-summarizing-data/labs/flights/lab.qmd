@@ -25,146 +25,39 @@ For the questions on the handout, consult the image of the data frame found in t
 
 The data for this lab can be found in the `flights` data frame in the `stat20data` package. Run `?flights` at the console to learn more about the columns. *Where applicable, answer each question with one pipeline, which may include `dplyr` code, `ggplot2` code or both*.
 
+
 #### Question 1
 
 How many flights in the dataset left in the springtime and were destined for Portland, Oregon? 
 
-#### Question 2
-
-Arrange the data set to find out: which flight holds the record for longest departure delay (in hrs) and what was its destination? What was the destination and delay time (in hrs) for the flight that was least delayed, i.e. that left the most ahead of schedule? This can be done in two separate pipelines.
-
-#### Question 3
-
-I attempted to find some summary statistics on the arrival delay of flights, grouped by their airline carrier. You can find the mininmum and maximum of numerical variables using the `min()` and `max()` function, respectively. This is the code that I ran.
-
-```{r, echo = TRUE, eval = FALSE}
-flights |>
-    group_by(carrier) |>
-    summarise(min_arr_delay = min(arr_delay)) |>
-    summarise(max_arr_delay = max(arr_delay)) |>
-    summarise(prop_long_flight = mean(distance > 1000))
-```
-
-However, I received an error and the code would not run.
-Explain the origin of this error, then modify/correct the code and run it to display the output I was hoping to achieve. 
-
-#### Question 4
-
-Using the airport nearest your hometown, which day of the week and which airline seems best for flying there from San Francisco? If you’re from near SFO or OAK or from abroad, use Chicago as your hometown. Be clear on how you’re defining best. Feel free to mutate a column(s) to your dataset which might be your preferred way to determine best.
-
-There is no explicit weekday column in this data set, but there is sufficient information to piece it together. The following line of code can be added to your pipeline to create that new column. Note also that it uses functions which are contained in the `lubridate` package.
-
-```{r, echo = TRUE, eval = FALSE}
-mutate(day_of_week =
-            wday(ymd(paste(year, month, day, set = "-")),
-            label = T))
-```
-
-#### Question 5
-
-The plot below shows the relationship between the number of flights going out of SFO and the average departure delay. It illustrates the hypothesis that more flights on a given day would lead to a more congested airport which would lead to greater delays on average. Each point represents single day in 2020; there are 366 of them on the plot. Form a single `dplyr` and `ggplot2` chain that will create this plot, starting with the original data set. *Hint: What does each point on the plot represent? Is it the same as the unit of observation of the initial dataset?*
-
-![](images/complex-ggplot.png){fig-align=center}
-
-#### Question 6
-
-Create a histogram showing the distribution of departure delays for all flights. You must follow the steps below:
-
--   Set the limits of the x-axis to focus on where most of the data lie.
-
--   Outline the bars of your histogram with one color. 
-
--   Add a text annotation somewhere on the plot that explains the meaning of a negative departure delay.
-
--   Finally, title your plot with a claim about the shape and modality of the distribution.
-
-#### Question 7
-
-Create a plot to examine the relationship between average speed and distance (you will have to make the average speed column first) in one pipeline, labeling your x and y axes. Save this plot into an object and print it to the screen.
-
-#### Question 8
-
-Rewrite the code for the plot you made in **Question 7**, coloring the points by destination, and use this to provide a possible explanation for the relationship between the two variables (particularly, the noticeable gap) in the plot title. 
-
-
-#### Question 9
-
-
--   First, calculate the correlation coefficient between average speed and distance.
-
--   Then, mutate two new variables onto the data frame: 
-    -   (natural) log of average speed
-    -   (natural) log of distance 
-
--   Visualize the new variables and title your plot with a claim based on what you see.
-
--   Finally, calculate the correlation coefficient between log of average speed and log of distance.
-
-The process of applying functions to existing variables (such as logarithm or squaring) in a dataset is often called **transforming** one's data. 
-
-
-#### Question 10
-
-Explain which pair of variables have a relationship which is better described via a linear model:
-
--   distance and average speed
--   log distance and log average speed 
-
-Explain in one or two sentences, using your results from **Question 7** and **Question 9** as support.
-
-
-#### Question 11
-
-Fit a linear model to the variables you chose from **Question 10**. Then determine which flight had the fastest average speed given its distance traveled.
-
-#### Question 12
-
-Fit a multiple linear regression model that explains arrival delay using departure delay and the distance of the flight and print out the coefficients (the intercept and two slopes). 
-
-#### Question 13
-
-On average, which carrier's flights had the smallest arrival delay given their departure delay and distance? 
-
-#### Question 14
-
-Can we compare the coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not? State your answer in 2-3 sentences. 
-
-
-<!--
-
-#### Question 1
-
-Filter the data set to contain only the flights that left in the springtime destined for Portland, Oregon and print the first few rows of the data frame. How many were there in 2020?
-
 
 #### Question 2
 
-Mutate a new variable called `avg_speed` that is the average speed of the plane during the flight, measured in miles per hour. Save it back into the data frame; you'll use it later on (Look through the column names or the help file to find variables that can be used to calculate this.)
+Create a new variable called `avg_speed` that is the average speed of the plane during the flight, measured in miles per hour. Save it back into the data frame; you'll use it later on.
 
 
 #### Question 3
 
-Arrange the data frame to figure out: which flight holds the record for longest departure delay (in hrs) and what was its destination? What was the destination and delay time (in hrs) for the flight that was least delayed, i.e. that left the most ahead of schedule?
+Arrange the data frame to figure out: what is the destination and delay time (in hrs) for the flight that was *most* delayed, i.e. that left the most ahead of schedule?
 
 
 #### Question 4
 
-Confirm the records for departure delay from the question above by summarizing that variable by its maximum and its minimum value.
+Arrange the data frame to figure out: what is the destination and delay time (in hrs) for the flight that was *least* delayed, i.e. that left the most ahead of schedule?
 
 
 #### Question 5
 
-What is the mean departure delay of flights leaving from Oakland and San Francisco separately? (calculate two means)
-
+What proportion of all of the flights left on or ahead of schedule? For Oakland and SFO separately, what proportion of flights left on or ahead of schedule?
 
 #### Question 6
 
-What proportion of the flights left on or ahead of schedule? For Oakland and SFO separately, what proportion of flights left on or ahead of schedule?
+For Oakland and SFO separately, what proportion of flights left on or ahead of schedule?
 
 
 #### Question 7
 
-How many flights left SFO during March 2020? See the examples of Data Pipelines in the Conditioning notes for a helpful function.
+How many flights left SFO during March 2020?
 
 
 #### Question 8
@@ -179,73 +72,65 @@ Create a bar chart that shows the distribution by month of all the flights leavi
 
 #### Question 10
 
-Create a histogram showing the distribution of departure delays for all flights. Describe in words the shape and modality of the distribution and, using numerical summaries, (i.e. summary statistics) its center and spread. Be sure to use measures of center and spread that are most appropriate for this type of distribution. Also set the limits of the x-axis to focus on where most of the data lie.
+Create a histogram showing the distribution of departure delays for all flights. Be sure to
+
+  - set the limits of the x-axis to focus on where most of the data lie,
+  - add a text annotation that explains the meaning of a negative departure delay,
+  - and below the plot a 1-2 that describes the shape and modality of the distribution.
 
 
 #### Question 11
 
-Add a new column to your data frame called `before_times` that takes values of `TRUE` and `FALSE` indicating whether the flight took place up through the end of March or after April 1st, respectively. Remake the histograms above, but now separated into two subplots: one with the departure delays from the before times, the other with the flights from afterwards. Can you visually detect any difference in the distribution of departure delays?
-
-This is best done with a new layer called `facet_wrap()`. Learn about it's use by reading the documentation: <https://ggplot2.tidyverse.org/reference/facet_wrap.html>.
+Create a data frame that contains the median and interquartile range for departure delays, grouped by carrier. Which carrier has the lowest typical departure delay? Which one has the least variable departure delays?
 
 
 #### Question 12
 
-If you flew out of OAK or SFO during this time period, what is the tail number of the plane that you were on? If you did not fly in this period, find the tail number of the plane that flew JetBlue flight 40 to New York's JFK Airport from SFO on May 1st.
+Create a plot that captures the relationship of average speed vs. distance and describe the shape and structure that you see. What phenomena related to taking flights from the Bay Area might explain this structure?
 
 
 #### Question 13
 
-Create a data frame that contains the median and interquartile range for departure delays, grouped by carrier. Which carrier has the lowest typical departure delay? Which one has the least variable departure delays?
+For flights leaving SFO, which month has the highest mean departure delay? What about the highest median departure delay? Which of these measures is more useful to know when deciding which month(s) to avoid flying if you particularly dislike flights that are severely delayed?
 
 
 #### Question 14
 
-Create a plot that captures the relationship of average speed vs. distance and describe the shape and structure that you see. What phenomena related to taking flights from the Bay Area might explain this structure?
-
+Each individual airplane can be uniquely identified by its tailnumber in the same way that US citizens can be by their social security numbers. Which airplane flew the farthest in total during this year for which we have data? How many times around the planet does that translate to?
 
 
 #### Question 15
 
-For flights leaving SFO, which month has the highest average departure delay? What about the highest median departure delay? Which of these measures is more useful to know when deciding which month(s) to avoid flying if you particularly dislike flights that are severely delayed?
+What is the tailnumber of the fastest plane in the data set? What type of plane is it (google it!)? Be sure to be clear how you're defining fastest.
+
 
 #### Question 16
 
-Each individual airplane can be uniquely identified by its tailnumber in the same way that US citizens can be by their social security numbers. Which airplane flew the farthest during this year for which we have data? How many times around the planet does that translate to?
+The plot below shows the relationship between the number of flights going out of SFO and the average departure delay. It illustrates the hypothesis that more flights on a given day would lead to a more congested airport which would lead to greater delays on average. Each point represents single day in 2020; there are 366 of them on the plot. Please form a single pipeline that will create this plot, starting with the raw data set.
+
+![](images/complex-ggplot.png){fig-align=center}
 
 
 #### Question 17
 
-What is the tailnumber of the fastest plane in the data set? What type of plane is it (google it!)? Be sure to be clear how you're defining fastest.
+Create a plot to illustrate the association between departure delay and arrival delay. Summarize the linear relationship by calculating the correlation coefficient and by fitting a linear model and showing the value of those statistics (this requires two multiple pipelines). For an optional challenge, use `geom_smooth()` to superimpose the linear model on the scatter plot.
+
 
 #### Question 18
 
-Using the airport nearest your hometown, which day of the week and which airline seems best for flying there from San Francisco?  If you're from near SFO or OAK or from abroad, use Chicago as your hometown. Be clear on how you're defining *best*.
+Which flight has the longest arrival delay given its departure delay?
 
-Note that there is no explicit weekday column in this data set, but there is sufficient information to piece it together. The following line of code can be added to your pipeline to create that new column. It uses functions in the `lubridate` package, so be sure to load it in at the start of this exercise.
-
-```{r}
-#| echo: true
-#| code-fold: false
-#| eval: false
-mutate(day_of_week = wday(ymd(paste(year, month, day, set = "-")), label = T))
-```
 
 #### Question 19
 
-The plot below shows the relationship between the number of flights going out of SFO and the average departure delay. It illustrates the hypothesis that more flights on a given day would lead to a more congested airport which would lead to greater delays on average. Each point represents single day in 2020; there are 366 of them on the plot. Please form a single chain that will create this plot, starting with the raw data set.
+Fit a multiple linear regression model that explains arrival delay using departure delay and the distance of the flight and print out the coefficients (the intercept and two slopes). Speculate as to why the *sign* (positive or negative) of the distance coefficient is what it is.
 
-![](images/complex-ggplot.png){fig-align=center}
 
 #### Question 20
 
-Create a plot to illustrate the association between departure delay and arrival delay. Summarize the linear relationship by calculating the correlation coefficient and by fitting a linear model.
-
-Which flight has the highest arrival delay given its departure delay? (Consult the slides from Summarizing Associations for helpful code. For an extra challenge, use the code from the notes to superimpose the linear model on the scatter plot).
+On average, which carrier's flights had the smallest arrival delay given their departure delay and distance? 
 
 
 #### Question 21
 
-Fit a multiple linear regression model that explains arrival delay using departure delay and the distance of the flight and print out the coefficients (the intercept and two slopes). Speculate as to why the *sign* (positive or negative) of the distance coefficient is what it is. Can we compare the coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not?
-
--->
+Can we compare the regression coefficients for departure delay and distance to understand which has the stronger relationship? Why or why not?
