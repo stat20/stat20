@@ -354,4 +354,4 @@ As we begin to do analyses that require multiple operations, the pipe operator, 
 
 If you're thinking, :grimacing: , yikes there was a *lot* of coding in these notes, you're right. Keep reading, you'll have an opportunity for some practice in the tutorial.
 
-
+[Continue on to the tutorial portion of the notes {{< fa arrow-right-long size=xl >}} ](tutorial.qmd){style="fontsize: 1.5em"}
