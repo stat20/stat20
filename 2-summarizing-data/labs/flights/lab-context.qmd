@@ -1,13 +1,7 @@
 ---
+title: "Lab Part I: Flights"
 format: stat20handout-typst
 ---
-
-\thispagestyle{empty}
-
-\begin{center}
-\textsc{Stat 20: Lab 2.1 Flights} \\
-\noindent\rule{12cm}{0.4pt}
-\end{center}
 
 @. What is the unit of observation in the data frame in the slides?
 
@@ -31,10 +25,9 @@ format: stat20handout-typst
 \
 \
 \
+\
+\
 
-
-
-<!--
 
 @. Which variables are categorical?
 
@@ -54,6 +47,9 @@ format: stat20handout-typst
 \
 \
 \
+\
+\
+\
 
 @. Do any of the variables have ambiguous data types to you? Write them here.
 
@@ -61,40 +57,8 @@ format: stat20handout-typst
 \ 
 \ 
 \ 
-\ 
-\ 
-\ 
 
--->
-
-
-
-@. Name a variable which has an ambiguous (could be numerical or categorical) type to you. Then, sketch *two* visualizations of this plot: one where the variable is treated numerically, and one where the variable is being treated categorically. In each plot:
-
--   depict a shape which reflects *your expectation* of the phenomenon;
--   label your axes and provide a title.
-
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-
-
+{{< pagebreak >}}
 <!--
 @. Is there any discernible pattern to the manner in which the rows are ordered?
 
@@ -110,7 +74,7 @@ format: stat20handout-typst
 \
 
 
-@. What filter would you use to extract the flights that left in the springtime destined for Portland, Oregon?
+@. Write the code to extract the flights that left in the springtime destined for Portland, Oregon?
 Draw a sketch of this smaller data frame showing at least the columns used in the filter.
 
 \
@@ -122,13 +86,10 @@ Draw a sketch of this smaller data frame showing at least the columns used in th
 \
 \
 \
-\
-\
-\
 
 
 
-@. What mutation would you use to create a column that records `TRUE` for flights leaving during or after March 2020 and `FALSE` otherwise? 
+@. What line of code would you use to create a new column that records `TRUE` for flights leaving during or after March 2020 and `FALSE` otherwise? 
 
 \
 \
@@ -137,7 +98,7 @@ Draw a sketch of this smaller data frame showing at least the columns used in th
 
 
 
-@. What mutation would you use to create a column that records the average speed of a plane during its flight, in miles per hour? *Hint: think about the units of the variables needed to complete this mutation, and perform any unit conversion that is necessary.* 
+@. What line of code would you use to create a column that records the average speed of a plane during its flight, in miles per hour? *Hint: think about the units of the variables needed to complete this mutation, and perform any unit conversion that is necessary.* 
 \
 \
 \
@@ -149,18 +110,7 @@ Draw a sketch of this smaller data frame showing at least the columns used in th
 
 
 
-@. Provide one `dplyr` pipeline that calculates the mean departure delay for Oakland and San Francisco Airports. Provide a sketch of the resulting data structure with correct dimensions.
-
-
-\
-\
-\
-\
-\
-\
-\
-\
-\
+@. Provide one `dplyr` pipeline that calculates the mean departure delay for Oakland Airport and the mean departure delay for San Francisco Airport. Provide a sketch of the resulting data structure with correct dimensions.
 
 
 
