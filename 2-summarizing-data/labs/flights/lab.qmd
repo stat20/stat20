@@ -1,7 +1,6 @@
 ---
-title: "Lab 2: Flights"
+title: "Flights"
 image: images/airline.png
-code-fold: false
 sidebar: false
 ---
 
