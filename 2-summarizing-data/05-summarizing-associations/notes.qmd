@@ -152,9 +152,6 @@ select(poverty, Graduates, Poverty)
 Since it is a data frame, we can use the `summarize()` function to calculate our summary statistic.
 
 ```{r}
-#| echo: true
-#| code-fold: false
-
 poverty %>%
   summarize(r = cor(Poverty, Graduates))
 ```
@@ -164,9 +161,6 @@ The value of -0.747 tells us that the linear association between these variables
 Let's repeat this calculation for the data frame that created the shapeless scatter plot with no association, `poverty_shuffled`.
 
 ```{r}
-#| echo: true
-#| code-fold: false
-
 poverty_shuffled %>%
   summarize(r = cor(Poverty, Graduates))
 ```
@@ -227,14 +221,10 @@ That works remarkably well!
 The function that was used to calculate the least squares slope and intercept is `lm()`. 
 
 ```{r}
-#| code-fold: false
-#| echo: true
 lm(Graduates ~ Poverty, data = poverty)
 ```
 
 The syntax for `lm()` uses what's called "formula notation" in R. The first argument is a formula of the form `y ~ x` and can be read as, "Explain the y as a function of the x". In the second argument, you specify which data frame contains the variables used in the formula.
-
-<!-- Maybe put lm() under a heading and/or provide a template in the same way we did for ggplot at first. -->
 
 So if the correlation coefficient measures the strength of the linear relationship between two variables, what exactly are the slope and intercept measuring? The slope captures the expected change in the $y$ associated with the $x$ changing by 1 unit. In this example, states that are separated by 1 percentage point in their poverty rate tend to be separated by about -.89 in their graduation rate. This is distinct from what the correlation tells us because while $r$ will stay the same regardless of the units in which the data is measured, $b_1$ is expressly designed to tell us how those units of measurement relate to one another.
 
@@ -257,8 +247,6 @@ $\hat{y}_i$ is said "y hat sub i" and is also called the "fitted value".
 Let's calculate the residual for California. Here is that row in the data set.
 
 ```{r}
-#| code-fold: false
-#| echo: true
 poverty %>%
   filter(State == "California") %>%
   select(State, Graduates, Poverty)
@@ -267,8 +255,6 @@ poverty %>%
 This shows us that for California, $y = 81.1$, so the next step is to find where the line passes through California's x-value, $x = 12.8$. There are several ways to do that calculation, including using R like a calculator and simply plugging that value into the equation for the line show above.
 
 ```{r}
-#| code-fold: false
-#| echo: true
 y_hat <- 96.2022 - 0.8979 * 12.8
 y_hat
 ```
@@ -276,8 +262,6 @@ y_hat
 With that in hand, we can calculate California's residual.
 
 ```{r}
-#| code-fold: false
-#| echo: true
 81.1 - y_hat
 ```
 
@@ -285,7 +269,6 @@ This residual tells us that California is actually a bit of an underachiever. Am
 
 The calculation of the residual can be seen in the plot below.
 
-:::{.content-visible when-format="html"}
 ```{r}
 #| fig-width: 4
 #| fig-height: 4
@@ -314,39 +297,7 @@ poverty %>%
        y = "Graduation Rate") +
   theme_bw()
 ```
-:::
 
-:::{.content-visible when-format="pdf"}
-```{r}
-#| fig-width: 4
-#| fig-height: 4
-#| fig-align: center
-#| echo: false
-library(ggrepel)
-poverty <- poverty %>%
-  mutate(is_ca = case_when(
-    State == "California" ~ "California (12.8, 81.1)", 
-    TRUE ~ ""))
-ca_pred <- m1$fitted.values[poverty$State == "California"]
-poverty %>%
-  ggplot(aes(x = Poverty, 
-             y = Graduates)) +
-  annotate("segment", x = 12.8, xend = 12.8, 
-           y = 81.1, yend = ca_pred,
-           lty = 2, color = "tomato") +
-  annotate("segment", x = 5.2, xend = 12.8, 
-           y = ca_pred, yend = ca_pred,
-           lty = 2, color = "darkgray") +
-  geom_point() +
-  geom_text_repel(aes(label = is_ca)) +
-  geom_abline(slope = coef(m1)[2],
-              intercept = coef(m1)[1],
-              color = "blue") +
-  labs(x = "Poverty Rate",
-       y = "Graduation Rate") +
-  theme_bw()
-```
-:::
 The horizontal dashed line represents $\hat{y} = 84.7$, the y-value of the least squares line when it passes through $x = 12.8$. The vertical red dashed line is the residual: the distance between the line and the observation in the y direction.
 
 Residuals open up a new avenue for numerical statistics. While the slope and intercept are two statistics that tell us about the *overall* linear relationship between the two variables, each residual is a statistic that tells us whether an *individual* observation's y-value is higher or lower than we'd expect based on its x-value.
@@ -357,11 +308,6 @@ If you have $n$ data points, you can calculate $n$ residuals.
 
 ## Summary
 
-In these notes we considered the question of how to capture the association between two variables with numerical summary statistics. The correlation coefficient is one of the most common: it captures the strength and direction of the linear trend. This statistic can be used, along with other simple summary statistics, to calculate the slope and intercept of the least squares line. The least squares line is an alternative approach to summarizing the linear relationship between two numerical variables. It has the advantage of providing an expectation for the y-value of every observation, which allows us to calculate residuals which are expressions of whether each observation is higher or lower than we'd expect.
+In these notes we considered the question of how to capture the association between two variables with visualizations and numerical summary statistics. The correlation coefficient is one of the most common: it captures the strength and direction of the linear trend. This statistic can be used, along with other simple summary statistics, to calculate the slope and intercept of the least squares line. The least squares line is an alternative approach to summarizing the linear relationship between two numerical variables. It has the advantage of providing an expectation for the y-value of every observation, which allows us to calculate residuals which are expressions of whether each observation is higher or lower than we'd expect.
 
 We'll spend time practicing calculating these statistics - and looking at lots of scatter plots - in class.
-
-{{< include images/tmp/_date-meta.md >}}
-
-{{< include ../../assets/includes/_links-to-materials.qmd >}}
-
