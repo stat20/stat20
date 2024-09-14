@@ -1,36 +1,39 @@
 ---
 title: "Lab: Flights"
-format:
-  revealjs:
-    author: "STAT 20: Introduction to Probability and Statistics"
-    height: 900
-    width: 1600
-    theme: ../../../assets/slides.scss
-    multiplex: false
-    transition: fade
-    slide-number: c
-    incremental: false
-    center: false
-    menu: false
-    highlight-style: github
-    progress: false
-    code-overflow: wrap
-    title-slide-attributes:
-      data-background-image: ../../../assets/stat20-hex-bg.png
-      data-background-size: contain
+format: stat20slides-revealjs
 ---
 
 
-# Lab: Flights
+# Lab: 
+
+:::{.notes}
+These slides are an opporunity to introduce your students to the context of the flight data they'll use in this lab. It consists of all flights that left OAK and SFO during the 2020 calendar year. There are a few reason student find this data set interesting:
+
+- They're often surprised to learn that such detailed information about flights is public record and that, if they flew in 2020, they can find out the exact plane they were on and exactly when it departed and landed.
+- This data set spans 2020, when many flights were grounded at the start of the pandemic. That signal shows up loud and clear in this data.
+- This data set is the largest that they'll see in this class, so the sheer size can be compelling.
+:::
 
 ## {background-image="images/sf-chronicle.png" background-size="contain"}
 
+:::{.notes}
+This headline is a good introduction to the impact that the pandemic had on flights and on SFO in particular.
+:::
+
 ## {background-image="images/bts.png" background-size=contain}
+
+:::{.notes}
+The Bureau of Transportation Statistics is the federal agency that collects and hosts this data for public download.
+
+As a side note, if students are interested in pulling down more recent data, this data was pulled using the `allflights` R package, which they can download and install in RStudio.
+:::
 
 # Part I: Understanding the Context of the Data
 
 ## {background-image="images/flights.png" background-size=contain}
 
-```{r}
-countdown::countdown(25, top = 0)
-```
+:::{.notes}
+The goal of the "Think before you compute" design of these labs is that the students should be able to do their thinking without the distractions of technology. If you project this data frame, that should be sufficient for them to answer all of the questions in Part I.
+:::
+
+{{< countdown "25:00" >}}
