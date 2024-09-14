@@ -7,45 +7,43 @@ format: stat20slides-revealjs
 
 ## Estimate the correlation
 
-:::{.poll}
-What is the (Pearson) correlation coefficient between these two variables?
-:::
-
 ```{r}
-#| fig-align: center
 #| fig-width: 5
 #| fig-height: 3
+#| fig-align: center
 library(tidyverse)
 n_samples <- 100
-set.seed(1)
+set.seed(10)
 x <- runif(n = n_samples, min = -1, max = 1) 
 y <- -x + rnorm(n = n_samples, mean = 0, sd = .1)
 
 data.frame(x = x, 
-           y = y) %>% 
+           y = y) |> 
   ggplot(aes(x = x, y = y)) +  
   geom_point() +
-  theme_bw()
+  theme_bw(base_size = 20)
 ```
 
-:::notes
-This plot has a strong negative linear association, so the correlation coefficient will be around -.8 or -.9.
+:::{.poll}
+What is the (Pearson) correlation coefficient between these two variables?
+:::
 
-The goal of this exercise is threefold:
-- Start calibrating the ability to associate the correlation with the structure in a scatter plot.
-- Make it clear that this is still just an informal eye-balling procedure (therefore multiple answers can be reasonable, but some are un-reasonable).
-- Set some of them up for a challenge on the next one; some will conflate correlation with association.
+:::{.notes}
+This plot has a very strong negative linear association; the correlation coefficient is -.98.
+
+The goal of this exercise is threefold: 1. Start calibrating the ability to associate the correlation with the structure in a scatter plot. 2. Make it clear that this is still just an informal eye-balling procedure (therefore multiple answers can be reasonable, but some are unreasonable). 3. Set some of them up for a challenge on the next one; some will conflate correlation with association.
+
+If you'd like to train their eye a bit more, you can open up https://www.guessthecorrelation.com/ in a browser and play the game a few times.
 :::
 
 {{< countdown "1:00" >}}
 
-
 ## 
 
 ```{r}
-#| fig-align: center
 #| fig-width: 8
 #| fig-height: 5
+#| fig-align: center
 
 # simulate data -----------------------------------------------------
 set.seed(9274)
@@ -58,7 +56,7 @@ y_lin_pos_weak <- 3*x1 + 10 + rnorm(length(x1), mean = 0, sd = 20)
 
 x2 <- seq(-8, -2, by = 0.05)
 
-y_n <- -1 * (x2 + 5)^2 + 1 + rnorm(length(x2), mean = 0, sd = 2)
+y_n <- -.35 * x2 + -1 * (x2 + 5)^2 + 1 + rnorm(length(x2), mean = 0, sd = 2)
 y_lin_neg_strong <- -5 * x2 + 3 + rnorm(length(x2), mean = 0, sd = 2)
 y_none <- rnorm(length(x2), mean = 0, sd = 1)
 
@@ -68,8 +66,8 @@ df <- data.frame(x = c(rep(x1, 3), rep(x2, 3)),
                  plot_num = rep(LETTERS[1:6], each = length(x1)))
 
 library(tidyverse)
-pa <- df %>%
-    filter(plot_num == "A") %>%
+pa <- df |>
+    filter(plot_num == "A") |>
     ggplot(aes(x = x, 
                y = y)) +
     geom_point() +
@@ -82,8 +80,8 @@ pa <- df %>%
     labs(x = "",
          y = "")
 
-pb <- df %>%
-    filter(plot_num == "B") %>%
+pb <- df |>
+    filter(plot_num == "B") |>
     ggplot(aes(x = x, 
                y = y)) +
     geom_point() +
@@ -96,8 +94,8 @@ pb <- df %>%
     labs(x = "",
          y = "")
 
-pc <- df %>%
-    filter(plot_num == "C") %>%
+pc <- df |>
+    filter(plot_num == "C") |>
     ggplot(aes(x = x, 
                y = y)) +
     geom_point() +
@@ -110,8 +108,8 @@ pc <- df %>%
     labs(x = "",
          y = "")
 
-pd <- df %>%
-    filter(plot_num == "D") %>%
+pd <- df |>
+    filter(plot_num == "D") |>
     ggplot(aes(x = x, 
                y = y)) +
     geom_point() +
@@ -124,8 +122,8 @@ pd <- df %>%
     labs(x = "",
          y = "")
 
-pe <- df %>%
-    filter(plot_num == "E") %>%
+pe <- df |>
+    filter(plot_num == "E") |>
     ggplot(aes(x = x, 
                y = y)) +
     geom_point() +
@@ -138,8 +136,8 @@ pe <- df %>%
     labs(x = "",
          y = "")
 
-pf <- df %>%
-    filter(plot_num == "F") %>%
+pf <- df |>
+    filter(plot_num == "F") |>
     ggplot(aes(x = x, 
                y = y)) +
     geom_point() +
@@ -157,27 +155,25 @@ library(patchwork)
 (pa + pb + pc) / (pd + pe + pf)
 ```
 
-:::{.poll}
+::: poll
 Which *four* plots exhibit the strongest association?
 :::
 
 {{< countdown "1:00" >}}
 
-:::{.notes}
-Student will likely identify A, B, E, and F. F only appears to be highly associated because of the scaling of the y-axis. This is a good opportunity to review definition of association. The following slides demonstrate the effects of that scaling.
+::: notes
+Student will likely identify B, D, E, and F. F only appears to be highly associated because of the scaling of the y-axis. This is a good opportunity to review definition of association. The following slides demonstrate the effects of that scaling.
 :::
 
-## Correlation and Scale {auto-animate=true}
+## Pearson Correlation and Scale {auto-animate="true"}
 
 ```{r}
 #| echo: false
-df_f <- filter(df, plot_num == "F") %>%
+df_f <- filter(df, plot_num == "F") |>
     select(x, y)
 ```
 
-
-:::: {.columns}
-
+::::: columns
 ::: {.column width="45%"}
 ```{r}
 #| echo: true
@@ -187,15 +183,12 @@ df_f
 :::
 
 ::: {.column width="55%"}
-
 :::
+:::::
 
-::::
+## Pearson Correlation and Scale {auto-animate="true"}
 
-## Pearson Correlation and Scale {auto-animate=true}
-
-:::: {.columns}
-
+::::: columns
 ::: {.column width="45%"}
 ```{r}
 #| echo: true
@@ -204,20 +197,17 @@ df_f
 :::
 
 ::: {.column width="55%"}
-
 :::
+:::::
 
-::::
+## Pearson Correlation and Scale {auto-animate="true"}
 
-## Pearson Correlation and Scale {auto-animate=true}
-
-:::: {.columns}
-
+::::: columns
 ::: {.column width="45%"}
 ```{r}
 #| echo: true
 #| eval: false
-df_f %>%
+df_f |>
     ggplot(aes(x = x,
                y = y)) +
     geom_point() +
@@ -227,20 +217,17 @@ df_f %>%
 :::
 
 ::: {.column width="55%"}
-
 :::
+:::::
 
-::::
+## Pearson Correlation and Scale {auto-animate="true"}
 
-## Pearson Correlation and Scale {auto-animate=true}
-
-:::: {.columns}
-
+::::: columns
 ::: {.column width="45%"}
 ```{r}
 #| echo: true
 #| eval: false
-df_f %>%
+df_f |>
     ggplot(aes(x = x,
                y = y)) +
     geom_point() +
@@ -254,7 +241,7 @@ df_f %>%
 #| echo: false
 #| eval: true
 #| fig-height: 8
-df_f %>%
+df_f |>
     ggplot(aes(x = x,
                y = y)) +
     geom_point(size = 5) +
@@ -262,18 +249,16 @@ df_f %>%
     theme_bw(base_size = 36)
 ```
 :::
+:::::
 
-::::
+## Pearson Correlation and Scale {auto-animate="true"}
 
-## Pearson Correlation and Scale {auto-animate=true}
-
-:::: {.columns}
-
+::::: columns
 ::: {.column width="45%"}
 ```{r}
 #| echo: true
 #| eval: false
-df_f %>%
+df_f |>
     ggplot(aes(x = x,
                y = y)) +
     geom_point() +
@@ -282,20 +267,17 @@ df_f %>%
 :::
 
 ::: {.column width="55%"}
-
 :::
+:::::
 
-::::
+## Pearson Correlation and Scale {auto-animate="true"}
 
-## Pearson Correlation and Scale {auto-animate=true}
-
-:::: {.columns}
-
+::::: columns
 ::: {.column width="45%"}
 ```{r}
 #| echo: true
 #| eval: false
-df_f %>%
+df_f |>
     ggplot(aes(x = x,
                y = y)) +
     geom_point() +
@@ -308,7 +290,7 @@ df_f %>%
 #| echo: false
 #| eval: true
 #| fig-height: 8
-df_f %>%
+df_f |>
     ggplot(aes(x = x,
                y = y)) +
     geom_point(size = 5) +
@@ -316,73 +298,83 @@ df_f %>%
 
 ```
 :::
+:::::
 
-::::
-
-## Pearson Correlation and Scale {auto-animate=true}
+## Pearson Correlation and Scale {auto-animate="true"}
 
 ```{r}
 #| echo: true
 #| eval: false
-df_f %>%
+df_f |>
     summarize(pearson = cor(x, y))
 ```
 
-
-## Pearson Correlation and Scale {auto-animate=true}
+## Pearson Correlation and Scale {auto-animate="true"}
 
 ```{r}
 #| echo: true
-df_f %>%
+df_f |>
     summarize(pearson = cor(x, y))
 ```
-
 
 <!-- ## Non-linear Associations -->
 
 <!-- ```{r} -->
+
 <!-- countdown::countdown(3, top = 0) -->
+
 <!-- ``` -->
 
 <!-- ```{r} -->
+
 <!-- #| fig-align: center -->
+
 <!-- #| fig-width: 5 -->
+
 <!-- #| fig-height: 3 -->
+
 <!-- n_samples <- 100 -->
+
 <!-- set.seed(1) -->
+
 <!-- x <- runif(n = n_samples, min = -1, max = 1)  -->
+
 <!-- y <- x^2 + rnorm(n = n_samples, mean = 0, sd = .1) -->
 
-<!-- data.frame(x = x, y = y) %>% -->
+<!-- data.frame(x = x, y = y) |> -->
+
 <!--   ggplot(aes(x = x, y = y)) + -->
+
 <!--   geom_point() + -->
+
 <!--   theme_bw() -->
+
 <!-- ``` -->
 
-
 <!-- :::{.poll} -->
+
 <!-- #### Group discussion -->
 
 <!-- Come up with at least one example from real life where you might expect to see this kind of U-shaped association. Come up with another example of an inverted U-shape. -->
+
 <!-- ::: -->
 
 ## Describing Associations
 
 When considering the structure in a scatter plot, pay attention to:
 
-1. The strength of the association
-   - *How much does the conditional distribution of y change when you move along the x?*
-   
+1.  The strength of the association
+    -   *How much does the conditional distribution of y change when you move along the x?*
+
 . . .
 
-2. The shape of the association
-   - *Linear? Quadratic? Cubic or beyond?*
-   
+2.  The shape of the association
+    -   *Linear? Quadratic? Cubic or beyond?*
+
 . . .
 
-3. The direction of the (linear) association
-   - *Positive or negative?*
-
+3.  The direction of the (linear) association
+    -   *Positive or negative?*
 
 ## 
 
@@ -395,7 +387,7 @@ poverty <- read_delim("poverty.csv")
 
 m1 <- lm(Graduates ~ Poverty, data = poverty)
 
-p_nolabs <- poverty %>%
+p_nolabs <- poverty |>
   ggplot(aes(x = Poverty, 
              y = Graduates)) +
   geom_point() +
@@ -409,18 +401,17 @@ p_nolabs <- poverty %>%
 p_nolabs
 ```
 
-:::poll
+::: poll
 Guess: Which state has the highest poverty rate? The lowest?
 :::
 
-:::notes
-This can be asked without poll-everywhere, without group discussion, just asking students to shout out which states they think will have highest and lowest. They often have prior guesses about this.
+::: notes
+This can be asked without poll-everywhere, without group discussion, just asking students to shout out which states they think will have highest and lowest.
 
-As they answer, ask where they're thinking those states points are; how they're using this plot to think about the highest povery rate and the lowest poverty rate. Point out that these two questions donest even take advantage of the scatter plot, which allows you to see the relationship between two variables. Each question just deals with the *marginal* distribution of poverty or graduation rate, which could just as well be two separate histograms, as shown on the next slide.
+As they answer, ask where they're thinking those states points are; how they're using this plot to think about the highest povery rate and the lowest poverty rate. Point out that these two questions don't even take advantage of the scatter plot, which allows you to see the relationship between two variables. Each question just deals with the *marginal* distribution of poverty or graduation rate, which could just as well be two separate histograms, as shown on the next slide.
 :::
 
-
-##
+## 
 
 ```{r}
 #| fig-align: center
@@ -436,16 +427,13 @@ library(patchwork)
 p_grad + p_poverty
 ```
 
-:::notes
+::: notes
 This is an equally-useful set of plots to answer the previous question.
 
 If we want to ask a question that requires a scatter plot (and a linear model) to answer, we need to ask a conditional question.
 :::
 
-##
-
-{{< countdown "1:00" >}}
-
+## 
 
 ```{r}
 #| fig-width: 5
@@ -459,15 +447,17 @@ p_nolabs +
 
 . . .
 
-:::poll
+::: poll
 Which state has the highest graduation rate given its poverty rate?
 :::
 
-:::notes
+{{< countdown "1:00" >}}
+
+::: notes
 This assesses whether or not students have an informal sense of what a residual is.
 :::
 
-# Worksheet: Summarizing Numerical Associations 
+# Worksheet: Summarizing Numerical Associations
 
 {{< countdown "20:00" >}}
 
@@ -478,4 +468,3 @@ This assesses whether or not students have an informal sense of what a residual 
 # Lab Part 2: Flights
 
 {{< countdown "25:00" >}}
-
