@@ -115,11 +115,11 @@ Which data frame will have fewer rows?
 #| eval: false
 #| echo: true
 # A
-filter(class_survey, year == "This is my first semester!")
+filter(class_survey, time_at_cal == "This is my first semester!")
 
 # B
 class_survey |>
-  mutate(first_sem = (year == "This is my first semester!")) |>
+  mutate(first_sem = (time_at_cal == "This is my first semester!")) |>
   filter(first_sem)
 ```
 
@@ -337,7 +337,7 @@ It's good practice to understand the output of each line of code by *breaking th
 #| error: true
 class_survey |>
   select(covid) |>
-  filter(year == "It's my first year.")
+  filter(time_at_cal == "It's my first time_at_cal.")
 ```
 :::
 
@@ -383,14 +383,19 @@ What are the dimensions (rows x columns) of the data frames output at each stage
 
 ```{r}
 #| eval: false
-summarize(class_survey, mean(year == "I'm in my first year."))
+summarize(class_survey,
+          mean(time_at_cal == "I'm in my first year.", na.rm = TRUE))
 ```
 
 :::{.poll}
 What is will this line of code return?
 :::
 
-{{< countdown "20:00" >}}
+{{< countdown "1:00" >}}
+
+:::{.notes}
+This will return the *proportion* of students who answered "I'm in my first year". This is surprising to students because it's not immediately clear that a mean of a logical vector is the same as the proportion of cases that are true.
+::
 
 
 ## Boolean Algebra
