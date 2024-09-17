@@ -25,9 +25,6 @@ This function allows you to create a new column in a dataframe. In typical `tidy
 
 ```{webr}
 #| autorun: false
-#| messsage: false
-library(tidyverse)
-library(openintro)
 arbuthnot |>
     mutate(total = boys + girls) |>
     arrange(desc(total)) |>
