@@ -21,7 +21,7 @@ For the questions on the handout, consult the image of the data frame found in t
 - [Part 1: Understanding the Context of the Data](lab-context.qmd)
 
 
-## Part II: Computing on the Data
+<!-- ## Part II: Computing on the Data
 
 The data for this lab can be found in the `flights` data frame in the `stat20data` package. Run `?flights` at the console to learn more about the columns. *Where applicable, answer each question with one pipeline, which may include `dplyr` code, `ggplot2` code or both*.
 
@@ -143,5 +143,5 @@ Will you ensure that your submission to Gradescope...
 2. has all of your code visible to readers,
 3. and assigns each of the questions to all pages that show your work for that question?
 
-(This one is easy! Just answer "yes" or "no")
+(This one is easy! Just answer "yes" or "no") -->
 

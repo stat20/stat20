@@ -118,10 +118,8 @@ scheduled-docs:
             docs:
               - type: Notes
                 href: 2-summarizing-data/03-a-grammar-of-graphics/notes.qmd
-                draft: false
               - type: Tutorial
                 href: 2-summarizing-data/03-a-grammar-of-graphics/tutorial.qmd
-                draft: false
           in-class:
             docs:
               - type: Slides
