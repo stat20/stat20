@@ -15,7 +15,7 @@ format: stat20notes-html
 library(tidyverse)
 poverty <- read_delim("poverty.csv")
 
-poverty <- poverty %>%
+poverty <- poverty |>
   mutate(group = case_when(
     Poverty < 9 ~ "low",
     Poverty >= 9 & Poverty <= 13 ~ "med",
@@ -63,17 +63,17 @@ These density curves are conditional distributions because we've set a condition
 #| fig-align: center
 
 # Prepare plot on the left
-poverty_2 <- poverty %>%
+poverty_2 <- poverty |>
   filter(group != "med")
 
-p_real_densities <-  poverty_2 %>%
+p_real_densities <-  poverty_2 |>
   ggplot(aes(y = Graduates, fill = group)) +
   geom_density(alpha = .5) +
   theme_void() + 
   theme(legend.position = "none") +
   lims(y = c(77, 92.5))
 
-p_real_scatter <- poverty %>%
+p_real_scatter <- poverty |>
   ggplot(aes(x = Poverty, 
              y = Graduates)) +
   annotate("rect", xmin = 5, xmax = 9,
@@ -90,17 +90,17 @@ p_real_scatter <- poverty %>%
   theme(legend.position = "none")
 
 # Prepare plot on the right
-poverty_shuffled_2 <- poverty_shuffled %>%
+poverty_shuffled_2 <- poverty_shuffled |>
   filter(group != "med")
 
-p_shuf_densities <-  poverty_shuffled_2 %>%
+p_shuf_densities <-  poverty_shuffled_2 |>
   ggplot(aes(y = Graduates, fill = group)) +
   geom_density(alpha = .5) +
   theme_void() + 
   theme(legend.position = "none") +
   lims(y = c(77, 92.5))
 
-p_shuf_scatter <- poverty_shuffled_2 %>%
+p_shuf_scatter <- poverty_shuffled_2 |>
   ggplot(aes(x = Poverty, 
              y = Graduates)) +
   annotate("rect", xmin = 5, xmax = 9,
@@ -146,13 +146,15 @@ Several different statistics have been proposed for measuring association. This 
 The data frame used to create the scatter plot above on the left looks like this.
 
 ```{r}
+#| echo: true
 select(poverty, Graduates, Poverty)
 ```
 
 Since it is a data frame, we can use the `summarize()` function to calculate our summary statistic.
 
 ```{r}
-poverty %>%
+#| echo: true
+poverty |>
   summarize(r = cor(Poverty, Graduates))
 ```
 
@@ -161,7 +163,8 @@ The value of -0.747 tells us that the linear association between these variables
 Let's repeat this calculation for the data frame that created the shapeless scatter plot with no association, `poverty_shuffled`.
 
 ```{r}
-poverty_shuffled %>%
+#| echo: true
+poverty_shuffled |>
   summarize(r = cor(Poverty, Graduates))
 ```
 
@@ -221,6 +224,7 @@ That works remarkably well!
 The function that was used to calculate the least squares slope and intercept is `lm()`. 
 
 ```{r}
+#| echo: true
 lm(Graduates ~ Poverty, data = poverty)
 ```
 
@@ -247,14 +251,16 @@ $\hat{y}_i$ is said "y hat sub i" and is also called the "fitted value".
 Let's calculate the residual for California. Here is that row in the data set.
 
 ```{r}
-poverty %>%
-  filter(State == "California") %>%
+#| echo: true
+poverty |>
+  filter(State == "California") |>
   select(State, Graduates, Poverty)
 ```
 
 This shows us that for California, $y = 81.1$, so the next step is to find where the line passes through California's x-value, $x = 12.8$. There are several ways to do that calculation, including using R like a calculator and simply plugging that value into the equation for the line show above.
 
 ```{r}
+#| echo: true
 y_hat <- 96.2022 - 0.8979 * 12.8
 y_hat
 ```
@@ -262,6 +268,7 @@ y_hat
 With that in hand, we can calculate California's residual.
 
 ```{r}
+#| echo: true
 81.1 - y_hat
 ```
 
@@ -274,12 +281,12 @@ The calculation of the residual can be seen in the plot below.
 #| fig-height: 4
 #| fig-align: center
 library(ggrepel)
-poverty <- poverty %>%
+poverty <- poverty |>
   mutate(is_ca = case_when(
     State == "California" ~ "California (12.8, 81.1)", 
     TRUE ~ ""))
 ca_pred <- m1$fitted.values[poverty$State == "California"]
-poverty %>%
+poverty |>
   ggplot(aes(x = Poverty, 
              y = Graduates)) +
   annotate("segment", x = 12.8, xend = 12.8, 
@@ -310,4 +317,6 @@ If you have $n$ data points, you can calculate $n$ residuals.
 
 In these notes we considered the question of how to capture the association between two variables with visualizations and numerical summary statistics. The correlation coefficient is one of the most common: it captures the strength and direction of the linear trend. This statistic can be used, along with other simple summary statistics, to calculate the slope and intercept of the least squares line. The least squares line is an alternative approach to summarizing the linear relationship between two numerical variables. It has the advantage of providing an expectation for the y-value of every observation, which allows us to calculate residuals which are expressions of whether each observation is higher or lower than we'd expect.
 
-We'll spend time practicing calculating these statistics - and looking at lots of scatter plots - in class.
+We'll spend time practicing calculating these statistics - and looking at lots of scatter plots - in class. We've also prepared a tutorial to help you become adept at working with linear models in R.
+
+[Continue on to the tutorial portion of the notes {{< fa arrow-right-long size=xl >}} ](tutorial.qmd){style="fontsize: 1.5em"}

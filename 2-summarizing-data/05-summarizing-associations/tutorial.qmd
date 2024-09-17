@@ -1,0 +1,115 @@
+---
+title: "Summarizing Numerical Associations"
+subtitle: "Correllation and the least squares line"
+format: live-html
+toc: true
+toc-depth: 4
+engine: knitr
+webr:
+  packages:
+    - dplyr
+    - tidyr
+    - palmerpenguins
+    - ggplot2
+---
+
+{{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ../../_extensions/r-wasm/live/_gradethis.qmd >}}
+
+#### `cor()`
+
+The `cor()` function will calculate the Pearson correlation coefficient between two vectors. When working with a data frame, it is used in combination with `summarize()`.
+
+```{webr}
+#| echo: false
+#| edit: false
+penguins <- penguins |>
+  drop_na(bill_length_mm, bill_depth_mm)
+```
+
+```{webr}
+#| autorun: false
+penguins |>
+  summarize(r = cor(bill_length_mm, bill_depth_mm))
+```
+
+Note that in comparison to other numerical summaries that we have calculated with `summarize()`, the correlation is function of *two* variables. Also, as always, keep an eye out for missing values. 
+
+#### `lm()`
+
+The workhorse of the linear modeling in R is the `lm()` function. Generically, this function takes the form:
+
+```{style="font-size: 1.5em; text-align: center"}
+lm(y ~ x, data = my_df)
+```
+
+This can be read as, "I'd like a linear model that explains y as a function of x, both coming from the my_df data frame." Correspondingly, be sure that `y` and `x` are columns found in `my_df`.
+
+Unlike many of the functions we've been learning lately, you will generally call `lm()` on it's own line and not as part of a data pipeline. To fit a model that explains `bill_length_mm` as a function of `bill_depth_mm` and save that model to a new object called `m1`, you would use:
+
+```{webr}
+#| autorun: false
+m1 <- lm(bill_length_mm ~ bill_depth_mm, data = penguins)
+```
+
+Because you've saved the linear model as `m1`, when you run this line of code, it won't return any output. However, now you can refer to the model later on in your code. To see the values of the estimated coefficients (the slope and the intercept), you can just enter the name of that model.
+
+```{webr}
+#| autorun: false
+m1
+```
+
+#### `fitted()`
+
+The fitted values, $\hat{y}_i$, are the $y$ values where the linear model passes through the x coordinates of the observations ($x_i$). They give a sense of the y value that your linear model expects for that observation, given it's x value. You can extract those fitted values from your linear model by simply calling the `fitted()` function on your model.
+
+```{webr}
+#| autorun: false
+fitted(m1)
+```
+
+Note that when you run this line of code, it gets messy! It returns a vector that is the same length as the number of (non-missing) observations; if you have $n$ observations, you will have $n$ fitted values.
+
+It is often helpful to store these statistics that emerge from your linear model in your data frame right alongside the variables used to fit the model. We can do so using the `mutate()` function.
+
+```{webr}
+#| autorun: false
+penguins <- penguins |>
+  mutate(y_hat = fitted(m1))
+```
+
+You can check how your fitted values compare to your original data by isolating those columns with `select()` and taking a peek at the first few rows.
+
+```{webr}
+#| autorun: false
+penguins |>
+  select(bill_depth_mm, 
+         bill_length_mm, 
+         y_hat)
+```
+
+Sure enough, your fitted values, $\hat{y}_i$, look fairly similar to the original $y_i$ (`bill_length_mm`).
+
+
+#### `resid()`
+
+Now that you have your fitted values in your data frame, you could calculate residuals yourself by creating a new column that is the difference between $y_i$ and $\hat{y}_i$. However, you can also get there by using the `resid()` function. This works similarly to `fitted()` - it operates on your linear model object and returns a vector of residuals - so lets jump straight to putting the residuals back into our data frame.
+
+```{webr}
+#| autorun: false
+penguins <- penguins |>
+  mutate(e_hat = resid(m1))
+```
+
+Let's see how that worked.
+
+```{webr}
+#| autorun: false
+penguins |>
+  select(bill_depth_mm, 
+         bill_length_mm, 
+         y_hat, 
+         e_hat)
+```
+
+It worked just as we expected: in the first row, the value of `e_hat` is the observed y value, `bill_length_mm`, minus the expected/fitted y value, `y_hat`.

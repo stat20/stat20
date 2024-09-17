@@ -161,7 +161,11 @@ scheduled-docs:
           before-class:
             docs:
               - type: Notes
+                date: 9/17/24
                 href: 2-summarizing-data/05-summarizing-associations/notes.qmd
+              - type: Tutorial
+                date: 9/17/24
+                href: 2-summarizing-data/05-summarizing-associations/tutorial.qmd
           in-class:
             docs:
               - type: Slides
