@@ -186,14 +186,9 @@ scheduled-docs:
     - week: 5
       unit: Generalization
       days:
-        - topic: "Quiz 2"
+        - topic: "No Class"
           display-date: Sep 23
           date: 9/23/24
-          in-class:
-            docs:
-              - type: Slides
-                href: assets/quiz-slides.qmd
-                draft: false
           due-tomorrow:
             - WSP 3
         - topic: "Intro to Probability"

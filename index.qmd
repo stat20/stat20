@@ -19,7 +19,7 @@ listing:
 Introduction to Probability and Statistics
 :::
 
-[Stat 20 UC Berkeley]{.smallcaps}
+🧊[Stat 20 UC Berkeley]{.smallcaps}🧊
 
 :::
 

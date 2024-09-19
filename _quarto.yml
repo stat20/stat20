@@ -13,6 +13,12 @@ site-url: "https://stat20.berkeley.edu/fall-2024"
 
 # Website Configuration and Layout
 website:
+  announcement: 
+    icon: info-circle
+    dismissable: true
+    content: "Stat 20 is on hold while we wait the restoration of ventilation to Moffitt 145. For up-to-date information on what this means, please check the pinned post on Ed."
+    type: primary
+    position: below-navbar
   title: "Stat 20"
   description: "Introduction to Probability and Statistics at UC Berkeley"
   google-analytics: G-WP7F4QKDC8
