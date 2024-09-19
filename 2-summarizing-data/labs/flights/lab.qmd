@@ -21,7 +21,7 @@ For the questions on the handout, consult the image of the data frame found in t
 - [Part 1: Understanding the Context of the Data](lab-context.qmd)
 
 
-<!-- ## Part II: Computing on the Data
+## Part II: Computing on the Data
 
 The data for this lab can be found in the `flights` data frame in the `stat20data` package. Run `?flights` at the console to learn more about the columns. *Where applicable, answer each question with one pipeline, which may include `dplyr` code, `ggplot2` code or both*.
 
@@ -110,7 +110,7 @@ The plot below shows the relationship between the number of flights going out of
 
 ![](images/complex-ggplot.png){fig-align=center}
 
-
+<!--
 #### Question 17
 
 Create a plot to illustrate the association between departure delay and arrival delay. Summarize the linear relationship by calculating the correlation coefficient and by fitting a linear model and showing the value of those statistics (this requires two multiple pipelines). For an optional challenge, use `geom_smooth()` to superimpose the linear model on the scatter plot.
