@@ -28,7 +28,51 @@ format: stat20slides-revealjs
 
 ::: {.column width="50%"}
 
-![](images/classic_its.png)
+```{r, fig.width = 10, fig.height = 10}
+library(tidyverse)
+#| echo: false
+
+gen_ts_data <- function(te  ,ttrend , ctrend = NULL, ntime = 2, 
+                        nsubj = 8, pure.control = FALSE){
+    max.time <- floor(ntime/2)
+    min.time <- floor(-ntime/2)+1
+    x.grid <- min.time:max.time
+    if(is.null(ctrend)) ctrend <- ttrend
+    y.out <- matrix(NA,nrow = nsubj, ncol = ntime)
+    colnames(y.out) <- paste('time',min.time:max.time, sep = '.')
+
+    for(i in 1:nsubj){
+      if(pure.control && i > nsubj/2 ){
+        te <- 0
+        ttrend <- ctrend
+      }
+      y.out[i,] <- ttrend(x.grid) + rnorm(ntime) + te*(x.grid > 0)
+    }
+    cbind(y.out, 'treat' = rep(1,nsubj) - pure.control*(1:nsubj > nsubj/2) )
+}
+
+
+linear.trend <- function(x){2*x + 50}
+classic_its_data <- gen_ts_data(te = 6, ttrend = linear.trend, ntime = 6)
+
+#use pivot_longer to create dataframe and make plots.
+classic_its_long <- as.data.frame(classic_its_data) |>
+  mutate('uniqueID' = 1:nrow(classic_its_data)) |>
+  pivot_longer(cols = starts_with("time"), names_to = c("time"), 
+               names_prefix = c('time.'), names_transform = as.integer,
+               values_to = "y") |>
+  mutate(treat = ifelse(time > 0, 'Treated', 'Control'))
+
+classic_its_long |>
+  ggplot(mapping =aes(y=y, x = time, group = uniqueID, col = treat)) + 
+  geom_line() + 
+  geom_point() + 
+  geom_vline(xintercept = 1, lty = 'dotted') + 
+  theme(text = element_text(size = 25))
+```
+
+
+<!--![](images/classic_its.png)-->
 :::
 
 ::: {.column width="50%"}
@@ -65,7 +109,30 @@ a jump at the time of treatment).  Neither pre/post nor diff-in-diff works, beca
 :::: {.columns}
 
 ::: {.column width="50%"}
-![](images/curved_parallel.png)
+```{r, fig.width = 10, fig.height = 10}
+#curved parallel trends
+curved_trend_t <- function(x){(x+1)^2 + 55}
+curved_trend_c <- function(x){(x+1)^2 + 50}
+curved_parallel <- gen_ts_data(te = 5, ttrend = curved_trend_t, 
+                               ctrend = curved_trend_c, ntime = 6,
+                               pure.control = TRUE)
+#use pivot_longer to create dataframe and make plots.
+curved_parallel_long <- as.data.frame(curved_parallel) |>
+  mutate('uniqueID' = 1:nrow(curved_parallel)) |>
+  pivot_longer(cols = starts_with("time"), names_to = c("time"), 
+               names_prefix = c('time.'), names_transform = as.integer,
+               values_to = "y") |>
+  mutate(treat = ifelse(time > 0 & treat == 1, 'Treated', 'Control'))
+
+curved_parallel_long |>
+  ggplot(mapping =aes(y=y, x = time, group = uniqueID, col = treat)) + 
+  geom_line() + 
+  geom_point() + 
+  geom_vline(xintercept = 1, lty = 'dotted') + 
+  theme(text = element_text(size = 25))
+```
+
+<!--![](images/curved_parallel.png)-->
 
 :::
 
@@ -100,7 +167,29 @@ The answer here is C.  Neither pre/post nor ITS works because of the curved time
 :::: {.columns}
 
 ::: {.column width="50%"}
-![](images/curved_its.png)
+```{r, fig.width=10, fig.height=10}
+#ITS with non-parallel trend
+curved_trend_t <- function(x){(x+1)^2 + 55}
+#curved_trend_c <- function(x){(x+1)^2 + 50}
+its_nonparallel <- gen_ts_data(te = 5, ttrend = curved_trend_t, 
+                               ctrend = curved_trend_c, ntime = 6)
+#use pivot_longer to create dataframe and make plots.
+its_nonparallel_long <- as.data.frame(its_nonparallel) |>
+  mutate('uniqueID' = 1:nrow(its_nonparallel)) |>
+  pivot_longer(cols = starts_with("time"), names_to = c("time"), 
+               names_prefix = c('time.'), names_transform = as.integer,
+               values_to = "y") |>
+  mutate(treat = ifelse(time > 0 & treat == 1, 'Treated', 'Control'))
+
+its_nonparallel_long |>
+  ggplot(mapping =aes(y=y, x = time, group = uniqueID, col = treat)) + 
+  geom_line() + 
+  geom_point() + 
+  geom_vline(xintercept = 1, lty = 'dotted') + 
+  theme(text = element_text(size = 25))
+```
+
+<!--![](images/curved_its.png)-->
 :::
 
 ::: {.column width="50%"}
@@ -133,7 +222,29 @@ The answer here is D.  It's the same setting as the last question except that no
 :::: {.columns}
 
 ::: {.column width="50%"}
-![](images/two_flat.png)
+
+
+```{r, fig.width=10, fig.height=10}
+#flat line with jump
+two_flat <- gen_ts_data(te = -12, ttrend = function(x){55}, ntime = 6)
+#use pivot_longer to create dataframe and make plots.
+two_flat_long <- as.data.frame(two_flat) |>
+  mutate('uniqueID' = 1:nrow(two_flat)) |>
+  pivot_longer(cols = starts_with("time"), names_to = c("time"), 
+               names_prefix = c('time.'), names_transform = as.integer,
+               values_to = "y") |>
+  mutate(treat = ifelse(time > 0 & treat == 1, 'Treated', 'Control'))
+
+two_flat_long |>
+  ggplot(mapping =aes(y=y, x = time, group = uniqueID, col = treat)) + 
+  geom_line() + 
+  geom_point() + 
+  geom_vline(xintercept = 1, lty = 'dotted') + 
+  theme(text = element_text(size = 25))
+```
+
+
+<!--![](images/two_flat.png)-->
 
 :::
 
@@ -168,8 +279,28 @@ The answer here is either A or B.  The trends are flat so pre/post works, but IT
 :::: {.columns}
 
 ::: {.column width="50%"}
+```{r, fig.width=10, fig.height=10}
+neg_linear_trend <- function(x){-x + 44}
+its_linear_cross <- gen_ts_data(te = 5, ttrend = linear.trend, 
+                               ctrend = neg_linear_trend, ntime = 6,
+                               pure.control = TRUE)
+#use pivot_longer to create dataframe and make plots.
+its_linear_cross_long <- as.data.frame(its_linear_cross) |>
+  mutate('uniqueID' = 1:nrow(its_linear_cross)) |>
+  pivot_longer(cols = starts_with("time"), names_to = c("time"), 
+               names_prefix = c('time.'), names_transform = as.integer,
+               values_to = "y") |>
+  mutate(treat = ifelse(time > 0 & treat == 1, 'Treated', 'Control'))
 
-![](images/its_cross.png)
+its_linear_cross_long |>
+  ggplot(mapping =aes(y=y, x = time, group = uniqueID, col = treat)) + 
+  geom_line() + 
+  geom_point() + 
+  geom_vline(xintercept = 1, lty = 'dotted') + 
+  theme(text = element_text(size = 25))
+```
+
+<!--![](images/its_cross.png)-->
 :::
 
 ::: {.column width="50%"}
