@@ -64,6 +64,7 @@ package[^datanotes]. Note that columns labeled with a `_2` suffix are those coll
 @. What is the causal question this study seeks to answer?  Identify the treatment
 and control conditions.
 
+
 \
 \
 \
