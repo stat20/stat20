@@ -134,7 +134,7 @@ We are interested in determining whether a difference in `median_edu` has a caus
 
 :::notes
 
-The challenge in this question is to remember the distinction between covariates, treatment, and response. When forming matched pairs, you want to look for covariates that are the same and treatments that are different, while you should be ignoring the response completely.
+The challenge in this question is to remember the distinction between covariates, treatment, and outcome. When forming matched pairs, you want to look for covariates that are the same and treatments that are different, while you should be ignoring the outcome completely.
 
 The answer is (A), since both covariates (`metro` and `smoking_ban`) are identical to those of Fresno County, but the treatment (`med_edu`) is different.
 
@@ -212,7 +212,7 @@ countdown::countdown(1)
 ::: notes
 
 The correct answer is (C).  This is a good chance to underline the
-idea that the response variable is ignored completely when creating matched pairs and also to drill students on the syntax "treatment ~ covariates," which is shared by both `matchit` and `bal.tab`.
+idea that the outcome variable is ignored completely when creating matched pairs and also to drill students on the syntax "treatment ~ covariates," which is shared by both `matchit` and `bal.tab`.
 :::
 
 ##
