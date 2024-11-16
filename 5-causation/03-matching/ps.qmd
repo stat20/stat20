@@ -129,7 +129,7 @@ a hypothesis test to see if its imbalance differs significantly from zero.
 \
 \
 
-@. Do the answers to questions 6 and 7 support your answer to question 2, or do they suggest you should revise your answer?  Explain.
+@. Do the answers to questions 5 and 6 support your answer to question 2, or do they suggest you should revise your answer?  Explain.
 
 \
 \
@@ -145,7 +145,7 @@ and post-match balance.
 \
 \
 
-@. Based on your answer to question 2 (and any revisions to that answer in question 8), compute and report the associated effect estimate for
+@. Based on your answer to question 2 (and any revisions to that answer in question 7), compute and report the associated effect estimate for
 effective full time employment. Write a sentence summarizing the associated causal claim.
 
 \
