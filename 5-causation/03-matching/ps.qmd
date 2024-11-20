@@ -69,12 +69,6 @@ and control conditions.
 \
 \
 
-@. Do you think this study best considered a randomized experiment, a natural experiment,
-or an observational study requiring matching?  Explain your reasoning.
- 
-\
-\
-\
 
 
 
@@ -129,10 +123,12 @@ a hypothesis test to see if its imbalance differs significantly from zero.
 \
 \
 
-@. Do the answers to questions 6 and 7 support your answer to question 2, or do they suggest you should revise your answer?  Explain.
+@. To what degree does this scenario have the characteristics of a natural experiment? Explain your reasoning.
+ 
+\
+\
+\
 
-\
-\
 
 @. Write code to conduct optimal matching and create a new 
 version of the Love plot showing both pre-match
@@ -145,7 +141,7 @@ and post-match balance.
 \
 \
 
-@. Based on your answer to question 2 (and any revisions to that answer in question 8), compute and report the associated effect estimate for
+@. Compute and report the associated effect estimate for
 effective full time employment. Write a sentence summarizing the associated causal claim.
 
 \
@@ -153,13 +149,15 @@ effective full time employment. Write a sentence summarizing the associated caus
 \
 \
 
-@. For one of the study types that you did NOT select in question 2 or question 8, describe how a hypothetical
-study of minimum wage and fast food employment could be conducted using this strategy instead (expensive/impractical hypothetical approaches are acceptable for this question).
+@. Conduct a hypothesis test to decide whether the effect estimate in the previous question differs significantly from zero.
 
 \
 \
 \
 \
+
+
+
 
 [^cardkrueger]: Card, D., \& Krueger, A. B. (1994). Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania. *The American Economic Review*, 84(4), 772-793.
 

@@ -64,7 +64,7 @@ countdown::countdown(1)
 
 ::: notes
 
-This is the first of a series of questions that each ask students to classify a study.  You may want to consider going through all of these questions before reviewing answers and then having a broader discussion about all the examples.
+This is the first of a series of questions that each ask students to classify a study.  You may want to consider going through all of these questions before reviewing answers and then having a broader discussion about all the examples.  You may also look for opportunities to remind students that causal studies lie on a spectrum between ideal randomized trials and hopelessly confounded observational studies, so that not every study can be neatly classified as one of the four options.
 
 For the first question, the best answer is B, since the lottery is purportedly random but the assignment mechanism is not under the researcher's control. Note that it is important that the comparison is to those who entered the lottery but did not win; a more general comparison to immigrants who did not receive green cards would be more of an observational study.
 :::
