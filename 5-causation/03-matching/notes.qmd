@@ -167,7 +167,13 @@ $$
 
 If $k=1$ this reduces to the absolute difference $|x_{1i} - x_{1j}|$. If $k=2$, then Euclidean distance is the normal two-dimensional distance we are familiar with i.e. what you would get if you use a ruler to measure distance between two points on a piece of paper[^pythagoras].
 
-After computing the Euclidean distance between each treated unit and each control with the smallest distance, we pair each treated unit to a different control (or if the number of controls is smaller, we pair each control to a different treated unit). We would like the "best" set of pairs according to the Euclidean distance, so we solve an optimization problem to identify the set of pairs with the lowest possible average Euclidean distance.  Conceptually, this is similar to picking a regression line to minimize $RSS$, although we need to use a different kind of algorithm than Nelder-Mead because we are picking sets of pairs instead of coefficient values (we won't go over the algorithm).  This is called **optimal matching**. We demonstrate this method of optimal matching using a small synthetic data set based on the college graduation data.  We start with 5 treated units and 15 controls.
+After computing the Euclidean distance between each treated unit and each control with the smallest distance, we pair each treated unit to a different control (or if the number of controls is smaller, we pair each control to a different treated unit). We would like the "best" set of pairs according to the Euclidean distance, so we solve an optimization problem to identify the set of pairs with the lowest possible average Euclidean distance.  Conceptually, this is similar to picking a regression line to minimize $RSS$, although we need to use a different kind of algorithm than Nelder-Mead because we are picking sets of pairs instead of coefficient values (we won't go over the algorithm).  This is called **optimal matching**. The diagram below gives a conceptual overview of the steps involved in optimal matching.
+
+
+![](images/matching_workflow.png){#fig-inflation fig-align="center" width="500px"}
+
+
+We demonstrate this method of optimal matching using a small synthetic data set based on the college graduation data.  We start with 5 treated units and 15 controls.
 
 <!--After computing the Euclidean distance between each treated unit and each control with the smallest distance, we go through the treated units one by one and find for each the control with the smallest distance (that has not already been taken by another treated unit).  This is called ***nearest-neighbor matching***. We demonstrate this method of nearest-neighbor matching using a small synthetic data set based on the college graduation data.  We start with 5 treated units and 15 controls.-->
 
@@ -240,7 +246,7 @@ Prior to matching, students who did not go to Cal looked very different from tho
 
 [^smd_after]: Note that when we compute SMDs after matching, we use the same denominator as for the original SMD (based on the entire dataset). This ensures that the "before matching" and "after matching" SMDs use the same standard deviation measure as units, which allows us to compare them meaningfully.
  
-[^matchit_options]: optimal matching may not always fix balance this effectively.  Sometimes one of the treated units has no comparable control available, or not all variables end up balanced well.  In these scenarios, modifications to the matching strategy can help, including eliminating some treated units or using a different kind of distance.  Although we won't discuss these modifications in detail, the  `MatchIt` package in R supports many of them and provides a handy online guide: <https://kosukeimai.github.io/MatchIt/articles/matching-methods.html>.
+[^matchit_options]: Optimal matching may not always fix balance this effectively.  Sometimes one of the treated units has no comparable control available, or not all variables end up balanced well.  In these scenarios, modifications to the matching strategy can help, including eliminating some treated units or using a different kind of distance.  Although we won't discuss these modifications in detail, the  `MatchIt` package in R supports many of them and provides a handy online guide: <https://kosukeimai.github.io/MatchIt/articles/matching-methods.html>.
 
 
 <!--```{r}
@@ -353,6 +359,9 @@ At this point the problem has been reduced to one of generalization (what does t
 
 ## The Ideas in Code
 
+
+#### matchit()
+
 We use the `MatchIt` package in R to conduct optimal  matching using the Euclidean distance.  The command `matchit` uses a formula argument much like `lm` to specify the treatment variable and the covariates on which to match.  We also specify that we're
 doing optimal matching and using a Euclidean distance. <!--[^order].-->
 
@@ -364,6 +373,8 @@ grad_matched <- matchit(cal_grad ~ GPA + years_exp + rec, method = 'optimal',
 ```
 
 <!--[^order]: The `m.order = 'closest'` argument specifies that when going through the treated units to find matches we go in increasing order of distance to the nearest control. This doesn't always matter that much but sometimes can lead to better matches than going through in the order the subjects appear in the data, which is the default behavior.-->
+
+It is important to notice how to specify the formula inside `matchit`. The treatment variable goes on the left-hand side, the covariates go on the right-hand side, and the outcome variable doesn't appear at all (since it is not used when constructing matched pairs): `treatment ~ covariates`. Compare this to the formulas used for `lm`, which are of form `response ~ predictors`.
 
 Calling `plot` on objects created by `matchit` gives you diagnostics comparing the similarity of treated and control covariates before and after matching
 
@@ -380,7 +391,10 @@ grad_matched |>
   plot()
 ```
 
-Since after matching our comparison groups closely resemble what we might have seen in a randomized experiment, we report the sample difference in means as our estimate of the average treatment effect and conduct a hypothesis test as we would have in a randomized trial where we were able to assign Berkeley graduation status at random.  To use the data only from the matched individuals, rather than everyone in `grad_job`, we start with the output object from the matching step and pipe it to the `match.data` command to obtain the smaller data frame.
+
+#### Comparing outcomes in matched pairs
+
+Since after matching our comparison groups closely resemble what we might have seen in a randomized experiment, we report the sample difference in means as our estimate of the average treatment effect.  To use the data only from the matched individuals, rather than everyone in `grad_job`, we start with the output object from the matching step and pipe it to the `match.data` command to obtain the smaller data frame.
 
 ```{r}
 library(infer)
@@ -393,8 +407,40 @@ grad_matched |>
 ```
 
 We estimate that graduation from Cal increases the probability of obtaining
-a good job by 0.4.
+a good job by 0.4. This seems like a large effect, but we have a small dataset -- are we confident that this is not just a random deviation from zero?  To answer this question we will conduct a hypothesis test using the `infer` package.
 
+Hypothesis testing for matched data differs in one important respect from previous tests we have studied for comparing two groups. Our data now has a special structure in which every subject has a matched counterpart in the other group specially chosen to be similar to itself.  If we permute the entire column of observed outcomes in our data frame to generate data from the null distribution, we will destroy that special structure; in any particular permutation both outcomes from a single pair may end up in the same group. A better idea is to permute outcomes **within** pairs only.  In other words, we decide at random in each pair whether to switch which outcome is for the treated unit and which is for the control unit.  This way any dataset we generate from the null distribution still has similar subjects organized into pairs with one treated unit and one control in each pair. 
+
+To conduct this kind of hypothesis using `infer` we need to do two things.  First, we need to transform the data frame so each row represents a different matched pair, and create a new variable which gives the treated - control difference for this pair. The `pivot_wider` command helps us transform the data frame in this way; the `subclass` factor variable is created by `match.data()` to identify distinct matched pairs. 
+```{r}
+by_pair <- grad_matched |>
+   match.data() |>
+   pivot_wider(id_cols = subclass,
+               names_from = cal_grad, 
+               values_from = good_job, 
+               names_prefix = 'good_job_cal_grad') |>
+   mutate('treated_control_diff' = 
+            (good_job_cal_gradTRUE == 'yes') - 
+            (good_job_cal_gradFALSE == 'yes')) 
+by_pair
+```
+Second, we use a different argument to `hypothesize` called `paired independence` to communicate how our pair differences are supposed to be permuted.  Because we have mutated treated and control outcomes into a single new variable (`treated_control_diff`), we don't need to specify an explanatory variable, and our test statistic will just be the mean of `treated_control_diff`.
+```{r}
+null <- by_pair |>
+  specify(response = treated_control_diff) |>
+  hypothesize(null = "paired independence") |>
+  generate(1000, type = "permute") |>
+  calculate(stat = "mean")
+
+obs_stat <- by_pair |>
+  specify(response = treated_control_diff) |>
+  calculate(stat = "mean")
+
+null |>
+  get_p_value(obs_stat, direction = 'both')
+```
+
+The p-value suggests that although the observed test statistic may appear large, values this large are fairly common under the null hypothesis that graduating from Cal and obtaining a good job are independent.
 
 ### Summary
 

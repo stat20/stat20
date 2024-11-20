@@ -326,7 +326,9 @@ We now test out difference-in-difference analysis on the supermarket checkout da
 checkout_w_control <- checkout |>
   filter(time > 13 & time < 16) |>
   mutate('time' = factor(time, labels = c('pre','post'))) |> 
-  pivot_wider(names_from = time, values_from = c(sales,checkout_policy))
+  pivot_wider(id_cols = store_id,
+              names_from = time, 
+              values_from = c(sales,checkout_policy))
 
 checkout_w_control <- checkout |>
   filter(time > 13 & time < 16) |>
@@ -348,7 +350,9 @@ We now compute pre/post differences for the treated stores and for the pure cont
 #| echo: false
 #create new data frame with one row per store and pre/post sales difference
 checkout_by_store <- checkout_w_control |>
-  pivot_wider(names_from = time, values_from = c(sales,checkout_policy)) |>
+  pivot_wider(id_cols = store_id,
+              names_from = time, 
+              values_from = c(sales,checkout_policy)) |>
   mutate('ever_treated' = checkout_policy_post, 
          'sales_diff' = sales_post - sales_pre)
 
@@ -407,9 +411,7 @@ However, we have to be careful because in panel data it is usually not reasonabl
 
 For example, if we simply permuted all sales values in our checkout policy dataset, the values we observed for a single store might be scattered across several different stores instead of staying together.  Similarly,  if we took a bootstrap sample from all observations, we might end up with three or more observations from some stores and only one for others. This would make it difficult to compute a pre/post estimate!
 
-The simplest solution is to aggregate our data to form a new data frame with one row per unique subject, then permute or bootstrap the rows of this new data frame.  For pre/post and difference in difference designs, the natural way to aggregate is to take each subject's pre/post difference, since the effect estimate is simply an average (or a difference in means) of these quantities across unique subjects. [^its_inference]
-
-A similar strategy is recommended for matching estimators.  Although matched subjects are not actually different copies of the same person, they have been chosen to be more similar to each other than to other subjects; because of this we should permute or bootstrap matched differences rather than individual outcomes.
+The simplest solution is to aggregate our data to form a new data frame with one row per unique subject, then permute or bootstrap the rows of this new data frame.  For pre/post and difference in difference designs, the natural way to aggregate is to take each subject's pre/post difference, since the effect estimate is simply an average (or a difference in means) of these quantities across unique subjects. [^its_inference]  This is very similar to the approach we used for matching estimators. Although matched subjects are not actually different copies of the same person, they have been chosen to be more similar to each other than to other subjects; because of this we should permute or bootstrap matched differences rather than individual outcomes.
 
 [^its_inference]: For interrupted time series, the regression model we estimate cannot easily be written in terms of unit differences. Hypothesis testing and confidence intervals require instead that groups of observations be  permuted or resampled in a specific pattern, using tools such as clustered standard errors or the block bootstrap. These more complex procedures cannot be carried out using the `infer` package and we won't cover them in this class.
 
@@ -450,7 +452,9 @@ To do a hypothesis test or create a confidence interval, we must usually begin b
 ```{r}
 #create new data frame with one row per store and pre/post sales difference
 checkout_by_store <- checkout_w_control |>
-  pivot_wider(names_from = time, values_from = c(sales,checkout_policy)) |>
+  pivot_wider(id_cols = store_id,
+              names_from = time, 
+              values_from = c(sales,checkout_policy)) |>
   mutate('ever_treated' = checkout_policy_post, 
          'sales_diff' = sales_post - sales_pre)
 
