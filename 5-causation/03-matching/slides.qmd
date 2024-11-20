@@ -49,12 +49,12 @@ To study the impact of receiving permanent resident status on mental health, we 
 
 ::: poll
 
-What kind of study is this?
+Which of the following descriptions fits this study best?
 
 A.  A randomized trial.
 B.  A natural experiment.
 C.  An observational study that requires matching.
-D.  None of the above.
+D.  An observational study for which matching is unlikely to help.
 :::
 
 ```{r}
@@ -75,12 +75,12 @@ To study the impact of childhood trauma on later academic performance, we compar
 
 ::: poll
 
-What kind of study is this?
+Which of the following descriptions fits this study best?
 
 A.  A randomized trial.
 B.  A natural experiment.
 C.  An observational study that requires matching.
-D.  None of the above.
+D.  An observational study for which matching is unlikely to help.
 :::
 
 ```{r}
@@ -88,7 +88,7 @@ countdown::countdown(1)
 ```
 
 ::: notes
-The answer is C, since automobile accidents to one's parents are not assigned randomly.  For example, we'd expect children whose parents work in driving-intensive blue-collar occupations such as trucking, driving for rideshare companies, and commercial delivery to be overrepresented in the treated group, and these subjects are also less likely to pursue graduate school at baseline giving that their parents may not have attended college at all.
+The answer is C, since automobile accidents to one's parents are not assigned randomly.  For example, we'd expect children whose parents work in driving-intensive blue-collar occupations such as trucking, driving for rideshare companies, and commercial delivery to be overrepresented in the treated group, and these subjects are also less likely to pursue graduate school at baseline giving that their parents may not have attended college at all.  But it seems plausible that we could match bereaved children to unaffected controls with similar socioeconomic status and whose parents worked in similar industries to address these concerns.
 :::
 
 ##
@@ -97,12 +97,12 @@ To study the effectiveness of a blood pressure medication, we enroll 500 patient
 
 ::: poll
 
-What kind of study is this?
+Which of the following descriptions fits this study best?
 
 A.  A randomized trial.
 B.  A natural experiment.
 C.  An observational study that requires matching.
-D.  None of the above.
+D.  An observational study for which matching is unlikely to help.
 :::
 
 ```{r}
@@ -110,7 +110,7 @@ countdown::countdown(1)
 ```
 
 ::: notes
-This is a terrible study design, which builds in confounding on an important covariate.  Although you could attempt matching here, it would likely be ineffective since it would be very hard to create many close matches on pre-treatment blood pressure.  So "none of the above" seems like the most reasonable answer here.
+This is a terrible study design, which builds in confounding on an important covariate.  Although you could attempt matching here, it would likely be ineffective since it would be very hard to create many close matches on pre-treatment blood pressure.  So D seems like the most reasonable answer here.
 
 For this study it's a good idea to talk about what the randomized trial would have looked like -- clearly you'd want to pick the 200 treaated subjects by simple random sampling rather than this deterministic rule.
 :::
@@ -188,7 +188,7 @@ This question is designed to shift students away from thinking about individual 
 
 This question is also a good jumping off point for a mini-lecture about matching.  The county example is not ideal because there are not a lot of close matches and because there are a lot of ties among the distances so the best match is not unique (although Contra Costa County is probably the one that will get dropped since it looks the least like any of the hs_diploma counties).
 
-A better source for material in the mini lecture is the "matching_mini_lecture.docx" file about final exam scores and attending review sessions.  Eventually this example might be a good thing to incorporate into the notes.
+A better source for material in the mini lecture is the matching workflow picture in the course notes. Things that could be mentioned as part of this mini lecture that are not specifically depicted in the workflow picture: (1) overall, balance between groups is better after matching than beforehand (2) unobserved covariates (such as family members' jobs) can't be used in the matching step and may remain imbalanced after matching.
 
 :::
 
