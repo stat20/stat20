@@ -89,7 +89,7 @@ checkout_concise
 in Turner, S. L., Korevaar, E., Karahalios, A., Forbes, A. B., & McKenzie, J. E. (2023). Interrupted time series datasets from studies investigating the impact of interventions or exposures in public health and social science: A data note.
 Available at ResearchSquare, https://doi.org/10.21203/rs.3.rs-3669411/v1.
 
-The causal claim here is that consumers would have purchased fewer unhealthy snacks if the candy display had been removed from the checkout line (the broader claims about the impact of this change on public health are not things we can test with data from the supermarkets alone).  A great way to test this theory might be to randomly assign some supermarkets to remove their checkout displays and others to keep theirs, and compare purchases. Unfortunately that study was not conducted, and it's not clear that these stores decided to institute their policies in a quasi-random way (e.g. what if only the stores selling very low levels of candy agreed to participate?).  We could also consider matching stores with the policy to those without the policy and comparing their sales.  But we our dataset doesn't include many store covariates, and in general datasets like this one may only
+The causal claim here is that consumers would have purchased fewer unhealthy snacks if the candy display had been removed from the checkout line (the broader claims about the impact of this change on public health are not things we can test with data from the supermarkets alone).  A great way to test this theory might be to randomly assign some supermarkets to remove their checkout displays and others to keep theirs, and compare purchases. Unfortunately that study was not conducted, and it's not clear that these stores decided to institute their policies in a quasi-random way (e.g. what if only the stores selling very low levels of candy agreed to participate?).  We could also consider matching stores with the policy to those without the policy and comparing their sales.  But our dataset doesn't include many store covariates, and in general datasets like this one may only
 include stores that instituted the policy.
 
 [^checkoutpic]: Image from Shutterstock/SpeedKingz, obtained from Pawlowski, A. (Dec 2015). Kids can't resist candy? Stores try junk food-free 'healthy checkout lanes.'  *Today.com.* <https://www.today.com/parents/kids-cant-resist-candy-stores-try-junk-food-free-healthy-t60621>.
@@ -102,7 +102,7 @@ change, an idea called a pre/post design.
 **Pre/post design**
 :   A study in which a group of units receiving a treatment is compared to earlier versions of themselves before treatment occurred.
 
-A pre/post design takes the simple approach of subtracting the pre-treatment value from the post-treatment value for each store and taking the average. The following plot shows the change in sales for each of four stores in the data, and the pre/post estimate is computed below. <!-- using the \texttt{infer} package.-->
+A pre/post design takes the simple approach of subtracting the pre-treatment outcome value from the post-treatment value for each store and taking the average. The following plot shows the change in sales for each of four stores in the data, and the pre/post estimate is computed below. <!-- using the \texttt{infer} package.-->
 
 ```{r}
 #| echo: false
@@ -310,7 +310,7 @@ Feller, A., & Stuart, E. A. (2021). Impact evaluation of coronavirus disease
 2019 policy: A guide to common design issues. \emph{American Journal of 
 Epidemiology}, 190(11), 2474-2486.
 
-The dashed line represents a counterfactual average outcome for the treated units if they had not received treatment, and we are interested in learning the difference between this dashed line and the actual outcome for the intervention group. Although we don't have multiple observations prior to treatment to estimate the slope of the dashed line anymore, we can learn it by looking at the pre/post differences in the control group below.  We can then get an effect estimate by subtracting the pure control pre/post difference in the outcome $Y$ from the treated group's  pre/post difference in outcome $Y$:
+The dashed line represents a counterfactual average outcome for the treated units if they had not received treatment, and we are interested in learning the difference between this dashed line and the actual outcome for the intervention group. Although we don't have multiple observations prior to treatment to estimate the slope of the dashed line anymore, we can learn it by looking at the pre/post outcome differences in the control group below.  We can then get an effect estimate by subtracting the pure control pre/post difference in the outcome $Y$ from the treated group's  pre/post difference in outcome $Y$:
 
 $$
 \text{Estimated effect} = (\overline{Y}^{treat}_{post} -  \overline{Y}^{treat}_{pre}) - 
@@ -447,7 +447,7 @@ checkout_its |>
   annotate('text', label = 'Checkout policy enacted', x = 15, y = 50)
 ```
 
-To do a hypothesis test or create a confidence interval, we must usually begin by transforming the data frame so each row represents a different unique subject.  The `pivot_wider` command does this, creating new pre- and post- versions of our other variables for ecah store.  We call the new data frame `checkout_by_store`. This code chunk shows how we can calculate the effect estimates from store-specific sales differences using `infer` commands.
+To do a hypothesis test or create a confidence interval, we must usually begin by transforming the data frame so each row represents a different unique subject.  The `pivot_wider` command does this, creating new pre- and post- versions of our other variables for each store.  We call the new data frame `checkout_by_store`. This code chunk shows how we can calculate the effect estimates from store-specific sales differences using `infer` commands.
 
 ```{r}
 #create new data frame with one row per store and pre/post sales difference
