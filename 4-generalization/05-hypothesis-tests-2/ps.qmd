@@ -7,7 +7,7 @@ format: stat20handout-pdf
 
 In order to study gender bias in promotion decisions, researchers took 48 resumes and randomly assigned them to 48 bank managers who were asked whether they would promote this candidate or not. The resumes were identical except the name: 24 of them had names generally associated with women, 24 of them had names generally associated with men.
 
-The data from this study can be found in the `promote` data frame in the `stat20data` library. Did gender played a role in promotion decisions?
+The data from this study can be found in the `promote` data frame in the `stat20data` library. Did gender play a role in promotion decisions?
 
 
 @. Write down an expression for the null and alternative hypothesis. Is $H_0$ an "independence" null hypothesis or a point null hypothesis?
