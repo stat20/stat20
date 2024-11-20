@@ -12,6 +12,38 @@ execute:
   message: false
 ---
 
+:::{.lo .content-hidden unless-profile="staff-site"}
+
+#### Concept Acquisition
+
+1. Observational study
+2. Euclidean distance
+3. Optimal matching and associated improvements to balance
+4. Unobserved confounding
+5. Natural experiment
+6. Paired permutation tests for matched data
+
+#### Tool Acquisition
+
+1. Create matched datasets via `matchit()` and `match.data()`
+2. Check covariate balance after matching
+3. Construct pair differences from long data using `pivot_wider()`
+
+
+
+#### Concept Application
+
+1. Identifying possible unobserved confounders.
+2. Using balance checks to assess whether a study is plausibly a natural experiment
+3. Using balance checks to assess whether matching has successfully removed confounding
+4. Paired permutation test using `infer`
+
+
+
+----------------------------------------------------
+
+:::
+
 ## Causal claims without randomization
 
 Randomized experiments are very useful for learning about causal claims; because comparison groups are guaranteed to be similar on average before the treatment is given, differences in outcomes between the groups must be the result of the treatment.
@@ -286,7 +318,7 @@ status and holding a good job are independent.-->
 ## Unobserved confounding
 
 Even in studies where we can obtain very close matches between treated and control subjects, matched observational studies have at least one important weakness compared to randomized trials: they only correct imbalances in the covariates we happened to measure.
-There is at least one important difference between the matched studies discussed above and a natural experiment. In the matched study of graduation from Cal, for example, we don't have any information about the career goals or interests of these students. If the Berkeley students all chose to attend because they love statistics and their siblings or matched controls all skipped college and spent their time practicing the guitar because they dream of becoming rock stars then maybe the real reason the former group is employed is because of their interest in a field with good job opportunities, not because of the college they attended. In the smoking twins study, it could be that the smoking twins pursued other kinds of risky behaviors (e.g. drug use, poor diet, working in dangerous jobs) at a higher rate than the non-smoking twins despite their genetic similarity. In either case, we can't be sure whether any apparent effect we observe is due to our treatment or due to these hidden differences.  <!--Contrast this with a randomized trial: assigning subjects at random will tend to balance *all* covariates, observed and unobserved.-->
+ In the matched study of graduation from Cal, for example, we don't have any information about the career goals or interests of these students. Perhaps the Berkeley students all chose to attend because they love statistics and their siblings or matched controls all skipped college and spent their time practicing the guitar because they dream of becoming rock stars; then maybe the real reason the former group is employed is because of their interest in a field with good job opportunities, not because of the college they attended. In the smoking twins study, it could be that the smoking twins pursued other kinds of risky behaviors (e.g. drug use, poor diet, working in dangerous jobs) at a higher rate than the non-smoking twins despite their genetic similarity. In either case, we can't be sure whether any apparent effect we observe is due to our treatment or due to these hidden differences.  <!--Contrast this with a randomized trial: assigning subjects at random will tend to balance *all* covariates, observed and unobserved.-->
 
 The data does not help us much to refute concerns about variables that it does not contain. We have to rely on our judgment about the context to evaluate whether such hidden imbalances are more plausible than the treatment effect. This situation is called unobserved confounding, and if it is present it can lead to substantially biased treatment effect estimates.
 
@@ -411,7 +443,7 @@ a good job by 0.4. This seems like a large effect, but we have a small dataset -
 
 Hypothesis testing for matched data differs in one important respect from previous tests we have studied for comparing two groups. Our data now has a special structure in which every subject has a matched counterpart in the other group specially chosen to be similar to itself.  If we permute the entire column of observed outcomes in our data frame to generate data from the null distribution, we will destroy that special structure; in any particular permutation both outcomes from a single pair may end up in the same group. A better idea is to permute outcomes **within** pairs only.  In other words, we decide at random in each pair whether to switch which outcome is for the treated unit and which is for the control unit.  This way any dataset we generate from the null distribution still has similar subjects organized into pairs with one treated unit and one control in each pair. 
 
-To conduct this kind of hypothesis using `infer` we need to do two things.  First, we need to transform the data frame so each row represents a different matched pair, and create a new variable which gives the treated - control difference for this pair. The `pivot_wider` command helps us transform the data frame in this way; the `subclass` factor variable is created by `match.data()` to identify distinct matched pairs. 
+To conduct this kind of hypothesis using `infer` we need to do two things.  First, we need to transform the data frame so each row represents a different matched pair, and create a new variable which gives the treated - control difference for this pair. The `pivot_wider` command helps us transform the data frame in this way.  The `id_cols` argument determines what will be a row in the new data frame.; here we pass it the `subclass` factor variable created by `match.data()`, which has a different factor level for each distinct matched pairs, to make sure we get a row for each matched pair. The next two arguments, `names_from` and `values_from` should be the treatment and outcome respectively, and the fourth argument is an optional prefix added to the column names.
 ```{r}
 by_pair <- grad_matched |>
    match.data() |>
@@ -435,7 +467,15 @@ null <- by_pair |>
 obs_stat <- by_pair |>
   specify(response = treated_control_diff) |>
   calculate(stat = "mean")
+obs_stat
+```
+Notice that we got the same value for our observed difference in means in this code chunk as in the one above that used the `stat = "diff in props"` argument inside `calculate()`;  because
+$$
+\frac{1}{n}\sum^n_{i=1}x_i - \frac{1}{n}\sum^n_{i=1}y_i = \frac{1}{n}\sum^n_{i=1}(x_i - y_i),
+$$
+it doesn't matter whether we take group averages or take within-pair group differences first.
 
+```{r}
 null |>
   get_p_value(obs_stat, direction = 'both')
 ```
