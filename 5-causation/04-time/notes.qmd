@@ -11,7 +11,41 @@ execute:
   warning: false
   message: false
 ---
+:::{.lo .content-hidden unless-profile="staff-site"}
 
+#### Concept Acquisition
+
+1. Longitudinal/panel data
+2. Pre/post design
+3. Stability of outcomes across time
+4. Time trend, interrupted time series (ITS)
+5. Linear trend assumption
+6. Pure control, difference-in-difference (DiD) design 
+7. Parallel trend assumption
+8. Dependence across repeated observations
+
+#### Tool Acquisition
+
+1. Visualize panel data using `geom_line()`
+2. Check data (how many repeated measures? pure controls?) to determine whether ITS or DiD can even be fit and filter if needed
+3. Specify regression model to estimate ITS effect
+4. Compute DiD effects using `calculate()` 
+5. Use `pivot_wider()` to construct pre/post differences
+
+
+
+#### Concept Application
+
+1. Evaluate stability/linearity/parallel trends assumptions using line plots
+2. Choose between matching and panel methods when pure controls are present
+3. Describe pre/post, ITS, and DiD effects graphically on plots with average trend lines for study groups.
+4. Bootstrap pair differences for confidence intervals and hypothesis tests in pre/post and DiD designs
+
+
+
+----------------------------------------------------
+
+:::
 
 ## Causality and variation across time
 
