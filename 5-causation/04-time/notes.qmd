@@ -10,8 +10,41 @@ execute:
   warning: false
   message: false
 ---
+:::{.lo .content-hidden unless-profile="staff-site"}
+
+#### Concept Acquisition
+
+1. Longitudinal/panel data
+2. Pre/post design
+3. Stability of outcomes across time
+4. Time trend, interrupted time series (ITS)
+5. Linear trend assumption
+6. Pure control, difference-in-difference (DiD) design 
+7. Parallel trend assumption
+8. Dependence across repeated observations
+
+#### Tool Acquisition
+
+1. Visualize panel data using `geom_line()`
+2. Check data (how many repeated measures? pure controls?) to determine whether ITS or DiD can even be fit and filter if needed
+3. Specify regression model to estimate ITS effect
+4. Compute DiD effects using `calculate()` 
+5. Use `pivot_wider()` to construct pre/post differences
 
 
+
+#### Concept Application
+
+1. Evaluate stability/linearity/parallel trends assumptions using line plots
+2. Choose between matching and panel methods when pure controls are present
+3. Describe pre/post, ITS, and DiD effects graphically on plots with average trend lines for study groups.
+4. Bootstrap pair differences for confidence intervals and hypothesis tests in pre/post and DiD designs
+
+
+
+----------------------------------------------------
+
+:::
 
 ## Causality and variation across time
 
@@ -89,7 +122,7 @@ checkout_concise
 in Turner, S. L., Korevaar, E., Karahalios, A., Forbes, A. B., & McKenzie, J. E. (2023). Interrupted time series datasets from studies investigating the impact of interventions or exposures in public health and social science: A data note.
 Available at ResearchSquare, https://doi.org/10.21203/rs.3.rs-3669411/v1.
 
-The causal claim here is that consumers would have purchased fewer unhealthy snacks if the candy display had been removed from the checkout line (the broader claims about the impact of this change on public health are not things we can test with data from the supermarkets alone).  A great way to test this theory might be to randomly assign some supermarkets to remove their checkout displays and others to keep theirs, and compare purchases. Unfortunately that study was not conducted, and it's not clear that these stores decided to institute their policies in a quasi-random way (e.g. what if only the stores selling very low levels of candy agreed to participate?).  We could also consider matching stores with the policy to those without the policy and comparing their sales.  But we our dataset doesn't include many store covariates, and in general datasets like this one may only
+The causal claim here is that consumers would have purchased fewer unhealthy snacks if the candy display had been removed from the checkout line (the broader claims about the impact of this change on public health are not things we can test with data from the supermarkets alone).  A great way to test this theory might be to randomly assign some supermarkets to remove their checkout displays and others to keep theirs, and compare purchases. Unfortunately that study was not conducted, and it's not clear that these stores decided to institute their policies in a quasi-random way (e.g. what if only the stores selling very low levels of candy agreed to participate?).  We could also consider matching stores with the policy to those without the policy and comparing their sales.  But our dataset doesn't include many store covariates, and in general datasets like this one may only
 include stores that instituted the policy.
 
 [^checkoutpic]: Image from Shutterstock/SpeedKingz, obtained from Pawlowski, A. (Dec 2015). Kids can't resist candy? Stores try junk food-free 'healthy checkout lanes.'  *Today.com.* <https://www.today.com/parents/kids-cant-resist-candy-stores-try-junk-food-free-healthy-t60621>.
@@ -102,7 +135,7 @@ change, an idea called a pre/post design.
 **Pre/post design**
 :   A study in which a group of units receiving a treatment is compared to earlier versions of themselves before treatment occurred.
 
-A pre/post design takes the simple approach of subtracting the pre-treatment value from the post-treatment value for each store and taking the average. The following plot shows the change in sales for each of four stores in the data, and the pre/post estimate is computed below. <!-- using the \texttt{infer} package.-->
+A pre/post design takes the simple approach of subtracting the pre-treatment outcome value from the post-treatment value for each store and taking the average. The following plot shows the change in sales for each of four stores in the data, and the pre/post estimate is computed below. <!-- using the \texttt{infer} package.-->
 
 ```{r}
 #| echo: false
@@ -310,7 +343,7 @@ Feller, A., & Stuart, E. A. (2021). Impact evaluation of coronavirus disease
 2019 policy: A guide to common design issues. \emph{American Journal of 
 Epidemiology}, 190(11), 2474-2486.
 
-The dashed line represents a counterfactual average outcome for the treated units if they had not received treatment, and we are interested in learning the difference between this dashed line and the actual outcome for the intervention group. Although we don't have multiple observations prior to treatment to estimate the slope of the dashed line anymore, we can learn it by looking at the pre/post differences in the control group below.  We can then get an effect estimate by subtracting the pure control pre/post difference in the outcome $Y$ from the treated group's  pre/post difference in outcome $Y$:
+The dashed line represents a counterfactual average outcome for the treated units if they had not received treatment, and we are interested in learning the difference between this dashed line and the actual outcome for the intervention group. Although we don't have multiple observations prior to treatment to estimate the slope of the dashed line anymore, we can learn it by looking at the pre/post outcome differences in the control group below.  We can then get an effect estimate by subtracting the pure control pre/post difference in the outcome $Y$ from the treated group's  pre/post difference in outcome $Y$:
 
 $$
 \text{Estimated effect} = (\overline{Y}^{treat}_{post} -  \overline{Y}^{treat}_{pre}) - 
@@ -326,7 +359,9 @@ We now test out difference-in-difference analysis on the supermarket checkout da
 checkout_w_control <- checkout |>
   filter(time > 13 & time < 16) |>
   mutate('time' = factor(time, labels = c('pre','post'))) |> 
-  pivot_wider(names_from = time, values_from = c(sales,checkout_policy))
+  pivot_wider(id_cols = store_id,
+              names_from = time, 
+              values_from = c(sales,checkout_policy))
 
 checkout_w_control <- checkout |>
   filter(time > 13 & time < 16) |>
@@ -348,7 +383,9 @@ We now compute pre/post differences for the treated stores and for the pure cont
 #| echo: false
 #create new data frame with one row per store and pre/post sales difference
 checkout_by_store <- checkout_w_control |>
-  pivot_wider(names_from = time, values_from = c(sales,checkout_policy)) |>
+  pivot_wider(id_cols = store_id,
+              names_from = time, 
+              values_from = c(sales,checkout_policy)) |>
   mutate('ever_treated' = checkout_policy_post, 
          'sales_diff' = sales_post - sales_pre)
 
@@ -407,9 +444,7 @@ However, we have to be careful because in panel data it is usually not reasonabl
 
 For example, if we simply permuted all sales values in our checkout policy dataset, the values we observed for a single store might be scattered across several different stores instead of staying together.  Similarly,  if we took a bootstrap sample from all observations, we might end up with three or more observations from some stores and only one for others. This would make it difficult to compute a pre/post estimate!
 
-The simplest solution is to aggregate our data to form a new data frame with one row per unique subject, then permute or bootstrap the rows of this new data frame.  For pre/post and difference in difference designs, the natural way to aggregate is to take each subject's pre/post difference, since the effect estimate is simply an average (or a difference in means) of these quantities across unique subjects. [^its_inference]
-
-A similar strategy is recommended for matching estimators.  Although matched subjects are not actually different copies of the same person, they have been chosen to be more similar to each other than to other subjects; because of this we should permute or bootstrap matched differences rather than individual outcomes.
+The simplest solution is to aggregate our data to form a new data frame with one row per unique subject, then permute or bootstrap the rows of this new data frame.  For pre/post and difference in difference designs, the natural way to aggregate is to take each subject's pre/post difference, since the effect estimate is simply an average (or a difference in means) of these quantities across unique subjects. [^its_inference]  This is very similar to the approach we used for matching estimators. Although matched subjects are not actually different copies of the same person, they have been chosen to be more similar to each other than to other subjects; because of this we should permute or bootstrap matched differences rather than individual outcomes.
 
 [^its_inference]: For interrupted time series, the regression model we estimate cannot easily be written in terms of unit differences. Hypothesis testing and confidence intervals require instead that groups of observations be  permuted or resampled in a specific pattern, using tools such as clustered standard errors or the block bootstrap. These more complex procedures cannot be carried out using the `infer` package and we won't cover them in this class.
 
@@ -445,12 +480,14 @@ checkout_its |>
   annotate('text', label = 'Checkout policy enacted', x = 15, y = 50)
 ```
 
-To do a hypothesis test or create a confidence interval, we must usually begin by transforming the data frame so each row represents a different unique subject.  The `pivot_wider` command does this, creating new pre- and post- versions of our other variables for ecah store.  We call the new data frame `checkout_by_store`. This code chunk shows how we can calculate the effect estimates from store-specific sales differences using `infer` commands.
+To do a hypothesis test or create a confidence interval, we must usually begin by transforming the data frame so each row represents a different unique subject.  The `pivot_wider` command does this, creating new pre- and post- versions of our other variables for each store.  We call the new data frame `checkout_by_store`. This code chunk shows how we can calculate the effect estimates from store-specific sales differences using `infer` commands.
 
 ```{r}
 #create new data frame with one row per store and pre/post sales difference
 checkout_by_store <- checkout_w_control |>
-  pivot_wider(names_from = time, values_from = c(sales,checkout_policy)) |>
+  pivot_wider(id_cols = store_id,
+              names_from = time, 
+              values_from = c(sales,checkout_policy)) |>
   mutate('ever_treated' = checkout_policy_post, 
          'sales_diff' = sales_post - sales_pre)
 

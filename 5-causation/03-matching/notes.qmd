@@ -11,67 +11,62 @@ execute:
   message: false
 ---
 
+:::{.lo .content-hidden unless-profile="staff-site"}
+
+#### Concept Acquisition
+
+1. Observational study
+2. Euclidean distance
+3. Optimal matching and associated improvements to balance
+4. Unobserved confounding
+5. Natural experiment
+6. Paired permutation tests for matched data
+
+#### Tool Acquisition
+
+1. Create matched datasets via `matchit()` and `match.data()`
+2. Check covariate balance after matching
+3. Construct pair differences from long data using `pivot_wider()`
+
+
+
+#### Concept Application
+
+1. Identifying possible unobserved confounders.
+2. Using balance checks to assess whether a study is plausibly a natural experiment
+3. Using balance checks to assess whether matching has successfully removed confounding
+4. Paired permutation test using `infer`
+
+
+
+----------------------------------------------------
+
+:::
+
 ## Causal claims without randomization
 
 Randomized experiments are very useful for learning about causal claims; because comparison groups are guaranteed to be similar on average before the treatment is given, differences in outcomes between the groups must be the result of the treatment.
 
 However, we frequently need to evaluate causal claims without having access to data from a randomized experiment. <!--or an obvious natural experiment.--> Today we'll explore how to take some of the ideas important in understanding and analyzing randomized experiments and use them to make progress with data where treatment assignments are not determined by researchers. Such non-experimental studies are called *observational studies*, emphasizing that all researchers do is observe treatment assignments rather than making them.  
 
-## Natural experiments
-
-![](images/nba_foul.jpg){#fig-inflation fig-align="center" width="500px"}[^foulpic]
-
-Do evaluators tend to favor members of the same race?  In the mid-2000s two economists interested in this question, Joseph Price and Justin Wolfers, obtained data on 12 years of referee decisions from professional National Basketball Association (NBA) games. <!--including indicators for whether players and referees were Black or non-Black.--> They compared the rate at which referees gave fouls to players of the same racial category (Black or non-Black) to the rate at which fouls were given to players of the opposite category.
-
-This study aims to investigate a causal claim: for a given player in a given game, would the player's foul rate have been different if a different referee had been assigned whose racial categorization did (or did not) match the player's racial categorization?
-
-If Price and Wolfers had reached an agreement with the NBA that allowed them to assign referees to games at random, they could have conducted a randomized experiment to answer this question using the ideas from the last set of notes. This did not happen; however, Price and Wolfers argue that the actual manner in which referees were assigned to games closely resemble what they would have done in their ideal hypothetical experiment:
-
-> Assignments of referees to crews are made to balance the experience of referees across games, with groups of three referees working together for only a couple of games before being regrouped. According to the NBA, assignments of refereeing crews to specific (regular season) games is "completely arbitrary" with no thought given to the characteristics of the competing teams. Each referee works 70 to 75 games each year, and no referee is allowed to officiate more than nine games for any team, or referee twice in a city within a fourteen-day period. Although these constraints mean that assignment of refereeing crews to  games is not literally random, the more relevant claim for our approach is that assignment decisions are unrelated to the racial characteristics of either team.[^pricewolfers]
-
-To back up their claim, Price and Wolfers conduct hypothesis tests for balance
-on a variety of covariates.  Here is an excerpt from one of their balance tables.
-Each row gives a p-value for a test of the null hypothesis that this covariate
-is independent of the number of non-Black referees.
-
-|Covariate | P-value from balance test |
-|--------|---------:|
-|Year | 0.00|
-|#Black starters (home team) | 0.75 |
-|#Black starters (away team) | 0.72 |
-|Attendance | 0.49 | 
-|Home team out of contention | 0.94|
-|Away team out of contention | 0.81|
-
-Although the table suggests that the number of non-Black referees did vary over time (notice the .00 p-value in the first row) the other p-values are fairly large, suggesting approximate balance.
-
-<!--![](images/balance_table1_price_wolfers.png){#fig-inflation width="600px"}
-![](images/balance_table2_price_wolfers.png){#fig-inflation fig-align=center width="600px"}-->
-
-If indeed the process of assigning referees is independent of the race, team, and popularity of any particular team or player, as well as any other covariates that might be good predictors of foul rate, then each group provides a good approximation to the missing counterfactual outcome distribution for the other  group, and the study can be analyzed as though it were from a truly-randomized experiment to produce a good average treatment effect estimate.  
-
-At this point the problem has been reduced to one of generalization (what does the difference in foul rates in this sample say about the true difference in counterfactual foul rates for all NBA players and games?), and Price and Wolfers use a hypothesis test to address it. They find a significant discrimination effect: on average basketball players facing an officiating referee of the same racial category enjoyed a foul rate 4\% lower than when facing an officiating referee of the opposite category, and also scored 2.5\% more points.[^pricewolfers2]
-
-Studies like this are often known as natural experiments (or quasi-experiments).
-
-**Natural experiment**
-:   A study in which researchers did not randomly assign treatment but claim that the treatment process is sufficiently independent of covariates to justify treatment effect estimation.
-
-[^foulpic]: Image credit Keith Allison, obtained from Wikimedia Commons.
-
-[^pricewolfers]: From Price, J., & Wolfers, J. (2010). Racial discrimination  among NBA referees. \emph{The Quarterly Journal of Economics}, 125(4), 1859-1887.
-
-[^pricewolfers2]: Interestingly, after Price's and Wolfers' study led to a back-and-forth debate with NBA statisticians and received significant media attention, they repeated their study on mid-2010s data and found that the effect had disappeared.  Based on these results, they claimed that awareness of the potential for racial bias can  cause evaluators to eliminate it from their process. You can read about their follow-up study in Pope, D. G., Price, J., & Wolfers, J. (2018). Awareness reduces racial bias. 
-*Management Science*, 64(11), 4988-4995.
 
 
 ## Similar units with different treatments
 
-While in natural experiments we can learn about causal effects from purely observational data, only rarely are treatments we care about known to be quasi-randomly assigned as in the NBA refereeing example. More generally, we may have only amorphous knowledge of how treatment assignment occurs, or we may have compelling reasons to believe that treated and control individuals differ systematically. In this setting we need a new strategy for causal effect estimation.
+When we do not get to assign treatments randomly, treated and control subjects may
+look systematically different even before the treatment takes effect. Let's return to our example of evaluating the impact of graduating from Cal on obtaining a good job.
+The treated group of students (who choose to go to Cal) probably look different from the 
+control group (who choose not to) even before entering college; for example, the
+Cal students may have studied more in high school, and more of them may live in
+California.  These covariate imbalances threaten our ability to learn about
+the effect of Cal graduation, since treated-control differences in our outcome
+(getting a good job) could instead be explained by high school performance or state of
+residence.  Since we can't induce covariate balance by choosing who graduates from
+Cal, we need another approach to learn about the causal effect.
 
 ### Siblings
 
-Let's return to our example of evaluating the impact of graduating from Cal on obtaining a good job. Imagine that Cal student Evelyn Fix had a sister, Eleanor Fix. If Evelyn graduated from Cal and Eleanor did not, then we could observe this data frame.
+ Imagine that Cal student Evelyn Fix had a sister, Eleanor Fix. If Evelyn graduated from Cal and Eleanor did not, then we could observe this data frame.
 
 ```{r}
 #| echo: false
@@ -203,7 +198,13 @@ $$
 
 If $k=1$ this reduces to the absolute difference $|x_{1i} - x_{1j}|$. If $k=2$, then Euclidean distance is the normal two-dimensional distance we are familiar with i.e. what you would get if you use a ruler to measure distance between two points on a piece of paper[^pythagoras].
 
-After computing the Euclidean distance between each treated unit and each control with the smallest distance, we pair each treated unit to a different control (or if the number of controls is smaller, we pair each control to a different treated unit). We would like the "best" set of pairs according to the Euclidean distance, so we solve an optimization problem to identify the set of pairs with the lowest possible average Euclidean distance.  Conceptually, this is similar to picking a regression line to minimize $RSS$, although we need to use a different kind of algorithm than Nelder-Mead because we are picking sets of pairs instead of coefficient values (we won't go over the algorithm).  This is called **optimal matching**. We demonstrate this method of optimal matching using a small synthetic data set based on the college graduation data.  We start with 5 treated units and 15 controls.
+After computing the Euclidean distance between each treated unit and each control with the smallest distance, we pair each treated unit to a different control (or if the number of controls is smaller, we pair each control to a different treated unit). We would like the "best" set of pairs according to the Euclidean distance, so we solve an optimization problem to identify the set of pairs with the lowest possible average Euclidean distance.  Conceptually, this is similar to picking a regression line to minimize $RSS$, although we need to use a different kind of algorithm than Nelder-Mead because we are picking sets of pairs instead of coefficient values (we won't go over the algorithm).  This is called **optimal matching**. The diagram below gives a conceptual overview of the steps involved in optimal matching.
+
+
+![](images/matching_workflow.png){#fig-inflation fig-align="center" width="500px"}
+
+
+We demonstrate this method of optimal matching using a small synthetic data set based on the college graduation data.  We start with 5 treated units and 15 controls.
 
 <!--After computing the Euclidean distance between each treated unit and each control with the smallest distance, we go through the treated units one by one and find for each the control with the smallest distance (that has not already been taken by another treated unit).  This is called ***nearest-neighbor matching***. We demonstrate this method of nearest-neighbor matching using a small synthetic data set based on the college graduation data.  We start with 5 treated units and 15 controls.-->
 
@@ -276,7 +277,7 @@ Prior to matching, students who did not go to Cal looked very different from tho
 
 [^smd_after]: Note that when we compute SMDs after matching, we use the same denominator as for the original SMD (based on the entire dataset). This ensures that the "before matching" and "after matching" SMDs use the same standard deviation measure as units, which allows us to compare them meaningfully.
  
-[^matchit_options]: optimal matching may not always fix balance this effectively.  Sometimes one of the treated units has no comparable control available, or not all variables end up balanced well.  In these scenarios, modifications to the matching strategy can help, including eliminating some treated units or using a different kind of distance.  Although we won't discuss these modifications in detail, the  `MatchIt` package in R supports many of them and provides a handy online guide: <https://kosukeimai.github.io/MatchIt/articles/matching-methods.html>.
+[^matchit_options]: Optimal matching may not always fix balance this effectively.  Sometimes one of the treated units has no comparable control available, or not all variables end up balanced well.  In these scenarios, modifications to the matching strategy can help, including eliminating some treated units or using a different kind of distance.  Although we won't discuss these modifications in detail, the  `MatchIt` package in R supports many of them and provides a handy online guide: <https://kosukeimai.github.io/MatchIt/articles/matching-methods.html>.
 
 
 <!--```{r}
@@ -315,9 +316,10 @@ status and holding a good job are independent.-->
 
 ## Unobserved confounding
 
-There is at least one important difference between the matched studies discussed above and a natural experiment. In the matched study, we don't have any compelling reason to believe that graduation from Cal was randomly assigned between siblings or matched subjects. It's possible that the decision was random, but it's also possible that some hidden factor drove the decision. For example, we don't have any information about the career goals or interests of these students. If the Berkeley students all chose to attend because they love statistics and their siblings or matched controls all skipped college and spent their time practicing the guitar because they dream of becoming rock stars then maybe the real reason the former group is employed is because of their interest in a field with good job opportunities, not because of the college they attended. In the smoking twins study, it could be that the smoking twins pursued other kinds of risky behaviors (e.g. drug use, poor diet, working in dangerous jobs) at a higher rate than the non-smoking twins despite their genetic similarity. In either case, we can't be sure whether any apparent effect we observe is due to our treatment or due to these hidden differences.
+Even in studies where we can obtain very close matches between treated and control subjects, matched observational studies have at least one important weakness compared to randomized trials: they only correct imbalances in the covariates we happened to measure.
+ In the matched study of graduation from Cal, for example, we don't have any information about the career goals or interests of these students. Perhaps the Berkeley students all chose to attend because they love statistics and their siblings or matched controls all skipped college and spent their time practicing the guitar because they dream of becoming rock stars; then maybe the real reason the former group is employed is because of their interest in a field with good job opportunities, not because of the college they attended. In the smoking twins study, it could be that the smoking twins pursued other kinds of risky behaviors (e.g. drug use, poor diet, working in dangerous jobs) at a higher rate than the non-smoking twins despite their genetic similarity. In either case, we can't be sure whether any apparent effect we observe is due to our treatment or due to these hidden differences.  <!--Contrast this with a randomized trial: assigning subjects at random will tend to balance *all* covariates, observed and unobserved.-->
 
-Unless we happened to measure these covariates, the data does not help us much to refute these considerations. We have to rely on our judgment about the context to evaluate whether they are more plausible than the treatment effect. This situation is called unobserved confounding, and if it is present it can lead to substantially biased treatment effect estimates.
+The data does not help us much to refute concerns about variables that it does not contain. We have to rely on our judgment about the context to evaluate whether such hidden imbalances are more plausible than the treatment effect. This situation is called unobserved confounding, and if it is present it can lead to substantially biased treatment effect estimates.
 
 **Unobserved confounding**
 :   When unmeasured covariates predictive of our outcome variable are present and
@@ -328,7 +330,68 @@ In order to trust the causal claims arising from a matched observational study, 
 Notice that if we had been able to randomly assign college graduation or smoking status and had a large number of replicates, unobserved confounding would not be a concern.  Because we know randomized treatment assignment is independent of everything about study subjects, whether observed or unobserved, we expect it to balance unobserved quantities on average and can ignore them. This is the biggest thing you give up when you don't run an RCT. <!-- You need to assume
 that unobserved variables are not present.  MENTION SENSITIVITY ANALYSIS HERE OR LATER?-->
 
+
+## Natural experiments
+
+Some observational studies carry much greater concerns about unobserved confounding than others. In the Cal graduation study, subjects had a high degree of agency about whether they ended up in the treatment or the control group (since nobody is forced to graduate from Cal).  This is usually problematic for determining causal relationships, since people who know they will benefit from treatment may choose to take it, while those who know it will not help them may decide not to: this kind of difference is a major unobserved confounder! 
+
+However, in some observational studies treatment is assigned by a process that cannot easily be influenced by the subjects themselves and may ignore differences between subjects so completely as to be almost random. Causal conclusions drawn from these 
+studies, which are sometimes called \emph{natural experiments} or quasi-experiments, are more reliable than those in other observational studies..
+
+**Natural experiment**
+:   A study in which researchers did not randomly assign treatment but claim that the treatment process is sufficiently independent of covariates to justify treatment effect estimation.
+
+
+![](images/nba_foul.jpg){#fig-inflation fig-align="center" width="500px"}[^foulpic]
+
+Do evaluators tend to favor members of the same race?  In the mid-2000s two economists interested in this question, Joseph Price and Justin Wolfers, obtained data on 12 years of referee decisions from professional National Basketball Association (NBA) games. <!--including indicators for whether players and referees were Black or non-Black.--> They compared the rate at which referees gave fouls to players of the same racial category (Black or non-Black) to the rate at which fouls were given to players of the opposite category.
+
+This study aims to investigate a causal claim: for a given player in a given game, would the player's foul rate have been different if a different referee had been assigned whose racial categorization did (or did not) match the player's racial categorization?
+
+If Price and Wolfers had reached an agreement with the NBA that allowed them to assign referees to games at random, they could have conducted a randomized experiment to answer this question using the ideas from the last set of notes. This did not happen; however, Price and Wolfers argue that the actual manner in which referees were assigned to games closely resemble what they would have done in their ideal hypothetical experiment:
+
+> Assignments of referees to crews are made to balance the experience of referees across games, with groups of three referees working together for only a couple of games before being regrouped. According to the NBA, assignments of refereeing crews to specific (regular season) games is "completely arbitrary" with no thought given to the characteristics of the competing teams. Each referee works 70 to 75 games each year, and no referee is allowed to officiate more than nine games for any team, or referee twice in a city within a fourteen-day period. Although these constraints mean that assignment of refereeing crews to  games is not literally random, the more relevant claim for our approach is that assignment decisions are unrelated to the racial characteristics of either team.[^pricewolfers]
+
+To back up their claim, Price and Wolfers conduct hypothesis tests for balance
+on a variety of covariates.  Here is an excerpt from one of their balance tables.
+Each row gives a p-value for a test of the null hypothesis that this covariate
+is independent of the number of non-Black referees.
+
+|Covariate | P-value from balance test |
+|--------|---------:|
+|Year | 0.00|
+|#Black starters (home team) | 0.75 |
+|#Black starters (away team) | 0.72 |
+|Attendance | 0.49 | 
+|Home team out of contention | 0.94|
+|Away team out of contention | 0.81|
+
+Although the table suggests that the number of non-Black referees did vary over time (notice the .00 p-value in the first row) the other p-values are fairly large, suggesting approximate balance.
+
+<!--![](images/balance_table1_price_wolfers.png){#fig-inflation width="600px"}
+![](images/balance_table2_price_wolfers.png){#fig-inflation fig-align=center width="600px"}-->
+
+If indeed the process of assigning referees is independent of the race, team, and popularity of any particular team or player, as well as any other covariates that might be good predictors of foul rate, then each group provides a good approximation to the missing counterfactual outcome distribution for the other  group, and the study can be analyzed as though it were from a truly-randomized experiment to produce a good average treatment effect estimate.  
+
+At this point the problem has been reduced to one of generalization (what does the difference in foul rates in this sample say about the true difference in counterfactual foul rates for all NBA players and games?), and Price and Wolfers use a hypothesis test to address it. They find a significant discrimination effect: on average basketball players facing an officiating referee of the same racial category enjoyed a foul rate 4\% lower than when facing an officiating referee of the opposite category, and also scored 2.5\% more points.[^pricewolfers2]
+
+<!--Studies like this are often known as natural experiments (or quasi-experiments).-->
+
+
+[^foulpic]: Image credit Keith Allison, obtained from Wikimedia Commons.
+
+[^pricewolfers]: From Price, J., & Wolfers, J. (2010). Racial discrimination  among NBA referees. \emph{The Quarterly Journal of Economics}, 125(4), 1859-1887.
+
+[^pricewolfers2]: Interestingly, after Price's and Wolfers' study led to a back-and-forth debate with NBA statisticians and received significant media attention, they repeated their study on mid-2010s data and found that the effect had disappeared.  Based on these results, they claimed that awareness of the potential for racial bias can  cause evaluators to eliminate it from their process. You can read about their follow-up study in Pope, D. G., Price, J., & Wolfers, J. (2018). Awareness reduces racial bias. 
+*Management Science*, 64(11), 4988-4995.
+
+
+
+
 ## The Ideas in Code
+
+
+#### matchit()
 
 We use the `MatchIt` package in R to conduct optimal  matching using the Euclidean distance.  The command `matchit` uses a formula argument much like `lm` to specify the treatment variable and the covariates on which to match.  We also specify that we're
 doing optimal matching and using a Euclidean distance. <!--[^order].-->
@@ -341,6 +404,8 @@ grad_matched <- matchit(cal_grad ~ GPA + years_exp + rec, method = 'optimal',
 ```
 
 <!--[^order]: The `m.order = 'closest'` argument specifies that when going through the treated units to find matches we go in increasing order of distance to the nearest control. This doesn't always matter that much but sometimes can lead to better matches than going through in the order the subjects appear in the data, which is the default behavior.-->
+
+It is important to notice how to specify the formula inside `matchit`. The treatment variable goes on the left-hand side, the covariates go on the right-hand side, and the outcome variable doesn't appear at all (since it is not used when constructing matched pairs): `treatment ~ covariates`. Compare this to the formulas used for `lm`, which are of form `response ~ predictors`.
 
 Calling `plot` on objects created by `matchit` gives you diagnostics comparing the similarity of treated and control covariates before and after matching
 
@@ -357,7 +422,10 @@ grad_matched |>
   plot()
 ```
 
-Since after matching our comparison groups closely resemble what we might have seen in a randomized experiment, we report the sample difference in means as our estimate of the average treatment effect and conduct a hypothesis test as we would have in a randomized trial where we were able to assign Berkeley graduation status at random.  To use the data only from the matched individuals, rather than everyone in `grad_job`, we start with the output object from the matching step and pipe it to the `match.data` command to obtain the smaller data frame.
+
+#### Comparing outcomes in matched pairs
+
+Since after matching our comparison groups closely resemble what we might have seen in a randomized experiment, we report the sample difference in means as our estimate of the average treatment effect.  To use the data only from the matched individuals, rather than everyone in `grad_job`, we start with the output object from the matching step and pipe it to the `match.data` command to obtain the smaller data frame.
 
 ```{r}
 library(infer)
@@ -370,8 +438,48 @@ grad_matched |>
 ```
 
 We estimate that graduation from Cal increases the probability of obtaining
-a good job by 0.4.
+a good job by 0.4. This seems like a large effect, but we have a small dataset -- are we confident that this is not just a random deviation from zero?  To answer this question we will conduct a hypothesis test using the `infer` package.
 
+Hypothesis testing for matched data differs in one important respect from previous tests we have studied for comparing two groups. Our data now has a special structure in which every subject has a matched counterpart in the other group specially chosen to be similar to itself.  If we permute the entire column of observed outcomes in our data frame to generate data from the null distribution, we will destroy that special structure; in any particular permutation both outcomes from a single pair may end up in the same group. A better idea is to permute outcomes **within** pairs only.  In other words, we decide at random in each pair whether to switch which outcome is for the treated unit and which is for the control unit.  This way any dataset we generate from the null distribution still has similar subjects organized into pairs with one treated unit and one control in each pair. 
+
+To conduct this kind of hypothesis using `infer` we need to do two things.  First, we need to transform the data frame so each row represents a different matched pair, and create a new variable which gives the treated - control difference for this pair. The `pivot_wider` command helps us transform the data frame in this way.  The `id_cols` argument determines what will be a row in the new data frame.; here we pass it the `subclass` factor variable created by `match.data()`, which has a different factor level for each distinct matched pairs, to make sure we get a row for each matched pair. The next two arguments, `names_from` and `values_from` should be the treatment and outcome respectively, and the fourth argument is an optional prefix added to the column names.
+```{r}
+by_pair <- grad_matched |>
+   match.data() |>
+   pivot_wider(id_cols = subclass,
+               names_from = cal_grad, 
+               values_from = good_job, 
+               names_prefix = 'good_job_cal_grad') |>
+   mutate('treated_control_diff' = 
+            (good_job_cal_gradTRUE == 'yes') - 
+            (good_job_cal_gradFALSE == 'yes')) 
+by_pair
+```
+Second, we use a different argument to `hypothesize` called `paired independence` to communicate how our pair differences are supposed to be permuted.  Because we have mutated treated and control outcomes into a single new variable (`treated_control_diff`), we don't need to specify an explanatory variable, and our test statistic will just be the mean of `treated_control_diff`.
+```{r}
+null <- by_pair |>
+  specify(response = treated_control_diff) |>
+  hypothesize(null = "paired independence") |>
+  generate(1000, type = "permute") |>
+  calculate(stat = "mean")
+
+obs_stat <- by_pair |>
+  specify(response = treated_control_diff) |>
+  calculate(stat = "mean")
+obs_stat
+```
+Notice that we got the same value for our observed difference in means in this code chunk as in the one above that used the `stat = "diff in props"` argument inside `calculate()`;  because
+$$
+\frac{1}{n}\sum^n_{i=1}x_i - \frac{1}{n}\sum^n_{i=1}y_i = \frac{1}{n}\sum^n_{i=1}(x_i - y_i),
+$$
+it doesn't matter whether we take group averages or take within-pair group differences first.
+
+```{r}
+null |>
+  get_p_value(obs_stat, direction = 'both')
+```
+
+The p-value suggests that although the observed test statistic may appear large, values this large are fairly common under the null hypothesis that graduating from Cal and obtaining a good job are independent.
 
 ### Summary
 
